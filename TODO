@@ -1,0 +1,34 @@
+* Bugs
+- Item positions when moving two items down
+- Always remember the playlist width
+- Investigate ways to ensure Minitube never ever stops playing
+- Truncate overflowing text in the playlist
+- Crash occurring on stop/seach/stop/search
+- Hide the mouse cursor in full screen mode
+
+* Features
+- Build system PREFIX thing
+- Show buffering progress and title of the video
+- Windows build
+- Clear recent keywords
+- Video download
+- Show current video position and total/remaining time near the seekbar
+- Playing/Paused icon overlay on the current video thumb
+- Mark playlist items that have errors
+- Settings: number of "Recent Keywords", Phonon settings
+- Accept YouTube URLs in the search box
+- Search autocomplete
+- Dragndrop on video widget
+- Controls in Fullscreen mode
+- Show more thumbs on hover
+- Played state for playlist items
+- YouTube video details
+- YouTube related videos
+- Subtitles, see http://google2srt.sourceforge.net/
+- Saved playlists
+- Investigate fetchMore() and canFetchMore() in the Model/View API
+
+* Phonon bugs
+- Mac playback sometimes does not start
+- Phonon freezes the GUI on Mac
+- Seek does not work on Linux

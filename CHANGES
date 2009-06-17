@@ -1,0 +1,26 @@
+0.3 - June 15, 2009
+- Can sort videos by relevance, date and popularity
+- Doubleclick on video goes full screen
+- Video context menu
+- Can remove videos using the Backspace key, Mac laptops lack a Delete key
+- Keyboard shortcut to give focus to the search box
+- Load thumbnails asynchronously
+- Fixed wrong (absurdly high) number views on some videos
+- Now Minitube is ready to be translated. Italian, Russian and Portuguese translations available
+- Cosmetics
+
+0.2.1 - June 1, 2009
+- Fixed showstopper bug on Linux: Minitube fails to automatically play the next video
+
+0.2 - May 29, 2009
+- Faster playlist results
+- Ability to (re)move selected playlist items
+- Drag'n'drop playlist items
+- Uses less memory
+- Basic fullscreen mode now works
+- Show the total number of views of a video
+- Video duration is now overlayed on the thumb
+- Update notifier
+
+0.1 - May 15, 2009
+First release

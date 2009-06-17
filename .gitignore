@@ -1,0 +1,7 @@
+build/
+Makefile*
+minitube.pro.user
+.settings/
+.DS_Store
+.cproject
+.project
