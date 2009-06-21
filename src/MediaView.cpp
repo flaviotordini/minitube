@@ -17,8 +17,6 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
 
     splitter = new MiniSplitter(this);
     splitter->setChildrenCollapsible(false);
-    // splitter->setBackgroundRole(QPalette::Text);
-    // splitter->setAutoFillBackground(true);
 
     sortBar = new THBlackBar(this);
     mostRelevantAction = new THAction(tr("Most relevant"), this);
@@ -61,14 +59,24 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
             this, SLOT(selectionChanged ( const QItemSelection & , const QItemSelection & )));
 
     playlistWidget = new PlaylistWidget(this, sortBar, listView);
+    // playlistWidget->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 
     splitter->addWidget(playlistWidget);
 
     videoWidget = new VideoWidget(this);
     videoWidget->setMinimumSize(320,240);
+    // videoWidget->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    videoWidget->hide();
     splitter->addWidget(videoWidget);
-    // expand video by default
-    // splitter->setStretchFactor (1, 2);
+    
+    loadingWidget = new LoadingWidget(this);
+    loadingWidget->setMinimumSize(320,240);
+    // loadingWidget->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    splitter->addWidget(loadingWidget);
+
+    QList<int> sizes;
+    sizes << 320 << 640 << 640;
+    splitter->setSizes(sizes);
 
     layout->addWidget(splitter);
     setLayout(layout);
@@ -95,6 +103,7 @@ void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
     connect(mediaObject, SIGNAL(currentSourceChanged(Phonon::MediaSource)),
             this, SLOT(currentSourceChanged(Phonon::MediaSource)));
     // connect(mediaObject, SIGNAL(tick(qint64)), this, SLOT(tick(qint64)));
+    connect(mediaObject, SIGNAL(bufferStatus(int)), loadingWidget, SLOT(bufferStatus(int)));
 }
 
 void MediaView::search(SearchParams *searchParams) {
@@ -123,11 +132,13 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /* oldState *
 
          case Phonon::PlayingState:
         qDebug("playing");
+        loadingWidget->hide();
+        videoWidget->show();
         break;
 
          case Phonon::StoppedState:
         qDebug("stopped");
-        // Play() has already been called when setting the source
+        // play() has already been called when setting the source
         // but Phonon on Linux needs a little more help to start playback
         mediaObject->play();
         break;
@@ -194,6 +205,12 @@ void MediaView::stop() {
 void MediaView::activeRowChanged(int row) {
     Video *video = listModel->videoAt(row);
     if (!video) return;
+
+    // immediately show the loading widget
+    videoWidget->hide();
+    loadingWidget->setVideo(video);
+    loadingWidget->show();
+
     QUrl streamUrl = video->streamUrl();
     // qDebug() << "setCurrentSource" << streamUrl.toString();
 

@@ -10,6 +10,7 @@
 #include "thblackbar.h"
 #include "searchparams.h"
 #include "playlistwidget.h"
+#include "loadingwidget.h"
 
 class MediaView : public QWidget, public View {
     Q_OBJECT
@@ -81,6 +82,9 @@ private:
     // phonon
     Phonon::MediaObject *mediaObject;
     Phonon::VideoWidget *videoWidget;
+
+    // loadingWidget
+    LoadingWidget *loadingWidget;
 
     QNetworkReply *networkReply;
 

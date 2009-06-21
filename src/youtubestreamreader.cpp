@@ -86,12 +86,11 @@ void YouTubeStreamReader::readEntry() {
                             // qDebug() << "Title: " << title;
                             video->setTitle(title);
                         }
-                        /*
                         else if (name() == "description") {
                             QString desc = readElementText();
-                            qDebug() << "Description: " << desc;
+                            // qDebug() << "Description: " << desc;
                             video->setDescription(desc);
-                        } */
+                        }
                         else if (name() == "duration") {
                             QString duration = attributes().value("seconds").toString();
                             // qDebug() << "Duration: " << duration;
