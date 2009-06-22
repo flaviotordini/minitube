@@ -9,14 +9,19 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
 
     setAutoFillBackground(true);
 
-    QBoxLayout *layout = new QVBoxLayout();
-    layout->setAlignment(Qt::AlignCenter);
-
     QFont bigFont;
     bigFont.setPointSize(bigFont.pointSize()*4);
+    QFontMetrics fm(bigFont);
+    int textHeightInPixels = fm.height();
+    int spacing = textHeightInPixels / 2;
+
+    QBoxLayout *layout = new QVBoxLayout();
+    layout->setSpacing(spacing);
+    layout->setMargin(spacing);
 
     titleLabel = new QLabel(this);
-    titleLabel->setAlignment(Qt::AlignCenter);
+    titleLabel->setAlignment(Qt::AlignHCenter | Qt::AlignBottom);
+    titleLabel->setPalette(p);
     titleLabel->setForegroundRole(QPalette::Text);
     titleLabel->setWordWrap(true);
     titleLabel->setFont(bigFont);
@@ -27,7 +32,8 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
     biggerFont.setPointSize(biggerFont.pointSize()*2);
 
     descriptionLabel = new QLabel(this);
-    descriptionLabel->setAlignment(Qt::AlignCenter);
+    descriptionLabel->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
+    descriptionLabel->setPalette(p);
     descriptionLabel->setForegroundRole(QPalette::Text);
     descriptionLabel->setWordWrap(true);
     descriptionLabel->setFont(biggerFont);
