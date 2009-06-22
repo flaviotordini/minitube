@@ -40,7 +40,12 @@
         <translation>Icona disegnata da %1.</translation>
     </message>
     <message>
-        <location filename="../src/AboutView.cpp" line="33"/>
+        <location filename="../src/AboutView.cpp" line="34"/>
+        <source>Translated by %1</source>
+        <translation>Tradotto da %1</translation>
+    </message>
+    <message>
+        <location filename="../src/AboutView.cpp" line="36"/>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
         <translation>Rilasciato sotto licenza &lt;a href=&quot;%1&quot;&gt;GNU General Public License&lt;/a&gt;</translation>
     </message>
@@ -61,6 +66,29 @@
         <location filename="../src/searchlineedit.cpp" line="50"/>
         <source>Clear</source>
         <translation>Cancella</translation>
+    </message>
+</context>
+<context>
+    <name>ListModel</name>
+    <message>
+        <location filename="../src/ListModel.cpp" line="44"/>
+        <source>Searching...</source>
+        <translation>Ricerca...</translation>
+    </message>
+    <message>
+        <location filename="../src/ListModel.cpp" line="45"/>
+        <source>Show %1 More</source>
+        <translation>Mostra altri %1</translation>
+    </message>
+    <message>
+        <location filename="../src/ListModel.cpp" line="46"/>
+        <source>No videos</source>
+        <translation>Nessun video</translation>
+    </message>
+    <message>
+        <location filename="../src/ListModel.cpp" line="47"/>
+        <source>No more videos</source>
+        <translation>Nessun altro video</translation>
     </message>
 </context>
 <context>
@@ -92,8 +120,8 @@
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="98"/>
-        <location filename="../src/MainWindow.cpp" line="457"/>
-        <location filename="../src/MainWindow.cpp" line="461"/>
+        <location filename="../src/MainWindow.cpp" line="462"/>
+        <location filename="../src/MainWindow.cpp" line="466"/>
         <source>Esc</source>
         <translation></translation>
     </message>
@@ -114,13 +142,13 @@
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="109"/>
-        <location filename="../src/MainWindow.cpp" line="418"/>
+        <location filename="../src/MainWindow.cpp" line="423"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pausa</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="110"/>
-        <location filename="../src/MainWindow.cpp" line="419"/>
+        <location filename="../src/MainWindow.cpp" line="424"/>
         <source>Pause playback</source>
         <translation>Metti in pausa</translation>
     </message>
@@ -131,7 +159,7 @@
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="116"/>
-        <location filename="../src/MainWindow.cpp" line="456"/>
+        <location filename="../src/MainWindow.cpp" line="461"/>
         <source>&amp;Full Screen</source>
         <translation>&amp;Schermo intero</translation>
     </message>
@@ -142,7 +170,7 @@
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="118"/>
-        <location filename="../src/MainWindow.cpp" line="455"/>
+        <location filename="../src/MainWindow.cpp" line="460"/>
         <source>Alt+Return</source>
         <translation></translation>
     </message>
@@ -207,88 +235,88 @@
         <translation>&amp;Esci</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="163"/>
+        <location filename="../src/MainWindow.cpp" line="164"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="164"/>
+        <location filename="../src/MainWindow.cpp" line="165"/>
         <source>Bye</source>
         <translation>Ciao</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="168"/>
+        <location filename="../src/MainWindow.cpp" line="169"/>
         <source>&amp;Website</source>
         <translation>Sito &amp;web</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="170"/>
+        <location filename="../src/MainWindow.cpp" line="171"/>
         <source>Minitube on the Web</source>
         <translation>Minitube sul Web</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="174"/>
+        <location filename="../src/MainWindow.cpp" line="175"/>
         <source>&amp;Donate via PayPal</source>
         <translation>Fai una &amp;donazione con PayPal</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="175"/>
+        <location filename="../src/MainWindow.cpp" line="176"/>
         <source>Please support the continued development of %1</source>
         <translation>Supporta lo sviluppo di %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="179"/>
+        <location filename="../src/MainWindow.cpp" line="180"/>
         <source>&amp;About</source>
         <translation>&amp;Informazioni</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="180"/>
+        <location filename="../src/MainWindow.cpp" line="182"/>
         <source>Info about %1</source>
         <translation>Informazioni su %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="184"/>
+        <location filename="../src/MainWindow.cpp" line="186"/>
         <source>&amp;Search</source>
         <translation>&amp;Ricerca</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="210"/>
+        <location filename="../src/MainWindow.cpp" line="212"/>
         <source>&amp;Application</source>
         <translation>&amp;Applicazione</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="218"/>
+        <location filename="../src/MainWindow.cpp" line="220"/>
         <source>&amp;Playlist</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="225"/>
+        <location filename="../src/MainWindow.cpp" line="227"/>
         <source>&amp;Video</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="236"/>
+        <location filename="../src/MainWindow.cpp" line="238"/>
         <source>&amp;Help</source>
         <translation>&amp;Aiuto</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="360"/>
-        <location filename="../src/MainWindow.cpp" line="366"/>
+        <location filename="../src/MainWindow.cpp" line="365"/>
+        <location filename="../src/MainWindow.cpp" line="371"/>
         <source>Opening %1</source>
         <translation>Apertura di %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="432"/>
+        <location filename="../src/MainWindow.cpp" line="437"/>
         <source>&amp;Play</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="433"/>
+        <location filename="../src/MainWindow.cpp" line="438"/>
         <source>Resume playback</source>
         <translation>Continua</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="462"/>
+        <location filename="../src/MainWindow.cpp" line="467"/>
         <source>Exit &amp;Full Screen</source>
         <translation>&amp;Esci dallo schermo intero</translation>
     </message>
@@ -296,22 +324,22 @@
 <context>
     <name>MediaView</name>
     <message>
-        <location filename="../src/MediaView.cpp" line="24"/>
+        <location filename="../src/MediaView.cpp" line="22"/>
         <source>Most relevant</source>
         <translation>Più rilevanti</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="27"/>
+        <location filename="../src/MediaView.cpp" line="25"/>
         <source>Most recent</source>
         <translation>Più recenti</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="30"/>
+        <location filename="../src/MediaView.cpp" line="28"/>
         <source>Most viewed</source>
         <translation>Più visti</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.h" line="29"/>
+        <location filename="../src/MediaView.h" line="30"/>
         <source>You&apos;re watching &quot;%1&quot;</source>
         <translation>Stai guardando &quot;%1&quot;</translation>
     </message>
@@ -335,27 +363,27 @@
 <context>
     <name>SearchView</name>
     <message>
-        <location filename="../src/SearchView.cpp" line="27"/>
+        <location filename="../src/SearchView.cpp" line="30"/>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
         <translation>Benvenuto su &lt;a href=&quot;%1&quot;&gt;%2&lt;/a&gt;,</translation>
     </message>
     <message>
-        <location filename="../src/SearchView.cpp" line="34"/>
+        <location filename="../src/SearchView.cpp" line="37"/>
         <source>Enter a keyword to start watching videos.</source>
         <translation>Scrivi una parola chiave per iniziare a guardare i video.</translation>
     </message>
     <message>
-        <location filename="../src/SearchView.cpp" line="52"/>
+        <location filename="../src/SearchView.cpp" line="54"/>
         <source>Watch</source>
         <translation>Guarda</translation>
     </message>
     <message>
-        <location filename="../src/SearchView.cpp" line="67"/>
+        <location filename="../src/SearchView.cpp" line="69"/>
         <source>Recent keywords</source>
         <translation>Ultime ricerche</translation>
     </message>
     <message>
-        <location filename="../src/SearchView.cpp" line="181"/>
+        <location filename="../src/SearchView.cpp" line="180"/>
         <source>A new version of %1 is available. Please &lt;a href=&apos;%2&apos;&gt;update to version %3&lt;/a&gt;</source>
         <translation>È disponibile una nuova versione di %1. &lt;a href=&apos;%2&apos;&gt;Aggiorna alla versione %3&lt;/a&gt;</translation>
     </message>
