@@ -8,7 +8,6 @@
 enum DataRoles {
     ItemTypeRole = Qt::UserRole,
     VideoRole,
-    StreamUrlRole,
     ActiveTrackRole
 };
 
@@ -44,7 +43,7 @@ public:
     // custom methods
     void setActiveRow( int row );
     bool rowExists( int row ) const { return (( row >= 0 ) && ( row < videos.size() ) ); }
-    // int activeRow() const { return m_activeRow; } // returns -1 if there is no active row
+    int activeRow() const { return m_activeRow; } // returns -1 if there is no active row
     int nextRow() const;
     void removeIndexes(QModelIndexList &indexes);
     int rowForVideo(Video* video);

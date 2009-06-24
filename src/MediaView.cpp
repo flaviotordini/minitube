@@ -211,8 +211,16 @@ void MediaView::activeRowChanged(int row) {
     loadingWidget->setVideo(video);
     loadingWidget->show();
 
-    QUrl streamUrl = video->streamUrl();
-    // qDebug() << "setCurrentSource" << streamUrl.toString();
+    mediaObject->pause();
+
+    connect(video, SIGNAL(gotStreamUrl(QUrl)), SLOT(gotStreamUrl(QUrl)));
+    video->loadStreamUrl();
+
+    // see you in gotStreamUrl...
+
+}
+
+void MediaView::gotStreamUrl(QUrl streamUrl) {
 
     // go!
     mediaObject->setCurrentSource(streamUrl);
@@ -222,8 +230,11 @@ void MediaView::activeRowChanged(int row) {
     listModel->searchNeeded();
 
     // ensure active item is visible
-    QModelIndex index = listModel->index(row, 0, QModelIndex());
-    listView->scrollTo(index, QAbstractItemView::EnsureVisible);
+    int row = listModel->activeRow();
+    if (row != -1) {
+        QModelIndex index = listModel->index(row, 0, QModelIndex());
+        listView->scrollTo(index, QAbstractItemView::EnsureVisible);
+    }
 }
 
 void MediaView::itemActivated(const QModelIndex &index) {

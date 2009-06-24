@@ -89,8 +89,8 @@ QVariant ListModel::data(const QModelIndex &index, int role) const {
             return tooltip;
             */
         
-         case StreamUrlRole:
-        return video->streamUrl();
+        // case StreamUrlRole:
+        // return video->streamUrl();
     }
     
     return QVariant();

@@ -57,6 +57,7 @@ private slots:
     void aboutToFinish();
     void currentSourceChanged(const Phonon::MediaSource source);
     void showVideoContextMenu(QPoint point);
+    void gotStreamUrl(QUrl streamUrl);
     // bar
     void searchMostRelevant();
     void searchMostRecent();
