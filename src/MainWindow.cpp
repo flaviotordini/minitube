@@ -262,19 +262,15 @@ void MainWindow::createToolBars() {
 
     seekSlider = new Phonon::SeekSlider(this);
     seekSlider->setIconVisible(false);
-    // seekSlider->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-    mainToolBar->addWidget(new Spacer(mainToolBar, seekSlider));
+    Spacer *seekSliderSpacer = new Spacer(mainToolBar, seekSlider);
+    seekSliderSpacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    mainToolBar->addWidget(seekSliderSpacer);
 
     volumeSlider = new Phonon::VolumeSlider(this);
-    // this makes the volume slider smaller...
-    volumeSlider->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+    // this makes the volume slider smaller
+    volumeSlider->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     mainToolBar->addWidget(new Spacer(mainToolBar, volumeSlider));
 
-    // mainToolBar->addSeparator();
-    // mainToolBar->addAction(downloadAct);
-    // mainToolBar->addAction(webPageAct);
-
-    // toolbarSearch->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
     mainToolBar->addWidget(new Spacer(mainToolBar, toolbarSearch));
 
     addToolBar(mainToolBar);
@@ -282,8 +278,6 @@ void MainWindow::createToolBars() {
 
 void MainWindow::createStatusBar() {
     statusBar()->show();
-    statusBar()->setBackgroundRole(QPalette::Dark);
-    // statusBar()->setAutoFillBackground(true);
 }
 
 void MainWindow::readSettings() {
@@ -325,17 +319,16 @@ void MainWindow::showWidget ( QWidget* widget ) {
     }
 
     // backAct->setEnabled(history->size() > 1);
+    // settingsAct->setEnabled(widget != settingsView);
     stopAct->setEnabled(widget == mediaView);
     fullscreenAct->setEnabled(widget == mediaView);
     webPageAct->setEnabled(widget == mediaView);
-    // settingsAct->setEnabled(widget != settingsView);
     aboutAct->setEnabled(widget != aboutView);
+
+    // cool toolbar on the Mac
+    setUnifiedTitleAndToolBarOnMac(widget == mediaView);
+
     // toolbar only for the mediaView
-
-    // This is cool on the Mac
-    // But does not respect layouts, maybe it's a Qt bug
-    // setUnifiedTitleAndToolBarOnMac(widget == mediaView);
-
     mainToolBar->setVisible(widget == mediaView);
 
     history->push(widget);
