@@ -1,18 +1,15 @@
 # If Phonon cannot be found, uncomment the following (and set the correct path)
 # INCLUDEPATH += /usr/include/phonon
 CONFIG += release
-
 TEMPLATE = app
 
 # Saner string behaviour
-#DEFINES += QT_NO_CAST_FROM_ASCII QT_NO_CAST_TO_ASCII QT_STRICT_ITERATORS
-
+# DEFINES += QT_NO_CAST_FROM_ASCII QT_NO_CAST_TO_ASCII QT_STRICT_ITERATORS
 TARGET = minitube
-mac {
+mac { 
     TARGET = Minitube
     QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.4
 }
-
 QT += network \
     xml \
     phonon
@@ -42,7 +39,8 @@ HEADERS += src/MainWindow.h \
     src/videowidget.h \
     src/playlistwidget.h \
     src/searchparams.h \
-    src/minisplitter.h
+    src/minisplitter.h \
+    src/loadingwidget.h
 SOURCES += src/main.cpp \
     src/MainWindow.cpp \
     src/SearchView.cpp \
@@ -65,7 +63,8 @@ SOURCES += src/main.cpp \
     src/networkaccess.cpp \
     src/playlistwidget.cpp \
     src/searchparams.cpp \
-    src/minisplitter.cpp
+    src/minisplitter.cpp \
+    src/loadingwidget.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/
@@ -78,27 +77,21 @@ CODECFORSRC = UTF-8
 include(locale/locale.pri)
 
 # deploy
-
 DISTFILES += CHANGES \
     LICENSE
-
-mac {
+mac { 
     CONFIG += x86 \
         ppc
     QMAKE_INFO_PLIST = Info.plist
     ICON = minitube.icns
 }
-
-unix {
-    isEmpty(PREFIX) {
-        PREFIX = /usr/local
-    }
+unix { 
+    isEmpty(PREFIX):PREFIX = /usr/local
     BINDIR = $$PREFIX/bin
-
     INSTALLS += target
     target.path = $$BINDIR
-
     DATADIR = $$PREFIX/share
     PKGDATADIR = $$DATADIR/minitube
-    DEFINES += DATADIR=\\\"$$DATADIR\\\" PKGDATADIR=\\\"$$PKGDATADIR\\\"
+    DEFINES += DATADIR=\\\"$$DATADIR\\\" \
+        PKGDATADIR=\\\"$$PKGDATADIR\\\"
 }
