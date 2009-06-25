@@ -36,11 +36,11 @@ HEADERS += src/MainWindow.h \
     src/videomimedata.h \
     src/global.h \
     src/updatechecker.h \
-    src/videowidget.h \
     src/playlistwidget.h \
     src/searchparams.h \
     src/minisplitter.h \
-    src/loadingwidget.h
+    src/loadingwidget.h \
+    src/videoareawidget.h
 SOURCES += src/main.cpp \
     src/MainWindow.cpp \
     src/SearchView.cpp \
@@ -59,12 +59,12 @@ SOURCES += src/main.cpp \
     src/playlist/PrettyItemDelegate.cpp \
     src/videomimedata.cpp \
     src/updatechecker.cpp \
-    src/videowidget.cpp \
     src/networkaccess.cpp \
     src/playlistwidget.cpp \
     src/searchparams.cpp \
     src/minisplitter.cpp \
-    src/loadingwidget.cpp
+    src/loadingwidget.cpp \
+    src/videoareawidget.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/
@@ -94,4 +94,25 @@ unix {
     PKGDATADIR = $$DATADIR/minitube
     DEFINES += DATADIR=\\\"$$DATADIR\\\" \
         PKGDATADIR=\\\"$$PKGDATADIR\\\"
+    INSTALLS += translations \
+        desktop \
+        iconsvg \
+        icon16 \
+        icon32 \
+        icon128
+    translations.path = $$PKGDATADIR
+    translations.files += .qm/locale
+    desktop.path = $$DATADIR/applications
+    desktop.files += minitube.desktop
+    
+    # iconxpm.path = $$DATADIR/pixmaps
+    # iconxpm.files += data/minitube.xpm
+    iconsvg.path = $$DATADIR/icons/hicolor/scalable/apps
+    iconsvg.files += data/minitube.svg
+    icon16.path = $$DATADIR/icons/hicolor/16x16/apps
+    icon16.files += data/16x16/minitube.png
+    icon32.path = $$DATADIR/icons/hicolor/32x32/apps
+    icon32.files += data/32x32/minitube.png
+    icon128.path = $$DATADIR/icons/hicolor/128x128/apps
+    icon128.files += data/128x128/minitube.png
 }

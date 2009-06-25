@@ -59,23 +59,23 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
             this, SLOT(selectionChanged ( const QItemSelection & , const QItemSelection & )));
 
     playlistWidget = new PlaylistWidget(this, sortBar, listView);
-    // playlistWidget->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 
     splitter->addWidget(playlistWidget);
 
-    videoWidget = new VideoWidget(this);
+    videoAreaWidget = new VideoAreaWidget(this);
+
+    videoWidget = new Phonon::VideoWidget(this);
     videoWidget->setMinimumSize(320,240);
-    // videoWidget->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-    videoWidget->hide();
-    splitter->addWidget(videoWidget);
-    
+    videoAreaWidget->setVideoWidget(videoWidget);
+
     loadingWidget = new LoadingWidget(this);
     loadingWidget->setMinimumSize(320,240);
-    // loadingWidget->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-    splitter->addWidget(loadingWidget);
+    videoAreaWidget->setLoadingWidget(loadingWidget);
+
+    splitter->addWidget(videoAreaWidget);
 
     QList<int> sizes;
-    sizes << 320 << 640 << 640;
+    sizes << 320 << 640;
     splitter->setSizes(sizes);
 
     layout->addWidget(splitter);
@@ -87,9 +87,9 @@ MediaView::~MediaView() {
 }
 
 void MediaView::initialize() {
-    connect(videoWidget, SIGNAL(doubleClicked()), The::globalActions()->value("fullscreen"), SLOT(trigger()));
-    videoWidget->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(videoWidget, SIGNAL(customContextMenuRequested(QPoint)),
+    connect(videoAreaWidget, SIGNAL(doubleClicked()), The::globalActions()->value("fullscreen"), SLOT(trigger()));
+    videoAreaWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(videoAreaWidget, SIGNAL(customContextMenuRequested(QPoint)),
             this, SLOT(showVideoContextMenu(QPoint)));
 }
 
@@ -132,8 +132,7 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /* oldState *
 
          case Phonon::PlayingState:
         qDebug("playing");
-        loadingWidget->hide();
-        videoWidget->show();
+        videoAreaWidget->showVideo();
         break;
 
          case Phonon::StoppedState:
@@ -172,28 +171,16 @@ void MediaView::pause() {
 }
 
 void MediaView::fullscreen() {
-
-#ifdef Q_WS_MAC
     splitterState = splitter->saveState();
-    videoWidget->setParent(0);
-    videoWidget->showFullScreen();
-#else
-    videoWidget->setFullScreen(!videoWidget->isFullScreen());
-#endif
-
+    videoAreaWidget->setParent(0);
+    videoAreaWidget->showFullScreen();
 }
 
 void MediaView::exitFullscreen() {
-
-#ifdef Q_WS_MAC
-    videoWidget->setParent(this);
-    splitter->addWidget(videoWidget);
-    videoWidget->showNormal();
+    videoAreaWidget->setParent(this);
+    splitter->addWidget(videoAreaWidget);
+    videoAreaWidget->showNormal();
     splitter->restoreState(splitterState);
-#else
-    videoWidget->setFullScreen(false);
-#endif
-
 }
 
 void MediaView::stop() {
@@ -207,9 +194,7 @@ void MediaView::activeRowChanged(int row) {
     if (!video) return;
 
     // immediately show the loading widget
-    videoWidget->hide();
-    loadingWidget->setVideo(video);
-    loadingWidget->show();
+    videoAreaWidget->showLoading(video);
 
     mediaObject->pause();
 

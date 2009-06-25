@@ -11,6 +11,7 @@
 #include "searchparams.h"
 #include "playlistwidget.h"
 #include "loadingwidget.h"
+#include "videoareawidget.h"
 
 class MediaView : public QWidget, public View {
     Q_OBJECT
@@ -85,9 +86,8 @@ private:
     Phonon::VideoWidget *videoWidget;
 
     // loadingWidget
+    VideoAreaWidget *videoAreaWidget;
     LoadingWidget *loadingWidget;
-
-    QNetworkReply *networkReply;
 
 };
 
