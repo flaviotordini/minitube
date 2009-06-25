@@ -3,12 +3,10 @@
 - Always remember the playlist width
 - Investigate ways to ensure Minitube never ever stops playing
 - Truncate overflowing text in the playlist
-- Crash occurring on stop/seach/stop/search
 - Hide the mouse cursor in full screen mode
 
 * Features
-- Build system PREFIX thing
-- Show buffering progress and title of the video
+- Show buffering progress (when Phonon backends will work)
 - Windows build
 - Clear recent keywords
 - Video download
@@ -17,6 +15,7 @@
 - Mark playlist items that have errors
 - Settings: number of "Recent Keywords", Phonon settings
 - Accept YouTube URLs in the search box
+- Accept any URL and scrape web pages searching for YouTube videos
 - Search autocomplete
 - Dragndrop on video widget
 - Controls in Fullscreen mode

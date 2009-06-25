@@ -102,10 +102,9 @@ unix {
         icon32 \
         icon128
     translations.path = $$PKGDATADIR
-    translations.files += .qm/locale
+    translations.files += $$DESTDIR/locale
     desktop.path = $$DATADIR/applications
     desktop.files += minitube.desktop
-    
     # iconxpm.path = $$DATADIR/pixmaps
     # iconxpm.files += data/minitube.xpm
     iconsvg.path = $$DATADIR/icons/hicolor/scalable/apps
