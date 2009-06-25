@@ -40,9 +40,11 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
     descriptionLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     layout->addWidget(descriptionLabel);
 
+    /*
     progressBar = new QProgressBar(this);
     progressBar->hide();
     layout->addWidget(progressBar);
+    */
 
     setLayout(layout);
 }
@@ -52,22 +54,16 @@ void LoadingWidget::setVideo(Video *video) {
     // enhance legibility by splitting the title
     title = title.replace(" - ", "<p>");
     title = title.replace("] ", "]<p>");
+    title = title.replace(" [", "<p>[");
     titleLabel->setText(title);
     descriptionLabel->setText(video->description());
-    progressBar->hide();
+    // progressBar->hide();
 }
 
 void LoadingWidget::bufferStatus(int percent) {
+    /*
     qDebug() << percent;
     progressBar->setShown(percent > 0);
     progressBar->setValue(percent);
-}
-
-void LoadingWidget::paintEvent(QPaintEvent *) {
-
-    /*
-    QPainter painter(this);
-    painter.fillRect(0, 0, width(), height(), Qt::black);
     */
-
 }

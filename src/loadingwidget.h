@@ -15,13 +15,12 @@ public:
 public slots:
     void bufferStatus(int);
 
-protected:
-    void paintEvent(QPaintEvent *event);
-
 private:
     QLabel *titleLabel;
     QLabel *descriptionLabel;
-    QProgressBar *progressBar;
+    // TODO uncomment the whole progress bar feature
+    // when the Phonon backends will correctly emit bufferStatus(int)
+    // QProgressBar *progressBar;
 
 };
 
