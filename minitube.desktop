@@ -1,0 +1,13 @@
+
+[Desktop Entry]
+Name=Minitube
+Name[en_US]=minitube.desktop
+Comment=YouTube client
+GenericName=YouTube client
+GenericName[en_US]=YouTube client
+Exec=minitube
+Terminal=false
+Type=Application
+Icon=minitube
+Categories=Qt;AudioVideo;Video
+StartupNotify=true
