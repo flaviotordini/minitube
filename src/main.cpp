@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
     app.setOrganizationName(Constants::ORG_NAME);
     app.setOrganizationDomain(Constants::ORG_DOMAIN);
 
-    QString locale = ""; //QLocale::system().name();
+    QString locale = QLocale::system().name();
 
     // qt translations
     QTranslator qtTranslator;

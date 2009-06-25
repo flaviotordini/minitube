@@ -6,7 +6,8 @@ DEPENDPATH += $$PWD
 TRANSLATIONS += \
     it_IT.ts \
     pt_BR.ts \
-    ru_RU.ts
+    ru_RU.ts \
+    es_AR.ts
 
 isEmpty(QMAKE_LRELEASE) {
     win32:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]\lrelease.exe -silent

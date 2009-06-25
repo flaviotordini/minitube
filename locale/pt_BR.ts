@@ -45,9 +45,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/AboutView.cpp" line="36"/>
+        <location filename="../src/AboutView.cpp" line="39"/>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
         <translation>Lançado sob a &lt;a href=&apos;%1&apos;&gt;Licença Pública Geral GNU&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/AboutView.cpp" line="49"/>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/AboutView.h" line="18"/>
@@ -99,9 +104,8 @@
         <translation>&amp;Voltar</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="91"/>
         <source>Alt+Left</source>
-        <translation>Alt+Left</translation>
+        <translation type="obsolete">Alt+Left</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="92"/>
@@ -119,11 +123,8 @@
         <translation>Parar a reprodução e voltar à visualização da pesquisa</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="98"/>
-        <location filename="../src/MainWindow.cpp" line="462"/>
-        <location filename="../src/MainWindow.cpp" line="466"/>
         <source>Esc</source>
-        <translation>Esc</translation>
+        <translation type="obsolete">Esc</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="102"/>
@@ -136,30 +137,28 @@
         <translation>Pular para o próximo vídeo</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="104"/>
         <source>Ctrl+Right</source>
-        <translation>Ctrl+Right</translation>
+        <translation type="obsolete">Ctrl+Right</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="109"/>
-        <location filename="../src/MainWindow.cpp" line="423"/>
+        <location filename="../src/MainWindow.cpp" line="416"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pausar</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="110"/>
-        <location filename="../src/MainWindow.cpp" line="424"/>
+        <location filename="../src/MainWindow.cpp" line="417"/>
         <source>Pause playback</source>
         <translation>Pausar a reprodução</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="111"/>
         <source>Space</source>
-        <translation>Barra de espaço</translation>
+        <translation type="obsolete">Barra de espaço</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="116"/>
-        <location filename="../src/MainWindow.cpp" line="461"/>
+        <location filename="../src/MainWindow.cpp" line="454"/>
         <source>&amp;Full Screen</source>
         <translation>&amp;Tela Cheia</translation>
     </message>
@@ -169,10 +168,8 @@
         <translation>Ir para a tela cheia</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="118"/>
-        <location filename="../src/MainWindow.cpp" line="460"/>
         <source>Alt+Return</source>
-        <translation>Alt+Enter</translation>
+        <translation type="obsolete">Alt+Enter</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="132"/>
@@ -210,9 +207,8 @@
         <translation>Mover para cima os vídeos selecionados na playlist</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="150"/>
         <source>Ctrl+Up</source>
-        <translation>Ctrl+Up</translation>
+        <translation type="obsolete">Ctrl+Up</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="155"/>
@@ -225,9 +221,8 @@
         <translation>Mover para baixo os vídeos selecionados na playlist</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="157"/>
         <source>Ctrl+Down</source>
-        <translation>Ctrl+Down</translation>
+        <translation type="obsolete">Ctrl+Down</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="162"/>
@@ -250,9 +245,13 @@
         <translation>&amp;Website</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="171"/>
         <source>Minitube on the Web</source>
-        <translation>Minitube na Web</translation>
+        <translation type="obsolete">Minitube na Web</translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="171"/>
+        <source>%1 on the Web</source>
+        <translation>%1 na Web</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="175"/>
@@ -300,23 +299,23 @@
         <translation>&amp;Ajuda</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="365"/>
-        <location filename="../src/MainWindow.cpp" line="371"/>
+        <location filename="../src/MainWindow.cpp" line="358"/>
+        <location filename="../src/MainWindow.cpp" line="364"/>
         <source>Opening %1</source>
         <translation>Abrindo %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="437"/>
+        <location filename="../src/MainWindow.cpp" line="430"/>
         <source>&amp;Play</source>
         <translation>&amp;Reproduzir</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="438"/>
+        <location filename="../src/MainWindow.cpp" line="431"/>
         <source>Resume playback</source>
         <translation>Continuar reprodução</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="467"/>
+        <location filename="../src/MainWindow.cpp" line="460"/>
         <source>Exit &amp;Full Screen</source>
         <translation>Sair de &amp;Tela Cheia</translation>
     </message>

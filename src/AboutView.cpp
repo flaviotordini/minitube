@@ -31,7 +31,10 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
 
                    "<p>" + tr("Icon designed by %1.").arg("Sebastian Kraft") + "</p>"
 
-                   "<p>" + tr("Translated by %1").arg("Nikita Lyalin (ru_RU), Márcio Moraes (pt_BR)") + "</p>"
+                   "<p>" + tr("Translated by %1").arg("Nikita Lyalin (ru_RU), "
+                                                      "Márcio Moraes (pt_BR), "
+                                                      "Sergio Tocalini Joerg (es_AR)"
+                                                      ) + "</p>"
 
                    "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")
                    .arg("http://www.gnu.org/licenses/gpl.html") + "</p>"
@@ -43,7 +46,7 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
 
     QLayout *buttonLayout = new QHBoxLayout();
     buttonLayout->setAlignment(Qt::AlignLeft);
-    QPushButton *closeButton = new QPushButton("&Close", this);
+    QPushButton *closeButton = new QPushButton(tr("&Close"), this);
     closeButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 
     closeButton->setDefault(true);

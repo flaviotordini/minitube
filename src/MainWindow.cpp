@@ -88,34 +88,34 @@ void MainWindow::createActions() {
     
     backAct = new QAction(QIcon(":/images/go-previous.png"), tr("&Back"), this);
     backAct->setEnabled(false);
-    backAct->setShortcut(tr("Alt+Left"));
+    backAct->setShortcut(QKeySequence(Qt::ALT + Qt::Key_Left));
     backAct->setStatusTip(tr("Go to the previous view"));
     actions->insert("back", backAct);
     connect(backAct, SIGNAL(triggered()), this, SLOT(goBack()));
 
     stopAct = new QAction(QtIconLoader::icon("media-stop", QIcon(":/images/stop.png")), tr("&Stop"), this);
     stopAct->setStatusTip(tr("Stop playback and go back to the search view"));
-    stopAct->setShortcut(tr("Esc"));
+    stopAct->setShortcut(QKeySequence(Qt::Key_Escape));
     actions->insert("stop", stopAct);
     connect(stopAct, SIGNAL(triggered()), this, SLOT(stop()));
 
     skipAct = new QAction(QtIconLoader::icon("media-skip-forward", QIcon(":/images/skip.png")), tr("S&kip"), this);
     skipAct->setStatusTip(tr("Skip to the next video"));
-    skipAct->setShortcut(tr("Ctrl+Right"));
+    skipAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Right));
     skipAct->setEnabled(false);
     actions->insert("skip", skipAct);
     connect(skipAct, SIGNAL(triggered()), mediaView, SLOT(skip()));
 
     pauseAct = new QAction(QtIconLoader::icon("media-pause", QIcon(":/images/pause.png")), tr("&Pause"), this);
     pauseAct->setStatusTip(tr("Pause playback"));
-    pauseAct->setShortcut(tr("Space"));
+    pauseAct->setShortcut(QKeySequence(Qt::Key_Space));
     pauseAct->setEnabled(false);
     actions->insert("pause", pauseAct);
     connect(pauseAct, SIGNAL(triggered()), mediaView, SLOT(pause()));
 
     fullscreenAct = new QAction(QtIconLoader::icon("view-fullscreen", QIcon(":/images/view-fullscreen.png")), tr("&Full Screen"), this);
     fullscreenAct->setStatusTip(tr("Go full screen"));
-    fullscreenAct->setShortcut(tr("Alt+Return"));
+    fullscreenAct->setShortcut(QKeySequence(Qt::ALT + Qt::Key_Enter));
     fullscreenAct->setShortcutContext(Qt::ApplicationShortcut);
     actions->insert("fullscreen", fullscreenAct);
     connect(fullscreenAct, SIGNAL(triggered()), this, SLOT(fullscreen()));
@@ -147,14 +147,14 @@ void MainWindow::createActions() {
 
     moveUpAct = new QAction(QtIconLoader::icon("go-up", QIcon(":/images/go-up.png")), tr("Move &Up"), this);
     moveUpAct->setStatusTip(tr("Move up the selected videos in the playlist"));
-    moveUpAct->setShortcut(tr("Ctrl+Up"));
+    moveUpAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Up));
     moveUpAct->setEnabled(false);
     actions->insert("moveUp", moveUpAct);
     connect(moveUpAct, SIGNAL(triggered()), mediaView, SLOT(moveUpSelected()));
 
     moveDownAct = new QAction(QtIconLoader::icon("go-down", QIcon(":/images/go-down.png")), tr("Move &Down"), this);
     moveDownAct->setStatusTip(tr("Move down the selected videos in the playlist"));
-    moveDownAct->setShortcut(tr("Ctrl+Down"));
+    moveDownAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Down));
     moveDownAct->setEnabled(false);
     actions->insert("moveDown", moveDownAct);
     connect(moveDownAct, SIGNAL(triggered()), mediaView, SLOT(moveDownSelected()));
@@ -168,7 +168,7 @@ void MainWindow::createActions() {
 
     siteAct = new QAction(tr("&Website"), this);
     siteAct->setShortcut(QKeySequence::HelpContents);
-    siteAct->setStatusTip(tr("Minitube on the Web"));
+    siteAct->setStatusTip(tr("%1 on the Web").arg(Constants::APP_NAME));
     actions->insert("site", siteAct);
     connect(siteAct, SIGNAL(triggered()), this, SLOT(visitSite()));
 
@@ -450,13 +450,13 @@ void MainWindow::stop() {
 void MainWindow::fullscreen() {
     if (m_fullscreen) {
         mediaView->exitFullscreen();
-        fullscreenAct->setShortcut(tr("Alt+Return"));
+        fullscreenAct->setShortcut(QKeySequence(Qt::ALT + Qt::Key_Enter));
         fullscreenAct->setText(tr("&Full Screen"));
-        stopAct->setShortcut(tr("Esc"));
+        stopAct->setShortcut(QKeySequence(Qt::Key_Escape));
     } else {
         mediaView->fullscreen();
-        stopAct->setShortcut(tr(""));
-        fullscreenAct->setShortcut(tr("Esc"));
+        stopAct->setShortcut(QString(""));
+        fullscreenAct->setShortcut(QKeySequence(Qt::Key_Escape));
         fullscreenAct->setText(tr("Exit &Full Screen"));
     }
     m_fullscreen = !m_fullscreen;
