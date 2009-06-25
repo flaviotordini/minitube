@@ -196,6 +196,9 @@ void MainWindow::createActions() {
         action->setAutoRepeat(false);
         action->setToolTip(action->statusTip());
 
+        // make the actions work when video is fullscreen
+        action->setShortcutContext(Qt::ApplicationShortcut);
+
 #ifdef Q_WS_MAC
         // OSX does not use icons in menus
         action->setIconVisibleInMenu(false);
