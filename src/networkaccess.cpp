@@ -148,7 +148,7 @@ void NetworkAccess::error(QNetworkReply::NetworkError code) {
     QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(qApp->topLevelWidgets().first());
     if (mainWindow) mainWindow->statusBar()->showMessage(networkReply->errorString());
 
-    qDebug() << "Network error" << networkReply->errorString() << code;
+    qDebug() << "Network error" << networkReply->errorString() << code;\
     networkReply->deleteLater();
 }
 

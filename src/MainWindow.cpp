@@ -318,7 +318,8 @@ void MainWindow::showWidget ( QWidget* widget ) {
         if (windowTitle.length())
             windowTitle += " - ";
         setWindowTitle(windowTitle + Constants::APP_NAME);
-        setStatusTip(metadata.value("description").toString());
+        statusBar()->showMessage((metadata.value("description").toString()));
+
     }
 
     // backAct->setEnabled(history->size() > 1);
@@ -407,9 +408,9 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
 
          case Phonon::ErrorState:
         if (mediaObject->errorType() == Phonon::FatalError) {
-            setStatusTip("Something went REALLY wrong: " + mediaObject->errorString());
+            statusBar()->showMessage(tr("Fatal error: %1").arg(mediaObject->errorString()));
         } else {
-            setStatusTip("Something went wrong: " + mediaObject->errorString());
+            statusBar()->showMessage(tr("Error: %1").arg(mediaObject->errorString()));
         }
         break;
 
