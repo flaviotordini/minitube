@@ -3,7 +3,8 @@
 
 #include <QtGui>
 #include <QtNetwork>
-#include <phonon>
+#include <phonon/mediaobject.h>
+#include <phonon/videowidget.h>
 #include "View.h"
 #include "ListModel.h"
 #include "thaction.h"

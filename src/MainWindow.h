@@ -4,7 +4,10 @@
 #include <QtGui>
 #include "faderwidget/FaderWidget.h"
 #include "searchlineedit.h"
-#include <phonon>
+#include <phonon/audiooutput.h>
+#include <phonon/volumeslider.h>
+#include <phonon/mediaobject.h>
+#include <phonon/seekslider.h>
 #include "View.h"
 #include "SearchView.h"
 #include "MediaView.h"

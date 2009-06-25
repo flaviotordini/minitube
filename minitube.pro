@@ -1,5 +1,6 @@
-# If Phonon cannot be found, uncomment the following (and set the correct path)
-# INCLUDEPATH += /usr/include/phonon
+# On some distro, Phonon headers cannot be found
+INCLUDEPATH += /usr/include/phonon
+
 CONFIG += release
 TEMPLATE = app
 
