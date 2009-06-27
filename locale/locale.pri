@@ -7,7 +7,8 @@ TRANSLATIONS += \
     it_IT.ts \
     pt_BR.ts \
     ru_RU.ts \
-    es_AR.ts
+    es_AR.ts \
+    de_DE.ts
 
 isEmpty(QMAKE_LRELEASE) {
     win32:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]\lrelease.exe -silent
