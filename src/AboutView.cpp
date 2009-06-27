@@ -33,7 +33,8 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
 
                    "<p>" + tr("Translated by %1").arg("Nikita Lyalin (ru_RU), "
                                                       "Márcio Moraes (pt_BR), "
-                                                      "Sergio Tocalini Joerg (es_AR)"
+                                                      "Sergio Tocalini Joerg (es_AR), "
+                                                      "Stefan Brück (de_DE)"
                                                       ) + "</p>"
 
                    "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")
@@ -42,6 +43,7 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                    "<p>&copy; 2009 " + Constants::ORG_NAME + "</p>";
     QLabel *infoLabel = new QLabel(info, this);
     infoLabel->setOpenExternalLinks(true);
+    infoLabel->setWordWrap(true);
     layout->addWidget(infoLabel);
 
     QLayout *buttonLayout = new QHBoxLayout();
