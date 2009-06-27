@@ -280,6 +280,10 @@ void MainWindow::createToolBars() {
 }
 
 void MainWindow::createStatusBar() {
+    currentTime = new QLabel(this);
+    statusBar()->addPermanentWidget(currentTime);
+    totalTime = new QLabel(this);
+    statusBar()->addPermanentWidget(totalTime);
     statusBar()->show();
 }
 
@@ -389,6 +393,8 @@ void MainWindow::showSettings() {
 
 void MainWindow::showSearch() {
     showWidget(searchView);
+    currentTime->clear();
+    totalTime->clear();
 }
 
 void MainWindow::showMedia(QString query) {
@@ -439,6 +445,8 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
          case Phonon::LoadingState:
         skipAct->setEnabled(true);
         pauseAct->setEnabled(false);
+        currentTime->clear();
+        totalTime->clear();
         break;
 
          default:
@@ -478,10 +486,30 @@ void MainWindow::initPhonon() {
     if (mediaObject) delete mediaObject;
     if (audioOutput) delete audioOutput;
     mediaObject = new Phonon::MediaObject(this);
+    mediaObject->setTickInterval(100);
     connect(mediaObject, SIGNAL(stateChanged(Phonon::State, Phonon::State)),
             this, SLOT(stateChanged(Phonon::State, Phonon::State)));
+    connect(mediaObject, SIGNAL(tick(qint64)), this, SLOT(tick(qint64)));
+    connect(mediaObject, SIGNAL(totalTimeChanged(qint64)), this, SLOT(totalTimeChanged(qint64)));
     seekSlider->setMediaObject(mediaObject);
     audioOutput = new Phonon::AudioOutput(Phonon::VideoCategory, this);
     volumeSlider->setAudioOutput(audioOutput);
     Phonon::createPath(mediaObject, audioOutput);
 }
+
+void MainWindow::tick(qint64 time) {
+    QTime displayTime(0, (time / 60000) % 60, (time / 1000) % 60);
+    currentTime->setText(displayTime.toString("mm:ss"));
+    // qDebug() << "currentTime" << time << displayTime.toString("mm:ss");
+}
+
+void MainWindow::totalTimeChanged(qint64 time) {
+    if (time <= 0) {
+        totalTime->clear();
+        return;
+    }
+    QTime displayTime(0, (time / 60000) % 60, (time / 1000) % 60);
+    totalTime->setText(displayTime.toString("/ mm:ss"));
+    // qDebug() << "totalTime" << time << displayTime.toString("mm:ss");
+}
+

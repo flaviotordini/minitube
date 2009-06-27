@@ -39,6 +39,8 @@ private slots:
     void stop();
     void stateChanged(Phonon::State newState, Phonon::State oldState);
     void searchFocus();
+    void tick(qint64 time);
+    void totalTimeChanged(qint64 time);
 
 private:
     void initPhonon();
@@ -100,6 +102,8 @@ private:
     Phonon::VolumeSlider *volumeSlider;
     Phonon::MediaObject *mediaObject;
     Phonon::AudioOutput *audioOutput;
+    QLabel *currentTime;
+    QLabel *totalTime;
 
     bool m_fullscreen;
 };
