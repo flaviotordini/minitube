@@ -1,10 +1,11 @@
 0.4
-- Display title and description while loading the video
+- Display title and description while video is loading
+- Compact mode, contributed by Stefan Brück
 - Keyboard shortcuts now work when in full screen mode
 - Fixed crash occurring when pressing stop during a search
 - Unified (i.e. cool) toolbar on the Mac
-- Argentin spanish translation, thanks to Sergio Tocalini Joerg
-- German translation, thanks to Stefan Brück
+- Argentin spanish translation by Sergio Tocalini Joerg
+- German translation by Stefan Brück
 
 0.3 - June 15, 2009
 - Can sort videos by relevance, date and popularity

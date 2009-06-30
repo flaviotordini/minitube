@@ -6,6 +6,7 @@
 - Hide the mouse cursor in full screen mode
 
 * Features
+- Add menu entries for Most relevant, Most recent, Most viewed (Playlist => ...)
 - Show buffering progress (when Phonon backends will work)
 - Windows build
 - Clear recent keywords
@@ -28,6 +29,6 @@
 - Investigate fetchMore() and canFetchMore() in the Model/View API
 
 * Phonon bugs
-- Mac playback sometimes does not start
-- Phonon freezes the GUI on Mac
-- Seek does not work on Linux
+- Mac: playback sometimes does not start
+- Mac: Phonon freezes the GUI when loading a video
+- Linux: Seek does not work
