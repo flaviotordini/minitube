@@ -120,14 +120,14 @@ void MainWindow::createActions() {
     actions->insert("fullscreen", fullscreenAct);
     connect(fullscreenAct, SIGNAL(triggered()), this, SLOT(fullscreen()));
 
-	 compactViewAct = new QAction(tr("&Compact View"), this);
-	 compactViewAct->setStatusTip(tr("Go compact view"));
-	 compactViewAct->setShortcut(QKeySequence(Qt::ALT + Qt::Key_M));
-	 compactViewAct->setCheckable(true);
-	 compactViewAct->setChecked(false);
-	 compactViewAct->setEnabled(false);
-	 actions->insert("compactView", compactViewAct);
-	 connect(compactViewAct, SIGNAL(toggled(bool)), this, SLOT(compactView(bool)));
+    compactViewAct = new QAction(tr("&Compact mode"), this);
+    compactViewAct->setStatusTip(tr("Hide the playlist and the toolbar"));
+    compactViewAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_M));
+    compactViewAct->setCheckable(true);
+    compactViewAct->setChecked(false);
+    compactViewAct->setEnabled(false);
+    actions->insert("compactView", compactViewAct);
+    connect(compactViewAct, SIGNAL(toggled(bool)), this, SLOT(compactView(bool)));
 
     /*
     // icon should be document-save but it is ugly
@@ -140,7 +140,7 @@ void MainWindow::createActions() {
 
     webPageAct = new QAction(QtIconLoader::icon("internet-web-browser", QIcon(":/images/internet-web-browser.png")), tr("&YouTube"), this);
     webPageAct->setStatusTip(tr("Open the YouTube video page"));
-    webPageAct->setShortcut(tr("Ctrl+Y"));
+    webPageAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Y));
     webPageAct->setEnabled(false);
     actions->insert("webpage", webPageAct);
     connect(webPageAct, SIGNAL(triggered()), mediaView, SLOT(openWebPage()));
@@ -291,9 +291,13 @@ void MainWindow::createToolBars() {
 
 void MainWindow::createStatusBar() {
     currentTime = new QLabel(this);
+    currentTime->setFrameShape(QFrame::NoFrame);
     statusBar()->addPermanentWidget(currentTime);
+
     totalTime = new QLabel(this);
+    totalTime->setFrameShape(QFrame::NoFrame);
     statusBar()->addPermanentWidget(totalTime);
+
     statusBar()->show();
 }
 
@@ -340,7 +344,7 @@ void MainWindow::showWidget ( QWidget* widget ) {
     // settingsAct->setEnabled(widget != settingsView);
     stopAct->setEnabled(widget == mediaView);
     fullscreenAct->setEnabled(widget == mediaView);
-	 compactViewAct->setEnabled(widget == mediaView);
+    compactViewAct->setEnabled(widget == mediaView);
     webPageAct->setEnabled(widget == mediaView);
     aboutAct->setEnabled(widget != aboutView);
 
@@ -486,8 +490,9 @@ void MainWindow::fullscreen() {
 }
 
 void MainWindow::compactView(bool enable) {
-	mediaView->setPlaylistVisible(!enable);
-	mainToolBar->setVisible(!enable);
+    if (m_fullscreen) fullscreen();
+    mediaView->setPlaylistVisible(!enable);
+    mainToolBar->setVisible(!enable);
 }
 
 void MainWindow::searchFocus() {
