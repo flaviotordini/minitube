@@ -47,12 +47,14 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     queryEdit->setFocus(Qt::OtherFocusReason);
     // connect(queryEdit, SIGNAL(returnPressed()), this, SLOT(watch()));
     connect(queryEdit, SIGNAL(search(const QString&)), this, SLOT(watch(const QString&)));
+    connect(queryEdit, SIGNAL(textChanged(const QString &)), this, SLOT(textChanged(const QString &)));
     searchLayout->addWidget(queryEdit);
 
     searchLayout->addSpacing(10);
 
-    QPushButton *watchButton = new QPushButton(tr("Watch"), this);
+    watchButton = new QPushButton(tr("Watch"), this);
     watchButton->setDefault(true);
+    watchButton->setEnabled(false);
     connect(watchButton, SIGNAL(clicked()), this, SLOT(watch()));
     searchLayout->addWidget(watchButton);
 
@@ -133,6 +135,10 @@ void SearchView::updateRecentKeywords() {
 void SearchView::watch() {
     QString query = queryEdit->text().trimmed();
     watch(query);
+}
+
+void SearchView::textChanged(const QString &text) {
+    watchButton->setEnabled(!text.trimmed().isEmpty());
 }
 
 void SearchView::watch(QString query) {

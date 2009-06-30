@@ -40,6 +40,7 @@ signals:
 
 private slots:
     void watch();
+    void textChanged(const QString &text);
 
 private:
     void updateRecentKeywords();
@@ -49,6 +50,7 @@ private:
     QLabel *recentKeywordsLabel;
     QVBoxLayout *recentKeywordsLayout;
     QLabel *message;
+    QPushButton *watchButton;
 
     UpdateChecker *updateChecker;
 
