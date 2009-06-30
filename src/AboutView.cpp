@@ -31,6 +31,8 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
 
                    "<p>" + tr("Icon designed by %1.").arg("Sebastian Kraft") + "</p>"
 
+                   "<p>" + tr("Compact mode contributed by %1.").arg("Stefan Brück") + "</p>"
+
                    "<p>" + tr("Translated by %1").arg("Nikita Lyalin (ru_RU), "
                                                       "Márcio Moraes (pt_BR), "
                                                       "Sergio Tocalini Joerg (es_AR), "
