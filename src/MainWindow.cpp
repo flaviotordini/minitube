@@ -115,14 +115,14 @@ void MainWindow::createActions() {
 
     fullscreenAct = new QAction(QtIconLoader::icon("view-fullscreen", QIcon(":/images/view-fullscreen.png")), tr("&Full Screen"), this);
     fullscreenAct->setStatusTip(tr("Go full screen"));
-    fullscreenAct->setShortcut(QKeySequence(Qt::ALT + Qt::Key_Enter));
+    fullscreenAct->setShortcut(QKeySequence(Qt::ALT + Qt::Key_Return));
     fullscreenAct->setShortcutContext(Qt::ApplicationShortcut);
     actions->insert("fullscreen", fullscreenAct);
     connect(fullscreenAct, SIGNAL(triggered()), this, SLOT(fullscreen()));
 
     compactViewAct = new QAction(tr("&Compact mode"), this);
     compactViewAct->setStatusTip(tr("Hide the playlist and the toolbar"));
-    compactViewAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_M));
+    compactViewAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Return));
     compactViewAct->setCheckable(true);
     compactViewAct->setChecked(false);
     compactViewAct->setEnabled(false);
@@ -245,8 +245,8 @@ void MainWindow::createMenus() {
     viewMenu->addSeparator();
     viewMenu->addAction(webPageAct);
     viewMenu->addSeparator();
-    viewMenu->addAction(fullscreenAct);
     viewMenu->addAction(compactViewAct);
+    viewMenu->addAction(fullscreenAct);
 
     helpMenu = menuBar()->addMenu(tr("&Help"));
     helpMenu->addAction(siteAct);
@@ -477,13 +477,16 @@ void MainWindow::stop() {
 void MainWindow::fullscreen() {
     if (m_fullscreen) {
         mediaView->exitFullscreen();
-        fullscreenAct->setShortcut(QKeySequence(Qt::ALT + Qt::Key_Enter));
+        fullscreenAct->setShortcut(QKeySequence(Qt::ALT + Qt::Key_Return));
         fullscreenAct->setText(tr("&Full Screen"));
         stopAct->setShortcut(QKeySequence(Qt::Key_Escape));
     } else {
         mediaView->fullscreen();
         stopAct->setShortcut(QString(""));
-        fullscreenAct->setShortcut(QKeySequence(Qt::Key_Escape));
+        QList<QKeySequence> shortcuts;
+        // for some reason it is importante that ESC comes first
+        shortcuts << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::ALT + Qt::Key_Return);
+        fullscreenAct->setShortcuts(shortcuts);
         fullscreenAct->setText(tr("Exit &Full Screen"));
     }
     m_fullscreen = !m_fullscreen;
@@ -493,6 +496,7 @@ void MainWindow::compactView(bool enable) {
     if (m_fullscreen) fullscreen();
     mediaView->setPlaylistVisible(!enable);
     mainToolBar->setVisible(!enable);
+    statusBar()->setVisible(!enable);
 }
 
 void MainWindow::searchFocus() {
