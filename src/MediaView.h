@@ -47,6 +47,7 @@ public slots:
     void removeSelected();
     void moveUpSelected();
     void moveDownSelected();
+	 void setPlaylistVisible(bool visible=true);
 
 private slots:
     // list/model

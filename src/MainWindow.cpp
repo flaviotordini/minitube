@@ -120,6 +120,15 @@ void MainWindow::createActions() {
     actions->insert("fullscreen", fullscreenAct);
     connect(fullscreenAct, SIGNAL(triggered()), this, SLOT(fullscreen()));
 
+	 compactViewAct = new QAction(tr("&Compact View"), this);
+	 compactViewAct->setStatusTip(tr("Go compact view"));
+	 compactViewAct->setShortcut(QKeySequence(Qt::ALT + Qt::Key_M));
+	 compactViewAct->setCheckable(true);
+	 compactViewAct->setChecked(false);
+	 compactViewAct->setEnabled(false);
+	 actions->insert("compactView", compactViewAct);
+	 connect(compactViewAct, SIGNAL(toggled(bool)), this, SLOT(compactView(bool)));
+
     /*
     // icon should be document-save but it is ugly
     downloadAct = new QAction(QtIconLoader::icon("go-down", QIcon(":/images/go-down.png")), tr("&Download"), this);
@@ -237,6 +246,7 @@ void MainWindow::createMenus() {
     viewMenu->addAction(webPageAct);
     viewMenu->addSeparator();
     viewMenu->addAction(fullscreenAct);
+    viewMenu->addAction(compactViewAct);
 
     helpMenu = menuBar()->addMenu(tr("&Help"));
     helpMenu->addAction(siteAct);
@@ -330,6 +340,7 @@ void MainWindow::showWidget ( QWidget* widget ) {
     // settingsAct->setEnabled(widget != settingsView);
     stopAct->setEnabled(widget == mediaView);
     fullscreenAct->setEnabled(widget == mediaView);
+	 compactViewAct->setEnabled(widget == mediaView);
     webPageAct->setEnabled(widget == mediaView);
     aboutAct->setEnabled(widget != aboutView);
 
@@ -472,6 +483,11 @@ void MainWindow::fullscreen() {
         fullscreenAct->setText(tr("Exit &Full Screen"));
     }
     m_fullscreen = !m_fullscreen;
+}
+
+void MainWindow::compactView(bool enable) {
+	mediaView->setPlaylistVisible(!enable);
+	mainToolBar->setVisible(!enable);
 }
 
 void MainWindow::searchFocus() {

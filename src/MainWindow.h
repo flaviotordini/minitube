@@ -36,6 +36,7 @@ private slots:
     void about();
     void quit();
     void fullscreen();
+	 void compactView(bool enable);
     void stop();
     void stateChanged(Phonon::State newState, Phonon::State oldState);
     void searchFocus();
@@ -78,6 +79,7 @@ private:
     QAction *pauseAct;
     QAction *stopAct;
     QAction *fullscreenAct;
+	 QAction *compactViewAct;
     QAction *webPageAct;
     QAction *downloadAct;
 

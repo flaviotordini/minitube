@@ -74,10 +74,6 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
 
     splitter->addWidget(videoAreaWidget);
 
-    QList<int> sizes;
-    sizes << 320 << 640;
-    splitter->setSizes(sizes);
-
     layout->addWidget(splitter);
     setLayout(layout);
 }
@@ -178,7 +174,7 @@ void MediaView::fullscreen() {
 void MediaView::exitFullscreen() {
     videoAreaWidget->setParent(this);
     splitter->addWidget(videoAreaWidget);
-    videoAreaWidget->showNormal();
+    videoAreaWidget->show();
     splitter->restoreState(splitterState);
 }
 
@@ -307,3 +303,8 @@ void MediaView::searchMostViewed() {
     searchParams->setSortBy(SearchParams::SortByViewCount);
     search(searchParams);
 }
+
+void MediaView::setPlaylistVisible(bool visible) {
+	playlistWidget->setVisible(visible);
+}
+
