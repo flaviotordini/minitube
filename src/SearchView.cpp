@@ -66,10 +66,11 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
     recentKeywordsLayout = new QVBoxLayout();
     recentKeywordsLayout->setAlignment(Qt::AlignTop);
-    QLabel *label = new QLabel(tr("Recent keywords").toUpper(), this);
-    label->setForegroundRole(QPalette::Dark);
-    label->setFont(smallerFont);
-    recentKeywordsLayout->addWidget(label);
+    recentKeywordsLabel = new QLabel(tr("Recent keywords").toUpper(), this);
+    recentKeywordsLabel->hide();
+    recentKeywordsLabel->setForegroundRole(QPalette::Dark);
+    recentKeywordsLabel->setFont(smallerFont);
+    recentKeywordsLayout->addWidget(recentKeywordsLabel);
 
     otherLayout->addLayout(recentKeywordsLayout);
 
@@ -118,6 +119,7 @@ void SearchView::updateRecentKeywords() {
     // load
     QSettings settings;
     QStringList keywords = settings.value(recentKeywordsKey).toStringList();
+    recentKeywordsLabel->setVisible(!keywords.isEmpty());
     foreach (QString keyword, keywords) {
         QLabel *itemLabel = new QLabel("<a href=\"" + keyword
                                        + "\" style=\"color:palette(text); text-decoration:none\">"

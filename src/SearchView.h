@@ -46,6 +46,7 @@ private:
     void checkForUpdate();
 
     SearchLineEdit *queryEdit;
+    QLabel *recentKeywordsLabel;
     QVBoxLayout *recentKeywordsLayout;
     QLabel *message;
 
