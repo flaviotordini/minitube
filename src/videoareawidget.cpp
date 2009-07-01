@@ -25,22 +25,11 @@ void VideoAreaWidget::showLoading(Video *video) {
 }
 
 void VideoAreaWidget::mouseDoubleClickEvent(QMouseEvent *event) {
-    switch(event->button()) {
-             case Qt::LeftButton:
+    if (event->button() == Qt::LeftButton)
         emit doubleClicked();
-        break;
-             case Qt::RightButton:
-
-        break;
-    }
 }
 
 void VideoAreaWidget::mousePressEvent(QMouseEvent *event) {
-    switch(event->button()) {
-             case Qt::LeftButton:
-        break;
-             case Qt::RightButton:
-        emit rightClicked();
-        break;
-    }
+    switch(event->button() == Qt::RightButton)
+            emit rightClicked();
 }
