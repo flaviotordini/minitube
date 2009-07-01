@@ -115,10 +115,10 @@ void MediaView::disappear() {
     timerPlayFlag = true;
 }
 
-void MediaView::stateChanged(Phonon::State newState, Phonon::State oldState)
+void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
 {
 
-    qDebug() << "Phonon state: " << newState << oldState;
+    // qDebug() << "Phonon state: " << newState << oldState;
 
     switch (newState) {
 
@@ -324,7 +324,7 @@ void MediaView::setPlaylistVisible(bool visible) {
 }
 
 void MediaView::timerPlay() {
-    qDebug() << mediaObject->currentTime();
+    // qDebug() << mediaObject->currentTime();
     // Workaround Phonon bug on Mac OSX
     if (mediaObject->currentTime() <= 0 && mediaObject->state() == Phonon::PlayingState) {
         mediaObject->pause();
