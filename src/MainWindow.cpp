@@ -291,12 +291,13 @@ void MainWindow::createToolBars() {
 
 void MainWindow::createStatusBar() {
     currentTime = new QLabel(this);
-    currentTime->setFrameShape(QFrame::NoFrame);
     statusBar()->addPermanentWidget(currentTime);
 
     totalTime = new QLabel(this);
-    totalTime->setFrameShape(QFrame::NoFrame);
     statusBar()->addPermanentWidget(totalTime);
+
+    // remove ugly borders on OSX
+    statusBar()->setStyleSheet("::item{border:0 solid}");
 
     statusBar()->show();
 }
@@ -349,10 +350,10 @@ void MainWindow::showWidget ( QWidget* widget ) {
     aboutAct->setEnabled(widget != aboutView);
 
     // cool toolbar on the Mac
-    setUnifiedTitleAndToolBarOnMac(widget == mediaView);
+    // setUnifiedTitleAndToolBarOnMac(widget == mediaView);
 
     // toolbar only for the mediaView
-    mainToolBar->setVisible(widget == mediaView);
+    mainToolBar->setVisible(widget == mediaView && !compactViewAct->isChecked());
 
     history->push(widget);
     fadeInWidget(views->currentWidget(), widget);
@@ -475,6 +476,7 @@ void MainWindow::stop() {
 }
 
 void MainWindow::fullscreen() {
+
     if (m_fullscreen) {
         mediaView->exitFullscreen();
         fullscreenAct->setShortcut(QKeySequence(Qt::ALT + Qt::Key_Return));
@@ -489,14 +491,30 @@ void MainWindow::fullscreen() {
         fullscreenAct->setShortcuts(shortcuts);
         fullscreenAct->setText(tr("Exit &Full Screen"));
     }
+    compactViewAct->setVisible(m_fullscreen);
+
     m_fullscreen = !m_fullscreen;
+
 }
 
 void MainWindow::compactView(bool enable) {
-    if (m_fullscreen) fullscreen();
+
+    // setUnifiedTitleAndToolBarOnMac(!enable);
     mediaView->setPlaylistVisible(!enable);
     mainToolBar->setVisible(!enable);
     statusBar()->setVisible(!enable);
+
+    if (enable) {
+        stopAct->setShortcut(QString(""));
+        QList<QKeySequence> shortcuts;
+        // for some reason it is important that ESC comes first
+        shortcuts << QKeySequence(Qt::CTRL + Qt::Key_Return) << QKeySequence(Qt::Key_Escape);
+        compactViewAct->setShortcuts(shortcuts);
+    } else {
+        compactViewAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Return));
+        stopAct->setShortcut(QKeySequence(Qt::Key_Escape));
+    }
+
 }
 
 void MainWindow::searchFocus() {
