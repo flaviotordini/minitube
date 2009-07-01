@@ -1,9 +1,9 @@
 0.4
+- Finally fixed playback start problem on Mac OSX
 - Display title and description while video is loading
 - Compact mode, contributed by Stefan Brück
 - Keyboard shortcuts now work when in full screen mode
 - Fixed crash occurring when pressing stop during a search
-- Unified (i.e. cool) toolbar on the Mac
 - Argentin spanish translation by Sergio Tocalini Joerg
 - German translation by Stefan Brück
 
