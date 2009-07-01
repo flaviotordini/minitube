@@ -63,19 +63,19 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     splitter->addWidget(playlistWidget);
 
     videoAreaWidget = new VideoAreaWidget(this);
+    videoAreaWidget->setMinimumSize(320,240);
 
     videoWidget = new Phonon::VideoWidget(this);
-    videoWidget->setMinimumSize(320,240);
     videoAreaWidget->setVideoWidget(videoWidget);
 
     loadingWidget = new LoadingWidget(this);
-    loadingWidget->setMinimumSize(320,240);
     videoAreaWidget->setLoadingWidget(loadingWidget);
 
     splitter->addWidget(videoAreaWidget);
 
     layout->addWidget(splitter);
     setLayout(layout);
+
 }
 
 MediaView::~MediaView() {
@@ -112,11 +112,14 @@ void MediaView::search(SearchParams *searchParams) {
 }
 
 void MediaView::disappear() {
-
+    timerPlayFlag = true;
 }
 
-void MediaView::stateChanged(Phonon::State newState, Phonon::State /* oldState */)
+void MediaView::stateChanged(Phonon::State newState, Phonon::State oldState)
 {
+
+    qDebug() << "Phonon state: " << newState << oldState;
+
     switch (newState) {
 
          case Phonon::ErrorState:
@@ -135,6 +138,9 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /* oldState *
         // play() has already been called when setting the source
         // but Phonon on Linux needs a little more help to start playback
         mediaObject->play();
+        if (!timerPlayFlag) {
+            QTimer::singleShot(1000, this, SLOT(timerPlay()));
+        }
         break;
 
          case Phonon::PausedState:
@@ -172,9 +178,10 @@ void MediaView::fullscreen() {
 }
 
 void MediaView::exitFullscreen() {
-    videoAreaWidget->setParent(this);
+    // videoAreaWidget->setParent(this);
     splitter->addWidget(videoAreaWidget);
-    videoAreaWidget->show();
+    // Just calling show() on the Mac won't work
+    videoAreaWidget->showNormal();
     splitter->restoreState(splitterState);
 }
 
@@ -191,10 +198,13 @@ void MediaView::activeRowChanged(int row) {
     // immediately show the loading widget
     videoAreaWidget->showLoading(video);
 
-    mediaObject->pause();
+    // mediaObject->pause();
 
     connect(video, SIGNAL(gotStreamUrl(QUrl)), SLOT(gotStreamUrl(QUrl)));
     video->loadStreamUrl();
+
+    // reset the timer flag
+    timerPlayFlag = false;
 
     // see you in gotStreamUrl...
 
@@ -305,6 +315,14 @@ void MediaView::searchMostViewed() {
 }
 
 void MediaView::setPlaylistVisible(bool visible) {
-	playlistWidget->setVisible(visible);
+    playlistWidget->setVisible(visible);
 }
 
+void MediaView::timerPlay() {
+    qDebug() << mediaObject->currentTime();
+    // Workaround Phonon bug on Mac OSX
+    if (mediaObject->currentTime() <= 0 && mediaObject->state() == Phonon::PlayingState) {
+        mediaObject->pause();
+        mediaObject->play();
+    }
+}

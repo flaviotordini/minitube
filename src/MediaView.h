@@ -65,6 +65,8 @@ private slots:
     void searchMostRelevant();
     void searchMostRecent();
     void searchMostViewed();
+    // timer
+    void timerPlay();
 
 private:
 
@@ -90,6 +92,8 @@ private:
     // loadingWidget
     VideoAreaWidget *videoAreaWidget;
     LoadingWidget *loadingWidget;
+
+    bool timerPlayFlag;
 
 };
 
