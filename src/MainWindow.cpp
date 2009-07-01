@@ -504,6 +504,10 @@ void MainWindow::compactView(bool enable) {
     mainToolBar->setVisible(!enable);
     statusBar()->setVisible(!enable);
 
+    // ensure focus does not end up to the search box
+    // as it would steal the Space shortcut
+    toolbarSearch->setEnabled(!enable);
+
     if (enable) {
         stopAct->setShortcut(QString(""));
         QList<QKeySequence> shortcuts;
@@ -513,10 +517,6 @@ void MainWindow::compactView(bool enable) {
     } else {
         compactViewAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Return));
         stopAct->setShortcut(QKeySequence(Qt::Key_Escape));
-
-        // ensure focus does not end up to the search box
-        // as it would steal the Space shortcut
-        toolbarSearch->clearFocus();
     }
 
 }
