@@ -206,6 +206,10 @@ void MediaView::activeRowChanged(int row) {
     // reset the timer flag
     timerPlayFlag = false;
 
+    // video title in the statusbar
+    QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(qApp->topLevelWidgets().first());
+    if (mainWindow) mainWindow->statusBar()->showMessage(video->title());
+
     // see you in gotStreamUrl...
 
 }
@@ -225,6 +229,7 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
         QModelIndex index = listModel->index(row, 0, QModelIndex());
         listView->scrollTo(index, QAbstractItemView::EnsureVisible);
     }
+
 }
 
 void MediaView::itemActivated(const QModelIndex &index) {
