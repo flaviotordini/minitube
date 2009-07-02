@@ -41,13 +41,11 @@ public slots:
     void pause();
     void stop();
     void skip();
-    void fullscreen();
-    void exitFullscreen();
     void openWebPage();
     void removeSelected();
     void moveUpSelected();
     void moveDownSelected();
-	 void setPlaylistVisible(bool visible=true);
+    void setPlaylistVisible(bool visible=true);
 
 private slots:
     // list/model
@@ -73,7 +71,6 @@ private:
     SearchParams *searchParams;
 
     QSplitter *splitter;
-    QByteArray splitterState;
 
     PlaylistWidget *playlistWidget;
     QListView *listView;

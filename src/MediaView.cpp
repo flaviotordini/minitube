@@ -171,20 +171,6 @@ void MediaView::pause() {
     }
 }
 
-void MediaView::fullscreen() {
-    splitterState = splitter->saveState();
-    videoAreaWidget->setParent(0);
-    videoAreaWidget->showFullScreen();
-}
-
-void MediaView::exitFullscreen() {
-    // videoAreaWidget->setParent(this);
-    splitter->addWidget(videoAreaWidget);
-    // Just calling show() on the Mac won't work
-    videoAreaWidget->showNormal();
-    splitter->restoreState(splitterState);
-}
-
 void MediaView::stop() {
     listModel->abortSearch();
     mediaObject->stop();

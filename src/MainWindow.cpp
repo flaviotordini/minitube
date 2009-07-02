@@ -200,6 +200,11 @@ void MainWindow::createActions() {
 
     // common action properties
     foreach (QAction *action, actions->values()) {
+
+        // add actions to the MainWindow so that they work
+        // when the menu is hidden
+        addAction(action);
+
         // never autorepeat.
         // unexperienced users tend to keep keys pressed for a "long" time
         action->setAutoRepeat(false);
@@ -478,21 +483,27 @@ void MainWindow::stop() {
 void MainWindow::fullscreen() {
 
     if (m_fullscreen) {
-        mediaView->exitFullscreen();
         fullscreenAct->setShortcut(QKeySequence(Qt::ALT + Qt::Key_Return));
         fullscreenAct->setText(tr("&Full Screen"));
         stopAct->setShortcut(QKeySequence(Qt::Key_Escape));
+        if (m_maximized) showMaximized();
+        else showNormal();
     } else {
-        mediaView->fullscreen();
         stopAct->setShortcut(QString(""));
         QList<QKeySequence> shortcuts;
-        // for some reason it is importante that ESC comes first
+        // for some reason it is important that ESC comes first
         shortcuts << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::ALT + Qt::Key_Return);
         fullscreenAct->setShortcuts(shortcuts);
         fullscreenAct->setText(tr("Exit &Full Screen"));
+        m_maximized = isMaximized();
+        showFullScreen();
     }
     compactViewAct->setVisible(m_fullscreen);
-
+    mediaView->setPlaylistVisible(m_fullscreen);
+    mainToolBar->setVisible(m_fullscreen);
+    statusBar()->setVisible(m_fullscreen);
+    menuBar()->setVisible(m_fullscreen);
+    menuBar()->setEnabled(true);
     m_fullscreen = !m_fullscreen;
 
 }

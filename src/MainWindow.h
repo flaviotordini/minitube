@@ -108,6 +108,7 @@ private:
     QLabel *totalTime;
 
     bool m_fullscreen;
+    bool m_maximized;
 };
 
 #endif
