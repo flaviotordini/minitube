@@ -313,6 +313,9 @@ void MainWindow::readSettings() {
 }
 
 void MainWindow::writeSettings() {
+    // do not save geometry when in full screen
+    if (m_fullscreen)
+        return;
     QSettings settings;
     settings.setValue("geometry", saveGeometry());
 }
@@ -496,14 +499,23 @@ void MainWindow::fullscreen() {
         fullscreenAct->setShortcuts(shortcuts);
         fullscreenAct->setText(tr("Exit &Full Screen"));
         m_maximized = isMaximized();
+
+        // save geometry now, if the user quits when in full screen
+        // geometry won't be saved
+        writeSettings();
+
         showFullScreen();
     }
+
+    // No compact view action when in full screen
     compactViewAct->setVisible(m_fullscreen);
+
+    // Hide anything but the video
     mediaView->setPlaylistVisible(m_fullscreen);
     mainToolBar->setVisible(m_fullscreen);
     statusBar()->setVisible(m_fullscreen);
     menuBar()->setVisible(m_fullscreen);
-    menuBar()->setEnabled(true);
+
     m_fullscreen = !m_fullscreen;
 
 }
