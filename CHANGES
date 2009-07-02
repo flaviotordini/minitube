@@ -1,7 +1,8 @@
-0.4
+0.4 - July 2, 2009
 - Finally fixed playback start problem on Mac OSX
 - Display title and description while video is loading
 - Compact mode, contributed by Stefan Brück
+- Current video position and total time in the status bar
 - Keyboard shortcuts now work when in full screen mode
 - Fixed crash occurring when pressing stop during a search
 - Argentin spanish translation by Sergio Tocalini Joerg

@@ -11,7 +11,6 @@
 - Windows build
 - Clear recent keywords
 - Video download
-- Show current video position and total/remaining time near the seekbar
 - Playing/Paused icon overlay on the current video thumb
 - Mark playlist items that have errors
 - Settings: number of "Recent Keywords", Phonon settings
@@ -29,6 +28,6 @@
 - Investigate fetchMore() and canFetchMore() in the Model/View API
 
 * Phonon bugs
-- Mac: playback sometimes does not start
+- Mac: playback sometimes does not start (got a workaround!)
 - Mac: Phonon freezes the GUI when loading a video
 - Linux: Seek does not work
