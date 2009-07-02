@@ -35,6 +35,8 @@ int main(int argc, char **argv) {
 
     mainWin.show();
 
+    app.setActivationWindow(&mainWin, true);
+
     // all string literals are UTF-8
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 
