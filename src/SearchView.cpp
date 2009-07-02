@@ -126,6 +126,7 @@ void SearchView::updateRecentKeywords() {
         QLabel *itemLabel = new QLabel("<a href=\"" + keyword
                                        + "\" style=\"color:palette(text); text-decoration:none\">"
                                        + keyword + "</a>", this);
+        itemLabel->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard);
         connect(itemLabel, SIGNAL(linkActivated(QString)), this, SLOT(watch(QString)));
         recentKeywordsLayout->addWidget(itemLabel);
     }
