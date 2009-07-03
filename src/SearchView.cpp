@@ -126,11 +126,10 @@ void SearchView::updateRecentKeywords() {
         QLabel *itemLabel = new QLabel("<a href=\"" + keyword
                                        + "\" style=\"color:palette(text); text-decoration:none\">"
                                        + keyword + "</a>", this);
-#ifndef Q_WS_MAC
+
         // Make links navigable with the keyboard
-        // this makes links nonclickable on the Mac, so it's disabled
-        itemLabel->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard);
-#endif
+        // this makes links nonclickable so it's disabled
+        // itemLabel->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard);
         connect(itemLabel, SIGNAL(linkActivated(QString)), this, SLOT(watch(QString)));
         recentKeywordsLayout->addWidget(itemLabel);
     }
