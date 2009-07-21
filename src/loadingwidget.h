@@ -11,6 +11,7 @@ class LoadingWidget : public QWidget {
 public:
     LoadingWidget(QWidget *parent);
     void setVideo(Video *video);
+    void clear();
 
 public slots:
     void bufferStatus(int);

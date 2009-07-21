@@ -67,3 +67,9 @@ void LoadingWidget::bufferStatus(int percent) {
     progressBar->setValue(percent);
     */
 }
+
+void LoadingWidget::clear() {
+    titleLabel->clear();
+    descriptionLabel->clear();
+    // progressBar->hide();
+}

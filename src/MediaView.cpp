@@ -104,11 +104,15 @@ void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
 void MediaView::search(SearchParams *searchParams) {
     this->searchParams = searchParams;
 
+    // start serching for videos
+    listModel->search(searchParams);
+
     // this implies that the enum and the bar action order is the same
     sortBar->setCheckedAction(searchParams->sortBy()-1);
 
-    listModel->search(searchParams);
     listView->setFocus();
+
+    loadingWidget->clear();
 }
 
 void MediaView::disappear() {
@@ -138,9 +142,12 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
         // play() has already been called when setting the source
         // but Phonon on Linux needs a little more help to start playback
         mediaObject->play();
+
+        // Workaround for Mac playback start problem
         if (!timerPlayFlag) {
             QTimer::singleShot(1000, this, SLOT(timerPlay()));
         }
+
         break;
 
          case Phonon::PausedState:
