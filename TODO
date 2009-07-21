@@ -5,29 +5,32 @@
 - Truncate overflowing text in the playlist
 - Hide the mouse cursor in full screen mode
 
+* Killer features
+- Video download
+- Search autocomplete
+- YouTube related videos
+- Accept YouTube URLs in the search box and as CLI args
+
 * Features
 - Add menu entries for Most relevant, Most recent, Most viewed (Playlist => ...)
 - Show buffering progress (when Phonon backends will work)
 - Windows build
 - Clear recent keywords
-- Video download
 - Playing/Paused icon overlay on the current video thumb
 - Mark playlist items that have errors
 - Settings: number of "Recent Keywords", Phonon settings
-- Accept YouTube URLs in the search box
 - Accept any URL and scrape web pages searching for YouTube videos
-- Search autocomplete
 - Dragndrop on video widget
-- Controls in Fullscreen mode
+- Show toolbar when mouse nears top of the screen in Fullscreen mode
 - Show more thumbs on hover
 - Played state for playlist items
 - YouTube video details
-- YouTube related videos
 - Subtitles, see http://google2srt.sourceforge.net/
 - Saved playlists
+- Starred videos
 - Investigate fetchMore() and canFetchMore() in the Model/View API
 
-* Phonon bugs
+* Phonon bugs (Come on Qt devs, do your job!)
 - Mac: playback sometimes does not start (got a workaround!)
 - Mac: Phonon freezes the GUI when loading a video
 - Linux: Seek does not work
