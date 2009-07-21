@@ -330,6 +330,8 @@ void MainWindow::goBack() {
 
 void MainWindow::showWidget ( QWidget* widget ) {
 
+    setUpdatesEnabled(false);
+
     // call hide method on the current view
     View* oldView = dynamic_cast<View *> (views->currentWidget());
     if (oldView != NULL) {
@@ -367,6 +369,7 @@ void MainWindow::showWidget ( QWidget* widget ) {
     fadeInWidget(views->currentWidget(), widget);
     views->setCurrentWidget(widget);
 
+    setUpdatesEnabled(true);
 }
 
 void MainWindow::fadeInWidget(QWidget *oldWidget, QWidget *newWidget) {
