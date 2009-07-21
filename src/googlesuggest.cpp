@@ -1,7 +1,7 @@
 #include "googlesuggest.h"
 #include "networkaccess.h"
 
-#define GSUGGEST_URL "http://suggestqueries.google.com/complete/search?output=toolbar&hl=%1&q=%2"
+#define GSUGGEST_URL "http://suggestqueries.google.com/complete/search?ds=yt&output=toolbar&hl=%1&q=%2"
 
 namespace The {
     NetworkAccess* http();
