@@ -43,8 +43,10 @@
 #include <QtGui/QStyle>
 #include <QtGui/QStyleOptionFrameV2>
 
+#include "googlesuggest.h"
+
 ClearButton::ClearButton(QWidget *parent)
-  : QAbstractButton(parent)
+        : QAbstractButton(parent)
 {
     setCursor(Qt::ArrowCursor);
     setToolTip(tr("Clear"));
@@ -95,8 +97,8 @@ protected:
 };
 
 SearchButton::SearchButton(QWidget *parent)
-  : QAbstractButton(parent),
-    m_menu(0)
+        : QAbstractButton(parent),
+        m_menu(0)
 {
     setObjectName(QLatin1String("SearchButton"));
     setCursor(Qt::ArrowCursor);
@@ -159,7 +161,7 @@ void SearchButton::paintEvent(QPaintEvent *event)
     - When there is text a clear button is displayed on the right hand side
  */
 SearchLineEdit::SearchLineEdit(QWidget *parent) : ExLineEdit(parent),
-    m_searchButton(new SearchButton(this))
+m_searchButton(new SearchButton(this))
 {
     connect(lineEdit(), SIGNAL(textChanged(const QString &)),
             this, SIGNAL(textChanged(const QString &)));
@@ -172,6 +174,9 @@ SearchLineEdit::SearchLineEdit(QWidget *parent) : ExLineEdit(parent),
 
     QSizePolicy policy = sizePolicy();
     setSizePolicy(QSizePolicy::Preferred, policy.verticalPolicy());
+
+    // completion
+    completion = new GSuggestCompletion(m_lineEdit);
 }
 
 void SearchLineEdit::paintEvent(QPaintEvent *event)
@@ -238,5 +243,6 @@ QMenu *SearchLineEdit::menu() const
 
 void SearchLineEdit::returnPressed()
 {
+    completion->preventSuggest();
     emit search(lineEdit()->text());
 }

@@ -1,6 +1,5 @@
 # On some distro, Phonon headers cannot be found
 INCLUDEPATH += /usr/include/phonon
-
 CONFIG += release
 TEMPLATE = app
 
@@ -41,7 +40,8 @@ HEADERS += src/MainWindow.h \
     src/searchparams.h \
     src/minisplitter.h \
     src/loadingwidget.h \
-    src/videoareawidget.h
+    src/videoareawidget.h \
+    src/googlesuggest.h
 SOURCES += src/main.cpp \
     src/MainWindow.cpp \
     src/SearchView.cpp \
@@ -65,7 +65,8 @@ SOURCES += src/main.cpp \
     src/searchparams.cpp \
     src/minisplitter.cpp \
     src/loadingwidget.cpp \
-    src/videoareawidget.cpp
+    src/videoareawidget.cpp \
+    src/googlesuggest.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/
@@ -105,6 +106,7 @@ unix {
     translations.files += $$DESTDIR/locale
     desktop.path = $$DATADIR/applications
     desktop.files += minitube.desktop
+    
     # iconxpm.path = $$DATADIR/pixmaps
     # iconxpm.files += data/minitube.xpm
     iconsvg.path = $$DATADIR/icons/hicolor/scalable/apps

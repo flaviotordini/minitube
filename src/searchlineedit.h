@@ -48,6 +48,7 @@ class QMenu;
 QT_END_NAMESPACE
 
 class SearchButton;
+class GSuggestCompletion;
 
 /*
     Clear button on the right hand side of the search widget.
@@ -97,6 +98,8 @@ private:
 
     SearchButton *m_searchButton;
     QString m_inactiveText;
+
+    GSuggestCompletion *completion;
 };
 
 #endif // SEARCHLINEEDIT_H
