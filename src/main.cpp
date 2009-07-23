@@ -21,9 +21,13 @@ int main(int argc, char **argv) {
                       QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     app.installTranslator(&qtTranslator);
 
-    // translations
-    QString localeDir = QCoreApplication::applicationDirPath()
-                        + QDir::separator() + "locale";
+    // app translations
+    QString dataDir = QLatin1String(PKGDATADIR);
+    QString localeDir = dataDir + QDir::separator() + "locale";
+    // if app was not "installed" use the app directory
+    if (!QFile::exists(localeDir)) {
+        dataDir = qApp->applicationDirPath() + QDir::separator() + "locale";
+    }
     QTranslator translator;
     translator.load(locale, localeDir);
     app.installTranslator(&translator);
