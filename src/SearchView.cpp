@@ -137,12 +137,12 @@ void SearchView::updateRecentKeywords() {
 }
 
 void SearchView::watch() {
-    QString query = queryEdit->text().trimmed();
+    QString query = queryEdit->text().simplified();
     watch(query);
 }
 
 void SearchView::textChanged(const QString &text) {
-    watchButton->setEnabled(!text.trimmed().isEmpty());
+    watchButton->setEnabled(!text.simplified().isEmpty());
 }
 
 void SearchView::watch(QString query) {

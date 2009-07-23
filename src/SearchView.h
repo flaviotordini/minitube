@@ -54,7 +54,6 @@ private:
 
     UpdateChecker *updateChecker;
 
-
 };
 
 #endif // __SEARCHVIEW_H__
