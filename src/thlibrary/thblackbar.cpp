@@ -1,9 +1,8 @@
+#include <QPainter>
 #include <QPaintEvent>
 #include <QList>
 
-#include "thblackbutton.h"
 #include "thblackbar.h"
-#include "thpainter.h"
 #include "thaction.h"
 
 /* ============================================================================
