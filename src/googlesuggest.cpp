@@ -11,7 +11,6 @@ GSuggestCompletion::GSuggestCompletion(QLineEdit *parent): QObject(parent), edit
 
     popup = new QListWidget;
     popup->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
     popup->installEventFilter(this);
     popup->setMouseTracking(true);
 
@@ -21,6 +20,7 @@ GSuggestCompletion::GSuggestCompletion(QLineEdit *parent): QObject(parent), edit
     connect(popup, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
             SLOT(currentItemChanged(QListWidgetItem *)));
 
+    // mouse hover
     connect(popup, SIGNAL(itemEntered(QListWidgetItem*)),
             SLOT(currentItemChanged(QListWidgetItem *)));
 
@@ -30,7 +30,7 @@ GSuggestCompletion::GSuggestCompletion(QLineEdit *parent): QObject(parent), edit
 
     timer = new QTimer(this);
     timer->setSingleShot(true);
-    timer->setInterval(250);
+    timer->setInterval(100);
     connect(timer, SIGNAL(timeout()), SLOT(autoSuggest()));
     connect(editor, SIGNAL(textEdited(QString)), timer, SLOT(start()));
 
@@ -54,7 +54,9 @@ bool GSuggestCompletion::eventFilter(QObject *obj, QEvent *ev) {
     if (ev->type() == QEvent::KeyPress) {
 
         bool consumed = false;
-        int key = static_cast<QKeyEvent*>(ev)->key();
+
+        QKeyEvent *keyEvent = static_cast<QKeyEvent*>(ev);
+        int key = keyEvent->key();
         switch (key) {
         case Qt::Key_Enter:
         case Qt::Key_Return:
@@ -84,6 +86,7 @@ bool GSuggestCompletion::eventFilter(QObject *obj, QEvent *ev) {
             break;
 
         default:
+
             editor->setFocus();
             editor->event(ev);
             popup->hide();
@@ -112,7 +115,10 @@ void GSuggestCompletion::showCompletion(const QStringList &choices) {
     popup->adjustSize();
     popup->setUpdatesEnabled(true);
 
-    popup->move(editor->mapToGlobal(QPoint(0, editor->height())));
+    int h = popup->sizeHintForRow(0) * choices.count() + 4;
+    popup->resize(popup->width(), h);
+
+    popup->move(editor->mapToGlobal(QPoint(0, editor->height()+4)));
     popup->setFocus();
     popup->show();
 }
@@ -137,12 +143,18 @@ void GSuggestCompletion::preventSuggest() {
 }
 
 void GSuggestCompletion::autoSuggest() {
-    QString str = editor->text();
-    originalText = str;
+    QString query = editor->text();
+    originalText = query;
     qDebug() << "originalText" << originalText;
-    if (str.isEmpty()) return;
+    if (query.isEmpty()) return;
 
-    QString url = QString(GSUGGEST_URL).arg(QLocale::system().name().replace("_", "-"), str);
+    QString locale = QLocale::system().name().replace("_", "-");
+    // case for system locales such as "C"
+    if (locale.length() < 2) {
+        locale = "en-US";
+    }
+
+    QString url = QString(GSUGGEST_URL).arg(locale, query);
 
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(handleNetworkData(QByteArray)));
@@ -172,7 +184,5 @@ void GSuggestCompletion::currentItemChanged(QListWidgetItem *current) {
         current->setSelected(true);
         editor->setText(current->text());
         editor->setSelection(originalText.length(), editor->text().length());
-    } else {
-        popup->clearSelection();
     }
 }
