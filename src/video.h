@@ -52,6 +52,7 @@ public slots:
 signals:
     void gotThumbnail();
     void gotStreamUrl(QUrl streamUrl);
+    void errorStreamUrl();
 
 private slots:
     void gotVideoInfo(QByteArray);

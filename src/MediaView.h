@@ -53,12 +53,12 @@ private slots:
     void selectionChanged (const QItemSelection & selected, const QItemSelection & deselected);
     void activeRowChanged(int);
     void selectVideos(QList<Video*> videos);
+    void gotStreamUrl(QUrl streamUrl);
     // phonon
     void stateChanged(Phonon::State newState, Phonon::State oldState);
     void aboutToFinish();
     void currentSourceChanged(const Phonon::MediaSource source);
     void showVideoContextMenu(QPoint point);
-    void gotStreamUrl(QUrl streamUrl);
     // bar
     void searchMostRelevant();
     void searchMostRecent();

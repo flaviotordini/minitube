@@ -194,6 +194,8 @@ void MediaView::activeRowChanged(int row) {
     // mediaObject->pause();
 
     connect(video, SIGNAL(gotStreamUrl(QUrl)), SLOT(gotStreamUrl(QUrl)));
+    // TODO handle signal in a proper slot and impl item error status
+    connect(video, SIGNAL(errorStreamUrl()), SLOT(skip()));
     video->loadStreamUrl();
 
     // reset the timer flag
