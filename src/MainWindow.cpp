@@ -21,13 +21,12 @@ MainWindow::MainWindow() {
     mediaView = new MediaView(this);
     views->addWidget(mediaView);
 
-    // lazy initialized views
+    // lazily initialized views
     aboutView = 0;
     settingsView = 0;
 
     toolbarSearch = new SearchLineEdit(this);
     toolbarSearch->setFont(qApp->font());
-    // toolbarSearch->setMinimumWidth(200);
     connect(toolbarSearch, SIGNAL(search(const QString&)), searchView, SLOT(watch(const QString&)));
 
     // build ui
@@ -49,23 +48,6 @@ MainWindow::MainWindow() {
     showWidget(searchView);
 
     setCentralWidget(views);
-
-    // top dock widget
-    /*
-    QLabel* message = new QLabel(this);
-    message->setText(QString("A new version of %1 is available.").arg(Constants::APP_NAME));
-    message->setMargin(10);
-    message->setAlignment(Qt::AlignCenter);
-    QPalette palette;
-    message->setBackgroundRole(QPalette::ToolTipBase);
-    message->setForegroundRole(QPalette::ToolTipText);
-    message->setAutoFillBackground(true);
-    QDockWidget *dockWidget = new QDockWidget("", this, 0);
-    dockWidget->setTitleBarWidget(0);
-    dockWidget->setWidget(message);
-    dockWidget->setFeatures(QDockWidget::DockWidgetClosable);
-    addDockWidget(Qt::TopDockWidgetArea, dockWidget);
-    */
 
 }
 
@@ -488,8 +470,14 @@ void MainWindow::stop() {
 
 void MainWindow::fullscreen() {
 
+    setUpdatesEnabled(false);
+
     if (m_fullscreen) {
-        fullscreenAct->setShortcut(QKeySequence(Qt::ALT + Qt::Key_Return));
+        // use setShortucs instead of setShortcut
+        // the latter seems not to work
+        QList<QKeySequence> shortcuts;
+        shortcuts << QKeySequence(Qt::ALT + Qt::Key_Return);
+        fullscreenAct->setShortcuts(shortcuts);
         fullscreenAct->setText(tr("&Full Screen"));
         stopAct->setShortcut(QKeySequence(Qt::Key_Escape));
         if (m_maximized) showMaximized();
@@ -521,9 +509,12 @@ void MainWindow::fullscreen() {
 
     m_fullscreen = !m_fullscreen;
 
+    setUpdatesEnabled(true);
 }
 
 void MainWindow::compactView(bool enable) {
+
+    setUpdatesEnabled(false);
 
     // setUnifiedTitleAndToolBarOnMac(!enable);
     mediaView->setPlaylistVisible(!enable);
@@ -545,6 +536,7 @@ void MainWindow::compactView(bool enable) {
         stopAct->setShortcut(QKeySequence(Qt::Key_Escape));
     }
 
+    setUpdatesEnabled(true);
 }
 
 void MainWindow::searchFocus() {
