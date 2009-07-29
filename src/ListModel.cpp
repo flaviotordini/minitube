@@ -2,6 +2,7 @@
 #include "videomimedata.h"
 
 #define MAX_ITEMS 10
+static const QString recentKeywordsKey = "recentKeywords";
 
 ListModel::ListModel(QWidget *parent) : QAbstractListModel(parent) {
     youtubeSearch = 0;
@@ -187,6 +188,9 @@ void ListModel::abortSearch() {
 void ListModel::searchFinished(int total) {
     searching = false;
     canSearchMore = total > 0;
+
+    // update the message item
+    emit dataChanged( createIndex( MAX_ITEMS, 0 ), createIndex( MAX_ITEMS, columnCount() - 1 ) );
 }
 
 void ListModel::addVideo(Video* video) {
@@ -197,9 +201,20 @@ void ListModel::addVideo(Video* video) {
     videos << video;
     endInsertRows();
     
-    // autoplay
+    // first result!
     if (videos.size() == 1) {
+        // autoplay
         setActiveRow(0);
+
+        // save keyword
+        QString query = searchParams->keywords();
+        QSettings settings;
+        QStringList keywords = settings.value(recentKeywordsKey).toStringList();
+        keywords.removeAll(query);
+        keywords.prepend(query);
+        while (keywords.size() > 10)
+            keywords.removeLast();
+        settings.setValue(recentKeywordsKey, keywords);
     }
 
 }
