@@ -5,6 +5,7 @@
 - Fixed messages in the playlist not updating
 - Disabled view crossfade on Linux
 - Save keywords only when there are results
+- Fixed fullscreen keyboard shortcurt not working
 
 0.4 - July 2, 2009
 - Finally fixed playback start problem on Mac OSX
