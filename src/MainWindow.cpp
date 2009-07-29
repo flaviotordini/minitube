@@ -506,6 +506,8 @@ void MainWindow::fullscreen() {
 
     // No compact view action when in full screen
     compactViewAct->setVisible(m_fullscreen);
+    // Also no Youtube action since it opens a new window
+    webPageAct->setVisible(m_fullscreen);
 
     // Hide anything but the video
     mediaView->setPlaylistVisible(m_fullscreen);
