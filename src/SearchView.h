@@ -17,6 +17,7 @@ public:
         updateRecentKeywords();
         queryEdit->clear();
         queryEdit->setFocus(Qt::OtherFocusReason);
+        queryEdit->enableSuggest();
     }
 
     void disappear() {}

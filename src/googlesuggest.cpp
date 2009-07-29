@@ -7,7 +7,10 @@ namespace The {
     NetworkAccess* http();
 }
 
-GSuggestCompletion::GSuggestCompletion(QLineEdit *parent): QObject(parent), editor(parent) {
+GSuggestCompletion::GSuggestCompletion(QWidget *parent, QLineEdit *editor):
+        QObject(parent), buddy(parent), editor(editor) {
+
+    enabled = true;
 
     popup = new QListWidget;
     popup->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -17,12 +20,12 @@ GSuggestCompletion::GSuggestCompletion(QLineEdit *parent): QObject(parent), edit
     connect(popup, SIGNAL(itemClicked(QListWidgetItem*)),
             SLOT(doneCompletion()));
 
-    connect(popup, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
-            SLOT(currentItemChanged(QListWidgetItem *)));
+    // connect(popup, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
+    //    SLOT(currentItemChanged(QListWidgetItem *)));
 
     // mouse hover
-    connect(popup, SIGNAL(itemEntered(QListWidgetItem*)),
-            SLOT(currentItemChanged(QListWidgetItem *)));
+    // connect(popup, SIGNAL(itemEntered(QListWidgetItem*)),
+    //    SLOT(currentItemChanged(QListWidgetItem *)));
 
     popup->setWindowFlags(Qt::Popup);
     popup->setFocusPolicy(Qt::NoFocus);
@@ -30,7 +33,7 @@ GSuggestCompletion::GSuggestCompletion(QLineEdit *parent): QObject(parent), edit
 
     timer = new QTimer(this);
     timer->setSingleShot(true);
-    timer->setInterval(100);
+    timer->setInterval(300);
     connect(timer, SIGNAL(timeout()), SLOT(autoSuggest()));
     connect(editor, SIGNAL(textEdited(QString)), timer, SLOT(start()));
 
@@ -116,9 +119,10 @@ void GSuggestCompletion::showCompletion(const QStringList &choices) {
     popup->setUpdatesEnabled(true);
 
     int h = popup->sizeHintForRow(0) * choices.count() + 4;
-    popup->resize(popup->width(), h);
+    popup->resize(buddy->width(), h);
 
-    popup->move(editor->mapToGlobal(QPoint(0, editor->height()+4)));
+    popup->move(buddy->mapToGlobal(QPoint(0, buddy->height())));
+
     popup->setFocus();
     popup->show();
 }
@@ -140,9 +144,17 @@ void GSuggestCompletion::doneCompletion() {
 
 void GSuggestCompletion::preventSuggest() {
     timer->stop();
+    enabled = false;
+    popup->hide();
+}
+
+void GSuggestCompletion::enableSuggest() {
+    enabled = true;
 }
 
 void GSuggestCompletion::autoSuggest() {
+    if (!enabled) return;
+
     QString query = editor->text();
     originalText = query;
     qDebug() << "originalText" << originalText;
@@ -161,6 +173,7 @@ void GSuggestCompletion::autoSuggest() {
 }
 
 void GSuggestCompletion::handleNetworkData(QByteArray response) {
+    if (!enabled) return;
 
     QStringList choices;
 
