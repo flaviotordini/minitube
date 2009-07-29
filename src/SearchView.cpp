@@ -67,7 +67,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     QHBoxLayout *otherLayout = new QHBoxLayout();
 
     recentKeywordsLayout = new QVBoxLayout();
-    recentKeywordsLayout->setAlignment(Qt::AlignTop);
+    recentKeywordsLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     recentKeywordsLabel = new QLabel(tr("Recent keywords").toUpper(), this);
     recentKeywordsLabel->hide();
     recentKeywordsLabel->setForegroundRole(QPalette::Dark);
@@ -81,8 +81,6 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     layout->addStretch();
 
     setLayout(mainLayout);
-
-    // watchButton->setMinimumHeight(queryEdit->height());
 
     updateChecker = 0;
     checkForUpdate();
@@ -127,9 +125,10 @@ void SearchView::updateRecentKeywords() {
                                        + "\" style=\"color:palette(text); text-decoration:none\">"
                                        + keyword + "</a>", this);
 
-        // Make links navigable with the keyboard
-        // this makes links nonclickable so it's disabled
-        // itemLabel->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard);
+        itemLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        // Make links navigable with the keyboard too
+        itemLabel->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard | Qt::LinksAccessibleByMouse);
+
         connect(itemLabel, SIGNAL(linkActivated(QString)), this, SLOT(watch(QString)));
         recentKeywordsLayout->addWidget(itemLabel);
     }
@@ -153,14 +152,7 @@ void SearchView::watch(QString query) {
         return;
     }
 
-    // save keyword
-    QSettings settings;
-    QStringList keywords = settings.value(recentKeywordsKey).toStringList();
-    keywords.removeAll(query);
-    keywords.prepend(query);
-    while (keywords.size() > 10)
-        keywords.removeLast();
-    settings.setValue(recentKeywordsKey, keywords);
+    queryEdit->preventSuggest();
 
     // go!
     emit search(query);
