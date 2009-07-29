@@ -8,6 +8,7 @@ TRANSLATIONS += \
     pt_BR.ts \
     ru_RU.ts \
     es_AR.ts \
+    pl_PL.ts \
     de_DE.ts
 
 isEmpty(QMAKE_LRELEASE) {

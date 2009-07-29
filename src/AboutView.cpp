@@ -36,7 +36,8 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                    "<p>" + tr("Translated by %1").arg("Nikita Lyalin (ru_RU), "
                                                       "Márcio Moraes (pt_BR), "
                                                       "Sergio Tocalini Joerg (es_AR), "
-                                                      "Stefan Brück (de_DE)"
+                                                      "Stefan Brück (de_DE), "
+                                                      "Grzegorz Gibas (pl_PL)"
                                                       ) + "</p>"
 
                    "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")
