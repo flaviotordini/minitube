@@ -1,6 +1,10 @@
 0.5
 - Search autocomplete
 - Skip to the next when a video cannot be loaded
+- Playlist items can now be dropped onto the video area
+- Fixed messages in the playlist not updating
+- Disabled view crossfade on Linux
+- Save keywords only when there are results
 
 0.4 - July 2, 2009
 - Finally fixed playback start problem on Mac OSX
