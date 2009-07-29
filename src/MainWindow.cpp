@@ -348,7 +348,13 @@ void MainWindow::showWidget ( QWidget* widget ) {
     mainToolBar->setVisible(widget == mediaView && !compactViewAct->isChecked());
 
     history->push(widget);
+
+#ifdef Q_WS_MAC
+    // crossfade only on OSX
+    // where we can be sure of video performance
     fadeInWidget(views->currentWidget(), widget);
+#endif
+
     views->setCurrentWidget(widget);
 
     setUpdatesEnabled(true);
