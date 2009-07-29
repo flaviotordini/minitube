@@ -86,6 +86,8 @@ public:
     QMenu *menu() const;
     void setMenu(QMenu *menu);
     void updateGeometries();
+    void enableSuggest();
+    void preventSuggest();
 
 protected:
     void resizeEvent(QResizeEvent *event);

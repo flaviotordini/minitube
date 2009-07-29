@@ -176,7 +176,7 @@ m_searchButton(new SearchButton(this))
     setSizePolicy(QSizePolicy::Preferred, policy.verticalPolicy());
 
     // completion
-    completion = new GSuggestCompletion(m_lineEdit);
+    completion = new GSuggestCompletion(this, m_lineEdit);
 }
 
 void SearchLineEdit::paintEvent(QPaintEvent *event)
@@ -245,4 +245,12 @@ void SearchLineEdit::returnPressed()
 {
     completion->preventSuggest();
     emit search(lineEdit()->text());
+}
+
+void SearchLineEdit::enableSuggest() {
+    completion->enableSuggest();
+}
+
+void SearchLineEdit::preventSuggest() {
+    completion->preventSuggest();
 }
