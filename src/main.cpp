@@ -26,7 +26,8 @@ int main(int argc, char **argv) {
     QString localeDir = dataDir + QDir::separator() + "locale";
     // if app was not "installed" use the app directory
     if (!QFile::exists(localeDir)) {
-        dataDir = qApp->applicationDirPath() + QDir::separator() + "locale";
+        localeDir = qApp->applicationDirPath() + QDir::separator() + "locale";
+        // qDebug() << "Using locale dir" << localeDir << locale;
     }
     QTranslator translator;
     translator.load(locale, localeDir);
