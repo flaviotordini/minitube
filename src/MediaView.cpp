@@ -37,7 +37,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     listView->setDragEnabled(true);
     listView->setAcceptDrops(true);
     listView->setDropIndicatorShown(true);
-    listView->setDragDropMode(QAbstractItemView::InternalMove);
+    listView->setDragDropMode(QAbstractItemView::DragDrop);
 
     // cosmetics
     listView->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
@@ -67,6 +67,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
 
     videoWidget = new Phonon::VideoWidget(this);
     videoAreaWidget->setVideoWidget(videoWidget);
+    videoAreaWidget->setListModel(listModel);
 
     loadingWidget = new LoadingWidget(this);
     videoAreaWidget->setLoadingWidget(loadingWidget);

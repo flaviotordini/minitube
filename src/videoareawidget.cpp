@@ -1,8 +1,10 @@
 #include "videoareawidget.h"
+#include "videomimedata.h"
 
 VideoAreaWidget::VideoAreaWidget(QWidget *parent) : QWidget(parent) {
     stackedLayout = new QStackedLayout(this);
     setLayout(stackedLayout);
+    setAcceptDrops(true);
 }
 
 void VideoAreaWidget::setVideoWidget(QWidget *videoWidget) {
@@ -32,4 +34,25 @@ void VideoAreaWidget::mouseDoubleClickEvent(QMouseEvent *event) {
 void VideoAreaWidget::mousePressEvent(QMouseEvent *event) {
     switch(event->button() == Qt::RightButton)
             emit rightClicked();
+}
+
+void VideoAreaWidget::dragEnterEvent(QDragEnterEvent *event) {
+    qDebug() << event->mimeData()->formats();
+    if (event->mimeData()->hasFormat("application/x-minitube-video")) {
+        event->acceptProposedAction();
+    }
+}
+
+void VideoAreaWidget::dropEvent(QDropEvent *event) {
+
+    const VideoMimeData* videoMimeData = dynamic_cast<const VideoMimeData*>( event->mimeData() );
+    if(!videoMimeData ) return;
+
+    QList<Video*> droppedVideos = videoMimeData->videos();
+    foreach( Video *video, droppedVideos) {
+        int row = listModel->rowForVideo(video);
+        if (row != -1)
+            listModel->setActiveRow(row);
+    }
+    event->acceptProposedAction();
 }

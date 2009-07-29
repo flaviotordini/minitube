@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "video.h"
 #include "loadingwidget.h"
+#include "ListModel.h"
 
 class VideoAreaWidget : public QWidget {
 
@@ -15,6 +16,9 @@ public:
     void setLoadingWidget(LoadingWidget *loadingWidget);
     void showLoading(Video* video);
     void showVideo();
+    void setListModel(ListModel *listModel) {
+        this->listModel = listModel;
+    }
 
 signals:
     void doubleClicked();
@@ -23,11 +27,14 @@ signals:
 protected:
     void mouseDoubleClickEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
+    void dragEnterEvent(QDragEnterEvent *event);
+    void dropEvent(QDropEvent *event);
 
 private:
     QStackedLayout *stackedLayout;
     QWidget *videoWidget;
     LoadingWidget *loadingWidget;
+    ListModel *listModel;
 
 };
 
