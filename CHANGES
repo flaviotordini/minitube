@@ -1,4 +1,4 @@
-0.5
+0.5 - July 31, 2009
 - Search autocomplete
 - Skip to the next when a video cannot be loaded
 - Playlist items can now be dropped onto the video area
@@ -6,6 +6,7 @@
 - Disabled view crossfade on Linux
 - Save keywords only when there are results
 - Fixed fullscreen keyboard shortcurt not working
+- Polish translation by Grzegorz Gibas
 
 0.4 - July 2, 2009
 - Finally fixed playback start problem on Mac OSX
