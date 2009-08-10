@@ -106,7 +106,7 @@ void PrettyItemDelegate::paintBody( QPainter* painter,
     // author
     painter->save();
     painter->setFont(smallerBoldFont);
-    if (!isSelected)
+    if (!isSelected && !isActive)
         painter->setPen(QPen(option.palette.brush(QPalette::Mid), 0));
     QString authorString = video->author();
     QSizeF authorStringSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, authorString ) );
