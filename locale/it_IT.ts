@@ -42,7 +42,7 @@
     <message>
         <location filename="../src/AboutView.cpp" line="34"/>
         <source>Compact mode contributed by %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Modalità compatta sviluppata da %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="36"/>
@@ -159,12 +159,12 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="105"/>
         <source>&amp;Compact mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modalità compatta</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="106"/>
         <source>Hide the playlist and the toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Nascondi la playlist e la barra degli strumenti</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="123"/>
@@ -289,12 +289,12 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="432"/>
         <source>Fatal error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore fatale: %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="434"/>
         <source>Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore: %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="455"/>
