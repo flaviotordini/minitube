@@ -14,6 +14,8 @@
 #include "SettingsView.h"
 #include "AboutView.h"
 
+#include <QProgressDialog>
+
 class MainWindow : public QMainWindow {
 
     Q_OBJECT
@@ -24,6 +26,12 @@ public:
 
 protected:
     void closeEvent(QCloseEvent *);
+
+	 struct DownloadResource
+	 {
+		 QProgressDialog* dialog;
+		 QFile* file;
+	 };
 
 private slots:
     void fadeInWidget(QWidget *oldWidget, QWidget *newWidget);
@@ -42,6 +50,15 @@ private slots:
     void searchFocus();
     void tick(qint64 time);
     void totalTimeChanged(qint64 time);
+	 // download related stuff
+	 void abortDownload();
+	 void download();
+	 void download(const QUrl& url, const DownloadResource& res);
+	 void replyReadyRead();
+	 void replyDownloadProgress(qint64 bytesReceived, qint64 bytesTotal);
+	 void replyError(QNetworkReply::NetworkError code);
+	 void replyFinished();
+	 void replyMetaDataChanged();
 
 private:
     void initPhonon();
@@ -109,6 +126,8 @@ private:
 
     bool m_fullscreen;
     bool m_maximized;
+
+	 QMap<QNetworkReply*, DownloadResource> m_downloads;
 };
 
 #endif

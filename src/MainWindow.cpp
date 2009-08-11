@@ -5,7 +5,6 @@
 #include "global.h"
 
 MainWindow::MainWindow() {
-
     m_fullscreen = false;
     mediaObject = 0;
     audioOutput = 0;
@@ -48,7 +47,6 @@ MainWindow::MainWindow() {
     showWidget(searchView);
 
     setCentralWidget(views);
-
 }
 
 MainWindow::~MainWindow() {
@@ -111,14 +109,13 @@ void MainWindow::createActions() {
     actions->insert("compactView", compactViewAct);
     connect(compactViewAct, SIGNAL(toggled(bool)), this, SLOT(compactView(bool)));
 
-    /*
     // icon should be document-save but it is ugly
     downloadAct = new QAction(QtIconLoader::icon("go-down", QIcon(":/images/go-down.png")), tr("&Download"), this);
     downloadAct->setStatusTip(tr("Download this video"));
     downloadAct->setShortcut(tr("Ctrl+S"));
-    actions.insert("download", downloadAct);
+    downloadAct->setEnabled(false);
+    actions->insert("download", downloadAct);
     connect(downloadAct, SIGNAL(triggered()), this, SLOT(download()));
-    */
 
     webPageAct = new QAction(QtIconLoader::icon("internet-web-browser", QIcon(":/images/internet-web-browser.png")), tr("&YouTube"), this);
     webPageAct->setStatusTip(tr("Open the YouTube video page"));
@@ -232,6 +229,7 @@ void MainWindow::createMenus() {
     viewMenu->addSeparator();
     viewMenu->addAction(webPageAct);
     viewMenu->addSeparator();
+    viewMenu->addAction(downloadAct);
     viewMenu->addAction(compactViewAct);
     viewMenu->addAction(fullscreenAct);
 
@@ -340,6 +338,9 @@ void MainWindow::showWidget ( QWidget* widget ) {
     compactViewAct->setEnabled(widget == mediaView);
     webPageAct->setEnabled(widget == mediaView);
     aboutAct->setEnabled(widget != aboutView);
+    // this is not the best place to enable downloads, but the user is informed
+    // if there really is no video is playing
+    downloadAct->setEnabled(widget == mediaView);
 
     // cool toolbar on the Mac
     // setUnifiedTitleAndToolBarOnMac(widget == mediaView);
@@ -571,6 +572,10 @@ void MainWindow::initPhonon() {
 }
 
 void MainWindow::tick(qint64 time) {
+    if (time <= 0) {
+        totalTime->clear();
+        return;
+    }
     QTime displayTime(0, (time / 60000) % 60, (time / 1000) % 60);
     currentTime->setText(displayTime.toString("mm:ss"));
     // qDebug() << "currentTime" << time << displayTime.toString("mm:ss");
@@ -586,3 +591,85 @@ void MainWindow::totalTimeChanged(qint64 time) {
     // qDebug() << "totalTime" << time << displayTime.toString("mm:ss");
 }
 
+void MainWindow::abortDownload() {
+    QProgressDialog* dlg = dynamic_cast<QProgressDialog*>(this->sender());
+    QMap<QNetworkReply*, DownloadResource>::iterator cur;
+    QMap<QNetworkReply*, DownloadResource>::iterator end;
+    // locate the DownloadResource by its dialog address and trigger abortion
+    for(cur=m_downloads.begin(), end=m_downloads.end(); cur!=end; cur++){
+        if(cur.value().dialog == dlg) cur.key()->abort();
+    }
+}
+
+void MainWindow::download() {
+    if(mediaObject == NULL || mediaObject->currentSource().url().isEmpty()){
+        // complain unless video source apperas to be valid
+        QMessageBox::critical(this, tr("No Video playing"), tr("You must first play the video you intent to download !"));
+        return;
+    }
+    QString filename = QFileDialog::getSaveFileName(this,
+                                                    tr("Save video as..."),
+                                                    tr("minitube video.mp4"),
+                                                    "Video File(*.avi *.mp4)"
+                                                    );
+    if(!filename.isNull()) {
+        // open destination file and initialize download
+        DownloadResource res;
+        res.file = new QFile(filename);
+        if(res.file->open(QFile::WriteOnly) == true) {
+            res.dialog = new QProgressDialog(tr("Downloading: ") + res.file->fileName(),
+                                             tr("Abort Download"), 0, 100, this);
+            connect(res.dialog, SIGNAL(canceled()), this, SLOT(abortDownload()));
+            download(mediaObject->currentSource().url(), res);
+        }else{
+            QMessageBox::critical(this, tr("File creation failed"), res.file->errorString());
+            delete res.file;
+        }
+    }
+}
+
+void MainWindow::download(const QUrl& url, const DownloadResource& res) {
+    // create and store request and connect the reply signals
+    QNetworkReply *r = The::networkAccessManager()->get(QNetworkRequest(url));
+    m_downloads.insert(r, res);
+    connect(r, SIGNAL(finished()), this, SLOT(replyFinished()));
+    connect(r, SIGNAL(readyRead()), this, SLOT(replyReadyRead()));
+    connect(r, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(replyError(QNetworkReply::NetworkError)));
+    connect(r, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(replyDownloadProgress(qint64,qint64)));
+    connect(r, SIGNAL(metaDataChanged()), this, SLOT(replyMetaDataChanged()));
+}
+
+void MainWindow::replyReadyRead() {
+    QNetworkReply* r = dynamic_cast<QNetworkReply*>(this->sender());
+    m_downloads[r].file->write(r->readAll());
+}
+
+void MainWindow::replyDownloadProgress(qint64 bytesReceived, qint64 bytesTotal) {
+    QNetworkReply* r = dynamic_cast<QNetworkReply*>(this->sender());
+    if (bytesTotal > 0 && bytesReceived >0)
+        m_downloads[r].dialog->setValue( double(100.0/bytesTotal)*bytesReceived );  // pssst :-X
+}
+
+void MainWindow::replyError(QNetworkReply::NetworkError code) {
+    QNetworkReply* r = dynamic_cast<QNetworkReply*>(this->sender());
+    QMessageBox::critical(this, tr("Download failed"), r->errorString());
+}
+
+void MainWindow::replyFinished() {
+    QNetworkReply* r = dynamic_cast<QNetworkReply*>(this->sender());
+    m_downloads[r].dialog->close();
+    m_downloads[r].file->close();
+    delete m_downloads[r].file;
+    m_downloads.remove(r);
+}
+
+void MainWindow::replyMetaDataChanged() {
+    QNetworkReply* r = dynamic_cast<QNetworkReply*>(this->sender());
+    QUrl url = r->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+    if(url.isValid()) {
+        // redirect - request new url, but keep the resources
+        qDebug() << "redirecting to: " << url.toString();
+        download(url, m_downloads[r]);
+        m_downloads.remove(r);
+    }
+}
