@@ -4,8 +4,6 @@
 #include <QFontMetricsF>
 #include <QPainter>
 
-using namespace Playlist;
-
 const qreal PrettyItemDelegate::THUMB_HEIGHT = 90.0;
 const qreal PrettyItemDelegate::THUMB_WIDTH = 120.0;
 const qreal PrettyItemDelegate::MARGIN = 0.0;
