@@ -30,7 +30,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     sortBar->addAction(mostViewedAction);
 
     listView = new QListView(this);
-    listView->setItemDelegate(new Playlist::PrettyItemDelegate(this));
+    listView->setItemDelegate(new PrettyItemDelegate(this));
     listView->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     // dragndrop
@@ -169,6 +169,7 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
 }
 
 void MediaView::pause() {
+    // qDebug() << "pause() called" << mediaObject->state();
     switch( mediaObject->state() ) {
     case Phonon::PlayingState:
         mediaObject->pause();
