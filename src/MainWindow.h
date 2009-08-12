@@ -27,11 +27,11 @@ public:
 protected:
     void closeEvent(QCloseEvent *);
 
-	 struct DownloadResource
-	 {
-		 QProgressDialog* dialog;
-		 QFile* file;
-	 };
+    struct DownloadResource
+    {
+        QProgressDialog* dialog;
+        QFile* file;
+    };
 
 private slots:
     void fadeInWidget(QWidget *oldWidget, QWidget *newWidget);
@@ -44,21 +44,29 @@ private slots:
     void about();
     void quit();
     void fullscreen();
-	 void compactView(bool enable);
+    void compactView(bool enable);
     void stop();
     void stateChanged(Phonon::State newState, Phonon::State oldState);
     void searchFocus();
     void tick(qint64 time);
     void totalTimeChanged(qint64 time);
-	 // download related stuff
-	 void abortDownload();
-	 void download();
-	 void download(const QUrl& url, const DownloadResource& res);
-	 void replyReadyRead();
-	 void replyDownloadProgress(qint64 bytesReceived, qint64 bytesTotal);
-	 void replyError(QNetworkReply::NetworkError code);
-	 void replyFinished();
-	 void replyMetaDataChanged();
+
+    // volume shortcuts
+    void volumeUp();
+    void volumeDown();
+    void volumeMute();
+    void volumeChanged(qreal newVolume);
+    void volumeMutedChanged(bool muted);
+
+    // download related stuff
+    void abortDownload();
+    void download();
+    void download(const QUrl& url, const DownloadResource& res);
+    void replyReadyRead();
+    void replyDownloadProgress(qint64 bytesReceived, qint64 bytesTotal);
+    void replyError(QNetworkReply::NetworkError code);
+    void replyFinished();
+    void replyMetaDataChanged();
 
 private:
     void initPhonon();
@@ -96,9 +104,12 @@ private:
     QAction *pauseAct;
     QAction *stopAct;
     QAction *fullscreenAct;
-	 QAction *compactViewAct;
+    QAction *compactViewAct;
     QAction *webPageAct;
     QAction *downloadAct;
+    QAction *volumeUpAct;
+    QAction *volumeDownAct;
+    QAction *volumeMuteAct;
 
     // playlist actions
     QAction *removeAct;
@@ -127,7 +138,7 @@ private:
     bool m_fullscreen;
     bool m_maximized;
 
-	 QMap<QNetworkReply*, DownloadResource> m_downloads;
+    QMap<QNetworkReply*, DownloadResource> m_downloads;
 };
 
 #endif

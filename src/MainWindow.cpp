@@ -171,11 +171,25 @@ void MainWindow::createActions() {
     actions->insert("about", aboutAct);
     connect(aboutAct, SIGNAL(triggered()), this, SLOT(about()));
 
+    // Invisible actions
+
     searchFocusAct = new QAction(tr("&Search"), this);
     searchFocusAct->setShortcut(QKeySequence::Find);
     actions->insert("search", searchFocusAct);
     connect(searchFocusAct, SIGNAL(triggered()), this, SLOT(searchFocus()));
     addAction(searchFocusAct);
+
+    volumeUpAct = new QAction(tr("&Volume up"), this);
+    volumeUpAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Plus));
+    actions->insert("volume-up", volumeUpAct);
+    connect(volumeUpAct, SIGNAL(triggered()), this, SLOT(volumeUp()));
+    addAction(volumeUpAct);
+
+    volumeDownAct = new QAction(tr("&Volume down"), this);
+    volumeDownAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Minus));
+    actions->insert("volume-down", volumeDownAct);
+    connect(volumeDownAct, SIGNAL(triggered()), this, SLOT(volumeDown()));
+    addAction(volumeDownAct);
 
     // common action properties
     foreach (QAction *action, actions->values()) {
@@ -567,6 +581,8 @@ void MainWindow::initPhonon() {
     connect(mediaObject, SIGNAL(totalTimeChanged(qint64)), this, SLOT(totalTimeChanged(qint64)));
     seekSlider->setMediaObject(mediaObject);
     audioOutput = new Phonon::AudioOutput(Phonon::VideoCategory, this);
+    connect(audioOutput, SIGNAL(volumeChanged(qreal)), this, SLOT(volumeChanged(qreal)));
+    connect(audioOutput, SIGNAL(mutedChanged(bool)), this, SLOT(volumeMutedChanged(bool)));
     volumeSlider->setAudioOutput(audioOutput);
     Phonon::createPath(mediaObject, audioOutput);
 }
@@ -589,6 +605,38 @@ void MainWindow::totalTimeChanged(qint64 time) {
     QTime displayTime(0, (time / 60000) % 60, (time / 1000) % 60);
     totalTime->setText(displayTime.toString("/ mm:ss"));
     // qDebug() << "totalTime" << time << displayTime.toString("mm:ss");
+}
+
+void MainWindow::volumeUp() {
+    qreal newVolume = volumeSlider->audioOutput()->volume() + .1;
+    if (newVolume > volumeSlider->maximumVolume())
+        newVolume = volumeSlider->maximumVolume();
+    volumeSlider->audioOutput()->setVolume(newVolume);
+}
+
+void MainWindow::volumeDown() {
+    qreal newVolume = volumeSlider->audioOutput()->volume() - .1;
+    if (newVolume < 0)
+        newVolume = 0;
+    volumeSlider->audioOutput()->setVolume(newVolume);
+}
+
+void MainWindow::volumeMute() {
+    volumeSlider->audioOutput()->setMuted(!volumeSlider->audioOutput()->isMuted());
+}
+
+void MainWindow::volumeChanged(qreal newVolume) {
+    // automatically unmute when volume changes
+    if (volumeSlider->audioOutput()->isMuted())
+        volumeSlider->audioOutput()->setMuted(false);
+    statusBar()->showMessage(tr("Volume at %1%").arg(newVolume*100));
+}
+
+void MainWindow::volumeMutedChanged(bool muted) {
+    if (muted)
+        statusBar()->showMessage(tr("Volume is muted"));
+    else
+        statusBar()->showMessage(tr("Volume is unmuted"));
 }
 
 void MainWindow::abortDownload() {
