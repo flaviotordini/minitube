@@ -16,6 +16,10 @@ void YouTubeSearch::search(SearchParams *searchParams, int max, int skip) {
             "http://gdata.youtube.com/feeds/api/videos?q=%1&max-results=%2&start-index=%3")
             .arg(searchParams->keywords(), QString::number(max), QString::number(skip));
 
+    // Useful to test with a local webserver
+    urlString = QString("http://localhost/oringo/video.xml?q=%1&max-results=%2&start-index=%3")
+                .arg(searchParams->keywords(), QString::number(max), QString::number(skip));
+
     switch (searchParams->sortBy()) {
     case SearchParams::SortByNewest:
         urlString.append("&orderby=published");
@@ -25,15 +29,16 @@ void YouTubeSearch::search(SearchParams *searchParams, int max, int skip) {
         break;
     }
 
-    // QString urlString = QString("http://localhost/oringo/video.xml?q=%1&max-results=%2&start-index=%3")
-    // .arg(query, QString::number(max), QString::number(skip));
-
     QUrl url(urlString);
 
     QObject *reply = The::http()->get(url);
-    // connect(reply, SIGNAL(ready(QNetworkReply*)), SLOT(searchReady(QNetworkReply*)));
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResults(QByteArray)));
+    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(error(QNetworkReply*)));
 
+}
+
+void YouTubeSearch::error(QNetworkReply *reply) {
+    emit error(reply->errorString());
 }
 
 void YouTubeSearch::parseResults(QByteArray data) {

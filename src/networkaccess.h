@@ -17,9 +17,11 @@ public:
 public slots:
     void finished();
     void metaDataChanged();
+    void requestError(QNetworkReply::NetworkError);
 
 signals:
     void data(QByteArray);
+    void error(QNetworkReply*);
     void finished(QNetworkReply*);
 
 private:

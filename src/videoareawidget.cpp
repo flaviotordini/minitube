@@ -21,6 +21,11 @@ void VideoAreaWidget::showVideo() {
     stackedLayout->setCurrentWidget(videoWidget);
 }
 
+void VideoAreaWidget::showError(QString message) {
+    loadingWidget->setError(message);
+    stackedLayout->setCurrentWidget(loadingWidget);
+}
+
 void VideoAreaWidget::showLoading(Video *video) {
     this->loadingWidget->setVideo(video);
     stackedLayout->setCurrentWidget(loadingWidget);

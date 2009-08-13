@@ -17,9 +17,11 @@ public:
 signals:
     void gotVideo(Video*);
     void finished(int total);
+    void error(QString message);
 
 private slots:
     void parseResults(QByteArray data);
+    void error(QNetworkReply *reply);
 
 private:
 

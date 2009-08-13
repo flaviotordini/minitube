@@ -60,6 +60,12 @@ void LoadingWidget::setVideo(Video *video) {
     // progressBar->hide();
 }
 
+void LoadingWidget::setError(QString message) {
+    titleLabel->setText(tr("Error"));
+    descriptionLabel->setText(message);
+    // progressBar->hide();
+}
+
 void LoadingWidget::bufferStatus(int percent) {
     /*
     qDebug() << percent;

@@ -16,6 +16,7 @@ public:
     void setLoadingWidget(LoadingWidget *loadingWidget);
     void showLoading(Video* video);
     void showVideo();
+    void showError(QString message);
     void setListModel(ListModel *listModel) {
         this->listModel = listModel;
     }

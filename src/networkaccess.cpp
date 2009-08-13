@@ -40,12 +40,15 @@ void NetworkReply::finished() {
     // get the HTTP response body
     QByteArray bytes = networkReply->readAll();
 
-
     emit data(bytes);
 
     // bye bye my reply
     // this will also delete this NetworkReply as the QNetworkReply is its parent
     networkReply->deleteLater();
+}
+
+void NetworkReply::requestError(QNetworkReply::NetworkError code) {
+    emit error(networkReply);
 }
 
 /* --- NetworkAccess --- */
@@ -78,6 +81,10 @@ NetworkReply* NetworkAccess::get(const QUrl url) {
     // handle redirections
     connect(networkReply, SIGNAL(metaDataChanged()),
             reply, SLOT(metaDataChanged()), Qt::QueuedConnection);
+
+    // error signal
+    connect(networkReply, SIGNAL(error(QNetworkReply::NetworkError)),
+            reply, SLOT(requestError(QNetworkReply::NetworkError)));
 
     // when the request is finished we'll invoke the target method
     connect(networkReply, SIGNAL(finished()), reply, SLOT(finished()), Qt::QueuedConnection);
@@ -146,9 +153,11 @@ void NetworkAccess::error(QNetworkReply::NetworkError code) {
 
     // report the error in the status bar
     QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(qApp->topLevelWidgets().first());
-    if (mainWindow) mainWindow->statusBar()->showMessage(networkReply->errorString());
+    if (mainWindow) mainWindow->statusBar()->showMessage(
+            tr("Network error: %1").arg(networkReply->errorString()));
 
-    qDebug() << "Network error" << networkReply->errorString() << code;
+    qDebug() << "Network error:" << networkReply->errorString() << code;
+
     networkReply->deleteLater();
 }
 

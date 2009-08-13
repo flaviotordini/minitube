@@ -63,6 +63,7 @@ public slots:
     void searchNeeded();
     void addVideo(Video* video);
     void searchFinished(int total);
+    void searchError(QString message);
     void updateThumbnail();
 
 signals:
@@ -84,6 +85,7 @@ private:
     int m_activeRow;
     Video *m_activeVideo;
 
+    QString errorMessage;
 };
 
 #endif

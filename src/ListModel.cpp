@@ -42,6 +42,7 @@ QVariant ListModel::data(const QModelIndex &index, int role) const {
             return ItemTypeShowMore;
         case Qt::DisplayRole:
         case Qt::StatusTipRole:
+            if (!errorMessage.isEmpty()) return errorMessage;
             if (searching) return tr("Searching...");
             if (canSearchMore) return tr("Show %1 More").arg(MAX_ITEMS);
             if (videos.isEmpty()) return tr("No videos");
@@ -49,7 +50,15 @@ QVariant ListModel::data(const QModelIndex &index, int role) const {
         case Qt::TextAlignmentRole:
             return QVariant(int(Qt::AlignHCenter | Qt::AlignVCenter));
         case Qt::ForegroundRole:
-            return palette.color(QPalette::Dark);
+            if (!errorMessage.isEmpty())
+                return palette.color(QPalette::ToolTipText);
+            else
+                return palette.color(QPalette::Dark);
+        case Qt::BackgroundColorRole:
+            if (!errorMessage.isEmpty())
+                return palette.color(QPalette::ToolTipBase);
+            else
+                return QVariant();
         case Qt::FontRole:
             return boldFont;
         default:
@@ -145,6 +154,7 @@ void ListModel::search(SearchParams *searchParams) {
     m_activeVideo = 0;
     m_activeRow = -1;
     skip = 1;
+    errorMessage.clear();
     reset();
 
     // (re)initialize the YouTubeSearch
@@ -152,6 +162,7 @@ void ListModel::search(SearchParams *searchParams) {
     youtubeSearch = new YouTubeSearch();
     connect(youtubeSearch, SIGNAL(gotVideo(Video*)), this, SLOT(addVideo(Video*)));
     connect(youtubeSearch, SIGNAL(finished(int)), this, SLOT(searchFinished(int)));
+    connect(youtubeSearch, SIGNAL(error(QString)), this, SLOT(searchError(QString)));
 
     this->searchParams = searchParams;
     searching = true;
@@ -162,6 +173,7 @@ void ListModel::search(SearchParams *searchParams) {
 void ListModel::searchMore(int max) {
     if (searching) return;
     searching = true;
+    errorMessage.clear();
     youtubeSearch->search(searchParams, max, skip);
     skip += max;
 }
@@ -189,6 +201,12 @@ void ListModel::searchFinished(int total) {
     searching = false;
     canSearchMore = total > 0;
 
+    // update the message item
+    emit dataChanged( createIndex( MAX_ITEMS, 0 ), createIndex( MAX_ITEMS, columnCount() - 1 ) );
+}
+
+void ListModel::searchError(QString message) {
+    errorMessage = message;
     // update the message item
     emit dataChanged( createIndex( MAX_ITEMS, 0 ), createIndex( MAX_ITEMS, columnCount() - 1 ) );
 }
