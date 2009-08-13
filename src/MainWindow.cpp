@@ -173,23 +173,29 @@ void MainWindow::createActions() {
 
     // Invisible actions
 
-    searchFocusAct = new QAction(tr("&Search"), this);
+    searchFocusAct = new QAction(this);
     searchFocusAct->setShortcut(QKeySequence::Find);
     actions->insert("search", searchFocusAct);
     connect(searchFocusAct, SIGNAL(triggered()), this, SLOT(searchFocus()));
     addAction(searchFocusAct);
 
-    volumeUpAct = new QAction(tr("&Volume up"), this);
+    volumeUpAct = new QAction(this);
     volumeUpAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Plus));
     actions->insert("volume-up", volumeUpAct);
     connect(volumeUpAct, SIGNAL(triggered()), this, SLOT(volumeUp()));
     addAction(volumeUpAct);
 
-    volumeDownAct = new QAction(tr("&Volume down"), this);
+    volumeDownAct = new QAction(this);
     volumeDownAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Minus));
     actions->insert("volume-down", volumeDownAct);
     connect(volumeDownAct, SIGNAL(triggered()), this, SLOT(volumeDown()));
     addAction(volumeDownAct);
+
+    volumeMuteAct = new QAction(this);
+    volumeMuteAct->setShortcut(tr("Ctrl+M"));
+    actions->insert("volume-mute", volumeMuteAct);
+    connect(volumeMuteAct, SIGNAL(triggered()), this, SLOT(volumeMute()));
+    addAction(volumeMuteAct);
 
     // common action properties
     foreach (QAction *action, actions->values()) {
