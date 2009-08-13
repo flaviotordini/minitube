@@ -7,7 +7,6 @@
 #include <phonon/videowidget.h>
 #include "View.h"
 #include "ListModel.h"
-#include "thaction.h"
 #include "thblackbar.h"
 #include "searchparams.h"
 #include "playlistwidget.h"
@@ -78,9 +77,9 @@ private:
 
     // sortBar
     THBlackBar *sortBar;
-    THAction *mostRelevantAction;
-    THAction *mostRecentAction;
-    THAction *mostViewedAction;
+    QAction *mostRelevantAction;
+    QAction *mostRecentAction;
+    QAction *mostViewedAction;
 
     // phonon
     Phonon::MediaObject *mediaObject;

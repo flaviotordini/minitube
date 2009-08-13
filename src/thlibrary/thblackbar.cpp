@@ -3,16 +3,15 @@
 #include <QList>
 
 #include "thblackbar.h"
-#include "thaction.h"
 
 /* ============================================================================
  *  PRIVATE Class
  */
 class THBlackBar::Private {
         public:
-    QList<THAction *> actionList;
-    THAction *checkedAction;
-    THAction *hoveredAction;
+    QList<QAction *> actionList;
+    QAction *checkedAction;
+    QAction *hoveredAction;
 };
 
 /* ============================================================================
@@ -36,13 +35,14 @@ THBlackBar::~THBlackBar() {
 /* ============================================================================
  *  PUBLIC Methods
  */
-THAction *THBlackBar::addAction (THAction *action) {
+QAction *THBlackBar::addAction (QAction *action) {
+    action->setCheckable(true);
     d->actionList.append(action);
     return(action);
 }
 
-THAction *THBlackBar::addAction (const QString& text) {
-    THAction *action = new THAction(text, this);
+QAction *THBlackBar::addAction (const QString& text) {
+    QAction *action = new QAction(text, this);
     d->actionList.append(action);
     return(action);
 }
@@ -92,7 +92,7 @@ void THBlackBar::paintEvent (QPaintEvent *event) {
     // Draw Buttons
     // p.translate(0, 4);
     QRect rect(buttonsX, 0, buttonWidth, height);
-    foreach (THAction *action, d->actionList) {
+    foreach (QAction *action, d->actionList) {
         drawButton(&p, rect, action);
         rect.moveLeft(rect.x() + rect.width());
     }
@@ -107,14 +107,15 @@ void THBlackBar::paintEvent (QPaintEvent *event) {
 void THBlackBar::mouseMoveEvent (QMouseEvent *event) {
     QWidget::mouseMoveEvent(event);
 
-    THAction *action = hoveredAction(event->pos());
+    QAction *action = hoveredAction(event->pos());
+
     if (action == NULL && d->hoveredAction != NULL) {
-        d->hoveredAction->hover(false);
+        // d->hoveredAction->hover(false);
         d->hoveredAction = NULL;
         update();
     } else if (action != NULL) {
         d->hoveredAction = action;
-        action->hover(true);
+        action->hover();
         update();
     }
 }
@@ -138,7 +139,7 @@ void THBlackBar::mousePressEvent (QMouseEvent *event) {
     }
 }
 
-THAction *THBlackBar::hoveredAction (const QPoint& pos) const {
+QAction *THBlackBar::hoveredAction (const QPoint& pos) const {
     if (pos.y() <= 0 || pos.y() >= height())
         return(NULL);
 
@@ -168,7 +169,7 @@ int THBlackBar::calculateButtonWidth (void) const {
     smallerBoldFont.setPointSize(smallerBoldFont.pointSize()*.85);
     QFontMetrics fontMetrics(smallerBoldFont);
     int tmpItemWidth, itemWidth = 0;
-    foreach (THAction *action, d->actionList) {
+    foreach (QAction *action, d->actionList) {
         tmpItemWidth = fontMetrics.width(action->text());
         if (itemWidth < tmpItemWidth) itemWidth = tmpItemWidth;
     }
@@ -181,7 +182,7 @@ int THBlackBar::calculateButtonWidth (void) const {
  */
 void THBlackBar::drawUnselectedButton (	QPainter *painter,
                                         const QRect& rect,
-                                        const THAction *action)
+                                        const QAction *action)
 {
     QLinearGradient linearGrad(QPointF(0, 0), QPointF(0, rect.height() / 2));    
     linearGrad.setColorAt(0, QColor(0x8e, 0x8e, 0x8e));
@@ -197,7 +198,7 @@ void THBlackBar::drawUnselectedButton (	QPainter *painter,
 
 void THBlackBar::drawSelectedButton (	QPainter *painter,
                                         const QRect& rect,
-                                        const THAction *action)
+                                        const QAction *action)
 {
     QLinearGradient linearGrad(QPointF(0, 0), QPointF(0, rect.height() / 2));
     linearGrad.setColorAt(0, QColor(0x6d, 0x6d, 0x6d));
@@ -207,7 +208,7 @@ void THBlackBar::drawSelectedButton (	QPainter *painter,
 
 void THBlackBar::drawButton (	QPainter *painter,
                                 const QRect& rect,
-                                const THAction *action)
+                                const QAction *action)
 {
     if (action->isChecked())
         drawSelectedButton(painter, rect, action);
@@ -219,7 +220,7 @@ void THBlackBar::drawButton (	QPainter *painter,
                                 const QRect& rect,
                                 const QLinearGradient& gradient,
                                 const QColor& color,
-                                const THAction *action)
+                                const QAction *action)
 {
     painter->save();
 

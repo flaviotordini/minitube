@@ -19,13 +19,13 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     splitter->setChildrenCollapsible(false);
 
     sortBar = new THBlackBar(this);
-    mostRelevantAction = new THAction(tr("Most relevant"), this);
+    mostRelevantAction = new QAction(tr("Most relevant"), this);
     connect(mostRelevantAction, SIGNAL(triggered()), this, SLOT(searchMostRelevant()), Qt::QueuedConnection);
     sortBar->addAction(mostRelevantAction);
-    mostRecentAction = new THAction(tr("Most recent"), this);
+    mostRecentAction = new QAction(tr("Most recent"), this);
     connect(mostRecentAction, SIGNAL(triggered()), this, SLOT(searchMostRecent()), Qt::QueuedConnection);
     sortBar->addAction(mostRecentAction);
-    mostViewedAction = new THAction(tr("Most viewed"), this);
+    mostViewedAction = new QAction(tr("Most viewed"), this);
     connect(mostViewedAction, SIGNAL(triggered()), this, SLOT(searchMostViewed()), Qt::QueuedConnection);
     sortBar->addAction(mostViewedAction);
 
@@ -129,6 +129,7 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
 
          case Phonon::ErrorState:
         qDebug() << "Phonon error:" << mediaObject->errorString() << mediaObject->errorType();
+        videoAreaWidget->showError(mediaObject->errorString());
         // recover from errors by skipping to the next video
         skip();
         break;
