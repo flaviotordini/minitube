@@ -5,6 +5,13 @@ VideoAreaWidget::VideoAreaWidget(QWidget *parent) : QWidget(parent) {
     stackedLayout = new QStackedLayout(this);
     setLayout(stackedLayout);
     setAcceptDrops(true);
+
+    // mouse autohide
+    setMouseTracking(true);
+    mouseTimer = new QTimer(this);
+    mouseTimer->setInterval(5000);
+    mouseTimer->setSingleShot(true);
+    connect(mouseTimer, SIGNAL(timeout()), SLOT(hideMouse()));
 }
 
 void VideoAreaWidget::setVideoWidget(QWidget *videoWidget) {
@@ -39,6 +46,17 @@ void VideoAreaWidget::mouseDoubleClickEvent(QMouseEvent *event) {
 void VideoAreaWidget::mousePressEvent(QMouseEvent *event) {
     switch(event->button() == Qt::RightButton)
             emit rightClicked();
+}
+
+void VideoAreaWidget::mouseMoveEvent(QMouseEvent * /* event */) {
+    // show the normal cursor
+    unsetCursor();
+    // then hide it again after a few seconds
+    mouseTimer->start();
+}
+
+void VideoAreaWidget::hideMouse() {
+    setCursor(QCursor(QBitmap(1,1)));
 }
 
 void VideoAreaWidget::dragEnterEvent(QDragEnterEvent *event) {
