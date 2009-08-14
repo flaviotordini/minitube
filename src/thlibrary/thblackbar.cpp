@@ -43,6 +43,7 @@ QAction *THBlackBar::addAction (QAction *action) {
 
 QAction *THBlackBar::addAction (const QString& text) {
     QAction *action = new QAction(text, this);
+    action->setCheckable(true);
     d->actionList.append(action);
     return(action);
 }
