@@ -6,9 +6,6 @@
 
 class QPainter;
 
-
-
-
 class PrettyItemDelegate : public QStyledItemDelegate {
 
     Q_OBJECT
@@ -21,28 +18,22 @@ public:
     void paint( QPainter*, const QStyleOptionViewItem&, const QModelIndex& ) const;
 
 private:
+    void createPlayIcon();
     void paintBody( QPainter*, const QStyleOptionViewItem&, const QModelIndex& ) const;
-
     QPointF centerImage( const QPixmap&, const QRectF& ) const;
 
-    /**
-             * Paints a marker indicating the track is active
-             */
+    // active track painting
     void paintActiveOverlay( QPainter *painter, qreal x, qreal y, qreal w, qreal h ) const;
-    /**
-          * Paints the video duration
-          */
+    void paintPlayIcon(QPainter *painter) const;
+
+    //  Paints the video duration
     void drawTime(QPainter *painter, QString time, QRectF line) const;
 
     static const qreal THUMB_WIDTH;
     static const qreal THUMB_HEIGHT;
-    static const qreal MARGIN;
-    static const qreal MARGINH;
-    static const qreal MARGINBODY;
     static const qreal PADDING;
 
+    QPixmap playIcon;
 };
 
-
 #endif
-

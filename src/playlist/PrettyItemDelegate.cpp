@@ -6,13 +6,31 @@
 
 const qreal PrettyItemDelegate::THUMB_HEIGHT = 90.0;
 const qreal PrettyItemDelegate::THUMB_WIDTH = 120.0;
-const qreal PrettyItemDelegate::MARGIN = 0.0;
-const qreal PrettyItemDelegate::MARGINH = 0.0;
-const qreal PrettyItemDelegate::MARGINBODY = 0.0;
 const qreal PrettyItemDelegate::PADDING = 10.0;
 
 PrettyItemDelegate::PrettyItemDelegate( QObject* parent ) : QStyledItemDelegate( parent ) {
+    createPlayIcon();
+}
 
+void PrettyItemDelegate::createPlayIcon() {
+    playIcon = QPixmap(THUMB_WIDTH, THUMB_HEIGHT);
+    playIcon.fill(Qt::transparent);
+    QPainter painter(&playIcon);
+    QPolygon polygon;
+    polygon << QPoint(PADDING*4, PADDING*2)
+            << QPoint(THUMB_WIDTH-PADDING*4, THUMB_HEIGHT/2)
+            << QPoint(PADDING*4, THUMB_HEIGHT-PADDING*2);
+    painter.setRenderHints(QPainter::Antialiasing, true);
+    painter.setBrush(Qt::white);
+    QPen pen;
+    pen.setColor(Qt::white);
+    pen.setWidth(10);
+    pen.setJoinStyle(Qt::RoundJoin);
+    pen.setCapStyle(Qt::RoundCap);
+    painter.setPen(pen);
+    painter.setOpacity(1);
+    painter.drawPolygon(polygon);
+    painter.end();
 }
 
 PrettyItemDelegate::~PrettyItemDelegate() { }
@@ -66,6 +84,10 @@ void PrettyItemDelegate::paintBody( QPainter* painter,
 
     // thumb
     painter->drawImage(QRect(0, 0, THUMB_WIDTH, THUMB_HEIGHT), video->thumbnail());
+
+    // play icon overlayed on the thumb
+    if (isActive)
+        paintPlayIcon(painter);
 
     // time
     QString timeString;
@@ -163,11 +185,11 @@ QPointF PrettyItemDelegate::centerImage( const QPixmap& pixmap, const QRectF& re
 void PrettyItemDelegate::paintActiveOverlay( QPainter *painter, qreal x, qreal y, qreal w, qreal h ) const {
 
     QPalette palette;
-    QColor color2 = palette.color( QPalette::Highlight);
-    QColor backgroundColor = palette.color( QPalette::Base);
+    QColor color2 = palette.color(QPalette::Highlight);
+    QColor backgroundColor = palette.color(QPalette::Base);
     float animation = 0.5;
     color2 = QColor::fromHsv(
-            animation == 0.0 ? backgroundColor.hue() : color2.hue(),
+            color2.hue(),
             (int)(backgroundColor.saturation()*(1.0f-animation)+color2.saturation()*animation),
             (int)(backgroundColor.value()*(1.0f-animation)+color2.value()*animation)
             );
@@ -184,6 +206,13 @@ void PrettyItemDelegate::paintActiveOverlay( QPainter *painter, qreal x, qreal y
     linearGradient.setColorAt(1.0, color2);
     painter->setBrush(linearGradient);
     painter->drawRect(rect);
+    painter->restore();
+}
+
+void PrettyItemDelegate::paintPlayIcon(QPainter *painter) const {
+    painter->save();
+    painter->setOpacity(.5);
+    painter->drawPixmap(playIcon.rect(), playIcon);
     painter->restore();
 }
 
