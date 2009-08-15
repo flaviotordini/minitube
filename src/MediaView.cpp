@@ -83,6 +83,10 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     layout->addWidget(splitter);
     setLayout(layout);
 
+    errorTimer = new QTimer(this);
+    errorTimer->setSingleShot(true);
+    errorTimer->setInterval(3000);
+    connect(errorTimer, SIGNAL(timeout()), SLOT(skipVideo()));
 }
 
 MediaView::~MediaView() {
@@ -126,6 +130,13 @@ void MediaView::disappear() {
     timerPlayFlag = true;
 }
 
+void MediaView::handleError(QString message) {
+    videoAreaWidget->showError(message);
+    skippedVideo = listModel->activeVideo();
+    // recover from errors by skipping to the next video
+    errorTimer->start(2000);
+}
+
 void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
 {
 
@@ -135,9 +146,7 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
 
          case Phonon::ErrorState:
         qDebug() << "Phonon error:" << mediaObject->errorString() << mediaObject->errorType();
-        videoAreaWidget->showError(mediaObject->errorString());
-        // recover from errors by skipping to the next video
-        skip();
+        handleError(mediaObject->errorString());
         break;
 
          case Phonon::PlayingState:
@@ -204,7 +213,7 @@ void MediaView::activeRowChanged(int row) {
 
     connect(video, SIGNAL(gotStreamUrl(QUrl)), SLOT(gotStreamUrl(QUrl)));
     // TODO handle signal in a proper slot and impl item error status
-    connect(video, SIGNAL(errorStreamUrl()), SLOT(skip()));
+    connect(video, SIGNAL(errorStreamUrl(QString)), SLOT(handleError(QString)));
     video->loadStreamUrl();
 
     // reset the timer flag
@@ -256,6 +265,23 @@ void MediaView::aboutToFinish() {
 
 void MediaView::currentSourceChanged(const Phonon::MediaSource source) {
     qDebug() << "Source changed:" << source.url();
+}
+
+
+void MediaView::skipVideo() {
+    // skippedVideo is useful for DELAYED skip operations
+    // in order to be sure that we're skipping the video we wanted
+    // and not another one
+    if (skippedVideo) {
+        if (listModel->activeVideo() != skippedVideo) {
+            qDebug() << "Skip of video canceled";
+            return;
+        }
+        int nextRow = listModel->rowForVideo(skippedVideo);
+        nextRow++;
+        if (nextRow == -1) return;
+        listModel->setActiveRow(nextRow);
+    }
 }
 
 void MediaView::skip() {

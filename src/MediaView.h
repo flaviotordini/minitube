@@ -40,6 +40,7 @@ public slots:
     void pause();
     void stop();
     void skip();
+    void skipVideo();
     void openWebPage();
     void removeSelected();
     void moveUpSelected();
@@ -53,6 +54,7 @@ private slots:
     void activeRowChanged(int);
     void selectVideos(QList<Video*> videos);
     void gotStreamUrl(QUrl streamUrl);
+    void handleError(QString message);
     // phonon
     void stateChanged(Phonon::State newState, Phonon::State oldState);
     void aboutToFinish();
@@ -91,6 +93,8 @@ private:
 
     bool timerPlayFlag;
 
+    QTimer *errorTimer;
+    Video *skippedVideo;
 };
 
 #endif // __MEDIAVIEW_H__
