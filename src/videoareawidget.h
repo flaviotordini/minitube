@@ -41,7 +41,7 @@ private:
     QWidget *videoWidget;
     LoadingWidget *loadingWidget;
     ListModel *listModel;
-
+    QLabel *messageLabel;
     QTimer *mouseTimer;
 };
 

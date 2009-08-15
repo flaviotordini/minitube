@@ -39,7 +39,7 @@ void Video::scrapeStreamUrl() {
     QRegExp re("^http://www\\.youtube\\.com/watch\\?v=([0-9A-Za-z_-]+)$");
     bool match = re.exactMatch(webpage.toString());
     if (!match || re.numCaptures() < 1) {
-        emit errorStreamUrl();
+        emit errorStreamUrl(QString("Cannot get video id for %1").arg(webpage.toString()));
         return;
     }
     videoId = re.cap(1);
@@ -52,6 +52,7 @@ void Video::scrapeStreamUrl() {
 
     QObject *reply = The::http()->get(normalizedUrl);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(gotVideoInfo(QByteArray)));
+    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
 
     // see you in gotVideoInfo...
 }
@@ -76,8 +77,9 @@ void  Video::gotVideoInfo(QByteArray data) {
                 errorMessage = errorMessage.left(indexOfTag);
             }
             if (mainWindow) mainWindow->statusBar()->showMessage(errorMessage);
-        }
-        emit errorStreamUrl();
+            emit errorStreamUrl(errorMessage);
+        } else
+            emit errorStreamUrl("Error parsing video info");
         return;
     }
 
@@ -94,4 +96,8 @@ void  Video::gotVideoInfo(QByteArray data) {
     m_streamUrl = videoUrl;
 
     emit gotStreamUrl(videoUrl);
+}
+
+void Video::errorVideoInfo(QNetworkReply *reply) {
+    emit errorStreamUrl(tr("Network error: %1 for %2").arg(reply->errorString(), reply->url().toString()));
 }

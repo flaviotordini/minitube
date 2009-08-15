@@ -52,10 +52,11 @@ public slots:
 signals:
     void gotThumbnail();
     void gotStreamUrl(QUrl streamUrl);
-    void errorStreamUrl();
+    void errorStreamUrl(QString message);
 
 private slots:
     void gotVideoInfo(QByteArray);
+    void errorVideoInfo(QNetworkReply*);
 
 private:
     void scrapeStreamUrl();
