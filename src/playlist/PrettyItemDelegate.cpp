@@ -24,13 +24,11 @@ void PrettyItemDelegate::createPlayIcon() {
     painter.setBrush(Qt::white);
     QPen pen;
     pen.setColor(Qt::white);
-    pen.setWidth(10);
+    pen.setWidth(PADDING);
     pen.setJoinStyle(Qt::RoundJoin);
     pen.setCapStyle(Qt::RoundCap);
     painter.setPen(pen);
-    painter.setOpacity(1);
     painter.drawPolygon(polygon);
-    painter.end();
 }
 
 PrettyItemDelegate::~PrettyItemDelegate() { }
@@ -72,10 +70,10 @@ void PrettyItemDelegate::paintBody( QPainter* painter,
 
     const bool isActive = index.data( ActiveTrackRole ).toBool();
     const bool isSelected = option.state & QStyle::State_Selected;
-    if (isActive) {
-        // draw the "current track" highlight underneath the text
-        if (!isSelected)
-            paintActiveOverlay(painter, line.x(), line.y(), line.width(), line.height());
+
+    // draw the "current track" highlight underneath the text
+    if (isActive && !isSelected) {
+        paintActiveOverlay(painter, line.x(), line.y(), line.width(), line.height());
     }
 
     // get the video metadata
