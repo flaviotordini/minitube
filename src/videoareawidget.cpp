@@ -26,7 +26,7 @@ VideoAreaWidget::VideoAreaWidget(QWidget *parent) : QWidget(parent) {
     // mouse autohide
     setMouseTracking(true);
     mouseTimer = new QTimer(this);
-    mouseTimer->setInterval(5000);
+    mouseTimer->setInterval(3000);
     mouseTimer->setSingleShot(true);
     connect(mouseTimer, SIGNAL(timeout()), SLOT(hideMouse()));
 }
@@ -77,7 +77,7 @@ void VideoAreaWidget::mouseMoveEvent(QMouseEvent * /* event */) {
 }
 
 void VideoAreaWidget::hideMouse() {
-    setCursor(QCursor(QBitmap(1,1)));
+    setCursor(QCursor(Qt::BlankCursor));
 }
 
 void VideoAreaWidget::dragEnterEvent(QDragEnterEvent *event) {
