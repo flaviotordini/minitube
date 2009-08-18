@@ -183,18 +183,20 @@ QPointF PrettyItemDelegate::centerImage( const QPixmap& pixmap, const QRectF& re
 void PrettyItemDelegate::paintActiveOverlay( QPainter *painter, qreal x, qreal y, qreal w, qreal h ) const {
 
     QPalette palette;
-    QColor color2 = palette.color(QPalette::Highlight);
+    QColor highlightColor = palette.color(QPalette::Highlight);
     QColor backgroundColor = palette.color(QPalette::Base);
-    float animation = 0.5;
-    color2 = QColor::fromHsv(
-            color2.hue(),
-            (int)(backgroundColor.saturation()*(1.0f-animation)+color2.saturation()*animation),
-            (int)(backgroundColor.value()*(1.0f-animation)+color2.value()*animation)
+    const float animation = 0.25;
+    const int gradientRange = 16;
+
+    QColor color2 = QColor::fromHsv(
+            highlightColor.hue(),
+            (int) (backgroundColor.saturation() * (1.0f - animation) + highlightColor.saturation() * animation),
+            (int) (backgroundColor.value() * (1.0f - animation) + highlightColor.value() * animation)
             );
     QColor color1 = QColor::fromHsv(
             color2.hue(),
-            (color2.saturation() - 16 > 0) ? color2.saturation() - 16 : 0,
-            (color2.value() + 16 < 255) ? color2.value() + 16 : 255
+            qMax(color2.saturation() - gradientRange, 0),
+            qMin(color2.value() + gradientRange, 255)
             );
     QRect rect((int) x, (int) y, (int) w, (int) h);
     painter->save();
