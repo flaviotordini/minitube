@@ -6,6 +6,12 @@ static const int PADDING = 40;
 
 SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
+#ifdef Q_WS_MAC
+    // speedup painting since we'll paint the whole background
+    // by ourselves anyway in paintEvent()
+    setAttribute(Qt::WA_OpaquePaintEvent);
+#endif
+
     QFont biggerFont;
     biggerFont.setPointSize(biggerFont.pointSize()*1.5);
 
