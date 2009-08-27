@@ -81,11 +81,13 @@ void PrettyItemDelegate::paintBody( QPainter* painter,
     const Video *video = videoPointer.data();
 
     // thumb
-    painter->drawImage(QRect(0, 0, THUMB_WIDTH, THUMB_HEIGHT), video->thumbnail());
+    if (!video->thumbnail().isNull()) {
+        painter->drawImage(QRect(0, 0, THUMB_WIDTH, THUMB_HEIGHT), video->thumbnail());
 
-    // play icon overlayed on the thumb
-    if (isActive)
-        paintPlayIcon(painter);
+        // play icon overlayed on the thumb
+        if (isActive)
+            paintPlayIcon(painter);
+    }
 
     // time
     QString timeString;
