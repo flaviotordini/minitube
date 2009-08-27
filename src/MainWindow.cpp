@@ -109,6 +109,7 @@ void MainWindow::createActions() {
     actions->insert("compactView", compactViewAct);
     connect(compactViewAct, SIGNAL(toggled(bool)), this, SLOT(compactView(bool)));
 
+    /*
     // icon should be document-save but it is ugly
     downloadAct = new QAction(QtIconLoader::icon("go-down", QIcon(":/images/go-down.png")), tr("&Download"), this);
     downloadAct->setStatusTip(tr("Download this video"));
@@ -116,6 +117,7 @@ void MainWindow::createActions() {
     downloadAct->setEnabled(false);
     actions->insert("download", downloadAct);
     connect(downloadAct, SIGNAL(triggered()), this, SLOT(download()));
+    */
 
     webPageAct = new QAction(QtIconLoader::icon("internet-web-browser", QIcon(":/images/internet-web-browser.png")), tr("&YouTube"), this);
     webPageAct->setStatusTip(tr("Open the YouTube video page"));
@@ -227,10 +229,8 @@ void MainWindow::createMenus() {
 
     fileMenu = menuBar()->addMenu(tr("&Application"));
     // menus->insert("file", fileMenu);
-    /*
-    fileMenu->addAction(settingsAct);
+    // fileMenu->addAction(settingsAct);
     fileMenu->addSeparator();
-    */
     fileMenu->addAction(quitAct);
 
     playlistMenu = menuBar()->addMenu(tr("&Playlist"));
@@ -249,7 +249,7 @@ void MainWindow::createMenus() {
     viewMenu->addSeparator();
     viewMenu->addAction(webPageAct);
     viewMenu->addSeparator();
-    viewMenu->addAction(downloadAct);
+    // viewMenu->addAction(downloadAct);
     viewMenu->addAction(compactViewAct);
     viewMenu->addAction(fullscreenAct);
 
@@ -358,9 +358,12 @@ void MainWindow::showWidget ( QWidget* widget ) {
     compactViewAct->setEnabled(widget == mediaView);
     webPageAct->setEnabled(widget == mediaView);
     aboutAct->setEnabled(widget != aboutView);
+
+    /*
     // this is not the best place to enable downloads, but the user is informed
     // if there really is no video is playing
     downloadAct->setEnabled(widget == mediaView);
+    */
 
     // cool toolbar on the Mac
     // setUnifiedTitleAndToolBarOnMac(widget == mediaView);
@@ -595,7 +598,7 @@ void MainWindow::initPhonon() {
 
 void MainWindow::tick(qint64 time) {
     if (time <= 0) {
-        totalTime->clear();
+        currentTime->clear();
         return;
     }
     QTime displayTime(0, (time / 60000) % 60, (time / 1000) % 60);
@@ -645,6 +648,7 @@ void MainWindow::volumeMutedChanged(bool muted) {
         statusBar()->showMessage(tr("Volume is unmuted"));
 }
 
+/*
 void MainWindow::abortDownload() {
     QProgressDialog* dlg = dynamic_cast<QProgressDialog*>(this->sender());
     QMap<QNetworkReply*, DownloadResource>::iterator cur;
@@ -727,3 +731,5 @@ void MainWindow::replyMetaDataChanged() {
         m_downloads.remove(r);
     }
 }
+
+*/
