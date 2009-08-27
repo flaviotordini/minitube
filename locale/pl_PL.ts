@@ -84,6 +84,13 @@
     </message>
 </context>
 <context>
+    <name>LoadingWidget</name>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>&amp;Back</source>
@@ -203,7 +210,7 @@
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation>Szukaj</translation>
+        <translation type="obsolete">Szukaj</translation>
     </message>
     <message>
         <source>&amp;Application</source>
@@ -245,6 +252,22 @@
         <source>Exit &amp;Full Screen</source>
         <translation>Wyłącz &amp;pełny ekran</translation>
     </message>
+    <message>
+        <source>Ctrl+M</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Volume at %1%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Volume is muted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Volume is unmuted</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MediaView</name>
@@ -263,6 +286,13 @@
     <message>
         <source>You&apos;re watching &quot;%1&quot;</source>
         <translation>Oglądasz &quot;%1&quot;</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkAccess</name>
+    <message>
+        <source>Network error: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -311,6 +341,33 @@
     <message>
         <source>Preferences</source>
         <translation>Opcje</translation>
+    </message>
+    <message>
+        <source>&amp;Video options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use high quality video when available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Saved recent keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Zamknij</translation>
+    </message>
+</context>
+<context>
+    <name>Video</name>
+    <message>
+        <source>Network error: %1 for %2</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
