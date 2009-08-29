@@ -17,7 +17,6 @@
 - Add menu entries for Most relevant, Most recent, Most viewed (Playlist => ...)
 - Show buffering progress (when Phonon backends will work)
 - Clear recent keywords
-- Playing/Paused icon overlay on the current video thumb
 - Mark playlist items that have errors
 - Settings: number of "Recent Keywords", Phonon settings, HD or not
 - Accept any URL and scrape web pages searching for YouTube videos
@@ -34,6 +33,7 @@
 * Phonon bugs (Come on Qt devs, do your job!)
 - Mac: playback sometimes does not start (got a workaround!)
 - Mac: Phonon freezes the GUI when loading a video
+- Phonon::MediaSource does not work with QIODevices
 - Cannot seek beyond the buffered part of the video
-- Linux: Seek does not work
+- Linux: Seek does not work at all
 - Phonon does not report the buffering percent correctly
