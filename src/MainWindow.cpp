@@ -5,6 +5,7 @@
 #include "global.h"
 
 MainWindow::MainWindow() {
+
     m_fullscreen = false;
     mediaObject = 0;
     audioOutput = 0;
@@ -75,20 +76,20 @@ void MainWindow::createActions() {
 
     stopAct = new QAction(QtIconLoader::icon("media-stop", QIcon(":/images/stop.png")), tr("&Stop"), this);
     stopAct->setStatusTip(tr("Stop playback and go back to the search view"));
-    stopAct->setShortcut(QKeySequence(Qt::Key_Escape));
+    stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
     actions->insert("stop", stopAct);
     connect(stopAct, SIGNAL(triggered()), this, SLOT(stop()));
 
     skipAct = new QAction(QtIconLoader::icon("media-skip-forward", QIcon(":/images/skip.png")), tr("S&kip"), this);
     skipAct->setStatusTip(tr("Skip to the next video"));
-    skipAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Right));
+    skipAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_Right) << QKeySequence(Qt::Key_MediaNext));
     skipAct->setEnabled(false);
     actions->insert("skip", skipAct);
     connect(skipAct, SIGNAL(triggered()), mediaView, SLOT(skip()));
 
     pauseAct = new QAction(QtIconLoader::icon("media-pause", QIcon(":/images/pause.png")), tr("&Pause"), this);
     pauseAct->setStatusTip(tr("Pause playback"));
-    pauseAct->setShortcut(QKeySequence(Qt::Key_Space));
+    pauseAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Space) << QKeySequence(Qt::Key_MediaPlay));
     pauseAct->setEnabled(false);
     actions->insert("pause", pauseAct);
     connect(pauseAct, SIGNAL(triggered()), mediaView, SLOT(pause()));
@@ -128,9 +129,7 @@ void MainWindow::createActions() {
 
     removeAct = new QAction(tr("&Remove"), this);
     removeAct->setStatusTip(tr("Remove the selected videos from the playlist"));
-    QList<QKeySequence> shortcuts;
-    shortcuts << QKeySequence("Del") << QKeySequence("Backspace");
-    removeAct->setShortcuts(shortcuts);
+    removeAct->setShortcuts(QList<QKeySequence>() << QKeySequence("Del") << QKeySequence("Backspace"));
     removeAct->setEnabled(false);
     actions->insert("remove", removeAct);
     connect(removeAct, SIGNAL(triggered()), mediaView, SLOT(removeSelected()));
@@ -505,19 +504,14 @@ void MainWindow::fullscreen() {
     if (m_fullscreen) {
         // use setShortucs instead of setShortcut
         // the latter seems not to work
-        QList<QKeySequence> shortcuts;
-        shortcuts << QKeySequence(Qt::ALT + Qt::Key_Return);
-        fullscreenAct->setShortcuts(shortcuts);
+        fullscreenAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::ALT + Qt::Key_Return));
         fullscreenAct->setText(tr("&Full Screen"));
-        stopAct->setShortcut(QKeySequence(Qt::Key_Escape));
+        stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
         if (m_maximized) showMaximized();
         else showNormal();
     } else {
-        stopAct->setShortcut(QString(""));
-        QList<QKeySequence> shortcuts;
-        // for some reason it is important that ESC comes first
-        shortcuts << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::ALT + Qt::Key_Return);
-        fullscreenAct->setShortcuts(shortcuts);
+        stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_MediaStop));
+        fullscreenAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::ALT + Qt::Key_Return));
         fullscreenAct->setText(tr("Exit &Full Screen"));
         m_maximized = isMaximized();
 
