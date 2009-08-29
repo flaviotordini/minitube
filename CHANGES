@@ -1,3 +1,10 @@
+0.6
+- Hide idle mouse cursor when above the video
+- Volume keyboard shortcuts and status bar messages
+- Better error reporting
+- Spanish translation by Rafa
+- Japanese translation by Kiwamu Okabe
+
 0.5 - July 31, 2009
 - Search autocomplete
 - Skip to the next when a video cannot be loaded
