@@ -1,6 +1,7 @@
 #include <QPainter>
 #include <QPaintEvent>
 #include <QList>
+#include <QtGui>
 
 #include "thblackbar.h"
 
@@ -18,7 +19,7 @@ class THBlackBar::Private {
  *  PUBLIC Constructor/Destructors
  */
 THBlackBar::THBlackBar (QWidget *parent)
-    : QWidget(parent), d(new THBlackBar::Private)
+        : QWidget(parent), d(new THBlackBar::Private)
 {
     // Setup Widget Options
     setMouseTracking(true);
@@ -118,6 +119,10 @@ void THBlackBar::mouseMoveEvent (QMouseEvent *event) {
         d->hoveredAction = action;
         action->hover();
         update();
+
+        // status tip
+        QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(qApp->topLevelWidgets().first());
+        if (mainWindow) mainWindow->statusBar()->showMessage(action->statusTip());
     }
 }
 

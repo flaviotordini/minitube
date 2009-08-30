@@ -20,17 +20,23 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
 
     sortBar = new THBlackBar(this);
     mostRelevantAction = new QAction(tr("Most relevant"), this);
-    mostRelevantAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_1));
+    QKeySequence keySequence(Qt::CTRL + Qt::Key_1);
+    mostRelevantAction->setShortcut(keySequence);
+    mostRelevantAction->setStatusTip(keySequence.toString());
     addAction(mostRelevantAction);
     connect(mostRelevantAction, SIGNAL(triggered()), this, SLOT(searchMostRelevant()), Qt::QueuedConnection);
     sortBar->addAction(mostRelevantAction);
     mostRecentAction = new QAction(tr("Most recent"), this);
-    mostRecentAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_2));
+    keySequence = QKeySequence(Qt::CTRL + Qt::Key_2);
+    mostRecentAction->setShortcut(keySequence);
+    mostRecentAction->setStatusTip(keySequence.toString());
     addAction(mostRecentAction);
     connect(mostRecentAction, SIGNAL(triggered()), this, SLOT(searchMostRecent()), Qt::QueuedConnection);
     sortBar->addAction(mostRecentAction);
     mostViewedAction = new QAction(tr("Most viewed"), this);
-    mostViewedAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_3));
+    keySequence = QKeySequence(Qt::CTRL + Qt::Key_3);
+    mostViewedAction->setShortcut(keySequence);
+    mostViewedAction->setStatusTip(keySequence.toString());
     addAction(mostViewedAction);
     connect(mostViewedAction, SIGNAL(triggered()), this, SLOT(searchMostViewed()), Qt::QueuedConnection);
     sortBar->addAction(mostViewedAction);
