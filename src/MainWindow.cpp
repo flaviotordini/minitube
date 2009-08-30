@@ -210,6 +210,10 @@ void MainWindow::createActions() {
         action->setAutoRepeat(false);
         action->setToolTip(action->statusTip());
 
+        // show keyboard shortcuts in the status bar
+        if (!action->shortcut().isEmpty())
+            action->setStatusTip(action->statusTip() + " (" + action->shortcut().toString() + ")");
+
         // make the actions work when video is fullscreen
         action->setShortcutContext(Qt::ApplicationShortcut);
 
