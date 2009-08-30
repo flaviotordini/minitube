@@ -60,6 +60,7 @@ bool GSuggestCompletion::eventFilter(QObject *obj, QEvent *ev) {
 
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(ev);
         int key = keyEvent->key();
+        // qDebug() << keyEvent->text();
         switch (key) {
         case Qt::Key_Enter:
         case Qt::Key_Return:
@@ -89,7 +90,7 @@ bool GSuggestCompletion::eventFilter(QObject *obj, QEvent *ev) {
             break;
 
         default:
-
+            qDebug() << keyEvent->text();
             editor->setFocus();
             editor->event(ev);
             popup->hide();
@@ -157,7 +158,7 @@ void GSuggestCompletion::autoSuggest() {
 
     QString query = editor->text();
     originalText = query;
-    qDebug() << "originalText" << originalText;
+    // qDebug() << "originalText" << originalText;
     if (query.isEmpty()) return;
 
     QString locale = QLocale::system().name().replace("_", "-");
@@ -193,7 +194,7 @@ void GSuggestCompletion::handleNetworkData(QByteArray response) {
 
 void GSuggestCompletion::currentItemChanged(QListWidgetItem *current) {
     if (current) {
-        qDebug() << "current" << current->text();
+        // qDebug() << "current" << current->text();
         current->setSelected(true);
         editor->setText(current->text());
         editor->setSelection(originalText.length(), editor->text().length());
