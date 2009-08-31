@@ -1,6 +1,7 @@
 0.6
 - Hide idle mouse cursor when above the video
 - Volume keyboard shortcuts and status bar messages
+- Show keyboard shortcuts in the status bar
 - Better error reporting
 - Spanish translation by Rafa
 - Japanese translation by Kiwamu Okabe
