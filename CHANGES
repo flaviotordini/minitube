@@ -1,8 +1,11 @@
 0.6
-- Hide idle mouse cursor when above the video
+- Hide idle mouse cursor when above the video (Linux only)
 - Volume keyboard shortcuts and status bar messages
 - Show keyboard shortcuts in the status bar
 - Better error reporting
+- Remaining time tooltip
+- Fixed Space key not pausing videos in fullscreen mode (Mac)
+- Fixed window not having focus after exiting fullscreen (Mac)
 - Spanish translation by Rafa
 - Japanese translation by Kiwamu Okabe
 - Czech translation by Dan Vrátil
