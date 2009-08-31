@@ -466,7 +466,7 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
         pauseAct->setEnabled(true);
         pauseAct->setIcon(QtIconLoader::icon("media-pause", QIcon(":/images/pause.png")));
         pauseAct->setText(tr("&Pause"));
-        pauseAct->setStatusTip(tr("Pause playback"));
+        pauseAct->setStatusTip(tr("Pause playback") + " (" +  pauseAct->shortcut().toString() + ")");
         skipAct->setEnabled(true);
         break;
 
@@ -480,7 +480,7 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
         pauseAct->setEnabled(true);
         pauseAct->setIcon(QtIconLoader::icon("media-play", QIcon(":/images/play.png")));
         pauseAct->setText(tr("&Play"));
-        pauseAct->setStatusTip(tr("Resume playback"));
+        pauseAct->setStatusTip(tr("Resume playback") + " (" +  pauseAct->shortcut().toString() + ")");
         break;
 
          case Phonon::BufferingState:
