@@ -176,24 +176,26 @@ void MainWindow::createActions() {
 
     searchFocusAct = new QAction(this);
     searchFocusAct->setShortcut(QKeySequence::Find);
+    searchFocusAct->setStatusTip(tr("Search"));
     actions->insert("search", searchFocusAct);
     connect(searchFocusAct, SIGNAL(triggered()), this, SLOT(searchFocus()));
     addAction(searchFocusAct);
 
     volumeUpAct = new QAction(this);
-    volumeUpAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Plus));
+    volumeUpAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_Plus) << QKeySequence(Qt::Key_VolumeUp));
     actions->insert("volume-up", volumeUpAct);
     connect(volumeUpAct, SIGNAL(triggered()), this, SLOT(volumeUp()));
     addAction(volumeUpAct);
 
     volumeDownAct = new QAction(this);
-    volumeDownAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Minus));
+    volumeDownAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_Minus) << QKeySequence(Qt::Key_VolumeDown));
     actions->insert("volume-down", volumeDownAct);
     connect(volumeDownAct, SIGNAL(triggered()), this, SLOT(volumeDown()));
     addAction(volumeDownAct);
 
     volumeMuteAct = new QAction(this);
-    volumeMuteAct->setShortcut(tr("Ctrl+M"));
+    volumeMuteAct->setStatusTip(tr("Mute volume"));
+    volumeMuteAct->setShortcuts(QList<QKeySequence>() << QKeySequence(tr("Ctrl+M")) << QKeySequence(Qt::Key_VolumeMute));
     actions->insert("volume-mute", volumeMuteAct);
     connect(volumeMuteAct, SIGNAL(triggered()), this, SLOT(volumeMute()));
     addAction(volumeMuteAct);
@@ -288,10 +290,21 @@ void MainWindow::createToolBars() {
     mainToolBar->addWidget(seekSliderSpacer);
 
     volumeSlider = new Phonon::VolumeSlider(this);
+    // qDebug() << volumeSlider->children();
+    // status tip for the volume slider
+    QSlider* volumeQSlider = volumeSlider->findChild<QSlider*>();
+    if (volumeQSlider)
+        volumeQSlider->setStatusTip(tr("Volume up: %1, Volume down: %2").arg(
+                volumeUpAct->shortcut().toString(QKeySequence::NativeText), volumeDownAct->shortcut().toString(QKeySequence::NativeText)));
+    // status tip for the mute button
+    QToolButton* muteToolButton = volumeSlider->findChild<QToolButton*>();
+    if (muteToolButton)
+        muteToolButton->setStatusTip(volumeMuteAct->statusTip());
     // this makes the volume slider smaller
     volumeSlider->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     mainToolBar->addWidget(new Spacer(mainToolBar, volumeSlider));
 
+    toolbarSearch->setStatusTip(searchFocusAct->statusTip());
     mainToolBar->addWidget(new Spacer(mainToolBar, toolbarSearch));
 
     addToolBar(mainToolBar);
@@ -513,6 +526,8 @@ void MainWindow::fullscreen() {
         stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
         if (m_maximized) showMaximized();
         else showNormal();
+        // Make sure the window has focus (Mac)
+        activateWindow();
     } else {
         stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_MediaStop));
         fullscreenAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::ALT + Qt::Key_Return));
@@ -536,6 +551,9 @@ void MainWindow::fullscreen() {
     mainToolBar->setVisible(m_fullscreen);
     statusBar()->setVisible(m_fullscreen);
     menuBar()->setVisible(m_fullscreen);
+
+    // workaround: prevent focus on the search bar beacuse it steals the Space key needed for Play/Pause
+    mainToolBar->setEnabled(m_fullscreen);
 
     m_fullscreen = !m_fullscreen;
 
@@ -605,7 +623,7 @@ void MainWindow::tick(qint64 time) {
     // remaining time tooltip
     int remainingTimeInt = mediaObject->remainingTime();
     QTime remainingTime(0, (remainingTimeInt / 60000) % 60, (remainingTimeInt / 1000) % 60);
-    currentTime->setToolTip(tr("Remaining time: %1").arg(remainingTime.toString("mm:ss")));
+    currentTime->setStatusTip(tr("Remaining time: %1").arg(remainingTime.toString("mm:ss")));
 
     // qDebug() << "currentTime" << time << displayTime.toString("mm:ss");
 }
