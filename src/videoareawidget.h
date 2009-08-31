@@ -2,7 +2,6 @@
 #define VIDEOAREAWIDGET_H
 
 #include <QWidget>
-#include <QTimer>
 #include "video.h"
 #include "loadingwidget.h"
 #include "ListModel.h"
@@ -31,10 +30,6 @@ protected:
     void mousePressEvent(QMouseEvent *event);
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
-    void mouseMoveEvent (QMouseEvent *event);
-
-private slots:
-    void hideMouse();
 
 private:
     QStackedLayout *stackedLayout;
@@ -42,7 +37,7 @@ private:
     LoadingWidget *loadingWidget;
     ListModel *listModel;
     QLabel *messageLabel;
-    QTimer *mouseTimer;
+
 };
 
 #endif // VIDEOAREAWIDGET_H

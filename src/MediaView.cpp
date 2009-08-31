@@ -12,6 +12,8 @@ namespace The {
 
 MediaView::MediaView(QWidget *parent) : QWidget(parent) {
 
+    reallyStopped = false;
+
     QBoxLayout *layout = new QHBoxLayout();
     layout->setMargin(0);
 
@@ -77,7 +79,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     videoAreaWidget = new VideoAreaWidget(this);
     videoAreaWidget->setMinimumSize(320,240);
 
-    videoWidget = new Phonon::VideoWidget(this);
+    videoWidget = new VideoWidget(this);
     videoAreaWidget->setVideoWidget(videoWidget);
     videoAreaWidget->setListModel(listModel);
 
@@ -93,6 +95,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     errorTimer->setSingleShot(true);
     errorTimer->setInterval(3000);
     connect(errorTimer, SIGNAL(timeout()), SLOT(skipVideo()));
+
 }
 
 MediaView::~MediaView() {
@@ -119,6 +122,8 @@ void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
 }
 
 void MediaView::search(SearchParams *searchParams) {
+    reallyStopped = false;
+
     this->searchParams = searchParams;
 
     // start serching for videos
@@ -156,15 +161,15 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
         break;
 
          case Phonon::PlayingState:
-        qDebug("playing");
+        //qDebug("playing");
         videoAreaWidget->showVideo();
         break;
 
          case Phonon::StoppedState:
-        qDebug("stopped");
+        //qDebug("stopped");
         // play() has already been called when setting the source
         // but Phonon on Linux needs a little more help to start playback
-        mediaObject->play();
+        if (!reallyStopped) mediaObject->play();
 
         // Workaround for Mac playback start problem
         if (!timerPlayFlag) {
@@ -174,15 +179,15 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
         break;
 
          case Phonon::PausedState:
-        qDebug("paused");
+        //qDebug("paused");
         break;
 
          case Phonon::BufferingState:
-        qDebug("buffering");
+        //qDebug("buffering");
         break;
 
          case Phonon::LoadingState:
-        qDebug("loading");
+        //qDebug("loading");
         break;
 
          default:
@@ -204,8 +209,9 @@ void MediaView::pause() {
 
 void MediaView::stop() {
     listModel->abortSearch();
+    reallyStopped = true;
     mediaObject->stop();
-    mediaObject->clear();
+    // mediaObject->clear();
 }
 
 void MediaView::activeRowChanged(int row) {

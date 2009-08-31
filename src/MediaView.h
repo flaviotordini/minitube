@@ -92,9 +92,11 @@ private:
     LoadingWidget *loadingWidget;
 
     bool timerPlayFlag;
+    bool reallyStopped;
 
     QTimer *errorTimer;
     Video *skippedVideo;
+
 };
 
 #endif // __MEDIAVIEW_H__
