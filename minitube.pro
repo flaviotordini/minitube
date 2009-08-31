@@ -41,7 +41,8 @@ HEADERS += src/MainWindow.h \
     src/minisplitter.h \
     src/loadingwidget.h \
     src/videoareawidget.h \
-    src/googlesuggest.h
+    src/googlesuggest.h \
+    src/videowidget.h
 SOURCES += src/main.cpp \
     src/MainWindow.cpp \
     src/SearchView.cpp \
@@ -66,7 +67,8 @@ SOURCES += src/main.cpp \
     src/minisplitter.cpp \
     src/loadingwidget.cpp \
     src/videoareawidget.cpp \
-    src/googlesuggest.cpp
+    src/googlesuggest.cpp \
+    src/videowidget.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/
