@@ -601,6 +601,12 @@ void MainWindow::tick(qint64 time) {
     }
     QTime displayTime(0, (time / 60000) % 60, (time / 1000) % 60);
     currentTime->setText(displayTime.toString("mm:ss"));
+
+    // remaining time tooltip
+    int remainingTimeInt = mediaObject->remainingTime();
+    QTime remainingTime(0, (remainingTimeInt / 60000) % 60, (remainingTimeInt / 1000) % 60);
+    currentTime->setToolTip(tr("Remaining time: %1").arg(remainingTime.toString("mm:ss")));
+
     // qDebug() << "currentTime" << time << displayTime.toString("mm:ss");
 }
 
