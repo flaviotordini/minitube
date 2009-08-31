@@ -212,7 +212,7 @@ void MainWindow::createActions() {
 
         // show keyboard shortcuts in the status bar
         if (!action->shortcut().isEmpty())
-            action->setStatusTip(action->statusTip() + " (" + action->shortcut().toString() + ")");
+            action->setStatusTip(action->statusTip() + " (" + action->shortcut().toString(QKeySequence::NativeText) + ")");
 
         // make the actions work when video is fullscreen
         action->setShortcutContext(Qt::ApplicationShortcut);
@@ -466,7 +466,7 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
         pauseAct->setEnabled(true);
         pauseAct->setIcon(QtIconLoader::icon("media-pause", QIcon(":/images/pause.png")));
         pauseAct->setText(tr("&Pause"));
-        pauseAct->setStatusTip(tr("Pause playback") + " (" +  pauseAct->shortcut().toString() + ")");
+        pauseAct->setStatusTip(tr("Pause playback") + " (" +  pauseAct->shortcut().toString(QKeySequence::NativeText) + ")");
         skipAct->setEnabled(true);
         break;
 
@@ -480,7 +480,7 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
         pauseAct->setEnabled(true);
         pauseAct->setIcon(QtIconLoader::icon("media-play", QIcon(":/images/play.png")));
         pauseAct->setText(tr("&Play"));
-        pauseAct->setStatusTip(tr("Resume playback") + " (" +  pauseAct->shortcut().toString() + ")");
+        pauseAct->setStatusTip(tr("Resume playback") + " (" +  pauseAct->shortcut().toString(QKeySequence::NativeText) + ")");
         break;
 
          case Phonon::BufferingState:
