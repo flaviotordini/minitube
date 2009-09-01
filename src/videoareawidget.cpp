@@ -71,13 +71,14 @@ void VideoAreaWidget::mousePressEvent(QMouseEvent *event) {
 
 void VideoAreaWidget::mouseMoveEvent(QMouseEvent * /* event */) {
     // show the normal cursor
-    unsetCursor();
+    videoWidget->unsetCursor();
+
     // then hide it again after a few seconds
     mouseTimer->start();
 }
 
 void VideoAreaWidget::hideMouse() {
-    setCursor(QCursor(Qt::BlankCursor));
+    videoWidget->setCursor(QCursor(Qt::BlankCursor));
 }
 
 void VideoAreaWidget::dragEnterEvent(QDragEnterEvent *event) {
