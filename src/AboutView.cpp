@@ -40,6 +40,7 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                                                       "Grzegorz Gibas (pl_PL), "
                                                       "Kiwamu Okabe (ja_JP), "
                                                       "Dan Vrátil (cs_CZ), "
+                                                      "Rafa (es_ES), "
                                                       "Yaron Shahrabani (he_IL)"
                                                       ) + "</p>"
 
