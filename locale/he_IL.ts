@@ -42,7 +42,7 @@
     </message>
     <message>
         <source>Released under the </source>
-        <translation>שוחרר תחת תנאי &lt;a href=&apos;%1&apos;&gt;הרישיון הציבורי הכללי של GNU&lt;/a&gt;</translation>
+        <translation type="obsolete">שוחרר תחת תנאי &lt;a href=&apos;%1&apos;&gt;הרישיון הציבורי הכללי של GNU&lt;/a&gt;</translation>
     </message>
     <message>
         <source></source>
@@ -55,6 +55,14 @@
     <message>
         <source>What you always wanted to know about %1 and never dared to ask</source>
         <translation>מה שתמיד רציתם לדעת אודות %1 ולא העזתם לשאול</translation>
+    </message>
+    <message>
+        <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -81,6 +89,13 @@
     <message>
         <source>No more videos</source>
         <translation>אין עוד סרטונים</translation>
+    </message>
+</context>
+<context>
+    <name>LoadingWidget</name>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -203,7 +218,7 @@
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation>&amp;חיפוש</translation>
+        <translation type="obsolete">&amp;חיפוש</translation>
     </message>
     <message>
         <source>&amp;Application</source>
@@ -245,6 +260,42 @@
         <source>Exit &amp;Full Screen</source>
         <translation>יציאה ממ&amp;סך מלא</translation>
     </message>
+    <message>
+        <source>&amp;Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">חיפוש</translation>
+    </message>
+    <message>
+        <source>Mute volume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+M</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Press %1 to raise the volume, %2 to lower it</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remaining time: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Volume at %1%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Volume is muted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Volume is unmuted</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MediaView</name>
@@ -263,6 +314,13 @@
     <message>
         <source>You&apos;re watching &quot;%1&quot;</source>
         <translation>הנכם צופים ב־&quot;%1&quot;</translation>
+    </message>
+</context>
+<context>
+    <name>NetworkAccess</name>
+    <message>
+        <source>Network error: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -311,6 +369,33 @@
     <message>
         <source>Preferences</source>
         <translation>העדפות</translation>
+    </message>
+    <message>
+        <source>&amp;Video options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use high quality video when available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Saved recent keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Video</name>
+    <message>
+        <source>Network error: %1 for %2</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

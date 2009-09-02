@@ -268,6 +268,22 @@
         <source>Volume is unmuted</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Szukaj</translation>
+    </message>
+    <message>
+        <source>Mute volume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Press %1 to raise the volume, %2 to lower it</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remaining time: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MediaView</name>
