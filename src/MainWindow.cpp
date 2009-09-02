@@ -294,7 +294,7 @@ void MainWindow::createToolBars() {
     // status tip for the volume slider
     QSlider* volumeQSlider = volumeSlider->findChild<QSlider*>();
     if (volumeQSlider)
-        volumeQSlider->setStatusTip(tr("Volume up: %1, Volume down: %2").arg(
+        volumeQSlider->setStatusTip(tr("Press %1 to raise the volume, %2 to lower it").arg(
                 volumeUpAct->shortcut().toString(QKeySequence::NativeText), volumeDownAct->shortcut().toString(QKeySequence::NativeText)));
     // status tip for the mute button
     QToolButton* muteToolButton = volumeSlider->findChild<QToolButton*>();
@@ -402,7 +402,7 @@ void MainWindow::showWidget ( QWidget* widget ) {
 
 void MainWindow::fadeInWidget(QWidget *oldWidget, QWidget *newWidget) {
     if (faderWidget) faderWidget->close();
-    if (!oldWidget || !newWidget || oldWidget == mediaView || newWidget == mediaView) return;
+    if (oldWidget == mediaView || newWidget == mediaView) return;
     QPixmap frozenView = QPixmap::grabWidget(oldWidget);
     faderWidget = new FaderWidget(newWidget);
     faderWidget->start(frozenView);
@@ -552,7 +552,8 @@ void MainWindow::fullscreen() {
     statusBar()->setVisible(m_fullscreen);
     menuBar()->setVisible(m_fullscreen);
 
-    // workaround: prevent focus on the search bar beacuse it steals the Space key needed for Play/Pause
+    // workaround: prevent focus on the search bar
+    // it steals the Space key needed for Play/Pause
     mainToolBar->setEnabled(m_fullscreen);
 
     m_fullscreen = !m_fullscreen;
