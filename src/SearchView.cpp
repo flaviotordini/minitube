@@ -53,7 +53,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     layout->addWidget(tipLabel);
 
     QHBoxLayout *searchLayout = new QHBoxLayout();
-    searchLayout->setAlignment(Qt::AlignCenter);
+    searchLayout->setAlignment(Qt::AlignVCenter);
 
     queryEdit = new SearchLineEdit(this);
     queryEdit->setFont(biggerFont);
@@ -70,6 +70,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     watchButton = new QPushButton(tr("Watch"), this);
     watchButton->setDefault(true);
     watchButton->setEnabled(false);
+    watchButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     connect(watchButton, SIGNAL(clicked()), this, SLOT(watch()));
     searchLayout->addWidget(watchButton);
 
