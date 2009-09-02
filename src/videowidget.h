@@ -2,7 +2,7 @@
 #define VIDEOWIDGET_H
 
 #include <QtGui>
-#include <phonon>
+#include <phonon/videowidget.h>
 #include <QTimer>
 
 class VideoWidget : public Phonon::VideoWidget {
