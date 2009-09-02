@@ -6,7 +6,7 @@
     <name>AboutView</name>
     <message>
         <source>There&apos;s life outside the browser!</source>
-        <translation>Это жизнь за пределами браузера!</translation>
+        <translation>Жизнь за пределами браузера!</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -14,11 +14,11 @@
     </message>
     <message>
         <source>This is a &quot;Technology Preview&quot; release, do not expect it to be perfect.</source>
-        <translation>Эта версия - &quot;технический просмотр&quot;, не стоит ожидать совершенства.</translation>
+        <translation>Эта предварительная версия, не стоит ожидать совершенства.</translation>
     </message>
     <message>
         <source>Report bugs and send in your ideas to %1</source>
-        <translation>Сообщения об ошибках и идеи следует отправлять на %1</translation>
+        <translation>Идеи и сообщения об ошибках следует отправлять на %1</translation>
     </message>
     <message>
         <source>%1 is Free Software but its development takes precious time.</source>
@@ -30,11 +30,11 @@
     </message>
     <message>
         <source>Icon designed by %1.</source>
-        <translation>Значок создан %1.</translation>
+        <translation>Автор значка %1.</translation>
     </message>
     <message>
         <source>Translated by %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Перевод выполнил %1</translation>
     </message>
     <message>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
@@ -42,7 +42,7 @@
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Закрыть</translation>
     </message>
     <message>
         <source>About</source>
@@ -54,7 +54,7 @@
     </message>
     <message>
         <source>Compact mode contributed by %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Компактный режим предоставлен %1.</translation>
     </message>
 </context>
 <context>
@@ -68,26 +68,26 @@
     <name>ListModel</name>
     <message>
         <source>Searching...</source>
-        <translation type="unfinished"></translation>
+        <translation>Поиск...</translation>
     </message>
     <message>
         <source>Show %1 More</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать больше %1</translation>
     </message>
     <message>
         <source>No videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Видео не найдено</translation>
     </message>
     <message>
         <source>No more videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Больше нет видео</translation>
     </message>
 </context>
 <context>
     <name>LoadingWidget</name>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка</translation>
     </message>
 </context>
 <context>
@@ -274,51 +274,51 @@
     </message>
     <message>
         <source>&amp;Compact mode</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Компактный режим</translation>
     </message>
     <message>
         <source>Hide the playlist and the toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Скрыть список воспроизведения и панель инструментов</translation>
     </message>
     <message>
         <source>Fatal error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Фатальная ошибка: %1</translation>
     </message>
     <message>
         <source>Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка: %1</translation>
     </message>
     <message>
         <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message>
         <source>Volume at %1%</source>
-        <translation type="unfinished"></translation>
+        <translation>Громкость %1%</translation>
     </message>
     <message>
         <source>Volume is muted</source>
-        <translation type="unfinished"></translation>
+        <translation>Звук выключен</translation>
     </message>
     <message>
         <source>Volume is unmuted</source>
-        <translation type="unfinished"></translation>
+        <translation>Звук включен</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Поиск</translation>
+        <translation>Поиск</translation>
     </message>
     <message>
         <source>Mute volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Выключить звук</translation>
     </message>
     <message>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation type="unfinished"></translation>
+        <translation>Нажмите %1 для увеличения громкости и %2 для снижения</translation>
     </message>
     <message>
         <source>Remaining time: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Времени осталось: %1</translation>
     </message>
 </context>
 <context>
@@ -344,7 +344,7 @@
     <name>NetworkAccess</name>
     <message>
         <source>Network error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка сети: %1</translation>
     </message>
 </context>
 <context>
@@ -377,7 +377,7 @@
     </message>
     <message>
         <source>Recent keywords</source>
-        <translation>Последние</translation>
+        <translation>Последние запросы</translation>
     </message>
     <message>
         <source>A new version of %1 is available. Please &lt;a href=&apos;%2&apos;&gt;update to version %3&lt;/a&gt;</source>
@@ -396,30 +396,30 @@
     </message>
     <message>
         <source>&amp;Video options</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Параметры видео</translation>
     </message>
     <message>
         <source>Use high quality video when available</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать по возможности видео высокого качества</translation>
     </message>
     <message>
         <source>&amp;Saved recent keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Сохранённые последние запросы</translation>
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Очистить последние запросы</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Закрыть</translation>
     </message>
 </context>
 <context>
     <name>Video</name>
     <message>
         <source>Network error: %1 for %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка сети: %1 на %2</translation>
     </message>
 </context>
 </TS>

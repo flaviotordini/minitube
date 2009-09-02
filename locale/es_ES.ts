@@ -173,7 +173,7 @@
         <location filename="../src/MainWindow.cpp" line="97"/>
         <location filename="../src/MainWindow.cpp" line="525"/>
         <source>&amp;Full Screen</source>
-        <translation>&amp;Pantalla completa</translation>
+        <translation>Pantalla &amp;completa</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="98"/>
@@ -207,7 +207,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="137"/>
         <source>Move &amp;Up</source>
-        <translation>Mover &amp;Arriba</translation>
+        <translation>Mover A&amp;rriba</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="138"/>
@@ -221,7 +221,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="144"/>
         <source>Move &amp;Down</source>
-        <translation>Mover &amp;Abajo</translation>
+        <translation>Mover Aba&amp;jo</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="145"/>
@@ -250,7 +250,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="158"/>
         <source>&amp;Website</source>
-        <translation>&amp;Sitio web</translation>
+        <translation>Sitio &amp;web</translation>
     </message>
     <message>
         <source>Minitube on the Web</source>
@@ -274,7 +274,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="164"/>
         <source>&amp;Donate via PayPal</source>
-        <translation>&amp;Donar a través de PayPal</translation>
+        <translation>D&amp;onar a través de PayPal</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="165"/>
@@ -298,17 +298,17 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="179"/>
         <source>Search</source>
-        <translation type="unfinished">Buscar</translation>
+        <translation>Buscar</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="197"/>
         <source>Mute volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Silenciar</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="198"/>
         <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="235"/>
@@ -333,7 +333,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="297"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation type="unfinished"></translation>
+        <translation>Presione %1 para aumentar el volumen, %2 para reducirlo</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="421"/>
@@ -369,22 +369,22 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="627"/>
         <source>Remaining time: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiempo restante: %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="664"/>
         <source>Volume at %1%</source>
-        <translation type="unfinished"></translation>
+        <translation>Volumen al %1%</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="669"/>
         <source>Volume is muted</source>
-        <translation type="unfinished"></translation>
+        <translation>Volumen silenciado</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="671"/>
         <source>Volume is unmuted</source>
-        <translation type="unfinished"></translation>
+        <translation>Volumen</translation>
     </message>
 </context>
 <context>
@@ -415,7 +415,7 @@
     <message>
         <location filename="../src/networkaccess.cpp" line="157"/>
         <source>Network error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Error de red: %1</translation>
     </message>
 </context>
 <context>
@@ -497,7 +497,7 @@
     <message>
         <location filename="../src/SettingsView.cpp" line="47"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Cerrar</translation>
+        <translation>&amp;Cerrar</translation>
     </message>
 </context>
 <context>
@@ -505,7 +505,7 @@
     <message>
         <location filename="../src/video.cpp" line="102"/>
         <source>Network error: %1 for %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Error de red: %1 por %2</translation>
     </message>
 </context>
 </TS>
