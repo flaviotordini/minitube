@@ -79,7 +79,14 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     videoAreaWidget = new VideoAreaWidget(this);
     videoAreaWidget->setMinimumSize(320,240);
 
+
+#ifdef Q_WS_MAC
+    // mouse autohide does not work on the Mac (no mouseMoveEvent)
+    videoWidget = new Phonon::VideoWidget(this);
+#else
     videoWidget = new VideoWidget(this);
+#endif
+
     videoAreaWidget->setVideoWidget(videoWidget);
     videoAreaWidget->setListModel(listModel);
 
@@ -95,6 +102,11 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     errorTimer->setSingleShot(true);
     errorTimer->setInterval(3000);
     connect(errorTimer, SIGNAL(timeout()), SLOT(skipVideo()));
+
+    workaroundTimer = new QTimer(this);
+    workaroundTimer->setSingleShot(true);
+    workaroundTimer->setInterval(1000);
+    connect(workaroundTimer, SIGNAL(timeout()), SLOT(timerPlay()));
 
 }
 
@@ -173,7 +185,7 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
 
         // Workaround for Mac playback start problem
         if (!timerPlayFlag) {
-            QTimer::singleShot(1000, this, SLOT(timerPlay()));
+            workaroundTimer->start();
         }
 
         break;
@@ -211,10 +223,13 @@ void MediaView::stop() {
     listModel->abortSearch();
     reallyStopped = true;
     mediaObject->stop();
-    // mediaObject->clear();
+    workaroundTimer->stop();
+    errorTimer->stop();
 }
 
 void MediaView::activeRowChanged(int row) {
+    if (reallyStopped) return;
+
     Video *video = listModel->videoAt(row);
     if (!video) return;
 
@@ -240,6 +255,7 @@ void MediaView::activeRowChanged(int row) {
 }
 
 void MediaView::gotStreamUrl(QUrl streamUrl) {
+    if (reallyStopped) return;
 
     // go!
     mediaObject->setCurrentSource(streamUrl);
@@ -276,7 +292,7 @@ void MediaView::aboutToFinish() {
 }
 
 void MediaView::currentSourceChanged(const Phonon::MediaSource source) {
-    qDebug() << "Source changed:" << source.url();
+    qDebug() << source.url().toString();
 }
 
 

@@ -95,6 +95,7 @@ private:
     bool reallyStopped;
 
     QTimer *errorTimer;
+    QTimer *workaroundTimer;
     Video *skippedVideo;
 
 };
