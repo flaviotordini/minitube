@@ -106,7 +106,7 @@
     <message>
         <location filename="../src/loadingwidget.cpp" line="64"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore</translation>
     </message>
 </context>
 <context>
@@ -237,22 +237,22 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="197"/>
         <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="641"/>
         <source>Volume at %1%</source>
-        <translation type="unfinished"></translation>
+        <translation>Volume al %1%</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="646"/>
         <source>Volume is muted</source>
-        <translation type="unfinished"></translation>
+        <translation>Audio disattivato</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="648"/>
         <source>Volume is unmuted</source>
-        <translation type="unfinished"></translation>
+        <translation>Audio attivato</translation>
     </message>
     <message>
         <source>Minitube on the Web</source>
@@ -367,7 +367,7 @@
     <message>
         <location filename="../src/networkaccess.cpp" line="157"/>
         <source>Network error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore di rete: %1</translation>
     </message>
 </context>
 <context>
@@ -429,12 +429,12 @@
     <message>
         <location filename="../src/SettingsView.cpp" line="15"/>
         <source>&amp;Video options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opzioni &amp;video</translation>
     </message>
     <message>
         <location filename="../src/SettingsView.cpp" line="33"/>
         <source>Use high quality video when available</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa video ad alta definizione se disponibile</translation>
     </message>
     <message>
         <location filename="../src/SettingsView.cpp" line="40"/>
@@ -457,7 +457,7 @@
     <message>
         <location filename="../src/video.cpp" line="102"/>
         <source>Network error: %1 for %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore di rete: %1 per %2</translation>
     </message>
 </context>
 </TS>
