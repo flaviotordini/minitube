@@ -1,4 +1,4 @@
-#Minitube TODO list
+# Minitube TODO list
 
 ## Bugs
 - Item positions when moving two items down
@@ -10,14 +10,15 @@
 ## Killer features
 
 - Video download
-    Every playlist items should have small a download icon that appears on mouse hover.
+    Playlist items should have small a download icon that appears on mouse hover.
     Once the icon is clicked a mini-progressbar appears and the the download icon remains visible
     even on "mouseout", maybe with a different color.
+    Videos should be downloaded in HD format, if available.
 
 - YouTube related videos
     List of related videos identical to the playlist.
     When a related video is clicked Minitube will keep playing the next related videos.
-    Don't where the list should appear, maybe on the right, but when activated it should replace the playlist.
+    Don't know where the list should appear, maybe on the right, but when activated it should replace the playlist.
     Maybe the playlist should disappear, leaving only the panel on the right.
 
 - Accept YouTube URLs in the search box and as CLI args

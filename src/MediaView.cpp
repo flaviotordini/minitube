@@ -12,6 +12,8 @@ namespace The {
 
 MediaView::MediaView(QWidget *parent) : QWidget(parent) {
 
+    reallyStopped = false;
+
     QBoxLayout *layout = new QHBoxLayout();
     layout->setMargin(0);
 
@@ -22,21 +24,21 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     mostRelevantAction = new QAction(tr("Most relevant"), this);
     QKeySequence keySequence(Qt::CTRL + Qt::Key_1);
     mostRelevantAction->setShortcut(keySequence);
-    mostRelevantAction->setStatusTip(keySequence.toString());
+    mostRelevantAction->setStatusTip(keySequence.toString(QKeySequence::NativeText));
     addAction(mostRelevantAction);
     connect(mostRelevantAction, SIGNAL(triggered()), this, SLOT(searchMostRelevant()), Qt::QueuedConnection);
     sortBar->addAction(mostRelevantAction);
     mostRecentAction = new QAction(tr("Most recent"), this);
     keySequence = QKeySequence(Qt::CTRL + Qt::Key_2);
     mostRecentAction->setShortcut(keySequence);
-    mostRecentAction->setStatusTip(keySequence.toString());
+    mostRecentAction->setStatusTip(keySequence.toString(QKeySequence::NativeText));
     addAction(mostRecentAction);
     connect(mostRecentAction, SIGNAL(triggered()), this, SLOT(searchMostRecent()), Qt::QueuedConnection);
     sortBar->addAction(mostRecentAction);
     mostViewedAction = new QAction(tr("Most viewed"), this);
     keySequence = QKeySequence(Qt::CTRL + Qt::Key_3);
     mostViewedAction->setShortcut(keySequence);
-    mostViewedAction->setStatusTip(keySequence.toString());
+    mostViewedAction->setStatusTip(keySequence.toString(QKeySequence::NativeText));
     addAction(mostViewedAction);
     connect(mostViewedAction, SIGNAL(triggered()), this, SLOT(searchMostViewed()), Qt::QueuedConnection);
     sortBar->addAction(mostViewedAction);
@@ -77,7 +79,14 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     videoAreaWidget = new VideoAreaWidget(this);
     videoAreaWidget->setMinimumSize(320,240);
 
+
+#ifdef Q_WS_MAC
+    // mouse autohide does not work on the Mac (no mouseMoveEvent)
     videoWidget = new Phonon::VideoWidget(this);
+#else
+    videoWidget = new VideoWidget(this);
+#endif
+
     videoAreaWidget->setVideoWidget(videoWidget);
     videoAreaWidget->setListModel(listModel);
 
@@ -93,6 +102,12 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     errorTimer->setSingleShot(true);
     errorTimer->setInterval(3000);
     connect(errorTimer, SIGNAL(timeout()), SLOT(skipVideo()));
+
+    workaroundTimer = new QTimer(this);
+    workaroundTimer->setSingleShot(true);
+    workaroundTimer->setInterval(1000);
+    connect(workaroundTimer, SIGNAL(timeout()), SLOT(timerPlay()));
+
 }
 
 MediaView::~MediaView() {
@@ -119,6 +134,8 @@ void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
 }
 
 void MediaView::search(SearchParams *searchParams) {
+    reallyStopped = false;
+
     this->searchParams = searchParams;
 
     // start serching for videos
@@ -156,33 +173,33 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
         break;
 
          case Phonon::PlayingState:
-        qDebug("playing");
+        //qDebug("playing");
         videoAreaWidget->showVideo();
         break;
 
          case Phonon::StoppedState:
-        qDebug("stopped");
+        //qDebug("stopped");
         // play() has already been called when setting the source
         // but Phonon on Linux needs a little more help to start playback
-        mediaObject->play();
+        if (!reallyStopped) mediaObject->play();
 
         // Workaround for Mac playback start problem
         if (!timerPlayFlag) {
-            QTimer::singleShot(1000, this, SLOT(timerPlay()));
+            workaroundTimer->start();
         }
 
         break;
 
          case Phonon::PausedState:
-        qDebug("paused");
+        //qDebug("paused");
         break;
 
          case Phonon::BufferingState:
-        qDebug("buffering");
+        //qDebug("buffering");
         break;
 
          case Phonon::LoadingState:
-        qDebug("loading");
+        //qDebug("loading");
         break;
 
          default:
@@ -204,11 +221,15 @@ void MediaView::pause() {
 
 void MediaView::stop() {
     listModel->abortSearch();
+    reallyStopped = true;
     mediaObject->stop();
-    mediaObject->clear();
+    workaroundTimer->stop();
+    errorTimer->stop();
 }
 
 void MediaView::activeRowChanged(int row) {
+    if (reallyStopped) return;
+
     Video *video = listModel->videoAt(row);
     if (!video) return;
 
@@ -234,6 +255,7 @@ void MediaView::activeRowChanged(int row) {
 }
 
 void MediaView::gotStreamUrl(QUrl streamUrl) {
+    if (reallyStopped) return;
 
     // go!
     mediaObject->setCurrentSource(streamUrl);
@@ -270,7 +292,7 @@ void MediaView::aboutToFinish() {
 }
 
 void MediaView::currentSourceChanged(const Phonon::MediaSource source) {
-    qDebug() << "Source changed:" << source.url();
+    qDebug() << source.url().toString();
 }
 
 

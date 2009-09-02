@@ -1,59 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ru_RU">
+<TS version="2.0" language="he_IL">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutView</name>
     <message>
         <source>There&apos;s life outside the browser!</source>
-        <translation>Это жизнь за пределами браузера!</translation>
+        <translation>יש חיים מחוץ לדפדפן!</translation>
     </message>
     <message>
         <source>Version %1</source>
-        <translation>Версия %1</translation>
+        <translation>גרסה %1</translation>
     </message>
     <message>
         <source>This is a &quot;Technology Preview&quot; release, do not expect it to be perfect.</source>
-        <translation>Эта версия - &quot;технический просмотр&quot;, не стоит ожидать совершенства.</translation>
+        <translation>זוהי הצגה טכנולוגית מקדימה, אל תצפו ממנה להיות מושלמת.</translation>
     </message>
     <message>
         <source>Report bugs and send in your ideas to %1</source>
-        <translation>Сообщения об ошибках и идеи следует отправлять на %1</translation>
+        <translation>יש לדווח על באגים ורעיונות אל %1</translation>
     </message>
     <message>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 - свободное ПО, но его разработка отнимает драгоценное время.</translation>
+        <translation>%1 הינה תוכנה חופשית אך פיתוחה לוקח המון זמן יקר.</translation>
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate via PayPal&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>&lt;a href=&apos;%1&apos;&gt;Поддержите через PayPal&lt;/a&gt; дальнейшую разработку %2.</translation>
+        <translation>אנא &lt;a href=&apos;%1&apos;&gt;תרמו באמצעות PayPal&lt;/a&gt; כדי לתמוך בהמשך הפיתוח של %2.</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
-        <translation>Значок создан %1.</translation>
-    </message>
-    <message>
-        <source>Translated by %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
-        <translation>Выпущено на условиях &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>About</source>
-        <translation>О программе</translation>
-    </message>
-    <message>
-        <source>What you always wanted to know about %1 and never dared to ask</source>
-        <translation>Все что Вы всегда хотели узнать о %1 и никогда бы не спросили</translation>
+        <translation>הסמל עוצב על ידי %1.</translation>
     </message>
     <message>
         <source>Compact mode contributed by %1.</source>
+        <translation>המצב החסכוני נתרם על ידי %1.</translation>
+    </message>
+    <message>
+        <source>Translated by %1</source>
+        <translation>תורגם על ידי %1.</translation>
+    </message>
+    <message>
+        <source>Released under the </source>
+        <translation type="obsolete">שוחרר תחת תנאי &lt;a href=&apos;%1&apos;&gt;הרישיון הציבורי הכללי של GNU&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <source></source>
+        <translation>&amp;סגירה</translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation>על אודות</translation>
+    </message>
+    <message>
+        <source>What you always wanted to know about %1 and never dared to ask</source>
+        <translation>מה שתמיד רציתם לדעת אודות %1 ולא העזתם לשאול</translation>
+    </message>
+    <message>
+        <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -61,26 +69,26 @@
     <name>ClearButton</name>
     <message>
         <source>Clear</source>
-        <translation>Очистить</translation>
+        <translation>ניקוי</translation>
     </message>
 </context>
 <context>
     <name>ListModel</name>
     <message>
         <source>Searching...</source>
-        <translation type="unfinished"></translation>
+        <translation>מחפש...</translation>
     </message>
     <message>
         <source>Show %1 More</source>
-        <translation type="unfinished"></translation>
+        <translation>הצגת %1 נוספים</translation>
     </message>
     <message>
         <source>No videos</source>
-        <translation type="unfinished"></translation>
+        <translation>אין סרטונים</translation>
     </message>
     <message>
         <source>No more videos</source>
-        <translation type="unfinished"></translation>
+        <translation>אין עוד סרטונים</translation>
     </message>
 </context>
 <context>
@@ -93,64 +101,52 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <source>&amp;Back</source>
-        <translation>&amp;Назад</translation>
-    </message>
-    <message>
-        <source>Alt+Left</source>
-        <translation type="obsolete">Alt+стрелка назад</translation>
+        <source></source>
+        <translation>&amp;חזרה</translation>
     </message>
     <message>
         <source>Go to the previous view</source>
-        <translation>Перейти к предыдущему</translation>
+        <translation>מעבר אל התצוגה הקודמת</translation>
     </message>
     <message>
         <source>&amp;Stop</source>
-        <translation>&amp;Остановить</translation>
+        <translation>&amp;עצירה</translation>
     </message>
     <message>
         <source>Stop playback and go back to the search view</source>
-        <translation>Остановить воспроизведение и вернуться к поиску</translation>
-    </message>
-    <message>
-        <source>Esc</source>
-        <translation type="obsolete">Esc</translation>
+        <translation>עצירת הנגינה וחזרה אל תצוגת החיפוש</translation>
     </message>
     <message>
         <source>S&amp;kip</source>
-        <translation>П&amp;ропустить</translation>
+        <translation>&amp;דילוג</translation>
     </message>
     <message>
         <source>Skip to the next video</source>
-        <translation>Перейти к следующему видео</translation>
-    </message>
-    <message>
-        <source>Ctrl+Right</source>
-        <translation type="obsolete">Ctrl+стрелка вправо</translation>
+        <translation>דילוג אל הסרטון הבא</translation>
     </message>
     <message>
         <source>&amp;Pause</source>
-        <translation>&amp;Приостановить</translation>
+        <translation>ה&amp;שהיה</translation>
     </message>
     <message>
         <source>Pause playback</source>
-        <translation>Приостановить воспроизведение</translation>
-    </message>
-    <message>
-        <source>Space</source>
-        <translation type="obsolete">Пробел</translation>
+        <translation>השהיית הנגינה</translation>
     </message>
     <message>
         <source>&amp;Full Screen</source>
-        <translation>&amp;На весь экран</translation>
+        <translation>&amp;מסך מלא</translation>
     </message>
     <message>
         <source>Go full screen</source>
-        <translation>Полноэкранное воспроизведение</translation>
+        <translation>מעבר למסך מלא</translation>
     </message>
     <message>
-        <source>Alt+Return</source>
-        <translation type="obsolete">Alt+Enter</translation>
+        <source>&amp;Compact mode</source>
+        <translation>מצב &amp;חסכוני</translation>
+    </message>
+    <message>
+        <source>Hide the playlist and the toolbar</source>
+        <translation>הסתרת רשימת ההשמעה וסרגל הכלים</translation>
     </message>
     <message>
         <source>&amp;YouTube</source>
@@ -158,47 +154,35 @@
     </message>
     <message>
         <source>Open the YouTube video page</source>
-        <translation>Открыть страницу видео в YouTube</translation>
-    </message>
-    <message>
-        <source>Ctrl+Y</source>
-        <translation type="obsolete">Ctrl+Y</translation>
+        <translation>פתיחת עמוד הווידאו ב־YouTube</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>&amp;Удалить</translation>
+        <translation>ה&amp;סרה</translation>
     </message>
     <message>
         <source>Remove the selected videos from the playlist</source>
-        <translation>Удалить выбранные видеоклипы из списка воспроизведения</translation>
+        <translation>הסרת הסרטונים הנבחרים מרשימת ההשמעה</translation>
     </message>
     <message>
         <source>Move &amp;Up</source>
-        <translation>В&amp;верх</translation>
+        <translation>הזזה מ&amp;מעלה</translation>
     </message>
     <message>
         <source>Move up the selected videos in the playlist</source>
-        <translation>Сдвинуть выбранные видеоклипы вверх в списке воспроизведения</translation>
-    </message>
-    <message>
-        <source>Ctrl+Up</source>
-        <translation type="obsolete">Ctrl+стрелка вверх</translation>
+        <translation>הזזת הסרטונים הנבחרים במעלה רשימת ההשמעה</translation>
     </message>
     <message>
         <source>Move &amp;Down</source>
-        <translation>В&amp;низ</translation>
+        <translation>הזזה מ&amp;טה</translation>
     </message>
     <message>
         <source>Move down the selected videos in the playlist</source>
-        <translation>Сдвинуть выбранные видеоклипы вниз в списке воспроизведения</translation>
-    </message>
-    <message>
-        <source>Ctrl+Down</source>
-        <translation type="obsolete">Ctrl+стрелка вниз</translation>
+        <translation>הזזת הסרטונים הנבחרים במורד רשימת ההשמעה</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>&amp;Выход</translation>
+        <translation>י&amp;ציאה</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -206,90 +190,98 @@
     </message>
     <message>
         <source>Bye</source>
-        <translation>Пока</translation>
+        <translation>להתראות</translation>
     </message>
     <message>
         <source>&amp;Website</source>
-        <translation>&amp;Домашняя страница</translation>
-    </message>
-    <message>
-        <source>Minitube on the Web</source>
-        <translation type="obsolete">Minitube в интернете</translation>
+        <translation>&amp;אתר האינטרנט</translation>
     </message>
     <message>
         <source>%1 on the Web</source>
-        <translation>%1 в интернете</translation>
+        <translation>%1 באינטרנט</translation>
     </message>
     <message>
         <source>&amp;Donate via PayPal</source>
-        <translation>&amp;Поддержать через PayPal</translation>
+        <translation>&amp;תרומה באמצעות PayPal</translation>
     </message>
     <message>
         <source>Please support the continued development of %1</source>
-        <translation>Поддержите дальнейшую разработку %1</translation>
+        <translation>אנא תמכו בהמשך הפיתוח של %1</translation>
     </message>
     <message>
         <source>&amp;About</source>
-        <translation>&amp;О программе</translation>
+        <translation>&amp;על אודות</translation>
     </message>
     <message>
         <source>Info about %1</source>
-        <translation>Сведения о %1</translation>
+        <translation>מידע אודות %1</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="obsolete">&amp;Поиск</translation>
+        <translation type="obsolete">&amp;חיפוש</translation>
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation>Пр&amp;иложение</translation>
+        <translation>&amp;יישום</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
-        <translation>&amp;Список воспроизведения</translation>
+        <translation>&amp;רשימת השמעה</translation>
     </message>
     <message>
         <source>&amp;Video</source>
-        <translation>&amp;Видео</translation>
+        <translation>&amp;וידאו</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>Спр&amp;авка</translation>
+        <translation>&amp;עזרה</translation>
     </message>
     <message>
         <source>Opening %1</source>
-        <translation>Открытие %1</translation>
-    </message>
-    <message>
-        <source>&amp;Play</source>
-        <translation>Пр&amp;оиграть</translation>
-    </message>
-    <message>
-        <source>Resume playback</source>
-        <translation>Продолжить воспроизведение</translation>
-    </message>
-    <message>
-        <source>Exit &amp;Full Screen</source>
-        <translation>В&amp;ыйти из полноэкранного воспроизведения</translation>
-    </message>
-    <message>
-        <source>&amp;Compact mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hide the playlist and the toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 נפתח</translation>
     </message>
     <message>
         <source>Fatal error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>שגיאה מכרעת: %1</translation>
     </message>
     <message>
         <source>Error: %1</source>
+        <translation>שגיאה: %1</translation>
+    </message>
+    <message>
+        <source>&amp;Play</source>
+        <translation>&amp;נגינה</translation>
+    </message>
+    <message>
+        <source>Resume playback</source>
+        <translation>המשך הנגינה</translation>
+    </message>
+    <message>
+        <source>Exit &amp;Full Screen</source>
+        <translation>יציאה ממ&amp;סך מלא</translation>
+    </message>
+    <message>
+        <source>&amp;Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">חיפוש</translation>
+    </message>
+    <message>
+        <source>Mute volume</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+M</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Press %1 to raise the volume, %2 to lower it</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remaining time: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -304,40 +296,24 @@
         <source>Volume is unmuted</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Search</source>
-        <translation type="unfinished">Поиск</translation>
-    </message>
-    <message>
-        <source>Mute volume</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remaining time: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>MediaView</name>
     <message>
         <source>Most relevant</source>
-        <translation>Похожие видео</translation>
+        <translation>הרלוונטיים ביותר</translation>
     </message>
     <message>
         <source>Most recent</source>
-        <translation>Недавно просмотренные</translation>
+        <translation>העדכניים ביותר</translation>
     </message>
     <message>
         <source>Most viewed</source>
-        <translation>Самые популярные</translation>
+        <translation>הנצפים ביותר</translation>
     </message>
     <message>
         <source>You&apos;re watching &quot;%1&quot;</source>
-        <translation>Сейчас просматривается &quot;%1&quot;</translation>
+        <translation>הנכם צופים ב־&quot;%1&quot;</translation>
     </message>
 </context>
 <context>
@@ -351,48 +327,48 @@
     <name>PrettyItemDelegate</name>
     <message>
         <source>%1 views</source>
-        <translation>%1 просмотров</translation>
+        <translation>%1 צפיות</translation>
     </message>
 </context>
 <context>
     <name>SearchLineEdit</name>
     <message>
         <source>Search</source>
-        <translation>Поиск</translation>
+        <translation>חיפוש</translation>
     </message>
 </context>
 <context>
     <name>SearchView</name>
     <message>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
-        <translation>Добро пожаловать в &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
+        <translation>ברוכים הבאים אל &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
     </message>
     <message>
         <source>Enter a keyword to start watching videos.</source>
-        <translation>Введите ключевые слова для начала просмотра видео.</translation>
+        <translation>הזינו מילת מפתח כדי להתחיל לצפות בסרטונים.</translation>
     </message>
     <message>
         <source>Watch</source>
-        <translation>Смотреть</translation>
+        <translation>צפיה</translation>
     </message>
     <message>
         <source>Recent keywords</source>
-        <translation>Последние</translation>
+        <translation>מילות מפתח אחרונות</translation>
     </message>
     <message>
         <source>A new version of %1 is available. Please &lt;a href=&apos;%2&apos;&gt;update to version %3&lt;/a&gt;</source>
-        <translation>Доступна новая версия %1. &lt;a href=&apos;%2&apos;&gt;Обновите до %3&lt;/a&gt;</translation>
+        <translation>גרסה חדשה של %1 זמינה להורדה. אנא &lt;a href=&apos;%2&apos;&gt;עדכנו לגרסה %3&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Make yourself comfortable</source>
-        <translation>Чувствуйте себя как дома</translation>
+        <translation>שבו בניחותא</translation>
     </message>
 </context>
 <context>
     <name>SettingsView</name>
     <message>
         <source>Preferences</source>
-        <translation>Настройки</translation>
+        <translation>העדפות</translation>
     </message>
     <message>
         <source>&amp;Video options</source>
