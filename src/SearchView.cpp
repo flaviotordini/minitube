@@ -2,7 +2,7 @@
 #include "Constants.h"
 
 static const QString recentKeywordsKey = "recentKeywords";
-static const int PADDING = 40;
+static const int PADDING = 30;
 
 SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
@@ -19,8 +19,14 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     smallerFont.setPointSize(smallerFont.pointSize()*.85);
     smallerFont.setBold(true);
 
-    QVBoxLayout *mainLayout = new QVBoxLayout();
-    mainLayout->setMargin(0);
+    QBoxLayout *mainLayout = new QHBoxLayout();
+    mainLayout->setAlignment(Qt::AlignCenter);
+    mainLayout->setMargin(PADDING);
+
+    QLabel *logo = new QLabel(this);
+    logo->setPixmap(QPixmap(":/images/app.png"));
+    mainLayout->addWidget(logo, 0, Qt::AlignTop);
+    mainLayout->addSpacing(PADDING);
 
     // hidden message widget
     message = new QLabel(this);
@@ -28,12 +34,14 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     mainLayout->addWidget(message);
 
     QVBoxLayout *layout = new QVBoxLayout();
-    layout->setMargin(PADDING);
+    layout->setAlignment(Qt::AlignCenter);
     mainLayout->addLayout(layout);
 
     QLabel *welcomeLabel =
             new QLabel("<h1>" +
-                       tr("Welcome to <a href='%1'>%2</a>,").arg(Constants::WEBSITE, Constants::APP_NAME)
+                       tr("Welcome to <a href='%1'>%2</a>,")
+                       .replace("<a ", "<a style='color:palette(text)'")
+                       .arg(Constants::WEBSITE, Constants::APP_NAME)
                        + "</h1>", this);
     welcomeLabel->setOpenExternalLinks(true);
     layout->addWidget(welcomeLabel);
@@ -45,6 +53,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     layout->addWidget(tipLabel);
 
     QHBoxLayout *searchLayout = new QHBoxLayout();
+    searchLayout->setAlignment(Qt::AlignCenter);
 
     queryEdit = new SearchLineEdit(this);
     queryEdit->setFont(biggerFont);
@@ -64,7 +73,6 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     connect(watchButton, SIGNAL(clicked()), this, SLOT(watch()));
     searchLayout->addWidget(watchButton);
 
-    searchLayout->addStretch();
 
     layout->addItem(searchLayout);
 
@@ -84,8 +92,6 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
     layout->addLayout(otherLayout);
 
-    layout->addStretch();
-
     setLayout(mainLayout);
 
     updateChecker = 0;
@@ -104,6 +110,7 @@ void SearchView::paintEvent(QPaintEvent * /*event*/) {
     painter.fillRect(0, 0, width(), height(), QBrush(linearGrad));
 #endif
 
+    /*
     QPixmap watermark = QPixmap(":/images/app.png");
     painter.setOpacity(.25);
     painter.drawPixmap(width() - watermark.width() - PADDING,
@@ -111,6 +118,7 @@ void SearchView::paintEvent(QPaintEvent * /*event*/) {
                        watermark.width(),
                        watermark.height(),
                        watermark);
+                       */
 }
 
 void SearchView::updateRecentKeywords() {
