@@ -1,24 +1,38 @@
-* Prerequisites
+# Build instructions
 
-To compile Minitube you need Qt4 installed.
+## Prerequisites
+
+To compile Minitube you need Qt >= 4.5 installed.
 
 On a Debian or Ubuntu system just type:
-sudo apt-get install build-essential qt4-dev-tools
+    sudo apt-get install build-essential qt4-dev-tools
 
-On Windows and Mac get Qt4 from:
-http://trolltech.com/developer/downloads/qt/
+Windows and Mac users can get the Qt libraries from:
+http://qt.nokia.com/downloads
 
-* Compiling
-Compilig on Linux is fairly easy. Just run:
-$ qmake
+## Compiling
+
+Compiling on Linux is fairly easy. Just run:
+    qmake
 and then
-$ make
+    make
 
-* Running
-./build/target/minitube
+Beware of the Qt3 version of qmake! If things go wrong try running qmake-qt4 instead.
+
+## Running
+
+Just type:
+    ./build/target/minitube
+
+## The visual way
+
+There is also a visual way to build and run Qt apps.
+Download the Qt SDK from:
+http://qt.nokia.com/downloads
+And then open `minitube.pro` with Qt Creator.
 
 
-Legal Stuff
+## Legal Stuff
 
 Copyright (C) 2009  Flavio Tordini
 

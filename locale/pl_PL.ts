@@ -87,7 +87,7 @@
     <name>LoadingWidget</name>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd</translation>
     </message>
 </context>
 <context>
@@ -110,7 +110,7 @@
     </message>
     <message>
         <source>S&amp;kip</source>
-        <translation type="unfinished">Następny</translation>
+        <translation>Następny</translation>
     </message>
     <message>
         <source>Skip to the next video</source>
@@ -190,7 +190,7 @@
     </message>
     <message>
         <source>%1 on the Web</source>
-        <translation type="unfinished">Strona domowa %1</translation>
+        <translation>Strona domowa %1</translation>
     </message>
     <message>
         <source>&amp;Donate via PayPal</source>
@@ -198,7 +198,7 @@
     </message>
     <message>
         <source>Please support the continued development of %1</source>
-        <translation>Proszę, wspomóż finansowo prace na %1</translation>
+        <translation>Proszę, wspomóż finansowo prace nad %1</translation>
     </message>
     <message>
         <source>&amp;About</source>
@@ -254,35 +254,35 @@
     </message>
     <message>
         <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Volume at %1%</source>
-        <translation type="unfinished"></translation>
+        <translation>Głośność %1%</translation>
     </message>
     <message>
         <source>Volume is muted</source>
-        <translation type="unfinished"></translation>
+        <translation>Dźwięk jest wyłączony</translation>
     </message>
     <message>
         <source>Volume is unmuted</source>
-        <translation type="unfinished"></translation>
+        <translation>Dźwięk jest włączony</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Szukaj</translation>
+        <translation>Szukaj</translation>
     </message>
     <message>
         <source>Mute volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyłącz dźwięk</translation>
     </message>
     <message>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation type="unfinished"></translation>
+        <translation>Wciśnij %1 aby zwiększyć głośność, %2 żeby ściszyć</translation>
     </message>
     <message>
         <source>Remaining time: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozostały czas: %1</translation>
     </message>
 </context>
 <context>
@@ -308,7 +308,7 @@
     <name>NetworkAccess</name>
     <message>
         <source>Network error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd sieci: %1</translation>
     </message>
 </context>
 <context>
@@ -360,30 +360,30 @@
     </message>
     <message>
         <source>&amp;Video options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opcje &amp;obrazu</translation>
     </message>
     <message>
         <source>Use high quality video when available</source>
-        <translation type="unfinished"></translation>
+        <translation>Użyj wysokiej jakości wideo jeśli jest to możliwe</translation>
     </message>
     <message>
         <source>&amp;Saved recent keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zapisz ostatnie słowa szukane</translation>
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Usuń ostatnie słowa szukane</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Zamknij</translation>
+        <translation>&amp;Zamknij</translation>
     </message>
 </context>
 <context>
     <name>Video</name>
     <message>
         <source>Network error: %1 for %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd sieci: %1 dla %2</translation>
     </message>
 </context>
 </TS>

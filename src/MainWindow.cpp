@@ -570,6 +570,11 @@ void MainWindow::compactView(bool enable) {
     mainToolBar->setVisible(!enable);
     statusBar()->setVisible(!enable);
 
+
+#ifndef Q_WS_MAC
+    menuBar()->setVisible(!enable);
+#endif
+
     // ensure focus does not end up to the search box
     // as it would steal the Space shortcut
     toolbarSearch->setEnabled(!enable);

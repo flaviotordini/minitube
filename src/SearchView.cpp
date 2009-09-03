@@ -19,23 +19,29 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     smallerFont.setPointSize(smallerFont.pointSize()*.85);
     smallerFont.setBold(true);
 
-    QBoxLayout *mainLayout = new QHBoxLayout();
-    mainLayout->setAlignment(Qt::AlignCenter);
-    mainLayout->setMargin(PADDING);
-
-    QLabel *logo = new QLabel(this);
-    logo->setPixmap(QPixmap(":/images/app.png"));
-    mainLayout->addWidget(logo, 0, Qt::AlignTop);
-    mainLayout->addSpacing(PADDING);
+    QBoxLayout *mainLayout = new QVBoxLayout();
+    mainLayout->setMargin(0);
+    mainLayout->setSpacing(0);
 
     // hidden message widget
     message = new QLabel(this);
     message->hide();
     mainLayout->addWidget(message);
 
+    mainLayout->addStretch();
+
+    QBoxLayout *hLayout = new QHBoxLayout();
+    hLayout->setAlignment(Qt::AlignCenter);
+    mainLayout->addLayout(hLayout);
+
+    QLabel *logo = new QLabel(this);
+    logo->setPixmap(QPixmap(":/images/app.png"));
+    hLayout->addWidget(logo, 0, Qt::AlignTop);
+    hLayout->addSpacing(PADDING);
+
     QVBoxLayout *layout = new QVBoxLayout();
     layout->setAlignment(Qt::AlignCenter);
-    mainLayout->addLayout(layout);
+    hLayout->addLayout(layout);
 
     QLabel *welcomeLabel =
             new QLabel("<h1>" +
@@ -53,7 +59,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     layout->addWidget(tipLabel);
 
     QHBoxLayout *searchLayout = new QHBoxLayout();
-    searchLayout->setAlignment(Qt::AlignCenter);
+    searchLayout->setAlignment(Qt::AlignVCenter);
 
     queryEdit = new SearchLineEdit(this);
     queryEdit->setFont(biggerFont);
@@ -70,9 +76,9 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     watchButton = new QPushButton(tr("Watch"), this);
     watchButton->setDefault(true);
     watchButton->setEnabled(false);
+    watchButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     connect(watchButton, SIGNAL(clicked()), this, SLOT(watch()));
     searchLayout->addWidget(watchButton);
-
 
     layout->addItem(searchLayout);
 
@@ -81,7 +87,8 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     QHBoxLayout *otherLayout = new QHBoxLayout();
 
     recentKeywordsLayout = new QVBoxLayout();
-    recentKeywordsLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+    recentKeywordsLayout->setSpacing(5);
+    recentKeywordsLayout->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
     recentKeywordsLabel = new QLabel(tr("Recent keywords").toUpper(), this);
     recentKeywordsLabel->hide();
     recentKeywordsLabel->setForegroundRole(QPalette::Dark);
@@ -91,6 +98,8 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     otherLayout->addLayout(recentKeywordsLayout);
 
     layout->addLayout(otherLayout);
+
+    mainLayout->addStretch();
 
     setLayout(mainLayout);
 
