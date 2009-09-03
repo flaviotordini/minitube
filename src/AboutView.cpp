@@ -41,7 +41,8 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                                                       "Kiwamu Okabe (ja_JP), "
                                                       "Dan Vrátil (cs_CZ), "
                                                       "Rafa (es_ES), "
-                                                      "Yaron Shahrabani (he_IL)"
+                                                      "Yaron Shahrabani (he_IL), "
+                                                      "Oleksandr Korneta (uk)"
                                                       ) + "</p>"
 
                    "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")

@@ -13,6 +13,7 @@ TRANSLATIONS += \
     de_DE.ts \
     ja_JP.ts \
     cs_CZ.ts \
+    uk.ts \
     he_IL.ts
 
 isEmpty(QMAKE_LRELEASE) {
