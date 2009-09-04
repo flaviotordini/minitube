@@ -150,7 +150,7 @@ void MainWindow::createActions() {
 
     quitAct = new QAction(tr("&Quit"), this);
     quitAct->setMenuRole(QAction::QuitRole);
-    quitAct->setShortcut(tr("Ctrl+Q"));
+    quitAct->setShortcuts(QList<QKeySequence>() << QKeySequence(tr("Ctrl+Q")) << QKeySequence(Qt::CTRL + Qt::Key_W));
     quitAct->setStatusTip(tr("Bye"));
     actions->insert("quit", quitAct);
     connect(quitAct, SIGNAL(triggered()), this, SLOT(quit()));
