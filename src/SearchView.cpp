@@ -58,15 +58,16 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     tipLabel->setFont(biggerFont);
     layout->addWidget(tipLabel);
 
+    layout->addSpacing(10);
+
     QHBoxLayout *searchLayout = new QHBoxLayout();
     searchLayout->setAlignment(Qt::AlignVCenter);
 
     queryEdit = new SearchLineEdit(this);
     queryEdit->setFont(biggerFont);
-    queryEdit->setMinimumWidth(300);
+    queryEdit->setMinimumWidth(queryEdit->fontInfo().pixelSize()*15);
     queryEdit->sizeHint();
     queryEdit->setFocus(Qt::OtherFocusReason);
-    // connect(queryEdit, SIGNAL(returnPressed()), this, SLOT(watch()));
     connect(queryEdit, SIGNAL(search(const QString&)), this, SLOT(watch(const QString&)));
     connect(queryEdit, SIGNAL(textChanged(const QString &)), this, SLOT(textChanged(const QString &)));
     searchLayout->addWidget(queryEdit);

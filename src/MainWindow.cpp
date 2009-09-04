@@ -27,6 +27,7 @@ MainWindow::MainWindow() {
 
     toolbarSearch = new SearchLineEdit(this);
     toolbarSearch->setFont(qApp->font());
+    toolbarSearch->setMinimumWidth(toolbarSearch->fontInfo().pixelSize()*15);
     connect(toolbarSearch, SIGNAL(search(const QString&)), searchView, SLOT(watch(const QString&)));
 
     // build ui
