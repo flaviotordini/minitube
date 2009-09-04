@@ -262,12 +262,12 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="179"/>
         <source>Search</source>
-        <translation type="unfinished">Hledat</translation>
+        <translation>Hledat</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="197"/>
         <source>Mute volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Ztlumit</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="198"/>
@@ -297,7 +297,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="297"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation type="unfinished"></translation>
+        <translation>Stiskněte %1 pro zvýšení hlasitosti; %2 pro snížení</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="421"/>
@@ -333,7 +333,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="627"/>
         <source>Remaining time: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Zbývající čas: %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="664"/>
@@ -441,27 +441,27 @@
     <message>
         <location filename="../src/SettingsView.cpp" line="15"/>
         <source>&amp;Video options</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nastavení videa</translation>
     </message>
     <message>
         <location filename="../src/SettingsView.cpp" line="33"/>
         <source>Use high quality video when available</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazit video ve vysoké kvalitě pokud je dostupná</translation>
     </message>
     <message>
         <location filename="../src/SettingsView.cpp" line="40"/>
         <source>&amp;Saved recent keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Uložit hledané výrazy</translation>
     </message>
     <message>
         <location filename="../src/SettingsView.cpp" line="43"/>
         <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vymazat hledané výrazy</translation>
     </message>
     <message>
         <location filename="../src/SettingsView.cpp" line="47"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Zavřít</translation>
+        <translation>&amp;Zavřít</translation>
     </message>
 </context>
 <context>

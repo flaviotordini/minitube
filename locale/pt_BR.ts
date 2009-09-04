@@ -34,7 +34,7 @@
     </message>
     <message>
         <source>Translated by %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Traduzido por %1</translation>
     </message>
     <message>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
@@ -42,7 +42,7 @@
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fechar</translation>
     </message>
     <message>
         <source>About</source>
@@ -54,7 +54,7 @@
     </message>
     <message>
         <source>Compact mode contributed by %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo compacto contribuído por %1.</translation>
     </message>
 </context>
 <context>
@@ -68,26 +68,26 @@
     <name>ListModel</name>
     <message>
         <source>Searching...</source>
-        <translation type="unfinished"></translation>
+        <translation>Localizando...</translation>
     </message>
     <message>
         <source>Show %1 More</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar %1 a mais</translation>
     </message>
     <message>
         <source>No videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Não há vídeos</translation>
     </message>
     <message>
         <source>No more videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Não há mais vídeos</translation>
     </message>
 </context>
 <context>
     <name>LoadingWidget</name>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro</translation>
     </message>
 </context>
 <context>
@@ -274,51 +274,51 @@
     </message>
     <message>
         <source>&amp;Compact mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo &amp;compacto</translation>
     </message>
     <message>
         <source>Hide the playlist and the toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher a playlist e a barra de tarefas</translation>
     </message>
     <message>
         <source>Fatal error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro fatal: %1</translation>
     </message>
     <message>
         <source>Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro: %1</translation>
     </message>
     <message>
         <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message>
         <source>Volume at %1%</source>
-        <translation type="unfinished"></translation>
+        <translation>Volume a %1%</translation>
     </message>
     <message>
         <source>Volume is muted</source>
-        <translation type="unfinished"></translation>
+        <translation>Volume está mudo</translation>
     </message>
     <message>
         <source>Volume is unmuted</source>
-        <translation type="unfinished"></translation>
+        <translation>Volume não está mudo</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Pesquisar</translation>
+        <translation>Pesquisar</translation>
     </message>
     <message>
         <source>Mute volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Volume nudo</translation>
     </message>
     <message>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation type="unfinished"></translation>
+        <translation>Pressione %1 para aumentar o volume, %2 para diminui-lo</translation>
     </message>
     <message>
         <source>Remaining time: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo restante: %1</translation>
     </message>
 </context>
 <context>
@@ -344,7 +344,7 @@
     <name>NetworkAccess</name>
     <message>
         <source>Network error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro na rede: %1</translation>
     </message>
 </context>
 <context>
@@ -396,30 +396,30 @@
     </message>
     <message>
         <source>&amp;Video options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opções de &amp;vídeo</translation>
     </message>
     <message>
         <source>Use high quality video when available</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilizar vídeo de alta qualidade quando estiver disponível</translation>
     </message>
     <message>
         <source>&amp;Saved recent keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Palavras-chave &amp;salvas recentemente</translation>
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Palavras-chave &amp;limpas recentemente</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fechar</translation>
     </message>
 </context>
 <context>
     <name>Video</name>
     <message>
         <source>Network error: %1 for %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro na rede: %1 para %2</translation>
     </message>
 </context>
 </TS>
