@@ -232,11 +232,13 @@ void MainWindow::createMenus() {
 
     QMap<QString, QMenu*> *menus = The::globalMenus();
 
+    /*
     fileMenu = menuBar()->addMenu(tr("&Application"));
     // menus->insert("file", fileMenu);
     // fileMenu->addAction(settingsAct);
     fileMenu->addSeparator();
     fileMenu->addAction(quitAct);
+    */
 
     playlistMenu = menuBar()->addMenu(tr("&Playlist"));
     menus->insert("playlist", playlistMenu);
@@ -334,6 +336,7 @@ void MainWindow::writeSettings() {
         return;
     QSettings settings;
     settings.setValue("geometry", saveGeometry());
+    mediaView->saveSplitterState();
 }
 
 void MainWindow::goBack() {

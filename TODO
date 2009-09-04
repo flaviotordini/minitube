@@ -2,7 +2,6 @@
 
 ## Bugs
 - Item positions when moving two items down
-- Always remember the playlist width
 - Truncate overflowing text in the playlist
 - Fix Space key not working in fullscreen (Pause)
 
@@ -45,7 +44,6 @@
 
 ## Unsure features
 - Add menu entries for Most relevant, Most recent, Most viewed (Playlist => ...)
-- YouTube video details
 - Saved playlists
 - Starred videos
 - Investigate fetchMore() and canFetchMore() in the Model/View API

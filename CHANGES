@@ -1,9 +1,10 @@
 0.6
 - New search view look
 - Hide idle mouse cursor when above the video (Linux only)
-- Volume keyboard shortcuts and status bar messages
+- Volume keyboard shortcuts
 - Keyboard shortcuts appear in the status bar
 - Better error reporting
+- Playlist width is saved accross restarts
 - Fixed Space key not pausing videos in fullscreen mode (Mac only)
 - Fixed window not having focus after exiting fullscreen (Mac only)
 - Spanish translation by Rafa

@@ -46,6 +46,7 @@ public slots:
     void moveUpSelected();
     void moveDownSelected();
     void setPlaylistVisible(bool visible=true);
+    void saveSplitterState();
 
 private slots:
     // list/model

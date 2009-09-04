@@ -98,6 +98,10 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     layout->addWidget(splitter);
     setLayout(layout);
 
+    // restore splitter state
+    QSettings settings;
+    splitter->restoreState(settings.value("splitter").toByteArray());
+
     errorTimer = new QTimer(this);
     errorTimer->setSingleShot(true);
     errorTimer->setInterval(3000);
@@ -388,4 +392,9 @@ void MediaView::timerPlay() {
         mediaObject->pause();
         mediaObject->play();
     }
+}
+
+void MediaView::saveSplitterState() {
+    QSettings settings;
+    settings.setValue("splitter", splitter->saveState());
 }
