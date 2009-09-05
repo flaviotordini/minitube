@@ -179,7 +179,8 @@ void ExLineEdit::keyPressEvent(QKeyEvent *event)
 
 bool ExLineEdit::event(QEvent *event)
 {
-    if (event->type() == QEvent::ShortcutOverride)
+    if (event->type() == QEvent::ShortcutOverride ||
+        event->type() == QEvent::InputMethod)
         m_lineEdit->event(event);
     return QWidget::event(event);
 }
