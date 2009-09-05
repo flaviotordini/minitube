@@ -65,10 +65,12 @@ namespace The {
                 proxy_port = http_proxy_list[1];
             }
 
+            /*
             qDebug() << "proxy_host: " << proxy_host;
             qDebug() << "proxy_port: " << proxy_port;
             qDebug() << "proxy_user: " << proxy_user;
             qDebug() << "proxy_pass: " << proxy_pass;
+            */
 
             // set proxy setting
             if (!proxy_host.isEmpty()) {
@@ -84,6 +86,8 @@ namespace The {
                 if (!proxy_pass.isEmpty()) {
                     proxy.setPassword(proxy_pass);
                 }
+
+                qDebug() << "Using HTTP proxy:" << http_proxy_env;
                 QNetworkProxy::setApplicationProxy(proxy);
             }
         }
