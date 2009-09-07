@@ -1,12 +1,13 @@
-0.6
+0.6 - September 7, 2009
 - New search view look
 - Hide idle mouse cursor when above the video (Linux only)
 - Volume keyboard shortcuts
 - Keyboard shortcuts appear in the status bar
 - Better error reporting
 - Playlist width is saved accross restarts
+- HTTP proxy support contributed by Kiwamu Okabe
 - Fixed Space key not pausing videos in fullscreen mode (Mac only)
-- Fixed window not having focus after exiting fullscreen (Mac only)
+- Fixed window losing focus after exiting fullscreen (Mac only)
 - Spanish translation by Rafa
 - Japanese translation by Kiwamu Okabe
 - Czech translation by Dan Vrátil
