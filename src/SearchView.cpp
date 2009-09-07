@@ -110,9 +110,8 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
 void SearchView::paintEvent(QPaintEvent * /*event*/) {
 
-    QPainter painter(this);
-
 #ifdef Q_WS_MAC
+    QPainter painter(this);
     QLinearGradient linearGrad(0, 0, 0, height());
     QPalette palette;
     linearGrad.setColorAt(0, palette.color(QPalette::Light));
@@ -120,15 +119,6 @@ void SearchView::paintEvent(QPaintEvent * /*event*/) {
     painter.fillRect(0, 0, width(), height(), QBrush(linearGrad));
 #endif
 
-    /*
-    QPixmap watermark = QPixmap(":/images/app.png");
-    painter.setOpacity(.25);
-    painter.drawPixmap(width() - watermark.width() - PADDING,
-                       height() - watermark.height() - PADDING,
-                       watermark.width(),
-                       watermark.height(),
-                       watermark);
-                       */
 }
 
 void SearchView::updateRecentKeywords() {
