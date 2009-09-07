@@ -5,6 +5,7 @@
 #include <QStringList>
 #include <QNetworkProxy>
 #include <QNetworkAccessManager>
+#include <QNetworkProxyFactory>
 #include <cstdlib>
 #include "networkaccess.h"
 
@@ -24,6 +25,31 @@ namespace The {
         if (!g_menus)
             g_menus = new QMap<QString, QMenu*>;
         return g_menus;
+    }
+
+    void maybeSetSystemProxy() {
+
+        QNetworkProxyQuery proxyQuery(QUrl("http://www"));
+        proxyQuery.setProtocolTag("http");
+        QList<QNetworkProxy> proxylist = QNetworkProxyFactory::systemProxyForQuery(proxyQuery);
+
+        for (int i = 0; i < proxylist.count(); i++) {
+            QNetworkProxy proxy = proxylist.at(i);
+
+            /*
+            qDebug() << i << " type:"<< proxy.type();
+            qDebug() << i << " host:" << proxy.hostName();
+            qDebug() << i << " port:" << proxy.port();
+            qDebug() << i << " user:" << proxy.user();
+            qDebug() << i << " pass:" << proxy.password();
+            */
+
+            if (!proxy.hostName().isEmpty()) {
+                qDebug() << "Using proxy:" << proxy.hostName() << proxy.port();
+                QNetworkProxy::setApplicationProxy(proxy);
+                return;
+            }
+        }
     }
 
     void networkHttpProxySetting() {
@@ -98,6 +124,7 @@ namespace The {
     QNetworkAccessManager* networkAccessManager() {
         if (!nam) {
             networkHttpProxySetting();
+            maybeSetSystemProxy();
             nam = new QNetworkAccessManager();
 
             // A simple disk based cache
