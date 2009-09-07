@@ -29,9 +29,11 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                    + tr("Please <a href='%1'>donate via PayPal</a> to support the continued development of %2.")
                    .arg(QString(Constants::WEBSITE).append("#donate"), Constants::APP_NAME) + "</p>"
 
-                   "<p>" + tr("Icon designed by %1.").arg("Sebastian Kraft") + "</p>"
-
-                   "<p>" + tr("Compact mode contributed by %1.").arg("Stefan Brück") + "</p>"
+                   "<p>"
+                   + tr("Icon designed by %1.").arg("Sebastian Kraft")
+                   + "<br>" + tr("Compact mode contributed by %1.").arg("Stefan Brück")
+                   + "<br>" + tr("HTTP proxy support contributed by %1.").arg("Kiwamu Okabe")
+                   + "</p>"
 
                    "<p>" + tr("Translated by %1").arg("Nikita Lyalin (ru_RU), "
                                                       "Márcio Moraes (pt_BR), "
