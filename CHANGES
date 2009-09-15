@@ -1,3 +1,7 @@
+0.6.1 - September 15, 2009
+- Fixed showstopper bug caused by a change in the YouTube web service
+  Thanks to Guillaume Girard for reporting it
+
 0.6 - September 7, 2009
 - New search view look
 - Hide idle mouse cursor when above the video (Linux only)
