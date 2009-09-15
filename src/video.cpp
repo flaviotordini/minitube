@@ -36,7 +36,7 @@ void Video::scrapeStreamUrl() {
     // Get Video ID
     // youtube-dl line 428
     // QRegExp re("^((?:http://)?(?:\\w+\\.)?youtube\\.com/(?:(?:v/)|(?:(?:watch(?:\\.php)?)?\\?(?:.+&)?v=)))?([0-9A-Za-z_-]+)(?(1).+)?$");
-    QRegExp re("^http://www\\.youtube\\.com/watch\\?v=([0-9A-Za-z_-]+)$");
+    QRegExp re("^http://www\\.youtube\\.com/watch\\?v=([0-9A-Za-z_-]+).*");
     bool match = re.exactMatch(webpage.toString());
     if (!match || re.numCaptures() < 1) {
         emit errorStreamUrl(QString("Cannot get video id for %1").arg(webpage.toString()));
