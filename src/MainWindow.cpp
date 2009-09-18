@@ -121,7 +121,7 @@ void MainWindow::createActions() {
     connect(downloadAct, SIGNAL(triggered()), this, SLOT(download()));
     */
 
-    webPageAct = new QAction(QtIconLoader::icon("internet-web-browser", QIcon(":/images/internet-web-browser.png")), tr("&YouTube"), this);
+    webPageAct = new QAction(tr("&YouTube"), this);
     webPageAct->setStatusTip(tr("Open the YouTube video page"));
     webPageAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Y));
     webPageAct->setEnabled(false);
