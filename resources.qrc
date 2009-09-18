@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/" >
+    <qresource prefix="/">
         <file>images/app.png</file>
         <file>images/pause.png</file>
         <file>images/play.png</file>
@@ -9,6 +9,5 @@
         <file>images/view-fullscreen.png</file>
         <file>images/go-down.png</file>
         <file>images/go-up.png</file>
-        <file>images/internet-web-browser.png</file>
     </qresource>
 </RCC>
