@@ -75,7 +75,7 @@ void MainWindow::createActions() {
     actions->insert("back", backAct);
     connect(backAct, SIGNAL(triggered()), this, SLOT(goBack()));
 
-    stopAct = new QAction(QtIconLoader::icon("media-stop", QIcon(":/images/stop.png")), tr("&Stop"), this);
+    stopAct = new QAction(QtIconLoader::icon("media-playback-stop", QIcon(":/images/stop.png")), tr("&Stop"), this);
     stopAct->setStatusTip(tr("Stop playback and go back to the search view"));
     stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
     actions->insert("stop", stopAct);
@@ -88,7 +88,7 @@ void MainWindow::createActions() {
     actions->insert("skip", skipAct);
     connect(skipAct, SIGNAL(triggered()), mediaView, SLOT(skip()));
 
-    pauseAct = new QAction(QtIconLoader::icon("media-pause", QIcon(":/images/pause.png")), tr("&Pause"), this);
+    pauseAct = new QAction(QtIconLoader::icon("media-playback-pause", QIcon(":/images/pause.png")), tr("&Pause"), this);
     pauseAct->setStatusTip(tr("Pause playback"));
     pauseAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Space) << QKeySequence(Qt::Key_MediaPlay));
     pauseAct->setEnabled(false);
@@ -481,7 +481,7 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
 
          case Phonon::PlayingState:
         pauseAct->setEnabled(true);
-        pauseAct->setIcon(QtIconLoader::icon("media-pause", QIcon(":/images/pause.png")));
+        pauseAct->setIcon(QtIconLoader::icon("media-playback-pause", QIcon(":/images/pause.png")));
         pauseAct->setText(tr("&Pause"));
         pauseAct->setStatusTip(tr("Pause playback") + " (" +  pauseAct->shortcut().toString(QKeySequence::NativeText) + ")");
         skipAct->setEnabled(true);
@@ -495,7 +495,7 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
          case Phonon::PausedState:
         skipAct->setEnabled(true);
         pauseAct->setEnabled(true);
-        pauseAct->setIcon(QtIconLoader::icon("media-play", QIcon(":/images/play.png")));
+        pauseAct->setIcon(QtIconLoader::icon("media-playback-start", QIcon(":/images/play.png")));
         pauseAct->setText(tr("&Play"));
         pauseAct->setStatusTip(tr("Resume playback") + " (" +  pauseAct->shortcut().toString(QKeySequence::NativeText) + ")");
         break;
