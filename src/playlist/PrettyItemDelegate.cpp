@@ -9,6 +9,12 @@ const qreal PrettyItemDelegate::THUMB_WIDTH = 120.0;
 const qreal PrettyItemDelegate::PADDING = 10.0;
 
 PrettyItemDelegate::PrettyItemDelegate( QObject* parent ) : QStyledItemDelegate( parent ) {
+
+    boldFont.setBold(true);
+    smallerFont.setPointSize(smallerFont.pointSize()*.85);
+    smallerBoldFont.setBold(true);
+    smallerBoldFont.setPointSize(smallerBoldFont.pointSize()*.85);
+
     createPlayIcon();
 }
 
@@ -59,14 +65,6 @@ void PrettyItemDelegate::paintBody( QPainter* painter,
     const QRectF line(0, 0, option.rect.width(), option.rect.height());
 
     QPalette palette;
-
-    QFont boldFont;
-    boldFont.setBold(true);
-    QFont smallerFont;
-    smallerFont.setPointSize(smallerFont.pointSize()*.85);
-    QFont smallerBoldFont;
-    smallerBoldFont.setBold(true);
-    smallerBoldFont.setPointSize(smallerBoldFont.pointSize()*.85);
 
     const bool isActive = index.data( ActiveTrackRole ).toBool();
     const bool isSelected = option.state & QStyle::State_Selected;

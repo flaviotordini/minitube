@@ -34,6 +34,9 @@ private:
     static const qreal PADDING;
 
     QPixmap playIcon;
+    QFont boldFont;
+    QFont smallerFont;
+    QFont smallerBoldFont;
 };
 
 #endif
