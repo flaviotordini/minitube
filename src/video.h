@@ -57,6 +57,7 @@ signals:
 private slots:
     void gotVideoInfo(QByteArray);
     void errorVideoInfo(QNetworkReply*);
+    void scrapWebPage(QByteArray);
 
 private:
     void scrapeStreamUrl();

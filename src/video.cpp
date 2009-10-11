@@ -65,6 +65,17 @@ void  Video::gotVideoInfo(QByteArray data) {
 
     // on regexp failure, stop and report error
     if (!match || re.numCaptures() < 1) {
+
+        // Don't panic! We have a plan B.
+
+        // get the youtube video webpage
+        QObject *reply = The::http()->get(webpage().toString());
+        connect(reply, SIGNAL(data(QByteArray)), SLOT(scrapWebPage(QByteArray)));
+        connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
+
+        // see you in scrapWebPage(QByteArray)
+
+        /*
         qDebug() << videoInfo;
         re = QRegExp("^.*&reason=([^&]+).*$");
         match = re.exactMatch(videoInfo);
@@ -78,8 +89,11 @@ void  Video::gotVideoInfo(QByteArray data) {
             }
             if (mainWindow) mainWindow->statusBar()->showMessage(errorMessage);
             emit errorStreamUrl(errorMessage);
+
         } else
             emit errorStreamUrl("Error parsing video info");
+        */
+
         return;
     }
 
@@ -100,4 +114,32 @@ void  Video::gotVideoInfo(QByteArray data) {
 
 void Video::errorVideoInfo(QNetworkReply *reply) {
     emit errorStreamUrl(tr("Network error: %1 for %2").arg(reply->errorString(), reply->url().toString()));
+}
+
+void Video::scrapWebPage(QByteArray data) {
+
+    QString videoHTML = QString::fromUtf8(data);
+    QRegExp re(".*, \"t\": \"([^\"]+)\".*");
+    bool match = re.exactMatch(videoHTML);
+
+    // on regexp failure, stop and report error
+    if (!match || re.numCaptures() < 1) {
+        emit errorStreamUrl("Error parsing video page");
+        return;
+    }
+
+    QString videoToken = re.cap(1);
+    // FIXME proper decode
+    videoToken = videoToken.replace("%3D", "=");
+    qDebug() << "token" << videoToken;
+
+    QUrl videoUrl = QUrl(QString("http://www.youtube.com/get_video?video_id=")
+                         .append(videoId)
+                         .append("&t=").append(videoToken)
+                         .append("&eurl=&el=detailpage&ps=default&fmt=18"));
+
+    m_streamUrl = videoUrl;
+
+    emit gotStreamUrl(videoUrl);
+
 }
