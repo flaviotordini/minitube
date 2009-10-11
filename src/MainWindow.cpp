@@ -391,6 +391,8 @@ void MainWindow::showWidget ( QWidget* widget ) {
     // toolbar only for the mediaView
     mainToolBar->setVisible(widget == mediaView && !compactViewAct->isChecked());
 
+    setUpdatesEnabled(true);
+
     history->push(widget);
 
 #ifdef Q_WS_MAC
@@ -401,7 +403,6 @@ void MainWindow::showWidget ( QWidget* widget ) {
 
     views->setCurrentWidget(widget);
 
-    setUpdatesEnabled(true);
 }
 
 void MainWindow::fadeInWidget(QWidget *oldWidget, QWidget *newWidget) {
