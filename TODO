@@ -2,9 +2,6 @@
 
 ## Bugs
 - Item positions when moving two items down
-- Truncate overflowing text in the playlist
-- Fix Space key not working in fullscreen (Pause)
-
 
 ## Killer features
 
@@ -46,7 +43,6 @@
 - Add menu entries for Most relevant, Most recent, Most viewed (Playlist => ...)
 - Saved playlists
 - Starred videos
-- Investigate fetchMore() and canFetchMore() in the Model/View API
 
 ## Phonon bugs (Come on Qt devs, do your job!)
 - Mac: playback sometimes does not start (got a workaround!)

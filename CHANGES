@@ -1,3 +1,10 @@
+0.7
+- Fixed "embedding disabled by request" message. All videos now play.
+- Slighly faster playlist painting
+- Fixed overflowing text in the playlist
+- Fixed view crossfades on the Mac
+- Fixed FreeDesktop icons on Linux
+
 0.6.1 - September 15, 2009
 - Fixed showstopper bug caused by a change in the YouTube web service
   Thanks to Guillaume Girard for reporting it
