@@ -62,7 +62,9 @@ void PrettyItemDelegate::paintBody( QPainter* painter,
     painter->save();
     painter->translate( option.rect.topLeft() );
 
+
     const QRectF line(0, 0, option.rect.width(), option.rect.height());
+    painter->setClipRect(line);
 
     QPalette palette;
 
