@@ -23,8 +23,15 @@ private slots:
     void storeSettings();
 
 private:
-    QLineEdit *urlEdit;
-    QLabel *urlLabel;
+
+    QSlider *contrastSlider;
+    QSlider *brightnessSlider;
+    QSlider *saturationSlider;
+    QSlider *hueSlider;
+
+    QCheckBox *hdVideoCheckBox;
+    QSpinBox *maxRecentKeywordsSpinBox;
+    QPushButton *clearRecentKeywordsButton;
 
 };
 #endif
