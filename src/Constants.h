@@ -1,8 +1,10 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+#include <QString>
+
 namespace Constants {
-    static const char *VERSION = "0.6.1";
+    static const char *VERSION = "0.7";
     static const char *APP_NAME = "Minitube";
     static const char *ORG_NAME = "Flavio Tordini";
     static const char *ORG_DOMAIN = "flavio.tordini.org";

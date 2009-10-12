@@ -1,4 +1,4 @@
-0.7
+0.7 - October 12, 2009
 - Fixed "embedding disabled by request" message. All videos now play.
 - Slighly faster playlist painting
 - Fixed overflowing text in the playlist

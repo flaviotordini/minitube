@@ -49,5 +49,5 @@
 - Mac: Phonon freezes the GUI when loading a video
 - Phonon::MediaSource does not work with QIODevices
 - Cannot seek beyond the buffered part of the video
-- Linux: Seek does not work at all
-- Phonon does not report the buffering percent correctly
+- Linux: Seek does not work at all. https://bugs.kde.org/show_bug.cgi?id=197927
+- Phonon does not report the buffering percent correctly. https://bugs.kde.org/show_bug.cgi?id=210336
