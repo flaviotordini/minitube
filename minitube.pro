@@ -120,3 +120,6 @@ unix {
     icon128.path = $$DATADIR/icons/hicolor/128x128/apps
     icon128.files += data/128x128/minitube.png
 }
+win32 {
+    RC_FILE = minitube.rc
+}

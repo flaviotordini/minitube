@@ -187,10 +187,12 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
         // but Phonon on Linux needs a little more help to start playback
         if (!reallyStopped) mediaObject->play();
 
+#ifdef Q_WS_MAC
         // Workaround for Mac playback start problem
         if (!timerPlayFlag) {
             workaroundTimer->start();
         }
+#endif
 
         break;
 
