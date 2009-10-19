@@ -278,6 +278,10 @@ void MainWindow::createToolBars() {
     QFont smallerFont;
     smallerFont.setPointSize(smallerFont.pointSize()*.85);
     mainToolBar->setFont(smallerFont);
+    QFontInfo fontInfo(smallerFont);
+    if (fontInfo.pixelSize() < 10) {
+        smallerFont.setPixelSize(10);
+    }
 
     mainToolBar->setIconSize(QSize(32,32));
     // mainToolBar->addAction(backAct);

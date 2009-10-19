@@ -14,7 +14,11 @@ PrettyItemDelegate::PrettyItemDelegate( QObject* parent ) : QStyledItemDelegate(
     smallerFont.setPointSize(smallerFont.pointSize()*.85);
     smallerBoldFont.setBold(true);
     smallerBoldFont.setPointSize(smallerBoldFont.pointSize()*.85);
-
+    QFontInfo fontInfo(smallerFont);
+    if (fontInfo.pixelSize() < 10) {
+        smallerFont.setPixelSize(10);
+        smallerBoldFont.setPixelSize(10);
+    }
     createPlayIcon();
 }
 
