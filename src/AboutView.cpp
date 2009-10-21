@@ -33,6 +33,9 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                    + tr("Icon designed by %1.").arg("Sebastian Kraft")
                    + "<br>" + tr("Compact mode contributed by %1.").arg("Stefan Brück")
                    + "<br>" + tr("HTTP proxy support contributed by %1.").arg("Kiwamu Okabe")
+#ifdef Q_WS_WIN
+                   + "<br>" +  tr("Windows version built by %1").arg("Marco Di Antonio")
+#endif
                    + "</p>"
 
                    "<p>" + tr("Translated by %1").arg("Nikita Lyalin (ru_RU), "
@@ -71,15 +74,12 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
 }
 
 void AboutView::paintEvent(QPaintEvent * /*event*/) {
-
-    QPainter painter(this);
-
 #ifdef Q_WS_MAC
+    QPainter painter(this);
     QLinearGradient linearGrad(0, 0, 0, height());
     QPalette palette;
     linearGrad.setColorAt(0, palette.color(QPalette::Light));
     linearGrad.setColorAt(1, palette.color(QPalette::Midlight));
     painter.fillRect(0, 0, width(), height(), QBrush(linearGrad));
 #endif
-
 }
