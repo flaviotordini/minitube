@@ -1,6 +1,9 @@
+0.8
+- Latvian translation by Inga Muste
+
 0.7 - October 12, 2009
 - Fixed "embedding disabled by request" message. All videos now play.
-- Slighly faster playlist painting
+- Slightly faster playlist painting
 - Fixed overflowing text in the playlist
 - Fixed view crossfades on the Mac
 - Fixed FreeDesktop icons on Linux
