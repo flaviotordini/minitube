@@ -5,7 +5,7 @@
 To compile Minitube you need Qt >= 4.5 installed.
 
 On a Debian or Ubuntu system just type:
-    sudo apt-get install build-essential qt4-dev-tools
+    sudo apt-get install build-essential qt4-dev-tools libphonon-dev
 
 Windows and Mac users can get the Qt libraries from:
 http://qt.nokia.com/downloads
@@ -27,10 +27,8 @@ Just type:
 ## The visual way
 
 There is also a visual way to build and run Qt apps.
-Download the Qt SDK from:
-http://qt.nokia.com/downloads
-And then open `minitube.pro` with Qt Creator.
-
+Download the Qt SDK from: http://qt.nokia.com/downloads
+Open `minitube.pro` with Qt Creator and use the Run (big green "play" icon) command.
 
 ## Legal Stuff
 
