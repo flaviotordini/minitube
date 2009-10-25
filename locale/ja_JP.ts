@@ -56,6 +56,14 @@
         <source>What you always wanted to know about %1 and never dared to ask</source>
         <translation>%1について知りたいことがあったら、思いきって連絡をください</translation>
     </message>
+    <message>
+        <source>HTTP proxy support contributed by %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Windows version built by %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ClearButton</name>
@@ -214,7 +222,7 @@
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation>アプリケーション(&amp;A)</translation>
+        <translation type="obsolete">アプリケーション(&amp;A)</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -355,24 +363,8 @@
         <translation>設定</translation>
     </message>
     <message>
-        <source>&amp;Video options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use high quality video when available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Saved recent keywords</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Close</source>
-        <translation type="unfinished">閉じる(&amp;C)</translation>
+        <translation type="obsolete">閉じる(&amp;C)</translation>
     </message>
 </context>
 <context>

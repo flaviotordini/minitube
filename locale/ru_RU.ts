@@ -56,6 +56,14 @@
         <source>Compact mode contributed by %1.</source>
         <translation>Компактный режим предоставлен %1.</translation>
     </message>
+    <message>
+        <source>HTTP proxy support contributed by %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Windows version built by %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ClearButton</name>
@@ -242,7 +250,7 @@
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation>Пр&amp;иложение</translation>
+        <translation type="obsolete">Пр&amp;иложение</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -396,23 +404,23 @@
     </message>
     <message>
         <source>&amp;Video options</source>
-        <translation>&amp;Параметры видео</translation>
+        <translation type="obsolete">&amp;Параметры видео</translation>
     </message>
     <message>
         <source>Use high quality video when available</source>
-        <translation>Использовать по возможности видео высокого качества</translation>
+        <translation type="obsolete">Использовать по возможности видео высокого качества</translation>
     </message>
     <message>
         <source>&amp;Saved recent keywords</source>
-        <translation>&amp;Сохранённые последние запросы</translation>
+        <translation type="obsolete">&amp;Сохранённые последние запросы</translation>
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation>&amp;Очистить последние запросы</translation>
+        <translation type="obsolete">&amp;Очистить последние запросы</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Закрыть</translation>
+        <translation type="obsolete">&amp;Закрыть</translation>
     </message>
 </context>
 <context>

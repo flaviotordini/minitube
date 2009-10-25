@@ -56,6 +56,14 @@
         <source>What you always wanted to know about %1 and never dared to ask</source>
         <translation>To co zawsze chciałeś wiedzieć o %1 ale bałeś się zapytać</translation>
     </message>
+    <message>
+        <source>HTTP proxy support contributed by %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Windows version built by %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ClearButton</name>
@@ -214,7 +222,7 @@
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation>Program</translation>
+        <translation type="obsolete">Program</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -360,23 +368,23 @@
     </message>
     <message>
         <source>&amp;Video options</source>
-        <translation>Opcje &amp;obrazu</translation>
+        <translation type="obsolete">Opcje &amp;obrazu</translation>
     </message>
     <message>
         <source>Use high quality video when available</source>
-        <translation>Użyj wysokiej jakości wideo jeśli jest to możliwe</translation>
+        <translation type="obsolete">Użyj wysokiej jakości wideo jeśli jest to możliwe</translation>
     </message>
     <message>
         <source>&amp;Saved recent keywords</source>
-        <translation>&amp;Zapisz ostatnie słowa szukane</translation>
+        <translation type="obsolete">&amp;Zapisz ostatnie słowa szukane</translation>
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation>&amp;Usuń ostatnie słowa szukane</translation>
+        <translation type="obsolete">&amp;Usuń ostatnie słowa szukane</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Zamknij</translation>
+        <translation type="obsolete">&amp;Zamknij</translation>
     </message>
 </context>
 <context>

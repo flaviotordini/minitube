@@ -56,6 +56,14 @@
         <source>Compact mode contributed by %1.</source>
         <translation>Розробка компактного режиму %1.</translation>
     </message>
+    <message>
+        <source>HTTP proxy support contributed by %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Windows version built by %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ClearButton</name>
@@ -98,7 +106,7 @@
     </message>
     <message>
         <source>Alt+Left</source>
-        <translation>Alt+Вліво</translation>
+        <translation type="obsolete">Alt+Вліво</translation>
     </message>
     <message>
         <source>Go to the previous view</source>
@@ -114,7 +122,7 @@
     </message>
     <message>
         <source>Esc</source>
-        <translation>Esc</translation>
+        <translation type="obsolete">Esc</translation>
     </message>
     <message>
         <source>S&amp;kip</source>
@@ -126,7 +134,7 @@
     </message>
     <message>
         <source>Ctrl+Right</source>
-        <translation>Ctrl+Вправо</translation>
+        <translation type="obsolete">Ctrl+Вправо</translation>
     </message>
     <message>
         <source>&amp;Pause</source>
@@ -138,7 +146,7 @@
     </message>
     <message>
         <source>Space</source>
-        <translation>Клавіша пробілу</translation>
+        <translation type="obsolete">Клавіша пробілу</translation>
     </message>
     <message>
         <source>&amp;Full Screen</source>
@@ -150,7 +158,7 @@
     </message>
     <message>
         <source>Alt+Return</source>
-        <translation>Alt+Enter</translation>
+        <translation type="obsolete">Alt+Enter</translation>
     </message>
     <message>
         <source>&amp;YouTube</source>
@@ -162,7 +170,7 @@
     </message>
     <message>
         <source>Ctrl+Y</source>
-        <translation>Ctrl+Y</translation>
+        <translation type="obsolete">Ctrl+Y</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
@@ -182,7 +190,7 @@
     </message>
     <message>
         <source>Ctrl+Up</source>
-        <translation>Ctrl+Вгору</translation>
+        <translation type="obsolete">Ctrl+Вгору</translation>
     </message>
     <message>
         <source>Move &amp;Down</source>
@@ -194,7 +202,7 @@
     </message>
     <message>
         <source>Ctrl+Down</source>
-        <translation>Ctrl+Вниз</translation>
+        <translation type="obsolete">Ctrl+Вниз</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
@@ -214,7 +222,7 @@
     </message>
     <message>
         <source>Minitube on the Web</source>
-        <translation>Minitube в мережі</translation>
+        <translation type="obsolete">Minitube в мережі</translation>
     </message>
     <message>
         <source>%1 on the Web</source>
@@ -238,11 +246,11 @@
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation>Пош&amp;ук</translation>
+        <translation type="obsolete">Пош&amp;ук</translation>
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation>&amp;Програма</translation>
+        <translation type="obsolete">&amp;Програма</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -396,23 +404,23 @@
     </message>
     <message>
         <source>&amp;Video options</source>
-        <translation>Відео &amp;можливості</translation>
+        <translation type="obsolete">Відео &amp;можливості</translation>
     </message>
     <message>
         <source>Use high quality video when available</source>
-        <translation>Відтворювати відео високої якості при наявності</translation>
+        <translation type="obsolete">Відтворювати відео високої якості при наявності</translation>
     </message>
     <message>
         <source>&amp;Saved recent keywords</source>
-        <translation>&amp;Збережені недавні терміни пошуку</translation>
+        <translation type="obsolete">&amp;Збережені недавні терміни пошуку</translation>
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation>Очистити недавн&amp;і терміни пошуку</translation>
+        <translation type="obsolete">Очистити недавн&amp;і терміни пошуку</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>За&amp;крити</translation>
+        <translation type="obsolete">За&amp;крити</translation>
     </message>
 </context>
 <context>

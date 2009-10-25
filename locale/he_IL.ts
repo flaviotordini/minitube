@@ -64,6 +64,14 @@
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>HTTP proxy support contributed by %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Windows version built by %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ClearButton</name>
@@ -222,7 +230,7 @@
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation>&amp;יישום</translation>
+        <translation type="obsolete">&amp;יישום</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -369,26 +377,6 @@
     <message>
         <source>Preferences</source>
         <translation>העדפות</translation>
-    </message>
-    <message>
-        <source>&amp;Video options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use high quality video when available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Saved recent keywords</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -56,6 +56,14 @@
         <source>What you always wanted to know about %1 and never dared to ask</source>
         <translation>Quello che hai sempre voluto sapere su %1 e non hai mai osato chiedere</translation>
     </message>
+    <message>
+        <source>HTTP proxy support contributed by %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Windows version built by %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ClearButton</name>
@@ -234,7 +242,7 @@
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation>&amp;Applicazione</translation>
+        <translation type="obsolete">&amp;Applicazione</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -364,23 +372,15 @@
     </message>
     <message>
         <source>&amp;Video options</source>
-        <translation>Opzioni &amp;video</translation>
+        <translation type="obsolete">Opzioni &amp;video</translation>
     </message>
     <message>
         <source>Use high quality video when available</source>
-        <translation>Usa video ad alta definizione se disponibile</translation>
-    </message>
-    <message>
-        <source>&amp;Saved recent keywords</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Usa video ad alta definizione se disponibile</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Chiudi</translation>
+        <translation type="obsolete">&amp;Chiudi</translation>
     </message>
 </context>
 <context>

@@ -56,6 +56,14 @@
         <source>Compact mode contributed by %1.</source>
         <translation>Modo compacto contribuído por %1.</translation>
     </message>
+    <message>
+        <source>HTTP proxy support contributed by %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Windows version built by %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ClearButton</name>
@@ -242,7 +250,7 @@
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation>&amp;Aplicação</translation>
+        <translation type="obsolete">&amp;Aplicação</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -396,23 +404,23 @@
     </message>
     <message>
         <source>&amp;Video options</source>
-        <translation>Opções de &amp;vídeo</translation>
+        <translation type="obsolete">Opções de &amp;vídeo</translation>
     </message>
     <message>
         <source>Use high quality video when available</source>
-        <translation>Utilizar vídeo de alta qualidade quando estiver disponível</translation>
+        <translation type="obsolete">Utilizar vídeo de alta qualidade quando estiver disponível</translation>
     </message>
     <message>
         <source>&amp;Saved recent keywords</source>
-        <translation>Palavras-chave &amp;salvas recentemente</translation>
+        <translation type="obsolete">Palavras-chave &amp;salvas recentemente</translation>
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation>Palavras-chave &amp;limpas recentemente</translation>
+        <translation type="obsolete">Palavras-chave &amp;limpas recentemente</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Fechar</translation>
+        <translation type="obsolete">&amp;Fechar</translation>
     </message>
 </context>
 <context>
