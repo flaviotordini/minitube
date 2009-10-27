@@ -220,10 +220,8 @@ void MainWindow::createActions() {
         // make the actions work when video is fullscreen
         action->setShortcutContext(Qt::ApplicationShortcut);
 
-#ifdef Q_WS_MAC
-        // OSX does not use icons in menus
+        // no icons in menus
         action->setIconVisibleInMenu(false);
-#endif
 
     }
 
@@ -269,9 +267,8 @@ void MainWindow::createMenus() {
 
 void MainWindow::createToolBars() {
 
-    setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-
     mainToolBar = new QToolBar(this);
+    mainToolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     mainToolBar->setFloatable(false);
     mainToolBar->setMovable(false);
 
