@@ -67,6 +67,10 @@ namespace The {
             QString http_proxy = QString(http_proxy_env);
             http_proxy.remove(QRegExp("^http://"));
 
+            // Remove trailing slash, if any
+            // Fix by Eduardo Suarez-Santana
+            http_proxy.remove(QRegExp("/$"));
+
             // parse username and password
             if (http_proxy.contains(QChar('@'))) {
                 QStringList http_proxy_list = http_proxy.split(QChar('@'));
@@ -141,18 +145,13 @@ namespace The {
 
     static NetworkAccess *g_http = 0;
     NetworkAccess* http() {
-        if (!g_http)
+        if (!g_http) {
+            // qDebug() << "Creating NetworkAccess";
             g_http = new NetworkAccess();
+        }
         return g_http;
     }
 
 }
 
 #endif // GLOBAL_H
-
-/*
- * Local Variables:
- * c-basic-offset: 4
- * indent-tabs-mode: nil
- * End:
- */
