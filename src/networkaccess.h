@@ -16,7 +16,6 @@ public:
 
 public slots:
     void finished();
-    void metaDataChanged();
     void requestError(QNetworkReply::NetworkError);
 
 signals:
@@ -36,8 +35,9 @@ class NetworkAccess : public QObject {
 
 public:
     NetworkAccess( QObject* parent=0);
-    QNetworkReply* simpleGet(QUrl url);
+    QNetworkReply* simpleGet(QUrl url, int operation = QNetworkAccessManager::GetOperation);
     NetworkReply* get(QUrl url);
+    NetworkReply* head(QUrl url);
     QNetworkReply* syncGet(QUrl url);
     QByteArray syncGetBytes(QUrl url);
     QString syncGetString(QUrl url);

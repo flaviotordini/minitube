@@ -23,12 +23,6 @@ public:
     const QUrl webpage() const { return m_webpage; }
     void setWebpage( QUrl webpage ) { m_webpage = webpage; }
 
-    void loadStreamUrl() {
-        if (m_streamUrl.isEmpty())
-            this->scrapeStreamUrl();
-        else emit gotStreamUrl(m_streamUrl);
-    }
-
     QList<QUrl> thumbnailUrls() const { return m_thumbnailUrls; }
     void addThumbnailUrl(QUrl url) {
         m_thumbnailUrls << url;
@@ -46,6 +40,10 @@ public:
     const QDateTime published() const { return m_published; }
     void setPublished( QDateTime published ) { m_published = published; }
 
+    bool isHd() const { return m_hd; }
+
+    void loadStreamUrl();
+
 public slots:
     void setThumbnail(QByteArray bytes);
 
@@ -58,9 +56,13 @@ private slots:
     void gotVideoInfo(QByteArray);
     void errorVideoInfo(QNetworkReply*);
     void scrapWebPage(QByteArray);
+    void gotHdHeaders(QNetworkReply*);
 
 private:
     void scrapeStreamUrl();
+    void findHdVideo(QString videoToken);
+    void standardVideoUrl(QString videoToken);
+    void hdVideoUrl(QString videoToken);
 
     QString m_title;
     QString m_description;
@@ -78,6 +80,9 @@ private:
     // The YouTube video id
     // This is needed by the gotVideoInfo callback
     QString videoId;
+
+    QString videoToken;
+    int m_hd;
 };
 
 // This is required in order to use QPointer<Video> as a QVariant

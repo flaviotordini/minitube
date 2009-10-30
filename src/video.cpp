@@ -6,10 +6,9 @@ namespace The {
     NetworkAccess* http();
 }
 
-Video::Video() : m_thumbnailUrls(QList<QUrl>()) {
-    m_duration = 0;
-    m_viewCount = -1;
-}
+Video::Video() : m_duration(0),
+m_viewCount(-1),
+m_hd(false) { }
 
 void Video::preloadThumbnail() {
     if (m_thumbnailUrls.isEmpty()) return;
@@ -24,6 +23,12 @@ void Video::setThumbnail(QByteArray bytes) {
 
 const QImage Video::thumbnail() const {
     return m_thumbnail;
+}
+
+void Video::loadStreamUrl() {
+    // if (m_streamUrl.isEmpty())
+        this->scrapeStreamUrl();
+    // else emit gotStreamUrl(m_streamUrl);
 }
 
 void Video::scrapeStreamUrl() {
@@ -102,13 +107,31 @@ void  Video::gotVideoInfo(QByteArray data) {
     videoToken = videoToken.replace("%3D", "=");
     // qDebug() << "token" << videoToken;
 
+    QSettings settings;
+    if (settings.value("hd").toBool())
+        findHdVideo(videoToken);
+    else
+        standardVideoUrl(videoToken);
+
+}
+
+void Video::standardVideoUrl(QString videoToken) {
     QUrl videoUrl = QUrl(QString("http://www.youtube.com/get_video?video_id=")
                          .append(videoId)
                          .append("&t=").append(videoToken)
                          .append("&eurl=&el=embedded&ps=default&fmt=18"));
-
     m_streamUrl = videoUrl;
+    m_hd = false;
+    emit gotStreamUrl(videoUrl);
+}
 
+void Video::hdVideoUrl(QString videoToken) {
+    QUrl videoUrl = QUrl(QString("http://www.youtube.com/get_video?video_id=")
+                         .append(videoId)
+                         .append("&t=").append(videoToken)
+                         .append("&eurl=&el=embedded&ps=default&fmt=22"));
+    m_streamUrl = videoUrl;
+    m_hd = true;
     emit gotStreamUrl(videoUrl);
 }
 
@@ -131,15 +154,40 @@ void Video::scrapWebPage(QByteArray data) {
     QString videoToken = re.cap(1);
     // FIXME proper decode
     videoToken = videoToken.replace("%3D", "=");
-    qDebug() << "token" << videoToken;
+    // qDebug() << "token" << videoToken;
 
+    QSettings settings;
+    if (settings.value("hd").toBool())
+        findHdVideo(videoToken);
+    else
+        standardVideoUrl(videoToken);
+
+}
+
+void Video::findHdVideo(QString videoToken) {
+
+    // we'll need this in gotHeaders()
+    this->videoToken = videoToken;
+
+    // try HD: fmt=22
     QUrl videoUrl = QUrl(QString("http://www.youtube.com/get_video?video_id=")
                          .append(videoId)
                          .append("&t=").append(videoToken)
-                         .append("&eurl=&el=detailpage&ps=default&fmt=18"));
+                         .append("&eurl=&el=embedded&ps=default&fmt=22"));
 
-    m_streamUrl = videoUrl;
+    QObject *reply = The::http()->head(videoUrl);
+    connect(reply, SIGNAL(finished(QNetworkReply*)), SLOT(gotHdHeaders(QNetworkReply*)));
+    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
 
-    emit gotStreamUrl(videoUrl);
+    // see you in gotHeaders()
+}
 
+void Video::gotHdHeaders(QNetworkReply* reply) {
+    int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    // qDebug() << "gotHeaders" << statusCode;
+    if (statusCode == 200) {
+        hdVideoUrl(videoToken);
+    } else {
+        standardVideoUrl(videoToken);
+    }
 }

@@ -24,6 +24,9 @@ public:
     MainWindow();
     ~MainWindow();
 
+public slots:
+    void hdIndicator(bool isHd);
+
 protected:
     void closeEvent(QCloseEvent *);
 
@@ -51,6 +54,7 @@ private slots:
     void searchFocus();
     void tick(qint64 time);
     void totalTimeChanged(qint64 time);
+    void saveHdSetting(bool enabled);
 
     // volume shortcuts
     void volumeUp();
@@ -80,6 +84,8 @@ private:
     void readSettings();
     void writeSettings();
     void showWidget(QWidget*);
+    QPixmap createHDPixmap(bool enabled);
+    QIcon createHDIcon();
 
     // view mechanism
     QPointer<FaderWidget> faderWidget;

@@ -247,6 +247,7 @@ void MediaView::activeRowChanged(int row) {
     connect(video, SIGNAL(gotStreamUrl(QUrl)), SLOT(gotStreamUrl(QUrl)));
     // TODO handle signal in a proper slot and impl item error status
     connect(video, SIGNAL(errorStreamUrl(QString)), SLOT(handleError(QString)));
+
     video->loadStreamUrl();
 
     // reset the timer flag
@@ -276,6 +277,16 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
         QModelIndex index = listModel->index(row, 0, QModelIndex());
         listView->scrollTo(index, QAbstractItemView::EnsureVisible);
     }
+
+    // HD indicator
+
+    // get the Video that sent the signal
+    Video *video = static_cast<Video *>(sender());
+    if (!video) {
+        qDebug() << "Cannot get sender";
+        return;
+    }
+    bool ret = QMetaObject::invokeMethod(qApp->topLevelWidgets().first(), "hdIndicator", Qt::QueuedConnection, Q_ARG(bool, video->isHd()));
 
 }
 

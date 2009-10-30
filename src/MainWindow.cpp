@@ -201,6 +201,15 @@ void MainWindow::createActions() {
     connect(volumeMuteAct, SIGNAL(triggered()), this, SLOT(volumeMute()));
     addAction(volumeMuteAct);
 
+    QAction *hdAct = new QAction(this);
+    hdAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_H));
+    hdAct->setIcon(createHDIcon());
+    hdAct->setCheckable(true);
+    actions->insert("hd", hdAct);
+    QSettings settings;
+    connect(hdAct, SIGNAL(toggled(bool)), this, SLOT(saveHdSetting(bool)));
+    addAction(hdAct);
+
     // common action properties
     foreach (QAction *action, actions->values()) {
 
@@ -211,7 +220,11 @@ void MainWindow::createActions() {
         // never autorepeat.
         // unexperienced users tend to keep keys pressed for a "long" time
         action->setAutoRepeat(false);
-        action->setToolTip(action->statusTip());
+
+        // set to something more meaningful then the toolbar text
+        // HELP! how to remove tooltips altogether?!
+        if (!action->statusTip().isEmpty())
+            action->setToolTip(action->statusTip());
 
         // show keyboard shortcuts in the status bar
         if (!action->shortcut().isEmpty())
@@ -322,7 +335,16 @@ void MainWindow::createStatusBar() {
     statusBar()->addPermanentWidget(totalTime);
 
     // remove ugly borders on OSX
-    statusBar()->setStyleSheet("::item{border:0 solid}");
+    // and remove some excessive padding
+    statusBar()->setStyleSheet("::item{border:0 solid} QStatusBar, QToolBar {padding:0;margin:0} QToolButton {padding:1px}");
+
+    QToolBar *toolBar = new QToolBar(this);
+    int iconHeight = 24; // statusBar()->height();
+    int iconWidth = 36; // iconHeight * 3 / 2;
+    toolBar->setIconSize(QSize(iconWidth, iconHeight));
+    toolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
+    toolBar->addAction(The::globalActions()->value("hd"));
+    statusBar()->addPermanentWidget(toolBar);
 
     statusBar()->show();
 }
@@ -330,6 +352,7 @@ void MainWindow::createStatusBar() {
 void MainWindow::readSettings() {
     QSettings settings;
     restoreGeometry(settings.value("geometry").toByteArray());
+    The::globalActions()->value("hd")->setChecked(settings.value("hd").toBool());
 }
 
 void MainWindow::writeSettings() {
@@ -767,3 +790,76 @@ void MainWindow::replyMetaDataChanged() {
 }
 
 */
+
+
+QPixmap MainWindow::createHDPixmap(bool enabled) {
+    QPixmap pixmap = QPixmap(24,24);
+    pixmap.fill(Qt::transparent);
+    QPainter painter(&pixmap);
+    painter.setRenderHints(QPainter::Antialiasing, true);
+
+    QRect rect(0, 3, 24, 18);
+
+    QPen pen;
+    pen.setColor(Qt::black);
+    painter.setPen(pen);
+
+    if (enabled) {
+        QPalette palette;
+        painter.setBrush(palette.highlight());
+    } else {
+        QLinearGradient gradient(QPointF(0, 0), QPointF(0, rect.height() / 2));
+        gradient.setColorAt(0, QColor(0x6d, 0x6d, 0x6d));
+        gradient.setColorAt(1, QColor(0x25, 0x25, 0x25));
+        painter.setBrush(QBrush(gradient));
+    }
+    painter.drawRoundedRect(rect, 5, 5);
+
+    if (enabled) {
+        pen.setColor(Qt::white);
+    } else {
+        QPalette palette;
+        pen.setColor(palette.highlightedText().color());
+    }
+    painter.setPen(pen);
+
+    QFont font;
+    font.setPixelSize(12);
+    font.setBold(true);
+    painter.setFont(font);
+    painter.drawText(rect, Qt::AlignCenter, "HD");
+
+    return pixmap;
+}
+
+static QIcon hdOnIcon;
+static QIcon hdOffIcon;
+
+QIcon MainWindow::createHDIcon() {
+    // QIcon icon;
+    hdOffIcon.addPixmap(createHDPixmap(false));
+    hdOnIcon.addPixmap(createHDPixmap(true));
+    return hdOffIcon;
+}
+
+void MainWindow::saveHdSetting(bool enabled) {
+    QSettings settings;
+    settings.setValue("hd", enabled);
+    QAction *hdAct = The::globalActions()->value("hd");
+    if (enabled) {
+        hdAct->setStatusTip(tr("High Definition video is enabled") + " (" +  hdAct->shortcut().toString(QKeySequence::NativeText) + ")");
+    } else {
+        hdAct->setStatusTip(tr("High Definition video is not enabled") + " (" +  hdAct->shortcut().toString(QKeySequence::NativeText) + ")");
+    }
+}
+
+void MainWindow::hdIndicator(bool isHd) {
+    QAction *hdAct = The::globalActions()->value("hd");
+    if (isHd) {
+        hdAct->setIcon(hdOnIcon);
+        hdAct->setToolTip(tr("The current video is in High Definition"));
+    } else {
+        hdAct->setIcon(hdOffIcon);
+        hdAct->setToolTip(tr("The current video is not in High Definition"));
+    }
+}
