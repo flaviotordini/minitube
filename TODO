@@ -7,7 +7,7 @@
 
 - Video download
     Playlist items should have a download icon that appears on mouse hover.
-    Once the icon is clicked a mini-progressbar appears and the the download icon remains visible
+    Once the icon is clicked a mini-progressbar appears and the download icon remains visible
     even on "mouseout", maybe with a different color.
     Videos should be downloaded in HD format, if available.
     Videos should be downloaded directly on the Desktop without asking for a location.
@@ -27,11 +27,11 @@
 - Windows build
     Stefan Brueck has compiled on Windows but there are problems with Phonon
 
-- HD streaming (requires settings)
 - Subtitles, see http://google2srt.sourceforge.net/
 
 
 ## Features
+- Safe search levels (in the status bar beside HD)
 - Show buffering progress (when Phonon backends will work)
 - Clear recent keywords
 - Mark playlist items that have errors
