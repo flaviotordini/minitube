@@ -60,12 +60,12 @@
         <translation>Přeložili: %1</translation>
     </message>
     <message>
-        <location filename="../src/AboutView.cpp" line="53"/>
+        <location filename="../src/AboutView.cpp" line="55"/>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
         <translation>Vydáno pod &lt;a href=&apos;%1&apos;&gt;licencí GNU General Public License&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/AboutView.cpp" line="64"/>
+        <location filename="../src/AboutView.cpp" line="66"/>
         <source>&amp;Close</source>
         <translation>&amp;Zavřít</translation>
     </message>
@@ -114,7 +114,7 @@
 <context>
     <name>LoadingWidget</name>
     <message>
-        <location filename="../src/loadingwidget.cpp" line="64"/>
+        <location filename="../src/loadingwidget.cpp" line="65"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
@@ -153,19 +153,19 @@
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="91"/>
-        <location filename="../src/MainWindow.cpp" line="490"/>
+        <location filename="../src/MainWindow.cpp" line="510"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pauza</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="92"/>
-        <location filename="../src/MainWindow.cpp" line="491"/>
+        <location filename="../src/MainWindow.cpp" line="511"/>
         <source>Pause playback</source>
         <translation>Pozastavit přehrávání</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="98"/>
-        <location filename="../src/MainWindow.cpp" line="534"/>
+        <location filename="../src/MainWindow.cpp" line="554"/>
         <source>&amp;Full Screen</source>
         <translation>&amp;Celá obrazovka</translation>
     </message>
@@ -285,77 +285,97 @@
         <translation>Ctrl+M</translation>
     </message>
     <message>
+        <location filename="../src/MainWindow.cpp" line="850"/>
+        <source>High Definition video is enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="852"/>
+        <source>High Definition video is not enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="860"/>
+        <source>The current video is in High Definition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="863"/>
+        <source>The current video is not in High Definition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>&amp;Application</source>
         <translation type="obsolete">&amp;Aplikace</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="244"/>
+        <location filename="../src/MainWindow.cpp" line="255"/>
         <source>&amp;Playlist</source>
         <translation>&amp;Playlist</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="251"/>
+        <location filename="../src/MainWindow.cpp" line="262"/>
         <source>&amp;Video</source>
         <translation>&amp;Video</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="264"/>
+        <location filename="../src/MainWindow.cpp" line="275"/>
         <source>&amp;Help</source>
         <translation>&amp;Nápověda</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="304"/>
+        <location filename="../src/MainWindow.cpp" line="314"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
         <translation>Stiskněte %1 pro zvýšení hlasitosti; %2 pro snížení</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="430"/>
-        <location filename="../src/MainWindow.cpp" line="436"/>
+        <location filename="../src/MainWindow.cpp" line="450"/>
+        <location filename="../src/MainWindow.cpp" line="456"/>
         <source>Opening %1</source>
         <translation>Otevírám %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="481"/>
+        <location filename="../src/MainWindow.cpp" line="501"/>
         <source>Fatal error: %1</source>
         <translation>Chyba: %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="483"/>
+        <location filename="../src/MainWindow.cpp" line="503"/>
         <source>Error: %1</source>
         <translation>Chyba: %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="504"/>
+        <location filename="../src/MainWindow.cpp" line="524"/>
         <source>&amp;Play</source>
         <translation>&amp;Play</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="505"/>
+        <location filename="../src/MainWindow.cpp" line="525"/>
         <source>Resume playback</source>
         <translation>Pokračovat v přehrávání</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="543"/>
+        <location filename="../src/MainWindow.cpp" line="563"/>
         <source>Exit &amp;Full Screen</source>
         <translation>Vypnout &amp;fullscreen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="641"/>
+        <location filename="../src/MainWindow.cpp" line="661"/>
         <source>Remaining time: %1</source>
         <translation>Zbývající čas: %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="678"/>
+        <location filename="../src/MainWindow.cpp" line="698"/>
         <source>Volume at %1%</source>
         <translation>Hlasitost na %1%</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="683"/>
+        <location filename="../src/MainWindow.cpp" line="703"/>
         <source>Volume is muted</source>
         <translation>Zvuk je ztlumen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="685"/>
+        <location filename="../src/MainWindow.cpp" line="705"/>
         <source>Volume is unmuted</source>
         <translation>Zvuk je zapnut</translation>
     </message>
@@ -386,7 +406,7 @@
 <context>
     <name>NetworkAccess</name>
     <message>
-        <location filename="../src/networkaccess.cpp" line="157"/>
+        <location filename="../src/networkaccess.cpp" line="188"/>
         <source>Network error: %1</source>
         <translation>Chyba připojení: %1</translation>
     </message>
@@ -471,7 +491,7 @@
 <context>
     <name>Video</name>
     <message>
-        <location filename="../src/video.cpp" line="116"/>
+        <location filename="../src/video.cpp" line="139"/>
         <source>Network error: %1 for %2</source>
         <translation>Chyba přípojení: %1 pro %2</translation>
     </message>

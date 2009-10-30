@@ -288,6 +288,22 @@
         <source>Remaining time: %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>High Definition video is enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>High Definition video is not enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The current video is in High Definition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The current video is not in High Definition</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MediaView</name>
