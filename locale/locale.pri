@@ -15,7 +15,8 @@ TRANSLATIONS += \
     cs_CZ.ts \
     uk.ts \
     he_IL.ts \
-    lat.ts
+    lat.ts \
+    hr_HR.ts
 
 isEmpty(QMAKE_LRELEASE) {
     win32:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]\lrelease.exe
