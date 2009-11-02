@@ -70,8 +70,6 @@ void PrettyItemDelegate::paintBody( QPainter* painter,
     const QRectF line(0, 0, option.rect.width(), option.rect.height());
     painter->setClipRect(line);
 
-    QPalette palette;
-
     const bool isActive = index.data( ActiveTrackRole ).toBool();
     const bool isSelected = option.state & QStyle::State_Selected;
 
@@ -165,7 +163,7 @@ void PrettyItemDelegate::paintBody( QPainter* painter,
     */
 
     // separator
-    painter->setPen(palette.color(QPalette::Midlight));
+    painter->setPen(option.palette.color(QPalette::Midlight));
     painter->drawLine(0, THUMB_HEIGHT, line.width(), THUMB_HEIGHT);
 
     painter->restore();
