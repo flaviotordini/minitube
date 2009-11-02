@@ -286,14 +286,14 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
         qDebug() << "Cannot get sender";
         return;
     }
-    bool ret = QMetaObject::invokeMethod(qApp->topLevelWidgets().first(), "hdIndicator", Qt::QueuedConnection, Q_ARG(bool, video->isHd()));
-
+    bool ret = QMetaObject::invokeMethod(qApp->topLevelWidgets().first(), "hdIndicator", Qt::DirectConnection, Q_ARG(bool, video->isHd()));
+    if (!ret) qDebug() << "hdIndicator invokeMethod failed";
 }
 
 void MediaView::itemActivated(const QModelIndex &index) {
     if (listModel->rowExists(index.row()))
         listModel->setActiveRow(index.row());
-    // the user doucleclicked on the "Search More" item
+    // the user doubleclicked on the "Search More" item
     else listModel->searchMore();
 }
 
