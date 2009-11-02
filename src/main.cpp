@@ -36,7 +36,19 @@ int main(int argc, char **argv) {
 
     MainWindow mainWin;
     mainWin.setWindowTitle(Constants::APP_NAME);
-    mainWin.setWindowIcon(QIcon(":/images/app.png"));
+
+    if (!QFile::exists(dataDir)) {
+        dataDir = qApp->applicationDirPath() + "/data";
+    }
+    const int iconSizes [] = { 16, 22, 24, 32, 48, 64, 128, 256 };
+    QIcon appIcon;
+    for (int i = 0; i < 8; i++) {
+        QString size = QString::number(iconSizes[i]);
+        QString png = dataDir + "/" + size + "x" + size + "/minitube.png";
+        // qDebug() << png;
+        appIcon.addFile(png);
+    }
+    mainWin.setWindowIcon(appIcon);
 
     mainWin.show();
 
