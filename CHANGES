@@ -1,6 +1,9 @@
-0.8
+0.8 - November xx, 2009
 - HD video support
-- Croatian translation by
+- No icons in menus on Linux (GNOME 2.28 style)
+- Select search box text on Ctrl+F
+- Handle HTTP_PROXY variable with trailing slash (Fix by Eduardo Suarez-Santana)
+- Croatian translation by Srecko Belaic
 - Latvian translation by Inga Muste
 
 0.7 - October 12, 2009
