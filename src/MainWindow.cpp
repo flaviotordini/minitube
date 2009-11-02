@@ -23,7 +23,7 @@ MainWindow::MainWindow() {
 
     // lazily initialized views
     aboutView = 0;
-    settingsView = 0;
+    // settingsView = 0;
 
     toolbarSearch = new SearchLineEdit(this);
     toolbarSearch->setFont(qApp->font());
@@ -68,7 +68,7 @@ void MainWindow::createActions() {
     connect(settingsAct, SIGNAL(triggered()), this, SLOT(showSettings()));
     */
     
-    backAct = new QAction(QIcon(":/images/go-previous.png"), tr("&Back"), this);
+    backAct = new QAction(tr("&Back"), this);
     backAct->setEnabled(false);
     backAct->setShortcut(QKeySequence(Qt::ALT + Qt::Key_Left));
     backAct->setStatusTip(tr("Go to the previous view"));
@@ -135,14 +135,14 @@ void MainWindow::createActions() {
     actions->insert("remove", removeAct);
     connect(removeAct, SIGNAL(triggered()), mediaView, SLOT(removeSelected()));
 
-    moveUpAct = new QAction(QtIconLoader::icon("go-up", QIcon(":/images/go-up.png")), tr("Move &Up"), this);
+    moveUpAct = new QAction(tr("Move &Up"), this);
     moveUpAct->setStatusTip(tr("Move up the selected videos in the playlist"));
     moveUpAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Up));
     moveUpAct->setEnabled(false);
     actions->insert("moveUp", moveUpAct);
     connect(moveUpAct, SIGNAL(triggered()), mediaView, SLOT(moveUpSelected()));
 
-    moveDownAct = new QAction(QtIconLoader::icon("go-down", QIcon(":/images/go-down.png")), tr("Move &Down"), this);
+    moveDownAct = new QAction(tr("Move &Down"), this);
     moveDownAct->setStatusTip(tr("Move down the selected videos in the playlist"));
     moveDownAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Down));
     moveDownAct->setEnabled(false);
@@ -202,7 +202,7 @@ void MainWindow::createActions() {
     addAction(volumeMuteAct);
 
     QAction *hdAct = new QAction(this);
-    hdAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_H));
+    hdAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_D));
     hdAct->setIcon(createHDIcon());
     hdAct->setCheckable(true);
     actions->insert("hd", hdAct);
@@ -336,7 +336,9 @@ void MainWindow::createStatusBar() {
 
     // remove ugly borders on OSX
     // and remove some excessive padding
-    statusBar()->setStyleSheet("::item{border:0 solid} QStatusBar, QToolBar {padding:0;margin:0} QToolButton {padding:1px}");
+    statusBar()->setStyleSheet("::item{border:0 solid} "
+                               "QStatusBar, QToolBar, QToolButton {spacing:0;padding:0;margin:0} "
+                             );
 
     QToolBar *toolBar = new QToolBar(this);
     int iconHeight = 24; // statusBar()->height();
@@ -467,13 +469,14 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     QWidget::closeEvent(event);
 }
 
+/*
 void MainWindow::showSettings() {
     if (!settingsView) {
         settingsView = new SettingsView(this);
         views->addWidget(settingsView);
     }
     showWidget(settingsView);
-}
+}*/
 
 void MainWindow::showSearch() {
     showWidget(searchView);
@@ -625,6 +628,7 @@ void MainWindow::compactView(bool enable) {
 void MainWindow::searchFocus() {
     QWidget *view = views->currentWidget();
     if (view == mediaView) {
+        toolbarSearch->selectAll();
         toolbarSearch->setFocus();
     }
 }
@@ -802,11 +806,11 @@ QPixmap MainWindow::createHDPixmap(bool enabled) {
 
     QPen pen;
     pen.setColor(Qt::black);
+    pen.setWidth(1);
     painter.setPen(pen);
 
     if (enabled) {
-        QPalette palette;
-        painter.setBrush(palette.highlight());
+        painter.setBrush(palette().highlight());
     } else {
         QLinearGradient gradient(QPointF(0, 0), QPointF(0, rect.height() / 2));
         gradient.setColorAt(0, QColor(0x6d, 0x6d, 0x6d));
@@ -816,10 +820,9 @@ QPixmap MainWindow::createHDPixmap(bool enabled) {
     painter.drawRoundedRect(rect, 5, 5);
 
     if (enabled) {
-        pen.setColor(Qt::white);
+        pen.setColor(palette().highlightedText().color());
     } else {
-        QPalette palette;
-        pen.setColor(palette.highlightedText().color());
+        pen.setColor(Qt::white);
     }
     painter.setPen(pen);
 
@@ -851,6 +854,7 @@ void MainWindow::saveHdSetting(bool enabled) {
     } else {
         hdAct->setStatusTip(tr("High Definition video is not enabled") + " (" +  hdAct->shortcut().toString(QKeySequence::NativeText) + ")");
     }
+    statusBar()->showMessage(hdAct->statusTip());
 }
 
 void MainWindow::hdIndicator(bool isHd) {

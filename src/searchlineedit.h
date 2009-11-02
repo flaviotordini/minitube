@@ -92,6 +92,7 @@ public:
     void updateGeometries();
     void enableSuggest();
     void preventSuggest();
+    void selectAll() { lineEdit()->selectAll(); };
 
 protected:
     void resizeEvent(QResizeEvent *event);

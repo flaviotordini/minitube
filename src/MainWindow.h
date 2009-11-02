@@ -40,7 +40,7 @@ protected:
 private slots:
     void fadeInWidget(QWidget *oldWidget, QWidget *newWidget);
     void goBack();
-    void showSettings();
+    // void showSettings();
     void showSearch();
     void showMedia(QString query);
     void visitSite();
@@ -95,12 +95,12 @@ private:
     // view widgets
     QWidget *searchView;
     MediaView *mediaView;
-    QWidget *settingsView;
+    // QWidget *settingsView;
     QWidget *aboutView;
 
     // actions
     QAction *addGadgetAct;
-    QAction *settingsAct;
+    // QAction *settingsAct;
     QAction *backAct;
     QAction *quitAct;
     QAction *siteAct;
