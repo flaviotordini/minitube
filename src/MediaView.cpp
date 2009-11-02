@@ -24,21 +24,21 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     mostRelevantAction = new QAction(tr("Most relevant"), this);
     QKeySequence keySequence(Qt::CTRL + Qt::Key_1);
     mostRelevantAction->setShortcut(keySequence);
-    mostRelevantAction->setStatusTip(keySequence.toString(QKeySequence::NativeText));
+    mostRelevantAction->setStatusTip(mostRelevantAction->text() + " (" + keySequence.toString(QKeySequence::NativeText) + ")");
     addAction(mostRelevantAction);
     connect(mostRelevantAction, SIGNAL(triggered()), this, SLOT(searchMostRelevant()), Qt::QueuedConnection);
     sortBar->addAction(mostRelevantAction);
     mostRecentAction = new QAction(tr("Most recent"), this);
     keySequence = QKeySequence(Qt::CTRL + Qt::Key_2);
     mostRecentAction->setShortcut(keySequence);
-    mostRecentAction->setStatusTip(keySequence.toString(QKeySequence::NativeText));
+    mostRecentAction->setStatusTip(mostRecentAction->text() + " (" + keySequence.toString(QKeySequence::NativeText) + ")");
     addAction(mostRecentAction);
     connect(mostRecentAction, SIGNAL(triggered()), this, SLOT(searchMostRecent()), Qt::QueuedConnection);
     sortBar->addAction(mostRecentAction);
     mostViewedAction = new QAction(tr("Most viewed"), this);
     keySequence = QKeySequence(Qt::CTRL + Qt::Key_3);
     mostViewedAction->setShortcut(keySequence);
-    mostViewedAction->setStatusTip(keySequence.toString(QKeySequence::NativeText));
+    mostViewedAction->setStatusTip(mostViewedAction->text() + " (" + keySequence.toString(QKeySequence::NativeText) + ")");
     addAction(mostViewedAction);
     connect(mostViewedAction, SIGNAL(triggered()), this, SLOT(searchMostViewed()), Qt::QueuedConnection);
     sortBar->addAction(mostViewedAction);
@@ -109,7 +109,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
 
     workaroundTimer = new QTimer(this);
     workaroundTimer->setSingleShot(true);
-    workaroundTimer->setInterval(1000);
+    workaroundTimer->setInterval(3000);
     connect(workaroundTimer, SIGNAL(timeout()), SLOT(timerPlay()));
 
 }
@@ -399,11 +399,13 @@ void MediaView::setPlaylistVisible(bool visible) {
 }
 
 void MediaView::timerPlay() {
-    // qDebug() << mediaObject->currentTime();
     // Workaround Phonon bug on Mac OSX
+    qDebug() << mediaObject->currentTime();
     if (mediaObject->currentTime() <= 0 && mediaObject->state() == Phonon::PlayingState) {
+        // qDebug() << "Mac playback workaround";
         mediaObject->pause();
-        mediaObject->play();
+        QTimer::singleShot(1000, mediaObject, SLOT(play()));
+        // mediaObject->play();
     }
 }
 
