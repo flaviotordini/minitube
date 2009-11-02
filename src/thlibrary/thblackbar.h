@@ -24,6 +24,7 @@ class THBlackBar : public QWidget {
     
     void mouseMoveEvent (QMouseEvent *event);
     void mousePressEvent (QMouseEvent *event);
+    void leaveEvent(QEvent *event);
     
         private:
     void drawUnselectedButton (	QPainter *painter,
