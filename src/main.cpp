@@ -46,7 +46,8 @@ int main(int argc, char **argv) {
         QString size = QString::number(iconSizes[i]);
         QString png = dataDir + "/" + size + "x" + size + "/minitube.png";
         // qDebug() << png;
-        appIcon.addFile(png);
+        appIcon.addFile(png, QSize(iconSizes[i], iconSizes[i]));
+        // appIcon.addPixmap(QPixmap(png));
     }
     mainWin.setWindowIcon(appIcon);
 
