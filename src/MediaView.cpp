@@ -239,10 +239,13 @@ void MediaView::activeRowChanged(int row) {
     Video *video = listModel->videoAt(row);
     if (!video) return;
 
+    // now that we have a new video to play
+    // stop all the timers
+    workaroundTimer->stop();
+    errorTimer->stop();
+
     // immediately show the loading widget
     videoAreaWidget->showLoading(video);
-
-    // mediaObject->pause();
 
     connect(video, SIGNAL(gotStreamUrl(QUrl)), SLOT(gotStreamUrl(QUrl)));
     // TODO handle signal in a proper slot and impl item error status
@@ -286,7 +289,7 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
         qDebug() << "Cannot get sender";
         return;
     }
-    bool ret = QMetaObject::invokeMethod(qApp->topLevelWidgets().first(), "hdIndicator", Qt::DirectConnection, Q_ARG(bool, video->isHd()));
+    bool ret = QMetaObject::invokeMethod(parent()->parent(), "hdIndicator", Qt::DirectConnection, Q_ARG(bool, video->isHd()));
     if (!ret) qDebug() << "hdIndicator invokeMethod failed";
 }
 
