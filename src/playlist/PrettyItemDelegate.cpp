@@ -89,16 +89,17 @@ void PrettyItemDelegate::paintBody( QPainter* painter,
         // play icon overlayed on the thumb
         if (isActive)
             paintPlayIcon(painter);
-    }
 
-    // time
-    QString timeString;
-    int duration = video->duration();
-    if ( duration > 3600 )
-        timeString = QTime().addSecs(duration).toString("h:mm:ss");
-    else
-        timeString = QTime().addSecs(duration).toString("m:ss");
-    drawTime(painter, timeString, line);
+        // time
+        QString timeString;
+        int duration = video->duration();
+        if ( duration > 3600 )
+            timeString = QTime().addSecs(duration).toString("h:mm:ss");
+        else
+            timeString = QTime().addSecs(duration).toString("m:ss");
+        drawTime(painter, timeString, line);
+
+    }
 
     if (isActive) painter->setFont(boldFont);
     const QFontMetricsF fm(painter->font());
@@ -164,7 +165,10 @@ void PrettyItemDelegate::paintBody( QPainter* painter,
 
     // separator
     painter->setPen(option.palette.color(QPalette::Midlight));
-    painter->drawLine(0, THUMB_HEIGHT, line.width(), THUMB_HEIGHT);
+    painter->drawLine(THUMB_WIDTH, THUMB_HEIGHT, line.width(), THUMB_HEIGHT);
+    if (!video->thumbnail().isNull())
+        painter->setPen(Qt::black);
+    painter->drawLine(0, THUMB_HEIGHT, THUMB_WIDTH, THUMB_HEIGHT);
 
     painter->restore();
 
