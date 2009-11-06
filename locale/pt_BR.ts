@@ -58,11 +58,11 @@
     </message>
     <message>
         <source>HTTP proxy support contributed by %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Suporte a HTTP proxy contribuído por %1.</translation>
     </message>
     <message>
         <source>Windows version built by %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vesão da janela construída por %1</translation>
     </message>
 </context>
 <context>
@@ -330,19 +330,19 @@
     </message>
     <message>
         <source>High Definition video is enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Vídeo de Alta Definição está habilitado</translation>
     </message>
     <message>
         <source>High Definition video is not enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Vídeo de Alta Definição não está habilitado</translation>
     </message>
     <message>
         <source>The current video is in High Definition</source>
-        <translation type="unfinished"></translation>
+        <translation>O vídeo atual está em Alta Definição</translation>
     </message>
     <message>
         <source>The current video is not in High Definition</source>
-        <translation type="unfinished"></translation>
+        <translation>O vídeo atual nõ está em Alta Definição</translation>
     </message>
 </context>
 <context>

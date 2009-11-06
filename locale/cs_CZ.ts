@@ -47,12 +47,12 @@
     <message>
         <location filename="../src/AboutView.cpp" line="35"/>
         <source>HTTP proxy support contributed by %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Autor podpory HTTP proxy: %1.</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="37"/>
         <source>Windows version built by %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzi pro Windows sestavil: %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="41"/>
@@ -287,22 +287,22 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="850"/>
         <source>High Definition video is enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>HD video je povolené</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="852"/>
         <source>High Definition video is not enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>HD video není povolené</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="860"/>
         <source>The current video is in High Definition</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuální video je v HD</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="863"/>
         <source>The current video is not in High Definition</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuální video není v HD</translation>
     </message>
     <message>
         <source>&amp;Application</source>

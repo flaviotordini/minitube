@@ -42,17 +42,17 @@
     <message>
         <location filename="../src/AboutView.cpp" line="34"/>
         <source>Compact mode contributed by %1.</source>
-        <translation>Modo compacto aportado por %1.</translation>
+        <translation type="unfinished">Modo compacto contribuido por %1.</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="35"/>
         <source>HTTP proxy support contributed by %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Soporte de proxy HTTP contribuido por %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="37"/>
         <source>Windows version built by %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Versión Windows compilada por %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="41"/>
@@ -393,27 +393,27 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="705"/>
         <source>Volume is unmuted</source>
-        <translation>Volumen</translation>
+        <translation type="unfinished">Volumen activado</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="850"/>
         <source>High Definition video is enabled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Video de alta definición activado</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="852"/>
         <source>High Definition video is not enabled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Video de alta definición no activado</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="860"/>
         <source>The current video is in High Definition</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">El video actual es de alta definición</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="863"/>
         <source>The current video is not in High Definition</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">El video actual no es de alta definición</translation>
     </message>
 </context>
 <context>

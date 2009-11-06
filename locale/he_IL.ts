@@ -58,19 +58,19 @@
     </message>
     <message>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>התוכנה שוחררה תחת תנאי &lt;a href=&apos;%1&apos;&gt;הרישיון הציבורי הכללי של GNU&lt;/a&gt;</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;סגירה</translation>
     </message>
     <message>
         <source>HTTP proxy support contributed by %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>התמיכה במתווך HHTP נתרמה על ידי %1.</translation>
     </message>
     <message>
         <source>Windows version built by %1</source>
-        <translation type="unfinished"></translation>
+        <translation>הגרסה ל־Windows נבנתה על ידי %1</translation>
     </message>
 </context>
 <context>
@@ -270,55 +270,55 @@
     </message>
     <message>
         <source>&amp;Back</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;חזרה</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">חיפוש</translation>
+        <translation>חיפוש</translation>
     </message>
     <message>
         <source>Mute volume</source>
-        <translation type="unfinished"></translation>
+        <translation>השתקת השמע</translation>
     </message>
     <message>
         <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation type="unfinished"></translation>
+        <translation>ניתן ללחוץ על %1 כדי להגביר את עצמת השמע, %2 כדי להנמיך אותה</translation>
     </message>
     <message>
         <source>Remaining time: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>הזמן הנותר: %1</translation>
     </message>
     <message>
         <source>Volume at %1%</source>
-        <translation type="unfinished"></translation>
+        <translation>עצמת השמע היא %1%</translation>
     </message>
     <message>
         <source>Volume is muted</source>
-        <translation type="unfinished"></translation>
+        <translation>השמע מושתק</translation>
     </message>
     <message>
         <source>Volume is unmuted</source>
-        <translation type="unfinished"></translation>
+        <translation>השמע אינו מושתק</translation>
     </message>
     <message>
         <source>High Definition video is enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>האפשרות לצפיה באיכות גבוהה פעילה</translation>
     </message>
     <message>
         <source>High Definition video is not enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>האפשרות לצפיה באיכות גבוהה אינה פעילה</translation>
     </message>
     <message>
         <source>The current video is in High Definition</source>
-        <translation type="unfinished"></translation>
+        <translation>סרטון הווידאו הנוכחי הינו באיכות גבוהה (HD)</translation>
     </message>
     <message>
         <source>The current video is not in High Definition</source>
-        <translation type="unfinished"></translation>
+        <translation>סרטון הווידאו הנוכחי אינו באיכות גבוהה (HD)</translation>
     </message>
 </context>
 <context>
@@ -344,7 +344,7 @@
     <name>NetworkAccess</name>
     <message>
         <source>Network error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>שגיאת רשת: %1</translation>
     </message>
 </context>
 <context>
@@ -399,7 +399,7 @@
     <name>Video</name>
     <message>
         <source>Network error: %1 for %2</source>
-        <translation type="unfinished"></translation>
+        <translation>שגיאת רשת: %1 עבור %2</translation>
     </message>
 </context>
 </TS>

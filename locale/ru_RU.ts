@@ -18,7 +18,7 @@
     </message>
     <message>
         <source>Report bugs and send in your ideas to %1</source>
-        <translation>Идеи и сообщения об ошибках следует отправлять на %1</translation>
+        <translation type="unfinished">Отзывы и сообщения об ошибках следует отправлять на %1</translation>
     </message>
     <message>
         <source>%1 is Free Software but its development takes precious time.</source>
@@ -34,7 +34,7 @@
     </message>
     <message>
         <source>Translated by %1</source>
-        <translation>Перевод выполнил %1</translation>
+        <translation type="unfinished">Перевод выполнили: %1</translation>
     </message>
     <message>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
@@ -58,11 +58,11 @@
     </message>
     <message>
         <source>HTTP proxy support contributed by %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Поддержка HTTP-прокси предоставлена %1.</translation>
     </message>
     <message>
         <source>Windows version built by %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сборку под Windows выполнил %1</translation>
     </message>
 </context>
 <context>
@@ -186,7 +186,7 @@
     </message>
     <message>
         <source>Move up the selected videos in the playlist</source>
-        <translation>Сдвинуть выбранные видеоклипы вверх в списке воспроизведения</translation>
+        <translation type="unfinished">Переместить выбранные видеоклипы вверх в списке воспроизведения</translation>
     </message>
     <message>
         <source>Ctrl+Up</source>
@@ -198,7 +198,7 @@
     </message>
     <message>
         <source>Move down the selected videos in the playlist</source>
-        <translation>Сдвинуть выбранные видеоклипы вниз в списке воспроизведения</translation>
+        <translation type="unfinished">Переместить выбранные видеоклипы вниз в списке воспроизведения</translation>
     </message>
     <message>
         <source>Ctrl+Down</source>
@@ -330,19 +330,19 @@
     </message>
     <message>
         <source>High Definition video is enabled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Показ видео в высоком разрешении включен</translation>
     </message>
     <message>
         <source>High Definition video is not enabled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Показ видео в высоком разрешении выключен</translation>
     </message>
     <message>
         <source>The current video is in High Definition</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Видео воспроизводится в высоком разрешении</translation>
     </message>
     <message>
         <source>The current video is not in High Definition</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Видео воспроизводится не в высоком разрешении</translation>
     </message>
 </context>
 <context>
