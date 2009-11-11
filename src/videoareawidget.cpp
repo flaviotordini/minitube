@@ -54,6 +54,13 @@ void VideoAreaWidget::showLoading(Video *video) {
     messageLabel->clear();
 }
 
+void VideoAreaWidget::clear() {
+    stackedLayout->setCurrentWidget(loadingWidget);
+    loadingWidget->clear();
+    messageLabel->hide();
+    messageLabel->clear();
+}
+
 void VideoAreaWidget::mouseDoubleClickEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton)
         emit doubleClicked();
@@ -65,7 +72,7 @@ void VideoAreaWidget::mousePressEvent(QMouseEvent *event) {
 }
 
 void VideoAreaWidget::dragEnterEvent(QDragEnterEvent *event) {
-    qDebug() << event->mimeData()->formats();
+    // qDebug() << event->mimeData()->formats();
     if (event->mimeData()->hasFormat("application/x-minitube-video")) {
         event->acceptProposedAction();
     }
@@ -77,10 +84,11 @@ void VideoAreaWidget::dropEvent(QDropEvent *event) {
     if(!videoMimeData ) return;
     
     QList<Video*> droppedVideos = videoMimeData->videos();
-    foreach( Video *video, droppedVideos) {
-        int row = listModel->rowForVideo(video);
-        if (row != -1)
-            listModel->setActiveRow(row);
-    }
+    if (droppedVideos.isEmpty())
+        return;
+    Video *video = droppedVideos.first();
+    int row = listModel->rowForVideo(video);
+    if (row != -1)
+        listModel->setActiveRow(row);
     event->acceptProposedAction();
 }

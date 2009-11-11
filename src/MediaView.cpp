@@ -3,6 +3,7 @@
 #include "networkaccess.h"
 #include "videowidget.h"
 #include "minisplitter.h"
+#include "flickcharm.h"
 
 namespace The {
     QMap<QString, QAction*>* globalActions();
@@ -58,6 +59,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     listView->setFrameShape( QFrame::NoFrame );
     listView->setAttribute(Qt::WA_MacShowFocusRect, false);
     listView->setMinimumSize(320,240);
+    listView->setUniformItemSizes(true);
 
     // respond to the user doubleclicking a playlist item
     connect(listView, SIGNAL(activated(const QModelIndex &)), this, SLOT(itemActivated(const QModelIndex &)));
@@ -112,6 +114,9 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     workaroundTimer->setInterval(3000);
     connect(workaroundTimer, SIGNAL(timeout()), SLOT(timerPlay()));
 
+    FlickCharm *flickCharm = new FlickCharm(this);
+    flickCharm->activateOn(listView);
+
 }
 
 MediaView::~MediaView() {
@@ -140,6 +145,10 @@ void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
 void MediaView::search(SearchParams *searchParams) {
     reallyStopped = false;
 
+    videoAreaWidget->clear();
+    workaroundTimer->stop();
+    errorTimer->stop();
+
     this->searchParams = searchParams;
 
     // start serching for videos
@@ -150,7 +159,6 @@ void MediaView::search(SearchParams *searchParams) {
 
     listView->setFocus();
 
-    loadingWidget->clear();
 }
 
 void MediaView::disappear() {
@@ -229,8 +237,16 @@ void MediaView::stop() {
     listModel->abortSearch();
     reallyStopped = true;
     mediaObject->stop();
+    videoAreaWidget->clear();
     workaroundTimer->stop();
     errorTimer->stop();
+    listView->selectionModel()->clearSelection();
+
+    // turn off HD indicator
+    bool ret = QMetaObject::invokeMethod(parent()->parent(), "hdIndicator", Qt::DirectConnection, Q_ARG(bool, false));
+    if (!ret) qDebug() << "hdIndicator invokeMethod failed";
+    QAction *hdAct = The::globalActions()->value("hd");
+    hdAct->setToolTip("");
 }
 
 void MediaView::activeRowChanged(int row) {
@@ -312,7 +328,7 @@ void MediaView::aboutToFinish() {
 }
 
 void MediaView::currentSourceChanged(const Phonon::MediaSource source) {
-    qDebug() << source.url().toString();
+    qDebug() << "Playing" << source.url().toString();
 }
 
 
@@ -403,12 +419,12 @@ void MediaView::setPlaylistVisible(bool visible) {
 
 void MediaView::timerPlay() {
     // Workaround Phonon bug on Mac OSX
-    qDebug() << mediaObject->currentTime();
+    // qDebug() << mediaObject->currentTime();
     if (mediaObject->currentTime() <= 0 && mediaObject->state() == Phonon::PlayingState) {
         // qDebug() << "Mac playback workaround";
         mediaObject->pause();
-        QTimer::singleShot(1000, mediaObject, SLOT(play()));
-        // mediaObject->play();
+        // QTimer::singleShot(1000, mediaObject, SLOT(play()));
+        mediaObject->play();
     }
 }
 

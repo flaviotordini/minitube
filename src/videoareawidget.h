@@ -17,6 +17,7 @@ public:
     void showLoading(Video* video);
     void showVideo();
     void showError(QString message);
+    void clear();
     void setListModel(ListModel *listModel) {
         this->listModel = listModel;
     }
