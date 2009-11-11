@@ -42,7 +42,8 @@ HEADERS += src/MainWindow.h \
     src/loadingwidget.h \
     src/videoareawidget.h \
     src/googlesuggest.h \
-    src/videowidget.h
+    src/videowidget.h \
+    src/flickcharm.h
 SOURCES += src/main.cpp \
     src/MainWindow.cpp \
     src/SearchView.cpp \
@@ -68,7 +69,8 @@ SOURCES += src/main.cpp \
     src/loadingwidget.cpp \
     src/videoareawidget.cpp \
     src/googlesuggest.cpp \
-    src/videowidget.cpp
+    src/videowidget.cpp \
+    src/flickcharm.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/
@@ -120,6 +122,4 @@ unix {
     icon128.path = $$DATADIR/icons/hicolor/128x128/apps
     icon128.files += data/128x128/minitube.png
 }
-win32 {
-    RC_FILE = minitube.rc
-}
+win32:RC_FILE = minitube.rc
