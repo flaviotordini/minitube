@@ -1,10 +1,10 @@
 <RCC>
-    <qresource prefix="/" >
+    <qresource prefix="/">
         <file>images/app.png</file>
-        <file>images/pause.png</file>
-        <file>images/play.png</file>
-        <file>images/skip.png</file>
-        <file>images/stop.png</file>
         <file>images/view-fullscreen.png</file>
+        <file>images/media-playback-pause.png</file>
+        <file>images/media-playback-start.png</file>
+        <file>images/media-playback-stop.png</file>
+        <file>images/media-skip-forward.png</file>
     </qresource>
 </RCC>
