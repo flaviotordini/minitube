@@ -382,7 +382,7 @@ void ListModel::move(QModelIndexList &indexes, bool up) {
 
     foreach (QModelIndex index, indexes) {
         int row = index.row();
-        qDebug() << "index row" << row;
+        // qDebug() << "index row" << row;
         Video *video = videoAt(row);
         movedVideos << video;
     }
@@ -391,7 +391,7 @@ void ListModel::move(QModelIndexList &indexes, bool up) {
     foreach (Video *video, movedVideos) {
 
         int row = rowForVideo(video);
-        qDebug() << "video row" << row;
+        // qDebug() << "video row" << row;
         removeRows(row, 1, QModelIndex());
 
         if (up) row--;
