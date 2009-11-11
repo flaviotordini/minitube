@@ -12,12 +12,15 @@ int main(int argc, char **argv) {
     app.setApplicationName(Constants::APP_NAME);
     app.setOrganizationName(Constants::ORG_NAME);
     app.setOrganizationDomain(Constants::ORG_DOMAIN);
+#ifndef Q_WS_MAC
+    app.setWheelScrollLines(1);
+#endif
 
-    QString locale = QLocale::system().name();
+    const QString locale = QLocale::system().name();
 
     // qt translations
     QTranslator qtTranslator;
-    qtTranslator.load("qt_" + QLocale::system().name(),
+    qtTranslator.load("qt_" + locale,
                       QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     app.installTranslator(&qtTranslator);
 
@@ -37,6 +40,7 @@ int main(int argc, char **argv) {
     MainWindow mainWin;
     mainWin.setWindowTitle(Constants::APP_NAME);
 
+#ifndef Q_WS_MAC
     if (!QFile::exists(dataDir)) {
         dataDir = qApp->applicationDirPath() + "/data";
     }
@@ -50,6 +54,7 @@ int main(int argc, char **argv) {
         // appIcon.addPixmap(QPixmap(png));
     }
     mainWin.setWindowIcon(appIcon);
+#endif
 
     mainWin.show();
 
