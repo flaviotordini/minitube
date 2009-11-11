@@ -168,7 +168,7 @@ void PrettyItemDelegate::paintBody( QPainter* painter,
     painter->drawLine(THUMB_WIDTH, THUMB_HEIGHT, line.width(), THUMB_HEIGHT);
     if (!video->thumbnail().isNull())
         painter->setPen(Qt::black);
-    painter->drawLine(0, THUMB_HEIGHT, THUMB_WIDTH, THUMB_HEIGHT);
+    painter->drawLine(0, THUMB_HEIGHT, THUMB_WIDTH-1, THUMB_HEIGHT);
 
     painter->restore();
 
