@@ -1,10 +1,13 @@
 0.8 - November xx, 2009
 - HD video support
+- Volume level and mute is restored accross sessions
+- Fancy flickable playlist (using FlickCharm by Ariya Hidayat)
 - No icons in menus on Linux (GNOME 2.28 style)
 - Select search box text on Ctrl+F
 - Handle HTTP_PROXY variable with trailing slash (Fix by Eduardo Suarez-Santana)
 - Croatian translation by Srecko Belaic
 - Latvian translation by Inga Muste
+- Galician and Neutral Spanish translations by Miguel Anxo Bouzada
 
 0.7 - October 12, 2009
 - Fixed "embedding disabled by request" message. All videos now play.

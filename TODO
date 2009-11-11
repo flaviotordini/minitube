@@ -25,15 +25,15 @@
     We could also accept any URL and scrape web pages searching for YouTube videos.
 
 - Windows build
-    Stefan Brueck has compiled on Windows but there are problems with Phonon
+    Stefan Brueck has compiled on Windows but there are problems with Phonon's directX backend
+    Marco di Antonio tried with the Mplayer backend, but it is very unstable
 
 - Subtitles, see http://google2srt.sourceforge.net/
 
-
-## Features
+## Minor Features
+- Clear recent keywords
 - Safe search levels (in the status bar beside HD)
 - Show buffering progress (when Phonon backends will work)
-- Clear recent keywords
 - Mark playlist items that have errors
 - Settings: number of "Recent Keywords", Phonon settings, HD or not
 - Show the toolbar when mouse hits the top of the screen in Fullscreen mode with animation
@@ -49,6 +49,6 @@
 - Mac: playback sometimes does not start (got a workaround!)
 - Mac: Phonon freezes the GUI when loading a video
 - Phonon::MediaSource does not work with QIODevices
-- Cannot seek beyond the buffered part of the video
-- Linux: Seek does not work at all. https://bugs.kde.org/show_bug.cgi?id=197927
+- Mac, Xine: Cannot seek beyond the buffered part of the video
+- Xine: Seek does not work at all. https://bugs.kde.org/show_bug.cgi?id=197927
 - Phonon does not report the buffering percent correctly. https://bugs.kde.org/show_bug.cgi?id=210336
