@@ -54,7 +54,7 @@ private slots:
     void searchFocus();
     void tick(qint64 time);
     void totalTimeChanged(qint64 time);
-    void saveHdSetting(bool enabled);
+    void hdMode(bool enabled);
 
     // volume shortcuts
     void volumeUp();
