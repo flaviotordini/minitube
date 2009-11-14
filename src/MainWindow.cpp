@@ -285,7 +285,7 @@ void MainWindow::createToolBars() {
     mainToolBar->setFloatable(false);
     mainToolBar->setMovable(false);
     // cool toolbar on the Mac
-    setUnifiedTitleAndToolBarOnMac(true);
+    // setUnifiedTitleAndToolBarOnMac(true);
     
     QFont smallerFont;
     smallerFont.setPointSize(smallerFont.pointSize()*.85);
