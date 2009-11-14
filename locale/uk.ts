@@ -58,11 +58,11 @@
     </message>
     <message>
         <source>HTTP proxy support contributed by %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Реалізація підтримки HTTP проксі %1.</translation>
     </message>
     <message>
         <source>Windows version built by %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Версія для Windows %1</translation>
     </message>
 </context>
 <context>
@@ -330,19 +330,19 @@
     </message>
     <message>
         <source>High Definition video is enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Відео високої чіткості активоване</translation>
     </message>
     <message>
         <source>High Definition video is not enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Відео високої чіткості не активоване</translation>
     </message>
     <message>
         <source>The current video is in High Definition</source>
-        <translation type="unfinished"></translation>
+        <translation>Відео в режимі високої чіткості</translation>
     </message>
     <message>
         <source>The current video is not in High Definition</source>
-        <translation type="unfinished"></translation>
+        <translation>ВІдео не в режимі високої чіткості</translation>
     </message>
 </context>
 <context>
