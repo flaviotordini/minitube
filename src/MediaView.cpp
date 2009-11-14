@@ -114,8 +114,8 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     workaroundTimer->setInterval(3000);
     connect(workaroundTimer, SIGNAL(timeout()), SLOT(timerPlay()));
 
-    FlickCharm *flickCharm = new FlickCharm(this);
-    flickCharm->activateOn(listView);
+    // FlickCharm *flickCharm = new FlickCharm(this);
+    // flickCharm->activateOn(listView);
 
 }
 
