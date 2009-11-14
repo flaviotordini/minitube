@@ -1,10 +1,11 @@
-# On some distro, Phonon headers cannot be found
 INCLUDEPATH += /usr/include/phonon
+
 CONFIG += release
 TEMPLATE = app
 
-# Saner string behaviour
+# TODO Saner string behaviour
 # DEFINES += QT_NO_CAST_FROM_ASCII QT_NO_CAST_TO_ASCII QT_STRICT_ITERATORS
+
 TARGET = minitube
 mac { 
     TARGET = Minitube
@@ -84,15 +85,17 @@ include(locale/locale.pri)
 
 # deploy
 DISTFILES += CHANGES \
-    LICENSE
+    COPYING
+
 mac { 
     CONFIG += x86 \
         ppc
     QMAKE_INFO_PLIST = Info.plist
     ICON = minitube.icns
 }
+
 unix { 
-    isEmpty(PREFIX):PREFIX = /usr/local
+    isEmpty(PREFIX):PREFIX = /usr
     BINDIR = $$PREFIX/bin
     INSTALLS += target
     target.path = $$BINDIR
@@ -105,21 +108,30 @@ unix {
         iconsvg \
         icon16 \
         icon32 \
-        icon128
+        icon48 \
+        icon64 \
+        icon128 \
+        icon256 \
+
     translations.path = $$PKGDATADIR
     translations.files += $$DESTDIR/locale
     desktop.path = $$DATADIR/applications
     desktop.files += minitube.desktop
-    
-    # iconxpm.path = $$DATADIR/pixmaps
-    # iconxpm.files += data/minitube.xpm
+
     iconsvg.path = $$DATADIR/icons/hicolor/scalable/apps
     iconsvg.files += data/minitube.svg
     icon16.path = $$DATADIR/icons/hicolor/16x16/apps
     icon16.files += data/16x16/minitube.png
     icon32.path = $$DATADIR/icons/hicolor/32x32/apps
     icon32.files += data/32x32/minitube.png
+    icon48.path = $$DATADIR/icons/hicolor/48x48/apps
+    icon48.files += data/48x48/minitube.png
+    icon64.path = $$DATADIR/icons/hicolor/64x64/apps
+    icon64.files += data/64x64/minitube.png
     icon128.path = $$DATADIR/icons/hicolor/128x128/apps
     icon128.files += data/128x128/minitube.png
+    icon256.path = $$DATADIR/icons/hicolor/256x256/apps
+    icon256.files += data/256x256/minitube.png
 }
+
 win32:RC_FILE = minitube.rc
