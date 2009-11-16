@@ -1,7 +1,7 @@
 # Minitube TODO list
 
-## Bugs
-- Item positions when moving two items down
+## Known Bugs
+- Wrong item positions when moving more than one item down or up
 
 ## Killer features
 
@@ -45,10 +45,11 @@
 - Saved playlists
 - Starred videos
 
-## Phonon bugs (Come on Qt devs, do your job!)
+## Phonon bugs (Come on Qt and KDE devs, do your job!)
 - Mac: playback sometimes does not start (got a workaround!)
 - Mac: Phonon freezes the GUI when loading a video
 - Phonon::MediaSource does not work with QIODevices
-- Mac, Xine: Cannot seek beyond the buffered part of the video
+- Mac: Cannot seek beyond the buffered part of the video
 - Xine: Seek does not work at all. https://bugs.kde.org/show_bug.cgi?id=197927
 - Phonon does not report the buffering percent correctly. https://bugs.kde.org/show_bug.cgi?id=210336
+- Linux: The Phonon volume slider mute button does not change: https://bugs.kde.org/show_bug.cgi?id=214543
