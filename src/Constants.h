@@ -4,7 +4,7 @@
 #include <QString>
 
 namespace Constants {
-    static const char *VERSION = "0.8-beta";
+    static const char *VERSION = "0.8";
     static const char *APP_NAME = "Minitube";
     static const char *ORG_NAME = "Flavio Tordini";
     static const char *ORG_DOMAIN = "flavio.tordini.org";
