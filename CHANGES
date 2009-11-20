@@ -1,3 +1,7 @@
+0.8.1 November 20, 2009
+- Fix showstopper bug: Normal quality videos won't play when HD mode is enabled
+- Turkish translation by Ali E. İmrek
+
 0.8 - November 16, 2009
 - HD video support
 - Volume level and mute is restored accross sessions
