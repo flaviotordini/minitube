@@ -60,12 +60,12 @@
         <translation>Übersetzung durch %1</translation>
     </message>
     <message>
-        <location filename="../src/AboutView.cpp" line="57"/>
+        <location filename="../src/AboutView.cpp" line="58"/>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
         <translation>Veröffentlicht unter der &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/AboutView.cpp" line="68"/>
+        <location filename="../src/AboutView.cpp" line="69"/>
         <source>&amp;Close</source>
         <translation>S&amp;chließen</translation>
     </message>

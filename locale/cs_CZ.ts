@@ -60,12 +60,12 @@
         <translation>Přeložili: %1</translation>
     </message>
     <message>
-        <location filename="../src/AboutView.cpp" line="57"/>
+        <location filename="../src/AboutView.cpp" line="58"/>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
         <translation>Vydáno pod &lt;a href=&apos;%1&apos;&gt;licencí GNU General Public License&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/AboutView.cpp" line="68"/>
+        <location filename="../src/AboutView.cpp" line="69"/>
         <source>&amp;Close</source>
         <translation>&amp;Zavřít</translation>
     </message>

@@ -42,7 +42,7 @@
     </message>
     <message>
         <source>Released under the </source>
-        <translation type="obsolete">שוחרר תחת תנאי &lt;a href=&apos;%1&apos;&gt;הרישיון הציבורי הכללי של GNU&lt;/a&gt;</translation>
+        <translation type="obsolete">שוחרר תחת תנאי</translation>
     </message>
     <message>
         <source></source>
@@ -77,7 +77,7 @@
     <name>ClearButton</name>
     <message>
         <source>Clear</source>
-        <translation>ניקוי</translation>
+        <translation>מחיקה</translation>
     </message>
 </context>
 <context>
@@ -103,7 +103,7 @@
     <name>LoadingWidget</name>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>שגיאה</translation>
     </message>
 </context>
 <context>
@@ -226,11 +226,11 @@
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="obsolete">&amp;חיפוש</translation>
+        <translation>&amp;חיפוש</translation>
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation type="obsolete">&amp;יישום</translation>
+        <translation>&amp;יישום</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
