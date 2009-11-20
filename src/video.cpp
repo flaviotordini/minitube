@@ -177,7 +177,7 @@ void Video::findHdVideo(QString videoToken) {
 
     QObject *reply = The::http()->head(videoUrl);
     connect(reply, SIGNAL(finished(QNetworkReply*)), SLOT(gotHdHeaders(QNetworkReply*)));
-    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
+    // connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
 
     // see you in gotHeaders()
 }
