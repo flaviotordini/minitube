@@ -86,6 +86,7 @@ private:
     void showWidget(QWidget*);
     QPixmap createHDPixmap(bool enabled);
     QIcon createHDIcon();
+    static QString formatTime(qint64 time);
 
     // view mechanism
     QPointer<FaderWidget> faderWidget;

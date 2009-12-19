@@ -657,15 +657,13 @@ void MainWindow::tick(qint64 time) {
         currentTime->clear();
         return;
     }
-    QTime displayTime(0, (time / 60000) % 60, (time / 1000) % 60);
-    currentTime->setText(displayTime.toString("mm:ss"));
-    
-    // remaining time tooltip
-    int remainingTimeInt = mediaObject->remainingTime();
-    QTime remainingTime(0, (remainingTimeInt / 60000) % 60, (remainingTimeInt / 1000) % 60);
-    currentTime->setStatusTip(tr("Remaining time: %1").arg(remainingTime.toString("mm:ss")));
-    
-    // qDebug() << "currentTime" << time << displayTime.toString("mm:ss");
+
+    currentTime->setText(formatTime(time));
+
+    // remaining time
+    const qint64 remainingTime = mediaObject->remainingTime();
+    currentTime->setStatusTip(tr("Remaining time: %1").arg(formatTime(remainingTime)));
+
 }
 
 void MainWindow::totalTimeChanged(qint64 time) {
@@ -673,9 +671,19 @@ void MainWindow::totalTimeChanged(qint64 time) {
         totalTime->clear();
         return;
     }
-    QTime displayTime(0, (time / 60000) % 60, (time / 1000) % 60);
-    totalTime->setText(displayTime.toString("/ mm:ss"));
-    // qDebug() << "totalTime" << time << displayTime.toString("mm:ss");
+    totalTime->setText("/ " + formatTime(time));
+}
+
+QString MainWindow::formatTime(qint64 time) {
+    QTime displayTime;
+    displayTime = displayTime.addMSecs(time);
+    QString timeString;
+    // 60 * 60 * 1000 = 3600000
+    if (time > 3600000)
+        timeString = displayTime.toString("h:mm:ss");
+    else
+        timeString = displayTime.toString("m:ss");
+    return timeString;
 }
 
 void MainWindow::volumeUp() {
