@@ -33,9 +33,6 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                    + tr("Icon designed by %1.").arg("Sebastian Kraft")
                    + "<br>" + tr("Compact mode contributed by %1.").arg("Stefan Brück")
                    + "<br>" + tr("HTTP proxy support contributed by %1.").arg("Kiwamu Okabe")
-#ifdef Q_WS_WIN
-                   + "<br>" +  tr("Windows version built by %1").arg("Marco Di Antonio")
-#endif
                    + "</p>"
 
                    "<p>" + tr("Translated by %1").arg("Nikita Lyalin (ru_RU), "
@@ -53,7 +50,8 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                                                       "Miguel Anxo Bouzada (es, gl), "
                                                       "Guillaume Betous (fr_FR), "
                                                       "Krisztián Horváth (hu_HU), "
-                                                      "Ali E. İmrek (tr_TR)"
+                                                      "Ali E. İmrek (tr_TR), "
+                                                      "Jan W. Skjoldal (nb_NO)"
                                                       ) + "</p>"
 
                    "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")
