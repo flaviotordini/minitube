@@ -50,7 +50,7 @@
 #include "googlesuggest.h"
 
 ClearButton::ClearButton(QWidget *parent)
-        : QAbstractButton(parent)
+    : QAbstractButton(parent)
 {
     setCursor(Qt::ArrowCursor);
     setToolTip(tr("Clear"));
@@ -68,7 +68,7 @@ void ClearButton::paintEvent(QPaintEvent *event)
     QColor color = palette().color(QPalette::Mid);
     painter.setBrush(isDown()
                      ? palette().color(QPalette::Dark)
-                     : palette().color(QPalette::Mid));
+                         : palette().color(QPalette::Mid));
     painter.setPen(painter.brush().color());
     int size = width();
     int offset = size / 3.5;
@@ -101,8 +101,8 @@ protected:
 };
 
 SearchButton::SearchButton(QWidget *parent)
-        : QAbstractButton(parent),
-        m_menu(0)
+    : QAbstractButton(parent),
+    m_menu(0)
 {
     setObjectName(QLatin1String("SearchButton"));
     setCursor(Qt::ArrowCursor);
@@ -247,8 +247,10 @@ QMenu *SearchLineEdit::menu() const
 
 void SearchLineEdit::returnPressed()
 {
-    completion->preventSuggest();
-    emit search(lineEdit()->text());
+    if (!lineEdit()->text().isEmpty()) {
+        completion->preventSuggest();
+        emit search(lineEdit()->text());
+    }
 }
 
 void SearchLineEdit::enableSuggest() {
@@ -257,4 +259,8 @@ void SearchLineEdit::enableSuggest() {
 
 void SearchLineEdit::preventSuggest() {
     completion->preventSuggest();
+}
+
+void SearchLineEdit::focusInEvent(QFocusEvent * /* event */) {
+    enableSuggest();
 }

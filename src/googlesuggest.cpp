@@ -90,7 +90,7 @@ bool GSuggestCompletion::eventFilter(QObject *obj, QEvent *ev) {
             break;
 
         default:
-            qDebug() << keyEvent->text();
+            // qDebug() << keyEvent->text();
             editor->setFocus();
             editor->event(ev);
             popup->hide();
@@ -144,12 +144,14 @@ void GSuggestCompletion::doneCompletion() {
 }
 
 void GSuggestCompletion::preventSuggest() {
+    // qDebug() << "preventSuggest";
     timer->stop();
     enabled = false;
     popup->hide();
 }
 
 void GSuggestCompletion::enableSuggest() {
+    // qDebug() << "enableSuggest";
     enabled = true;
 }
 

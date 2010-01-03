@@ -166,8 +166,6 @@ void SearchView::watch(QString query) {
         return;
     }
 
-    queryEdit->preventSuggest();
-
     // go!
     emit search(query);
 }
