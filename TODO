@@ -31,6 +31,7 @@
 - Subtitles, see http://google2srt.sourceforge.net/
 
 ## Minor Features
+- Restore status when a recent keyword is clicked: skipped videos, sortBar and play time
 - Clear recent keywords
 - Safe search levels (in the status bar beside HD)
 - Show buffering progress (when Phonon backends will work)
