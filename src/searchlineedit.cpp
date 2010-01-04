@@ -131,14 +131,14 @@ void SearchButton::paintEvent(QPaintEvent *event)
     QRect circle(height() / 5.5, height() / 3.5, radius, radius);
     myPath.addEllipse(circle);
 
-    myPath.arcMoveTo(circle, 300);
+    myPath.arcMoveTo(circle, 315);
     QPointF c = myPath.currentPosition();
     int diff = height() / 6;
     myPath.lineTo(qMin(width() - 2, (int)c.x() + diff), c.y() + diff);
 
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
-    painter.setPen(QPen(Qt::darkGray, 2));
+    painter.setPen(QPen(Qt::darkGray, height() / 10));
     painter.drawPath(myPath);
 
     if (m_menu) {
