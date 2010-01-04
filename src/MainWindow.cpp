@@ -149,7 +149,14 @@ void MainWindow::createActions() {
     moveDownAct->setEnabled(false);
     actions->insert("moveDown", moveDownAct);
     connect(moveDownAct, SIGNAL(triggered()), mediaView, SLOT(moveDownSelected()));
-    
+
+    clearAct = new QAction(tr("&Clear recent keywords"), this);
+    clearAct->setMenuRole(QAction::ApplicationSpecificRole);
+    clearAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Delete) << QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Backspace));
+    clearAct->setEnabled(true);
+    actions->insert("clearRecentKeywords", clearAct);
+    connect(clearAct, SIGNAL(triggered()), searchView, SLOT(clearRecentKeywords()));
+
     quitAct = new QAction(tr("&Quit"), this);
     quitAct->setMenuRole(QAction::QuitRole);
     quitAct->setShortcuts(QList<QKeySequence>() << QKeySequence(tr("Ctrl+Q")) << QKeySequence(Qt::CTRL + Qt::Key_W));
@@ -244,13 +251,13 @@ void MainWindow::createMenus() {
     
     QMap<QString, QMenu*> *menus = The::globalMenus();
     
-    /*
     fileMenu = menuBar()->addMenu(tr("&Application"));
     // menus->insert("file", fileMenu);
     // fileMenu->addAction(settingsAct);
+    fileMenu->addAction(clearAct);
     fileMenu->addSeparator();
     fileMenu->addAction(quitAct);
-    */
+
     
     playlistMenu = menuBar()->addMenu(tr("&Playlist"));
     menus->insert("playlist", playlistMenu);
@@ -502,7 +509,7 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
     
     switch (newState) {
         
-         case Phonon::ErrorState:
+    case Phonon::ErrorState:
         if (mediaObject->errorType() == Phonon::FatalError) {
             statusBar()->showMessage(tr("Fatal error: %1").arg(mediaObject->errorString()));
         } else {

@@ -1,6 +1,10 @@
 #include "SearchView.h"
 #include "Constants.h"
 
+namespace The {
+    QMap<QString, QAction*>* globalActions();
+}
+
 static const QString recentKeywordsKey = "recentKeywords";
 static const int PADDING = 30;
 
@@ -134,6 +138,8 @@ void SearchView::updateRecentKeywords() {
     QSettings settings;
     QStringList keywords = settings.value(recentKeywordsKey).toStringList();
     recentKeywordsLabel->setVisible(!keywords.isEmpty());
+    The::globalActions()->value("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
+
     foreach (QString keyword, keywords) {
         QLabel *itemLabel = new QLabel("<a href=\"" + keyword
                                        + "\" style=\"color:palette(text); text-decoration:none\">"
@@ -147,6 +153,12 @@ void SearchView::updateRecentKeywords() {
         recentKeywordsLayout->addWidget(itemLabel);
     }
 
+}
+
+void SearchView::clearRecentKeywords() {
+    QSettings settings;
+    settings.remove(recentKeywordsKey);
+    updateRecentKeywords();
 }
 
 void SearchView::watch() {

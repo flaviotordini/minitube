@@ -126,6 +126,7 @@ private:
     QAction *moveDownAct;
     QAction *moveUpAct;
     QAction *fetchMoreAct;
+    QAction *clearAct;
 
     // menus
     QMenu *fileMenu;

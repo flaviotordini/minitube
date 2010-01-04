@@ -42,6 +42,7 @@ signals:
 private slots:
     void watch();
     void textChanged(const QString &text);
+    void clearRecentKeywords();
 
 private:
     void updateRecentKeywords();
