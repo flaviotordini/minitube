@@ -97,7 +97,7 @@ void VideoAreaWidget::dropEvent(QDropEvent *event) {
 void VideoAreaWidget::mouseMoveEvent(QMouseEvent *event) {
     // qDebug() << "VideoAreaWidget::mouseMoveEvent" << event->pos();
 
-    QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(qApp->topLevelWidgets().first());
+    QWidget* mainWindow = window();
     bool visible = event->pos().y() <= 0;
     bool ret = QMetaObject::invokeMethod(mainWindow, "showFullscreenToolbar", Qt::DirectConnection, Q_ARG(bool, visible));
     if (!ret) qDebug() << "showFullscreenToolbar invokeMethod failed";
