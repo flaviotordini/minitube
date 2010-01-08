@@ -32,11 +32,8 @@
 
 ## Minor Features
 - Restore status when a recent keyword is clicked: skipped videos, sortBar and play time
-- Clear recent keywords
 - Safe search levels (in the status bar beside HD)
 - Show buffering progress (when Phonon backends will work)
-- Mark playlist items that have errors
-- Settings: number of "Recent Keywords", Phonon settings, HD or not
 - Show the toolbar when mouse hits the top of the screen in Fullscreen mode with animation
 - Show the playlist when mouse hits the left side of the screen in Fullscreen mode with animation
 - Show more thumbs on hover with animated crossfade

@@ -23,6 +23,7 @@ VideoAreaWidget::VideoAreaWidget(QWidget *parent) : QWidget(parent) {
     setLayout(vLayout);
     setAcceptDrops(true);
     
+    setMouseTracking(true);
 }
 
 void VideoAreaWidget::setVideoWidget(QWidget *videoWidget) {
@@ -91,4 +92,17 @@ void VideoAreaWidget::dropEvent(QDropEvent *event) {
     if (row != -1)
         listModel->setActiveRow(row);
     event->acceptProposedAction();
+}
+
+void VideoAreaWidget::mouseMoveEvent(QMouseEvent *event) {
+    // qDebug() << "VideoAreaWidget::mouseMoveEvent" << event->pos();
+
+    QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(qApp->topLevelWidgets().first());
+    bool visible = event->pos().y() <= 0;
+    bool ret = QMetaObject::invokeMethod(mainWindow, "showFullscreenToolbar", Qt::DirectConnection, Q_ARG(bool, visible));
+    if (!ret) qDebug() << "showFullscreenToolbar invokeMethod failed";
+
+    visible = event->pos().x() <= 0;
+    ret = QMetaObject::invokeMethod(mainWindow, "showFullscreenPlaylist", Qt::DirectConnection, Q_ARG(bool, visible));
+    if (!ret) qDebug() << "showFullscreenPlaylist invokeMethod failed";
 }

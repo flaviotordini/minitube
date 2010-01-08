@@ -8,7 +8,7 @@ MainWindow::MainWindow() :
         mediaObject(0),
         audioOutput(0),
         aboutView(0) {
-    
+
     m_fullscreen = false;
     
     // views mechanism
@@ -599,7 +599,7 @@ void MainWindow::fullscreen() {
     // workaround: prevent focus on the search bar
     // it steals the Space key needed for Play/Pause
     mainToolBar->setEnabled(m_fullscreen);
-    
+
     m_fullscreen = !m_fullscreen;
     
     setUpdatesEnabled(true);
@@ -725,93 +725,6 @@ void MainWindow::volumeMutedChanged(bool muted) {
         statusBar()->showMessage(tr("Volume is unmuted"));
 }
 
-/*
-void MainWindow::abortDownload() {
-    QProgressDialog* dlg = dynamic_cast<QProgressDialog*>(this->sender());
-    QMap<QNetworkReply*, DownloadResource>::iterator cur;
-    QMap<QNetworkReply*, DownloadResource>::iterator end;
-    // locate the DownloadResource by its dialog address and trigger abortion
-    for(cur=m_downloads.begin(), end=m_downloads.end(); cur!=end; cur++){
-        if(cur.value().dialog == dlg) cur.key()->abort();
-    }
-}
-
-void MainWindow::download() {
-    if(mediaObject == NULL || mediaObject->currentSource().url().isEmpty()){
-        // complain unless video source apperas to be valid
-        QMessageBox::critical(this, tr("No Video playing"), tr("You must first play the video you intent to download !"));
-        return;
-    }
-    QString filename = QFileDialog::getSaveFileName(this,
-                                                    tr("Save video as..."),
-                                                    tr("minitube video.mp4"),
-                                                    "Video File(*.avi *.mp4)"
-                                                    );
-    if(!filename.isNull()) {
-        // open destination file and initialize download
-        DownloadResource res;
-        res.file = new QFile(filename);
-        if(res.file->open(QFile::WriteOnly) == true) {
-            res.dialog = new QProgressDialog(tr("Downloading: ") + res.file->fileName(),
-                                             tr("Abort Download"), 0, 100, this);
-            connect(res.dialog, SIGNAL(canceled()), this, SLOT(abortDownload()));
-            download(mediaObject->currentSource().url(), res);
-        }else{
-            QMessageBox::critical(this, tr("File creation failed"), res.file->errorString());
-            delete res.file;
-        }
-    }
-}
-
-void MainWindow::download(const QUrl& url, const DownloadResource& res) {
-    // create and store request and connect the reply signals
-    QNetworkReply *r = The::networkAccessManager()->get(QNetworkRequest(url));
-    m_downloads.insert(r, res);
-    connect(r, SIGNAL(finished()), this, SLOT(replyFinished()));
-    connect(r, SIGNAL(readyRead()), this, SLOT(replyReadyRead()));
-    connect(r, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(replyError(QNetworkReply::NetworkError)));
-    connect(r, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(replyDownloadProgress(qint64,qint64)));
-    connect(r, SIGNAL(metaDataChanged()), this, SLOT(replyMetaDataChanged()));
-}
-
-void MainWindow::replyReadyRead() {
-    QNetworkReply* r = dynamic_cast<QNetworkReply*>(this->sender());
-    m_downloads[r].file->write(r->readAll());
-}
-
-void MainWindow::replyDownloadProgress(qint64 bytesReceived, qint64 bytesTotal) {
-    QNetworkReply* r = dynamic_cast<QNetworkReply*>(this->sender());
-    if (bytesTotal > 0 && bytesReceived >0)
-        m_downloads[r].dialog->setValue( double(100.0/bytesTotal)*bytesReceived );  // pssst :-X
-}
-
-void MainWindow::replyError(QNetworkReply::NetworkError code) {
-    QNetworkReply* r = dynamic_cast<QNetworkReply*>(this->sender());
-    QMessageBox::critical(this, tr("Download failed"), r->errorString());
-}
-
-void MainWindow::replyFinished() {
-    QNetworkReply* r = dynamic_cast<QNetworkReply*>(this->sender());
-    m_downloads[r].dialog->close();
-    m_downloads[r].file->close();
-    delete m_downloads[r].file;
-    m_downloads.remove(r);
-}
-
-void MainWindow::replyMetaDataChanged() {
-    QNetworkReply* r = dynamic_cast<QNetworkReply*>(this->sender());
-    QUrl url = r->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
-    if(url.isValid()) {
-        // redirect - request new url, but keep the resources
-        qDebug() << "redirecting to: " << url.toString();
-        download(url, m_downloads[r]);
-        m_downloads.remove(r);
-    }
-}
-
-*/
-
-
 QPixmap MainWindow::createHDPixmap(bool enabled) {
     QPixmap pixmap = QPixmap(24,24);
     pixmap.fill(Qt::transparent);
@@ -883,3 +796,20 @@ void MainWindow::hdIndicator(bool isHd) {
         hdAct->setToolTip(tr("The current video is not in High Definition"));
     }
 }
+
+void MainWindow::showFullscreenToolbar(bool show) {
+    if (!m_fullscreen) return;
+
+    if (show) {
+        mainToolBar->show();
+    } else {
+        mainToolBar->hide();
+    }
+    mainToolBar->setEnabled(show);
+}
+
+void MainWindow::showFullscreenPlaylist(bool show) {
+    if (!m_fullscreen) return;    
+    mediaView->setPlaylistVisible(show);
+}
+

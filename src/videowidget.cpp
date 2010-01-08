@@ -2,15 +2,17 @@
 
 VideoWidget::VideoWidget(QWidget *parent) : Phonon::VideoWidget(parent) {
     // mouse autohide
-    // setMouseTracking(true);
+    setMouseTracking(true);
     mouseTimer = new QTimer(this);
     mouseTimer->setInterval(3000);
     mouseTimer->setSingleShot(true);
     connect(mouseTimer, SIGNAL(timeout()), SLOT(hideMouse()));
 }
 
-void VideoWidget::mouseMoveEvent(QMouseEvent * /* event */) {
-    // qDebug() << "mouseMoveEvent";
+void VideoWidget::mouseMoveEvent(QMouseEvent *event) {
+    Phonon::VideoWidget::mouseMoveEvent(event);
+
+    // qDebug() << "VideoWidget::mouseMoveEvent" << event->pos();
 
     // show the normal cursor
     unsetCursor();

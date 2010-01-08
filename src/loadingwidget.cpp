@@ -46,6 +46,8 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
     layout->addWidget(progressBar);
     */
 
+    setMouseTracking(true);
+
     setLayout(layout);
 }
 

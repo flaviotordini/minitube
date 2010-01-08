@@ -1,4 +1,7 @@
 0.9 - ?
+- Clear recent keywords
+- Show the toolbar when mouse hits the top of the screen in Fullscreen mode
+- Show the playlist when mouse hits the left side of the screen in Fullscreen mode
 - Fixed toolbar search suggestions working just once (Thanks to Salvatore Benedetto)
 - Fixed time formatting bug with videos longer than 1 hour (Thanks to Rene Bogusch)
 - Norwegian translation by Jan W. Skjoldal
