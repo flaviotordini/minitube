@@ -250,15 +250,16 @@ void MainWindow::createActions() {
 void MainWindow::createMenus() {
     
     QMap<QString, QMenu*> *menus = The::globalMenus();
-    
+
     fileMenu = menuBar()->addMenu(tr("&Application"));
     // menus->insert("file", fileMenu);
     // fileMenu->addAction(settingsAct);
     fileMenu->addAction(clearAct);
+#ifndef Q_WS_MAC
     fileMenu->addSeparator();
+#endif
     fileMenu->addAction(quitAct);
 
-    
     playlistMenu = menuBar()->addMenu(tr("&Playlist"));
     menus->insert("playlist", playlistMenu);
     playlistMenu->addAction(removeAct);
@@ -589,6 +590,7 @@ void MainWindow::fullscreen() {
     
     // Also no Youtube action since it opens a new window
     webPageAct->setVisible(m_fullscreen);
+    stopAct->setVisible(m_fullscreen);
     
     // Hide anything but the video
     mediaView->setPlaylistVisible(m_fullscreen);
