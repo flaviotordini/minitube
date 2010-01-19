@@ -42,7 +42,7 @@
     </message>
     <message>
         <source>Windows version built by %1</source>
-        <translation>Windows verzió: %1</translation>
+        <translation type="obsolete">Windows verzió: %1</translation>
     </message>
     <message>
         <source>Translated by %1</source>
@@ -299,6 +299,14 @@
     <message>
         <source>The current video is not in High Definition</source>
         <translation>Ez a videó nem HD minőségű</translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent keywords</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Application</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

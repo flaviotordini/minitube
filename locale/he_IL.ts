@@ -70,7 +70,7 @@
     </message>
     <message>
         <source>Windows version built by %1</source>
-        <translation>הגרסה ל־Windows נבנתה על ידי %1</translation>
+        <translation type="obsolete">הגרסה ל־Windows נבנתה על ידי %1</translation>
     </message>
 </context>
 <context>
@@ -226,11 +226,11 @@
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation>&amp;חיפוש</translation>
+        <translation type="obsolete">&amp;חיפוש</translation>
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation>&amp;יישום</translation>
+        <translation type="unfinished">&amp;יישום</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -319,6 +319,10 @@
     <message>
         <source>The current video is not in High Definition</source>
         <translation>סרטון הווידאו הנוכחי אינו באיכות גבוהה (HD)</translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent keywords</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

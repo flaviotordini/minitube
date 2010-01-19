@@ -42,7 +42,7 @@
     </message>
     <message>
         <source>Windows version built by %1</source>
-        <translation>Versión Windows compilada por %1</translation>
+        <translation type="obsolete">Versión Windows compilada por %1</translation>
     </message>
     <message>
         <source>Translated by %1</source>
@@ -266,7 +266,7 @@
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation type="obsolete">&amp;Aplicación</translation>
+        <translation type="unfinished">&amp;Aplicación</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -339,6 +339,10 @@
     <message>
         <source>The current video is not in High Definition</source>
         <translation>El video actual no es de alta definición</translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent keywords</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

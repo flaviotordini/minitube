@@ -62,7 +62,7 @@
     </message>
     <message>
         <source>Windows version built by %1</source>
-        <translation>Vesão da janela construída por %1</translation>
+        <translation type="obsolete">Vesão da janela construída por %1</translation>
     </message>
 </context>
 <context>
@@ -250,7 +250,7 @@
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation type="obsolete">&amp;Aplicação</translation>
+        <translation type="unfinished">&amp;Aplicação</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -343,6 +343,10 @@
     <message>
         <source>The current video is not in High Definition</source>
         <translation>O vídeo atual nõ está em Alta Definição</translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent keywords</source>
+        <translation type="unfinished">Palavras-chave &amp;limpas recentemente</translation>
     </message>
 </context>
 <context>

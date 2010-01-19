@@ -62,7 +62,7 @@
     </message>
     <message>
         <source>Windows version built by %1</source>
-        <translation type="unfinished">Сборку под Windows выполнил %1</translation>
+        <translation type="obsolete">Сборку под Windows выполнил %1</translation>
     </message>
 </context>
 <context>
@@ -250,7 +250,7 @@
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation type="obsolete">Пр&amp;иложение</translation>
+        <translation type="unfinished">Пр&amp;иложение</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -343,6 +343,10 @@
     <message>
         <source>The current video is not in High Definition</source>
         <translation type="unfinished">Видео воспроизводится не в высоком разрешении</translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent keywords</source>
+        <translation type="unfinished">&amp;Очистить последние запросы</translation>
     </message>
 </context>
 <context>

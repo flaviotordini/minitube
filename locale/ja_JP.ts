@@ -60,10 +60,6 @@
         <source>HTTP proxy support contributed by %1.</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Windows version built by %1</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ClearButton</name>
@@ -222,7 +218,7 @@
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation type="obsolete">アプリケーション(&amp;A)</translation>
+        <translation type="unfinished">アプリケーション(&amp;A)</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -302,6 +298,10 @@
     </message>
     <message>
         <source>The current video is not in High Definition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent keywords</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -50,22 +50,21 @@
         <translation>Autor podpory HTTP proxy: %1.</translation>
     </message>
     <message>
-        <location filename="../src/AboutView.cpp" line="37"/>
         <source>Windows version built by %1</source>
-        <translation>Verzi pro Windows sestavil: %1</translation>
+        <translation type="obsolete">Verzi pro Windows sestavil: %1</translation>
     </message>
     <message>
-        <location filename="../src/AboutView.cpp" line="41"/>
+        <location filename="../src/AboutView.cpp" line="38"/>
         <source>Translated by %1</source>
         <translation>Přeložili: %1</translation>
     </message>
     <message>
-        <location filename="../src/AboutView.cpp" line="58"/>
+        <location filename="../src/AboutView.cpp" line="57"/>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
         <translation>Vydáno pod &lt;a href=&apos;%1&apos;&gt;licencí GNU General Public License&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/AboutView.cpp" line="69"/>
+        <location filename="../src/AboutView.cpp" line="68"/>
         <source>&amp;Close</source>
         <translation>&amp;Zavřít</translation>
     </message>
@@ -114,7 +113,7 @@
 <context>
     <name>LoadingWidget</name>
     <message>
-        <location filename="../src/loadingwidget.cpp" line="64"/>
+        <location filename="../src/loadingwidget.cpp" line="66"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
@@ -153,19 +152,19 @@
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="92"/>
-        <location filename="../src/MainWindow.cpp" line="516"/>
+        <location filename="../src/MainWindow.cpp" line="524"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pauza</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="93"/>
-        <location filename="../src/MainWindow.cpp" line="517"/>
+        <location filename="../src/MainWindow.cpp" line="525"/>
         <source>Pause playback</source>
         <translation>Pozastavit přehrávání</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="99"/>
-        <location filename="../src/MainWindow.cpp" line="560"/>
+        <location filename="../src/MainWindow.cpp" line="568"/>
         <source>&amp;Full Screen</source>
         <translation>&amp;Celá obrazovka</translation>
     </message>
@@ -226,156 +225,162 @@
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="153"/>
+        <source>&amp;Clear recent keywords</source>
+        <translation type="unfinished">&amp;Vymazat hledané výrazy</translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="160"/>
         <source>&amp;Quit</source>
         <translation>&amp;Zavřít</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="155"/>
+        <location filename="../src/MainWindow.cpp" line="162"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="156"/>
+        <location filename="../src/MainWindow.cpp" line="163"/>
         <source>Bye</source>
         <translation>Sbohem</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="160"/>
+        <location filename="../src/MainWindow.cpp" line="167"/>
         <source>&amp;Website</source>
         <translation>&amp;Homepage</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="162"/>
+        <location filename="../src/MainWindow.cpp" line="169"/>
         <source>%1 on the Web</source>
         <translation>%1 na Webu</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="166"/>
+        <location filename="../src/MainWindow.cpp" line="173"/>
         <source>&amp;Donate via PayPal</source>
         <translation>&amp;Podpořte přes PayPal</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="167"/>
+        <location filename="../src/MainWindow.cpp" line="174"/>
         <source>Please support the continued development of %1</source>
         <translation>Prosím podpořte další vývoj aplikace %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="171"/>
+        <location filename="../src/MainWindow.cpp" line="178"/>
         <source>&amp;About</source>
         <translation>&amp;O aplikaci</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="173"/>
+        <location filename="../src/MainWindow.cpp" line="180"/>
         <source>Info about %1</source>
         <translation>Info o aplikaci %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="181"/>
+        <location filename="../src/MainWindow.cpp" line="188"/>
         <source>Search</source>
         <translation>Hledat</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="199"/>
+        <location filename="../src/MainWindow.cpp" line="206"/>
         <source>Mute volume</source>
         <translation>Ztlumit</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="200"/>
+        <location filename="../src/MainWindow.cpp" line="207"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="852"/>
+        <location filename="../src/MainWindow.cpp" line="782"/>
         <source>High Definition video is enabled</source>
         <translation>HD video je povolené</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="854"/>
+        <location filename="../src/MainWindow.cpp" line="784"/>
         <source>High Definition video is not enabled</source>
         <translation>HD video není povolené</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="865"/>
+        <location filename="../src/MainWindow.cpp" line="795"/>
         <source>The current video is in High Definition</source>
         <translation>Aktuální video je v HD</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="868"/>
+        <location filename="../src/MainWindow.cpp" line="798"/>
         <source>The current video is not in High Definition</source>
         <translation>Aktuální video není v HD</translation>
     </message>
     <message>
+        <location filename="../src/MainWindow.cpp" line="254"/>
         <source>&amp;Application</source>
-        <translation type="obsolete">&amp;Aplikace</translation>
+        <translation type="unfinished">&amp;Aplikace</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="255"/>
+        <location filename="../src/MainWindow.cpp" line="263"/>
         <source>&amp;Playlist</source>
         <translation>&amp;Playlist</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="262"/>
+        <location filename="../src/MainWindow.cpp" line="270"/>
         <source>&amp;Video</source>
         <translation>&amp;Video</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="275"/>
+        <location filename="../src/MainWindow.cpp" line="283"/>
         <source>&amp;Help</source>
         <translation>&amp;Nápověda</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="316"/>
+        <location filename="../src/MainWindow.cpp" line="324"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
         <translation>Stiskněte %1 pro zvýšení hlasitosti; %2 pro snížení</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="457"/>
-        <location filename="../src/MainWindow.cpp" line="463"/>
+        <location filename="../src/MainWindow.cpp" line="465"/>
+        <location filename="../src/MainWindow.cpp" line="471"/>
         <source>Opening %1</source>
         <translation>Otevírám %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="507"/>
+        <location filename="../src/MainWindow.cpp" line="515"/>
         <source>Fatal error: %1</source>
         <translation>Chyba: %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="509"/>
+        <location filename="../src/MainWindow.cpp" line="517"/>
         <source>Error: %1</source>
         <translation>Chyba: %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="530"/>
+        <location filename="../src/MainWindow.cpp" line="538"/>
         <source>&amp;Play</source>
         <translation>&amp;Play</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="531"/>
+        <location filename="../src/MainWindow.cpp" line="539"/>
         <source>Resume playback</source>
         <translation>Pokračovat v přehrávání</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="569"/>
+        <location filename="../src/MainWindow.cpp" line="577"/>
         <source>Exit &amp;Full Screen</source>
         <translation>Vypnout &amp;fullscreen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="666"/>
+        <location filename="../src/MainWindow.cpp" line="674"/>
         <source>Remaining time: %1</source>
         <translation>Zbývající čas: %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="703"/>
+        <location filename="../src/MainWindow.cpp" line="720"/>
         <source>Volume at %1%</source>
         <translation>Hlasitost na %1%</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="708"/>
+        <location filename="../src/MainWindow.cpp" line="725"/>
         <source>Volume is muted</source>
         <translation>Zvuk je ztlumen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="710"/>
+        <location filename="../src/MainWindow.cpp" line="727"/>
         <source>Volume is unmuted</source>
         <translation>Zvuk je zapnut</translation>
     </message>
@@ -430,27 +435,27 @@
 <context>
     <name>SearchView</name>
     <message>
-        <location filename="../src/SearchView.cpp" line="48"/>
+        <location filename="../src/SearchView.cpp" line="52"/>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
         <translation>Vítejte v &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/SearchView.cpp" line="57"/>
+        <location filename="../src/SearchView.cpp" line="61"/>
         <source>Enter a keyword to start watching videos.</source>
         <translation>Zadejte klíčové slovo pro vyhledávání videí.</translation>
     </message>
     <message>
-        <location filename="../src/SearchView.cpp" line="77"/>
+        <location filename="../src/SearchView.cpp" line="81"/>
         <source>Watch</source>
         <translation>Sledovat</translation>
     </message>
     <message>
-        <location filename="../src/SearchView.cpp" line="93"/>
+        <location filename="../src/SearchView.cpp" line="97"/>
         <source>Recent keywords</source>
         <translation>Poslední klíčová slova</translation>
     </message>
     <message>
-        <location filename="../src/SearchView.cpp" line="198"/>
+        <location filename="../src/SearchView.cpp" line="208"/>
         <source>A new version of %1 is available. Please &lt;a href=&apos;%2&apos;&gt;update to version %3&lt;/a&gt;</source>
         <translation>Nová verze aplikace %1 je dostupná. Prosím &lt;a href=&apos;%2&apos;&gt;aktualizujte na verzi %3&lt;/a&gt;</translation>
     </message>
