@@ -222,7 +222,7 @@
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation type="unfinished">Program</translation>
+        <translation>Progr&amp;am</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -302,15 +302,15 @@
     </message>
     <message>
         <source>The current video is in High Definition</source>
-        <translation>Bieżący film jest w High Definition</translation>
+        <translation>Bieżący film jest dostępny w High Definition</translation>
     </message>
     <message>
         <source>The current video is not in High Definition</source>
-        <translation>Bieżący film nie jest w High Definition</translation>
+        <translation>Bieżący film nie jest dostępny w High Definition</translation>
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished">&amp;Usuń ostatnie słowa szukane</translation>
+        <translation>&amp;Usuń ostatnie szukane słowa</translation>
     </message>
 </context>
 <context>

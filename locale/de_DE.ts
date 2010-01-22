@@ -250,7 +250,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="153"/>
         <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Kürzlich genutzte S&amp;chlüsselwörter entfernen</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="160"/>
@@ -396,7 +396,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="254"/>
         <source>&amp;Application</source>
-        <translation type="unfinished">&amp;Anwendung</translation>
+        <translation>&amp;Anwendung</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="263"/>

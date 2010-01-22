@@ -302,11 +302,11 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nullstill siste søkeord</translation>
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation type="unfinished"></translation>
+        <translation>Applikasjon</translation>
     </message>
 </context>
 <context>

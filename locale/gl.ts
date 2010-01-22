@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0">
+<!DOCTYPE TS><TS>
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutView</name>
@@ -38,7 +36,7 @@
     </message>
     <message>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
-        <translation>Publicado baixo a &lt;a href=&apos;%1&apos;&gt;Licenza Pública Xeral GNU&lt;/a&gt;</translation>
+        <translation>Publicado baixo a &lt;a href=&apos;%1&apos;&gt;Licenza pública Xeral GNU&lt;/a&gt;</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -250,7 +248,7 @@
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation type="unfinished">&amp;Aplicação</translation>
+        <translation>&amp;Aplicativo</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -346,7 +344,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished">Palavras-chave &amp;limpas recentemente</translation>
+        <translation>Limpar palabras &amp;clave recentes</translation>
     </message>
 </context>
 <context>

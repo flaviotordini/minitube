@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0">
+<!DOCTYPE TS><TS>
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutView</name>
@@ -266,7 +264,7 @@
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation type="unfinished">&amp;Aplicación</translation>
+        <translation>&amp;Aplicación</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -342,7 +340,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpiar palabras &amp;clave recientes</translation>
     </message>
 </context>
 <context>

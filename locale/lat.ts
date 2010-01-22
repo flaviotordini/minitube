@@ -286,31 +286,31 @@
     </message>
     <message>
         <source>Info about %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ziņas par %1</translation>
     </message>
     <message>
         <source>High Definition video is enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Augstā izšķirtspēja ir ieslēgta</translation>
     </message>
     <message>
         <source>High Definition video is not enabled</source>
-        <translation type="unfinished"></translation>
+	<translation>Augstā izšķirtspēja nav ieslēgta</translation>
     </message>
     <message>
         <source>The current video is in High Definition</source>
-        <translation type="unfinished"></translation>
+        <translation>Šis ir augstās izšķirtspējas video</translation>
     </message>
     <message>
         <source>The current video is not in High Definition</source>
-        <translation type="unfinished"></translation>
+	<translation>Šis nav augstās izšķirtspējas video</translation>
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Dzēst atslēgvārdu vēsturi</translation>
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation type="unfinished"></translation>
+        <translation>Programma</translation>
     </message>
 </context>
 <context>

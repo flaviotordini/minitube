@@ -42,7 +42,7 @@
     </message>
     <message>
         <source>Released under the </source>
-        <translation type="obsolete">שוחרר תחת תנאי</translation>
+        <translation>שוחרר תחת תנאי</translation>
     </message>
     <message>
         <source></source>
@@ -54,7 +54,7 @@
     </message>
     <message>
         <source>What you always wanted to know about %1 and never dared to ask</source>
-        <translation>מה שתמיד רציתם לדעת אודות %1 ולא העזתם לשאול</translation>
+        <translation>מה שתמיד רצית לדעת אודות %1 ולא העזת לשאול</translation>
     </message>
     <message>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
@@ -66,11 +66,11 @@
     </message>
     <message>
         <source>HTTP proxy support contributed by %1.</source>
-        <translation>התמיכה במתווך HHTP נתרמה על ידי %1.</translation>
+        <translation>התמיכה במתווך HTTP נתרמה על ידי %1.</translation>
     </message>
     <message>
         <source>Windows version built by %1</source>
-        <translation type="obsolete">הגרסה ל־Windows נבנתה על ידי %1</translation>
+        <translation>הגרסה ל־Windows נבנתה על ידי %1</translation>
     </message>
 </context>
 <context>
@@ -226,11 +226,11 @@
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="obsolete">&amp;חיפוש</translation>
+        <translation>&amp;חיפוש</translation>
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation type="unfinished">&amp;יישום</translation>
+        <translation>&amp;יישום</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -322,7 +322,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>מחיקת &amp;מילות המפתח האחרונות</translation>
     </message>
 </context>
 <context>

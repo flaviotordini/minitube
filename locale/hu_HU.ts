@@ -22,7 +22,7 @@
     </message>
     <message>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation type="unfinished">A %1 szabad szoftver, de a fejlesztés időbe telik és az idő pénz.</translation>
+        <translation>A %1 szabad szoftver, de a fejlesztés időbe telik és az idő pénz.</translation>
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate via PayPal&lt;/a&gt; to support the continued development of %2.</source>
@@ -302,11 +302,11 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Legújabb kulcsszavak törlése</translation>
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Alkalmazás</translation>
     </message>
 </context>
 <context>

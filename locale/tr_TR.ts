@@ -218,7 +218,7 @@
     </message>
     <message>
         <source>&amp;Website</source>
-        <translation>&amp;Webseite</translation>
+        <translation>&amp;Website</translation>
     </message>
     <message>
         <source>%1 on the Web</source>
@@ -326,7 +326,7 @@
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation type="unfinished">&amp;Anwendung</translation>
+        <translation>&amp;Uygulama</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -366,7 +366,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçmiş aramaları &amp;sil</translation>
     </message>
 </context>
 <context>
