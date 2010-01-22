@@ -37,6 +37,7 @@
 - Show the toolbar when mouse hits the top of the screen in Fullscreen mode with animation
 - Show the playlist when mouse hits the left side of the screen in Fullscreen mode with animation
 - Show more thumbs on hover with animated crossfade
+- Disable tooltips in the toolbar. Is there a way to do it?
 
 ## Unsure features
 - Add menu entries for Most relevant, Most recent, Most viewed (Playlist => ...)

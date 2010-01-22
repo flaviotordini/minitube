@@ -1,9 +1,10 @@
-0.9 - ?
-- Clear recent keywords
-- Show the toolbar when mouse hits the top of the screen in Fullscreen mode
-- Show the playlist when mouse hits the left side of the screen in Fullscreen mode
+0.9 - January 22, 2010
+- Ability to clear recent keywords (by popular demand!)
+- Show the toolbar when mouse hits the top of the screen in Fullscreen mode (Linux only)
+- Show the playlist when mouse hits the left side of the screen in Fullscreen mode (Linux only)
 - Fixed toolbar search suggestions working just once (Thanks to Salvatore Benedetto)
-- Fixed time formatting bug with videos longer than 1 hour (Thanks to Rene Bogusch)
+- Fixed toobar search incorrect handling of keys that also represent a shortcut (like Escape or Space)
+- Fixed time formatting bug with videos longer than an hour (Thanks to Rene Bogusch)
 - Norwegian translation by Jan W. Skjoldal
 
 0.8.1 - November 20, 2009
