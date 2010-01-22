@@ -145,7 +145,8 @@ void SearchView::updateRecentKeywords() {
                                        + "\" style=\"color:palette(text); text-decoration:none\">"
                                        + keyword + "</a>", this);
 
-        itemLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        itemLabel->setMaximumWidth(queryEdit->width() + watchButton->width());
+        // itemLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         // Make links navigable with the keyboard too
         itemLabel->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard | Qt::LinksAccessibleByMouse);
 

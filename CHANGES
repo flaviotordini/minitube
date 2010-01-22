@@ -5,6 +5,7 @@
 - Fixed toolbar search suggestions working just once (Thanks to Salvatore Benedetto)
 - Fixed toobar search incorrect handling of keys that also represent a shortcut (like Escape or Space)
 - Fixed time formatting bug with videos longer than an hour (Thanks to Rene Bogusch)
+- Fixed long queries in the recent keywords list (Thanks to Vadim P.)
 - Norwegian translation by Jan W. Skjoldal
 
 0.8.1 - November 20, 2009
