@@ -242,7 +242,7 @@
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation type="unfinished">&amp;Applicazione</translation>
+        <translation>&amp;Applicazione</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -314,7 +314,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Cancella le ultime ricerche</translation>
     </message>
 </context>
 <context>
