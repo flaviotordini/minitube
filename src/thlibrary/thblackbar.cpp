@@ -147,7 +147,7 @@ void THBlackBar::mousePressEvent (QMouseEvent *event) {
 
 void THBlackBar::leaveEvent(QEvent *event) {
     // status tip
-    QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(qApp->topLevelWidgets().first());
+    QMainWindow* mainWindow = static_cast<QMainWindow*>(window());
     if (mainWindow) mainWindow->statusBar()->clearMessage();
 }
 
