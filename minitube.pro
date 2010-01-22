@@ -1,11 +1,9 @@
 INCLUDEPATH += /usr/include/phonon
-
 CONFIG += release
 TEMPLATE = app
 
 # TODO Saner string behaviour
 # DEFINES += QT_NO_CAST_FROM_ASCII QT_NO_CAST_TO_ASCII QT_STRICT_ITERATORS
-
 TARGET = minitube
 mac { 
     TARGET = Minitube
@@ -19,7 +17,6 @@ include(src/thlibrary/thlibrary.pri)
 HEADERS += src/MainWindow.h \
     src/SearchView.h \
     src/MediaView.h \
-    src/SettingsView.h \
     src/AboutView.h \
     src/youtubesearch.h \
     src/video.h \
@@ -49,7 +46,6 @@ SOURCES += src/main.cpp \
     src/MainWindow.cpp \
     src/SearchView.cpp \
     src/MediaView.cpp \
-    src/SettingsView.cpp \
     src/AboutView.cpp \
     src/youtubesearch.cpp \
     src/youtubestreamreader.cpp \
@@ -86,14 +82,12 @@ include(locale/locale.pri)
 # deploy
 DISTFILES += CHANGES \
     COPYING
-
 mac { 
     CONFIG += x86 \
         ppc
     QMAKE_INFO_PLIST = Info.plist
     ICON = minitube.icns
 }
-
 unix { 
     isEmpty(PREFIX):PREFIX = /usr
     BINDIR = $$PREFIX/bin
@@ -111,13 +105,11 @@ unix {
         icon48 \
         icon64 \
         icon128 \
-        icon256 \
-
+        icon256
     translations.path = $$PKGDATADIR
     translations.files += $$DESTDIR/locale
     desktop.path = $$DATADIR/applications
     desktop.files += minitube.desktop
-
     iconsvg.path = $$DATADIR/icons/hicolor/scalable/apps
     iconsvg.files += data/minitube.svg
     icon16.path = $$DATADIR/icons/hicolor/16x16/apps
@@ -133,5 +125,4 @@ unix {
     icon256.path = $$DATADIR/icons/hicolor/256x256/apps
     icon256.files += data/256x256/minitube.png
 }
-
 win32:RC_FILE = minitube.rc
