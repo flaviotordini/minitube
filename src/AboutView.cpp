@@ -57,7 +57,7 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                    "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")
                    .arg("http://www.gnu.org/licenses/gpl.html") + "</p>"
 
-                   "<p>&copy; 2009 " + Constants::ORG_NAME + "</p>";
+                   "<p>&copy; 2009-2010 " + Constants::ORG_NAME + "</p>";
     QLabel *infoLabel = new QLabel(info, this);
     infoLabel->setOpenExternalLinks(true);
     infoLabel->setWordWrap(true);
