@@ -11,10 +11,7 @@
 #include "View.h"
 #include "SearchView.h"
 #include "MediaView.h"
-#include "SettingsView.h"
 #include "AboutView.h"
-
-// #include <QProgressDialog>
 
 class MainWindow : public QMainWindow {
 
@@ -33,7 +30,6 @@ protected:
 private slots:
     void fadeInWidget(QWidget *oldWidget, QWidget *newWidget);
     void goBack();
-    // void showSettings();
     void showSearch();
     void showMedia(QString query);
     void visitSite();
@@ -81,12 +77,10 @@ private:
     // view widgets
     QWidget *searchView;
     MediaView *mediaView;
-    // QWidget *settingsView;
     QWidget *aboutView;
 
     // actions
     QAction *addGadgetAct;
-    // QAction *settingsAct;
     QAction *backAct;
     QAction *quitAct;
     QAction *siteAct;

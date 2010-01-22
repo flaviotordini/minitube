@@ -60,15 +60,6 @@ void MainWindow::createActions() {
     
     QMap<QString, QAction*> *actions = The::globalActions();
     
-    /*
-    settingsAct = new QAction(tr("&Preferences..."), this);
-    settingsAct->setStatusTip(tr(QString("Configure ").append(Constants::APP_NAME).toUtf8()));
-    // Mac integration
-    settingsAct->setMenuRole(QAction::PreferencesRole);
-    actions->insert("settings", settingsAct);
-    connect(settingsAct, SIGNAL(triggered()), this, SLOT(showSettings()));
-    */
-    
     backAct = new QAction(tr("&Back"), this);
     backAct->setEnabled(false);
     backAct->setShortcut(QKeySequence(Qt::ALT + Qt::Key_Left));
@@ -111,16 +102,6 @@ void MainWindow::createActions() {
     compactViewAct->setEnabled(false);
     actions->insert("compactView", compactViewAct);
     connect(compactViewAct, SIGNAL(toggled(bool)), this, SLOT(compactView(bool)));
-    
-    /*
-    // icon should be document-save but it is ugly
-    downloadAct = new QAction(QtIconLoader::icon("go-down", QIcon(":/images/go-down.png")), tr("&Download"), this);
-    downloadAct->setStatusTip(tr("Download this video"));
-    downloadAct->setShortcut(tr("Ctrl+S"));
-    downloadAct->setEnabled(false);
-    actions->insert("download", downloadAct);
-    connect(downloadAct, SIGNAL(triggered()), this, SLOT(download()));
-    */
     
     webPageAct = new QAction(tr("&YouTube"), this);
     webPageAct->setStatusTip(tr("Open the YouTube video page"));
@@ -236,10 +217,7 @@ void MainWindow::createActions() {
         // show keyboard shortcuts in the status bar
         if (!action->shortcut().isEmpty())
             action->setStatusTip(action->statusTip() + " (" + action->shortcut().toString(QKeySequence::NativeText) + ")");
-        
-        // make the actions work when video is fullscreen
-        action->setShortcutContext(Qt::ApplicationShortcut);
-        
+
         // no icons in menus
         action->setIconVisibleInMenu(false);
         
@@ -253,7 +231,6 @@ void MainWindow::createMenus() {
 
     fileMenu = menuBar()->addMenu(tr("&Application"));
     // menus->insert("file", fileMenu);
-    // fileMenu->addAction(settingsAct);
     fileMenu->addAction(clearAct);
 #ifndef Q_WS_MAC
     fileMenu->addSeparator();
@@ -412,19 +389,12 @@ void MainWindow::showWidget ( QWidget* widget ) {
     }
     
     // backAct->setEnabled(history->size() > 1);
-    // settingsAct->setEnabled(widget != settingsView);
     stopAct->setEnabled(widget == mediaView);
     fullscreenAct->setEnabled(widget == mediaView);
     compactViewAct->setEnabled(widget == mediaView);
     webPageAct->setEnabled(widget == mediaView);    
     aboutAct->setEnabled(widget != aboutView);
-    
-    /*
-    // this is not the best place to enable downloads, but the user is informed
-    // if there really is no video is playing
-    downloadAct->setEnabled(widget == mediaView);
-    */
-    
+
     // toolbar only for the mediaView
     mainToolBar->setVisible(widget == mediaView && !compactViewAct->isChecked());
 
@@ -445,7 +415,7 @@ void MainWindow::showWidget ( QWidget* widget ) {
 void MainWindow::fadeInWidget(QWidget *oldWidget, QWidget *newWidget) {
     if (faderWidget) faderWidget->close();
     if (!oldWidget || !newWidget) {
-        qDebug() << "no widgets";
+        // qDebug() << "no widgets";
         return;
     }
     faderWidget = new FaderWidget(newWidget);
@@ -602,8 +572,20 @@ void MainWindow::fullscreen() {
     // it steals the Space key needed for Play/Pause
     mainToolBar->setEnabled(m_fullscreen);
 
+#ifdef Q_WS_MAC
+    // make the actions work when video is fullscreen (on the Mac)
+    QMap<QString, QAction*> *actions = The::globalActions();
+    foreach (QAction *action, actions->values()) {
+        if (m_fullscreen) {
+            action->setShortcutContext(Qt::WindowShortcut);
+        } else {
+            action->setShortcutContext(Qt::ApplicationShortcut);
+        }
+    }
+#endif
+
     m_fullscreen = !m_fullscreen;
-    
+
     setUpdatesEnabled(true);
 }
 
