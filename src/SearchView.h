@@ -33,9 +33,6 @@ public slots:
     void watch(QString query);
     void gotNewVersion(QString version);
 
-protected:
-    void paintEvent(QPaintEvent *);
-
 signals:
     void search(QString query);
 

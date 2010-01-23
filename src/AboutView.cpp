@@ -76,14 +76,3 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
     layout->addLayout(buttonLayout);
 
 }
-
-void AboutView::paintEvent(QPaintEvent * /*event*/) {
-#ifdef Q_WS_MAC
-    QPainter painter(this);
-    QLinearGradient linearGrad(0, 0, 0, height());
-    QPalette palette;
-    linearGrad.setColorAt(0, palette.color(QPalette::Light));
-    linearGrad.setColorAt(1, palette.color(QPalette::Midlight));
-    painter.fillRect(0, 0, width(), height(), QBrush(linearGrad));
-#endif
-}

@@ -10,12 +10,6 @@ static const int PADDING = 30;
 
 SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
-#ifdef Q_WS_MAC
-    // speedup painting since we'll paint the whole background
-    // by ourselves anyway in paintEvent()
-    setAttribute(Qt::WA_OpaquePaintEvent);
-#endif
-
     QFont biggerFont;
     biggerFont.setPointSize(biggerFont.pointSize()*1.5);
 
@@ -110,19 +104,6 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
     updateChecker = 0;
     checkForUpdate();
-}
-
-void SearchView::paintEvent(QPaintEvent * /*event*/) {
-
-#ifdef Q_WS_MAC
-    QPainter painter(this);
-    QLinearGradient linearGrad(0, 0, 0, height());
-    QPalette palette;
-    linearGrad.setColorAt(0, palette.color(QPalette::Light));
-    linearGrad.setColorAt(1, palette.color(QPalette::Midlight));
-    painter.fillRect(0, 0, width(), height(), QBrush(linearGrad));
-#endif
-
 }
 
 void SearchView::updateRecentKeywords() {
