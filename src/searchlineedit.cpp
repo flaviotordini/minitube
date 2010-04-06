@@ -261,6 +261,7 @@ void SearchLineEdit::preventSuggest() {
     completion->preventSuggest();
 }
 
-void SearchLineEdit::focusInEvent(QFocusEvent * /* event */) {
+void SearchLineEdit::focusInEvent(QFocusEvent *event) {
+    ExLineEdit::focusInEvent(event);
     enableSuggest();
 }
