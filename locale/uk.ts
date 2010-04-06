@@ -250,7 +250,7 @@
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation type="unfinished">&amp;Програма</translation>
+        <translation>&amp;Програма</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -346,7 +346,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished">Очистити недавн&amp;і терміни пошуку</translation>
+        <translation>Очистити недавн&amp;і терміни пошуку</translation>
     </message>
 </context>
 <context>
