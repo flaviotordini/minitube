@@ -121,7 +121,7 @@ void THBlackBar::mouseMoveEvent (QMouseEvent *event) {
         update();
 
         // status tip
-        QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(qApp->topLevelWidgets().first());
+        QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(window());
         if (mainWindow) mainWindow->statusBar()->showMessage(action->statusTip());
     }
 }
