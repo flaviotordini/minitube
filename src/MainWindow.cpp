@@ -279,7 +279,11 @@ void MainWindow::createMenus() {
 void MainWindow::createToolBars() {
     
     mainToolBar = new QToolBar(this);
+#if QT_VERSION < 0x040600
     mainToolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+#else
+    mainToolBar->setToolButtonStyle(Qt::ToolButtonFollowStyle);
+#endif
     mainToolBar->setFloatable(false);
     mainToolBar->setMovable(false);
     // cool toolbar on the Mac
