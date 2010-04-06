@@ -26,6 +26,7 @@ public slots:
 
 protected:
     void closeEvent(QCloseEvent *);
+    bool eventFilter(QObject *obj, QEvent *event);
 
 private slots:
     void fadeInWidget(QWidget *oldWidget, QWidget *newWidget);

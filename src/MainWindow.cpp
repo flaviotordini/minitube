@@ -46,6 +46,9 @@ MainWindow::MainWindow() :
     // restore window position
     readSettings();
     
+    // event filter to block ugly toolbar tooltips
+    qApp->installEventFilter(this);
+
     // show the initial view
     showWidget(searchView);
     
@@ -54,6 +57,16 @@ MainWindow::MainWindow() :
 
 MainWindow::~MainWindow() {
     delete history;
+}
+
+bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
+    if (event->type() == QEvent::ToolTip) {
+        // kill tooltips
+        return true;
+    } else {
+        // standard event processing
+        return QObject::eventFilter(obj, event);
+    }
 }
 
 void MainWindow::createActions() {
