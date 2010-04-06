@@ -60,6 +60,7 @@ private slots:
 
 private:
     void scrapeStreamUrl();
+    void getVideoInfo();
     void findHdVideo(QString videoToken);
     void standardVideoUrl(QString videoToken);
     void hdVideoUrl(QString videoToken);
@@ -83,6 +84,10 @@ private:
 
     QString videoToken;
     int m_hd;
+
+    // current index for the elTypes list
+    // needed to iterate on elTypes
+    int elIndex;
 };
 
 // This is required in order to use QPointer<Video> as a QVariant

@@ -8,7 +8,8 @@ namespace The {
 
 Video::Video() : m_duration(0),
 m_viewCount(-1),
-m_hd(false) { }
+m_hd(false),
+elIndex(0) { }
 
 void Video::preloadThumbnail() {
     if (m_thumbnailUrls.isEmpty()) return;
@@ -31,6 +32,8 @@ void Video::loadStreamUrl() {
     // else emit gotStreamUrl(m_streamUrl);
 }
 
+static const QStringList elTypes = QStringList() << "embedded" << "vevo" << "detailpage";
+
 void Video::scrapeStreamUrl() {
 
     // https://develop.participatoryculture.org/trac/democracy/browser/trunk/tv/portable/flashscraper.py
@@ -51,15 +54,33 @@ void Video::scrapeStreamUrl() {
     // if (!videoId) return false;
     // qDebug() << videoId;
 
-    // Get Video Token
-    QUrl normalizedUrl = QUrl(QString("http://www.youtube.com/get_video_info?video_id=")
-                              .append(videoId).append("&el=embedded&ps=default&eurl="));
+    getVideoInfo();
 
-    QObject *reply = The::http()->get(normalizedUrl);
+}
+
+void  Video::getVideoInfo() {
+
+    if (elIndex > elTypes.size() - 1) {
+        // Don't panic! We have a plan B.
+        // get the youtube video webpage
+        QObject *reply = The::http()->get(webpage().toString());
+        connect(reply, SIGNAL(data(QByteArray)), SLOT(scrapWebPage(QByteArray)));
+        connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
+        // see you in scrapWebPage(QByteArray)
+        return;
+    }
+
+    // Get Video Token
+    QUrl videoInfoUrl = QUrl(QString(
+            "http://www.youtube.com/get_video_info?video_id=%1&el=%2&ps=default&eurl="
+            ).arg(videoId, elTypes.at(elIndex)));
+
+    QObject *reply = The::http()->get(videoInfoUrl);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(gotVideoInfo(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
 
     // see you in gotVideoInfo...
+
 }
 
 void  Video::gotVideoInfo(QByteArray data) {
@@ -68,37 +89,11 @@ void  Video::gotVideoInfo(QByteArray data) {
     QRegExp re = QRegExp("^.*&token=([^&]+).*$");
     bool match = re.exactMatch(videoInfo);
 
-    // on regexp failure, stop and report error
+    // handle regexp failure
     if (!match || re.numCaptures() < 1) {
-
-        // Don't panic! We have a plan B.
-
-        // get the youtube video webpage
-        QObject *reply = The::http()->get(webpage().toString());
-        connect(reply, SIGNAL(data(QByteArray)), SLOT(scrapWebPage(QByteArray)));
-        connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
-
-        // see you in scrapWebPage(QByteArray)
-
-        /*
-        qDebug() << videoInfo;
-        re = QRegExp("^.*&reason=([^&]+).*$");
-        match = re.exactMatch(videoInfo);
-        if (match) {
-            // report the error in the status bar
-            QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(qApp->topLevelWidgets().first());
-            QString errorMessage = QUrl::fromEncoded(re.cap(1).toUtf8()).toString().replace("+", " ");
-            int indexOfTag = errorMessage.indexOf("<");
-            if (indexOfTag != -1) {
-                errorMessage = errorMessage.left(indexOfTag);
-            }
-            if (mainWindow) mainWindow->statusBar()->showMessage(errorMessage);
-            emit errorStreamUrl(errorMessage);
-
-        } else
-            emit errorStreamUrl("Error parsing video info");
-        */
-
+        // Don't panic! We're gonna try another magic "el" param
+        elIndex++;
+        getVideoInfo();
         return;
     }
 
