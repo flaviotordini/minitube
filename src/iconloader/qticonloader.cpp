@@ -102,6 +102,9 @@ Q_GLOBAL_STATIC(QtIconLoaderImplementation, iconLoaderInstance)
 QIcon QtIconLoader::icon(const QString &name, const QIcon &fallback)
 {
     QIcon icon;
+
+#if QT_VERSION < 0x040600
+
 #ifdef Q_WS_X11
     QString pngExtension(QLatin1String(".png"));
     QList<int> iconSizes;
@@ -110,6 +113,11 @@ QIcon QtIconLoader::icon(const QString &name, const QIcon &fallback)
         icon.addPixmap(iconLoaderInstance()->findIcon(size, name + pngExtension));
     }
 #endif
+
+#else
+    icon = QIcon::fromTheme(name, fallback);
+#endif
+
     if (icon.isNull())
         icon = fallback;
     Q_UNUSED(name);
