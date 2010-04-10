@@ -150,11 +150,11 @@
     </message>
     <message>
         <source>&amp;YouTube</source>
-        <translation>&amp;YouTube</translation>
+        <translation type="obsolete">&amp;YouTube</translation>
     </message>
     <message>
         <source>Open the YouTube video page</source>
-        <translation>YouTube video sayfasını aç</translation>
+        <translation type="obsolete">YouTube video sayfasını aç</translation>
     </message>
     <message>
         <source>Ctrl+Y</source>
@@ -368,6 +368,26 @@
         <source>&amp;Clear recent keywords</source>
         <translation>Geçmiş aramaları &amp;sil</translation>
     </message>
+    <message>
+        <source>Open &amp;YouTube page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open the YouTube video page and pause playback</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy video &amp;link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy the current stream URL to the clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear the search history. Cannot be undone.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MediaView</name>
@@ -386,6 +406,14 @@
     <message>
         <source>You&apos;re watching &quot;%1&quot;</source>
         <translation>&quot;%1&quot; İzliyorsunuz</translation>
+    </message>
+    <message>
+        <source>You can now paste the video link into another application. The link will be valid only for a limited time.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No video is playing. The link has not been copied.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -440,7 +468,7 @@
     <name>SettingsView</name>
     <message>
         <source>Preferences</source>
-        <translation>Seçenekler</translation>
+        <translation type="obsolete">Seçenekler</translation>
     </message>
     <message>
         <source>&amp;Close</source>

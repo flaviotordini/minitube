@@ -162,11 +162,11 @@
     </message>
     <message>
         <source>&amp;YouTube</source>
-        <translation>&amp;YouTube</translation>
+        <translation type="obsolete">&amp;YouTube</translation>
     </message>
     <message>
         <source>Open the YouTube video page</source>
-        <translation>Открыть страницу видео в YouTube</translation>
+        <translation type="obsolete">Открыть страницу видео в YouTube</translation>
     </message>
     <message>
         <source>Ctrl+Y</source>
@@ -348,6 +348,26 @@
         <source>&amp;Clear recent keywords</source>
         <translation type="unfinished">&amp;Очистить последние запросы</translation>
     </message>
+    <message>
+        <source>Open &amp;YouTube page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open the YouTube video page and pause playback</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy video &amp;link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy the current stream URL to the clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear the search history. Cannot be undone.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MediaView</name>
@@ -366,6 +386,14 @@
     <message>
         <source>You&apos;re watching &quot;%1&quot;</source>
         <translation>Сейчас просматривается &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>You can now paste the video link into another application. The link will be valid only for a limited time.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No video is playing. The link has not been copied.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -420,7 +448,7 @@
     <name>SettingsView</name>
     <message>
         <source>Preferences</source>
-        <translation>Настройки</translation>
+        <translation type="obsolete">Настройки</translation>
     </message>
     <message>
         <source>&amp;Video options</source>
