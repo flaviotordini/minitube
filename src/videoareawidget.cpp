@@ -68,8 +68,10 @@ void VideoAreaWidget::mouseDoubleClickEvent(QMouseEvent *event) {
 }
 
 void VideoAreaWidget::mousePressEvent(QMouseEvent *event) {
-    switch(event->button() == Qt::RightButton)
-            emit rightClicked();
+    QWidget::mousePressEvent(event);
+
+    if(event->button() == Qt::RightButton)
+        emit rightClicked();
 }
 
 void VideoAreaWidget::dragEnterEvent(QDragEnterEvent *event) {
@@ -95,14 +97,21 @@ void VideoAreaWidget::dropEvent(QDropEvent *event) {
 }
 
 void VideoAreaWidget::mouseMoveEvent(QMouseEvent *event) {
-    // qDebug() << "VideoAreaWidget::mouseMoveEvent" << event->pos();
+    QWidget::mouseMoveEvent(event);
 
     QWidget* mainWindow = window();
-    bool visible = event->pos().y() <= 0;
+    if (!mainWindow->isFullScreen()) return;
+
+    // qDebug() << "VideoAreaWidget::mouseMoveEvent" << event->pos();
+
+    const int x = event->pos().x();
+    const int y = event->pos().y();
+
+    bool visible = y <= 0;
     bool ret = QMetaObject::invokeMethod(mainWindow, "showFullscreenToolbar", Qt::DirectConnection, Q_ARG(bool, visible));
     if (!ret) qDebug() << "showFullscreenToolbar invokeMethod failed";
 
-    visible = event->pos().x() <= 0;
+    visible = x <= 0;
     ret = QMetaObject::invokeMethod(mainWindow, "showFullscreenPlaylist", Qt::DirectConnection, Q_ARG(bool, visible));
     if (!ret) qDebug() << "showFullscreenPlaylist invokeMethod failed";
 }
