@@ -138,7 +138,7 @@ void SearchButton::paintEvent(QPaintEvent *event)
 
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
-    painter.setPen(QPen(Qt::darkGray, height() / 10));
+    painter.setPen(QPen(palette().color(QPalette::Mid), height() / 10));
     painter.drawPath(myPath);
 
     if (m_menu) {
@@ -181,6 +181,7 @@ m_searchButton(new SearchButton(this))
 
     // completion
     completion = new GSuggestCompletion(this, m_lineEdit);
+
 }
 
 void SearchLineEdit::paintEvent(QPaintEvent *event)
