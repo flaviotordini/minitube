@@ -45,6 +45,7 @@ private slots:
     void tick(qint64 time);
     void totalTimeChanged(qint64 time);
     void hdMode(bool enabled);
+    void clearRecentKeywords();
 
     // volume shortcuts
     void volumeUp();
@@ -76,7 +77,7 @@ private:
     QStack<QWidget*> *history;
 
     // view widgets
-    QWidget *searchView;
+    SearchView *searchView;
     MediaView *mediaView;
     QWidget *aboutView;
 
@@ -96,6 +97,7 @@ private:
     QAction *fullscreenAct;
     QAction *compactViewAct;
     QAction *webPageAct;
+    QAction *copyLinkAct;
     QAction *downloadAct;
     QAction *volumeUpAct;
     QAction *volumeDownAct;

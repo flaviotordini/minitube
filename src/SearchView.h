@@ -12,6 +12,7 @@ class SearchView : public QWidget, public View {
 
 public:
     SearchView(QWidget *parent);
+    void updateRecentKeywords();
 
     void appear() {
         updateRecentKeywords();
@@ -39,10 +40,8 @@ signals:
 private slots:
     void watch();
     void textChanged(const QString &text);
-    void clearRecentKeywords();
 
 private:
-    void updateRecentKeywords();
     void checkForUpdate();
 
     SearchLineEdit *queryEdit;

@@ -137,11 +137,7 @@ void SearchView::updateRecentKeywords() {
 
 }
 
-void SearchView::clearRecentKeywords() {
-    QSettings settings;
-    settings.remove(recentKeywordsKey);
-    updateRecentKeywords();
-}
+
 
 void SearchView::watch() {
     QString query = queryEdit->text().simplified();
