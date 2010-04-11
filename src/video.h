@@ -43,6 +43,7 @@ public:
     bool isHd() const { return m_hd; }
 
     void loadStreamUrl();
+    QUrl getStreamUrl() { return m_streamUrl; }
 
 public slots:
     void setThumbnail(QByteArray bytes);
