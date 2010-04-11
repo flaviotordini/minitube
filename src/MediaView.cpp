@@ -179,17 +179,17 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
 
     switch (newState) {
 
-         case Phonon::ErrorState:
+    case Phonon::ErrorState:
         qDebug() << "Phonon error:" << mediaObject->errorString() << mediaObject->errorType();
         handleError(mediaObject->errorString());
         break;
 
-         case Phonon::PlayingState:
+    case Phonon::PlayingState:
         //qDebug("playing");
         videoAreaWidget->showVideo();
         break;
 
-         case Phonon::StoppedState:
+    case Phonon::StoppedState:
         //qDebug("stopped");
         // play() has already been called when setting the source
         // but Phonon on Linux needs a little more help to start playback
@@ -273,7 +273,7 @@ void MediaView::activeRowChanged(int row) {
     timerPlayFlag = false;
 
     // video title in the statusbar
-    QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(qApp->topLevelWidgets().first());
+    QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(window());
     if (mainWindow) mainWindow->statusBar()->showMessage(video->title());
 
     // see you in gotStreamUrl...
@@ -359,6 +359,19 @@ void MediaView::openWebPage() {
     if (!video) return;
     mediaObject->pause();
     QDesktopServices::openUrl(video->webpage());
+}
+
+void MediaView::copyVideoLink() {
+    Video* video = listModel->activeVideo();
+    QString message;
+    if (video) {
+        QApplication::clipboard()->setText(video->getStreamUrl().toString());
+        message = tr("You can now paste the video link into another application. The link will be valid only for a limited time.");
+    } else {
+        message = tr("No video is playing. The link has not been copied.");
+    }
+    QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(window());
+    if (mainWindow) mainWindow->statusBar()->showMessage(message);
 }
 
 void MediaView::removeSelected() {

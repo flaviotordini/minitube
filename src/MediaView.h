@@ -42,6 +42,7 @@ public slots:
     void skip();
     void skipVideo();
     void openWebPage();
+    void copyVideoLink();
     void removeSelected();
     void moveUpSelected();
     void moveDownSelected();
