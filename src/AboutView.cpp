@@ -21,13 +21,12 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                    "<p>" + tr("Version %1").arg(Constants::VERSION) + "</p>"
                    + QString("<p><a href=\"%1/\">%1</a></p>").arg(Constants::WEBSITE) +
 
-                   "<p>" + tr("This is a \"Technology Preview\" release, do not expect it to be perfect.") + "<br/>"
-                   + tr("Report bugs and send in your ideas to %1")
-                   .arg(QString("<a href=\"mailto:%1\">%1</a>").arg(Constants::EMAIL)) + "</p>"
-
                    "<p>" +  tr("%1 is Free Software but its development takes precious time.").arg(Constants::APP_NAME) + "<br/>"
-                   + tr("Please <a href='%1'>donate via PayPal</a> to support the continued development of %2.")
+                   + tr("Please <a href='%1'>donate</a> to support the continued development of %2.")
                    .arg(QString(Constants::WEBSITE).append("#donate"), Constants::APP_NAME) + "</p>"
+
+                   "<p>" + tr("Report bugs and send in your ideas to %1")
+                   .arg(QString("<a href=\"mailto:%1\">%1</a>").arg(Constants::EMAIL)) + "</p>"
 
                    "<p>"
                    + tr("Icon designed by %1.").arg("Sebastian Kraft")

@@ -97,6 +97,7 @@ private:
     QAction *fullscreenAct;
     QAction *compactViewAct;
     QAction *webPageAct;
+    QAction *copyPageAct;
     QAction *copyLinkAct;
     QAction *downloadAct;
     QAction *volumeUpAct;

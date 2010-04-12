@@ -77,13 +77,6 @@ void MainWindow::createActions() {
 
     QMap<QString, QAction*> *actions = The::globalActions();
 
-    backAct = new QAction(tr("&Back"), this);
-    backAct->setEnabled(false);
-    backAct->setShortcut(QKeySequence(Qt::ALT + Qt::Key_Left));
-    backAct->setStatusTip(tr("Go to the previous view"));
-    actions->insert("back", backAct);
-    connect(backAct, SIGNAL(triggered()), this, SLOT(goBack()));
-
     stopAct = new QAction(QtIconLoader::icon("media-playback-stop", QIcon(":/images/media-playback-stop.png")), tr("&Stop"), this);
     stopAct->setStatusTip(tr("Stop playback and go back to the search view"));
     stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
@@ -120,16 +113,23 @@ void MainWindow::createActions() {
     actions->insert("compactView", compactViewAct);
     connect(compactViewAct, SIGNAL(toggled(bool)), this, SLOT(compactView(bool)));
 
-    webPageAct = new QAction(tr("Open &YouTube page"), this);
-    webPageAct->setStatusTip(tr("Open the YouTube video page and pause playback"));
+    webPageAct = new QAction(tr("Open the &YouTube page"), this);
+    webPageAct->setStatusTip(tr("Go to the YouTube video page and pause playback"));
     webPageAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Y));
     webPageAct->setEnabled(false);
     actions->insert("webpage", webPageAct);
     connect(webPageAct, SIGNAL(triggered()), mediaView, SLOT(openWebPage()));
 
-    copyLinkAct = new QAction(tr("Copy video &link"), this);
-    copyLinkAct->setStatusTip(tr("Copy the current stream URL to the clipboard"));
-    copyLinkAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_L));
+    copyPageAct = new QAction(tr("Copy the YouTube &link"), this);
+    copyPageAct->setStatusTip(tr("Copy the current video YouTube link to the clipboard"));
+    copyPageAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_L));
+    copyPageAct->setEnabled(false);
+    actions->insert("pagelink", copyPageAct);
+    connect(copyPageAct, SIGNAL(triggered()), mediaView, SLOT(copyWebPage()));
+
+    copyLinkAct = new QAction(tr("Copy the video stream &URL"), this);
+    copyLinkAct->setStatusTip(tr("Copy the current video stream URL to the clipboard"));
+    copyLinkAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_U));
     copyLinkAct->setEnabled(false);
     actions->insert("videolink", copyLinkAct);
     connect(copyLinkAct, SIGNAL(triggered()), mediaView, SLOT(copyVideoLink()));
@@ -178,7 +178,7 @@ void MainWindow::createActions() {
     actions->insert("site", siteAct);
     connect(siteAct, SIGNAL(triggered()), this, SLOT(visitSite()));
 
-    donateAct = new QAction(tr("&Donate via PayPal"), this);
+    donateAct = new QAction(tr("&Donate"), this);
     donateAct->setStatusTip(tr("Please support the continued development of %1").arg(Constants::APP_NAME));
     actions->insert("donate", donateAct);
     connect(donateAct, SIGNAL(triggered()), this, SLOT(donate()));
@@ -278,6 +278,7 @@ void MainWindow::createMenus() {
     viewMenu->addAction(skipAct);
     viewMenu->addSeparator();
     viewMenu->addAction(webPageAct);
+    viewMenu->addAction(copyPageAct);
     viewMenu->addAction(copyLinkAct);
     viewMenu->addSeparator();
     viewMenu->addAction(compactViewAct);
@@ -308,7 +309,10 @@ void MainWindow::createToolBars() {
     }
     mainToolBar->setFont(smallerFont);
 
+#ifdef Q_WS_MAC
     mainToolBar->setIconSize(QSize(32, 32));
+#endif
+
     mainToolBar->addAction(stopAct);
     mainToolBar->addAction(pauseAct);
     mainToolBar->addAction(skipAct);
@@ -415,11 +419,11 @@ void MainWindow::showWidget ( QWidget* widget ) {
         statusBar()->showMessage((metadata.value("description").toString()));
     }
 
-    // backAct->setEnabled(history->size() > 1);
     stopAct->setEnabled(widget == mediaView);
     fullscreenAct->setEnabled(widget == mediaView);
     compactViewAct->setEnabled(widget == mediaView);
     webPageAct->setEnabled(widget == mediaView);
+    copyPageAct->setEnabled(widget == mediaView);
     copyLinkAct->setEnabled(widget == mediaView);
     aboutAct->setEnabled(widget != aboutView);
 
@@ -565,7 +569,9 @@ void MainWindow::fullscreen() {
 
     // Also no Youtube action since it opens a new window
     webPageAct->setVisible(m_fullscreen);
+    copyPageAct->setVisible(m_fullscreen);
     copyLinkAct->setVisible(m_fullscreen);
+
     stopAct->setVisible(m_fullscreen);
 
     // workaround: prevent focus on the search bar

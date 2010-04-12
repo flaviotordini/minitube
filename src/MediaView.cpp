@@ -361,15 +361,21 @@ void MediaView::openWebPage() {
     QDesktopServices::openUrl(video->webpage());
 }
 
+void MediaView::copyWebPage() {
+    Video* video = listModel->activeVideo();
+    if (!video) return;
+    QApplication::clipboard()->setText(video->webpage().toString());
+    QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(window());
+    QString message = tr("You can now paste the YouTube link into another application");
+    if (mainWindow) mainWindow->statusBar()->showMessage(message);
+}
+
 void MediaView::copyVideoLink() {
     Video* video = listModel->activeVideo();
-    QString message;
-    if (video) {
-        QApplication::clipboard()->setText(video->getStreamUrl().toString());
-        message = tr("You can now paste the video link into another application. The link will be valid only for a limited time.");
-    } else {
-        message = tr("No video is playing. The link has not been copied.");
-    }
+    if (!video) return;
+    QApplication::clipboard()->setText(video->getStreamUrl().toString());
+    QString message = tr("You can now paste the video stream URL into another application")
+                      + ". " + tr("The link will be valid only for a limited time.");
     QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(window());
     if (mainWindow) mainWindow->statusBar()->showMessage(message);
 }
