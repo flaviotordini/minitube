@@ -24,7 +24,7 @@ void UpdateChecker::requestFinished(QByteArray data) {
         reader.read(data);
         m_needUpdate = reader.needUpdate();
         m_remoteVersion = reader.remoteVersion();
-        if (m_needUpdate) emit newVersion(m_remoteVersion);
+        if (m_needUpdate && !m_remoteVersion.isEmpty()) emit newVersion(m_remoteVersion);
 }
 
 QString UpdateChecker::remoteVersion() {
