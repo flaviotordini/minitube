@@ -1,3 +1,13 @@
+1.0 - April ?, 2010
+- Ability to play Full HD (1080p) videos
+- Fixed videos failing to play
+- Added ability to copy the video link in the clipboard
+- Fixed missing caret in focused search box
+- Better toolbar and icon theme integration on Linux with Qt >= 4.6
+- Completely removed tooltips
+- Romanian translation by Ovidiu Niţan
+- Greek translation by Giorgos Skettos
+
 0.9 - January 22, 2010
 - Ability to clear recent keywords (by popular demand!)
 - Show the toolbar when mouse hits the top of the screen in Fullscreen mode (Linux only)

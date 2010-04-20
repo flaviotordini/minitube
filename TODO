@@ -31,15 +31,12 @@
 - Subtitles, see http://google2srt.sourceforge.net/
 
 ## Minor Features
-- Restore status when a recent keyword is clicked: skipped videos, sortBar and play time
 - Safe search levels (in the status bar beside HD)
 - Show buffering progress (when Phonon backends will work)
-- Show the toolbar when mouse hits the top of the screen in Fullscreen mode with animation
-- Show the playlist when mouse hits the left side of the screen in Fullscreen mode with animation
 - Show more thumbs on hover with animated crossfade
-- Disable tooltips in the toolbar. Is there a way to do it?
 
 ## Unsure features
+- Restore status when a recent keyword is clicked: skipped videos, sortBar and play time
 - Add menu entries for Most relevant, Most recent, Most viewed (Playlist => ...)
 - Saved playlists
 - Starred videos
