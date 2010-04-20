@@ -14,7 +14,7 @@
     </message>
     <message>
         <source>This is a &quot;Technology Preview&quot; release, do not expect it to be perfect.</source>
-        <translation>Esta es una edición «Prueba conceptual», no espere que sea perfecta.</translation>
+        <translation type="obsolete">Esta es una edición «Prueba conceptual», no espere que sea perfecta.</translation>
     </message>
     <message>
         <source>Report bugs and send in your ideas to %1</source>
@@ -26,7 +26,7 @@
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate via PayPal&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>Por favor &lt;a href=&apos;%1&apos;&gt;haga una donación a través de PayPal&lt;/a&gt; para colaborar con el desarrollo de %2.</translation>
+        <translation type="obsolete">Por favor &lt;a href=&apos;%1&apos;&gt;haga una donación a través de PayPal&lt;/a&gt; para colaborar con el desarrollo de %2.</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -63,6 +63,10 @@
     <message>
         <source>Windows version built by %1</source>
         <translation type="obsolete">Versión Windows construida por %1</translation>
+    </message>
+    <message>
+        <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -102,7 +106,7 @@
     <name>MainWindow</name>
     <message>
         <source>&amp;Back</source>
-        <translation>&amp;Atrás</translation>
+        <translation type="obsolete">&amp;Atrás</translation>
     </message>
     <message>
         <source>Alt+Left</source>
@@ -110,7 +114,7 @@
     </message>
     <message>
         <source>Go to the previous view</source>
-        <translation>Ir a la vista anterior</translation>
+        <translation type="obsolete">Ir a la vista anterior</translation>
     </message>
     <message>
         <source>&amp;Stop</source>
@@ -234,7 +238,7 @@
     </message>
     <message>
         <source>&amp;Donate via PayPal</source>
-        <translation>D&amp;onar a través de PayPal</translation>
+        <translation type="obsolete">D&amp;onar a través de PayPal</translation>
     </message>
     <message>
         <source>Please support the continued development of %1</source>
@@ -326,42 +330,62 @@
     </message>
     <message>
         <source>High Definition video is enabled</source>
-        <translation>El video en alta definición está activado</translation>
+        <translation type="obsolete">El video en alta definición está activado</translation>
     </message>
     <message>
         <source>High Definition video is not enabled</source>
-        <translation>El video en alta definición está desactivado</translation>
+        <translation type="obsolete">El video en alta definición está desactivado</translation>
     </message>
     <message>
         <source>The current video is in High Definition</source>
-        <translation>El vídeo actual es de alta definición</translation>
+        <translation type="obsolete">El vídeo actual es de alta definición</translation>
     </message>
     <message>
         <source>The current video is not in High Definition</source>
-        <translation>El vídeo actual no es de alta definición</translation>
+        <translation type="obsolete">El vídeo actual no es de alta definición</translation>
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
         <translation>Limpiar palabras &amp;clave recientes</translation>
     </message>
     <message>
-        <source>Open &amp;YouTube page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open the YouTube video page and pause playback</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Copy video &amp;link</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Copy the current stream URL to the clipboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Clear the search history. Cannot be undone.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your privacy is now safe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open the &amp;YouTube page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go to the YouTube video page and pause playback</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy the YouTube &amp;link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy the current video YouTube link to the clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy the video stream &amp;URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy the current video stream URL to the clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Make a &amp;donation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum video definition set to %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -384,11 +408,15 @@
         <translation>Está viendo %1</translation>
     </message>
     <message>
-        <source>You can now paste the video link into another application. The link will be valid only for a limited time.</source>
+        <source>You can now paste the YouTube link into another application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No video is playing. The link has not been copied.</source>
+        <source>You can now paste the video stream URL into another application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The link will be valid only for a limited time.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

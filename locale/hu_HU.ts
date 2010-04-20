@@ -14,7 +14,7 @@
     </message>
     <message>
         <source>This is a &quot;Technology Preview&quot; release, do not expect it to be perfect.</source>
-        <translation>Ez egy bemutató verzió, nem biztos, hogy tökéletesen működik.</translation>
+        <translation type="obsolete">Ez egy bemutató verzió, nem biztos, hogy tökéletesen működik.</translation>
     </message>
     <message>
         <source>Report bugs and send in your ideas to %1</source>
@@ -26,7 +26,7 @@
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate via PayPal&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>Kérlek &lt;a href=&apos;%1&apos;&gt;adakozz Paypalon keresztül&lt;/a&gt;, hogy segítsd a %2 fejlesztését.</translation>
+        <translation type="obsolete">Kérlek &lt;a href=&apos;%1&apos;&gt;adakozz Paypalon keresztül&lt;/a&gt;, hogy segítsd a %2 fejlesztését.</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -63,6 +63,10 @@
     <message>
         <source>What you always wanted to know about %1 and never dared to ask</source>
         <translation>Amit mindig is tudni akartál a %1-ról, de sosem merted megkérdezni</translation>
+    </message>
+    <message>
+        <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -102,11 +106,11 @@
     <name>MainWindow</name>
     <message>
         <source>&amp;Back</source>
-        <translation>&amp;Vissza</translation>
+        <translation type="obsolete">&amp;Vissza</translation>
     </message>
     <message>
         <source>Go to the previous view</source>
-        <translation>Vissza az előző nézethez</translation>
+        <translation type="obsolete">Vissza az előző nézethez</translation>
     </message>
     <message>
         <source>&amp;Stop</source>
@@ -202,7 +206,7 @@
     </message>
     <message>
         <source>&amp;Donate via PayPal</source>
-        <translation>&amp;Adakozás PayPalon keresztül</translation>
+        <translation type="obsolete">&amp;Adakozás PayPalon keresztül</translation>
     </message>
     <message>
         <source>Please support the continued development of %1</source>
@@ -286,19 +290,19 @@
     </message>
     <message>
         <source>High Definition video is enabled</source>
-        <translation>HD videó bekapcsolva</translation>
+        <translation type="obsolete">HD videó bekapcsolva</translation>
     </message>
     <message>
         <source>High Definition video is not enabled</source>
-        <translation>HD videó kikapcsolva</translation>
+        <translation type="obsolete">HD videó kikapcsolva</translation>
     </message>
     <message>
         <source>The current video is in High Definition</source>
-        <translation>Ez a videó HD minőségű</translation>
+        <translation type="obsolete">Ez a videó HD minőségű</translation>
     </message>
     <message>
         <source>The current video is not in High Definition</source>
-        <translation>Ez a videó nem HD minőségű</translation>
+        <translation type="obsolete">Ez a videó nem HD minőségű</translation>
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
@@ -309,23 +313,43 @@
         <translation>&amp;Alkalmazás</translation>
     </message>
     <message>
-        <source>Open &amp;YouTube page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open the YouTube video page and pause playback</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Copy video &amp;link</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Copy the current stream URL to the clipboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Clear the search history. Cannot be undone.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your privacy is now safe</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open the &amp;YouTube page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go to the YouTube video page and pause playback</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy the YouTube &amp;link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy the current video YouTube link to the clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy the video stream &amp;URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy the current video stream URL to the clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Make a &amp;donation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum video definition set to %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -348,11 +372,15 @@
         <translation>A &quot;%1&quot;-t nézed</translation>
     </message>
     <message>
-        <source>You can now paste the video link into another application. The link will be valid only for a limited time.</source>
+        <source>You can now paste the YouTube link into another application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No video is playing. The link has not been copied.</source>
+        <source>You can now paste the video stream URL into another application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The link will be valid only for a limited time.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
