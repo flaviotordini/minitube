@@ -81,7 +81,6 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     videoAreaWidget = new VideoAreaWidget(this);
     videoAreaWidget->setMinimumSize(320,240);
 
-
 #ifdef Q_WS_MAC
     // mouse autohide does not work on the Mac (no mouseMoveEvent)
     videoWidget = new Phonon::VideoWidget(this);
@@ -114,6 +113,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     workaroundTimer->setInterval(3000);
     connect(workaroundTimer, SIGNAL(timeout()), SLOT(timerPlay()));
 
+    // TODO Enable this on touch devices
     // FlickCharm *flickCharm = new FlickCharm(this);
     // flickCharm->activateOn(listView);
 
@@ -133,7 +133,6 @@ void MediaView::initialize() {
 void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
     this->mediaObject = mediaObject;
     Phonon::createPath(this->mediaObject, videoWidget);
-    // connect(mediaObject, SIGNAL(aboutToFinish()), this, SLOT(aboutToFinish()));
     connect(mediaObject, SIGNAL(finished()), this, SLOT(skip()));
     connect(mediaObject, SIGNAL(stateChanged(Phonon::State, Phonon::State)),
             this, SLOT(stateChanged(Phonon::State, Phonon::State)));
@@ -241,12 +240,6 @@ void MediaView::stop() {
     workaroundTimer->stop();
     errorTimer->stop();
     listView->selectionModel()->clearSelection();
-
-    // turn off HD indicator
-    bool ret = QMetaObject::invokeMethod(parent()->parent(), "hdIndicator", Qt::DirectConnection, Q_ARG(bool, false));
-    if (!ret) qDebug() << "hdIndicator invokeMethod failed";
-    QAction *hdAct = The::globalActions()->value("hd");
-    hdAct->setToolTip("");
 }
 
 void MediaView::activeRowChanged(int row) {
@@ -296,17 +289,6 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
         QModelIndex index = listModel->index(row, 0, QModelIndex());
         listView->scrollTo(index, QAbstractItemView::EnsureVisible);
     }
-
-    // HD indicator
-
-    // get the Video that sent the signal
-    Video *video = static_cast<Video *>(sender());
-    if (!video) {
-        qDebug() << "Cannot get sender";
-        return;
-    }
-    bool ret = QMetaObject::invokeMethod(parent()->parent(), "hdIndicator", Qt::DirectConnection, Q_ARG(bool, video->isHd()));
-    if (!ret) qDebug() << "hdIndicator invokeMethod failed";
 }
 
 void MediaView::itemActivated(const QModelIndex &index) {
@@ -316,21 +298,9 @@ void MediaView::itemActivated(const QModelIndex &index) {
     else listModel->searchMore();
 }
 
-void MediaView::aboutToFinish() {
-    /*
-    int nextRow = listModel->nextRow();
-    if (nextRow == -1) return;
-    Video* video = listModel->videoAt(nextRow);
-    QUrl streamUrl = video->streamUrl();
-    qDebug() << "Enqueing" << streamUrl;
-    mediaObject->enqueue(streamUrl);
-    */
-}
-
 void MediaView::currentSourceChanged(const Phonon::MediaSource source) {
     qDebug() << "Playing" << source.url().toString();
 }
-
 
 void MediaView::skipVideo() {
     // skippedVideo is useful for DELAYED skip operations

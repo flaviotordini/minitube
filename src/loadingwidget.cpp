@@ -68,7 +68,7 @@ void LoadingWidget::setError(QString message) {
     // progressBar->hide();
 }
 
-void LoadingWidget::bufferStatus(int percent) {
+void LoadingWidget::bufferStatus(int /* percent */) {
     /*
     qDebug() << percent;
     progressBar->setShown(percent > 0);

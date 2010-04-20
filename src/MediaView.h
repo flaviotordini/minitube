@@ -60,7 +60,6 @@ private slots:
     void handleError(QString message);
     // phonon
     void stateChanged(Phonon::State newState, Phonon::State oldState);
-    void aboutToFinish();
     void currentSourceChanged(const Phonon::MediaSource source);
     void showVideoContextMenu(QPoint point);
     // bar
