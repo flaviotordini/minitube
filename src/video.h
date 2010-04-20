@@ -40,7 +40,7 @@ public:
     const QDateTime published() const { return m_published; }
     void setPublished( QDateTime published ) { m_published = published; }
 
-    bool isHd() const { return m_hd; }
+    bool getDefinitionCode() const { return definitionCode; }
 
     void loadStreamUrl();
     QUrl getStreamUrl() { return m_streamUrl; }
@@ -56,25 +56,21 @@ signals:
 private slots:
     void gotVideoInfo(QByteArray);
     void errorVideoInfo(QNetworkReply*);
-    void scrapWebPage(QByteArray);
-    void gotHdHeaders(QNetworkReply*);
+    void scrapeWebPage(QByteArray);
+    void gotHeadHeaders(QNetworkReply*);
 
 private:
-    void scrapeStreamUrl();
     void getVideoInfo();
-    void findHdVideo(QString videoToken);
-    void standardVideoUrl(QString videoToken);
-    void hdVideoUrl(QString videoToken);
+    void findVideoUrl(int definitionCode);
+    void foundVideoUrl(QString videoToken, int definitionCode);
 
     QString m_title;
     QString m_description;
     QString m_author;
-    // QUrl m_authorUrl;
     QUrl m_webpage;
     QUrl m_streamUrl;
     QImage m_thumbnail;
     QList<QUrl> m_thumbnailUrls;
-    // QList<QImage> m_thumbnails;
     int m_duration;
     QDateTime m_published;
     int m_viewCount;
@@ -84,7 +80,7 @@ private:
     QString videoId;
 
     QString videoToken;
-    int m_hd;
+    int definitionCode;
 
     // current index for the elTypes list
     // needed to iterate on elTypes

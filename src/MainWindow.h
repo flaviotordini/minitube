@@ -21,9 +21,6 @@ public:
     MainWindow();
     ~MainWindow();
 
-public slots:
-    void hdIndicator(bool isHd);
-
 protected:
     void closeEvent(QCloseEvent *);
     bool eventFilter(QObject *obj, QEvent *event);
@@ -44,7 +41,8 @@ private slots:
     void searchFocus();
     void tick(qint64 time);
     void totalTimeChanged(qint64 time);
-    void hdMode(bool enabled);
+    void setDefinitionMode(QString definitionName);
+    void toggleDefinitionMode();
     void clearRecentKeywords();
 
     // volume shortcuts
@@ -67,8 +65,6 @@ private:
     void readSettings();
     void writeSettings();
     void showWidget(QWidget*);
-    QPixmap createHDPixmap(bool enabled);
-    QIcon createHDIcon();
     static QString formatTime(qint64 time);
 
     // view mechanism

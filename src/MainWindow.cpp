@@ -3,13 +3,13 @@
 #include "Constants.h"
 #include "iconloader/qticonloader.h"
 #include "global.h"
+#include "videodefinition.h"
 
 MainWindow::MainWindow() :
         mediaObject(0),
         audioOutput(0),
-        aboutView(0) {
-
-    m_fullscreen = false;
+        aboutView(0),
+        m_fullscreen(false) {
 
     // views mechanism
     history = new QStack<QWidget*>();
@@ -178,7 +178,7 @@ void MainWindow::createActions() {
     actions->insert("site", siteAct);
     connect(siteAct, SIGNAL(triggered()), this, SLOT(visitSite()));
 
-    donateAct = new QAction(tr("&Donate"), this);
+    donateAct = new QAction(tr("Make a &donation"), this);
     donateAct->setStatusTip(tr("Please support the continued development of %1").arg(Constants::APP_NAME));
     actions->insert("donate", donateAct);
     connect(donateAct, SIGNAL(triggered()), this, SLOT(donate()));
@@ -217,13 +217,18 @@ void MainWindow::createActions() {
     connect(volumeMuteAct, SIGNAL(triggered()), this, SLOT(volumeMute()));
     addAction(volumeMuteAct);
 
-    QAction *hdAct = new QAction(this);
-    hdAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_D));
-    hdAct->setIcon(createHDIcon());
-    hdAct->setCheckable(true);
-    actions->insert("hd", hdAct);
-    connect(hdAct, SIGNAL(toggled(bool)), this, SLOT(hdMode(bool)));
-    addAction(hdAct);
+    QAction *definitionAct = new QAction(this);
+    definitionAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_D));
+    /*
+    QMenu *definitionMenu = new QMenu(this);
+    foreach (QString definition, VideoDefinition::getDefinitionNames()) {
+        definitionMenu->addAction(definition);
+    }
+    definitionAct->setMenu(definitionMenu);
+    */
+    actions->insert("definition", definitionAct);
+    connect(definitionAct, SIGNAL(triggered()), SLOT(toggleDefinitionMode()));
+    addAction(definitionAct);
 
     // common action properties
     foreach (QAction *action, actions->values()) {
@@ -346,24 +351,20 @@ void MainWindow::createToolBars() {
 }
 
 void MainWindow::createStatusBar() {
+
+    // remove ugly borders on OSX
+    // also remove excessive spacing
+    statusBar()->setStyleSheet("::item{border:0 solid} QToolBar {padding:0;spacing:0;margin:0}");
+
     currentTime = new QLabel(this);
     statusBar()->addPermanentWidget(currentTime);
 
     totalTime = new QLabel(this);
     statusBar()->addPermanentWidget(totalTime);
 
-    // remove ugly borders on OSX
-    // and remove some excessive padding
-    statusBar()->setStyleSheet("::item{border:0 solid} "
-                               "QStatusBar, QToolBar, QToolButton {spacing:0;padding:0;margin:0} "
-                               );
-
     QToolBar *toolBar = new QToolBar(this);
-    int iconHeight = 24; // statusBar()->height();
-    int iconWidth = 36; // iconHeight * 3 / 2;
-    toolBar->setIconSize(QSize(iconWidth, iconHeight));
-    toolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
-    toolBar->addAction(The::globalActions()->value("hd"));
+    toolBar->setToolButtonStyle(Qt::ToolButtonTextOnly);
+    toolBar->addAction(The::globalActions()->value("definition"));
     statusBar()->addPermanentWidget(toolBar);
 
     statusBar()->show();
@@ -372,7 +373,7 @@ void MainWindow::createStatusBar() {
 void MainWindow::readSettings() {
     QSettings settings;
     restoreGeometry(settings.value("geometry").toByteArray());
-    hdMode(settings.value("hd").toBool());
+    setDefinitionMode(settings.value("definition", VideoDefinition::getDefinitionNames().first()).toString());
     audioOutput->setVolume(settings.value("volume", 1).toDouble());
     audioOutput->setMuted(settings.value("volumeMute").toBool());
 }
@@ -383,7 +384,6 @@ void MainWindow::writeSettings() {
         return;
     QSettings settings;
     settings.setValue("geometry", saveGeometry());
-    settings.setValue("hd", The::globalActions()->value("hd")->isChecked());
     settings.setValue("volume", audioOutput->volume());
     settings.setValue("volumeMute", audioOutput->isMuted());
     mediaView->saveSplitterState();
@@ -754,76 +754,27 @@ void MainWindow::volumeMutedChanged(bool muted) {
         statusBar()->showMessage(tr("Volume is unmuted"));
 }
 
-QPixmap MainWindow::createHDPixmap(bool enabled) {
-    QPixmap pixmap = QPixmap(24,24);
-    pixmap.fill(Qt::transparent);
-    QPainter painter(&pixmap);
-    painter.setRenderHints(QPainter::Antialiasing, true);
-
-    QRect rect(0, 3, 24, 18);
-
-    QPen pen;
-    pen.setColor(Qt::black);
-    pen.setWidth(1);
-    painter.setPen(pen);
-
-    if (enabled) {
-        painter.setBrush(palette().highlight());
-    } else {
-        QLinearGradient gradient(QPointF(0, 0), QPointF(0, rect.height() / 2));
-        gradient.setColorAt(0, QColor(0x6d, 0x6d, 0x6d));
-        gradient.setColorAt(1, QColor(0x25, 0x25, 0x25));
-        painter.setBrush(QBrush(gradient));
-    }
-    painter.drawRoundedRect(rect, 5, 5);
-
-    if (enabled) {
-        pen.setColor(palette().highlightedText().color());
-    } else {
-        pen.setColor(Qt::white);
-    }
-    painter.setPen(pen);
-
-    QFont font;
-    font.setPixelSize(12);
-    font.setBold(true);
-    painter.setFont(font);
-    painter.drawText(rect, Qt::AlignCenter, "HD");
-
-    return pixmap;
-}
-
-static QIcon hdOnIcon;
-static QIcon hdOffIcon;
-
-QIcon MainWindow::createHDIcon() {
-    hdOffIcon.addPixmap(createHDPixmap(false));
-    hdOnIcon.addPixmap(createHDPixmap(true));
-    return hdOffIcon;
-}
-
-void MainWindow::hdMode(bool enabled) {
-    QAction *hdAct = The::globalActions()->value("hd");
-    hdAct->setChecked(enabled);
-    if (enabled) {
-        hdAct->setStatusTip(tr("High Definition video is enabled") + " (" +  hdAct->shortcut().toString(QKeySequence::NativeText) + ")");
-    } else {
-        hdAct->setStatusTip(tr("High Definition video is not enabled") + " (" +  hdAct->shortcut().toString(QKeySequence::NativeText) + ")");
-    }
-    statusBar()->showMessage(hdAct->statusTip());
+void MainWindow::setDefinitionMode(QString definitionName) {
+    QAction *definitionAct = The::globalActions()->value("definition");
+    definitionAct->setText(definitionName);
+    definitionAct->setStatusTip(tr("Maximum video definition set to %1").arg(definitionAct->text())
+                                + " (" +  definitionAct->shortcut().toString(QKeySequence::NativeText) + ")");
+    statusBar()->showMessage(definitionAct->statusTip());
     QSettings settings;
-    settings.setValue("hd", enabled);
+    settings.setValue("definition", definitionName);
 }
 
-void MainWindow::hdIndicator(bool isHd) {
-    QAction *hdAct = The::globalActions()->value("hd");
-    if (isHd) {
-        hdAct->setIcon(hdOnIcon);
-        hdAct->setToolTip(tr("The current video is in High Definition"));
-    } else {
-        hdAct->setIcon(hdOffIcon);
-        hdAct->setToolTip(tr("The current video is not in High Definition"));
+void MainWindow::toggleDefinitionMode() {
+    QSettings settings;
+    QString currentDefinition = settings.value("definition").toString();
+    QStringList definitionNames = VideoDefinition::getDefinitionNames();
+    int currentIndex = definitionNames.indexOf(currentDefinition);
+    int nextIndex = 0;
+    if (currentIndex != definitionNames.size() - 1) {
+        nextIndex = currentIndex + 1;
     }
+    QString nextDefinition = definitionNames.at(nextIndex);
+    setDefinitionMode(nextDefinition);
 }
 
 void MainWindow::showFullscreenToolbar(bool show) {

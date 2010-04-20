@@ -41,7 +41,8 @@ HEADERS += src/MainWindow.h \
     src/videoareawidget.h \
     src/googlesuggest.h \
     src/videowidget.h \
-    src/flickcharm.h
+    src/flickcharm.h \
+    src/videodefinition.h
 SOURCES += src/main.cpp \
     src/MainWindow.cpp \
     src/SearchView.cpp \
@@ -67,7 +68,8 @@ SOURCES += src/main.cpp \
     src/videoareawidget.cpp \
     src/googlesuggest.cpp \
     src/videowidget.cpp \
-    src/flickcharm.cpp
+    src/flickcharm.cpp \
+    src/videodefinition.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/
