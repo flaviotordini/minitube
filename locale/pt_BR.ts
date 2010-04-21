@@ -66,7 +66,7 @@
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Por favor &lt;a href=&apos;%1&apos;&gt;doe&lt;/a&gt; para apoiar o desenvolvimento contínuo de %2.</translation>
     </message>
 </context>
 <context>
@@ -80,7 +80,7 @@
     <name>ListModel</name>
     <message>
         <source>Searching...</source>
-        <translation>Localizando...</translation>
+        <translation>Pesquisando...</translation>
     </message>
     <message>
         <source>Show %1 More</source>
@@ -222,7 +222,7 @@
     </message>
     <message>
         <source>&amp;Website</source>
-        <translation>&amp;Website</translation>
+        <translation>Si&amp;te</translation>
     </message>
     <message>
         <source>Minitube on the Web</source>
@@ -238,7 +238,7 @@
     </message>
     <message>
         <source>Please support the continued development of %1</source>
-        <translation>Por favor, apoiem o desenvolvimento contínuo de %1</translation>
+        <translation>Por favor, apoie o desenvolvimento contínuo de %1</translation>
     </message>
     <message>
         <source>&amp;About</source>
@@ -254,7 +254,7 @@
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation type="unfinished">&amp;Aplicação</translation>
+        <translation>&amp;Aplicação</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -290,7 +290,7 @@
     </message>
     <message>
         <source>Hide the playlist and the toolbar</source>
-        <translation>Escolher a playlist e a barra de tarefas</translation>
+        <translation>Ocultar a playlist e a barra de ferramentas</translation>
     </message>
     <message>
         <source>Fatal error: %1</source>
@@ -322,7 +322,7 @@
     </message>
     <message>
         <source>Mute volume</source>
-        <translation>Volume nudo</translation>
+        <translation>Volume mudo</translation>
     </message>
     <message>
         <source>Press %1 to raise the volume, %2 to lower it</source>
@@ -350,47 +350,47 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished">Palavras-chave &amp;limpas recentemente</translation>
+        <translation>&amp;Apagar palavras-chave recentes</translation>
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Apagar o histórico de pesquisa. Não pode ser desfeito.</translation>
     </message>
     <message>
         <source>Your privacy is now safe</source>
-        <translation type="unfinished"></translation>
+        <translation>Sua privacidade está agora segura</translation>
     </message>
     <message>
         <source>Open the &amp;YouTube page</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir a página do &amp;YouTube</translation>
     </message>
     <message>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation type="unfinished"></translation>
+        <translation>Ir à página de vídeo do YouTube e pausar a reprodução</translation>
     </message>
     <message>
         <source>Copy the YouTube &amp;link</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar o &amp;link do YouTube</translation>
     </message>
     <message>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar o link do vídeo atual do YouTube para a área de transferência</translation>
     </message>
     <message>
         <source>Copy the video stream &amp;URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar a &amp;URL do stream do vídeo</translation>
     </message>
     <message>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar a URL do stream do vídeo atual para a área de transferência</translation>
     </message>
     <message>
         <source>Make a &amp;donation</source>
-        <translation type="unfinished"></translation>
+        <translation>Faça uma &amp;doação</translation>
     </message>
     <message>
         <source>Maximum video definition set to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Máxima definição de vídeo definida para %1</translation>
     </message>
 </context>
 <context>
@@ -413,15 +413,15 @@
     </message>
     <message>
         <source>You can now paste the YouTube link into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Agora você pode colar o link do YouTube em outro programa</translation>
     </message>
     <message>
         <source>You can now paste the video stream URL into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Agora você pode colar a URL do stream de vídeo em outro programa</translation>
     </message>
     <message>
         <source>The link will be valid only for a limited time.</source>
-        <translation type="unfinished"></translation>
+        <translation>O link só será válido por um tempo limitado.</translation>
     </message>
 </context>
 <context>

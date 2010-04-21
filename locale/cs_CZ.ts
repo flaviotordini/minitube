@@ -26,7 +26,7 @@
     <message>
         <location filename="../src/AboutView.cpp" line="24"/>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 je svobodný software, ale jeho vývoj stoji drahocenný čas.</translation>
+        <translation>%1 je svobodný software, ale jeho vývoj stojí drahocenný čas.</translation>
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate via PayPal&lt;/a&gt; to support the continued development of %2.</source>
@@ -35,7 +35,7 @@
     <message>
         <location filename="../src/AboutView.cpp" line="25"/>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím &lt;a href=&apos;%1&apos;&gt;přispějte&lt;/a&gt; na další vývoj %2.</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="32"/>
@@ -139,7 +139,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="81"/>
         <source>Stop playback and go back to the search view</source>
-        <translation>Zastavit přehrávání a vrátit se zpět na vyhledávání</translation>
+        <translation>Zastaví přehrávání a vrátí se zpět na vyhledávání</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="86"/>
@@ -149,7 +149,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="87"/>
         <source>Skip to the next video</source>
-        <translation>Přeskočit na další video</translation>
+        <translation>Přeskočí na další video</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="93"/>
@@ -161,7 +161,7 @@
         <location filename="../src/MainWindow.cpp" line="94"/>
         <location filename="../src/MainWindow.cpp" line="527"/>
         <source>Pause playback</source>
-        <translation>Pozastavit přehrávání</translation>
+        <translation>Pozastaví přehrávání</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="100"/>
@@ -172,7 +172,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="101"/>
         <source>Go full screen</source>
-        <translation>Přepnout na celou obrazovku</translation>
+        <translation>Přepne na celou obrazovku</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="107"/>
@@ -182,7 +182,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="108"/>
         <source>Hide the playlist and the toolbar</source>
-        <translation>Skrýt playlist a toolbar</translation>
+        <translation>Skryje playlist a toolbar</translation>
     </message>
     <message>
         <source>&amp;YouTube</source>
@@ -195,32 +195,32 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="116"/>
         <source>Open the &amp;YouTube page</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít stránku &amp;YouTube</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="117"/>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevře video na webu YouTube a pozastaví přehrávání</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="123"/>
         <source>Copy the YouTube &amp;link</source>
-        <translation type="unfinished"></translation>
+        <translation>Zkopírovat &amp;odkaz na YouTube</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="124"/>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Zkopíruje adresu videa na YouTube do schránky</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="130"/>
         <source>Copy the video stream &amp;URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Zkopírovat adresu &amp;video streamu</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="131"/>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Zkopíruje do schránky adresu video streamu</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="137"/>
@@ -260,7 +260,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="163"/>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyprázdní historii vyhledávání. Akci nelze vrátit.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="168"/>
@@ -290,12 +290,12 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="181"/>
         <source>Make a &amp;donation</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Podpořit</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="760"/>
         <source>Maximum video definition set to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximální rozlišení videa je %1</translation>
     </message>
     <message>
         <source>&amp;Donate via PayPal</source>
@@ -304,7 +304,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="182"/>
         <source>Please support the continued development of %1</source>
-        <translation>Prosím podpořte další vývoj aplikace %1</translation>
+        <translation>Prosím přispějte na další vývoj aplikace %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="186"/>
@@ -350,7 +350,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="800"/>
         <source>Your privacy is now safe</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaše soukromí je nyní v bezpečí</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="264"/>
@@ -449,17 +449,17 @@
     <message>
         <location filename="../src/MediaView.cpp" line="339"/>
         <source>You can now paste the YouTube link into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyní můžete vložit odkaz na video na YouTube do jiného programu</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="347"/>
         <source>You can now paste the video stream URL into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Nyní můžete vložit odkaz na video stream do jiné aplikace</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="348"/>
         <source>The link will be valid only for a limited time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento odkaz platí jen po omezenou dobu.</translation>
     </message>
     <message>
         <location filename="../src/MediaView.h" line="31"/>

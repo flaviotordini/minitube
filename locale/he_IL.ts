@@ -14,7 +14,7 @@
     </message>
     <message>
         <source>This is a &quot;Technology Preview&quot; release, do not expect it to be perfect.</source>
-        <translation type="obsolete">זוהי הצגה טכנולוגית מקדימה, אל תצפו ממנה להיות מושלמת.</translation>
+        <translation>הפצה זו הנה &quot;הצגה טכנולוגית מקדימה&quot;, אל תצפו ממנה להיות מושלמת.</translation>
     </message>
     <message>
         <source>Report bugs and send in your ideas to %1</source>
@@ -26,7 +26,7 @@
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate via PayPal&lt;/a&gt; to support the continued development of %2.</source>
-        <translation type="obsolete">אנא &lt;a href=&apos;%1&apos;&gt;תרמו באמצעות PayPal&lt;/a&gt; כדי לתמוך בהמשך הפיתוח של %2.</translation>
+        <translation>אנא &lt;a href=&apos;%1&apos;&gt;תרמו באמצעות PayPal&lt;/a&gt; כדי לתמוך בהמשך הפיתוח של %2.</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -42,7 +42,7 @@
     </message>
     <message>
         <source>Released under the </source>
-        <translation type="obsolete">שוחרר תחת תנאי</translation>
+        <translation>שוחרר תחת תנאי</translation>
     </message>
     <message>
         <source></source>
@@ -70,11 +70,11 @@
     </message>
     <message>
         <source>Windows version built by %1</source>
-        <translation type="obsolete">הגרסה ל־Windows נבנתה על ידי %1</translation>
+        <translation>הגרסה ל־Windows נבנתה על ידי %1</translation>
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>אנא &lt;a href=&apos;%1&apos;&gt;תרמו&lt;/a&gt; כדי לתמוך בהמשך הפיתוח של %2.</translation>
     </message>
 </context>
 <context>
@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Go to the previous view</source>
-        <translation type="obsolete">מעבר אל התצוגה הקודמת</translation>
+        <translation>מעבר אל התצוגה הקודמת</translation>
     </message>
     <message>
         <source>&amp;Stop</source>
@@ -162,11 +162,11 @@
     </message>
     <message>
         <source>&amp;YouTube</source>
-        <translation type="obsolete">&amp;YouTube</translation>
+        <translation>&amp;YouTube</translation>
     </message>
     <message>
         <source>Open the YouTube video page</source>
-        <translation type="obsolete">פתיחת עמוד הווידאו ב־YouTube</translation>
+        <translation>פתיחת עמוד הווידאו ב־YouTube</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
@@ -214,7 +214,7 @@
     </message>
     <message>
         <source>&amp;Donate via PayPal</source>
-        <translation type="obsolete">&amp;תרומה באמצעות PayPal</translation>
+        <translation>&amp;תרומה באמצעות PayPal</translation>
     </message>
     <message>
         <source>Please support the continued development of %1</source>
@@ -230,7 +230,7 @@
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="obsolete">&amp;חיפוש</translation>
+        <translation>&amp;חיפוש</translation>
     </message>
     <message>
         <source>&amp;Application</source>
@@ -274,7 +274,7 @@
     </message>
     <message>
         <source>&amp;Back</source>
-        <translation type="obsolete">&amp;חזרה</translation>
+        <translation>&amp;חזרה</translation>
     </message>
     <message>
         <source>Search</source>
@@ -310,19 +310,19 @@
     </message>
     <message>
         <source>High Definition video is enabled</source>
-        <translation type="obsolete">האפשרות לצפיה באיכות גבוהה פעילה</translation>
+        <translation>האפשרות לצפיה באיכות גבוהה פעילה</translation>
     </message>
     <message>
         <source>High Definition video is not enabled</source>
-        <translation type="obsolete">האפשרות לצפיה באיכות גבוהה אינה פעילה</translation>
+        <translation>האפשרות לצפיה באיכות גבוהה אינה פעילה</translation>
     </message>
     <message>
         <source>The current video is in High Definition</source>
-        <translation type="obsolete">סרטון הווידאו הנוכחי הינו באיכות גבוהה (HD)</translation>
+        <translation>סרטון הווידאו הנוכחי הנו באיכות גבוהה (HD)</translation>
     </message>
     <message>
         <source>The current video is not in High Definition</source>
-        <translation type="obsolete">סרטון הווידאו הנוכחי אינו באיכות גבוהה (HD)</translation>
+        <translation>סרטון הווידאו הנוכחי אינו באיכות גבוהה (HD)</translation>
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
@@ -330,43 +330,43 @@
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation>מחיקת היסטוריית החיפוש. לא ניתן לבטל</translation>
     </message>
     <message>
         <source>Your privacy is now safe</source>
-        <translation type="unfinished"></translation>
+        <translation>פרטיותך מוגנת כעת.</translation>
     </message>
     <message>
         <source>Open the &amp;YouTube page</source>
-        <translation type="unfinished"></translation>
+        <translation>פthe &amp;תיחת העמוד ב־YouTube</translation>
     </message>
     <message>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation type="unfinished"></translation>
+        <translation>מעבר לעמוד הווידאו ב־YouTube והשהיית הנגינה.</translation>
     </message>
     <message>
         <source>Copy the YouTube &amp;link</source>
-        <translation type="unfinished"></translation>
+        <translation>העתקת ה&amp;קישור ל־YouTube</translation>
     </message>
     <message>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>העתקת הקישור אל הווידאו הנוכחי אל לוח הגזירים</translation>
     </message>
     <message>
         <source>Copy the video stream &amp;URL</source>
-        <translation type="unfinished"></translation>
+        <translation>העתקת כתובת &amp;תזרים הווידאו</translation>
     </message>
     <message>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>העתקת כתובת תזרים הווידאו אל לוח הגזירים</translation>
     </message>
     <message>
         <source>Make a &amp;donation</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;מתן תרומה</translation>
     </message>
     <message>
         <source>Maximum video definition set to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>איכות הנגינה המירבית מוגדרת ל־%1</translation>
     </message>
 </context>
 <context>
@@ -389,15 +389,15 @@
     </message>
     <message>
         <source>You can now paste the YouTube link into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>כעת ניתן להדביק את קישור ה־YouTube שלכם ליישום אחר</translation>
     </message>
     <message>
         <source>You can now paste the video stream URL into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>כעת ניתן להדביק את כתובת תזרים הווידאו ליישום אחר</translation>
     </message>
     <message>
         <source>The link will be valid only for a limited time.</source>
-        <translation type="unfinished"></translation>
+        <translation>הקישור יהיה תקף לזמן מוגבל בלבד.</translation>
     </message>
 </context>
 <context>
@@ -452,7 +452,7 @@
     <name>SettingsView</name>
     <message>
         <source>Preferences</source>
-        <translation type="obsolete">העדפות</translation>
+        <translation>העדפות</translation>
     </message>
 </context>
 <context>

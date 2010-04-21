@@ -66,7 +66,7 @@
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vă rugăm să &lt;a href=&apos;%1&apos;&gt;donaţi&lt;/a&gt; pentru a ajuta la continuarea dezvoltării %2.</translation>
     </message>
 </context>
 <context>
@@ -314,43 +314,43 @@
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Curăţă istoricul de căutări. Această acţiune nu poate fi anulată.</translation>
     </message>
     <message>
         <source>Your privacy is now safe</source>
-        <translation type="unfinished"></translation>
+        <translation>Intimitatea dumneavoastră este acum în siguranţă</translation>
     </message>
     <message>
         <source>Open the &amp;YouTube page</source>
-        <translation type="unfinished"></translation>
+        <translation>Deschide pagina &amp;YouTube</translation>
     </message>
     <message>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation type="unfinished"></translation>
+        <translation>Deschide pagina de pe YouTube si pune pauză</translation>
     </message>
     <message>
         <source>Copy the YouTube &amp;link</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiază &amp;link-ul de YouTube</translation>
     </message>
     <message>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiază link-ul videoclipului curent în clipboard</translation>
     </message>
     <message>
         <source>Copy the video stream &amp;URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiază adresa streamul&amp;ui</translation>
     </message>
     <message>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiază adresa stream-ului în clipboard</translation>
     </message>
     <message>
         <source>Make a &amp;donation</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Donează</translation>
     </message>
     <message>
         <source>Maximum video definition set to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Rezoluţia maxima a videoclipului este setată la %1</translation>
     </message>
 </context>
 <context>
@@ -373,15 +373,15 @@
     </message>
     <message>
         <source>You can now paste the YouTube link into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Acum poţi lipi link-ul într-o altă aplicaţie</translation>
     </message>
     <message>
         <source>You can now paste the video stream URL into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Acum poţi lipi link-ul stream-ului într-o altă aplicaţie</translation>
     </message>
     <message>
         <source>The link will be valid only for a limited time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Link-ul va fi valid doar pentru o perioadă limitată de timp.</translation>
     </message>
 </context>
 <context>

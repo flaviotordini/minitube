@@ -35,7 +35,7 @@
     <message>
         <location filename="../src/AboutView.cpp" line="25"/>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte &lt;a href=&apos;%1&apos;&gt;Spenden&lt;/a&gt; um die ständige Entwicklung von %2 zu unterstützen.</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="32"/>
@@ -219,32 +219,32 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="116"/>
         <source>Open the &amp;YouTube page</source>
-        <translation type="unfinished"></translation>
+        <translation>Öffne die &amp;YouTube Seite</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="117"/>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation type="unfinished"></translation>
+        <translation>Gehe zur YouTube Video Seite und pausiere die Wiedergabe</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="123"/>
         <source>Copy the YouTube &amp;link</source>
-        <translation type="unfinished"></translation>
+        <translation>YouTube &amp;Link kopieren</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="124"/>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>YouTube Link in die Zwischenablage kopieren</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="130"/>
         <source>Copy the video stream &amp;URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Video &amp;URL kopieren</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="131"/>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Video URL in die Zwischenablage kopieren</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="137"/>
@@ -284,7 +284,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="163"/>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Such Historie leeren. Kann nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="168"/>
@@ -314,12 +314,12 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="181"/>
         <source>Make a &amp;donation</source>
-        <translation type="unfinished"></translation>
+        <translation>Eine Spen&amp;den machen</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="760"/>
         <source>Maximum video definition set to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale video Definition wurde auf %1 gesetzt</translation>
     </message>
     <message>
         <source>&amp;Donate via PayPal</source>
@@ -384,7 +384,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="800"/>
         <source>Your privacy is now safe</source>
-        <translation type="unfinished"></translation>
+        <translation>Deine Privatsphäre ist nun geschützt</translation>
     </message>
     <message>
         <source>No Video playing</source>
@@ -509,17 +509,17 @@
     <message>
         <location filename="../src/MediaView.cpp" line="339"/>
         <source>You can now paste the YouTube link into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Du kann den YouTube Link nun in einer anderen Anwendung einfügen</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="347"/>
         <source>You can now paste the video stream URL into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Die kannst die Video URL nun in einer anderen Anwendung einfügen</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="348"/>
         <source>The link will be valid only for a limited time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Link wird nur eine beschränkte Zeit gültig sein.</translation>
     </message>
     <message>
         <location filename="../src/MediaView.h" line="31"/>

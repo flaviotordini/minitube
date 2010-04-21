@@ -67,7 +67,7 @@
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Παρακαλούμε &lt;a href=&apos;%1%&apos;&gt;δωρίστε&lt;/a&gt; για να υποστηρίξετε την συνεχόμενη ανάπτυξη του %2.</translation>
     </message>
 </context>
 <context>
@@ -355,43 +355,44 @@
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Καθαρισμός του ιστορικού αναζήτησης. Δεν μπορεί να γίνει επαναφορά.</translation>
     </message>
     <message>
         <source>Your privacy is now safe</source>
-        <translation type="unfinished"></translation>
+        <translation>Η ιδιωτικότητα σας είναι τώρα ασφαλής</translation>
     </message>
     <message>
         <source>Open the &amp;YouTube page</source>
-        <translation type="unfinished"></translation>
+        <translation>Ανοίξτε την ιστοσελίδα του &amp;YouTube</translation>
     </message>
     <message>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation type="unfinished"></translation>
+        <translation>Πλοήγηση στην σελίδα βίντεο του YouTube και παύση αναπαραγωγής</translation>
     </message>
     <message>
         <source>Copy the YouTube &amp;link</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>link=σύνδεσμος, however link is more commonly used</translatorcomment>
+        <translation>Αντιγραφή του YouTube &amp;link</translation>
     </message>
     <message>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Αντιγραφή του link του τρέχοντος YouTube βίντεο στην μνήμη</translation>
     </message>
     <message>
         <source>Copy the video stream &amp;URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Αντιγραφή του &amp;URL της ροής βίντεο</translation>
     </message>
     <message>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Αντιγραφή του URL της τρέχουσας ροής βίντεο στην μνήμη</translation>
     </message>
     <message>
         <source>Make a &amp;donation</source>
-        <translation type="unfinished"></translation>
+        <translation>Κάντε μια &amp;δωρεά</translation>
     </message>
     <message>
         <source>Maximum video definition set to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>H μέγιστη ανάλυση βίντεο τέθηκε σε %1</translation>
     </message>
 </context>
 <context>
@@ -414,15 +415,15 @@
     </message>
     <message>
         <source>You can now paste the YouTube link into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Τώρα μπορείτε να επικολλήσετε το YouTube link σε κάποια άλλη εφαρμογή</translation>
     </message>
     <message>
         <source>You can now paste the video stream URL into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Τώρα μπορείτε να επικολλήσετε το URL της ροής βίντεο σε κάποια άλλη εφαρμογή</translation>
     </message>
     <message>
         <source>The link will be valid only for a limited time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ο σύνδεμος θα είναι έγκυρος μόνο για περιορισμένο χρονικό διάστημα.</translation>
     </message>
 </context>
 <context>

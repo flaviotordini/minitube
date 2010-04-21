@@ -14,7 +14,7 @@
     </message>
     <message>
         <source>This is a &quot;Technology Preview&quot; release, do not expect it to be perfect.</source>
-        <translation type="obsolete">Šis ir &quot;Technology Preview&quot; izlaidums, negaidiet no tā brīnumus.</translation>
+        <translation>Šis ir priekšapskates izlaidums, negaidiet no tā brīnumus.</translation>
     </message>
     <message>
         <source>Report bugs and send in your ideas to %1</source>
@@ -26,7 +26,7 @@
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate via PayPal&lt;/a&gt; to support the continued development of %2.</source>
-        <translation type="obsolete">Lūdzu, &lt;a href=&apos;%1&apos;&gt;ziedojiet ar PayPal&lt;/a&gt;, lai atbalstītu %2 turpmāku izstrādi.</translation>
+        <translation>Lūdzu, &lt;a href=&apos;%1&apos;&gt;ziedojiet ar PayPal&lt;/a&gt;, lai atbalstītu %2 turpmāku izstrādi.</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -42,7 +42,7 @@
     </message>
     <message>
         <source>Windows version built by %1</source>
-        <translation type="obsolete">Windows versiju izveidoja %1</translation>
+        <translation>Windows versiju izveidoja %1</translation>
     </message>
     <message>
         <source>Translated by %1</source>
@@ -66,7 +66,7 @@
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation type="unfinished"></translation>
+	<translation>Lūdzu, &lt;a href=&apos;%1&apos;&gt;ziedojiet&lt;/a&gt;, lai atbalstītu %2 turpmāku izstrādi.</translation>
     </message>
 </context>
 <context>
@@ -106,11 +106,11 @@
     <name>MainWindow</name>
     <message>
         <source>&amp;Back</source>
-        <translation type="obsolete">Atpakaļ</translation>
+        <translation>Atpakaļ</translation>
     </message>
     <message>
         <source>Go to the previous view</source>
-        <translation type="obsolete">Atgriezties iepriekšējā logā</translation>
+        <translation>Atgriezties iepriekšējā skatā</translation>
     </message>
     <message>
         <source>&amp;Stop</source>
@@ -154,11 +154,11 @@
     </message>
     <message>
         <source>&amp;YouTube</source>
-        <translation type="obsolete">YouTube</translation>
+	<translation>&amp;YouTube</translation>
     </message>
     <message>
         <source>Open the YouTube video page</source>
-        <translation type="obsolete">Atvērt YouTube vietni</translation>
+        <translation>Atvērt YouTube vietni</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
@@ -206,7 +206,7 @@
     </message>
     <message>
         <source>&amp;Donate via PayPal</source>
-        <translation type="obsolete">Ziedojiet ar PayPal</translation>
+        <translation>Ziedojiet ar PayPal</translation>
     </message>
     <message>
         <source>Please support the continued development of %1</source>
@@ -218,7 +218,7 @@
     </message>
     <message>
         <source>Info par %1</source>
-        <translation type="obsolete">Ziņas par</translation>
+        <translation>Ziņas par %1</translation>
     </message>
     <message>
         <source>Search</source>
@@ -294,19 +294,19 @@
     </message>
     <message>
         <source>High Definition video is enabled</source>
-        <translation type="obsolete">Augstā izšķirtspēja ir ieslēgta</translation>
+        <translation>Augstā izšķirtspēja ir ieslēgta</translation>
     </message>
     <message>
         <source>High Definition video is not enabled</source>
-        <translation type="obsolete">Augstā izšķirtspēja nav ieslēgta</translation>
+        <translation>Augstā izšķirtspēja nav ieslēgta</translation>
     </message>
     <message>
         <source>The current video is in High Definition</source>
-        <translation type="obsolete">Šis ir augstās izšķirtspējas video</translation>
+        <translation>Šis ir augstās izšķirtspējas video</translation>
     </message>
     <message>
         <source>The current video is not in High Definition</source>
-        <translation type="obsolete">Šis nav augstās izšķirtspējas video</translation>
+        <translation>Šis nav augstās izšķirtspējas video</translation>
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
@@ -318,43 +318,43 @@
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dzēst meklēšanas vēsturi. Šī rīcība būs neatgriezeniska.</translation>
     </message>
     <message>
         <source>Your privacy is now safe</source>
-        <translation type="unfinished"></translation>
+        <translation>Jūsu privātums tagad ir drošībā</translation>
     </message>
     <message>
         <source>Open the &amp;YouTube page</source>
-        <translation type="unfinished"></translation>
+	<translation>Atvērt &amp;YouTube vietni</translation>
     </message>
     <message>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation type="unfinished"></translation>
+        <translation>Doties uz YouTube video vietni un apturēt atskaņošanu</translation>
     </message>
     <message>
         <source>Copy the YouTube &amp;link</source>
-        <translation type="unfinished"></translation>
+        <translation>Nokopēt YouTube norādi</translation>
     </message>
     <message>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Nokopēt esošā klipa YouTube norādi starpliktuvē</translation>
     </message>
     <message>
         <source>Copy the video stream &amp;URL</source>
-        <translation type="unfinished"></translation>
+	<translation>Nokopēt video plūsmas &amp;URL</translation>
     </message>
     <message>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation type="unfinished"></translation>
+	<translation>Nokopēt esošās video plūsmas URL starpliktuvē</translation>
     </message>
     <message>
         <source>Make a &amp;donation</source>
-        <translation type="unfinished"></translation>
+        <translation>Ziedot</translation>
     </message>
     <message>
         <source>Maximum video definition set to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Klipa maksimālā izšķirtspēja ir %1</translation>
     </message>
 </context>
 <context>
@@ -377,15 +377,15 @@
     </message>
     <message>
         <source>You can now paste the YouTube link into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Tagad varat ielīmēt YouTube norādi citā programmā</translation>
     </message>
     <message>
         <source>You can now paste the video stream URL into another application</source>
-        <translation type="unfinished"></translation>
+	<translation>Tagad varat ielīmēt video plūsmas URL citā programmā</translation>
     </message>
     <message>
         <source>The link will be valid only for a limited time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Norāde būs derīga tikai ierobežotu laiku</translation>
     </message>
 </context>
 <context>
@@ -440,7 +440,7 @@
     <name>SettingsView</name>
     <message>
         <source>Preferences</source>
-        <translation type="obsolete">Uzstādījumi</translation>
+        <translation>Uzstādījumi</translation>
     </message>
 </context>
 <context>
