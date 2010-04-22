@@ -25,7 +25,11 @@ int main(int argc, char **argv) {
     app.installTranslator(&qtTranslator);
 
     // app translations
+#ifdef PKGDATADIR
     QString dataDir = QLatin1String(PKGDATADIR);
+#else
+    QString dataDir = "";
+#endif
     QString localeDir = dataDir + QDir::separator() + "locale";
     // if app was not "installed" use the app directory
     if (!QFile::exists(localeDir)) {
@@ -40,6 +44,7 @@ int main(int argc, char **argv) {
     MainWindow mainWin;
     mainWin.setWindowTitle(Constants::APP_NAME);
 
+// no window icon on Mac
 #ifndef Q_WS_MAC
     if (!QFile::exists(dataDir)) {
         dataDir = qApp->applicationDirPath() + "/data";
@@ -51,7 +56,6 @@ int main(int argc, char **argv) {
         QString png = dataDir + "/" + size + "x" + size + "/minitube.png";
         // qDebug() << png;
         appIcon.addFile(png, QSize(iconSizes[i], iconSizes[i]));
-        // appIcon.addPixmap(QPixmap(png));
     }
     mainWin.setWindowIcon(appIcon);
 #endif
