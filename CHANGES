@@ -1,12 +1,15 @@
 1.0 - April ?, 2010
 - Ability to play Full HD (1080p) videos
+- Ability to copy the YouTube link and the video stream URL to the clipboard
 - Fixed videos failing to play
-- Added ability to copy the video link in the clipboard
-- Fixed missing caret in focused search box
+- Fixed missing caret in the search box
 - Better toolbar and icon theme integration on Linux with Qt >= 4.6
 - Completely removed tooltips
 - Romanian translation by Ovidiu Niţan
 - Greek translation by Giorgos Skettos
+- Dutch translation by Brian Keetman
+- Arabic translation by Sderawi
+- Portuguese translation by Daniel Rodrigues
 
 0.9 - January 22, 2010
 - Ability to clear recent keywords (by popular demand!)
