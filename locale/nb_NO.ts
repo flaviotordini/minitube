@@ -66,7 +66,7 @@
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vennligst &lt;a href=&apos;%1&apos;&gt;doner&lt;/a&gt; for og støtte vidre utvikling av %2.</translation>
     </message>
 </context>
 <context>
@@ -314,43 +314,43 @@
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Klarer søkehistorie. Kan ikke bli angert.</translation>
     </message>
     <message>
         <source>Your privacy is now safe</source>
-        <translation type="unfinished"></translation>
+        <translation>Ditt privatliv er nå sikkert</translation>
     </message>
     <message>
         <source>Open the &amp;YouTube page</source>
-        <translation type="unfinished"></translation>
+        <translation>Åpne &amp;YouTube side</translation>
     </message>
     <message>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation type="unfinished"></translation>
+        <translation>Gå til YouTube video siden og pause avspillingen</translation>
     </message>
     <message>
         <source>Copy the YouTube &amp;link</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopier YouTube &amp;link</translation>
     </message>
     <message>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopier denne YouTube video linken til utklippstavle</translation>
     </message>
     <message>
         <source>Copy the video stream &amp;URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopier video stream &amp;URL</translation>
     </message>
     <message>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopier denne video stream URL til utklippstavle</translation>
     </message>
     <message>
         <source>Make a &amp;donation</source>
-        <translation type="unfinished"></translation>
+        <translation>Gjør en &amp;donasjon</translation>
     </message>
     <message>
         <source>Maximum video definition set to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Maksimum video definisjon innstilling til %1</translation>
     </message>
 </context>
 <context>
@@ -373,15 +373,15 @@
     </message>
     <message>
         <source>You can now paste the YouTube link into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Du kan nå lime inn YouTube linken i et annet program</translation>
     </message>
     <message>
         <source>You can now paste the video stream URL into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Du kan nå lime inn video stream URL i et annet applikasjon</translation>
     </message>
     <message>
         <source>The link will be valid only for a limited time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Denne linken vil kun være gyldig i en begrenset tid.</translation>
     </message>
 </context>
 <context>
