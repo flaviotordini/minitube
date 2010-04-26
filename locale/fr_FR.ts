@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<!DOCTYPE TS><TS>
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutView</name>
@@ -66,7 +64,7 @@
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Merci &lt;a href=&apos;%1&apos;&gt;d&apos;envoyer vos dons&lt;/a&gt; pour aider à poursuivre le développement de %2.</translation>
     </message>
 </context>
 <context>
@@ -314,43 +312,43 @@
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Effacer l&apos;historique de recherche. Opération irréversible.</translation>
     </message>
     <message>
         <source>Your privacy is now safe</source>
-        <translation type="unfinished"></translation>
+        <translation>Votre confidentialité est maintenant respectée</translation>
     </message>
     <message>
         <source>Open the &amp;YouTube page</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir la page &amp;Youtube</translation>
     </message>
     <message>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation type="unfinished"></translation>
+        <translation>Aller à la page de la vidéo Youtube et mettre en pause</translation>
     </message>
     <message>
         <source>Copy the YouTube &amp;link</source>
-        <translation type="unfinished"></translation>
+        <translation>Copier le &amp;lien Youtube</translation>
     </message>
     <message>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copier l&apos;adresse de la vidéo YouTube courante dans le presse-papier</translation>
     </message>
     <message>
         <source>Copy the video stream &amp;URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Copier l&apos;adresse du flux &amp;vidéo</translation>
     </message>
     <message>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copier l&apos;adresse du flux vidéo courant dans le presse-papier</translation>
     </message>
     <message>
         <source>Make a &amp;donation</source>
-        <translation type="unfinished"></translation>
+        <translation>Faire un &amp;don</translation>
     </message>
     <message>
         <source>Maximum video definition set to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Résolution vidéo maximale fixée à %1</translation>
     </message>
 </context>
 <context>
@@ -373,15 +371,15 @@
     </message>
     <message>
         <source>You can now paste the YouTube link into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous pouvez maintenant copier l&apos;adresse Youtube dans une autre application</translation>
     </message>
     <message>
         <source>You can now paste the video stream URL into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous pouvez maintenant coller l&apos;adresse du flux vidéo dans une autre application</translation>
     </message>
     <message>
         <source>The link will be valid only for a limited time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le lien ne sera valide que pour un temps limité.</translation>
     </message>
 </context>
 <context>

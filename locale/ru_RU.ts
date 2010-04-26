@@ -18,7 +18,7 @@
     </message>
     <message>
         <source>Report bugs and send in your ideas to %1</source>
-        <translation type="unfinished">Отзывы и сообщения об ошибках следует отправлять на %1</translation>
+        <translation>Отзывы и сообщения об ошибках следует отправлять на %1</translation>
     </message>
     <message>
         <source>%1 is Free Software but its development takes precious time.</source>
@@ -34,7 +34,7 @@
     </message>
     <message>
         <source>Translated by %1</source>
-        <translation type="unfinished">Перевод выполнили: %1</translation>
+        <translation>Перевод выполнили: %1</translation>
     </message>
     <message>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
@@ -54,11 +54,11 @@
     </message>
     <message>
         <source>Compact mode contributed by %1.</source>
-        <translation>Компактный режим предоставлен %1.</translation>
+        <translation>Облегчённый режим предоставлен %1.</translation>
     </message>
     <message>
         <source>HTTP proxy support contributed by %1.</source>
-        <translation type="unfinished">Поддержка HTTP-прокси предоставлена %1.</translation>
+        <translation>Поддержка HTTP-прокси предоставлена %1.</translation>
     </message>
     <message>
         <source>Windows version built by %1</source>
@@ -66,7 +66,7 @@
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=&apos;%1&apos;&gt;Поддержите&lt;/a&gt; дальнейшую разработку %2.</translation>
     </message>
 </context>
 <context>
@@ -88,11 +88,11 @@
     </message>
     <message>
         <source>No videos</source>
-        <translation>Видео не найдено</translation>
+        <translation>Клипы не найдены</translation>
     </message>
     <message>
         <source>No more videos</source>
-        <translation>Больше нет видео</translation>
+        <translation>Больше нет клипов</translation>
     </message>
 </context>
 <context>
@@ -134,7 +134,7 @@
     </message>
     <message>
         <source>Skip to the next video</source>
-        <translation>Перейти к следующему видео</translation>
+        <translation>Перейти к следующему клипу</translation>
     </message>
     <message>
         <source>Ctrl+Right</source>
@@ -182,7 +182,7 @@
     </message>
     <message>
         <source>Remove the selected videos from the playlist</source>
-        <translation>Удалить выбранные видеоклипы из списка воспроизведения</translation>
+        <translation>Удалить выбранные клипы из списка воспроизведения</translation>
     </message>
     <message>
         <source>Move &amp;Up</source>
@@ -190,7 +190,7 @@
     </message>
     <message>
         <source>Move up the selected videos in the playlist</source>
-        <translation type="unfinished">Переместить выбранные видеоклипы вверх в списке воспроизведения</translation>
+        <translation>Переместить выбранные видеоклипы вверх в списке воспроизведения</translation>
     </message>
     <message>
         <source>Ctrl+Up</source>
@@ -202,7 +202,7 @@
     </message>
     <message>
         <source>Move down the selected videos in the playlist</source>
-        <translation type="unfinished">Переместить выбранные видеоклипы вниз в списке воспроизведения</translation>
+        <translation>Переместить выбранные видеоклипы вниз в списке воспроизведения</translation>
     </message>
     <message>
         <source>Ctrl+Down</source>
@@ -254,7 +254,7 @@
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation type="unfinished">Пр&amp;иложение</translation>
+        <translation>Пр&amp;иложение</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
@@ -262,7 +262,7 @@
     </message>
     <message>
         <source>&amp;Video</source>
-        <translation>&amp;Видео</translation>
+        <translation>&amp;Клипы</translation>
     </message>
     <message>
         <source>&amp;Help</source>
@@ -286,7 +286,7 @@
     </message>
     <message>
         <source>&amp;Compact mode</source>
-        <translation>&amp;Компактный режим</translation>
+        <translation>&amp;Облегчённый режим</translation>
     </message>
     <message>
         <source>Hide the playlist and the toolbar</source>
@@ -350,47 +350,47 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished">&amp;Очистить последние запросы</translation>
+        <translation>&amp;Очистить последние запросы</translation>
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Очистить журнал запросов. Изменения необратимы.</translation>
     </message>
     <message>
         <source>Your privacy is now safe</source>
-        <translation type="unfinished"></translation>
+        <translation>Конфиденциальность обеспечена</translation>
     </message>
     <message>
         <source>Open the &amp;YouTube page</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть страницу &amp;YouTube</translation>
     </message>
     <message>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation type="unfinished"></translation>
+        <translation>Приостановить воспроизведение и перейти на страницу видео в YouTube</translation>
     </message>
     <message>
         <source>Copy the YouTube &amp;link</source>
-        <translation type="unfinished"></translation>
+        <translation>Копировать &amp;ссылку YouTube</translation>
     </message>
     <message>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Скопировать ссылку текущего клипа YouTube в буфер обмена</translation>
     </message>
     <message>
         <source>Copy the video stream &amp;URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Копировать &amp;адрес видео потока</translation>
     </message>
     <message>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Скопировать адрес текущего видео потока в буфер обмена</translation>
     </message>
     <message>
         <source>Make a &amp;donation</source>
-        <translation type="unfinished"></translation>
+        <translation>Сделать &amp;пожертвование</translation>
     </message>
     <message>
         <source>Maximum video definition set to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальное разрешение видео: %1</translation>
     </message>
 </context>
 <context>
@@ -413,15 +413,15 @@
     </message>
     <message>
         <source>You can now paste the YouTube link into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Теперь можно вставить адрес YouTube в другое приложение</translation>
     </message>
     <message>
         <source>You can now paste the video stream URL into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Теперь можно вставить адрес видео потока в другое приложение</translation>
     </message>
     <message>
         <source>The link will be valid only for a limited time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Адрес будет существовать ограниченное время.</translation>
     </message>
 </context>
 <context>

@@ -18,7 +18,7 @@
     </message>
     <message>
         <source>Report bugs and send in your ideas to %1</source>
-        <translation>Hataları ve yeni fikirlerinizi  %1 adresine gönderin.</translation>
+        <translation>Hataları ve yeni fikirlerinizi  %1 adresine gönderin</translation>
     </message>
     <message>
         <source>%1 is Free Software but its development takes precious time.</source>
@@ -50,7 +50,7 @@
     </message>
     <message>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
-        <translation>&lt;a href=&apos;%1&apos;&gt;GNU Genel Kamu Lisansı&lt;/a&gt; ile yayınlanmıştır.</translation>
+        <translation>&lt;a href=&apos;%1&apos;&gt;GNU Genel Kamu Lisansı&lt;/a&gt; ile yayınlanmıştır</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -66,7 +66,7 @@
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen %2 geliştirilmesinin devam etmesi için &lt;a href=&apos;%1&apos;&gt;bağış&lt;/a&gt; yapın.</translation>
     </message>
 </context>
 <context>
@@ -374,43 +374,43 @@
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Arama geçmişini sil. Bu geri alınamaz.</translation>
     </message>
     <message>
         <source>Your privacy is now safe</source>
-        <translation type="unfinished"></translation>
+        <translation>Şimdi gizliliğiniz güvende</translation>
     </message>
     <message>
         <source>Open the &amp;YouTube page</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;YouTube sayfasını aç</translation>
     </message>
     <message>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation type="unfinished"></translation>
+        <translation>Oynatmayı beklet ve YouTube sayfasına git</translation>
     </message>
     <message>
         <source>Copy the YouTube &amp;link</source>
-        <translation type="unfinished"></translation>
+        <translation>YouTube bağlantısını &amp;kopyala</translation>
     </message>
     <message>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçerli videonun YouTube bağlantısını panoya kopyala</translation>
     </message>
     <message>
         <source>Copy the video stream &amp;URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Video akışı &amp;URL adresini kopyala</translation>
     </message>
     <message>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçerli video akışının URL adresini panoya kopyala</translation>
     </message>
     <message>
         <source>Make a &amp;donation</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Bağış yap</translation>
     </message>
     <message>
         <source>Maximum video definition set to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>En yüksek video tanımı %1 olarak ayarlı</translation>
     </message>
 </context>
 <context>
@@ -433,15 +433,15 @@
     </message>
     <message>
         <source>You can now paste the YouTube link into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Şimdi YouTube bağlantısını başka bir uygulamaya yapıştırabilirsiniz</translation>
     </message>
     <message>
         <source>You can now paste the video stream URL into another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Şimdi video akışı URL adresini başka bir uygulamaya yapıştırabilirsiniz</translation>
     </message>
     <message>
         <source>The link will be valid only for a limited time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bağlantı kısıtlı bir süre için geçerli olacak.</translation>
     </message>
 </context>
 <context>

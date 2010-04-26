@@ -47,7 +47,7 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                                                       "Inga Muste (lat), "
                                                       "Srecko Belaic (hr_HR), "
                                                       "Miguel Anxo Bouzada (es, gl), "
-                                                      "Guillaume Betous (fr_FR), "
+                                                      "Guillaume Betous & Mathieu Dimanche (fr_FR), "
                                                       "Krisztián Horváth (hu_HU), "
                                                       "Ali E. İmrek (tr_TR), "
                                                       "Jan W. Skjoldal & Halvor Lyche Strandvoll (nb_NO), "
@@ -55,7 +55,8 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                                                       "Giorgos Skettos (el_GR), "
                                                       "Brian Keetman (nl_NL), "
                                                       "Sderawi (ar), "
-                                                      "Daniel Rodrigues (pt_PT)"
+                                                      "Daniel Rodrigues (pt_PT), "
+                                                      "Jesse Jaara (fi_FI)"
                                                       ) + "</p>"
 
                    "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")
