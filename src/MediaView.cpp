@@ -334,7 +334,9 @@ void MediaView::openWebPage() {
 void MediaView::copyWebPage() {
     Video* video = listModel->activeVideo();
     if (!video) return;
-    QApplication::clipboard()->setText(video->webpage().toString());
+    QString address = video->webpage().toString();
+    address.remove("&feature=youtube_gdata");
+    QApplication::clipboard()->setText(address);
     QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(window());
     QString message = tr("You can now paste the YouTube link into another application");
     if (mainWindow) mainWindow->statusBar()->showMessage(message);
