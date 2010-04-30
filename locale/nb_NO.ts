@@ -62,7 +62,7 @@
     </message>
     <message>
         <source>What you always wanted to know about %1 and never dared to ask</source>
-        <translation type="unfinished">Hva du alltid har villet visst om %1 men aldri torde å spørre om</translation>
+        <translation>Hva du alltid har villet visst om %1 men aldri torde å spørre om</translation>
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Stop playback and go back to the search view</source>
-        <translation type="unfinished">Stopp avspilling og gå tilbake til dine søk</translation>
+        <translation>Stopp avspilling og gå tilbake til dine søk</translation>
     </message>
     <message>
         <source>S&amp;kip</source>
@@ -134,7 +134,7 @@
     </message>
     <message>
         <source>Pause playback</source>
-        <translation type="unfinished">Sett avspilling på pause</translation>
+        <translation>Sett avspilling på pause</translation>
     </message>
     <message>
         <source>&amp;Full Screen</source>
