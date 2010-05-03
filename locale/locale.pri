@@ -26,7 +26,8 @@ TRANSLATIONS += \
     nl_NL.ts \
     ar.ts \
     pt_PT.ts \
-    fi_FI.ts
+    fi_FI.ts \
+    bg_BG.ts
 
 isEmpty(QMAKE_LRELEASE) {
     win32:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]\lrelease.exe
