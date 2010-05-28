@@ -375,14 +375,26 @@ void MediaView::selectionChanged(const QItemSelection & /*selected*/, const QIte
 
 void MediaView::moveUpSelected() {
     if (!listView->selectionModel()->hasSelection()) return;
+
     QModelIndexList indexes = listView->selectionModel()->selectedIndexes();
+    qStableSort(indexes.begin(), indexes.end());
     listModel->move(indexes, true);
+
+    // set current index after row moves to something more intuitive
+    int row = indexes.first().row();
+    listView->selectionModel()->setCurrentIndex(listModel->index(row>1?row:1), QItemSelectionModel::NoUpdate);
 }
 
 void MediaView::moveDownSelected() {
     if (!listView->selectionModel()->hasSelection()) return;
+
     QModelIndexList indexes = listView->selectionModel()->selectedIndexes();
+    qStableSort(indexes.begin(), indexes.end(), qGreater<QModelIndex>());
     listModel->move(indexes, false);
+
+    // set current index after row moves to something more intuitive (respect 1 static item on bottom)
+    int row = indexes.first().row()+1, max = listModel->rowCount() - 2;
+    listView->selectionModel()->setCurrentIndex(listModel->index(row>max?max:row), QItemSelectionModel::NoUpdate);
 }
 
 void MediaView::showVideoContextMenu(QPoint point) {

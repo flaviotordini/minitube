@@ -377,7 +377,6 @@ QModelIndex ListModel::indexForVideo(Video* video) {
 }
 
 void ListModel::move(QModelIndexList &indexes, bool up) {
-
     QList<Video*> movedVideos;
 
     foreach (QModelIndex index, indexes) {
@@ -387,10 +386,11 @@ void ListModel::move(QModelIndexList &indexes, bool up) {
         movedVideos << video;
     }
 
-    int counter = 1;
+    int end=up ? -1 : rowCount()-1, mod=up ? -1 : 1;
     foreach (Video *video, movedVideos) {
 
         int row = rowForVideo(video);
+        if (row+mod==end) { end=row; continue; }
         // qDebug() << "video row" << row;
         removeRows(row, 1, QModelIndex());
 
@@ -401,7 +401,6 @@ void ListModel::move(QModelIndexList &indexes, bool up) {
         videos.insert(row, video);
         endInsertRows();
 
-        counter++;
     }
 
     emit needSelectionFor(movedVideos);
