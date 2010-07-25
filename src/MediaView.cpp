@@ -277,6 +277,7 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
     if (reallyStopped) return;
 
     // go!
+    qDebug() << "Playing" << streamUrl.toString();
     mediaObject->setCurrentSource(streamUrl);
     mediaObject->play();
 
@@ -299,7 +300,7 @@ void MediaView::itemActivated(const QModelIndex &index) {
 }
 
 void MediaView::currentSourceChanged(const Phonon::MediaSource source) {
-    qDebug() << "Playing" << source.url().toString();
+
 }
 
 void MediaView::skipVideo() {

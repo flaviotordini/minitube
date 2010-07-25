@@ -122,9 +122,9 @@ void  Video::gotVideoInfo(QByteArray data) {
     QSettings settings;
     QString definitionName = settings.value("definition").toString();
     int definitionCode = VideoDefinition::getDefinitionCode(definitionName);
-    if (definitionCode == 34) {
+    if (definitionCode == 18) {
         // This is assumed always available
-        foundVideoUrl(videoToken, 34);
+        foundVideoUrl(videoToken, 18);
     } else {
         findVideoUrl(definitionCode);
     }
@@ -169,9 +169,9 @@ void Video::scrapeWebPage(QByteArray data) {
     QSettings settings;
     QString definitionName = settings.value("definition").toString();
     int definitionCode = VideoDefinition::getDefinitionCode(definitionName);
-    if (definitionCode == 34) {
+    if (definitionCode == 18) {
         // This is assumed always available
-        foundVideoUrl(videoToken, 34);
+        foundVideoUrl(videoToken, 18);
     } else {
         findVideoUrl(definitionCode);
     }
@@ -197,7 +197,7 @@ void Video::gotHeadHeaders(QNetworkReply* reply) {
             QString nextDefinitionName = definitionNames.at(previousIndex);
             findVideoUrl(nextDefinitionName);
         } else {
-            foundVideoUrl(videoToken, 34);
+            foundVideoUrl(videoToken, 18);
         }*/
 
 
@@ -207,15 +207,15 @@ void Video::gotHeadHeaders(QNetworkReply* reply) {
         if (currentIndex > 0) {
             previousIndex = currentIndex - 1;
             int definitionCode = definitionCodes.at(previousIndex);
-            if (definitionCode == 34) {
+            if (definitionCode == 18) {
                 // This is assumed always available
-                foundVideoUrl(videoToken, 34);
+                foundVideoUrl(videoToken, 18);
             } else {
                 findVideoUrl(definitionCode);
             }
 
         } else {
-            foundVideoUrl(videoToken, 34);
+            foundVideoUrl(videoToken, 18);
         }
 
     }
