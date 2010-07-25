@@ -3,7 +3,7 @@
 
 #include <QtGui>
 #include "View.h"
-#include "Constants.h"
+#include "constants.h"
 
 class AboutView : public QWidget, public View {
 

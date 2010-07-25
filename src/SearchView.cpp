@@ -1,5 +1,5 @@
 #include "SearchView.h"
-#include "Constants.h"
+#include "constants.h"
 
 namespace The {
     QMap<QString, QAction*>* globalActions();

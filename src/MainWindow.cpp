@@ -1,6 +1,6 @@
 #include "MainWindow.h"
 #include "spacer.h"
-#include "Constants.h"
+#include "constants.h"
 #include "iconloader/qticonloader.h"
 #include "global.h"
 #include "videodefinition.h"

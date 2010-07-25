@@ -1,14 +1,13 @@
-INCLUDEPATH += /usr/include/phonon
 CONFIG += release
 TEMPLATE = app
+VERSION=1.0.1
+DEFINES += APP_VERSION="$$VERSION"
+INCLUDEPATH += /usr/include/phonon
 
 # TODO Saner string behaviour
 # DEFINES += QT_NO_CAST_FROM_ASCII QT_NO_CAST_TO_ASCII QT_STRICT_ITERATORS
 TARGET = minitube
-mac { 
-    TARGET = Minitube
-    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.4
-}
+
 QT += network \
     xml \
     phonon
@@ -25,7 +24,7 @@ HEADERS += src/MainWindow.h \
     src/searchlineedit.h \
     src/urllineedit.h \
     src/spacer.h \
-    src/Constants.h \
+    src/constants.h \
     src/iconloader/qticonloader.h \
     src/faderwidget/FaderWidget.h \
     src/ListModel.h \
@@ -69,7 +68,8 @@ SOURCES += src/main.cpp \
     src/googlesuggest.cpp \
     src/videowidget.cpp \
     src/flickcharm.cpp \
-    src/videodefinition.cpp
+    src/videodefinition.cpp \
+    src/constants.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/
@@ -84,13 +84,8 @@ include(locale/locale.pri)
 # deploy
 DISTFILES += CHANGES \
     COPYING
-mac { 
-    CONFIG += x86 \
-        ppc
-    QMAKE_INFO_PLIST = Info.plist
-    ICON = minitube.icns
-}
-unix { 
+
+unix {
     isEmpty(PREFIX):PREFIX = /usr
     BINDIR = $$PREFIX/bin
     INSTALLS += target
@@ -103,11 +98,13 @@ unix {
         desktop \
         iconsvg \
         icon16 \
+        icon22 \
         icon32 \
         icon48 \
         icon64 \
         icon128 \
-        icon256
+        icon256 \
+        icon512
     translations.path = $$PKGDATADIR
     translations.files += $$DESTDIR/locale
     desktop.path = $$DATADIR/applications
@@ -116,6 +113,8 @@ unix {
     iconsvg.files += data/minitube.svg
     icon16.path = $$DATADIR/icons/hicolor/16x16/apps
     icon16.files += data/16x16/minitube.png
+    icon22.path = $$DATADIR/icons/hicolor/22x22/apps
+    icon22.files += data/22x22/minitube.png
     icon32.path = $$DATADIR/icons/hicolor/32x32/apps
     icon32.files += data/32x32/minitube.png
     icon48.path = $$DATADIR/icons/hicolor/48x48/apps
@@ -126,5 +125,6 @@ unix {
     icon128.files += data/128x128/minitube.png
     icon256.path = $$DATADIR/icons/hicolor/256x256/apps
     icon256.files += data/256x256/minitube.png
+    icon256.path = $$DATADIR/icons/hicolor/512x512/apps
+    icon256.files += data/256x256/minitube.png
 }
-win32:RC_FILE = minitube.rc

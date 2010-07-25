@@ -1,6 +1,6 @@
 #include <QtGui>
 #include <qtsingleapplication.h>
-#include "Constants.h"
+#include "constants.h"
 #include "MainWindow.h"
 
 int main(int argc, char **argv) {

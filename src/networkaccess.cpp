@@ -1,10 +1,14 @@
 #include "networkaccess.h"
-#include "Constants.h"
+#include "constants.h"
 #include <QtGui>
 
 namespace The {
     NetworkAccess* http();
 }
+
+const QString USER_AGENT = QString(Constants::APP_NAME)
+                           + " " + Constants::VERSION
+                           + " (" + Constants::WEBSITE + ")";
 
 NetworkReply::NetworkReply(QNetworkReply *networkReply) : QObject(networkReply) {
     this->networkReply = networkReply;
@@ -55,7 +59,7 @@ QNetworkReply* NetworkAccess::simpleGet(QUrl url, int operation) {
     QNetworkAccessManager *manager = The::networkAccessManager();
 
     QNetworkRequest request(url);
-    request.setRawHeader("User-Agent", Constants::USER_AGENT.toUtf8());
+    request.setRawHeader("User-Agent", USER_AGENT.toUtf8());
     request.setRawHeader("Connection", "Keep-Alive");
 
     QNetworkReply *networkReply;

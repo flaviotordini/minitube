@@ -1,5 +1,5 @@
 #include "AboutView.h"
-#include "Constants.h"
+#include "constants.h"
 
 AboutView::AboutView(QWidget *parent) : QWidget(parent) {
 

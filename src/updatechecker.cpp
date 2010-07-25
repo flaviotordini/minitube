@@ -1,6 +1,6 @@
 #include "updatechecker.h"
 #include "networkaccess.h"
-#include "Constants.h"
+#include "constants.h"
 
 namespace The {
     NetworkAccess* http();
