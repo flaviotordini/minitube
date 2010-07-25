@@ -1,19 +1,16 @@
 CONFIG += release
 TEMPLATE = app
-VERSION=1.0.1
+VERSION = 1.0.1
 DEFINES += APP_VERSION="$$VERSION"
 INCLUDEPATH += /usr/include/phonon
 
 # TODO Saner string behaviour
 # DEFINES += QT_NO_CAST_FROM_ASCII QT_NO_CAST_TO_ASCII QT_STRICT_ITERATORS
 TARGET = minitube
-
 QT += network \
     xml \
     phonon
-unix:!mac {
-    QT += dbus
-}
+unix:!mac:QT += dbus
 include(src/qtsingleapplication/qtsingleapplication.pri)
 include(src/thlibrary/thlibrary.pri)
 HEADERS += src/MainWindow.h \
@@ -44,7 +41,8 @@ HEADERS += src/MainWindow.h \
     src/googlesuggest.h \
     src/videowidget.h \
     src/flickcharm.h \
-    src/videodefinition.h
+    src/videodefinition.h \
+    src/fontutils.h
 SOURCES += src/main.cpp \
     src/MainWindow.cpp \
     src/SearchView.cpp \
@@ -72,7 +70,8 @@ SOURCES += src/main.cpp \
     src/videowidget.cpp \
     src/flickcharm.cpp \
     src/videodefinition.cpp \
-    src/constants.cpp
+    src/constants.cpp \
+    src/fontutils.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/
@@ -87,8 +86,7 @@ include(locale/locale.pri)
 # deploy
 DISTFILES += CHANGES \
     COPYING
-
-unix {
+unix { 
     isEmpty(PREFIX):PREFIX = /usr
     BINDIR = $$PREFIX/bin
     INSTALLS += target

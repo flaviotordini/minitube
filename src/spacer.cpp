@@ -1,7 +1,7 @@
 #include "spacer.h"
 
-Spacer::Spacer(QWidget *parent, QWidget *child) : QWidget(parent) {
-    QBoxLayout *layout = new QHBoxLayout();
-    layout->addWidget(child);
-    setLayout(layout);
+Spacer::Spacer(QWidget *parent) : QWidget(parent) { }
+
+QSize Spacer::sizeHint() const {
+    return QSize(10, 1);
 }

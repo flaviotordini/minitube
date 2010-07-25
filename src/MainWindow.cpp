@@ -4,6 +4,7 @@
 #include "iconloader/qticonloader.h"
 #include "global.h"
 #include "videodefinition.h"
+#include "fontutils.h"
 
 MainWindow::MainWindow() :
         mediaObject(0),
@@ -211,10 +212,13 @@ void MainWindow::createActions() {
     addAction(volumeDownAct);
 
     volumeMuteAct = new QAction(this);
+    volumeMuteAct->setIcon(QtIconLoader::icon("audio-volume-high"));
     volumeMuteAct->setStatusTip(tr("Mute volume"));
-    volumeMuteAct->setShortcuts(QList<QKeySequence>() << QKeySequence(tr("Ctrl+M")) << QKeySequence(Qt::Key_VolumeMute));
+    volumeMuteAct->setShortcuts(QList<QKeySequence>()
+                                << QKeySequence(tr("Ctrl+M"))
+                                << QKeySequence(Qt::Key_VolumeMute));
     actions->insert("volume-mute", volumeMuteAct);
-    connect(volumeMuteAct, SIGNAL(triggered()), this, SLOT(volumeMute()));
+    connect(volumeMuteAct, SIGNAL(triggered()), SLOT(volumeMute()));
     addAction(volumeMuteAct);
 
     QAction *definitionAct = new QAction(this);
@@ -298,21 +302,13 @@ void MainWindow::createMenus() {
 void MainWindow::createToolBars() {
 
     mainToolBar = new QToolBar(this);
-#if QT_VERSION < 0x040600 || defined(Q_WS_MAC)
-    mainToolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+#if QT_VERSION < 0x040600 | defined(Q_WS_MAC)
+    mainToolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
 #else
     mainToolBar->setToolButtonStyle(Qt::ToolButtonFollowStyle);
 #endif
     mainToolBar->setFloatable(false);
     mainToolBar->setMovable(false);
-
-    QFont smallerFont;
-    smallerFont.setPointSize(smallerFont.pointSize()*.85);
-    QFontInfo fontInfo(smallerFont);
-    if (fontInfo.pixelSize() < 10) {
-        smallerFont.setPixelSize(10);
-    }
-    mainToolBar->setFont(smallerFont);
 
 #ifdef Q_WS_MAC
     mainToolBar->setIconSize(QSize(32, 32));
@@ -323,29 +319,48 @@ void MainWindow::createToolBars() {
     mainToolBar->addAction(skipAct);
     mainToolBar->addAction(fullscreenAct);
 
+    mainToolBar->addWidget(new Spacer());
+
+    QFont smallerFont = FontUtils::small();
+    currentTime = new QLabel(mainToolBar);
+    currentTime->setFont(smallerFont);
+    mainToolBar->addWidget(currentTime);
+
+    mainToolBar->addWidget(new Spacer());
+
     seekSlider = new Phonon::SeekSlider(this);
     seekSlider->setIconVisible(false);
-    Spacer *seekSliderSpacer = new Spacer(mainToolBar, seekSlider);
-    seekSliderSpacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    mainToolBar->addWidget(seekSliderSpacer);
+    seekSlider->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    mainToolBar->addWidget(seekSlider);
+
+    mainToolBar->addWidget(new Spacer());
+
+    totalTime = new QLabel(mainToolBar);
+    totalTime->setFont(smallerFont);
+    mainToolBar->addWidget(totalTime);
+
+    mainToolBar->addWidget(new Spacer());
+
+    mainToolBar->addAction(volumeMuteAct);
 
     volumeSlider = new Phonon::VolumeSlider(this);
+    volumeSlider->setMuteVisible(false);
     // qDebug() << volumeSlider->children();
     // status tip for the volume slider
     QSlider* volumeQSlider = volumeSlider->findChild<QSlider*>();
     if (volumeQSlider)
         volumeQSlider->setStatusTip(tr("Press %1 to raise the volume, %2 to lower it").arg(
                 volumeUpAct->shortcut().toString(QKeySequence::NativeText), volumeDownAct->shortcut().toString(QKeySequence::NativeText)));
-    // status tip for the mute button
-    QToolButton* muteToolButton = volumeSlider->findChild<QToolButton*>();
-    if (muteToolButton)
-        muteToolButton->setStatusTip(volumeMuteAct->statusTip());
     // this makes the volume slider smaller
     volumeSlider->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    mainToolBar->addWidget(new Spacer(mainToolBar, volumeSlider));
+    mainToolBar->addWidget(volumeSlider);
+
+    mainToolBar->addWidget(new Spacer());
 
     toolbarSearch->setStatusTip(searchFocusAct->statusTip());
-    mainToolBar->addWidget(new Spacer(mainToolBar, toolbarSearch));
+    mainToolBar->addWidget(toolbarSearch);
+
+    mainToolBar->addWidget(new Spacer());
 
     addToolBar(mainToolBar);
 }
@@ -355,12 +370,6 @@ void MainWindow::createStatusBar() {
     // remove ugly borders on OSX
     // also remove excessive spacing
     statusBar()->setStyleSheet("::item{border:0 solid} QToolBar {padding:0;spacing:0;margin:0}");
-
-    currentTime = new QLabel(this);
-    statusBar()->addPermanentWidget(currentTime);
-
-    totalTime = new QLabel(this);
-    statusBar()->addPermanentWidget(totalTime);
 
     QToolBar *toolBar = new QToolBar(this);
     toolBar->setToolButtonStyle(Qt::ToolButtonTextOnly);
@@ -707,7 +716,7 @@ void MainWindow::totalTimeChanged(qint64 time) {
         totalTime->clear();
         return;
     }
-    totalTime->setText("/ " + formatTime(time));
+    totalTime->setText(formatTime(time));
 }
 
 QString MainWindow::formatTime(qint64 time) {
@@ -748,10 +757,13 @@ void MainWindow::volumeChanged(qreal newVolume) {
 }
 
 void MainWindow::volumeMutedChanged(bool muted) {
-    if (muted)
+    if (muted) {
+        volumeMuteAct->setIcon(QtIconLoader::icon("audio-volume-muted"));
         statusBar()->showMessage(tr("Volume is muted"));
-    else
+    } else {
+        volumeMuteAct->setIcon(QtIconLoader::icon("audio-volume-high"));
         statusBar()->showMessage(tr("Volume is unmuted"));
+    }
 }
 
 void MainWindow::setDefinitionMode(QString definitionName) {

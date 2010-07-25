@@ -3,10 +3,13 @@
 
 #include <QtGui>
 
-class Spacer : public QWidget
-{
+class Spacer : public QWidget {
+
 public:
-    Spacer(QWidget *parent, QWidget *child);
+    Spacer(QWidget *parent = 0);
+
+protected:
+    QSize sizeHint() const;
 };
 
 #endif // SPACER_H
