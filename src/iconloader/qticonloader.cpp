@@ -88,7 +88,7 @@ private:
 Q_GLOBAL_STATIC(QtIconLoaderImplementation, iconLoaderInstance)
 #endif
 
-/*!
+        /*!
 
     Returns the standard icon for the given icon /a name
     as specified in the freedesktop icon spec
@@ -99,28 +99,25 @@ Q_GLOBAL_STATIC(QtIconLoaderImplementation, iconLoaderInstance)
     crossplatform code.
 
 */
-QIcon QtIconLoader::icon(const QString &name, const QIcon &fallback)
+        QIcon QtIconLoader::icon(const QString &name)
 {
     QIcon icon;
 
-#if QT_VERSION < 0x040600
-
 #ifdef Q_WS_X11
+#if QT_VERSION < 0x040600
     QString pngExtension(QLatin1String(".png"));
     QList<int> iconSizes;
-    iconSizes << 16 << 24 << 32 << 48 << 64;
+    iconSizes << 16 << 22 << 24 << 32 << 48;
     Q_FOREACH (int size, iconSizes) {
-        icon.addPixmap(iconLoaderInstance()->findIcon(size, name + pngExtension));
+        icon.addPixmap(iconLoaderInstance()->findIcon(size, name));
     }
-#endif
-
 #else
-    icon = QIcon::fromTheme(name, fallback);
+    icon = QIcon::fromTheme(name);
+#endif
+#else
+        icon = QIcon(QString(":/images/%1.png").arg(name));
 #endif
 
-    if (icon.isNull())
-        icon = fallback;
-    Q_UNUSED(name);
     return icon;
 }
 
@@ -233,7 +230,7 @@ void QtIconLoaderImplementation::lookupIconTheme() const
     dataDirs.prepend(QDir::homePath() + QLatin1String("/:"));
     QStringList kdeDirs = QFile::decodeName(getenv("KDEDIRS")).split(QLatin1Char(':'));
     Q_FOREACH (const QString dirName, kdeDirs)
-        dataDirs.append(QLatin1Char(':') + dirName + QLatin1String("/share"));
+            dataDirs.append(QLatin1Char(':') + dirName + QLatin1String("/share"));
     iconDirs = dataDirs.split(QLatin1Char(':'));
     
     QFileInfo fileInfo(QLatin1String("/usr/share/icons/default.kde"));
@@ -313,9 +310,23 @@ QPixmap QtIconLoaderImplementation::findIconHelper(int size, const QString &them
                 QString contentDir = (iconDirs[i].startsWith(QDir::homePath())) ?
                                      QLatin1String("/.icons/") : QLatin1String("/icons/");
                 QString fileName = iconDirs[i] + contentDir + themeName + QLatin1Char('/') + subDirs[j] + QLatin1Char('/') + iconName;
-                QFile file(fileName);
-                if (file.exists())
-                    pixmap.load(fileName);
+
+                QString svgExtension(QLatin1String(".svg"));
+                QString svgFilename = fileName + svgExtension;
+                QFile svgFile(svgFilename);
+                if (false && svgFile.exists()) {
+                    // qDebug() << "Found svg";
+                    pixmap.load(svgFilename);
+                } else {
+                    QString pngExtension(QLatin1String(".png"));
+                    QString pngFilename = fileName + pngExtension;
+                    QFile pngFile(pngFilename);
+                    if (pngFile.exists()) {
+                        // qDebug() << "Found png";
+                        pixmap.load(pngFilename);
+                    }
+                }
+
                 if (!pixmap.isNull())
                     break;
             }

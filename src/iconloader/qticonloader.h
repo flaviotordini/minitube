@@ -50,7 +50,7 @@
 class QtIconLoader
 {
 public:
-    static QIcon icon(const QString &name, const QIcon &fallback = QIcon());
+    static QIcon icon(const QString &name);
 };
 
 #endif // QTICONLOADER_H
