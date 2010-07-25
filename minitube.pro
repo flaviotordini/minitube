@@ -11,6 +11,9 @@ TARGET = minitube
 QT += network \
     xml \
     phonon
+unix:!mac {
+    QT += dbus
+}
 include(src/qtsingleapplication/qtsingleapplication.pri)
 include(src/thlibrary/thlibrary.pri)
 HEADERS += src/MainWindow.h \
@@ -127,4 +130,7 @@ unix {
     icon256.files += data/256x256/minitube.png
     icon256.path = $$DATADIR/icons/hicolor/512x512/apps
     icon256.files += data/256x256/minitube.png
+    icon512.path = $$DATADIR/icons/hicolor/512x512/apps
+    icon512.files += data/512x512/minitube.png
 }
+mac|win32:include(local/local.pri)
