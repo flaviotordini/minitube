@@ -60,10 +60,10 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                                                       "Tsvyatko Makazchiev (bg_BG), "
                                                       "Changtai Liang (zh_CN)"
                                                       ) + "</p>"
-
+#if !defined(APP_MAC) && !defined(Q_WS_WIN)
                    "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")
                    .arg("http://www.gnu.org/licenses/gpl.html") + "</p>"
-
+#endif
                    "<p>&copy; 2009-2010 " + Constants::ORG_NAME + "</p>";
     QLabel *infoLabel = new QLabel(info, this);
     infoLabel->setOpenExternalLinks(true);
