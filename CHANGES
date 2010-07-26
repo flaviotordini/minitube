@@ -1,4 +1,9 @@
-1.0 - April ?, 2010
+1.1 - Jul 27, 2010
+- Minitube now correctly plays cat and mouse with YouTube
+- Toolbar restyling
+- Simplified Chinese translation by Changtai Liang
+
+1.0 - May 3, 2010
 - Ability to play Full HD (1080p) videos
 - Ability to copy the YouTube link and the video stream URL to the clipboard
 - Fixed videos failing to play

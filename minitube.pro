@@ -1,6 +1,6 @@
 CONFIG += release
 TEMPLATE = app
-VERSION = 1.0.1
+VERSION = 1.1
 DEFINES += APP_VERSION="$$VERSION"
 INCLUDEPATH += /usr/include/phonon
 
@@ -10,7 +10,6 @@ TARGET = minitube
 QT += network \
     xml \
     phonon
-unix:!mac:QT += dbus
 include(src/qtsingleapplication/qtsingleapplication.pri)
 include(src/thlibrary/thlibrary.pri)
 HEADERS += src/MainWindow.h \

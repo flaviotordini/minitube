@@ -12,7 +12,7 @@ int main(int argc, char **argv) {
     app.setApplicationName(Constants::APP_NAME);
     app.setOrganizationName(Constants::ORG_NAME);
     app.setOrganizationDomain(Constants::ORG_DOMAIN);
-#ifndef Q_WS_MAC
+#ifndef APP_MAC
     app.setWheelScrollLines(1);
 #endif
 
@@ -45,7 +45,7 @@ int main(int argc, char **argv) {
     mainWin.setWindowTitle(Constants::APP_NAME);
 
 // no window icon on Mac
-#ifndef Q_WS_MAC
+#ifndef APP_MAC
     if (!QFile::exists(dataDir)) {
         dataDir = qApp->applicationDirPath() + "/data";
     }

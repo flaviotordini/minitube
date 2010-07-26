@@ -86,7 +86,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     videoAreaWidget = new VideoAreaWidget(this);
     videoAreaWidget->setMinimumSize(320,240);
 
-#ifdef Q_WS_MAC
+#ifdef APP_MAC
     // mouse autohide does not work on the Mac (no mouseMoveEvent)
     videoWidget = new Phonon::VideoWidget(this);
 #else
@@ -203,7 +203,7 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
         // but Phonon on Linux needs a little more help to start playback
         if (!reallyStopped) mediaObject->play();
 
-#ifdef Q_WS_MAC
+#ifdef APP_MAC
         // Workaround for Mac playback start problem
         if (!timerPlayFlag) {
             workaroundTimer->start();

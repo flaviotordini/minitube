@@ -268,7 +268,7 @@ void MainWindow::createMenus() {
     fileMenu = menuBar()->addMenu(tr("&Application"));
     // menus->insert("file", fileMenu);
     fileMenu->addAction(clearAct);
-#ifndef Q_WS_MAC
+#ifndef APP_MAC
     fileMenu->addSeparator();
 #endif
     fileMenu->addAction(quitAct);
@@ -302,7 +302,7 @@ void MainWindow::createMenus() {
 void MainWindow::createToolBars() {
 
     mainToolBar = new QToolBar(this);
-#if QT_VERSION < 0x040600 | defined(Q_WS_MAC)
+#if QT_VERSION < 0x040600 | defined(APP_MAC)
     mainToolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
 #else
     mainToolBar->setToolButtonStyle(Qt::ToolButtonFollowStyle);
@@ -310,7 +310,7 @@ void MainWindow::createToolBars() {
     mainToolBar->setFloatable(false);
     mainToolBar->setMovable(false);
 
-#ifdef Q_WS_MAC
+#ifdef APP_MAC
     mainToolBar->setIconSize(QSize(32, 32));
 #endif
 
@@ -444,7 +444,7 @@ void MainWindow::showWidget ( QWidget* widget ) {
     QWidget *oldWidget = views->currentWidget();
     views->setCurrentWidget(widget);
 
-#ifdef Q_WS_MAC
+#ifdef APP_MAC
     // crossfade only on OSX
     // where we can be sure of video performance
     fadeInWidget(oldWidget, widget);
@@ -591,11 +591,11 @@ void MainWindow::fullscreen() {
     mediaView->setPlaylistVisible(m_fullscreen);
     statusBar()->setVisible(m_fullscreen);
 
-#ifndef Q_WS_MAC
+#ifndef APP_MAC
     menuBar()->setVisible(m_fullscreen);
 #endif
 
-#ifdef Q_WS_MAC
+#ifdef APP_MAC
     // make the actions work when video is fullscreen (on the Mac)
     QMap<QString, QAction*> *actions = The::globalActions();
     foreach (QAction *action, actions->values()) {
@@ -649,7 +649,7 @@ void MainWindow::compactView(bool enable) {
     mediaView->setPlaylistVisible(!enable);
     statusBar()->setVisible(!enable);
 
-#ifndef Q_WS_MAC
+#ifndef APP_MAC
     menuBar()->setVisible(!enable);
 #endif
 
