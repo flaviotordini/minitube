@@ -335,6 +335,22 @@
         <source>You&apos;re watching &quot;%1&quot;</source>
         <translation>U kijkt naar &quot;%1&quot;</translation>
     </message>
+    <message>
+        <source>This is just the demo version of %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It allows you to test the application and see if it works for you.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Get the full version</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NetworkAccess</name>

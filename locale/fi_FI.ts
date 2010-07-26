@@ -6,11 +6,11 @@
     <name>AboutView</name>
     <message>
         <source>There&apos;s life outside the browser!</source>
-        <translation>Elämää on muuallakin kuin selaimessa!</translation>
+        <translation>Selaimen ulkopuolellakin on elämää!</translation>
     </message>
     <message>
         <source>Version %1</source>
-        <translation>Versio numero: %1</translation>
+        <translation>Versionumero: %1</translation>
     </message>
     <message>
         <source>%1 is Free Software but its development takes precious time.</source>
@@ -18,11 +18,11 @@
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>Olisi mukaavaa jos tukisit %2 kehitystä tekemällä &lt;a href=&apos;%1&apos;&gt;lahjoituksen&lt;/a&gt;.</translation>
+        <translation>Voit tukea  %2n kehityksen jatkumista tekemällä &lt;a href=&apos;%1&apos;&gt;lahjoituksen&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>Report bugs and send in your ideas to %1</source>
-        <translation>Kerro virheistä/ongelmista ja jaa ideoitasi osoitteeseen %1</translation>
+        <translation>Ilmoita bugit ja kerro ideasi osoitteeseen %1</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -34,7 +34,7 @@
     </message>
     <message>
         <source>HTTP proxy support contributed by %1.</source>
-        <translation>HTTP välityspalvelin tuen teki %1.</translation>
+        <translation>HTTP-välityspalvelintuen teki %1.</translation>
     </message>
     <message>
         <source>Translated by %1</source>
@@ -42,7 +42,7 @@
     </message>
     <message>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
-        <translation>Julkaistu &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt; lisenssin alla</translation>
+        <translation>Julkaistu &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt; -lisenssillä</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -54,7 +54,7 @@
     </message>
     <message>
         <source>What you always wanted to know about %1 and never dared to ask</source>
-        <translation>Mitä olet aina halunnut tietää %1sta muttet ole koskaan kehdannut kysyä</translation>
+        <translation>Mitä olet aina halunnut tietää %1sta, muttet ole koskaan kehdannut kysyä</translation>
     </message>
 </context>
 <context>
@@ -98,7 +98,7 @@
     </message>
     <message>
         <source>Stop playback and go back to the search view</source>
-        <translation>Pysäytä taista ja palaa hakuruuttun</translation>
+        <translation>Pysäytä toisto ja palaa hakuruutuun</translation>
     </message>
     <message>
         <source>S&amp;kip</source>
@@ -110,11 +110,11 @@
     </message>
     <message>
         <source>&amp;Pause</source>
-        <translation>&amp;Stoppaa</translation>
+        <translation>&amp;Keskeytä</translation>
     </message>
     <message>
         <source>Pause playback</source>
-        <translation>Pysäytä toistaminen</translation>
+        <translation>Keskeytä toisto</translation>
     </message>
     <message>
         <source>&amp;Full Screen</source>
@@ -122,7 +122,7 @@
     </message>
     <message>
         <source>Go full screen</source>
-        <translation>Vaihda kokoruutu tilaan</translation>
+        <translation>Siirry kokoruututilaan</translation>
     </message>
     <message>
         <source>&amp;Compact mode</source>
@@ -134,27 +134,27 @@
     </message>
     <message>
         <source>Open the &amp;YouTube page</source>
-        <translation>Avaa &amp;Youtube sivusto</translation>
+        <translation>Avaa &amp;Youtube -sivu</translation>
     </message>
     <message>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation>Pysäytä toisto ja mene YouTube sivulle</translation>
+        <translation>Keskeytä toisto ja mene videon YouTube -sivulle</translation>
     </message>
     <message>
         <source>Copy the YouTube &amp;link</source>
-        <translation>Kopio YouTube &amp;linkki</translation>
+        <translation>Kopio YouTube -&amp;linkki</translation>
     </message>
     <message>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation>Kopio nykyisen videon YouTube linkki</translation>
+        <translation>Kopio nykyisen videon YouTube -linkki leikepöydälle</translation>
     </message>
     <message>
         <source>Copy the video stream &amp;URL</source>
-        <translation>Kopio videovirran osoite (&amp;URL)</translation>
+        <translation>Kopioi videovirran osoite (&amp;URL)</translation>
     </message>
     <message>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation>Kopio nykyisen videvirran osoite (URL)</translation>
+        <translation>Kopioi nykyisen videvirran osoite (URL) leikepöydälle</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
@@ -162,35 +162,35 @@
     </message>
     <message>
         <source>Remove the selected videos from the playlist</source>
-        <translation>Poista valittu video listalta</translation>
+        <translation>Poista valitut videot toistolistalta</translation>
     </message>
     <message>
         <source>Move &amp;Up</source>
-        <translation>Siirrä &amp;Ylös päin</translation>
+        <translation>Siirrä &amp;Ylös</translation>
     </message>
     <message>
         <source>Move up the selected videos in the playlist</source>
-        <translation>Siirrä valittu video ylemmäksi listalla</translation>
+        <translation>Siirrä valitut videot ylemmäksi toistolistalla</translation>
     </message>
     <message>
         <source>Move &amp;Down</source>
-        <translation>Sirrä &amp;Alas päin</translation>
+        <translation>Sirrä &amp;Alas</translation>
     </message>
     <message>
         <source>Move down the selected videos in the playlist</source>
-        <translation>Siirrä valittu video alemmaksi listalla</translation>
+        <translation>Siirrä valitut videot alemmaksi toistolistalla</translation>
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation>&amp;Poista viimeisimmät haut</translation>
+        <translation>&amp;Poista viimeisimmät hakusanat</translation>
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation>Tyhjennä haku historia. Tätä toimintoa ei voi kumota.</translation>
+        <translation>Tyhjennä hakuhistoria. Tätä toimintoa ei voi kumota.</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>&amp;Poistu</translation>
+        <translation>&amp;Lopeta</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -198,11 +198,11 @@
     </message>
     <message>
         <source>Bye</source>
-        <translation>Heippa</translation>
+        <translation>Näkemiin</translation>
     </message>
     <message>
         <source>&amp;Website</source>
-        <translation>&amp;Nettisivu</translation>
+        <translation>&amp;Nettisivusto</translation>
     </message>
     <message>
         <source>%1 on the Web</source>
@@ -214,7 +214,7 @@
     </message>
     <message>
         <source>Please support the continued development of %1</source>
-        <translation>Tue %1n jatkuvaa kehitystä</translation>
+        <translation>Tue %1n jatkokehitystä</translation>
     </message>
     <message>
         <source>&amp;About</source>
@@ -222,7 +222,7 @@
     </message>
     <message>
         <source>Info about %1</source>
-        <translation>Tiotoja %1sta</translation>
+        <translation>Tietoja %1sta</translation>
     </message>
     <message>
         <source>Search</source>
@@ -238,11 +238,11 @@
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation>&amp;Ohjelma</translation>
+        <translation>&amp;Sovellus</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
-        <translation>&amp;Soittolista</translation>
+        <translation>&amp;Toistolista</translation>
     </message>
     <message>
         <source>&amp;Video</source>
@@ -254,15 +254,15 @@
     </message>
     <message>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation>Paina %1ta nostaaksesi tai %2ta laskeaksesi äänen voimakkuutta</translation>
+        <translation>Paina näppäinyhdistelmää %1 nostaaksesi tai %2 laskeaksesi äänenvoimakkuutta</translation>
     </message>
     <message>
         <source>Opening %1</source>
-        <translation>Avataan %1ta/tä</translation>
+        <translation>Avataan kohdetta %1</translation>
     </message>
     <message>
         <source>Fatal error: %1</source>
-        <translation>Kauhia Virhe: %1</translation>
+        <translation>Kohtalokas virhe: %1</translation>
     </message>
     <message>
         <source>Error: %1</source>
@@ -286,7 +286,7 @@
     </message>
     <message>
         <source>Volume at %1%</source>
-        <translation>Äänen tasa %1%</translation>
+        <translation>Äänentaso: %1%</translation>
     </message>
     <message>
         <source>Volume is muted</source>
@@ -298,7 +298,7 @@
     </message>
     <message>
         <source>Maximum video definition set to %1</source>
-        <translation>Suurin videon laatu on rajoiteetu %1aan/ään</translation>
+        <translation>Korkein videonlaatu on rajoitettu tarkkuteen %1</translation>
     </message>
     <message>
         <source>Your privacy is now safe</source>
@@ -309,11 +309,11 @@
     <name>MediaView</name>
     <message>
         <source>Most relevant</source>
-        <translation>Olennaisin</translation>
+        <translation>Osuvin</translation>
     </message>
     <message>
         <source>Most recent</source>
-        <translation>Uusin</translation>
+        <translation>Viimeisin</translation>
     </message>
     <message>
         <source>Most viewed</source>
@@ -321,11 +321,11 @@
     </message>
     <message>
         <source>You can now paste the YouTube link into another application</source>
-        <translation>Voit nyt liittää YouTube linkin johonkin toiseen ohjelmaan</translation>
+        <translation>Voit nyt liittää YouTube-linkin johonkin toiseen sovellukseen</translation>
     </message>
     <message>
         <source>You can now paste the video stream URL into another application</source>
-        <translation>Voit nyt liittää videovirran osoitteen(URL) johonkin toiseen ohjelmaan</translation>
+        <translation>Voit nyt liittää videovirran osoitteen (URL) johonkin toiseen sovellukseen</translation>
     </message>
     <message>
         <source>The link will be valid only for a limited time.</source>
@@ -335,12 +335,28 @@
         <source>You&apos;re watching &quot;%1&quot;</source>
         <translation>Nyt pyörii &quot;%1&quot;</translation>
     </message>
+    <message>
+        <source>This is just the demo version of %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It allows you to test the application and see if it works for you.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Get the full version</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NetworkAccess</name>
     <message>
         <source>Network error: %1</source>
-        <translation>Verkko virhe: %1</translation>
+        <translation>Verkkovirhe: %1</translation>
     </message>
 </context>
 <context>
@@ -361,11 +377,11 @@
     <name>SearchView</name>
     <message>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
-        <translation>&lt;a href=&apos;%1&apos;&gt;%2en&lt;/a&gt;</translation>
+        <translation>Tervetuloa &lt;a href=&apos;%1&apos;&gt;%2en&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Enter a keyword to start watching videos.</source>
-        <translation>Anna hakusana alkaaksesi katsella videoita.</translation>
+        <translation>Anna hakusana aloittaaksesi videoiden katselu.</translation>
     </message>
     <message>
         <source>Watch</source>
@@ -388,7 +404,7 @@
     <name>Video</name>
     <message>
         <source>Network error: %1 for %2</source>
-        <translation>Verkko virhe: &quot;%1&quot; &quot;%2&quot;lle</translation>
+        <translation>Verkkovirhe: &quot;%1&quot; &quot;%2&quot;lle</translation>
     </message>
 </context>
 </TS>

@@ -20,11 +20,11 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                    "<p>" + tr("There's life outside the browser!") + "</p>"
                    "<p>" + tr("Version %1").arg(Constants::VERSION) + "</p>"
                    + QString("<p><a href=\"%1/\">%1</a></p>").arg(Constants::WEBSITE) +
-
+#if !defined(APP_MAC) && !defined(Q_WS_WIN)
                    "<p>" +  tr("%1 is Free Software but its development takes precious time.").arg(Constants::APP_NAME) + "<br/>"
                    + tr("Please <a href='%1'>donate</a> to support the continued development of %2.")
                    .arg(QString(Constants::WEBSITE).append("#donate"), Constants::APP_NAME) + "</p>"
-
+#endif
                    "<p>" + tr("Report bugs and send in your ideas to %1")
                    .arg(QString("<a href=\"mailto:%1\">%1</a>").arg(Constants::EMAIL)) + "</p>"
 
@@ -45,7 +45,7 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                                                       "Yaron Shahrabani (he_IL), "
                                                       "Oleksandr Korneta (uk), "
                                                       "Inga Muste (lat), "
-                                                      "Srecko Belaic (hr_HR), "
+                                                      "Srecko Belaic & Zvonimir Đeri (hr_HR), "
                                                       "Miguel Anxo Bouzada (es, gl), "
                                                       "Guillaume Betous & Mathieu Dimanche (fr_FR), "
                                                       "Krisztián Horváth (hu_HU), "
@@ -57,7 +57,8 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                                                       "Sderawi (ar), "
                                                       "Daniel Rodrigues (pt_PT), "
                                                       "Jesse Jaara (fi_FI), "
-                                                      "Tsvyatko Makazchiev (bg_BG)"
+                                                      "Tsvyatko Makazchiev (bg_BG), "
+                                                      "Changtai Liang (zh_CN)"
                                                       ) + "</p>"
 
                    "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")

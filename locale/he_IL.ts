@@ -14,7 +14,7 @@
     </message>
     <message>
         <source>This is a &quot;Technology Preview&quot; release, do not expect it to be perfect.</source>
-        <translation>הפצה זו הנה &quot;הצגה טכנולוגית מקדימה&quot;, אל תצפו ממנה להיות מושלמת.</translation>
+        <translation type="obsolete">הפצה זו הנה &quot;הצגה טכנולוגית מקדימה&quot;, אל תצפו ממנה להיות מושלמת.</translation>
     </message>
     <message>
         <source>Report bugs and send in your ideas to %1</source>
@@ -26,7 +26,7 @@
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate via PayPal&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>אנא &lt;a href=&apos;%1&apos;&gt;תרמו באמצעות PayPal&lt;/a&gt; כדי לתמוך בהמשך הפיתוח של %2.</translation>
+        <translation type="obsolete">אנא &lt;a href=&apos;%1&apos;&gt;תרמו באמצעות PayPal&lt;/a&gt; כדי לתמוך בהמשך הפיתוח של %2.</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -42,7 +42,7 @@
     </message>
     <message>
         <source>Released under the </source>
-        <translation>שוחרר תחת תנאי</translation>
+        <translation type="obsolete">שוחרר תחת תנאי</translation>
     </message>
     <message>
         <source></source>
@@ -70,7 +70,7 @@
     </message>
     <message>
         <source>Windows version built by %1</source>
-        <translation>הגרסה ל־Windows נבנתה על ידי %1</translation>
+        <translation type="obsolete">הגרסה ל־Windows נבנתה על ידי %1</translation>
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Go to the previous view</source>
-        <translation>מעבר אל התצוגה הקודמת</translation>
+        <translation type="obsolete">מעבר אל התצוגה הקודמת</translation>
     </message>
     <message>
         <source>&amp;Stop</source>
@@ -162,11 +162,11 @@
     </message>
     <message>
         <source>&amp;YouTube</source>
-        <translation>&amp;YouTube</translation>
+        <translation type="obsolete">&amp;YouTube</translation>
     </message>
     <message>
         <source>Open the YouTube video page</source>
-        <translation>פתיחת עמוד הווידאו ב־YouTube</translation>
+        <translation type="obsolete">פתיחת עמוד הווידאו ב־YouTube</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
@@ -214,7 +214,7 @@
     </message>
     <message>
         <source>&amp;Donate via PayPal</source>
-        <translation>&amp;תרומה באמצעות PayPal</translation>
+        <translation type="obsolete">&amp;תרומה באמצעות PayPal</translation>
     </message>
     <message>
         <source>Please support the continued development of %1</source>
@@ -230,7 +230,7 @@
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation>&amp;חיפוש</translation>
+        <translation type="obsolete">&amp;חיפוש</translation>
     </message>
     <message>
         <source>&amp;Application</source>
@@ -274,7 +274,7 @@
     </message>
     <message>
         <source>&amp;Back</source>
-        <translation>&amp;חזרה</translation>
+        <translation type="obsolete">&amp;חזרה</translation>
     </message>
     <message>
         <source>Search</source>
@@ -310,19 +310,19 @@
     </message>
     <message>
         <source>High Definition video is enabled</source>
-        <translation>האפשרות לצפיה באיכות גבוהה פעילה</translation>
+        <translation type="obsolete">האפשרות לצפיה באיכות גבוהה פעילה</translation>
     </message>
     <message>
         <source>High Definition video is not enabled</source>
-        <translation>האפשרות לצפיה באיכות גבוהה אינה פעילה</translation>
+        <translation type="obsolete">האפשרות לצפיה באיכות גבוהה אינה פעילה</translation>
     </message>
     <message>
         <source>The current video is in High Definition</source>
-        <translation>סרטון הווידאו הנוכחי הנו באיכות גבוהה (HD)</translation>
+        <translation type="obsolete">סרטון הווידאו הנוכחי הנו באיכות גבוהה (HD)</translation>
     </message>
     <message>
         <source>The current video is not in High Definition</source>
-        <translation>סרטון הווידאו הנוכחי אינו באיכות גבוהה (HD)</translation>
+        <translation type="obsolete">סרטון הווידאו הנוכחי אינו באיכות גבוהה (HD)</translation>
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
@@ -399,6 +399,22 @@
         <source>The link will be valid only for a limited time.</source>
         <translation>הקישור יהיה תקף לזמן מוגבל בלבד.</translation>
     </message>
+    <message>
+        <source>This is just the demo version of %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It allows you to test the application and see if it works for you.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Get the full version</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NetworkAccess</name>
@@ -452,7 +468,7 @@
     <name>SettingsView</name>
     <message>
         <source>Preferences</source>
-        <translation>העדפות</translation>
+        <translation type="obsolete">העדפות</translation>
     </message>
 </context>
 <context>

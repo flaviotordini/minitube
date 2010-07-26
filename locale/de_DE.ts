@@ -62,12 +62,12 @@
         <translation>Übersetzung durch %1</translation>
     </message>
     <message>
-        <location filename="../src/AboutView.cpp" line="58"/>
+        <location filename="../src/AboutView.cpp" line="63"/>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
         <translation>Veröffentlicht unter der &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/AboutView.cpp" line="69"/>
+        <location filename="../src/AboutView.cpp" line="74"/>
         <source>&amp;Close</source>
         <translation>S&amp;chließen</translation>
     </message>
@@ -132,45 +132,45 @@
         <translation type="obsolete">Gehe zur vorherigen Ansicht</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="80"/>
+        <location filename="../src/MainWindow.cpp" line="81"/>
         <source>&amp;Stop</source>
         <translation>&amp;Halt</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="81"/>
+        <location filename="../src/MainWindow.cpp" line="82"/>
         <source>Stop playback and go back to the search view</source>
         <translation>Wiedergabe anhalten und zurück zur Suchansicht</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="86"/>
+        <location filename="../src/MainWindow.cpp" line="87"/>
         <source>S&amp;kip</source>
         <translation>Ü&amp;berspringen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="87"/>
+        <location filename="../src/MainWindow.cpp" line="88"/>
         <source>Skip to the next video</source>
         <translation>Überspringe zum nächsten Video</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="93"/>
-        <location filename="../src/MainWindow.cpp" line="526"/>
+        <location filename="../src/MainWindow.cpp" line="94"/>
+        <location filename="../src/MainWindow.cpp" line="535"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pause</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="94"/>
-        <location filename="../src/MainWindow.cpp" line="527"/>
+        <location filename="../src/MainWindow.cpp" line="95"/>
+        <location filename="../src/MainWindow.cpp" line="536"/>
         <source>Pause playback</source>
         <translation>Wiedergabe pausieren</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="100"/>
-        <location filename="../src/MainWindow.cpp" line="605"/>
+        <location filename="../src/MainWindow.cpp" line="101"/>
+        <location filename="../src/MainWindow.cpp" line="614"/>
         <source>&amp;Full Screen</source>
         <translation>&amp;Vollbildmodus</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="101"/>
+        <location filename="../src/MainWindow.cpp" line="102"/>
         <source>Go full screen</source>
         <translation>Vollbildmodus aktivieren</translation>
     </message>
@@ -195,12 +195,12 @@
         <translation type="obsolete">Ctrl+Y</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="107"/>
+        <location filename="../src/MainWindow.cpp" line="108"/>
         <source>&amp;Compact mode</source>
         <translation>&amp;Kompakt-Ansicht</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="108"/>
+        <location filename="../src/MainWindow.cpp" line="109"/>
         <source>Hide the playlist and the toolbar</source>
         <translation>Verstecke Abspielliste und Werkzeugleiste</translation>
     </message>
@@ -217,107 +217,107 @@
         <translation type="obsolete">Strg+S</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="116"/>
+        <location filename="../src/MainWindow.cpp" line="117"/>
         <source>Open the &amp;YouTube page</source>
         <translation>Öffne die &amp;YouTube Seite</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="117"/>
+        <location filename="../src/MainWindow.cpp" line="118"/>
         <source>Go to the YouTube video page and pause playback</source>
         <translation>Gehe zur YouTube Video Seite und pausiere die Wiedergabe</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="123"/>
+        <location filename="../src/MainWindow.cpp" line="124"/>
         <source>Copy the YouTube &amp;link</source>
         <translation>YouTube &amp;Link kopieren</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="124"/>
+        <location filename="../src/MainWindow.cpp" line="125"/>
         <source>Copy the current video YouTube link to the clipboard</source>
         <translation>YouTube Link in die Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="130"/>
+        <location filename="../src/MainWindow.cpp" line="131"/>
         <source>Copy the video stream &amp;URL</source>
         <translation>Video &amp;URL kopieren</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="131"/>
+        <location filename="../src/MainWindow.cpp" line="132"/>
         <source>Copy the current video stream URL to the clipboard</source>
         <translation>Video URL in die Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="137"/>
+        <location filename="../src/MainWindow.cpp" line="138"/>
         <source>&amp;Remove</source>
         <translation>Entfe&amp;rnen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="138"/>
+        <location filename="../src/MainWindow.cpp" line="139"/>
         <source>Remove the selected videos from the playlist</source>
         <translation>Entferne das ausgewählte Video aus der Abspielliste</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="144"/>
+        <location filename="../src/MainWindow.cpp" line="145"/>
         <source>Move &amp;Up</source>
         <translation>Bewege &amp;hinauf</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="145"/>
+        <location filename="../src/MainWindow.cpp" line="146"/>
         <source>Move up the selected videos in the playlist</source>
         <translation>Bewerge das ausgewählte Video in der Abspielliste hinauf</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="151"/>
+        <location filename="../src/MainWindow.cpp" line="152"/>
         <source>Move &amp;Down</source>
         <translation>Bewege hin&amp;ab</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="152"/>
+        <location filename="../src/MainWindow.cpp" line="153"/>
         <source>Move down the selected videos in the playlist</source>
         <translation>Bewege das ausgewählte Video in der Abspielliste hinunter</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="158"/>
+        <location filename="../src/MainWindow.cpp" line="159"/>
         <source>&amp;Clear recent keywords</source>
         <translation>Kürzlich genutzte S&amp;chlüsselwörter entfernen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="163"/>
+        <location filename="../src/MainWindow.cpp" line="164"/>
         <source>Clear the search history. Cannot be undone.</source>
         <translation>Such Historie leeren. Kann nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="168"/>
+        <location filename="../src/MainWindow.cpp" line="169"/>
         <source>&amp;Quit</source>
         <translation>&amp;Verlassen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="170"/>
+        <location filename="../src/MainWindow.cpp" line="171"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="171"/>
+        <location filename="../src/MainWindow.cpp" line="172"/>
         <source>Bye</source>
         <translation>Tschüss</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="175"/>
+        <location filename="../src/MainWindow.cpp" line="176"/>
         <source>&amp;Website</source>
         <translation>&amp;Webseite</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="177"/>
+        <location filename="../src/MainWindow.cpp" line="178"/>
         <source>%1 on the Web</source>
         <translation>%1 im Internet</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="181"/>
+        <location filename="../src/MainWindow.cpp" line="182"/>
         <source>Make a &amp;donation</source>
         <translation>Eine Spen&amp;den machen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="760"/>
+        <location filename="../src/MainWindow.cpp" line="772"/>
         <source>Maximum video definition set to %1</source>
         <translation>Maximale video Definition wurde auf %1 gesetzt</translation>
     </message>
@@ -326,42 +326,42 @@
         <translation type="obsolete">Spen&amp;den via PayPal</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="182"/>
+        <location filename="../src/MainWindow.cpp" line="183"/>
         <source>Please support the continued development of %1</source>
         <translation>Bitte unterstüte die fortwährende Entwicklung von %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="186"/>
+        <location filename="../src/MainWindow.cpp" line="187"/>
         <source>&amp;About</source>
         <translation>&amp;Über</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="188"/>
+        <location filename="../src/MainWindow.cpp" line="189"/>
         <source>Info about %1</source>
         <translation>Informationen über %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="196"/>
+        <location filename="../src/MainWindow.cpp" line="197"/>
         <source>Search</source>
         <translation>Suche</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="214"/>
+        <location filename="../src/MainWindow.cpp" line="216"/>
         <source>Mute volume</source>
         <translation>Audio ausschalten</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="215"/>
+        <location filename="../src/MainWindow.cpp" line="218"/>
         <source>Ctrl+M</source>
         <translation>Strg+M</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="337"/>
+        <location filename="../src/MainWindow.cpp" line="352"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
         <translation>%1 drücken um die Lautstärke zu erhöhen, %2 um sie zu verringern</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="701"/>
+        <location filename="../src/MainWindow.cpp" line="710"/>
         <source>Remaining time: %1</source>
         <translation>Verbleibende Zeit: %1</translation>
     </message>
@@ -382,7 +382,7 @@
         <translation type="obsolete">Das derzeitige Video ist nicht in High Definition</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="800"/>
+        <location filename="../src/MainWindow.cpp" line="812"/>
         <source>Your privacy is now safe</source>
         <translation>Deine Privatsphäre ist nun geschützt</translation>
     </message>
@@ -419,17 +419,17 @@
         <translation type="obsolete">Herunterladen fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="747"/>
+        <location filename="../src/MainWindow.cpp" line="756"/>
         <source>Volume at %1%</source>
         <translation>Lautstärke %1%</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="752"/>
+        <location filename="../src/MainWindow.cpp" line="762"/>
         <source>Volume is muted</source>
         <translation>Audio ist ausgeschaltet</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="754"/>
+        <location filename="../src/MainWindow.cpp" line="765"/>
         <source>Volume is unmuted</source>
         <translation>Audio eingeschaltet</translation>
     </message>
@@ -438,53 +438,53 @@
         <translation type="obsolete">&amp;Suche</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="264"/>
+        <location filename="../src/MainWindow.cpp" line="268"/>
         <source>&amp;Application</source>
         <translation>&amp;Anwendung</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="272"/>
+        <location filename="../src/MainWindow.cpp" line="276"/>
         <source>&amp;Playlist</source>
         <translation>&amp;Abspielliste</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="279"/>
+        <location filename="../src/MainWindow.cpp" line="283"/>
         <source>&amp;Video</source>
         <translation>&amp;Video</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="292"/>
+        <location filename="../src/MainWindow.cpp" line="296"/>
         <source>&amp;Help</source>
         <translation>&amp;Hilfe</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="467"/>
-        <location filename="../src/MainWindow.cpp" line="473"/>
+        <location filename="../src/MainWindow.cpp" line="476"/>
+        <location filename="../src/MainWindow.cpp" line="482"/>
         <source>Opening %1</source>
         <translation>Öffne %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="517"/>
+        <location filename="../src/MainWindow.cpp" line="526"/>
         <source>Fatal error: %1</source>
         <translation>Schwerer Fehler: %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="519"/>
+        <location filename="../src/MainWindow.cpp" line="528"/>
         <source>Error: %1</source>
         <translation>Fehler: %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="540"/>
+        <location filename="../src/MainWindow.cpp" line="549"/>
         <source>&amp;Play</source>
         <translation>&amp;Abspielen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="541"/>
+        <location filename="../src/MainWindow.cpp" line="550"/>
         <source>Resume playback</source>
         <translation>Wiedergabe fortsetzen</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="618"/>
+        <location filename="../src/MainWindow.cpp" line="627"/>
         <source>Exit &amp;Full Screen</source>
         <translation>Vollbildmodus &amp;verlassen</translation>
     </message>
@@ -492,34 +492,54 @@
 <context>
     <name>MediaView</name>
     <message>
-        <location filename="../src/MediaView.cpp" line="25"/>
+        <location filename="../src/MediaView.cpp" line="30"/>
         <source>Most relevant</source>
         <translation>Die bedeutsamsten</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="32"/>
+        <location filename="../src/MediaView.cpp" line="37"/>
         <source>Most recent</source>
         <translation>Die neusten</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="39"/>
+        <location filename="../src/MediaView.cpp" line="44"/>
         <source>Most viewed</source>
         <translation>Meist gesehen</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="339"/>
+        <location filename="../src/MediaView.cpp" line="357"/>
         <source>You can now paste the YouTube link into another application</source>
         <translation>Du kann den YouTube Link nun in einer anderen Anwendung einfügen</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="347"/>
+        <location filename="../src/MediaView.cpp" line="365"/>
         <source>You can now paste the video stream URL into another application</source>
         <translation>Die kannst die Video URL nun in einer anderen Anwendung einfügen</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="348"/>
+        <location filename="../src/MediaView.cpp" line="366"/>
         <source>The link will be valid only for a limited time.</source>
         <translation>Der Link wird nur eine beschränkte Zeit gültig sein.</translation>
+    </message>
+    <message>
+        <location filename="../src/MediaView.cpp" line="449"/>
+        <source>This is just the demo version of %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MediaView.cpp" line="450"/>
+        <source>It allows you to test the application and see if it works for you.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MediaView.cpp" line="454"/>
+        <source>Continue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/MediaView.cpp" line="455"/>
+        <source>Get the full version</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/MediaView.h" line="31"/>
@@ -530,7 +550,7 @@
 <context>
     <name>NetworkAccess</name>
     <message>
-        <location filename="../src/networkaccess.cpp" line="188"/>
+        <location filename="../src/networkaccess.cpp" line="192"/>
         <source>Network error: %1</source>
         <translation>Netzwerk Fehler: %1</translation>
     </message>
@@ -598,7 +618,7 @@
 <context>
     <name>Video</name>
     <message>
-        <location filename="../src/video.cpp" line="121"/>
+        <location filename="../src/video.cpp" line="145"/>
         <source>Network error: %1 for %2</source>
         <translation>Netzwerk Fehler: %1 für %2</translation>
     </message>

@@ -387,6 +387,22 @@
         <source>The link will be valid only for a limited time.</source>
         <translation>Il link rimarrà valido per un periodo di tempo limitato.</translation>
     </message>
+    <message>
+        <source>This is just the demo version of %1.</source>
+        <translation>Questa è solo la versione demo di %1.</translation>
+    </message>
+    <message>
+        <source>It allows you to test the application and see if it works for you.</source>
+        <translation>Ti permette di testare l&apos;applicazione e verificare che funzioni sul tuo computer.</translation>
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation>Continua</translation>
+    </message>
+    <message>
+        <source>Get the full version</source>
+        <translation>Compra la versione completa</translation>
+    </message>
 </context>
 <context>
     <name>NetworkAccess</name>

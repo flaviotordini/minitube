@@ -1,4 +1,6 @@
-<!DOCTYPE TS><TS>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutView</name>
@@ -380,6 +382,22 @@
     <message>
         <source>The link will be valid only for a limited time.</source>
         <translation>Le lien ne sera valide que pour un temps limité.</translation>
+    </message>
+    <message>
+        <source>This is just the demo version of %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It allows you to test the application and see if it works for you.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Get the full version</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -14,7 +14,7 @@
     </message>
     <message>
         <source>This is a &quot;Technology Preview&quot; release, do not expect it to be perfect.</source>
-        <translation>Šis ir priekšapskates izlaidums, negaidiet no tā brīnumus.</translation>
+        <translation type="obsolete">Šis ir priekšapskates izlaidums, negaidiet no tā brīnumus.</translation>
     </message>
     <message>
         <source>Report bugs and send in your ideas to %1</source>
@@ -26,7 +26,7 @@
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate via PayPal&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>Lūdzu, &lt;a href=&apos;%1&apos;&gt;ziedojiet ar PayPal&lt;/a&gt;, lai atbalstītu %2 turpmāku izstrādi.</translation>
+        <translation type="obsolete">Lūdzu, &lt;a href=&apos;%1&apos;&gt;ziedojiet ar PayPal&lt;/a&gt;, lai atbalstītu %2 turpmāku izstrādi.</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -42,7 +42,7 @@
     </message>
     <message>
         <source>Windows version built by %1</source>
-        <translation>Windows versiju izveidoja %1</translation>
+        <translation type="obsolete">Windows versiju izveidoja %1</translation>
     </message>
     <message>
         <source>Translated by %1</source>
@@ -66,7 +66,7 @@
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-	<translation>Lūdzu, &lt;a href=&apos;%1&apos;&gt;ziedojiet&lt;/a&gt;, lai atbalstītu %2 turpmāku izstrādi.</translation>
+        <translation>Lūdzu, &lt;a href=&apos;%1&apos;&gt;ziedojiet&lt;/a&gt;, lai atbalstītu %2 turpmāku izstrādi.</translation>
     </message>
 </context>
 <context>
@@ -106,11 +106,11 @@
     <name>MainWindow</name>
     <message>
         <source>&amp;Back</source>
-        <translation>Atpakaļ</translation>
+        <translation type="obsolete">Atpakaļ</translation>
     </message>
     <message>
         <source>Go to the previous view</source>
-        <translation>Atgriezties iepriekšējā skatā</translation>
+        <translation type="obsolete">Atgriezties iepriekšējā skatā</translation>
     </message>
     <message>
         <source>&amp;Stop</source>
@@ -154,11 +154,11 @@
     </message>
     <message>
         <source>&amp;YouTube</source>
-	<translation>&amp;YouTube</translation>
+        <translation type="obsolete">&amp;YouTube</translation>
     </message>
     <message>
         <source>Open the YouTube video page</source>
-        <translation>Atvērt YouTube vietni</translation>
+        <translation type="obsolete">Atvērt YouTube vietni</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
@@ -206,7 +206,7 @@
     </message>
     <message>
         <source>&amp;Donate via PayPal</source>
-        <translation>Ziedojiet ar PayPal</translation>
+        <translation type="obsolete">Ziedojiet ar PayPal</translation>
     </message>
     <message>
         <source>Please support the continued development of %1</source>
@@ -218,7 +218,7 @@
     </message>
     <message>
         <source>Info par %1</source>
-        <translation>Ziņas par %1</translation>
+        <translation type="obsolete">Ziņas par %1</translation>
     </message>
     <message>
         <source>Search</source>
@@ -294,19 +294,19 @@
     </message>
     <message>
         <source>High Definition video is enabled</source>
-        <translation>Augstā izšķirtspēja ir ieslēgta</translation>
+        <translation type="obsolete">Augstā izšķirtspēja ir ieslēgta</translation>
     </message>
     <message>
         <source>High Definition video is not enabled</source>
-        <translation>Augstā izšķirtspēja nav ieslēgta</translation>
+        <translation type="obsolete">Augstā izšķirtspēja nav ieslēgta</translation>
     </message>
     <message>
         <source>The current video is in High Definition</source>
-        <translation>Šis ir augstās izšķirtspējas video</translation>
+        <translation type="obsolete">Šis ir augstās izšķirtspējas video</translation>
     </message>
     <message>
         <source>The current video is not in High Definition</source>
-        <translation>Šis nav augstās izšķirtspējas video</translation>
+        <translation type="obsolete">Šis nav augstās izšķirtspējas video</translation>
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
@@ -326,7 +326,7 @@
     </message>
     <message>
         <source>Open the &amp;YouTube page</source>
-	<translation>Atvērt &amp;YouTube vietni</translation>
+        <translation>Atvērt &amp;YouTube vietni</translation>
     </message>
     <message>
         <source>Go to the YouTube video page and pause playback</source>
@@ -342,11 +342,11 @@
     </message>
     <message>
         <source>Copy the video stream &amp;URL</source>
-	<translation>Nokopēt video plūsmas &amp;URL</translation>
+        <translation>Nokopēt video plūsmas &amp;URL</translation>
     </message>
     <message>
         <source>Copy the current video stream URL to the clipboard</source>
-	<translation>Nokopēt esošās video plūsmas URL starpliktuvē</translation>
+        <translation>Nokopēt esošās video plūsmas URL starpliktuvē</translation>
     </message>
     <message>
         <source>Make a &amp;donation</source>
@@ -381,11 +381,27 @@
     </message>
     <message>
         <source>You can now paste the video stream URL into another application</source>
-	<translation>Tagad varat ielīmēt video plūsmas URL citā programmā</translation>
+        <translation>Tagad varat ielīmēt video plūsmas URL citā programmā</translation>
     </message>
     <message>
         <source>The link will be valid only for a limited time.</source>
         <translation>Norāde būs derīga tikai ierobežotu laiku</translation>
+    </message>
+    <message>
+        <source>This is just the demo version of %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It allows you to test the application and see if it works for you.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Get the full version</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -440,7 +456,7 @@
     <name>SettingsView</name>
     <message>
         <source>Preferences</source>
-        <translation>Uzstādījumi</translation>
+        <translation type="obsolete">Uzstādījumi</translation>
     </message>
 </context>
 <context>
