@@ -100,6 +100,11 @@ private:
     QTimer *workaroundTimer;
     Video *skippedVideo;
 
+#ifdef APP_DEMO
+    void demoExpired();
+    int tracksPlayed;
+#endif
+
 };
 
 #endif // __MEDIAVIEW_H__

@@ -4,6 +4,7 @@
 #include "videowidget.h"
 #include "minisplitter.h"
 #include "flickcharm.h"
+#include "constants.h"
 
 namespace The {
     QMap<QString, QAction*>* globalActions();
@@ -12,6 +13,10 @@ namespace The {
 }
 
 MediaView::MediaView(QWidget *parent) : QWidget(parent) {
+
+#ifdef APP_DEMO
+    tracksPlayed = 0;
+#endif
 
     reallyStopped = false;
 
@@ -143,6 +148,10 @@ void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
 
 void MediaView::search(SearchParams *searchParams) {
     reallyStopped = false;
+
+#ifdef APP_DEMO
+    tracksPlayed = 0;
+#endif
 
     videoAreaWidget->clear();
     workaroundTimer->stop();
@@ -290,6 +299,12 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
         QModelIndex index = listModel->index(row, 0, QModelIndex());
         listView->scrollTo(index, QAbstractItemView::EnsureVisible);
     }
+
+#ifdef APP_DEMO
+    if (tracksPlayed > 1) demoExpired();
+    else tracksPlayed++;
+#endif
+
 }
 
 void MediaView::itemActivated(const QModelIndex &index) {
@@ -424,3 +439,29 @@ void MediaView::saveSplitterState() {
     QSettings settings;
     settings.setValue("splitter", splitter->saveState());
 }
+
+#ifdef APP_DEMO
+void MediaView::demoExpired() {
+    mediaObject->pause();
+
+    QMessageBox msgBox;
+    msgBox.setIconPixmap(QPixmap(":/images/app.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    msgBox.setText(tr("This is just the demo version of %1.").arg(Constants::APP_NAME) + " " +
+                   tr("It allows you to test the application and see if it works for you.")
+                   );
+    msgBox.setModal(true);
+
+    QPushButton *quitButton = msgBox.addButton(tr("Continue"), QMessageBox::RejectRole);
+    QPushButton *buyButton = msgBox.addButton(tr("Get the full version"), QMessageBox::ActionRole);
+
+    msgBox.exec();
+
+    if (msgBox.clickedButton() == buyButton) {
+        QDesktopServices::openUrl(QString(Constants::WEBSITE) + "#download");
+    } else {
+        mediaObject->play();
+    }
+
+    tracksPlayed = 1;
+}
+#endif
