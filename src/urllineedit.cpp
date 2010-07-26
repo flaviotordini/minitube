@@ -153,6 +153,7 @@ QSize ExLineEdit::sizeHint() const
     m_lineEdit->setFrame(true);
     QSize size = m_lineEdit->sizeHint();
     m_lineEdit->setFrame(false);
+    size = size + QSize(3, 3);
     return size;
 }
 
