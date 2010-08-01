@@ -5,6 +5,13 @@
 #include "global.h"
 #include "videodefinition.h"
 #include "fontutils.h"
+#include "globalshortcuts.h"
+#ifdef Q_WS_X11
+#include "gnomeglobalshortcutbackend.h"
+#endif
+#ifdef APP_MAC
+#include "local/mac/mac_startup.h"
+#endif
 
 MainWindow::MainWindow() :
         aboutView(0),
@@ -58,6 +65,19 @@ MainWindow::MainWindow() :
     showWidget(searchView);
 
     setCentralWidget(views);
+
+    // Global shortcuts
+    GlobalShortcuts &shortcuts = GlobalShortcuts::instance();
+#ifdef Q_WS_X11
+    if (GnomeGlobalShortcutBackend::IsGsdAvailable())
+        shortcuts.setBackend(new GnomeGlobalShortcutBackend(&shortcuts));
+#endif
+#ifdef APP_MAC
+    mac::MacSetup();
+#endif
+    connect(&shortcuts, SIGNAL(PlayPause()), pauseAct, SLOT(trigger()));
+    connect(&shortcuts, SIGNAL(Stop()), this, SLOT(stop()));
+    connect(&shortcuts, SIGNAL(Next()), skipAct, SLOT(trigger()));
 }
 
 MainWindow::~MainWindow() {

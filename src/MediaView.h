@@ -7,7 +7,7 @@
 #include <phonon/videowidget.h>
 #include "View.h"
 #include "ListModel.h"
-#include "thblackbar.h"
+#include "thlibrary/thblackbar.h"
 #include "searchparams.h"
 #include "playlistwidget.h"
 #include "loadingwidget.h"

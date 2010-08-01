@@ -10,6 +10,9 @@ TARGET = minitube
 QT += network \
     xml \
     phonon
+unix:!mac {
+    QT += dbus
+}
 include(src/qtsingleapplication/qtsingleapplication.pri)
 HEADERS += src/MainWindow.h \
     src/SearchView.h \
@@ -41,7 +44,10 @@ HEADERS += src/MainWindow.h \
     src/flickcharm.h \
     src/videodefinition.h \
     src/fontutils.h \
-    src/thlibrary/thblackbar.h
+    src/thlibrary/thblackbar.h \
+    src/gnomeglobalshortcutbackend.h \
+    src/globalshortcuts.h \
+    src/globalshortcutbackend.h
 SOURCES += src/main.cpp \
     src/MainWindow.cpp \
     src/SearchView.cpp \
@@ -71,7 +77,10 @@ SOURCES += src/main.cpp \
     src/videodefinition.cpp \
     src/constants.cpp \
     src/fontutils.cpp \
-    src/thlibrary/thblackbar.cpp
+    src/thlibrary/thblackbar.cpp \
+    src/gnomeglobalshortcutbackend.cpp \
+    src/globalshortcuts.cpp \
+    src/globalshortcutbackend.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/

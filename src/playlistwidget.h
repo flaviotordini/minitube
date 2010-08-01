@@ -2,7 +2,7 @@
 #define PLAYLISTWIDGET_H
 
 #include <QtGui>
-#include "thblackbar.h"
+#include "thlibrary/thblackbar.h"
 
 class PlaylistWidget : public QWidget
 {
