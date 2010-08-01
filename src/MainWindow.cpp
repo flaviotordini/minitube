@@ -7,9 +7,9 @@
 #include "fontutils.h"
 
 MainWindow::MainWindow() :
+        aboutView(0),
         mediaObject(0),
         audioOutput(0),
-        aboutView(0),
         m_fullscreen(false) {
 
     // views mechanism
@@ -300,6 +300,8 @@ void MainWindow::createMenus() {
 }
 
 void MainWindow::createToolBars() {
+
+    setUnifiedTitleAndToolBarOnMac(true);
 
     mainToolBar = new QToolBar(this);
 #if QT_VERSION < 0x040600 | defined(APP_MAC)
