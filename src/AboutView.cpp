@@ -5,6 +5,7 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
 
     QBoxLayout *aboutlayout = new QHBoxLayout(this);
     aboutlayout->setAlignment(Qt::AlignCenter);
+    aboutlayout->setMargin(30);
     aboutlayout->setSpacing(30);
 
     QLabel *logo = new QLabel(this);

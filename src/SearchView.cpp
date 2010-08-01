@@ -1,5 +1,6 @@
 #include "SearchView.h"
 #include "constants.h"
+#include "fontutils.h"
 
 namespace The {
     QMap<QString, QAction*>* globalActions();
@@ -10,12 +11,8 @@ static const int PADDING = 30;
 
 SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
-    QFont biggerFont;
-    biggerFont.setPointSize(biggerFont.pointSize()*1.5);
-
-    QFont smallerFont;
-    smallerFont.setPointSize(smallerFont.pointSize()*.85);
-    smallerFont.setBold(true);
+    QFont biggerFont = FontUtils::big();
+    QFont smallerFont = FontUtils::smallBold();
 
     QBoxLayout *mainLayout = new QVBoxLayout();
     mainLayout->setMargin(PADDING);

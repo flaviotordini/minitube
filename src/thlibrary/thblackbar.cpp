@@ -4,6 +4,7 @@
 #include <QtGui>
 
 #include "thblackbar.h"
+#include "../fontutils.h"
 
 /* ============================================================================
  *  PRIVATE Class
@@ -176,9 +177,7 @@ QAction *THBlackBar::hoveredAction (const QPoint& pos) const {
 }
 
 int THBlackBar::calculateButtonWidth (void) const {
-    QFont smallerBoldFont;
-    smallerBoldFont.setBold(true);
-    smallerBoldFont.setPointSize(smallerBoldFont.pointSize()*.85);
+    QFont smallerBoldFont = FontUtils::smallBold();
     QFontMetrics fontMetrics(smallerBoldFont);
     int tmpItemWidth, itemWidth = 0;
     foreach (QAction *action, d->actionList) {
@@ -247,9 +246,7 @@ void THBlackBar::drawButton (	QPainter *painter,
     painter->fillRect(0, mh, width, mh, color);
     painter->drawRect(0, 0, width, height);
 
-    QFont smallerBoldFont;
-    smallerBoldFont.setBold(true);
-    smallerBoldFont.setPointSize(smallerBoldFont.pointSize()*.85);
+    QFont smallerBoldFont = FontUtils::smallBold();
     painter->setFont(smallerBoldFont);
     painter->setPen(QPen(QColor(0xff, 0xff, 0xff), 1));
     painter->drawText(0, 1, width, height, Qt::AlignCenter, action->text());

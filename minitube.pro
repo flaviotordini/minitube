@@ -11,7 +11,6 @@ QT += network \
     xml \
     phonon
 include(src/qtsingleapplication/qtsingleapplication.pri)
-include(src/thlibrary/thlibrary.pri)
 HEADERS += src/MainWindow.h \
     src/SearchView.h \
     src/MediaView.h \
@@ -41,7 +40,8 @@ HEADERS += src/MainWindow.h \
     src/videowidget.h \
     src/flickcharm.h \
     src/videodefinition.h \
-    src/fontutils.h
+    src/fontutils.h \
+    src/thlibrary/thblackbar.h
 SOURCES += src/main.cpp \
     src/MainWindow.cpp \
     src/SearchView.cpp \
@@ -70,7 +70,8 @@ SOURCES += src/main.cpp \
     src/flickcharm.cpp \
     src/videodefinition.cpp \
     src/constants.cpp \
-    src/fontutils.cpp
+    src/fontutils.cpp \
+    src/thlibrary/thblackbar.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/

@@ -1,5 +1,6 @@
 #include "PrettyItemDelegate.h"
 #include "../ListModel.h"
+#include "../fontutils.h"
 
 #include <QFontMetricsF>
 #include <QPainter>
@@ -9,16 +10,9 @@ const qreal PrettyItemDelegate::THUMB_WIDTH = 120.0;
 const qreal PrettyItemDelegate::PADDING = 10.0;
 
 PrettyItemDelegate::PrettyItemDelegate( QObject* parent ) : QStyledItemDelegate( parent ) {
-
     boldFont.setBold(true);
-    smallerFont.setPointSize(smallerFont.pointSize()*.85);
-    smallerBoldFont.setBold(true);
-    smallerBoldFont.setPointSize(smallerBoldFont.pointSize()*.85);
-    QFontInfo fontInfo(smallerFont);
-    if (fontInfo.pixelSize() < 10) {
-        smallerFont.setPixelSize(10);
-        smallerBoldFont.setPixelSize(10);
-    }
+    smallerBoldFont = FontUtils::smallBold();
+    smallerFont = FontUtils::small();
     createPlayIcon();
 }
 
