@@ -51,9 +51,6 @@ MainWindow::MainWindow() :
     // mediaView init stuff thats needs actions
     mediaView->initialize();
 
-    // restore window position
-    readSettings();
-
     // cool toolbar on the Mac
     // this is too buggy to be enabled
     // setUnifiedTitleAndToolBarOnMac(true);
@@ -65,6 +62,9 @@ MainWindow::MainWindow() :
     showWidget(searchView);
 
     setCentralWidget(views);
+
+    // restore window position
+    readSettings();
 
     // Global shortcuts
     GlobalShortcuts &shortcuts = GlobalShortcuts::instance();
