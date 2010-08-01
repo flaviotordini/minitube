@@ -18,7 +18,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     smallerFont.setBold(true);
 
     QBoxLayout *mainLayout = new QVBoxLayout();
-    mainLayout->setMargin(0);
+    mainLayout->setMargin(PADDING);
     mainLayout->setSpacing(0);
 
     // hidden message widget
