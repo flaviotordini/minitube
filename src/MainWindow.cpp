@@ -242,6 +242,7 @@ void MainWindow::createActions() {
     addAction(volumeMuteAct);
 
     QAction *definitionAct = new QAction(this);
+    definitionAct->setIcon(QtIconLoader::icon("video-display"));
     definitionAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_D));
     /*
     QMenu *definitionMenu = new QMenu(this);
@@ -394,7 +395,8 @@ void MainWindow::createStatusBar() {
     statusBar()->setStyleSheet("::item{border:0 solid} QToolBar {padding:0;spacing:0;margin:0}");
 
     QToolBar *toolBar = new QToolBar(this);
-    toolBar->setToolButtonStyle(Qt::ToolButtonTextOnly);
+    toolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    toolBar->setIconSize(QSize(16, 16));
     toolBar->addAction(The::globalActions()->value("definition"));
     statusBar()->addPermanentWidget(toolBar);
 
