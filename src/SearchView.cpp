@@ -14,14 +14,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     QFont biggerFont = FontUtils::big();
     QFont smallerFont = FontUtils::smallBold();
 
-    /*
-    QPalette palette = QPalette();
-    palette.setColor(QPalette::Active, QPalette::Window, QColor(0xdd, 0xe4, 0xeb));
-    setPalette(palette);
-    setAutoFillBackground(true);
-    */
-
-#ifdef Q_WS_MAC
+#ifdef APP_MAC
     // speedup painting since we'll paint the whole background
     // by ourselves anyway in paintEvent()
     setAttribute(Qt::WA_OpaquePaintEvent);
