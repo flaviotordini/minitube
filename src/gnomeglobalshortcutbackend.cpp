@@ -3,10 +3,7 @@
 
 #include <QAction>
 #include <QtDebug>
-
-#ifdef QT_DBUS_LIB
-#  include <QtDBus>
-#endif
+#include <QtDBus>
 
 const char* GnomeGlobalShortcutBackend::kGsdService = "org.gnome.SettingsDaemon";
 const char* GnomeGlobalShortcutBackend::kGsdPath = "/org/gnome/SettingsDaemon/MediaKeys";
@@ -17,17 +14,12 @@ GnomeGlobalShortcutBackend::GnomeGlobalShortcutBackend(GlobalShortcuts* parent)
     interface_(NULL) { }
 
 bool GnomeGlobalShortcutBackend::IsGsdAvailable() {
-#ifdef QT_DBUS_LIB
     return QDBusConnection::sessionBus().interface()->isServiceRegistered(
             GnomeGlobalShortcutBackend::kGsdService);
-#else // QT_DBUS_LIB
-    return false;
-#endif
 }
 
 bool GnomeGlobalShortcutBackend::DoRegister() {
     // qDebug() << __PRETTY_FUNCTION__;
-#ifdef QT_DBUS_LIB
     // Check if the GSD service is available
     if (!QDBusConnection::sessionBus().interface()->isServiceRegistered(kGsdService))
         return false;
@@ -41,14 +33,9 @@ bool GnomeGlobalShortcutBackend::DoRegister() {
             this, SLOT(GnomeMediaKeyPressed(QString,QString)));
 
     return true;
-#else // QT_DBUS_LIB
-    return false;
-#endif
 }
 
 void GnomeGlobalShortcutBackend::DoUnregister() {
-
-#ifdef QT_DBUS_LIB
     // Check if the GSD service is available
     if (!QDBusConnection::sessionBus().interface()->isServiceRegistered(kGsdService))
         return;
@@ -57,7 +44,6 @@ void GnomeGlobalShortcutBackend::DoUnregister() {
 
     disconnect(interface_, SIGNAL(MediaPlayerKeyPressed(QString,QString)),
                this, SLOT(GnomeMediaKeyPressed(QString,QString)));
-#endif
 }
 
 void GnomeGlobalShortcutBackend::GnomeMediaKeyPressed(const QString&, const QString& key) {
