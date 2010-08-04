@@ -14,6 +14,19 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     QFont biggerFont = FontUtils::big();
     QFont smallerFont = FontUtils::smallBold();
 
+    /*
+    QPalette palette = QPalette();
+    palette.setColor(QPalette::Active, QPalette::Window, QColor(0xdd, 0xe4, 0xeb));
+    setPalette(palette);
+    setAutoFillBackground(true);
+    */
+
+#ifdef Q_WS_MAC
+    // speedup painting since we'll paint the whole background
+    // by ourselves anyway in paintEvent()
+    setAttribute(Qt::WA_OpaquePaintEvent);
+#endif
+
     QBoxLayout *mainLayout = new QVBoxLayout();
     mainLayout->setMargin(PADDING);
     mainLayout->setSpacing(0);
@@ -193,4 +206,17 @@ void SearchView::gotNewVersion(QString version) {
     message->setAutoFillBackground(true);
     message->show();
     if (updateChecker) delete updateChecker;
+}
+
+void SearchView::paintEvent(QPaintEvent * /*event*/) {
+#ifdef APP_MAC
+    QBrush brush;
+    if (window()->isActiveWindow()) {
+        brush = QBrush(QColor(0xdd, 0xe4, 0xeb));
+    } else {
+        brush = palette().window();
+    }
+    QPainter painter(this);
+    painter.fillRect(0, 0, width(), height(), brush);
+#endif
 }

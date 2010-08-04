@@ -37,6 +37,9 @@ public slots:
 signals:
     void search(QString query);
 
+protected:
+    void paintEvent(QPaintEvent *);
+
 private slots:
     void watch();
     void textChanged(const QString &text);
