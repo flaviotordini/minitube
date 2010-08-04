@@ -3,11 +3,9 @@
 ## Killer features
 
 - Video download
-    Playlist items should have a download icon that appears on mouse hover.
-    Once the icon is clicked a mini-progressbar appears and the download icon remains visible
-    even on "mouseout", maybe with a different color.
-    Videos should be downloaded in HD format, if available.
-    Videos should be downloaded directly on the Desktop without asking for a location.
+    Download status on the status bar. When clicked, a download manager view appears.
+    Videos should be downloaded in the current format
+    directly on the Desktop or Downloads dir without asking for a location.
 
 - YouTube related videos
     List of related videos identical to the playlist.
@@ -31,6 +29,7 @@
 - Safe search levels (in the status bar beside HD)
 - Show buffering progress (when Phonon backends will work)
 - Show more thumbs on hover with animated crossfade
+- Time filter on the bottom of the playlist: Today, 7 days, 30 days
 
 ## Unsure features
 - Restore status when a recent keyword is clicked: skipped videos, sortBar and play time
