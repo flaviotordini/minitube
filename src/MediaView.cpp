@@ -314,7 +314,7 @@ void MediaView::itemActivated(const QModelIndex &index) {
     else listModel->searchMore();
 }
 
-void MediaView::currentSourceChanged(const Phonon::MediaSource source) {
+void MediaView::currentSourceChanged(const Phonon::MediaSource /* source */ ) {
 
 }
 
