@@ -1,38 +1,33 @@
 # Build instructions
 
 ## Prerequisites
+To compile Minitube you need at least Qt 4.5, Qt >= 4.6 is recommended.
+The following Qt modules are needed: core, gui, network, xml, phonon, dbus
 
-To compile Minitube you need Qt >= 4.5 installed.
-
-On a Debian or Ubuntu system just type:
-    sudo apt-get install build-essential qt4-dev-tools libphonon-dev
-
-Windows and Mac users can get the Qt libraries from:
-http://qt.nokia.com/downloads
+On a Debian or Ubuntu system type:
+sudo apt-get install build-essential qt4-dev-tools libphonon-dev
 
 ## Compiling
-
-Compiling on Linux is fairly easy. Just run:
-    qmake
-and then
-    make
-
+Run:
+    $ qmake
+and then:
+    $ make
 Beware of the Qt3 version of qmake! If things go wrong try running qmake-qt4 instead.
 
 ## Running
+./build/target/minitunes
 
-Just type:
-    ./build/target/minitube
+## A word about Phonon on Linux
+To be able to actually listen to music you need a working Phonon setup.
+Please don't contact me about this, ask for help on your distribution support channels.
 
-## The visual way
-
-There is also a visual way to build and run Qt apps.
-Download the Qt SDK from: http://qt.nokia.com/downloads
-Open `minitube.pro` with Qt Creator and use the Run (big green "play" icon) command.
+## Installing on Linux
+Run:
+    $ sudo make install
+This is for packagers. End users should not install applications in this way.
 
 ## Legal Stuff
-
-Copyright (C) 2009  Flavio Tordini
+Copyright (C) 2009-2010 Flavio Tordini
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
