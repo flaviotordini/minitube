@@ -10,10 +10,9 @@ TARGET = minitube
 QT += network \
     xml \
     phonon
-unix:!mac {
-    QT += dbus
-}
+
 include(src/qtsingleapplication/qtsingleapplication.pri)
+
 HEADERS += src/MainWindow.h \
     src/SearchView.h \
     src/MediaView.h \
@@ -45,7 +44,6 @@ HEADERS += src/MainWindow.h \
     src/videodefinition.h \
     src/fontutils.h \
     src/thlibrary/thblackbar.h \
-    src/gnomeglobalshortcutbackend.h \
     src/globalshortcuts.h \
     src/globalshortcutbackend.h
 SOURCES += src/main.cpp \
@@ -78,7 +76,6 @@ SOURCES += src/main.cpp \
     src/constants.cpp \
     src/fontutils.cpp \
     src/thlibrary/thblackbar.cpp \
-    src/gnomeglobalshortcutbackend.cpp \
     src/globalshortcuts.cpp \
     src/globalshortcutbackend.cpp
 RESOURCES += resources.qrc
@@ -95,7 +92,13 @@ include(locale/locale.pri)
 # deploy
 DISTFILES += CHANGES \
     COPYING
-unix { 
+
+unix:!mac {
+    QT += dbus
+
+    HEADERS += src/gnomeglobalshortcutbackend.h
+    SOURCES += src/gnomeglobalshortcutbackend.cpp
+
     isEmpty(PREFIX):PREFIX = /usr
     BINDIR = $$PREFIX/bin
     INSTALLS += target
