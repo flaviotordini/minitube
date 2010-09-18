@@ -11,7 +11,7 @@ DownloadSettings::DownloadSettings(QWidget *parent) : QWidget(parent) {
     layout->addWidget(message);
 
     changeFolderButton = new QPushButton(this);
-    changeFolderButton->setText(tr("Change folder..."));
+    changeFolderButton->setText(tr("Change location..."));
     changeFolderButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     connect(changeFolderButton, SIGNAL(clicked()), SLOT(changeFolder()));
     layout->addWidget(changeFolderButton);
@@ -35,7 +35,7 @@ void DownloadSettings::paintEvent(QPaintEvent * /*event*/) {
 }
 
 void DownloadSettings::changeFolder() {
-    QString dir = QFileDialog::getExistingDirectory(this, tr("Where's your music collection?"),
+    QString dir = QFileDialog::getExistingDirectory(this, tr("Choose the download location"),
                                                     QDesktopServices::storageLocation(QDesktopServices::HomeLocation),
                                                     QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
 
@@ -46,9 +46,9 @@ void DownloadSettings::changeFolder() {
         QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(window());
         if (mainWindow) {
             QString status;
-            status = tr("Download folder changed.");
+            status = tr("Download location changed.");
             if (DownloadManager::instance()->activeItems() > 0)
-                status += " " + tr("Current downloads will still go in the previous folder.");
+                status += " " + tr("Current downloads will still go in the previous location.");
             mainWindow->statusBar()->showMessage(status);
         }
     }
