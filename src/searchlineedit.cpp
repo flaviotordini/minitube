@@ -173,11 +173,6 @@ m_searchButton(new SearchButton(this))
     connect(lineEdit(), SIGNAL(returnPressed()),
             this, SLOT(returnPressed()));
 
-#ifdef APP_MAC_NO
-    setAttribute(Qt::WA_MacShowFocusRect, false);
-    setStyleSheet("SearchLineEdit { border: 1px inset gray; border-radius: 15px; background: palette(base)} SearchLineEdit::focus { border: 2px solid #6fa7e0 }");
-#endif
-
     setLeftWidget(m_searchButton);
     m_inactiveText = tr("Search");
 
