@@ -124,6 +124,22 @@
             <numerusform>%n download</numerusform>
         </translation>
     </message>
+    <message>
+        <source>This is just the demo version of %1.</source>
+        <translation>Questa è solo la versione demo di %1.</translation>
+    </message>
+    <message>
+        <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
+        <translation>Puoi scaricare solo video più corti di %1 minuti, così puoi testare la funzionalità dei download.</translation>
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation>Continua</translation>
+    </message>
+    <message>
+        <source>Get the full version</source>
+        <translation>Compra la versione completa</translation>
+    </message>
 </context>
 <context>
     <name>DownloadSettings</name>

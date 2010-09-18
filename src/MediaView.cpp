@@ -14,10 +14,6 @@ namespace The {
 
 MediaView::MediaView(QWidget *parent) : QWidget(parent) {
 
-#ifdef APP_DEMO
-    tracksPlayed = 0;
-#endif
-
     reallyStopped = false;
 
     QBoxLayout *layout = new QHBoxLayout();
@@ -118,6 +114,13 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     workaroundTimer->setInterval(3000);
     connect(workaroundTimer, SIGNAL(timeout()), SLOT(timerPlay()));
 
+#ifdef APP_DEMO
+    demoTimer = new QTimer(this);
+    demoTimer->setSingleShot(true);
+    demoTimer->setInterval(60000);
+    connect(demoTimer, SIGNAL(timeout()), SLOT(demoMessage()));
+#endif
+
 }
 
 void MediaView::initialize() {
@@ -142,7 +145,7 @@ void MediaView::search(SearchParams *searchParams) {
     reallyStopped = false;
 
 #ifdef APP_DEMO
-    tracksPlayed = 0;
+    demoTimer->stop();
 #endif
 
     videoAreaWidget->clear();
@@ -302,8 +305,7 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
     }
 
 #ifdef APP_DEMO
-    if (tracksPlayed > 1) demoExpired();
-    else tracksPlayed++;
+    demoTimer->start();
 #endif
 
 }
@@ -454,14 +456,14 @@ void MediaView::saveSplitterState() {
 }
 
 #ifdef APP_DEMO
-void MediaView::demoExpired() {
+void MediaView::demoMessage() {
+    if (mediaObject->state() != Phonon::PlayingState) return;
     mediaObject->pause();
 
     QMessageBox msgBox;
     msgBox.setIconPixmap(QPixmap(":/images/app.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    msgBox.setText(tr("This is just the demo version of %1.").arg(Constants::APP_NAME) + " " +
-                   tr("It allows you to test the application and see if it works for you.")
-                   );
+    msgBox.setText(tr("This is just the demo version of %1.").arg(Constants::APP_NAME));
+    msgBox.setInformativeText(tr("It allows you to test the application and see if it works for you."));
     msgBox.setModal(true);
 
     QPushButton *quitButton = msgBox.addButton(tr("Continue"), QMessageBox::RejectRole);
@@ -474,8 +476,6 @@ void MediaView::demoExpired() {
     } else {
         mediaObject->play();
     }
-
-    tracksPlayed = 1;
 }
 #endif
 

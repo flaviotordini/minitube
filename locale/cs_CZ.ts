@@ -140,8 +140,28 @@
 </context>
 <context>
     <name>DownloadManager</name>
+    <message>
+        <location filename="../src/downloadmanager.cpp" line="47"/>
+        <source>This is just the demo version of %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/downloadmanager.cpp" line="49"/>
+        <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/downloadmanager.cpp" line="53"/>
+        <source>Continue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/downloadmanager.cpp" line="54"/>
+        <source>Get the full version</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message numerus="yes">
-        <location filename="../src/downloadmanager.cpp" line="101"/>
+        <location filename="../src/downloadmanager.cpp" line="126"/>
         <source>%n Download(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -638,52 +658,52 @@
 <context>
     <name>MediaView</name>
     <message>
-        <location filename="../src/MediaView.cpp" line="30"/>
+        <location filename="../src/MediaView.cpp" line="26"/>
         <source>Most relevant</source>
         <translation>Nalezená videa</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="37"/>
+        <location filename="../src/MediaView.cpp" line="33"/>
         <source>Most recent</source>
         <translation>Nejnovější</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="44"/>
+        <location filename="../src/MediaView.cpp" line="40"/>
         <source>Most viewed</source>
         <translation>Nejsledovanější</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="358"/>
+        <location filename="../src/MediaView.cpp" line="360"/>
         <source>You can now paste the YouTube link into another application</source>
         <translation>Nyní můžete vložit odkaz na video na YouTube do jiného programu</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="366"/>
+        <location filename="../src/MediaView.cpp" line="368"/>
         <source>You can now paste the video stream URL into another application</source>
         <translation>Nyní můžete vložit odkaz na video stream do jiné aplikace</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="367"/>
+        <location filename="../src/MediaView.cpp" line="369"/>
         <source>The link will be valid only for a limited time.</source>
         <translation>Tento odkaz platí jen po omezenou dobu.</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="462"/>
+        <location filename="../src/MediaView.cpp" line="465"/>
         <source>This is just the demo version of %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="463"/>
+        <location filename="../src/MediaView.cpp" line="466"/>
         <source>It allows you to test the application and see if it works for you.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="467"/>
+        <location filename="../src/MediaView.cpp" line="469"/>
         <source>Continue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="468"/>
+        <location filename="../src/MediaView.cpp" line="470"/>
         <source>Get the full version</source>
         <translation type="unfinished"></translation>
     </message>
@@ -762,7 +782,7 @@
 <context>
     <name>SearchLineEdit</name>
     <message>
-        <location filename="../src/searchlineedit.cpp" line="182"/>
+        <location filename="../src/searchlineedit.cpp" line="177"/>
         <source>Search</source>
         <translation>Hledat</translation>
     </message>

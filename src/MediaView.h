@@ -75,6 +75,9 @@ private slots:
     void searchMostViewed();
     // timer
     void timerPlay();
+#ifdef APP_DEMO
+    void demoMessage();
+#endif
 
 private:
 
@@ -108,8 +111,7 @@ private:
     Video *skippedVideo;
 
 #ifdef APP_DEMO
-    void demoExpired();
-    int tracksPlayed;
+    QTimer *demoTimer;
 #endif
 
 };
