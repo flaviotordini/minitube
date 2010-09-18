@@ -13,16 +13,21 @@
 #include "loadingwidget.h"
 #include "videoareawidget.h"
 
+namespace The {
+    QMap<QString, QAction*>* globalActions();
+}
+
 class MediaView : public QWidget, public View {
     Q_OBJECT
 
 public:
     MediaView(QWidget *parent);
-    ~MediaView();
     void initialize();
 
     // View
-    void appear() {}
+    void appear() {
+        listView->setFocus();
+    }
     void disappear();
     QMap<QString, QVariant> metadata() {
         QMap<QString, QVariant> metadata;
@@ -49,6 +54,8 @@ public slots:
     void moveDownSelected();
     void setPlaylistVisible(bool visible=true);
     void saveSplitterState();
+    void downloadVideo();
+    void fullscreen();
 
 private slots:
     // list/model

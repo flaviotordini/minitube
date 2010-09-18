@@ -10,7 +10,27 @@ namespace The {
 Video::Video() : m_duration(0),
 m_viewCount(-1),
 definitionCode(0),
-elIndex(0) { }
+elIndex(0),
+loadingStreamUrl(false)
+{ }
+
+Video* Video::clone() {
+    Video* cloneVideo = new Video();
+    cloneVideo->m_title = m_title;
+    cloneVideo->m_description = m_description;
+    cloneVideo->m_author = m_author;
+    cloneVideo->m_webpage = m_webpage;
+    cloneVideo->m_streamUrl = m_streamUrl;
+    cloneVideo->m_thumbnail = m_thumbnail;
+    cloneVideo->m_thumbnailUrls = m_thumbnailUrls;
+    cloneVideo->m_duration = m_duration;
+    cloneVideo->m_published = m_published;
+    cloneVideo->m_viewCount = m_viewCount;
+    cloneVideo->videoId = videoId;
+    cloneVideo->videoToken = videoToken;
+    cloneVideo->definitionCode = definitionCode;
+    return cloneVideo;
+}
 
 void Video::preloadThumbnail() {
     if (m_thumbnailUrls.isEmpty()) return;
@@ -28,6 +48,11 @@ const QImage Video::thumbnail() const {
 }
 
 void Video::loadStreamUrl() {
+    if (loadingStreamUrl) {
+        qDebug() << "Already loading stream URL for" << this->title();
+        return;
+    }
+    loadingStreamUrl = true;
 
     // https://develop.participatoryculture.org/trac/democracy/browser/trunk/tv/portable/flashscraper.py
 
@@ -38,6 +63,7 @@ void Video::loadStreamUrl() {
     bool match = re.exactMatch(m_webpage.toString());
     if (!match || re.numCaptures() < 1) {
         emit errorStreamUrl(QString("Cannot get video id for %1").arg(m_webpage.toString()));
+        loadingStreamUrl = false;
         return;
     }
     videoId = re.cap(1);
@@ -89,7 +115,7 @@ void  Video::gotVideoInfo(QByteArray data) {
     QString videoToken = re.cap(1);
     while (videoToken.contains('%'))
         videoToken = QByteArray::fromPercentEncoding(videoToken.toAscii());
-    qDebug() << "videoToken" << videoToken;
+    // qDebug() << "videoToken" << videoToken;
     this->videoToken = videoToken;
 
     /*
@@ -132,6 +158,7 @@ void  Video::gotVideoInfo(QByteArray data) {
 }
 
 void Video::foundVideoUrl(QString videoToken, int definitionCode) {
+    // qDebug() << "foundVideoUrl" << videoToken << definitionCode;
 
     QUrl videoUrl = QUrl(QString(
             "http://www.youtube.com/get_video?video_id=%1&t=%2&eurl=&el=&ps=&asv=&fmt=%3"
@@ -139,10 +166,12 @@ void Video::foundVideoUrl(QString videoToken, int definitionCode) {
 
     m_streamUrl = videoUrl;
     emit gotStreamUrl(videoUrl);
+    loadingStreamUrl = false;
 }
 
 void Video::errorVideoInfo(QNetworkReply *reply) {
     emit errorStreamUrl(tr("Network error: %1 for %2").arg(reply->errorString(), reply->url().toString()));
+    loadingStreamUrl = false;
 }
 
 void Video::scrapeWebPage(QByteArray data) {
@@ -154,6 +183,7 @@ void Video::scrapeWebPage(QByteArray data) {
     // on regexp failure, stop and report error
     if (!match || re.numCaptures() < 1) {
         emit errorStreamUrl("Error parsing video page");
+        loadingStreamUrl = false;
         return;
     }
 

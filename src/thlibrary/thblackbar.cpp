@@ -67,8 +67,8 @@ QSize THBlackBar::minimumSizeHint (void) const {
  *  PROTECTED Methods
  */
 void THBlackBar::paintEvent (QPaintEvent *event) {
-    int height = event->rect().height();
-    int width = event->rect().width();
+    int height = rect().height();
+    int width = rect().width();
     // int mh = (height / 2);
 
     // THPainter p(this);
@@ -244,8 +244,11 @@ void THBlackBar::drawButton (	QPainter *painter,
 
     painter->fillRect(0, 0, width, mh, QBrush(gradient));
     painter->fillRect(0, mh, width, mh, color);
+#ifdef APP_MAC
+    painter->drawRect(-1, -1, width+1, height);
+#else
     painter->drawRect(0, 0, width, height);
-
+#endif
     QFont smallerBoldFont = FontUtils::smallBold();
     painter->setFont(smallerBoldFont);
     painter->setPen(QPen(QColor(0xff, 0xff, 0xff), 1));

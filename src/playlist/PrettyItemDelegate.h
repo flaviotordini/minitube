@@ -5,22 +5,26 @@
 #include <QStyledItemDelegate>
 
 class QPainter;
+class QProgressBar;
 
 class PrettyItemDelegate : public QStyledItemDelegate {
 
     Q_OBJECT
 
 public:
-    PrettyItemDelegate( QObject* parent = 0 );
+    PrettyItemDelegate(QObject* parent, bool downloadInfo = false);
     ~PrettyItemDelegate();
 
     QSize sizeHint( const QStyleOptionViewItem&, const QModelIndex& ) const;
     void paint( QPainter*, const QStyleOptionViewItem&, const QModelIndex& ) const;
+    QRect downloadButtonRect(QRect line) const;
 
 private:
     void createPlayIcon();
     void paintBody( QPainter*, const QStyleOptionViewItem&, const QModelIndex& ) const;
-    QPointF centerImage( const QPixmap&, const QRectF& ) const;
+    void paintDownloadInfo( QPainter* painter,
+                                        const QStyleOptionViewItem& option,
+                                        const QModelIndex& index ) const;
 
     // active track painting
     void paintActiveOverlay( QPainter *painter, qreal x, qreal y, qreal w, qreal h ) const;
@@ -37,6 +41,9 @@ private:
     QFont boldFont;
     QFont smallerFont;
     QFont smallerBoldFont;
+
+    bool downloadInfo;
+    QProgressBar *progressBar;
 };
 
 #endif

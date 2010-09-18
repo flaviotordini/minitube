@@ -8,7 +8,11 @@
 enum DataRoles {
     ItemTypeRole = Qt::UserRole,
     VideoRole,
-    ActiveTrackRole
+    ActiveTrackRole,
+    DownloadItemRole,
+    HoveredItemRole,
+    DownloadButtonHoveredRole,
+    DownloadButtonPressedRole
 };
 
 enum ItemTypes {

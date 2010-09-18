@@ -1,0 +1,121 @@
+#include "downloadmanager.h"
+#include "downloaditem.h"
+#include "downloadmodel.h"
+#include "video.h"
+
+static DownloadManager *downloadManagerInstance = 0;
+
+DownloadManager::DownloadManager(QObject *parent) :
+        QObject(parent),
+        downloadModel(new DownloadModel(this, this))
+{ }
+
+DownloadManager* DownloadManager::instance() {
+    if (!downloadManagerInstance) downloadManagerInstance = new DownloadManager();
+    return downloadManagerInstance;
+}
+
+void DownloadManager::clear() {
+    qDeleteAll(items);
+    items.clear();
+    updateStatusMessage();
+}
+
+int DownloadManager::activeItems() {
+    int num = 0;
+    foreach (DownloadItem *item, items) {
+        if (item->status() == Downloading || item->status() == Starting) num++;
+    }
+    return num;
+}
+
+DownloadItem* DownloadManager::itemForVideo(Video* video) {
+    foreach (DownloadItem *item, items) {
+        if (item->getVideo()->id() == video->id()) return item;
+    }
+    return 0;
+}
+
+void DownloadManager::addItem(Video *video) {
+    // qDebug() << __FUNCTION__ << video->title();
+
+    DownloadItem *item = itemForVideo(video);
+    if (item != 0) {
+        if (item->status() == Failed || item->status() == Idle) {
+            qDebug() << "Restarting download" << video->title();
+            item->tryAgain();
+        } else {
+            qDebug() << "Already downloading video" << video->title();
+        }
+        return;
+    }
+
+    connect(video, SIGNAL(gotStreamUrl(QUrl)), SLOT(gotStreamUrl(QUrl)));
+    // TODO handle signal errors
+    // connect(video, SIGNAL(errorStreamUrl(QString)), SLOT(handleError(QString)));
+    video->loadStreamUrl();
+
+    // see you in gotStreamUrl()
+}
+
+void DownloadManager::gotStreamUrl(QUrl url) {
+
+    Video *video = static_cast<Video*>(sender());
+    if (!video) {
+        qDebug() << "Cannot get video in" << __FUNCTION__;
+        return;
+    }
+
+    video->disconnect(this);
+
+    QString path = currentDownloadFolder();
+
+    // TODO ensure all chars are filename compatible
+    QString basename = video->title().simplified();
+    basename.replace('(', '[');
+    basename.replace(')', ']');
+    basename.replace('/', '-');
+    basename.replace('\\', '-');
+    QString filename = path + "/" + basename + ".mp4";
+
+    Video *videoCopy = video->clone();
+    DownloadItem *item = new DownloadItem(videoCopy, url, filename, this);
+
+    int row = items.count();
+    downloadModel->beginInsertRows(QModelIndex(), row, row);
+    items.append(item);
+    downloadModel->endInsertRows();
+
+    // connect(item, SIGNAL(statusChanged()), SLOT(updateStatusMessage()));
+    connect(item, SIGNAL(finished()), SLOT(itemFinished()));
+    item->start();
+
+    updateStatusMessage();
+}
+
+void DownloadManager::itemFinished() {
+    if (activeItems() == 0) emit finished();
+}
+
+void DownloadManager::updateStatusMessage() {
+    QString message = tr("%n Download(s)", "", items.size());
+    emit statusMessageChanged(message);
+}
+
+QString DownloadManager::defaultDownloadFolder() {
+    // download in the Movies system folder
+    QString path = QDesktopServices::storageLocation(QDesktopServices::MoviesLocation);
+    QDir moviesDir(path);
+    if (!moviesDir.exists()) {
+        // fallback to Desktop
+        path = QDesktopServices::storageLocation(QDesktopServices::DesktopLocation);
+    }
+    return path;
+}
+
+QString DownloadManager::currentDownloadFolder() {
+    QSettings settings;
+    QString path = settings.value("downloadFolder").toString();
+    if (path.isEmpty()) path = defaultDownloadFolder();
+    return path;
+}

@@ -17,7 +17,7 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
     layout->setSpacing(30);
     aboutlayout->addLayout(layout);
 
-    QString info = "<h1>" + QString(Constants::APP_NAME) + "</h1>"
+    QString info = "<html><style>a { color: palette(text); }</style><body><h1>" + QString(Constants::APP_NAME) + "</h1>"
                    "<p>" + tr("There's life outside the browser!") + "</p>"
                    "<p>" + tr("Version %1").arg(Constants::VERSION) + "</p>"
                    + QString("<p><a href=\"%1/\">%1</a></p>").arg(Constants::WEBSITE) +
@@ -65,7 +65,8 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                    "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")
                    .arg("http://www.gnu.org/licenses/gpl.html") + "</p>"
 #endif
-                   "<p>&copy; 2009-2010 " + Constants::ORG_NAME + "</p>";
+                   "<p>&copy; 2009-2010 " + Constants::ORG_NAME + "</p>"
+                   "</body></html>";;
     QLabel *infoLabel = new QLabel(info, this);
     infoLabel->setOpenExternalLinks(true);
     infoLabel->setWordWrap(true);

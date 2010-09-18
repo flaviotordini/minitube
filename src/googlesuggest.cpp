@@ -16,6 +16,7 @@ GSuggestCompletion::GSuggestCompletion(QWidget *parent, QLineEdit *editor):
     popup->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     popup->installEventFilter(this);
     popup->setMouseTracking(true);
+    popup->setWindowOpacity(.9);
 
     connect(popup, SIGNAL(itemClicked(QListWidgetItem*)),
             SLOT(doneCompletion()));

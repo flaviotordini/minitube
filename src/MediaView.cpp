@@ -3,8 +3,8 @@
 #include "networkaccess.h"
 #include "videowidget.h"
 #include "minisplitter.h"
-#include "flickcharm.h"
 #include "constants.h"
+#include "downloadmanager.h"
 
 namespace The {
     QMap<QString, QAction*>* globalActions();
@@ -117,14 +117,6 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     workaroundTimer->setSingleShot(true);
     workaroundTimer->setInterval(3000);
     connect(workaroundTimer, SIGNAL(timeout()), SLOT(timerPlay()));
-
-    // TODO Enable this on touch devices
-    // FlickCharm *flickCharm = new FlickCharm(this);
-    // flickCharm->activateOn(listView);
-
-}
-
-MediaView::~MediaView() {
 
 }
 
@@ -278,12 +270,21 @@ void MediaView::activeRowChanged(int row) {
     QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(window());
     if (mainWindow) mainWindow->statusBar()->showMessage(video->title());
 
+    The::globalActions()->value("download")->setEnabled(DownloadManager::instance()->itemForVideo(video) == 0);
+
     // see you in gotStreamUrl...
 
 }
 
 void MediaView::gotStreamUrl(QUrl streamUrl) {
     if (reallyStopped) return;
+
+    Video *video = static_cast<Video *>(sender());
+    if (!video) {
+        qDebug() << "Cannot get sender";
+        return;
+    }
+    video->disconnect(this);
 
     // go!
     qDebug() << "Playing" << streamUrl.toString();
@@ -477,3 +478,25 @@ void MediaView::demoExpired() {
     tracksPlayed = 1;
 }
 #endif
+
+void MediaView::downloadVideo() {
+    Video* video = listModel->activeVideo();
+    if (!video) return;
+
+    DownloadManager::instance()->addItem(video);
+
+    // TODO animate
+
+    The::globalActions()->value("downloads")->setVisible(true);
+
+    // The::globalActions()->value("download")->setEnabled(DownloadManager::instance()->itemForVideo(video) == 0);
+
+    QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(window());
+    QString message = tr("Downloading %1").arg(video->title());
+    if (mainWindow) mainWindow->statusBar()->showMessage(message);
+}
+
+void MediaView::fullscreen() {
+    videoAreaWidget->setParent(0);
+    videoAreaWidget->showFullScreen();
+}

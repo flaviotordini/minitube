@@ -116,6 +116,10 @@ Q_GLOBAL_STATIC(QtIconLoaderImplementation, iconLoaderInstance)
 #endif
 #else
         icon = QIcon(QString(":/images/%1.png").arg(name));
+        if (!icon.isNull()) {
+            icon.addPixmap(QString(":/images/%1_active.png").arg(name), QIcon::Active);
+            icon.addPixmap(QString(":/images/%1_selected.png").arg(name), QIcon::Selected);
+        }
 #endif
 
     return icon;

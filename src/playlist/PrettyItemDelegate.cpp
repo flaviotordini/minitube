@@ -1,6 +1,8 @@
 #include "PrettyItemDelegate.h"
 #include "../ListModel.h"
 #include "../fontutils.h"
+#include "../downloaditem.h"
+#include "../iconloader/qticonloader.h"
 
 #include <QFontMetricsF>
 #include <QPainter>
@@ -9,11 +11,21 @@ const qreal PrettyItemDelegate::THUMB_HEIGHT = 90.0;
 const qreal PrettyItemDelegate::THUMB_WIDTH = 120.0;
 const qreal PrettyItemDelegate::PADDING = 10.0;
 
-PrettyItemDelegate::PrettyItemDelegate( QObject* parent ) : QStyledItemDelegate( parent ) {
+PrettyItemDelegate::PrettyItemDelegate(QObject* parent, bool downloadInfo)
+    : QStyledItemDelegate(parent),
+    downloadInfo(downloadInfo) {
     boldFont.setBold(true);
     smallerBoldFont = FontUtils::smallBold();
     smallerFont = FontUtils::small();
-    createPlayIcon();
+
+    if (downloadInfo) {
+        progressBar = new QProgressBar(qApp->activeWindow());
+        QPalette palette = progressBar->palette();
+        palette.setColor(QPalette::Window, Qt::transparent);
+        progressBar->setPalette(palette);
+        progressBar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
+        progressBar->hide();
+    } else createPlayIcon();
 }
 
 void PrettyItemDelegate::createPlayIcon() {
@@ -61,7 +73,8 @@ void PrettyItemDelegate::paintBody( QPainter* painter,
     painter->translate( option.rect.topLeft() );
 
 
-    const QRectF line(0, 0, option.rect.width(), option.rect.height());
+    QRectF line(0, 0, option.rect.width(), option.rect.height());
+    if (downloadInfo) line.setWidth(line.width() / 2);
     painter->setClipRect(line);
 
     const bool isActive = index.data( ActiveTrackRole ).toBool();
@@ -96,8 +109,6 @@ void PrettyItemDelegate::paintBody( QPainter* painter,
     }
 
     if (isActive) painter->setFont(boldFont);
-    const QFontMetricsF fm(painter->font());
-    const QFontMetricsF boldMetrics(boldFont);
 
     // text color
     if (isSelected)
@@ -158,28 +169,17 @@ void PrettyItemDelegate::paintBody( QPainter* painter,
     */
 
     // separator
+    painter->setClipping(false);
     painter->setPen(option.palette.color(QPalette::Midlight));
-    painter->drawLine(THUMB_WIDTH, THUMB_HEIGHT, line.width(), THUMB_HEIGHT);
+    painter->drawLine(THUMB_WIDTH, THUMB_HEIGHT, option.rect.width(), THUMB_HEIGHT);
     if (!video->thumbnail().isNull())
         painter->setPen(Qt::black);
     painter->drawLine(0, THUMB_HEIGHT, THUMB_WIDTH-1, THUMB_HEIGHT);
 
     painter->restore();
 
-}
+    if (downloadInfo) paintDownloadInfo(painter, option, index);
 
-QPointF PrettyItemDelegate::centerImage( const QPixmap& pixmap, const QRectF& rect ) const {
-    qreal pixmapRatio = ( qreal )pixmap.width() / ( qreal )pixmap.height();
-
-    qreal moveByX = 0.0;
-    qreal moveByY = 0.0;
-
-    if ( pixmapRatio >= 1 )
-        moveByY = ( rect.height() - ( rect.width() / pixmapRatio ) ) / 2.0;
-    else
-        moveByX = ( rect.width() - ( rect.height() * pixmapRatio ) ) / 2.0;
-
-    return QPointF( moveByX, moveByY );
 }
 
 void PrettyItemDelegate::paintActiveOverlay( QPainter *painter, qreal x, qreal y, qreal w, qreal h ) const {
@@ -237,4 +237,121 @@ void PrettyItemDelegate::drawTime(QPainter *painter, QString time, QRectF line) 
     painter->setPen(Qt::white);
     painter->drawText(textBox, Qt::AlignCenter, time);
     painter->restore();
+}
+
+void PrettyItemDelegate::paintDownloadInfo( QPainter* painter,
+                                            const QStyleOptionViewItem& option,
+                                            const QModelIndex& index ) const {
+
+    // get the video metadata
+    const DownloadItemPointer downloadItemPointer = index.data(DownloadItemRole).value<DownloadItemPointer>();
+    const DownloadItem *downloadItem = downloadItemPointer.data();
+
+    painter->save();
+
+    const QRect line(0, 0, option.rect.width() / 2, option.rect.height());
+
+    painter->translate(option.rect.topLeft());
+    painter->translate(line.width(), 0);
+
+    QString message;
+    DownloadItemStatus status = downloadItem->status();
+
+    if (status == Downloading) {
+        QString downloaded = DownloadItem::formattedFilesize(downloadItem->bytesReceived());
+        QString total = DownloadItem::formattedFilesize(downloadItem->bytesTotal());
+        QString speed = DownloadItem::formattedSpeed(downloadItem->currentSpeed());
+        QString eta = DownloadItem::formattedTime(downloadItem->remainingTime());
+
+        message = tr("%1 of %2 (%3) — %4").arg(
+                downloaded,
+                total,
+                speed,
+                eta
+                );
+    } else if (status == Starting) {
+        message = tr("Preparing");
+    } else if (status == Failed) {
+        message = tr("Failed") + " — " + downloadItem->errorMessage();
+    } else if (status == Finished) {
+        message = tr("Completed");
+    } else if (status == Idle) {
+        message = tr("Stopped");
+    }
+
+    // progressBar->setPalette(option.palette);
+    if (status == Finished) {
+        progressBar->setValue(100);
+        progressBar->setEnabled(true);
+    } else if (status == Downloading) {
+        progressBar->setValue(downloadItem->currentPercent());
+        progressBar->setEnabled(true);
+    } else {
+        progressBar->setValue(0);
+        progressBar->setEnabled(false);
+    }
+
+    int progressBarWidth = line.width() - PADDING*4 - 16;
+    progressBar->setMaximumWidth(progressBarWidth);
+    progressBar->setMinimumWidth(progressBarWidth);
+    painter->save();
+    painter->translate(PADDING, PADDING);
+    progressBar->render(painter);
+    painter->restore();
+
+    bool downloadButtonHovered = false;
+    bool downloadButtonPressed = false;
+    const bool isHovered = index.data(HoveredItemRole).toBool();
+    if (isHovered) {
+        downloadButtonHovered = index.data(DownloadButtonHoveredRole).toBool();
+        downloadButtonPressed = index.data(DownloadButtonPressedRole).toBool();
+    }
+    QIcon::Mode iconMode;
+    if (downloadButtonPressed) iconMode = QIcon::Selected;
+    else if (downloadButtonHovered) iconMode = QIcon::Active;
+    else iconMode = QIcon::Normal;
+
+    if (status != Finished && status != Failed && status != Idle) {
+        if (downloadButtonHovered) message = tr("Stop downloading");
+        painter->save();
+        QIcon closeIcon = QtIconLoader::icon("window-close");
+        painter->drawPixmap(downloadButtonRect(line), closeIcon.pixmap(16, 16, iconMode));
+        painter->restore();
+    }
+
+    else if (status == Finished) {
+        if (downloadButtonHovered)
+#ifdef APP_MAC
+        message = tr("Show in %1").arg("Finder");
+#else
+        message = tr("Open parent folder");
+#endif
+        painter->save();
+        QIcon searchIcon = QtIconLoader::icon("system-search");
+        painter->drawPixmap(downloadButtonRect(line), searchIcon.pixmap(16, 16, iconMode));
+        painter->restore();
+    }
+
+    else if (status == Failed || status == Idle) {
+        if (downloadButtonHovered) message = tr("Restart downloading");
+        painter->save();
+        QIcon searchIcon = QtIconLoader::icon("view-refresh");
+        painter->drawPixmap(downloadButtonRect(line), searchIcon.pixmap(16, 16, iconMode));
+        painter->restore();
+    }
+
+    QRectF textBox = line.adjusted(PADDING, PADDING*2 + progressBar->sizeHint().height(), -2 * PADDING, -PADDING);
+    textBox = painter->boundingRect( textBox, Qt::AlignLeft | Qt::AlignTop | Qt::TextWordWrap, message);
+    painter->drawText(textBox, Qt::AlignLeft | Qt::AlignTop | Qt::TextWordWrap, message);
+
+    painter->restore();
+
+}
+
+QRect PrettyItemDelegate::downloadButtonRect(QRect line) const {
+    return QRect(
+            line.width() - PADDING*2 - 16,
+            PADDING + progressBar->sizeHint().height() / 2 - 8,
+            16,
+            16);
 }

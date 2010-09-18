@@ -1,5 +1,8 @@
-1.2
-- Support for media keys on OS X and GNOME
+1.2 - Sep ??, 2010
+- Ability to download videos
+- Support for media keys on GNOME
+- More style, especially on the Mac
+- Fixed crash when trying delete or move the the las playlist item
 
 1.1 - Jul 27, 2010
 - Minitube now correctly plays cat and mouse with YouTube

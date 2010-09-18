@@ -12,6 +12,7 @@
 #include "SearchView.h"
 #include "MediaView.h"
 #include "AboutView.h"
+#include "downloadview.h"
 
 class MainWindow : public QMainWindow {
 
@@ -56,6 +57,11 @@ private slots:
     void showFullscreenToolbar(bool show);
     void showFullscreenPlaylist(bool show);
 
+    // void setAutoplay(bool enabled);
+    void updateDownloadMessage(QString);
+    void downloadsFinished();
+    void toggleDownloads(bool show);
+
 private:
     void initPhonon();
     void createActions();
@@ -76,6 +82,7 @@ private:
     SearchView *searchView;
     MediaView *mediaView;
     QWidget *aboutView;
+    QWidget *downloadView;
 
     // actions
     QAction *addGadgetAct;
@@ -95,7 +102,6 @@ private:
     QAction *webPageAct;
     QAction *copyPageAct;
     QAction *copyLinkAct;
-    QAction *downloadAct;
     QAction *volumeUpAct;
     QAction *volumeDownAct;
     QAction *volumeMuteAct;

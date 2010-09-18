@@ -21,7 +21,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 #endif
 
     QBoxLayout *mainLayout = new QVBoxLayout();
-    mainLayout->setMargin(PADDING);
+    mainLayout->setMargin(0);
     mainLayout->setSpacing(0);
 
     // hidden message widget
@@ -30,6 +30,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     mainLayout->addWidget(message);
 
     mainLayout->addStretch();
+    mainLayout->addSpacing(PADDING);
 
     QBoxLayout *hLayout = new QHBoxLayout();
     hLayout->setAlignment(Qt::AlignCenter);
@@ -45,21 +46,22 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     hLayout->addLayout(layout);
 
     QLabel *welcomeLabel =
-            new QLabel("<h1>" +
+            new QLabel("<h1 style='font-weight:normal'>" +
                        tr("Welcome to <a href='%1'>%2</a>,")
-                       .replace("<a ", "<a style='color:palette(text)'")
+                       // .replace("<a ", "<a style='color:palette(text)'")
+                       .replace("<a href", "<a style='text-decoration:none; color:palette(text); font-weight:bold' href")
                        .arg(Constants::WEBSITE, Constants::APP_NAME)
                        + "</h1>", this);
     welcomeLabel->setOpenExternalLinks(true);
     layout->addWidget(welcomeLabel);
 
-    layout->addSpacing(PADDING);
+    layout->addSpacing(PADDING / 2);
 
     QLabel *tipLabel = new QLabel(tr("Enter a keyword to start watching videos."), this);
     tipLabel->setFont(biggerFont);
     layout->addWidget(tipLabel);
 
-    layout->addSpacing(10);
+    layout->addSpacing(PADDING / 2);
 
     QHBoxLayout *searchLayout = new QHBoxLayout();
     searchLayout->setAlignment(Qt::AlignVCenter);
@@ -84,16 +86,23 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
     layout->addItem(searchLayout);
 
-    layout->addSpacing(PADDING);
+    layout->addSpacing(PADDING / 2);
 
     QHBoxLayout *otherLayout = new QHBoxLayout();
+    otherLayout->setMargin(0);
 
     recentKeywordsLayout = new QVBoxLayout();
     recentKeywordsLayout->setSpacing(5);
     recentKeywordsLayout->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
     recentKeywordsLabel = new QLabel(tr("Recent keywords").toUpper(), this);
-    recentKeywordsLabel->hide();
+#ifdef APP_MAC
+    QPalette palette = recentKeywordsLabel->palette();
+    palette.setColor(QPalette::WindowText, QColor(0x65, 0x71, 0x80));
+    recentKeywordsLabel->setPalette(palette);
+#else
     recentKeywordsLabel->setForegroundRole(QPalette::Dark);
+#endif
+    recentKeywordsLabel->hide();
     recentKeywordsLabel->setFont(smallerFont);
     recentKeywordsLayout->addWidget(recentKeywordsLabel);
 
@@ -101,6 +110,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
     layout->addLayout(otherLayout);
 
+    mainLayout->addSpacing(PADDING);
     mainLayout->addStretch();
 
     setLayout(mainLayout);
@@ -187,6 +197,7 @@ void SearchView::checkForUpdate() {
 void SearchView::gotNewVersion(QString version) {
     message->setText(
             tr("A new version of %1 is available. Please <a href='%2'>update to version %3</a>")
+            .replace("<a href", "<a style='text-decoration:none; color:palette(text); font-weight:bold' href")
             .arg(
                     Constants::APP_NAME,
                     QString(Constants::WEBSITE).append("#download"),
@@ -194,9 +205,11 @@ void SearchView::gotNewVersion(QString version) {
             );
     message->setOpenExternalLinks(true);
     message->setMargin(10);
-    message->setBackgroundRole(QPalette::ToolTipBase);
-    message->setForegroundRole(QPalette::ToolTipText);
-    message->setAutoFillBackground(true);
+    message->setAlignment(Qt::AlignCenter);
+    // message->setBackgroundRole(QPalette::ToolTipBase);
+    // message->setForegroundRole(QPalette::ToolTipText);
+    // message->setAutoFillBackground(true);
+    message->setStyleSheet("QLabel { border-bottom: 1px solid palette(mid); }");
     message->show();
     if (updateChecker) delete updateChecker;
 }

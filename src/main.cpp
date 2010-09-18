@@ -3,13 +3,13 @@
 #include "constants.h"
 #include "MainWindow.h"
 #ifdef APP_MAC
-#include "local/mac/mac_startup.h"
+// #include "local/mac/mac_startup.h"
 #endif
 
 int main(int argc, char **argv) {
 
 #ifdef APP_MAC
-    mac::MacMain();
+    // mac::MacMain();
 #endif
 
     QtSingleApplication app(argc, argv);

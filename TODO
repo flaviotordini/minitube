@@ -2,11 +2,6 @@
 
 ## Killer features
 
-- Video download
-    Download status on the status bar. When clicked, a download manager view appears.
-    Videos should be downloaded in the current format
-    directly on the Desktop or Downloads dir without asking for a location.
-
 - YouTube related videos
     List of related videos identical to the playlist.
     When a related video is clicked Minitube will keep playing the next related videos.
@@ -21,7 +16,8 @@
 
 - Windows build
     Stefan Brueck has compiled on Windows but there are problems with Phonon's directX backend
-    Marco di Antonio tried with the Mplayer backend, but it is very unstable
+    Marco di Antonio tried with the Mplayer backend, but it is very unstable.
+    Waiting for the VLC backend to work.
 
 - Subtitles, see http://google2srt.sourceforge.net/
 

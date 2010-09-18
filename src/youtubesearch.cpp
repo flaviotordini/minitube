@@ -18,9 +18,9 @@ void YouTubeSearch::search(SearchParams *searchParams, int max, int skip) {
 
     // Useful to test with a local webserver
     /*
-    urlString = QString("http://localhost/oringo/video.xml?q=%1&max-results=%2&start-index=%3")
+    urlString = QString("http://localhost/~flavio/text.xml?q=%1&max-results=%2&start-index=%3")
                 .arg(searchParams->keywords(), QString::number(max), QString::number(skip));
-                */
+    */
 
     switch (searchParams->sortBy()) {
     case SearchParams::SortByNewest:

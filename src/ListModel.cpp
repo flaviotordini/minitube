@@ -78,29 +78,7 @@ QVariant ListModel::data(const QModelIndex &index, int role) const {
     case ActiveTrackRole:
         return video == m_activeVideo;
     case Qt::DisplayRole:
-    case Qt::StatusTipRole:
         return video->title();
-        /*
-        case Qt::ToolTipRole:
-          
-            QString tooltip;
-            if (!element.firstChildElement().text().isEmpty()) {
-                tooltip.append(QString("<b>").append(element.firstChildElement().text()).append("</b><br/>"));
-            }
-            if (!fromDate.isEmpty()) {
-                tooltip.append("<i>Pubblicato il</i> ").append(fromDate);
-            }
-            if (!toDate.isEmpty()) {
-                tooltip.append("<br/><i>Scadenza</i>: ").append(toDate);
-            }
-            tooltip.append("<br/><i>Tipo</i>: ").append(typeName)
-                .append("<br/><i>Id</i>: ").appen    QFont boldFont;
-    boldFont.setBold(true);d(id);
-            return tooltip;
-            */
-        
-        // case StreamUrlRole:
-        // return video->streamUrl();
     }
     
     return QVariant();
@@ -111,8 +89,6 @@ void ListModel::setActiveRow( int row) {
         
         m_activeRow = row;
         m_activeVideo = videoAt(row);
-        
-        // setStateOfRow( row, Item::Played );
         
         int oldactiverow = m_activeRow;
         
@@ -268,6 +244,7 @@ void ListModel::removeIndexes(QModelIndexList &indexes) {
     QList<Video*> originalList(videos);
     QList<Video*> delitems;
     foreach (QModelIndex index, indexes) {
+        if (index.row() >= originalList.size()) continue;
         Video* video = originalList.at(index.row());
         int idx = videos.indexOf(video);
         if (idx != -1) {
@@ -381,6 +358,7 @@ void ListModel::move(QModelIndexList &indexes, bool up) {
 
     foreach (QModelIndex index, indexes) {
         int row = index.row();
+        if (row >= videos.size()) continue;
         // qDebug() << "index row" << row;
         Video *video = videoAt(row);
         movedVideos << video;

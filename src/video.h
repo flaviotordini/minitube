@@ -10,6 +10,7 @@ class Video : public QObject {
 
 public:
     Video();
+    Video* clone();
 
     const QString title() const { return m_title; }
     void setTitle( QString title ) { m_title = title; }
@@ -44,6 +45,8 @@ public:
 
     void loadStreamUrl();
     QUrl getStreamUrl() { return m_streamUrl; }
+
+    QString id() { return videoId; }
 
 public slots:
     void setThumbnail(QByteArray bytes);
@@ -85,6 +88,8 @@ private:
     // current index for the elTypes list
     // needed to iterate on elTypes
     int elIndex;
+    
+    bool loadingStreamUrl;
 };
 
 // This is required in order to use QPointer<Video> as a QVariant

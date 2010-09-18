@@ -1,6 +1,6 @@
 CONFIG += release
 TEMPLATE = app
-VERSION = 1.1
+VERSION = 1.2
 DEFINES += APP_VERSION="$$VERSION"
 INCLUDEPATH += /usr/include/phonon
 
@@ -10,9 +10,7 @@ TARGET = minitube
 QT += network \
     xml \
     phonon
-
 include(src/qtsingleapplication/qtsingleapplication.pri)
-
 HEADERS += src/MainWindow.h \
     src/SearchView.h \
     src/MediaView.h \
@@ -40,12 +38,17 @@ HEADERS += src/MainWindow.h \
     src/videoareawidget.h \
     src/googlesuggest.h \
     src/videowidget.h \
-    src/flickcharm.h \
     src/videodefinition.h \
     src/fontutils.h \
     src/thlibrary/thblackbar.h \
     src/globalshortcuts.h \
-    src/globalshortcutbackend.h
+    src/globalshortcutbackend.h \
+    src/downloadmanager.h \
+    src/downloaditem.h \
+    src/downloadview.h \
+    src/downloadmodel.h \
+    src/downloadlistview.h \
+    src/downloadsettings.h
 SOURCES += src/main.cpp \
     src/MainWindow.cpp \
     src/SearchView.cpp \
@@ -71,13 +74,18 @@ SOURCES += src/main.cpp \
     src/videoareawidget.cpp \
     src/googlesuggest.cpp \
     src/videowidget.cpp \
-    src/flickcharm.cpp \
     src/videodefinition.cpp \
     src/constants.cpp \
     src/fontutils.cpp \
     src/thlibrary/thblackbar.cpp \
     src/globalshortcuts.cpp \
-    src/globalshortcutbackend.cpp
+    src/globalshortcutbackend.cpp \
+    src/downloadmanager.cpp \
+    src/downloaditem.cpp \
+    src/downloadview.cpp \
+    src/downloadmodel.cpp \
+    src/downloadlistview.cpp \
+    src/downloadsettings.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/
@@ -92,13 +100,10 @@ include(locale/locale.pri)
 # deploy
 DISTFILES += CHANGES \
     COPYING
-
-unix:!mac {
+unix:!mac { 
     QT += dbus
-
     HEADERS += src/gnomeglobalshortcutbackend.h
     SOURCES += src/gnomeglobalshortcutbackend.cpp
-
     isEmpty(PREFIX):PREFIX = /usr
     BINDIR = $$PREFIX/bin
     INSTALLS += target

@@ -10,11 +10,13 @@
 #include "gnomeglobalshortcutbackend.h"
 #endif
 #ifdef APP_MAC
-#include "local/mac/mac_startup.h"
+// #include "local/mac/mac_startup.h"
 #endif
+#include "downloadmanager.h"
 
 MainWindow::MainWindow() :
         aboutView(0),
+        downloadView(0),
         mediaObject(0),
         audioOutput(0),
         m_fullscreen(false) {
@@ -22,6 +24,7 @@ MainWindow::MainWindow() :
     // views mechanism
     history = new QStack<QWidget*>();
     views = new QStackedWidget(this);
+    setCentralWidget(views);
 
     // views
     searchView = new SearchView(this);
@@ -32,7 +35,6 @@ MainWindow::MainWindow() :
     views->addWidget(mediaView);
 
     toolbarSearch = new SearchLineEdit(this);
-    toolbarSearch->setFont(qApp->font());
     toolbarSearch->setMinimumWidth(toolbarSearch->fontInfo().pixelSize()*15);
     connect(toolbarSearch, SIGNAL(search(const QString&)), searchView, SLOT(watch(const QString&)));
 
@@ -51,20 +53,14 @@ MainWindow::MainWindow() :
     // mediaView init stuff thats needs actions
     mediaView->initialize();
 
-    // cool toolbar on the Mac
-    // this is too buggy to be enabled
-    // setUnifiedTitleAndToolBarOnMac(true);
-
     // event filter to block ugly toolbar tooltips
     qApp->installEventFilter(this);
 
-    // show the initial view
-    showWidget(searchView);
-
-    setCentralWidget(views);
-
     // restore window position
     readSettings();
+
+    // show the initial view
+    showWidget(searchView);
 
     // Global shortcuts
     GlobalShortcuts &shortcuts = GlobalShortcuts::instance();
@@ -73,11 +69,16 @@ MainWindow::MainWindow() :
         shortcuts.setBackend(new GnomeGlobalShortcutBackend(&shortcuts));
 #endif
 #ifdef APP_MAC
-    mac::MacSetup();
+    // mac::MacSetup();
 #endif
     connect(&shortcuts, SIGNAL(PlayPause()), pauseAct, SLOT(trigger()));
     connect(&shortcuts, SIGNAL(Stop()), this, SLOT(stop()));
     connect(&shortcuts, SIGNAL(Next()), skipAct, SLOT(trigger()));
+
+    connect(DownloadManager::instance(), SIGNAL(statusMessageChanged(QString)),
+            SLOT(updateDownloadMessage(QString)));
+    connect(DownloadManager::instance(), SIGNAL(finished()),
+            SLOT(downloadsFinished()));
 }
 
 MainWindow::~MainWindow() {
@@ -101,6 +102,7 @@ void MainWindow::createActions() {
     stopAct = new QAction(QtIconLoader::icon("media-playback-stop"), tr("&Stop"), this);
     stopAct->setStatusTip(tr("Stop playback and go back to the search view"));
     stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
+    stopAct->setEnabled(false);
     actions->insert("stop", stopAct);
     connect(stopAct, SIGNAL(triggered()), this, SLOT(stop()));
 
@@ -122,6 +124,9 @@ void MainWindow::createActions() {
     fullscreenAct->setStatusTip(tr("Go full screen"));
     fullscreenAct->setShortcut(QKeySequence(Qt::ALT + Qt::Key_Return));
     fullscreenAct->setShortcutContext(Qt::ApplicationShortcut);
+#if QT_VERSION >= 0x040600
+    fullscreenAct->setPriority(QAction::LowPriority);
+#endif
     actions->insert("fullscreen", fullscreenAct);
     connect(fullscreenAct, SIGNAL(triggered()), this, SLOT(fullscreen()));
 
@@ -191,7 +196,7 @@ void MainWindow::createActions() {
     quitAct->setShortcuts(QList<QKeySequence>() << QKeySequence(tr("Ctrl+Q")) << QKeySequence(Qt::CTRL + Qt::Key_W));
     quitAct->setStatusTip(tr("Bye"));
     actions->insert("quit", quitAct);
-    connect(quitAct, SIGNAL(triggered()), this, SLOT(quit()));
+    connect(quitAct, SIGNAL(triggered()), this, SLOT(close()));
 
     siteAct = new QAction(tr("&Website"), this);
     siteAct->setShortcut(QKeySequence::HelpContents);
@@ -255,6 +260,37 @@ void MainWindow::createActions() {
     connect(definitionAct, SIGNAL(triggered()), SLOT(toggleDefinitionMode()));
     addAction(definitionAct);
 
+    QAction *action;
+
+    /*
+    action = new QAction(tr("&Autoplay"), this);
+    action->setStatusTip(tr("Automatically start playing videos"));
+    action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_P));
+    action->setCheckable(true);
+    connect(action, SIGNAL(toggled(bool)), SLOT(setAutoplay(bool)));
+    actions->insert("autoplay", action);
+    */
+
+    action = new QAction(tr("&Downloads"), this);
+    action->setStatusTip(tr("Show details about video downloads"));
+    action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_J));
+    action->setCheckable(true);
+    action->setIcon(QtIconLoader::icon("go-down"));
+    action->setVisible(false);
+    connect(action, SIGNAL(toggled(bool)), SLOT(toggleDownloads(bool)));
+    actions->insert("downloads", action);
+
+    action = new QAction(tr("&Download"), this);
+    action->setStatusTip(tr("Download the current video"));
+    action->setShortcut(QKeySequence::Save);
+    action->setIcon(QtIconLoader::icon("go-down"));
+    action->setEnabled(false);
+#if QT_VERSION >= 0x040600
+    action->setPriority(QAction::LowPriority);
+#endif
+    connect(action, SIGNAL(triggered()), mediaView, SLOT(downloadVideo()));
+    actions->insert("download", action);
+
     // common action properties
     foreach (QAction *action, actions->values()) {
 
@@ -307,12 +343,18 @@ void MainWindow::createMenus() {
     viewMenu->addAction(pauseAct);
     viewMenu->addAction(skipAct);
     viewMenu->addSeparator();
+    viewMenu->addAction(The::globalActions()->value("download"));
+    viewMenu->addSeparator();
     viewMenu->addAction(webPageAct);
     viewMenu->addAction(copyPageAct);
     viewMenu->addAction(copyLinkAct);
     viewMenu->addSeparator();
     viewMenu->addAction(compactViewAct);
     viewMenu->addAction(fullscreenAct);
+#ifdef APP_MAC
+    extern void qt_mac_set_dock_menu(QMenu *);
+    qt_mac_set_dock_menu(viewMenu);
+#endif
 
     helpMenu = menuBar()->addMenu(tr("&Help"));
     helpMenu->addAction(siteAct);
@@ -341,6 +383,7 @@ void MainWindow::createToolBars() {
     mainToolBar->addAction(pauseAct);
     mainToolBar->addAction(skipAct);
     mainToolBar->addAction(fullscreenAct);
+    mainToolBar->addAction(The::globalActions()->value("download"));
 
     mainToolBar->addWidget(new Spacer());
 
@@ -353,7 +396,7 @@ void MainWindow::createToolBars() {
 
     seekSlider = new Phonon::SeekSlider(this);
     seekSlider->setIconVisible(false);
-    seekSlider->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    seekSlider->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
     mainToolBar->addWidget(seekSlider);
 
     mainToolBar->addWidget(new Spacer());
@@ -397,6 +440,8 @@ void MainWindow::createStatusBar() {
     QToolBar *toolBar = new QToolBar(this);
     toolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     toolBar->setIconSize(QSize(16, 16));
+    toolBar->addAction(The::globalActions()->value("downloads"));
+    // toolBar->addAction(The::globalActions()->value("autoplay"));
     toolBar->addAction(The::globalActions()->value("definition"));
     statusBar()->addPermanentWidget(toolBar);
 
@@ -406,17 +451,24 @@ void MainWindow::createStatusBar() {
 void MainWindow::readSettings() {
     QSettings settings;
     restoreGeometry(settings.value("geometry").toByteArray());
+#ifdef APP_MAC
+    if (!isMaximized())
+        move(x(), y() + mainToolBar->height() + 8);
+#endif
     setDefinitionMode(settings.value("definition", VideoDefinition::getDefinitionNames().first()).toString());
     audioOutput->setVolume(settings.value("volume", 1).toDouble());
     audioOutput->setMuted(settings.value("volumeMute").toBool());
 }
 
 void MainWindow::writeSettings() {
-    // do not save geometry when in full screen
-    if (m_fullscreen)
-        return;
+
     QSettings settings;
-    settings.setValue("geometry", saveGeometry());
+
+    // do not save geometry when in full screen
+    if (!m_fullscreen) {
+        settings.setValue("geometry", saveGeometry());
+    }
+
     settings.setValue("volume", audioOutput->volume());
     settings.setValue("volumeMute", audioOutput->isMuted());
     mediaView->saveSplitterState();
@@ -459,9 +511,14 @@ void MainWindow::showWidget ( QWidget* widget ) {
     copyPageAct->setEnabled(widget == mediaView);
     copyLinkAct->setEnabled(widget == mediaView);
     aboutAct->setEnabled(widget != aboutView);
+    The::globalActions()->value("download")->setEnabled(widget == mediaView);
+    The::globalActions()->value("downloads")->setChecked(widget == downloadView);
 
     // toolbar only for the mediaView
-    mainToolBar->setVisible(widget == mediaView && !compactViewAct->isChecked());
+    /* mainToolBar->setVisible(
+            (widget == mediaView && !compactViewAct->isChecked())
+            || widget == downloadView
+            ); */
 
     setUpdatesEnabled(true);
 
@@ -513,18 +570,27 @@ void MainWindow::quit() {
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {
+    if (DownloadManager::instance()->activeItems() > 0) {
+        QMessageBox msgBox;
+        msgBox.setIconPixmap(QPixmap(":/images/app.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        msgBox.setText(tr("Do you want to exit %1 with a download in progress?").arg(Constants::APP_NAME));
+        msgBox.setInformativeText(tr("If you close %1 now, this download will be cancelled.").arg(Constants::APP_NAME));
+        msgBox.setModal(true);
+
+        msgBox.addButton(tr("Close and cancel download"), QMessageBox::RejectRole);
+        QPushButton *waitButton = msgBox.addButton(tr("Wait for download to finish"), QMessageBox::ActionRole);
+
+        msgBox.exec();
+
+        if (msgBox.clickedButton() == waitButton) {
+            event->ignore();
+            return;
+        }
+
+    }
     quit();
     QWidget::closeEvent(event);
 }
-
-/*
-void MainWindow::showSettings() {
-    if (!settingsView) {
-        settingsView = new SettingsView(this);
-        views->addWidget(settingsView);
-    }
-    showWidget(settingsView);
-}*/
 
 void MainWindow::showSearch() {
     showWidget(searchView);
@@ -559,11 +625,13 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
         pauseAct->setText(tr("&Pause"));
         pauseAct->setStatusTip(tr("Pause playback") + " (" +  pauseAct->shortcut().toString(QKeySequence::NativeText) + ")");
         skipAct->setEnabled(true);
+        // stopAct->setEnabled(true);
         break;
 
          case Phonon::StoppedState:
         pauseAct->setEnabled(false);
         skipAct->setEnabled(false);
+        // stopAct->setEnabled(false);
         break;
 
          case Phonon::PausedState:
@@ -572,6 +640,7 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
         pauseAct->setIcon(QtIconLoader::icon("media-playback-start"));
         pauseAct->setText(tr("&Play"));
         pauseAct->setStatusTip(tr("Resume playback") + " (" +  pauseAct->shortcut().toString(QKeySequence::NativeText) + ")");
+        // stopAct->setEnabled(true);
         break;
 
          case Phonon::BufferingState:
@@ -580,6 +649,7 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
         pauseAct->setEnabled(false);
         currentTime->clear();
         totalTime->clear();
+        // stopAct->setEnabled(true);
         break;
 
          default:
@@ -594,8 +664,6 @@ void MainWindow::stop() {
 
 void MainWindow::fullscreen() {
 
-    setUpdatesEnabled(false);
-
     // No compact view action when in full screen
     compactViewAct->setVisible(m_fullscreen);
     compactViewAct->setChecked(false);
@@ -609,7 +677,7 @@ void MainWindow::fullscreen() {
 
     // workaround: prevent focus on the search bar
     // it steals the Space key needed for Play/Pause
-    mainToolBar->setEnabled(m_fullscreen);
+    toolbarSearch->setEnabled(m_fullscreen);
 
     // Hide anything but the video
     mediaView->setPlaylistVisible(m_fullscreen);
@@ -632,20 +700,33 @@ void MainWindow::fullscreen() {
 #endif
 
     if (m_fullscreen) {
-        // use setShortucs instead of setShortcut
+
+        // Exit full screen
+
+        // use setShortcuts instead of setShortcut
         // the latter seems not to work
         fullscreenAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::ALT + Qt::Key_Return));
         fullscreenAct->setText(tr("&Full Screen"));
         stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
 
+#ifdef APP_MAC
+        setCentralWidget(views);
+        views->showNormal();
+        show();
+        mediaView->setFocus();
+#else
         mainToolBar->show();
         if (m_maximized) showMaximized();
         else showNormal();
+#endif
 
-        // Make sure the window has focus (Mac)
+        // Make sure the window has focus
         activateWindow();
 
     } else {
+
+        // Enter full screen
+
         stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_MediaStop));
         fullscreenAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::ALT + Qt::Key_Return));
         fullscreenAct->setText(tr("Exit &Full Screen"));
@@ -655,21 +736,23 @@ void MainWindow::fullscreen() {
         // geometry won't be saved
         writeSettings();
 
+#ifdef APP_MAC
+        hide();
+        views->setParent(0);
+        QTimer::singleShot(0, views, SLOT(showFullScreen()));
+#else
         mainToolBar->hide();
         showFullScreen();
+#endif
+
     }
 
     m_fullscreen = !m_fullscreen;
 
-    setUpdatesEnabled(true);
 }
 
 void MainWindow::compactView(bool enable) {
 
-    setUpdatesEnabled(false);
-
-    mainToolBar->setVisible(!enable);
-    mainToolBar->setEnabled(!enable);
     mediaView->setPlaylistVisible(!enable);
     statusBar()->setVisible(!enable);
 
@@ -677,22 +760,20 @@ void MainWindow::compactView(bool enable) {
     menuBar()->setVisible(!enable);
 #endif
 
-    // ensure focus does not end up to the search box
-    // as it would steal the Space shortcut
-    // toolbarSearch->setEnabled(!enable);
-
     if (enable) {
-        stopAct->setShortcut(QString(""));
-        QList<QKeySequence> shortcuts;
-        // for some reason it is important that ESC comes first
-        shortcuts << QKeySequence(Qt::CTRL + Qt::Key_Return) << QKeySequence(Qt::Key_Escape);
-        compactViewAct->setShortcuts(shortcuts);
+        stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_MediaStop));
+        compactViewAct->setShortcuts(
+                QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_Return)
+                << QKeySequence(Qt::Key_Escape));
+
+        // ensure focus does not end up to the search box
+        // as it would steal the Space shortcut
+        mediaView->setFocus();
     } else {
-        compactViewAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Return));
-        stopAct->setShortcut(QKeySequence(Qt::Key_Escape));
+        compactViewAct->setShortcuts(QList<QKeySequence>() <<  QKeySequence(Qt::CTRL + Qt::Key_Return));
+        stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
     }
 
-    setUpdatesEnabled(true);
 }
 
 void MainWindow::searchFocus() {
@@ -834,4 +915,41 @@ void MainWindow::clearRecentKeywords() {
     settings.remove("recentKeywords");
     searchView->updateRecentKeywords();
     statusBar()->showMessage(tr("Your privacy is now safe"));
+}
+
+/*
+ void MainWindow::setAutoplay(bool enabled) {
+     QSettings settings;
+     settings.setValue("autoplay", QVariant::fromValue(enabled));
+ }
+ */
+
+void MainWindow::updateDownloadMessage(QString message) {
+    The::globalActions()->value("downloads")->setText(message);
+}
+
+void MainWindow::downloadsFinished() {
+    The::globalActions()->value("downloads")->setText(tr("&Downloads"));
+    statusBar()->showMessage(tr("Downloads complete"));
+}
+
+void MainWindow::toggleDownloads(bool show) {
+
+    if (show) {
+        stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_MediaStop));
+        The::globalActions()->value("downloads")->setShortcuts(
+                QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_J)
+                << QKeySequence(Qt::Key_Escape));
+    } else {
+        The::globalActions()->value("downloads")->setShortcuts(
+                QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_J));
+        stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
+    }
+
+    if (!downloadView) {
+        downloadView = new DownloadView(this);
+        views->addWidget(downloadView);
+    }
+    if (show) showWidget(downloadView);
+    else goBack();
 }
