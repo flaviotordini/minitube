@@ -4,6 +4,7 @@ INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
 TRANSLATIONS += \
+    en_US.ts \
     it_IT.ts \
     pt_BR.ts \
     ru_RU.ts \

@@ -73,6 +73,136 @@
     </message>
 </context>
 <context>
+    <name>DownloadItem</name>
+    <message>
+        <source>bytes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>KB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>bytes/sec</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>KB/sec</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>MB/sec</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%4 %5 remaining</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DownloadManager</name>
+    <message numerus="yes">
+        <source>%n Download(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
+    <name>DownloadSettings</name>
+    <message>
+        <source>Change location...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose the download location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download location changed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current downloads will still go in the previous location.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloading to: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DownloadView</name>
+    <message>
+        <source>Downloads</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>GlobalShortcuts</name>
+    <message>
+        <source>Play</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Play/Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stop playing after current track</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next track</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Previous track</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Increase volume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Decrease volume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seek forward</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Seek backward</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ListModel</name>
     <message>
         <source>Searching...</source>
@@ -368,6 +498,42 @@
         <source>Maximum video definition set to %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Downloads</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show details about video downloads</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Download the current video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do you want to exit %1 with a download in progress?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you close %1 now, this download will be cancelled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close and cancel download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wait for download to finish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MediaView</name>
@@ -415,6 +581,10 @@
         <source>Get the full version</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Downloading %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NetworkAccess</name>
@@ -428,6 +598,42 @@
     <message>
         <source>%1 views</source>
         <translation>%1-visitas</translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3) ? %4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preparing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stopped</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stop downloading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show in %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open parent folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restart downloading</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -34,7 +34,7 @@
     </message>
     <message>
         <source>Compact mode contributed by %1.</source>
-        <translation>Modalità compatta sviluppata da %1</translation>
+        <translation>Modalità compatta sviluppata da %1.</translation>
     </message>
     <message>
         <source>Translated by %1</source>
@@ -58,7 +58,7 @@
     </message>
     <message>
         <source>HTTP proxy support contributed by %1.</source>
-        <translation>Supporto per i proxy HTTP svilupparo da %1</translation>
+        <translation>Supporto per i proxy HTTP svilupparo da %1.</translation>
     </message>
     <message>
         <source>Windows version built by %1</source>
@@ -74,6 +74,136 @@
     <message>
         <source>Clear</source>
         <translation>Cancella</translation>
+    </message>
+</context>
+<context>
+    <name>DownloadItem</name>
+    <message>
+        <source>bytes</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>KB</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>bytes/sec</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>KB/sec</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>MB/sec</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>seconds</source>
+        <translation>secondi</translation>
+    </message>
+    <message>
+        <source>minutes</source>
+        <translation>minuti</translation>
+    </message>
+    <message>
+        <source>%4 %5 remaining</source>
+        <translation>%4 %5 al termine</translation>
+    </message>
+</context>
+<context>
+    <name>DownloadManager</name>
+    <message numerus="yes">
+        <source>%n Download(s)</source>
+        <translation>
+            <numerusform>1 download</numerusform>
+            <numerusform>%n download</numerusform>
+        </translation>
+    </message>
+</context>
+<context>
+    <name>DownloadSettings</name>
+    <message>
+        <source>Change location...</source>
+        <translation>Cambia destinazione...</translation>
+    </message>
+    <message>
+        <source>Choose the download location</source>
+        <translation>Scegli la destinazione dei download</translation>
+    </message>
+    <message>
+        <source>Download location changed.</source>
+        <translation>La destinazione dei download è cambiata.</translation>
+    </message>
+    <message>
+        <source>Current downloads will still go in the previous location.</source>
+        <translation>I download già in corso andranno comunque nella destinazione precedente.</translation>
+    </message>
+    <message>
+        <source>Downloading to: %1</source>
+        <translation>Scarica in: %1</translation>
+    </message>
+</context>
+<context>
+    <name>DownloadView</name>
+    <message>
+        <source>Downloads</source>
+        <translation>Download</translation>
+    </message>
+</context>
+<context>
+    <name>GlobalShortcuts</name>
+    <message>
+        <source>Play</source>
+        <translation>Play</translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation>Pausa</translation>
+    </message>
+    <message>
+        <source>Play/Pause</source>
+        <translation>Play/Pausa</translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>Stop</translation>
+    </message>
+    <message>
+        <source>Stop playing after current track</source>
+        <translation>Ferma al termine del video corrente</translation>
+    </message>
+    <message>
+        <source>Next track</source>
+        <translation>Prossima traccia</translation>
+    </message>
+    <message>
+        <source>Previous track</source>
+        <translation>Traccia precedente</translation>
+    </message>
+    <message>
+        <source>Increase volume</source>
+        <translation>Aumenta il volume</translation>
+    </message>
+    <message>
+        <source>Decrease volume</source>
+        <translation>Diminuisci il volume</translation>
+    </message>
+    <message>
+        <source>Mute</source>
+        <translation>Senza audio</translation>
+    </message>
+    <message>
+        <source>Seek forward</source>
+        <translation>Salta in avanti</translation>
+    </message>
+    <message>
+        <source>Seek backward</source>
+        <translation>Salta indietro</translation>
     </message>
 </context>
 <context>
@@ -146,7 +276,7 @@
     </message>
     <message>
         <source>&amp;Compact mode</source>
-        <translation>Modalità compatta</translation>
+        <translation>Modalità &amp;compatta</translation>
     </message>
     <message>
         <source>Hide the playlist and the toolbar</source>
@@ -318,7 +448,7 @@
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation>&amp;Cancella le ultime ricerche. L&apos;azione non potrà essere annullata.</translation>
+        <translation>Cancella le ultime ricerche. L&apos;azione non potrà essere annullata.</translation>
     </message>
     <message>
         <source>Your privacy is now safe</source>
@@ -350,11 +480,47 @@
     </message>
     <message>
         <source>Make a &amp;donation</source>
-        <translation>Fai una donazione</translation>
+        <translation>Fai una &amp;donazione</translation>
     </message>
     <message>
         <source>Maximum video definition set to %1</source>
         <translation>La definizione video massima è impostata a %1</translation>
+    </message>
+    <message>
+        <source>&amp;Downloads</source>
+        <translation>&amp;Download</translation>
+    </message>
+    <message>
+        <source>Show details about video downloads</source>
+        <translation>Mostra informazioni sui download</translation>
+    </message>
+    <message>
+        <source>&amp;Download</source>
+        <translation>&amp;Download</translation>
+    </message>
+    <message>
+        <source>Download the current video</source>
+        <translation>Scarica il video corrente</translation>
+    </message>
+    <message>
+        <source>Do you want to exit %1 with a download in progress?</source>
+        <translation>Vuoi uscire da %1 con un download in corso?</translation>
+    </message>
+    <message>
+        <source>If you close %1 now, this download will be cancelled.</source>
+        <translation>Se chiudi %1 adesso, i download verranno annullati.</translation>
+    </message>
+    <message>
+        <source>Close and cancel download</source>
+        <translation>Chiudi e annulla i download</translation>
+    </message>
+    <message>
+        <source>Wait for download to finish</source>
+        <translation>Aspetta che i download siano completi</translation>
+    </message>
+    <message>
+        <source>Downloads complete</source>
+        <translation>I download sono completi</translation>
     </message>
 </context>
 <context>
@@ -403,6 +569,10 @@
         <source>Get the full version</source>
         <translation>Compra la versione completa</translation>
     </message>
+    <message>
+        <source>Downloading %1</source>
+        <translation>Scarica in: %1</translation>
+    </message>
 </context>
 <context>
     <name>NetworkAccess</name>
@@ -416,6 +586,42 @@
     <message>
         <source>%1 views</source>
         <translation>%1 visualizzazioni</translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3) ? %4</source>
+        <translation>%1 di %2 (%3) ? %4</translation>
+    </message>
+    <message>
+        <source>Preparing</source>
+        <translation>In preparazione</translation>
+    </message>
+    <message>
+        <source>Failed</source>
+        <translation>Fallito</translation>
+    </message>
+    <message>
+        <source>Completed</source>
+        <translation>Completato</translation>
+    </message>
+    <message>
+        <source>Stopped</source>
+        <translation>Fermo</translation>
+    </message>
+    <message>
+        <source>Stop downloading</source>
+        <translation>Interrompi il download</translation>
+    </message>
+    <message>
+        <source>Show in %1</source>
+        <translation>Mostra nel %1</translation>
+    </message>
+    <message>
+        <source>Open parent folder</source>
+        <translation>Mostra nella cartella</translation>
+    </message>
+    <message>
+        <source>Restart downloading</source>
+        <translation>Prova a scaricare di nuovo</translation>
     </message>
 </context>
 <context>
