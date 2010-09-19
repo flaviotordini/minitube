@@ -312,7 +312,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="102"/>
         <source>&amp;Stop</source>
-        <translation>&amp;Halt</translation>
+        <translation>An&amp;alten</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="103"/>
@@ -327,7 +327,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="110"/>
         <source>Skip to the next video</source>
-        <translation>Überspringe zum nächsten Video</translation>
+        <translation>Springe zum nächsten Video</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="116"/>
@@ -385,7 +385,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="283"/>
         <source>&amp;Download</source>
-        <translation type="unfinished">&amp;Herunterladen</translation>
+        <translation>&amp;Herunterladen</translation>
     </message>
     <message>
         <source>Download this video</source>
@@ -463,7 +463,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="189"/>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation>Such Historie leeren. Kann nicht rückgängig gemacht werden.</translation>
+        <translation>Such-Chronik löschen. Kann nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="194"/>
@@ -493,7 +493,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="207"/>
         <source>Make a &amp;donation</source>
-        <translation>Eine Spen&amp;den machen</translation>
+        <translation>Eine Spen&amp;de machen</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="274"/>
@@ -534,7 +534,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="877"/>
         <source>Maximum video definition set to %1</source>
-        <translation>Maximale video Definition wurde auf %1 gesetzt</translation>
+        <translation>Maximale Videoauflösung wurde auf %1 gesetzt</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="933"/>
@@ -568,7 +568,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="241"/>
         <source>Mute volume</source>
-        <translation>Audio ausschalten</translation>
+        <translation>Audio stummschalten</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="243"/>
@@ -646,12 +646,12 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="867"/>
         <source>Volume is muted</source>
-        <translation>Audio ist ausgeschaltet</translation>
+        <translation>Audio ist stumm geschaltet</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="870"/>
         <source>Volume is unmuted</source>
-        <translation>Audio eingeschaltet</translation>
+        <translation>Stummschaltung deaktiviert</translation>
     </message>
     <message>
         <source>&amp;Search</source>
