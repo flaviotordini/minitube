@@ -7,7 +7,7 @@
     <message>
         <location filename="../src/AboutView.cpp" line="21"/>
         <source>There&apos;s life outside the browser!</source>
-        <translation>Es existiert Leben neben dem Browser !</translation>
+        <translation>Es gibt Leben außerhalb des Browsers!</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="22"/>
@@ -21,7 +21,7 @@
     <message>
         <location filename="../src/AboutView.cpp" line="29"/>
         <source>Report bugs and send in your ideas to %1</source>
-        <translation>Bitte berichte Fehler und sende Deine Ideen an %1</translation>
+        <translation>Berichte Fehler und sende deine Ideen an %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="25"/>
@@ -35,12 +35,12 @@
     <message>
         <location filename="../src/AboutView.cpp" line="26"/>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>Bitte &lt;a href=&apos;%1&apos;&gt;Spenden&lt;/a&gt; um die ständige Entwicklung von %2 zu unterstützen.</translation>
+        <translation>Bitte &lt;a href=&apos;%1&apos;&gt;spende&lt;/a&gt; um die ständige Entwicklung von %2 zu unterstützen.</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="33"/>
         <source>Icon designed by %1.</source>
-        <translation>Icon Entwurf durch %1.</translation>
+        <translation>Icon entworfen von %1.</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="34"/>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../src/AboutView.cpp" line="38"/>
         <source>Translated by %1</source>
-        <translation>Übersetzung durch %1</translation>
+        <translation>Übersetzt von %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="65"/>
@@ -87,7 +87,7 @@
     <message>
         <location filename="../src/searchlineedit.cpp" line="56"/>
         <source>Clear</source>
-        <translation>Säubern</translation>
+        <translation>Löschen</translation>
     </message>
 </context>
 <context>
@@ -164,7 +164,6 @@
         <location filename="../src/downloadmanager.cpp" line="126"/>
         <source>%n Download(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -778,7 +777,7 @@
     <message>
         <location filename="../src/networkaccess.cpp" line="192"/>
         <source>Network error: %1</source>
-        <translation>Netzwerk Fehler: %1</translation>
+        <translation>Netzwerk-Fehler: %1</translation>
     </message>
 </context>
 <context>
@@ -862,7 +861,7 @@
     <message>
         <location filename="../src/SearchView.cpp" line="97"/>
         <source>Recent keywords</source>
-        <translation>Aktuelle Schlüsselwörter</translation>
+        <translation>Kürzlich verwendete Schlüsselwörter</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="199"/>
@@ -872,7 +871,7 @@
     <message>
         <location filename="../src/SearchView.h" line="29"/>
         <source>Make yourself comfortable</source>
-        <translation>Mach es Dir gemütlich</translation>
+        <translation>Mach es dir gemütlich</translation>
     </message>
 </context>
 <context>
