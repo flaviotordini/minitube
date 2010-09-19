@@ -6,3 +6,5 @@ minitube.pro.user
 .cproject
 .project
 local/
+*.swp
+
