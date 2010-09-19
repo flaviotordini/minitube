@@ -95,47 +95,47 @@
     <message>
         <location filename="../src/downloaditem.cpp" line="214"/>
         <source>bytes</source>
-        <translation type="unfinished"></translation>
+        <translation>Bytes</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="217"/>
         <source>KB</source>
-        <translation type="unfinished"></translation>
+        <translation>KB</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="220"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="236"/>
         <source>bytes/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>Bytes/sek</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="239"/>
         <source>KB/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>KB/sek</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="242"/>
         <source>MB/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>MB/sek</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="248"/>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>Sekunden</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="251"/>
         <source>minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>Minuten</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="254"/>
         <source>%4 %5 remaining</source>
-        <translation type="unfinished"></translation>
+        <translation>%4 %5 verbleibend</translation>
     </message>
 </context>
 <context>
@@ -143,28 +143,29 @@
     <message>
         <location filename="../src/downloadmanager.cpp" line="47"/>
         <source>This is just the demo version of %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dies ist nur eine Demoversion von %1.</translation>
     </message>
     <message>
         <location filename="../src/downloadmanager.cpp" line="49"/>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sie kann nur Videos herunterladen, die kürzer als %1 Minuten sind, damit Sie diese Funktion testen können.</translation>
     </message>
     <message>
         <location filename="../src/downloadmanager.cpp" line="53"/>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Fortfahren</translation>
     </message>
     <message>
         <location filename="../src/downloadmanager.cpp" line="54"/>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation>Volle Version herunterladen</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/downloadmanager.cpp" line="126"/>
         <source>%n Download(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Download</numerusform>
+            <numerusform>%n Downloads</numerusform>
         </translation>
     </message>
 </context>
@@ -173,27 +174,27 @@
     <message>
         <location filename="../src/downloadsettings.cpp" line="14"/>
         <source>Change location...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pfad ändern...</translation>
     </message>
     <message>
         <location filename="../src/downloadsettings.cpp" line="38"/>
         <source>Choose the download location</source>
-        <translation type="unfinished"></translation>
+        <translation>Download-Verzeichnis auswählen</translation>
     </message>
     <message>
         <location filename="../src/downloadsettings.cpp" line="49"/>
         <source>Download location changed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Download-Verzeichnis geändert.</translation>
     </message>
     <message>
         <location filename="../src/downloadsettings.cpp" line="51"/>
         <source>Current downloads will still go in the previous location.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bereits laufende Downloads bleiben weiterhin im alten Verzeichnis.</translation>
     </message>
     <message>
         <location filename="../src/downloadsettings.cpp" line="63"/>
         <source>Downloading to: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Speichere in: %1</translation>
     </message>
 </context>
 <context>
@@ -202,7 +203,7 @@
         <location filename="../src/downloadview.cpp" line="18"/>
         <location filename="../src/downloadview.h" line="22"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Downloads</translation>
     </message>
 </context>
 <context>
@@ -210,62 +211,62 @@
     <message>
         <location filename="../src/globalshortcuts.cpp" line="16"/>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation>Abspielen</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="17"/>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Pausieren</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="18"/>
         <source>Play/Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiedergeben/Pausieren</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="19"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Analten</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="20"/>
         <source>Stop playing after current track</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiedergabe nach aktuellem Titel anhalten</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="21"/>
         <source>Next track</source>
-        <translation type="unfinished"></translation>
+        <translation>Nächster Titel</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="22"/>
         <source>Previous track</source>
-        <translation type="unfinished"></translation>
+        <translation>Verheriger Titel</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="23"/>
         <source>Increase volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Laustärke erhöhen</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="24"/>
         <source>Decrease volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Lautstärke verringern</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="25"/>
         <source>Mute</source>
-        <translation type="unfinished"></translation>
+        <translation>Stummschalten</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="26"/>
         <source>Seek forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorspulen</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="27"/>
         <source>Seek backward</source>
-        <translation type="unfinished"></translation>
+        <translation>Zurückspulen</translation>
     </message>
 </context>
 <context>
@@ -499,7 +500,7 @@
         <location filename="../src/MainWindow.cpp" line="274"/>
         <location filename="../src/MainWindow.cpp" line="932"/>
         <source>&amp;Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Downloads</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="275"/>
