@@ -226,7 +226,7 @@
     <message>
         <location filename="../src/globalshortcuts.cpp" line="19"/>
         <source>Stop</source>
-        <translation>Analten</translation>
+        <translation>Anhalten</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="20"/>
@@ -241,12 +241,12 @@
     <message>
         <location filename="../src/globalshortcuts.cpp" line="22"/>
         <source>Previous track</source>
-        <translation>Verheriger Titel</translation>
+        <translation>Vorheriger Titel</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="23"/>
         <source>Increase volume</source>
-        <translation>Laustärke erhöhen</translation>
+        <translation>Lautstärke erhöhen</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="24"/>
@@ -256,7 +256,7 @@
     <message>
         <location filename="../src/globalshortcuts.cpp" line="25"/>
         <source>Mute</source>
-        <translation>Stummschalten</translation>
+        <translation>Stumm Schalten</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="26"/>
@@ -569,7 +569,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="241"/>
         <source>Mute volume</source>
-        <translation>Audio stummschalten</translation>
+        <translation>Audio stumm schalten</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="243"/>
@@ -750,12 +750,12 @@
     <message>
         <location filename="../src/MediaView.cpp" line="466"/>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation>Es gibt Ihnen die Möglichkeit das Programm zu testen und zu sehen, ob es funktionierrt.</translation>
+        <translation>Es gibt Ihnen die Möglichkeit das Programm zu testen und zu sehen, ob es funktioniert.</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="469"/>
         <source>Continue</source>
-        <translation>Forfahren</translation>
+        <translation>Fortfahren</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="470"/>
@@ -801,7 +801,7 @@
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="275"/>
         <source>Failed</source>
-        <translation>Fehgeschlagen</translation>
+        <translation>Fehlgeschlagen</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="277"/>
@@ -867,7 +867,7 @@
     <message>
         <location filename="../src/SearchView.cpp" line="199"/>
         <source>A new version of %1 is available. Please &lt;a href=&apos;%2&apos;&gt;update to version %3&lt;/a&gt;</source>
-        <translation>Eine neue Version von %1 ist verfügbar. Bitte &lt;a href=&apos;%2&apos;&gt;auf Version %3 aktuallisieren&lt;/a&gt;</translation>
+        <translation>Eine neue Version von %1 ist verfügbar. Bitte &lt;a href=&apos;%2&apos;&gt;auf Version %3 aktualisieren&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/SearchView.h" line="29"/>
