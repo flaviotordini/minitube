@@ -21,7 +21,7 @@
     <message>
         <location filename="../src/AboutView.cpp" line="29"/>
         <source>Report bugs and send in your ideas to %1</source>
-        <translation>Berichte Fehler und sende deine Ideen an %1</translation>
+        <translation>Berichten Sie Fehler und senden Sie Ihre Ideen an %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="25"/>
@@ -35,7 +35,7 @@
     <message>
         <location filename="../src/AboutView.cpp" line="26"/>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>Bitte &lt;a href=&apos;%1&apos;&gt;spende&lt;/a&gt; um die ständige Entwicklung von %2 zu unterstützen.</translation>
+        <translation>Bitte &lt;a href=&apos;%1&apos;&gt;spenden&lt;/a&gt; Sie um die ständige Entwicklung von %2 zu unterstützen.</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="33"/>
@@ -79,7 +79,7 @@
     <message>
         <location filename="../src/AboutView.h" line="20"/>
         <source>What you always wanted to know about %1 and never dared to ask</source>
-        <translation>Was Du schon immer über %1 wissen wolltest, aber nie zu fragen wagtest</translation>
+        <translation>Was Sie schon immer über %1 wissen wollten, aber nie zu fragen wagten</translation>
     </message>
 </context>
 <context>
@@ -520,7 +520,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="577"/>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation>Wenn Sie %1 beenden, wird der Download abgebrochen.</translation>
+        <translation>Wenn Sie %1 beenden, wird das Herunterladen abgebrochen.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="580"/>
@@ -549,7 +549,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="208"/>
         <source>Please support the continued development of %1</source>
-        <translation>Bitte unterstüte die fortwährende Entwicklung von %1</translation>
+        <translation>Bitte unterstützen Sie die fortwährende Entwicklung von %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="212"/>
@@ -605,7 +605,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="917"/>
         <source>Your privacy is now safe</source>
-        <translation>Deine Privatsphäre ist nun geschützt</translation>
+        <translation>Ihre Privatsphäre ist nun geschützt</translation>
     </message>
     <message>
         <source>No Video playing</source>
@@ -730,12 +730,12 @@
     <message>
         <location filename="../src/MediaView.cpp" line="360"/>
         <source>You can now paste the YouTube link into another application</source>
-        <translation>Du kann den YouTube Link nun in einer anderen Anwendung einfügen</translation>
+        <translation>Sie können nun den YouTube Link in einer anderen Anwendung einfügen</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="368"/>
         <source>You can now paste the video stream URL into another application</source>
-        <translation>Die kannst die Video URL nun in einer anderen Anwendung einfügen</translation>
+        <translation>Sie können nun die Video URL in einer anderen Anwendung einfügen</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="369"/>
@@ -770,7 +770,7 @@
     <message>
         <location filename="../src/MediaView.h" line="36"/>
         <source>You&apos;re watching &quot;%1&quot;</source>
-        <translation>Du betrachtest &quot;%1&quot;</translation>
+        <translation>Sie betrachten &quot;%1&quot;</translation>
     </message>
 </context>
 <context>
@@ -872,7 +872,7 @@
     <message>
         <location filename="../src/SearchView.h" line="29"/>
         <source>Make yourself comfortable</source>
-        <translation>Mach es dir gemütlich</translation>
+        <translation>Machen Sie es sich gemütlich</translation>
     </message>
 </context>
 <context>
