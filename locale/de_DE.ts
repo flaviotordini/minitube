@@ -505,32 +505,32 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="275"/>
         <source>Show details about video downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Details über Video-Downloads zeigen</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="284"/>
         <source>Download the current video</source>
-        <translation type="unfinished"></translation>
+        <translation>Video herunterladen</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="576"/>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation type="unfinished"></translation>
+        <translation>Wollen Sie %1 mit einem aktivem Download beenden?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="577"/>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn Sie %1 beenden, wird der Download abgebrochen.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="580"/>
         <source>Close and cancel download</source>
-        <translation type="unfinished"></translation>
+        <translation>Beenden und Herunterladen abbrechen</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="581"/>
         <source>Wait for download to finish</source>
-        <translation type="unfinished"></translation>
+        <translation>Warten, bis das Herunterladen abgeschlossen ist</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="877"/>
@@ -540,7 +540,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="933"/>
         <source>Downloads complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Downloads abgeschlossen</translation>
     </message>
     <message>
         <source>&amp;Donate via PayPal</source>
@@ -745,27 +745,27 @@
     <message>
         <location filename="../src/MediaView.cpp" line="465"/>
         <source>This is just the demo version of %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dies ist nur eine Demoversion von %1.</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="466"/>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es gibt Ihnen die Möglichkeit das Programm zu testen und zu sehen, ob es funktionierrt.</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="469"/>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Forfahren</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="470"/>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation>Volle Version herunterladen</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="495"/>
         <source>Downloading %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Lade %1 herunter</translation>
     </message>
     <message>
         <location filename="../src/MediaView.h" line="36"/>
@@ -791,7 +791,7 @@
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="266"/>
         <source>%1 of %2 (%3) ? %4</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 von %2 (%3) ? %4</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="273"/>
@@ -801,22 +801,22 @@
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="275"/>
         <source>Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehgeschlagen</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="277"/>
         <source>Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>Abgeschlossen</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="279"/>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Abgebrochen</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="315"/>
         <source>Stop downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Herunterladen abbrechen</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="325"/>
@@ -826,12 +826,12 @@
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="327"/>
         <source>Open parent folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Beinhaltenden Ordner öffnen</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="336"/>
         <source>Restart downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Herunterladen neustarten</translation>
     </message>
 </context>
 <context>
