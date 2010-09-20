@@ -45,12 +45,12 @@
     <message>
         <location filename="../src/AboutView.cpp" line="34"/>
         <source>Compact mode contributed by %1.</source>
-        <translation>Kompakt Modus beigetragen von %1.</translation>
+        <translation>Kompakt-Ansicht beigetragen von %1.</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="35"/>
         <source>HTTP proxy support contributed by %1.</source>
-        <translation>HTTP Proxy unterstützung beigetragen von %1.</translation>
+        <translation>HTTP-Proxy Unterstützung beigetragen von %1.</translation>
     </message>
     <message>
         <source>Windows version built by %1</source>
@@ -569,7 +569,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="241"/>
         <source>Mute volume</source>
-        <translation>Audio stumm schalten</translation>
+        <translation>Ton stumm schalten</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="243"/>
@@ -647,7 +647,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="867"/>
         <source>Volume is muted</source>
-        <translation>Audio ist stumm geschaltet</translation>
+        <translation>Ton ist stumm geschaltet</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="870"/>
