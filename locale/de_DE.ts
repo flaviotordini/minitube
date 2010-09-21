@@ -15,10 +15,6 @@
         <translation>Version %1</translation>
     </message>
     <message>
-        <source>This is a &quot;Technology Preview&quot; release, do not expect it to be perfect.</source>
-        <translation type="obsolete">Dies ist eine &quot;Technology Vorschau&quot;, erwarte nicht, dass sie perfekt ist.</translation>
-    </message>
-    <message>
         <location filename="../src/AboutView.cpp" line="29"/>
         <source>Report bugs and send in your ideas to %1</source>
         <translation>Berichten Sie Fehler und senden Sie Ihre Ideen an %1</translation>
@@ -27,10 +23,6 @@
         <location filename="../src/AboutView.cpp" line="25"/>
         <source>%1 is Free Software but its development takes precious time.</source>
         <translation>%1 ist freie Software, aber die Entwicklung kostet wertvolle Zeit.</translation>
-    </message>
-    <message>
-        <source>Please &lt;a href=&apos;%1&apos;&gt;donate via PayPal&lt;/a&gt; to support the continued development of %2.</source>
-        <translation type="obsolete">Bitte &lt;a href=&apos;%1&apos;&gt;spende via PayPal&lt;/a&gt; um die dauerhafte Entwicklung von %2 zu unterstützen.</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="26"/>
@@ -51,10 +43,6 @@
         <location filename="../src/AboutView.cpp" line="35"/>
         <source>HTTP proxy support contributed by %1.</source>
         <translation>HTTP-Proxy Unterstützung beigetragen von %1.</translation>
-    </message>
-    <message>
-        <source>Windows version built by %1</source>
-        <translation type="obsolete">Windows Version erstellt durch %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="38"/>
@@ -98,29 +86,29 @@
         <translation>Bytes</translation>
     </message>
     <message>
+        <location filename="../src/downloaditem.cpp" line="236"/>
+        <source>bytes/sec</source>
+        <translation>Bytes/s</translation>
+    </message>
+    <message>
         <location filename="../src/downloaditem.cpp" line="217"/>
-        <source>KB</source>
-        <translation>KB</translation>
+        <source>KiB</source>
+        <translation>KiB</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="220"/>
-        <source>MB</source>
-        <translation>MB</translation>
-    </message>
-    <message>
-        <location filename="../src/downloaditem.cpp" line="236"/>
-        <source>bytes/sec</source>
-        <translation>Bytes/sek</translation>
+        <source>MiB</source>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="239"/>
-        <source>KB/sec</source>
-        <translation>KB/sek</translation>
+        <source>KiB/sec</source>
+        <translation>KiB/s</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="242"/>
-        <source>MB/sec</source>
-        <translation>MB/sek</translation>
+        <source>MiB/sec</source>
+        <translation>MiB/s</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="248"/>
@@ -256,7 +244,7 @@
     <message>
         <location filename="../src/globalshortcuts.cpp" line="25"/>
         <source>Mute</source>
-        <translation>Stumm Schalten</translation>
+        <translation>Stumm schalten</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="26"/>
@@ -303,14 +291,6 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <source>&amp;Back</source>
-        <translation type="obsolete">&amp;Zurück</translation>
-    </message>
-    <message>
-        <source>Go to the previous view</source>
-        <translation type="obsolete">Gehe zur vorherigen Ansicht</translation>
-    </message>
-    <message>
         <location filename="../src/MainWindow.cpp" line="102"/>
         <source>&amp;Stop</source>
         <translation>An&amp;alten</translation>
@@ -354,26 +334,6 @@
         <translation>Vollbildmodus aktivieren</translation>
     </message>
     <message>
-        <source>&amp;Compact View</source>
-        <translation type="obsolete">&amp;Kompakt Ansicht</translation>
-    </message>
-    <message>
-        <source>Go compact view</source>
-        <translation type="obsolete">Kompakt Ansicht aktivieren</translation>
-    </message>
-    <message>
-        <source>&amp;YouTube</source>
-        <translation type="obsolete">&amp;YouTube</translation>
-    </message>
-    <message>
-        <source>Open the YouTube video page</source>
-        <translation type="obsolete">Öffne die YouTube Video Seite</translation>
-    </message>
-    <message>
-        <source>Ctrl+Y</source>
-        <translation type="obsolete">Ctrl+Y</translation>
-    </message>
-    <message>
         <location filename="../src/MainWindow.cpp" line="133"/>
         <source>&amp;Compact mode</source>
         <translation>&amp;Kompakt-Ansicht</translation>
@@ -387,14 +347,6 @@
         <location filename="../src/MainWindow.cpp" line="283"/>
         <source>&amp;Download</source>
         <translation>&amp;Herunterladen</translation>
-    </message>
-    <message>
-        <source>Download this video</source>
-        <translation type="obsolete">Dieses Video herunterladen</translation>
-    </message>
-    <message>
-        <source>Ctrl+S</source>
-        <translation type="obsolete">Strg+S</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="142"/>
@@ -543,10 +495,6 @@
         <translation>Downloads abgeschlossen</translation>
     </message>
     <message>
-        <source>&amp;Donate via PayPal</source>
-        <translation type="obsolete">Spen&amp;den via PayPal</translation>
-    </message>
-    <message>
         <location filename="../src/MainWindow.cpp" line="208"/>
         <source>Please support the continued development of %1</source>
         <translation>Bitte unterstützen Sie die fortwährende Entwicklung von %1</translation>
@@ -587,57 +535,9 @@
         <translation>Verbleibende Zeit: %1</translation>
     </message>
     <message>
-        <source>High Definition video is enabled</source>
-        <translation type="obsolete">High Definition Video ist eingeschaltet</translation>
-    </message>
-    <message>
-        <source>High Definition video is not enabled</source>
-        <translation type="obsolete">High Definition Video ist nicht eingeschaltet</translation>
-    </message>
-    <message>
-        <source>The current video is in High Definition</source>
-        <translation type="obsolete">Das derzeitige Video ist in High Definition</translation>
-    </message>
-    <message>
-        <source>The current video is not in High Definition</source>
-        <translation type="obsolete">Das derzeitige Video ist nicht in High Definition</translation>
-    </message>
-    <message>
         <location filename="../src/MainWindow.cpp" line="917"/>
         <source>Your privacy is now safe</source>
         <translation>Ihre Privatsphäre ist nun geschützt</translation>
-    </message>
-    <message>
-        <source>No Video playing</source>
-        <translation type="obsolete">Es wird kein Video abgespielt</translation>
-    </message>
-    <message>
-        <source>You must first play the video you intent to download !</source>
-        <translation type="obsolete">Du musst das Video erst abspielen !</translation>
-    </message>
-    <message>
-        <source>Save video as...</source>
-        <translation type="obsolete">Video speichern unter...</translation>
-    </message>
-    <message>
-        <source>minitube video.mp4</source>
-        <translation type="obsolete">minitube video.mp4</translation>
-    </message>
-    <message>
-        <source>Downloading: </source>
-        <translation type="obsolete">Herunterladen:</translation>
-    </message>
-    <message>
-        <source>Abort Download</source>
-        <translation type="obsolete">Herunterladen abbrechen</translation>
-    </message>
-    <message>
-        <source>File creation failed</source>
-        <translation type="obsolete">Das anlegen der Datei ist fehlgeschlagen</translation>
-    </message>
-    <message>
-        <source>Download failed</source>
-        <translation type="obsolete">Herunterladen fehlgeschlagen</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="861"/>
@@ -653,10 +553,6 @@
         <location filename="../src/MainWindow.cpp" line="870"/>
         <source>Volume is unmuted</source>
         <translation>Stummschaltung deaktiviert</translation>
-    </message>
-    <message>
-        <source>&amp;Search</source>
-        <translation type="obsolete">&amp;Suche</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="325"/>
@@ -796,7 +692,7 @@
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="273"/>
         <source>Preparing</source>
-        <translation type="unfinished"></translation>
+        <translation>Initialisiere</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="275"/>
@@ -873,17 +769,6 @@
         <location filename="../src/SearchView.h" line="29"/>
         <source>Make yourself comfortable</source>
         <translation>Machen Sie es sich gemütlich</translation>
-    </message>
-</context>
-<context>
-    <name>SettingsView</name>
-    <message>
-        <source>Preferences</source>
-        <translation type="obsolete">Einstellungen</translation>
-    </message>
-    <message>
-        <source>&amp;Close</source>
-        <translation type="obsolete">S&amp;chließen</translation>
     </message>
 </context>
 <context>
