@@ -95,47 +95,47 @@
     <message>
         <location filename="../src/downloaditem.cpp" line="214"/>
         <source>bytes</source>
-        <translation type="unfinished"></translation>
+        <translation>bajtů</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="217"/>
         <source>KB</source>
-        <translation type="unfinished"></translation>
+        <translation>KB</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="220"/>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="236"/>
         <source>bytes/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>bajtů/sec</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="239"/>
         <source>KB/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>KB</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="242"/>
         <source>MB/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>MB/se</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="248"/>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>sekund</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="251"/>
         <source>minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>minut</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="254"/>
         <source>%4 %5 remaining</source>
-        <translation type="unfinished"></translation>
+        <translation>%4 %5 zbývá</translation>
     </message>
 </context>
 <context>
@@ -143,30 +143,30 @@
     <message>
         <location filename="../src/downloadmanager.cpp" line="47"/>
         <source>This is just the demo version of %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Toto je pouze demoverze %1.</translation>
     </message>
     <message>
         <location filename="../src/downloadmanager.cpp" line="49"/>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation type="unfinished"></translation>
+        <translation>Umí stahovat pouze videa délky do %1 minut, abyste mohli funkci stahování vyzkoušet</translation>
     </message>
     <message>
         <location filename="../src/downloadmanager.cpp" line="53"/>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokračovat</translation>
     </message>
     <message>
         <location filename="../src/downloadmanager.cpp" line="54"/>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation>Získat plnou verzi</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/downloadmanager.cpp" line="126"/>
         <source>%n Download(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n stahování</numerusform>
+            <numerusform>%n stahování</numerusform>
+            <numerusform>%n stahování</numerusform>
         </translation>
     </message>
 </context>
@@ -175,27 +175,27 @@
     <message>
         <location filename="../src/downloadsettings.cpp" line="14"/>
         <source>Change location...</source>
-        <translation type="unfinished"></translation>
+        <translation>Změnit složku pro stahování...</translation>
     </message>
     <message>
         <location filename="../src/downloadsettings.cpp" line="38"/>
         <source>Choose the download location</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte složku, do které se bude stahovat</translation>
     </message>
     <message>
         <location filename="../src/downloadsettings.cpp" line="49"/>
         <source>Download location changed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavení složky pro stahování bylo změněno.</translation>
     </message>
     <message>
         <location filename="../src/downloadsettings.cpp" line="51"/>
         <source>Current downloads will still go in the previous location.</source>
-        <translation type="unfinished"></translation>
+        <translation>Probíhající stahování budou stále pokračovat v ukládání do dříve nastaveného adresáře</translation>
     </message>
     <message>
         <location filename="../src/downloadsettings.cpp" line="63"/>
         <source>Downloading to: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Stahováno do: %1</translation>
     </message>
 </context>
 <context>
@@ -204,7 +204,7 @@
         <location filename="../src/downloadview.cpp" line="18"/>
         <location filename="../src/downloadview.h" line="22"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Stahování</translation>
     </message>
 </context>
 <context>
@@ -212,62 +212,62 @@
     <message>
         <location filename="../src/globalshortcuts.cpp" line="16"/>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation>Přehrát</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="17"/>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozastavit</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="18"/>
         <source>Play/Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Pustit/Pozastavit</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="19"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastavit</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="20"/>
         <source>Stop playing after current track</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastavit přehrávání po dokončení nyní přehrávaného videa</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="21"/>
         <source>Next track</source>
-        <translation type="unfinished"></translation>
+        <translation>Další video</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="22"/>
         <source>Previous track</source>
-        <translation type="unfinished"></translation>
+        <translation>Předchozí video</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="23"/>
         <source>Increase volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvýšit hlasitost</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="24"/>
         <source>Decrease volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Snížit hlasitost</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="25"/>
         <source>Mute</source>
-        <translation type="unfinished"></translation>
+        <translation>Ztlumit hlasitost</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="26"/>
         <source>Seek forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Rychle vpřed</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="27"/>
         <source>Seek backward</source>
-        <translation type="unfinished"></translation>
+        <translation>Rychle vzad</translation>
     </message>
 </context>
 <context>
@@ -476,42 +476,42 @@
         <location filename="../src/MainWindow.cpp" line="274"/>
         <location filename="../src/MainWindow.cpp" line="932"/>
         <source>&amp;Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Stahování</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="275"/>
         <source>Show details about video downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazit podrobnosti o stahování videí</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="283"/>
         <source>&amp;Download</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Stáhnout</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="284"/>
         <source>Download the current video</source>
-        <translation type="unfinished"></translation>
+        <translation>Stáhnout přávě zobrazené video</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="576"/>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation type="unfinished"></translation>
+        <translation>Chcete ukončit %1, přestože ještě probíhá stahování?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="577"/>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jestli nyní ukončíte %1, bude nedokončené stahování přerušeno</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="580"/>
         <source>Close and cancel download</source>
-        <translation type="unfinished"></translation>
+        <translation>Přerušit stahování a ukončit aplikaci</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="581"/>
         <source>Wait for download to finish</source>
-        <translation type="unfinished"></translation>
+        <translation>Počkat na dokončení stahování</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="877"/>
@@ -521,7 +521,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="933"/>
         <source>Downloads complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Všechna stahování byla dokončena</translation>
     </message>
     <message>
         <source>&amp;Donate via PayPal</source>
@@ -690,27 +690,27 @@
     <message>
         <location filename="../src/MediaView.cpp" line="465"/>
         <source>This is just the demo version of %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Toto je %1 -- demoverze.</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="466"/>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation type="unfinished"></translation>
+        <translation>Umožňuje vyzkoušet aplikaci, abyste ověřili, jestli pro vás funguje.</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="469"/>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokračovat</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="470"/>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation>Stáhnout plnou verzi</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="495"/>
         <source>Downloading %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Je stahováno %1</translation>
     </message>
     <message>
         <location filename="../src/MediaView.h" line="36"/>
@@ -736,47 +736,47 @@
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="266"/>
         <source>%1 of %2 (%3) ? %4</source>
-        <translation type="unfinished"></translation>
+        <translation>1 z %2 (%3) ? %4</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="273"/>
         <source>Preparing</source>
-        <translation type="unfinished"></translation>
+        <translation>Připravuje se</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="275"/>
         <source>Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Selhalo</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="277"/>
         <source>Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokončeno</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="279"/>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastaveno</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="315"/>
         <source>Stop downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastavit stahování</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="325"/>
         <source>Show in %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat v %1</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="327"/>
         <source>Open parent folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít příslušný adresář</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="336"/>
         <source>Restart downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Začít stahovat znova</translation>
     </message>
 </context>
 <context>
