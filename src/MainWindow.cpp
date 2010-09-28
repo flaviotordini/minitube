@@ -896,13 +896,7 @@ void MainWindow::toggleDefinitionMode() {
 
 void MainWindow::showFullscreenToolbar(bool show) {
     if (!m_fullscreen) return;
-
-    if (show) {
-        mainToolBar->show();
-    } else {
-        mainToolBar->hide();
-    }
-    mainToolBar->setEnabled(show);
+    mainToolBar->setVisible(show);
 }
 
 void MainWindow::showFullscreenPlaylist(bool show) {
