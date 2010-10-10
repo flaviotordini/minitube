@@ -214,10 +214,10 @@ QString DownloadItem::formattedFilesize(qint64 size) {
         unit = tr("bytes");
     } else if (size < 1024*1024) {
         size /= 1024;
-        unit = tr("KiB");
+        unit = tr("KB");
     } else {
         size /= 1024*1024;
-        unit = tr("MiB");
+        unit = tr("MB");
     }
     return QString(QLatin1String("%1 %2")).arg(size).arg(unit);
 }
@@ -236,10 +236,10 @@ QString DownloadItem::formattedSpeed(double speed) {
         unit = tr("bytes/sec");
     } else if (speedInt < 1024*1024) {
         speedInt /= 1024;
-        unit = tr("KiB/sec");
+        unit = tr("KB/sec");
     } else {
         speedInt /= 1024*1024;
-        unit = tr("MiB/sec");
+        unit = tr("MB/sec");
     }
     return QString(QLatin1String("%1 %2")).arg(speedInt).arg(unit);
 }
