@@ -6,7 +6,7 @@
     <name>AboutView</name>
     <message>
         <source>There&apos;s life outside the browser!</source>
-        <translation>За межами браузера також є життя!</translation>
+        <translation>За межами веб-переглядача також є життя!</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -22,7 +22,7 @@
     </message>
     <message>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 є Вільним Програмним Забезпеченням але на його розробку було затрачено коштовний час.</translation>
+        <translation>%1 — вільне програмне забезпечення, але на його розробку було затрачено коштовний час.</translation>
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate via PayPal&lt;/a&gt; to support the continued development of %2.</source>
@@ -34,15 +34,15 @@
     </message>
     <message>
         <source>Translated by %1</source>
-        <translation>Переклад %1</translation>
+        <translation>Перекладено %1</translation>
     </message>
     <message>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
-        <translation>Випущено під  &lt;a href=&apos;%1&apos;&gt;Загальною громадською ліцензією GNU&lt;/a&gt;</translation>
+        <translation>Випущено за &lt;a href=&apos;%1&apos;&gt;Загальною громадською ліцензією GNU&lt;/a&gt;</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>Пове&amp;рнутися</translation>
+        <translation>&amp;Закрити</translation>
     </message>
     <message>
         <source>About</source>
@@ -50,7 +50,7 @@
     </message>
     <message>
         <source>What you always wanted to know about %1 and never dared to ask</source>
-        <translation>Все що ви завжди хотіли знати про %1 але не наважувались запитати</translation>
+        <translation>Все що ви завжди хотіли знати про %1, але не наважувались запитати</translation>
     </message>
     <message>
         <source>Compact mode contributed by %1.</source>
@@ -80,154 +80,154 @@
     <name>DownloadItem</name>
     <message>
         <source>bytes</source>
-        <translation type="unfinished"></translation>
+        <translation>байт</translation>
     </message>
     <message>
         <source>KB</source>
-        <translation type="unfinished"></translation>
+        <translation>КБ</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>МБ</translation>
     </message>
     <message>
         <source>bytes/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>байт/сек</translation>
     </message>
     <message>
         <source>KB/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>КБ/сек</translation>
     </message>
     <message>
         <source>MB/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>МБ/сек</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>сек</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>хв</translation>
     </message>
     <message>
         <source>%4 %5 remaining</source>
-        <translation type="unfinished"></translation>
+        <translation>до завершення %4 %5</translation>
     </message>
 </context>
 <context>
     <name>DownloadManager</name>
     <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n завантаження</numerusform>
+            <numerusform>%n завантаження</numerusform>
+            <numerusform>%n завантажень</numerusform>
         </translation>
     </message>
     <message>
         <source>This is just the demo version of %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Це демонстраційна версія %1.</translation>
     </message>
     <message>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation type="unfinished"></translation>
+        <translation>З метою тестування ви можете завантажити відео тривалістю до %1 хв.</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Продовжити</translation>
     </message>
     <message>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation>Отримати повнофункціональну версію</translation>
     </message>
 </context>
 <context>
     <name>DownloadSettings</name>
     <message>
         <source>Change location...</source>
-        <translation type="unfinished"></translation>
+        <translation>Змінити теку для завантаження...</translation>
     </message>
     <message>
         <source>Choose the download location</source>
-        <translation type="unfinished"></translation>
+        <translation>Оберіть теку для завантаження</translation>
     </message>
     <message>
         <source>Download location changed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Теку завантаження змінено.</translation>
     </message>
     <message>
         <source>Current downloads will still go in the previous location.</source>
-        <translation type="unfinished"></translation>
+        <translation>Поточні завантаження все ще буде збережено в попередньому місці.</translation>
     </message>
     <message>
         <source>Downloading to: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Завантажується в %1</translation>
     </message>
 </context>
 <context>
     <name>DownloadView</name>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Завантаження</translation>
     </message>
 </context>
 <context>
     <name>GlobalShortcuts</name>
     <message>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation>Грати</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Призупинити</translation>
     </message>
     <message>
         <source>Play/Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Грати/Призупинити</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Зупинити</translation>
     </message>
     <message>
         <source>Stop playing after current track</source>
-        <translation type="unfinished"></translation>
+        <translation>Зупинити по завершенні поточного</translation>
     </message>
     <message>
         <source>Next track</source>
-        <translation type="unfinished"></translation>
+        <translation>Наступний</translation>
     </message>
     <message>
         <source>Previous track</source>
-        <translation type="unfinished"></translation>
+        <translation>Попередній</translation>
     </message>
     <message>
         <source>Increase volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Підвищити гучність</translation>
     </message>
     <message>
         <source>Decrease volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Знизити гучність</translation>
     </message>
     <message>
         <source>Mute</source>
-        <translation type="unfinished"></translation>
+        <translation>Приглушити</translation>
     </message>
     <message>
         <source>Seek forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Шукати наступне</translation>
     </message>
     <message>
         <source>Seek backward</source>
-        <translation type="unfinished"></translation>
+        <translation>Шукати попереднє</translation>
     </message>
 </context>
 <context>
     <name>ListModel</name>
     <message>
         <source>Searching...</source>
-        <translation>Шукаю...</translation>
+        <translation>Пошук...</translation>
     </message>
     <message>
         <source>Show %1 More</source>
@@ -305,7 +305,7 @@
     </message>
     <message>
         <source>Go full screen</source>
-        <translation>Перехід в повноекранний режим</translation>
+        <translation>Перехід у повноекранний режим</translation>
     </message>
     <message>
         <source>Alt+Return</source>
@@ -325,11 +325,11 @@
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>&amp;Видалити</translation>
+        <translation>&amp;Вилучити</translation>
     </message>
     <message>
         <source>Remove the selected videos from the playlist</source>
-        <translation>Видалити обрані відео з переліку композицій</translation>
+        <translation>Вилучити вибрані відео зі списку</translation>
     </message>
     <message>
         <source>Move &amp;Up</source>
@@ -337,7 +337,7 @@
     </message>
     <message>
         <source>Move up the selected videos in the playlist</source>
-        <translation>Зсунути обране відео на позицію вгору в переліку композицій</translation>
+        <translation>Зсунути вибране відео вгору по списку</translation>
     </message>
     <message>
         <source>Ctrl+Up</source>
@@ -349,7 +349,7 @@
     </message>
     <message>
         <source>Move down the selected videos in the playlist</source>
-        <translation>Зсунути обране відео на позицію вниз в переліку композицій</translation>
+        <translation>Зсунути вибране відео вниз по списку</translation>
     </message>
     <message>
         <source>Ctrl+Down</source>
@@ -365,11 +365,11 @@
     </message>
     <message>
         <source>Bye</source>
-        <translation>Хай щастить</translation>
+        <translation>На все добре</translation>
     </message>
     <message>
         <source>&amp;Website</source>
-        <translation>Домашн&amp;я сторінка програми</translation>
+        <translation>&amp;Сайт</translation>
     </message>
     <message>
         <source>Minitube on the Web</source>
@@ -405,7 +405,7 @@
     </message>
     <message>
         <source>&amp;Playlist</source>
-        <translation>Перелік &amp;композицій</translation>
+        <translation>&amp;Список</translation>
     </message>
     <message>
         <source>&amp;Video</source>
@@ -413,19 +413,19 @@
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Допомога</translation>
+        <translation>&amp;Довідка</translation>
     </message>
     <message>
         <source>Opening %1</source>
-        <translation>Відкриваю %1</translation>
+        <translation>Відкриття %1</translation>
     </message>
     <message>
         <source>&amp;Play</source>
-        <translation>Відтворюв&amp;ати</translation>
+        <translation>Гр&amp;ати</translation>
     </message>
     <message>
         <source>Resume playback</source>
-        <translation>Продовжити відтворення</translation>
+        <translation>Відновити відтворення</translation>
     </message>
     <message>
         <source>Exit &amp;Full Screen</source>
@@ -437,7 +437,7 @@
     </message>
     <message>
         <source>Hide the playlist and the toolbar</source>
-        <translation>Приховати перелік композицій та панель інструментів</translation>
+        <translation>Сховати список і панель інструментів</translation>
     </message>
     <message>
         <source>Fatal error: %1</source>
@@ -473,11 +473,11 @@
     </message>
     <message>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation>%1 щоб приглушити гучність, %2 щоб відновити </translation>
+        <translation>Натисніть %1, щоб приглушити гучність, та %2 щоб відновити її</translation>
     </message>
     <message>
         <source>Remaining time: %1</source>
-        <translation>Час до завершення: %1</translation>
+        <translation>Залишилось часу: %1</translation>
     </message>
     <message>
         <source>High Definition video is enabled</source>
@@ -497,7 +497,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation>Очистити недавн&amp;і терміни пошуку</translation>
+        <translation>Очистити недавн&amp;ій пошук</translation>
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
@@ -541,39 +541,39 @@
     </message>
     <message>
         <source>&amp;Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Завантаження</translation>
     </message>
     <message>
         <source>Show details about video downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Показати деталі про завантажувані відео</translation>
     </message>
     <message>
         <source>&amp;Download</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Завантажити</translation>
     </message>
     <message>
         <source>Download the current video</source>
-        <translation type="unfinished"></translation>
+        <translation>Завантажити поточне відео</translation>
     </message>
     <message>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation type="unfinished"></translation>
+        <translation>Триває завантаження, бажаете закрити %1?</translation>
     </message>
     <message>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Якщо закрити %1 негайно, всі завантаження буде скасовано.</translation>
     </message>
     <message>
         <source>Close and cancel download</source>
-        <translation type="unfinished"></translation>
+        <translation>Скасувати та закрити</translation>
     </message>
     <message>
         <source>Wait for download to finish</source>
-        <translation type="unfinished"></translation>
+        <translation>Дочекатися завершення</translation>
     </message>
     <message>
         <source>Downloads complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Завантаження завершено</translation>
     </message>
 </context>
 <context>
@@ -608,23 +608,23 @@
     </message>
     <message>
         <source>This is just the demo version of %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Це демонстраційна версія %1.</translation>
     </message>
     <message>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ми маєте змогу протестувати програму та перевірити працездатність.</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Продовжити</translation>
     </message>
     <message>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation>Отримати повнофункціональну версію</translation>
     </message>
     <message>
         <source>Downloading %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Завантаження %1</translation>
     </message>
 </context>
 <context>
@@ -638,43 +638,43 @@
     <name>PrettyItemDelegate</name>
     <message>
         <source>%1 views</source>
-        <translation>переглядів %1</translation>
+        <translation>%1 переглядів</translation>
     </message>
     <message>
         <source>%1 of %2 (%3) ? %4</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 з %2 (%3) ? %4</translation>
     </message>
     <message>
         <source>Preparing</source>
-        <translation type="unfinished"></translation>
+        <translation>Готується</translation>
     </message>
     <message>
         <source>Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Невдача</translation>
     </message>
     <message>
         <source>Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>Завершено</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Зупинено</translation>
     </message>
     <message>
         <source>Stop downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Зупинити завантаження</translation>
     </message>
     <message>
         <source>Show in %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Відтворити в %1</translation>
     </message>
     <message>
         <source>Open parent folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Перейти до теки з відео</translation>
     </message>
     <message>
         <source>Restart downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Завантажити заново</translation>
     </message>
 </context>
 <context>
@@ -688,11 +688,11 @@
     <name>SearchView</name>
     <message>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
-        <translation>Вітаємо в &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
+        <translation>Ласкаво просимо до &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
     </message>
     <message>
         <source>Enter a keyword to start watching videos.</source>
-        <translation>Введіть терміни для пошуку відео.</translation>
+        <translation>Введіть фрази для пошуку відео.</translation>
     </message>
     <message>
         <source>Watch</source>
@@ -704,11 +704,11 @@
     </message>
     <message>
         <source>A new version of %1 is available. Please &lt;a href=&apos;%2&apos;&gt;update to version %3&lt;/a&gt;</source>
-        <translation>Наявна нова версія %1. Будь ласка &lt;a href=&apos;%2&apos;&gt; обновіть програму до версії %3&lt;/a&gt;</translation>
+        <translation>Випущено нову версію %1. Будь ласка, &lt;a href=&apos;%2&apos;&gt; оновіть програму до версії %3&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Make yourself comfortable</source>
-        <translation>Влаштовуйтеся зручніше</translation>
+        <translation>Влаштовуйтеся якнайзручніше</translation>
     </message>
 </context>
 <context>
