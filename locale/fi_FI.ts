@@ -68,146 +68,146 @@
     <name>DownloadItem</name>
     <message>
         <source>bytes</source>
-        <translation type="unfinished"></translation>
+        <translation>tavua</translation>
     </message>
     <message>
         <source>KB</source>
-        <translation type="unfinished"></translation>
+        <translation>Kt</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>Mt</translation>
     </message>
     <message>
         <source>bytes/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>tavua/sekunnissa</translation>
     </message>
     <message>
         <source>KB/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>Kt/s</translation>
     </message>
     <message>
         <source>MB/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>Mt/s</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>sekunttia</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>minuuttia</translation>
     </message>
     <message>
         <source>%4 %5 remaining</source>
-        <translation type="unfinished"></translation>
+        <translation>%4 %5 jäljellä</translation>
     </message>
 </context>
 <context>
     <name>DownloadManager</name>
     <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Lataus(ta)</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <source>This is just the demo version of %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tämä on vain kokeilu versio %1sta.</translation>
     </message>
     <message>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation type="unfinished"></translation>
+        <translation>Voit ladata vain videoita jotka ovat lyhyempiä kuin %1 minuuttia, jotta voit testata lataus ominaisuutta.</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Jatka</translation>
     </message>
     <message>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation>Hanki täysi versio</translation>
     </message>
 </context>
 <context>
     <name>DownloadSettings</name>
     <message>
         <source>Change location...</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaihda sijaintia...</translation>
     </message>
     <message>
         <source>Choose the download location</source>
-        <translation type="unfinished"></translation>
+        <translation>Valitse latausten sijainti</translation>
     </message>
     <message>
         <source>Download location changed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lataus sijaintia on muutettu.</translation>
     </message>
     <message>
         <source>Current downloads will still go in the previous location.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nykyiset lataukset menevät vanhaan sijaintiin.</translation>
     </message>
     <message>
         <source>Downloading to: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ladataan kansioon: %1</translation>
     </message>
 </context>
 <context>
     <name>DownloadView</name>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Lataukset</translation>
     </message>
 </context>
 <context>
     <name>GlobalShortcuts</name>
     <message>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation>Toista</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Keskeytä</translation>
     </message>
     <message>
         <source>Play/Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Toista/Keskeytä</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Pysäytä</translation>
     </message>
     <message>
         <source>Stop playing after current track</source>
-        <translation type="unfinished"></translation>
+        <translation>Pysäytä toisto nykyisen kappaleen jälkeen</translation>
     </message>
     <message>
         <source>Next track</source>
-        <translation type="unfinished"></translation>
+        <translation>Seuraava kappale</translation>
     </message>
     <message>
         <source>Previous track</source>
-        <translation type="unfinished"></translation>
+        <translation>Edellinen kappale</translation>
     </message>
     <message>
         <source>Increase volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisää äänen voimakkuutta</translation>
     </message>
     <message>
         <source>Decrease volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Vähennä äänen voimakkuutta</translation>
     </message>
     <message>
         <source>Mute</source>
-        <translation type="unfinished"></translation>
+        <translation>Mykistä</translation>
     </message>
     <message>
         <source>Seek forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Kelaa eteenpäin</translation>
     </message>
     <message>
         <source>Seek backward</source>
-        <translation type="unfinished"></translation>
+        <translation>Kelaa taaksepäin</translation>
     </message>
 </context>
 <context>
@@ -452,39 +452,39 @@
     </message>
     <message>
         <source>&amp;Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lataukset</translation>
     </message>
     <message>
         <source>Show details about video downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Näytä tietoja latauksista</translation>
     </message>
     <message>
         <source>&amp;Download</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lataa</translation>
     </message>
     <message>
         <source>Download the current video</source>
-        <translation type="unfinished"></translation>
+        <translation>Lataa nykyinen video</translation>
     </message>
     <message>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tahdotko lopettaa vaikka %1 lataus(ta) on kesken?</translation>
     </message>
     <message>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jos suljet %1n nyt niin tämä lataus keskeytetään.</translation>
     </message>
     <message>
         <source>Close and cancel download</source>
-        <translation type="unfinished"></translation>
+        <translation>Sulje ja keskeytä lataus</translation>
     </message>
     <message>
         <source>Wait for download to finish</source>
-        <translation type="unfinished"></translation>
+        <translation>Odota latauksen valmistumista</translation>
     </message>
     <message>
         <source>Downloads complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Lataukset ovat valmistuneet</translation>
     </message>
 </context>
 <context>
@@ -519,23 +519,23 @@
     </message>
     <message>
         <source>This is just the demo version of %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tämä on vain %1n kokeiluversio.</translation>
     </message>
     <message>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation type="unfinished"></translation>
+        <translation>Voit kokeilla ohjelmaa nähdäksesi että toimiiko se.</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Jatka</translation>
     </message>
     <message>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation>Hanki täysi versio</translation>
     </message>
     <message>
         <source>Downloading %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ladataan %1ta/tä</translation>
     </message>
 </context>
 <context>
@@ -553,39 +553,39 @@
     </message>
     <message>
         <source>%1 of %2 (%3) ? %4</source>
-        <translation type="unfinished"></translation>
+        <translation>%1  %2 (%3)sta ? %4</translation>
     </message>
     <message>
         <source>Preparing</source>
-        <translation type="unfinished"></translation>
+        <translation>Valmistellaan</translation>
     </message>
     <message>
         <source>Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Epäonnistui</translation>
     </message>
     <message>
         <source>Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>Valmis</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Pysäytetty</translation>
     </message>
     <message>
         <source>Stop downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Pysäytä lataus</translation>
     </message>
     <message>
         <source>Show in %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Avaa %1ssa/ssä</translation>
     </message>
     <message>
         <source>Open parent folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Avaa yläkansio</translation>
     </message>
     <message>
         <source>Restart downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Käynnistä lataus uudelleen</translation>
     </message>
 </context>
 <context>
