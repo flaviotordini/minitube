@@ -59,7 +59,8 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                                                       "Daniel Rodrigues (pt_PT), "
                                                       "Jesse Jaara (fi_FI), "
                                                       "Tsvyatko Makazchiev (bg_BG), "
-                                                      "Changtai Liang (zh_CN)"
+                                                      "Changtai Liang (zh_CN), "
+                                                      "Veta Branislav (mkd_MKD)"
                                                       ) + "</p>"
 #if !defined(APP_MAC) && !defined(Q_WS_WIN)
                    "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")
