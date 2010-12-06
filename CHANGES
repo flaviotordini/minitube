@@ -1,8 +1,13 @@
+1.2.1 - Dec ??, 2010
+- Brand new icon designed by David Nel
+- New Macedonian translation by Veta Branislav
+- Updated Finnish translation
+
 1.2 - Oct 11, 2010
 - Ability to download videos
 - Support for media keys on GNOME
 - More style, especially on the Mac
-- Fixed crash when trying delete or move the the las playlist item
+- Fixed crash when trying delete or move the the last playlist item
 
 1.1 - Jul 27, 2010
 - Minitube now correctly plays cat and mouse with YouTube
