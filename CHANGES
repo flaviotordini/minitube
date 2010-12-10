@@ -1,7 +1,11 @@
-1.2.1 - Dec ??, 2010
+1.3 - Dec 10, 2010
+- Minitube works again!
+- Big internal changes in how playback works, seeking is now disabled on Linux
 - Brand new icon designed by David Nel
+- Using Qt/Cocoa on the Mac, now requiring Leopard or better
 - New Macedonian translation by Veta Branislav
 - Updated Finnish translation
+- New german translation by Jakob Kramer
 
 1.2 - Oct 11, 2010
 - Ability to download videos
