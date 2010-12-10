@@ -202,6 +202,10 @@ void ListModel::addVideo(Video* video) {
 
         // save keyword
         QString query = searchParams->keywords();
+        if (query.startsWith("http://")) {
+            // Save the video title
+            query += "|" + videos.first()->title();
+        }
         QSettings settings;
         QStringList keywords = settings.value(recentKeywordsKey).toStringList();
         keywords.removeAll(query);

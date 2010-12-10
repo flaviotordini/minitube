@@ -135,9 +135,18 @@ void SearchView::updateRecentKeywords() {
     The::globalActions()->value("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
 
     foreach (QString keyword, keywords) {
-        QLabel *itemLabel = new QLabel("<a href=\"" + keyword
+        QString link = keyword;
+        QString display = keyword;
+        if (keyword.startsWith("http://")) {
+            int separator = keyword.indexOf("|");
+            if (separator > 0 && separator + 1 < keyword.length()) {
+                link = keyword.left(separator);
+                display = keyword.mid(separator+1);
+            }
+        }
+        QLabel *itemLabel = new QLabel("<a href=\"" + link
                                        + "\" style=\"color:palette(text); text-decoration:none\">"
-                                       + keyword + "</a>", this);
+                                       + display + "</a>", this);
 
         itemLabel->setMaximumWidth(queryEdit->width() + watchButton->width());
         // itemLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
