@@ -5,6 +5,12 @@
 #include "minisplitter.h"
 #include "constants.h"
 #include "downloadmanager.h"
+#include "downloaditem.h"
+#include "MainWindow.h"
+
+namespace The {
+    NetworkAccess* http();
+}
 
 namespace The {
     QMap<QString, QAction*>* globalActions();
@@ -15,6 +21,7 @@ namespace The {
 MediaView::MediaView(QWidget *parent) : QWidget(parent) {
 
     reallyStopped = false;
+    downloadItem = 0;
 
     QBoxLayout *layout = new QHBoxLayout();
     layout->setMargin(0);
@@ -152,6 +159,12 @@ void MediaView::search(SearchParams *searchParams) {
     workaroundTimer->stop();
     errorTimer->stop();
 
+    mediaObject->pause();
+    if (downloadItem) {
+        delete downloadItem;
+        downloadItem = 0;
+    }
+
     this->searchParams = searchParams;
 
     // start serching for videos
@@ -161,6 +174,17 @@ void MediaView::search(SearchParams *searchParams) {
     sortBar->setCheckedAction(searchParams->sortBy()-1);
 
     listView->setFocus();
+
+
+    QString keyword = searchParams->keywords();
+    QString display = keyword;
+    if (keyword.startsWith("http://")) {
+        int separator = keyword.indexOf("|");
+        if (separator > 0 && separator + 1 < keyword.length()) {
+            display = keyword.mid(separator+1);
+        }
+    }
+    // tr("You're watching \"%1\"").arg(searchParams->keywords())
 
 }
 
@@ -179,12 +203,14 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
 {
 
     // qDebug() << "Phonon state: " << newState << oldState;
+    // slider->setEnabled(newState == Phonon::PlayingState);
 
     switch (newState) {
 
     case Phonon::ErrorState:
         qDebug() << "Phonon error:" << mediaObject->errorString() << mediaObject->errorType();
-        handleError(mediaObject->errorString());
+        if (mediaObject->errorType() == Phonon::FatalError)
+            handleError(mediaObject->errorString());
         break;
 
     case Phonon::PlayingState:
@@ -244,6 +270,10 @@ void MediaView::stop() {
     workaroundTimer->stop();
     errorTimer->stop();
     listView->selectionModel()->clearSelection();
+    if (downloadItem) {
+        delete downloadItem;
+        downloadItem = 0;
+    }
 }
 
 void MediaView::activeRowChanged(int row) {
@@ -256,6 +286,13 @@ void MediaView::activeRowChanged(int row) {
     // stop all the timers
     workaroundTimer->stop();
     errorTimer->stop();
+
+    mediaObject->pause();
+    if (downloadItem) {
+        delete downloadItem;
+        downloadItem = 0;
+    }
+    // slider->setMinimum(0);
 
     // immediately show the loading widget
     videoAreaWidget->showLoading(video);
@@ -289,9 +326,75 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
     }
     video->disconnect(this);
 
+    QString tempDir = QDesktopServices::storageLocation(QDesktopServices::TempLocation);
+    QString tempFile = tempDir + "/minitube.mp4";
+    if (!QFile::remove(tempFile)) {
+        qDebug() << "Cannot remove temp file";
+    }
+
+    Video *videoCopy = video->clone();
+    if (downloadItem) delete downloadItem;
+    downloadItem = new DownloadItem(videoCopy, streamUrl, tempFile, this);
+    connect(downloadItem, SIGNAL(statusChanged()), SLOT(downloadStatusChanged()));
+    // connect(downloadItem, SIGNAL(progress(int)), SLOT(downloadProgress(int)));
+    // connect(downloadItem, SIGNAL(finished()), SLOT(itemFinished()));
+    downloadItem->start();
+
+}
+
+/*
+void MediaView::downloadProgress(int percent) {
+    MainWindow* mainWindow = dynamic_cast<MainWindow*>(window());
+
+    mainWindow->getSeekSlider()->setStyleSheet(" QSlider::groove:horizontal {"
+        "border: 1px solid #999999;"
+        // "border-left: 50px solid rgba(255, 0, 0, 128);"
+        "height: 8px;"
+        "background: qlineargradient(x1:0, y1:0, x2:.5, y2:0, stop:0 rgba(255, 0, 0, 92), stop:"
+        + QString::number(percent/100.0) +
+
+        " rgba(255, 0, 0, 92), stop:" + QString::number((percent+1)/100.0) + " transparent, stop:1 transparent);"
+        "margin: 2px 0;"
+    "}"
+    "QSlider::handle:horizontal {"
+        "background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #b4b4b4, stop:1 #8f8f8f);"
+        "border: 1px solid #5c5c5c;"
+        "width: 16px;"
+        "height: 16px;"
+        "margin: -2px 0;"
+        "border-radius: 8px;"
+    "}"
+
+    );
+}
+
+*/
+
+void MediaView::downloadStatusChanged() {
+    switch(downloadItem->status()) {
+    case Downloading:
+        startPlaying();
+        break;
+    case Starting:
+        qDebug() << "Starting";
+        break;
+    case Finished:
+        qDebug() << "Finished";
+        break;
+    case Failed:
+        qDebug() << "Failed";
+    case Idle:
+        qDebug() << "Idle";
+        break;
+    }
+}
+
+void MediaView::startPlaying() {
+    if (reallyStopped) return;
+
     // go!
-    qDebug() << "Playing" << streamUrl.toString();
-    mediaObject->setCurrentSource(streamUrl);
+    qDebug() << "Playing" << downloadItem->currentFilename();
+    mediaObject->setCurrentSource(downloadItem->currentFilename());
     mediaObject->play();
 
     // ensure we always have 10 videos ahead
@@ -364,7 +467,7 @@ void MediaView::copyWebPage() {
 void MediaView::copyVideoLink() {
     Video* video = listModel->activeVideo();
     if (!video) return;
-    QApplication::clipboard()->setText(video->getStreamUrl().toString());
+    QApplication::clipboard()->setText(video->getStreamUrl().toEncoded());
     QString message = tr("You can now paste the video stream URL into another application")
                       + ". " + tr("The link will be valid only for a limited time.");
     QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(window());
@@ -500,3 +603,50 @@ void MediaView::fullscreen() {
     videoAreaWidget->setParent(0);
     videoAreaWidget->showFullScreen();
 }
+
+/*
+void MediaView::setSlider(QSlider *slider) {
+    this->slider = slider;
+    // slider->setEnabled(false);
+    slider->setTracking(false);
+    // connect(slider, SIGNAL(valueChanged(int)), SLOT(sliderMoved(int)));
+}
+
+void MediaView::sliderMoved(int value) {
+    qDebug() << __func__;
+    int sliderPercent = (value * 100) / (slider->maximum() - slider->minimum());
+    qDebug() << slider->minimum() << value << slider->maximum();
+    if (sliderPercent <= downloadItem->currentPercent()) {
+        qDebug() << sliderPercent << downloadItem->currentPercent();
+        mediaObject->seek(value);
+    } else {
+        seekTo(value);
+    }
+}
+
+void MediaView::seekTo(int value) {
+    qDebug() << __func__;
+    mediaObject->pause();
+    workaroundTimer->stop();
+    errorTimer->stop();
+    // mediaObject->clear();
+
+    QString tempDir = QDesktopServices::storageLocation(QDesktopServices::TempLocation);
+    QString tempFile = tempDir + "/minitube" + QString::number(value) + ".mp4";
+    if (!QFile::remove(tempFile)) {
+        qDebug() << "Cannot remove temp file";
+    }
+    Video *videoCopy = downloadItem->getVideo()->clone();
+    QUrl streamUrl = videoCopy->getStreamUrl();
+    streamUrl.addQueryItem("begin", QString::number(value));
+    if (downloadItem) delete downloadItem;
+    downloadItem = new DownloadItem(videoCopy, streamUrl, tempFile, this);
+    connect(downloadItem, SIGNAL(statusChanged()), SLOT(downloadStatusChanged()));
+    // connect(downloadItem, SIGNAL(finished()), SLOT(itemFinished()));
+    downloadItem->start();
+
+    // slider->setMinimum(value);
+
+}
+
+*/

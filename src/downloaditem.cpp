@@ -99,7 +99,6 @@ void DownloadItem::downloadReadyRead() {
         emit statusChanged();
     }
 
-    m_status = Downloading;
     if (-1 == m_file.write(m_reply->readAll())) {
         /*
         downloadInfoLabel->setText(tr("Error saving: %1")
@@ -108,7 +107,10 @@ void DownloadItem::downloadReadyRead() {
         */
     } else {
         m_startedSaving = true;
-        if (m_finishedDownloading)
+        if (m_status != Downloading) {
+            // m_status = Downloading;
+            // emit statusChanged();
+        } else if (m_finishedDownloading)
             requestFinished();
     }
 }
@@ -155,6 +157,14 @@ void DownloadItem::downloadProgress(qint64 bytesReceived, qint64 bytesTotal) {
     m_bytesReceived = bytesReceived;
     if (bytesTotal > 0) {
         percent = bytesReceived * 100 / bytesTotal;
+    }
+
+    // qDebug() << bytesReceived << bytesTotal;
+    if (m_status != Downloading
+        && bytesReceived > 1024 * 512
+        && bytesReceived > bytesTotal * .01) {
+        m_status = Downloading;
+        emit statusChanged();
     }
 
     emit progress(percent);

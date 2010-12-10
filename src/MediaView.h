@@ -13,6 +13,8 @@
 #include "loadingwidget.h"
 #include "videoareawidget.h"
 
+class DownloadItem;
+
 namespace The {
     QMap<QString, QAction*>* globalActions();
 }
@@ -32,13 +34,14 @@ public:
     QMap<QString, QVariant> metadata() {
         QMap<QString, QVariant> metadata;
         if (searchParams) {
-            metadata.insert("title", searchParams->keywords());
-            metadata.insert("description", tr("You're watching \"%1\"").arg(searchParams->keywords()));
+            metadata.insert("title", "");
+            metadata.insert("description", "");
         }
         return metadata;
     }
 
     void setMediaObject(Phonon::MediaObject *mediaObject);
+    void setSlider(QSlider *slider);
 
 public slots:
     void search(SearchParams *searchParams);
@@ -78,6 +81,14 @@ private slots:
 #ifdef APP_DEMO
     void demoMessage();
 #endif
+    void startPlaying();
+    void downloadStatusChanged();
+
+    /*
+    void downloadProgress(int percent);
+    void sliderMoved(int value);
+    void seekTo(int value);
+    */
 
 private:
 
@@ -113,6 +124,9 @@ private:
 #ifdef APP_DEMO
     QTimer *demoTimer;
 #endif
+
+    DownloadItem *downloadItem;
+    // QSlider *slider;
 
 };
 

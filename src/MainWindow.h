@@ -21,6 +21,7 @@ class MainWindow : public QMainWindow {
 public:
     MainWindow();
     ~MainWindow();
+    Phonon::SeekSlider* getSeekSlider() { return seekSlider; }
 
 protected:
     void closeEvent(QCloseEvent *);
@@ -125,6 +126,7 @@ private:
 
     // phonon
     Phonon::SeekSlider *seekSlider;
+    // QSlider *slider;
     Phonon::VolumeSlider *volumeSlider;
     Phonon::MediaObject *mediaObject;
     Phonon::AudioOutput *audioOutput;

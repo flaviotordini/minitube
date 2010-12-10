@@ -6,9 +6,13 @@ namespace The {
     NetworkAccess* http();
 }
 
+/*
 const QString USER_AGENT = QString(Constants::APP_NAME)
                            + " " + Constants::VERSION
                            + " (" + Constants::WEBSITE + ")";
+*/
+
+const QString USER_AGENT = "Mozilla/5.0 (X11; U; Linux x86; en-US; rv:1.9.2.12) Gecko/20101028 Firefox/3.6.12";
 
 NetworkReply::NetworkReply(QNetworkReply *networkReply) : QObject(networkReply) {
     this->networkReply = networkReply;
@@ -54,24 +58,20 @@ void NetworkReply::requestError(QNetworkReply::NetworkError code) {
 
 NetworkAccess::NetworkAccess( QObject* parent) : QObject( parent ) {}
 
-QNetworkReply* NetworkAccess::simpleGet(QUrl url, int operation) {
+QNetworkReply* NetworkAccess::manualGet(QNetworkRequest request, int operation) {
 
     QNetworkAccessManager *manager = The::networkAccessManager();
-
-    QNetworkRequest request(url);
-    request.setRawHeader("User-Agent", USER_AGENT.toUtf8());
-    request.setRawHeader("Connection", "Keep-Alive");
 
     QNetworkReply *networkReply;
     switch (operation) {
 
     case QNetworkAccessManager::GetOperation:
-        qDebug() << "GET" << url.toString();
+        qDebug() << "GET" << request.url().toEncoded();
         networkReply = manager->get(request);
         break;
 
     case QNetworkAccessManager::HeadOperation:
-        qDebug() << "HEAD" << url.toString();
+        qDebug() << "HEAD" << request.url().toEncoded();
         networkReply = manager->head(request);
         break;
 
@@ -86,7 +86,18 @@ QNetworkReply* NetworkAccess::simpleGet(QUrl url, int operation) {
             this, SLOT(error(QNetworkReply::NetworkError)));
 
     return networkReply;
+}
 
+QNetworkReply* NetworkAccess::simpleGet(QUrl url, int operation) {
+
+    QNetworkRequest request(url);
+    request.setRawHeader("User-Agent", USER_AGENT.toUtf8());
+    request.setRawHeader("Accept-Charset", "ISO-8859-1,utf-8;q=0.7,*;q=0.7");
+    request.setRawHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+    request.setRawHeader("Accept-Language", "en-us,en;q=0.5");
+    // request.setRawHeader("Connection", "Keep-Alive");
+
+    return manualGet(request, operation);
 }
 
 NetworkReply* NetworkAccess::get(const QUrl url) {

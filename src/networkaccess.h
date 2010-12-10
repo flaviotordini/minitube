@@ -1,6 +1,7 @@
 #ifndef NETWORKACCESS_H
 #define NETWORKACCESS_H
 
+#include <QtCore>
 #include <QtNetwork>
 
 namespace The {
@@ -35,6 +36,7 @@ class NetworkAccess : public QObject {
 
 public:
     NetworkAccess( QObject* parent=0);
+    QNetworkReply* manualGet(QNetworkRequest request, int operation = QNetworkAccessManager::GetOperation);
     QNetworkReply* simpleGet(QUrl url, int operation = QNetworkAccessManager::GetOperation);
     NetworkReply* get(QUrl url);
     NetworkReply* head(QUrl url);

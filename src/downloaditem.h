@@ -31,6 +31,7 @@ public:
     double currentSpeed() const;
     int currentPercent() const { return percent; }
     Video* getVideo() const { return video; }
+    QString currentFilename() const { return m_file.fileName(); }
     DownloadItemStatus status() const { return m_status; }
     static QString formattedFilesize(qint64 size);
     static QString formattedSpeed(double speed);

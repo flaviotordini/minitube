@@ -45,6 +45,7 @@ MainWindow::MainWindow() :
     createStatusBar();
 
     initPhonon();
+    // mediaView->setSlider(slider);
     mediaView->setMediaObject(mediaObject);
 
     // remove that useless menu/toolbar context menu
@@ -395,9 +396,21 @@ void MainWindow::createToolBars() {
     mainToolBar->addWidget(new Spacer());
 
     seekSlider = new Phonon::SeekSlider(this);
+#ifdef Q_WS_X11
+    seekSlider->setDisabled(true);
+#endif
     seekSlider->setIconVisible(false);
     seekSlider->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
     mainToolBar->addWidget(seekSlider);
+
+    mainToolBar->addWidget(new Spacer());
+
+/*
+    slider = new QSlider(this);
+    slider->setOrientation(Qt::Horizontal);
+    slider->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
+    mainToolBar->addWidget(slider);
+*/
 
     mainToolBar->addWidget(new Spacer());
 
@@ -453,7 +466,7 @@ void MainWindow::readSettings() {
     restoreGeometry(settings.value("geometry").toByteArray());
 #ifdef APP_MAC
     if (!isMaximized())
-        move(x(), y() + mainToolBar->height() + 8);
+        move(x(), y() + 10);
 #endif
     setDefinitionMode(settings.value("definition", VideoDefinition::getDefinitionNames().first()).toString());
     audioOutput->setVolume(settings.value("volume", 1).toDouble());
@@ -814,6 +827,11 @@ void MainWindow::tick(qint64 time) {
     const qint64 remainingTime = mediaObject->remainingTime();
     currentTime->setStatusTip(tr("Remaining time: %1").arg(formatTime(remainingTime)));
 
+    /*
+    slider->blockSignals(true);
+    slider->setValue(time/1000);
+    slider->blockSignals(false);
+    */
 }
 
 void MainWindow::totalTimeChanged(qint64 time) {
@@ -822,6 +840,13 @@ void MainWindow::totalTimeChanged(qint64 time) {
         return;
     }
     totalTime->setText(formatTime(time));
+
+    /*
+    slider->blockSignals(true);
+    slider->setMaximum(time/1000);
+    slider->blockSignals(false);
+    */
+
 }
 
 QString MainWindow::formatTime(qint64 time) {
