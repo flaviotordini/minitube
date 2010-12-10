@@ -102,6 +102,8 @@ void  Video::getVideoInfo() {
 void  Video::gotVideoInfo(QByteArray data) {
     QString videoInfo = QString::fromUtf8(data);
 
+    // qDebug() << "videoInfo" << videoInfo;
+
     // get video token
     QRegExp re = QRegExp("^.*&token=([^&]+).*$");
     bool match = re.exactMatch(videoInfo);
@@ -118,7 +120,6 @@ void  Video::gotVideoInfo(QByteArray data) {
     // qDebug() << "videoToken" << videoToken;
     this->videoToken = videoToken;
 
-    /*
     // get fmt_url_map
     re = QRegExp("^.*&fmt_url_map=([^&]+).*$");
     match = re.exactMatch(videoInfo);
@@ -129,31 +130,53 @@ void  Video::gotVideoInfo(QByteArray data) {
         getVideoInfo();
         return;
     }
+
     QString fmtUrlMap = re.cap(1);
+    fmtUrlMap = QByteArray::fromPercentEncoding(fmtUrlMap.toUtf8());
 
-    while (fmtUrlMap.contains('%'))
-        fmtUrlMap = QByteArray::fromPercentEncoding(fmtUrlMap.toAscii());
+    QSettings settings;
+    QString definitionName = settings.value("definition").toString();
+    int definitionCode = VideoDefinition::getDefinitionCode(definitionName);
 
-    qDebug() << "fmtUrlMap" << fmtUrlMap;
+    // qDebug() << "fmtUrlMap" << fmtUrlMap;
     QStringList formatUrls = fmtUrlMap.split(",", QString::SkipEmptyParts);
+    QHash<int, QString> urlMap;
     foreach(QString formatUrl, formatUrls) {
         int separator = formatUrl.indexOf("|");
         if (separator == -1) continue;
         int format = formatUrl.left(separator).toInt();
         QString url = formatUrl.mid(separator + 1);
-        qDebug() << format << url;
-    }
-    */
 
-    QSettings settings;
-    QString definitionName = settings.value("definition").toString();
-    int definitionCode = VideoDefinition::getDefinitionCode(definitionName);
-    if (definitionCode == 18) {
-        // This is assumed always available
-        foundVideoUrl(videoToken, 18);
-    } else {
-        findVideoUrl(definitionCode);
+        if (format == definitionCode) {
+            QUrl videoUrl = QUrl::fromEncoded(url.toUtf8(), QUrl::StrictMode);
+            m_streamUrl = videoUrl;
+            emit gotStreamUrl(videoUrl);
+            loadingStreamUrl = false;
+            return;
+        }
+
+        urlMap.insert(format, url);
     }
+
+    QList<int> definitionCodes = VideoDefinition::getDefinitionCodes();
+    int currentIndex = definitionCodes.indexOf(definitionCode);
+    int previousIndex = 0;
+    while (currentIndex >= 0) {
+        previousIndex = currentIndex - 1;
+        int definitionCode = definitionCodes.at(previousIndex);
+        if (urlMap.contains(definitionCode)) {
+            qDebug() << "Found format" << definitionCode;
+            QString url = urlMap.value(definitionCode);
+            QUrl videoUrl = QUrl::fromEncoded(url.toUtf8(), QUrl::StrictMode);
+            m_streamUrl = videoUrl;
+            emit gotStreamUrl(videoUrl);
+            loadingStreamUrl = false;
+            return;
+        }
+        currentIndex--;
+    }
+
+    emit errorStreamUrl(tr("Cannot get video stream for %1").arg(m_webpage.toString()));
 
 }
 
