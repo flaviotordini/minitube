@@ -403,9 +403,8 @@ void MainWindow::createToolBars() {
     seekSlider->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
     mainToolBar->addWidget(seekSlider);
 
-    mainToolBar->addWidget(new Spacer());
-
 /*
+    mainToolBar->addWidget(new Spacer());
     slider = new QSlider(this);
     slider->setOrientation(Qt::Horizontal);
     slider->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
@@ -466,7 +465,7 @@ void MainWindow::readSettings() {
     restoreGeometry(settings.value("geometry").toByteArray());
 #ifdef APP_MAC
     if (!isMaximized())
-        move(x(), y() + 10);
+        move(x(), y() + mainToolBar->height() + 8);
 #endif
     setDefinitionMode(settings.value("definition", VideoDefinition::getDefinitionNames().first()).toString());
     audioOutput->setVolume(settings.value("volume", 1).toDouble());
