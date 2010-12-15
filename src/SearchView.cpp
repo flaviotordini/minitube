@@ -29,6 +29,26 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     message->hide();
     mainLayout->addWidget(message);
 
+#ifdef APP_DEMO
+    QLabel *buy = new QLabel(this);
+    buy->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+    buy->setText(QString("<a style='color:palette(text);text-decoration:none' href='%1'>%2</a>").arg(
+            QString(Constants::WEBSITE) + "#download",
+            tr("Get the full version").toUpper()
+            ));
+    buy->setOpenExternalLinks(true);
+    buy->setMargin(7);
+    buy->setAlignment(Qt::AlignRight);
+    buy->setStyleSheet("QLabel {"
+                       "background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #CCD6E0, stop: 1 #ADBCCC);"
+                       "border-bottom-left-radius: 8px;"
+                       "border-bottom-right-radius: 8px;"
+                       "font-size: 10px;"
+                       "margin-right: 50px;"
+                       "}");
+    mainLayout->addWidget(buy, 0, Qt::AlignRight);
+#endif
+
     mainLayout->addStretch();
     mainLayout->addSpacing(PADDING);
 

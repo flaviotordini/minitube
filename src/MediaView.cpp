@@ -578,6 +578,7 @@ void MediaView::demoMessage() {
         QDesktopServices::openUrl(QString(Constants::WEBSITE) + "#download");
     } else {
         mediaObject->play();
+        demoTimer->start();
     }
 }
 #endif
