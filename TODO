@@ -1,5 +1,9 @@
 # Minitube TODO list
 
+## Bugs
+- in fullscreen mode at the right screen in a dual-screen setup,
+    will show the song list at the left when working on the left screen.
+
 ## Killer features
 
 - YouTube related videos
