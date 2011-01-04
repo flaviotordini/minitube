@@ -148,6 +148,7 @@ void  Video::gotVideoInfo(QByteArray data) {
         QString url = formatUrl.mid(separator + 1);
 
         if (format == definitionCode) {
+            qDebug() << "Found format" << definitionCode;
             QUrl videoUrl = QUrl::fromEncoded(url.toUtf8(), QUrl::StrictMode);
             m_streamUrl = videoUrl;
             emit gotStreamUrl(videoUrl);

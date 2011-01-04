@@ -1,11 +1,14 @@
 #include "fontutils.h"
 
+static const int MIN_PIXEL_SIZE = 11;
+
 const QFont FontUtils::small() {
     static QFont font;
     static bool initialized = false;
     if (!initialized) {
       initialized = true;
       font.setPointSize(font.pointSize()*.85);
+      if (font.pixelSize() < MIN_PIXEL_SIZE) font.setPixelSize(MIN_PIXEL_SIZE);
     }
     return font;
 }
@@ -17,6 +20,7 @@ const QFont FontUtils::smallBold() {
       initialized = true;
       font.setPointSize(font.pointSize()*.85);
       font.setBold(true);
+      if (font.pixelSize() < MIN_PIXEL_SIZE) font.setPixelSize(MIN_PIXEL_SIZE);
     }
     return font;
 }

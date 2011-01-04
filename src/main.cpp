@@ -5,6 +5,9 @@
 #ifdef APP_MAC
 // #include "local/mac/mac_startup.h"
 #endif
+#ifdef APP_WIN
+#include "local/win/qtwin.h"
+#endif
 
 int main(int argc, char **argv) {
 
@@ -64,6 +67,14 @@ int main(int argc, char **argv) {
         appIcon.addFile(png, QSize(iconSizes[i], iconSizes[i]));
     }
     mainWin.setWindowIcon(appIcon);
+#endif
+
+#ifdef APP_WIN
+    if (QtWin::isCompositionEnabled()) {
+        QtWin::extendFrameIntoClientArea(&mainWin);
+        mainWin.setContentsMargins(0, 0, 0, 0);
+    }
+    app.setFont(QFont("Segoe UI", 9));
 #endif
 
     mainWin.show();

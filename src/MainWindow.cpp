@@ -359,7 +359,9 @@ void MainWindow::createMenus() {
 
     helpMenu = menuBar()->addMenu(tr("&Help"));
     helpMenu->addAction(siteAct);
+#if !defined(APP_MAC) && !defined(APP_WIN)
     helpMenu->addAction(donateAct);
+#endif
     helpMenu->addAction(aboutAct);
 }
 
@@ -370,13 +372,21 @@ void MainWindow::createToolBars() {
     mainToolBar = new QToolBar(this);
 #if QT_VERSION < 0x040600 | defined(APP_MAC)
     mainToolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
+#elif defined(APP_WIN)
+    mainToolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    mainToolBar->setStyleSheet(
+            "QToolBar {"
+                "background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #fff, stop:1 #ccc);"
+                "border: 0;"
+                "border-bottom: 1px solid #a0afc3;"
+            "}");
 #else
     mainToolBar->setToolButtonStyle(Qt::ToolButtonFollowStyle);
 #endif
     mainToolBar->setFloatable(false);
     mainToolBar->setMovable(false);
 
-#ifdef APP_MAC
+#if defined(APP_MAC) | defined(APP_WIN)
     mainToolBar->setIconSize(QSize(32, 32));
 #endif
 
@@ -447,7 +457,7 @@ void MainWindow::createStatusBar() {
 
     // remove ugly borders on OSX
     // also remove excessive spacing
-    statusBar()->setStyleSheet("::item{border:0 solid} QToolBar {padding:0;spacing:0;margin:0}");
+    statusBar()->setStyleSheet("::item{border:0 solid} QToolBar {padding:0;spacing:0;margin:0;border:0}");
 
     QToolBar *toolBar = new QToolBar(this);
     toolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);

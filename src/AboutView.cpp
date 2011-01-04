@@ -21,7 +21,7 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                    "<p>" + tr("There's life outside the browser!") + "</p>"
                    "<p>" + tr("Version %1").arg(Constants::VERSION) + "</p>"
                    + QString("<p><a href=\"%1/\">%1</a></p>").arg(Constants::WEBSITE) +
-#if !defined(APP_MAC) && !defined(Q_WS_WIN)
+#if !defined(APP_MAC) && !defined(APP_WIN)
                    "<p>" +  tr("%1 is Free Software but its development takes precious time.").arg(Constants::APP_NAME) + "<br/>"
                    + tr("Please <a href='%1'>donate</a> to support the continued development of %2.")
                    .arg(QString(Constants::WEBSITE).append("#donate"), Constants::APP_NAME) + "</p>"
@@ -30,7 +30,7 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                    .arg(QString("<a href=\"mailto:%1\">%1</a>").arg(Constants::EMAIL)) + "</p>"
 
                    "<p>"
-                   + tr("Icon designed by %1.").arg("Sebastian Kraft")
+                   + tr("Icon designed by %1.").arg("<a href='http://www.kolorguild.com/'>David Nel</a>")
                    + "<br>" + tr("Compact mode contributed by %1.").arg("Stefan Brück")
                    + "<br>" + tr("HTTP proxy support contributed by %1.").arg("Kiwamu Okabe")
                    + "</p>"
@@ -62,7 +62,7 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                                                       "Changtai Liang (zh_CN), "
                                                       "Veta Branislav (mkd_MKD)"
                                                       ) + "</p>"
-#if !defined(APP_MAC) && !defined(Q_WS_WIN)
+#if !defined(APP_MAC) && !defined(APP_WIN)
                    "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")
                    .arg("http://www.gnu.org/licenses/gpl.html") + "</p>"
 #endif

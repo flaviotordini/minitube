@@ -90,7 +90,7 @@ void DownloadItem::tryAgain() {
 void DownloadItem::downloadReadyRead() {
 
     if (!m_file.isOpen()) {
-        if (!m_file.open(QIODevice::WriteOnly)) {
+        if (!m_file.open(QIODevice::ReadWrite)) {
             qDebug() << QString("Error opening output file: %1").arg(m_file.errorString());
             stop();
             emit statusChanged();

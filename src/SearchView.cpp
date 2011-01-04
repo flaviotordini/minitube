@@ -14,7 +14,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     QFont biggerFont = FontUtils::big();
     QFont smallerFont = FontUtils::smallBold();
 
-#ifdef APP_MAC
+#if defined(APP_MAC) | defined(APP_WIN)
     // speedup painting since we'll paint the whole background
     // by ourselves anyway in paintEvent()
     setAttribute(Qt::WA_OpaquePaintEvent);
@@ -115,7 +115,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     recentKeywordsLayout->setSpacing(5);
     recentKeywordsLayout->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
     recentKeywordsLabel = new QLabel(tr("Recent keywords").toUpper(), this);
-#ifdef APP_MAC
+#if defined(APP_MAC) | defined(APP_WIN)
     QPalette palette = recentKeywordsLabel->palette();
     palette.setColor(QPalette::WindowText, QColor(0x65, 0x71, 0x80));
     recentKeywordsLabel->setPalette(palette);
@@ -244,7 +244,7 @@ void SearchView::gotNewVersion(QString version) {
 }
 
 void SearchView::paintEvent(QPaintEvent * /*event*/) {
-#ifdef APP_MAC
+#if defined(APP_MAC) | defined(APP_WIN)
     QBrush brush;
     if (window()->isActiveWindow()) {
         brush = QBrush(QColor(0xdd, 0xe4, 0xeb));
