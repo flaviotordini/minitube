@@ -376,7 +376,7 @@ void MainWindow::createToolBars() {
     mainToolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     mainToolBar->setStyleSheet(
             "QToolBar {"
-                "background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #fff, stop:1 #ccc);"
+                "background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #fafcfd, stop:.5 #e6f0fa, stop:.51 #dde9f7, stop:1 #dde9f7);"
                 "border: 0;"
                 "border-bottom: 1px solid #a0afc3;"
             "}");
