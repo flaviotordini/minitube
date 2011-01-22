@@ -160,9 +160,11 @@ void DownloadItem::downloadProgress(qint64 bytesReceived, qint64 bytesTotal) {
     }
 
     // qDebug() << bytesReceived << bytesTotal;
+
     if (m_status != Downloading
-        && bytesReceived > 1024 * 512
-        && bytesReceived > bytesTotal * .01) {
+        && bytesReceived > 1024 * 1024
+        && bytesReceived > bytesTotal * .01
+        && m_downloadTime.msecsTo(now) > 2000 ) {
         m_status = Downloading;
         emit statusChanged();
     }
