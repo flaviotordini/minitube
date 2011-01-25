@@ -214,35 +214,35 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
         break;
 
     case Phonon::PlayingState:
-        //qDebug("playing");
+        qDebug("playing");
         videoAreaWidget->showVideo();
         break;
 
     case Phonon::StoppedState:
-        //qDebug("stopped");
+        qDebug("stopped");
         // play() has already been called when setting the source
         // but Phonon on Linux needs a little more help to start playback
-        if (!reallyStopped) mediaObject->play();
+        // if (!reallyStopped) mediaObject->play();
 
 #ifdef APP_MAC
         // Workaround for Mac playback start problem
         if (!timerPlayFlag) {
-            workaroundTimer->start();
+            // workaroundTimer->start();
         }
 #endif
 
         break;
 
          case Phonon::PausedState:
-        //qDebug("paused");
+        qDebug("paused");
         break;
 
          case Phonon::BufferingState:
-        //qDebug("buffering");
+        qDebug("buffering");
         break;
 
          case Phonon::LoadingState:
-        //qDebug("loading");
+        qDebug("loading");
         break;
 
          default:
@@ -271,6 +271,7 @@ void MediaView::stop() {
     errorTimer->stop();
     listView->selectionModel()->clearSelection();
     if (downloadItem) {
+        downloadItem->stop();
         delete downloadItem;
         downloadItem = 0;
     }
@@ -289,6 +290,7 @@ void MediaView::activeRowChanged(int row) {
 
     mediaObject->pause();
     if (downloadItem) {
+        downloadItem->stop();
         delete downloadItem;
         downloadItem = 0;
     }
@@ -328,12 +330,15 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
 
     QString tempDir = QDesktopServices::storageLocation(QDesktopServices::TempLocation);
     QString tempFile = tempDir + "/minitube.mp4";
-    if (!QFile::remove(tempFile)) {
+    if (QFile::exists(tempFile) && !QFile::remove(tempFile)) {
         qDebug() << "Cannot remove temp file";
     }
 
     Video *videoCopy = video->clone();
-    if (downloadItem) delete downloadItem;
+    if (downloadItem) {
+        downloadItem->stop();
+        delete downloadItem;
+    }
     downloadItem = new DownloadItem(videoCopy, streamUrl, tempFile, this);
     connect(downloadItem, SIGNAL(statusChanged()), SLOT(downloadStatusChanged()));
     // connect(downloadItem, SIGNAL(progress(int)), SLOT(downloadProgress(int)));
