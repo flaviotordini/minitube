@@ -27,6 +27,7 @@ private:
                                         const QModelIndex& index ) const;
 
     // active track painting
+    void paintSelectedOverlay( QPainter *painter, qreal x, qreal y, qreal w, qreal h ) const;
     void paintActiveOverlay( QPainter *painter, qreal x, qreal y, qreal w, qreal h ) const;
     void paintPlayIcon(QPainter *painter) const;
 
