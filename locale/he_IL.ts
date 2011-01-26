@@ -567,7 +567,7 @@
     </message>
     <message>
         <source>You&apos;re watching &quot;%1&quot;</source>
-        <translation>הנכם צופים ב־&quot;%1&quot;</translation>
+        <translation type="obsolete">הנכם צופים ב־&quot;%1&quot;</translation>
     </message>
     <message>
         <source>You can now paste the YouTube link into another application</source>
@@ -667,7 +667,7 @@
     </message>
     <message>
         <source>Enter a keyword to start watching videos.</source>
-        <translation>הזינו מילת מפתח כדי להתחיל לצפות בסרטונים.</translation>
+        <translation type="obsolete">הזינו מילת מפתח כדי להתחיל לצפות בסרטונים.</translation>
     </message>
     <message>
         <source>Watch</source>
@@ -685,6 +685,31 @@
         <source>Make yourself comfortable</source>
         <translation>שבו בניחותא</translation>
     </message>
+    <message>
+        <source>Get the full version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter</source>
+        <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>a keyword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>a channel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>to start watching videos.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recent channels</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsView</name>
@@ -698,6 +723,10 @@
     <message>
         <source>Network error: %1 for %2</source>
         <translation>שגיאת רשת: %1 עבור %2</translation>
+    </message>
+    <message>
+        <source>Cannot get video stream for %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

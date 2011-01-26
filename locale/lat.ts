@@ -112,7 +112,7 @@
     </message>
     <message>
         <source>%4 %5 remaining</source>
-	<translation>%4 %5 paliek</translation>
+        <translation>%4 %5 paliek</translation>
     </message>
 </context>
 <context>
@@ -120,9 +120,9 @@
     <message numerus="yes">
         <source>%n Download(s)</source>
         <translation>
-		<numerusform>%n Lejupielāde(s)</numerusform>
-		<numerusform>%n Lejupielāde(s)</numerusform>
-		<numerusform>%n Lejupielāde(s)</numerusform>
+            <numerusform>%n Lejupielāde(s)</numerusform>
+            <numerusform>%n Lejupielāde(s)</numerusform>
+            <numerusform>%n Lejupielāde(s)</numerusform>
         </translation>
     </message>
     <message>
@@ -150,7 +150,7 @@
     </message>
     <message>
         <source>Choose the download location</source>
-	<translation>Izvēlieties mērķa mapi</translation>
+        <translation>Izvēlieties mērķa mapi</translation>
     </message>
     <message>
         <source>Download location changed.</source>
@@ -184,7 +184,7 @@
     </message>
     <message>
         <source>Play/Pause</source>
-	<translation>Atskaņot / Apturēt</translation>
+        <translation>Atskaņot / Apturēt</translation>
     </message>
     <message>
         <source>Stop</source>
@@ -192,7 +192,7 @@
     </message>
     <message>
         <source>Stop playing after current track</source>
-	<translation>Pārtraukt atskaņošanu pēc šī klipa</translation>
+        <translation>Pārtraukt atskaņošanu pēc šī klipa</translation>
     </message>
     <message>
         <source>Next track</source>
@@ -517,7 +517,7 @@
     </message>
     <message>
         <source>Download the current video</source>
-	<translation>Lejuplādēt šo klipu</translation>
+        <translation>Lejuplādēt šo klipu</translation>
     </message>
     <message>
         <source>Do you want to exit %1 with a download in progress?</source>
@@ -556,7 +556,7 @@
     </message>
     <message>
         <source>You&apos;re watching &quot;%1&quot;</source>
-        <translation>Jūs skatāties &quot;%1&quot;</translation>
+        <translation type="obsolete">Jūs skatāties &quot;%1&quot;</translation>
     </message>
     <message>
         <source>You can now paste the YouTube link into another application</source>
@@ -606,7 +606,7 @@
     </message>
     <message>
         <source>%1 of %2 (%3) ? %4</source>
-	<translation>%1 no %2 (%3) ? %4</translation>
+        <translation>%1 no %2 (%3) ? %4</translation>
     </message>
     <message>
         <source>Preparing</source>
@@ -656,7 +656,7 @@
     </message>
     <message>
         <source>Enter a keyword to start watching videos.</source>
-        <translation>Ierakstiet atslēgvārdu lai sāktu skatīties klipus</translation>
+        <translation type="obsolete">Ierakstiet atslēgvārdu lai sāktu skatīties klipus</translation>
     </message>
     <message>
         <source>Watch</source>
@@ -674,6 +674,31 @@
         <source>Make yourself comfortable</source>
         <translation>Jūsu ērtībai</translation>
     </message>
+    <message>
+        <source>Get the full version</source>
+        <translation type="unfinished">Novilkt pilnu versiju</translation>
+    </message>
+    <message>
+        <source>Enter</source>
+        <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>a keyword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>a channel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>to start watching videos.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recent channels</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsView</name>
@@ -687,6 +712,10 @@
     <message>
         <source>Network error: %1 for %2</source>
         <translation>Tīkla kļūda: %1 ar %2</translation>
+    </message>
+    <message>
+        <source>Cannot get video stream for %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

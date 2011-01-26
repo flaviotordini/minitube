@@ -593,7 +593,7 @@
     </message>
     <message>
         <source>You&apos;re watching &quot;%1&quot;</source>
-        <translation>Βλέπετε «%1»</translation>
+        <translation type="obsolete">Βλέπετε «%1»</translation>
     </message>
     <message>
         <source>You can now paste the YouTube link into another application</source>
@@ -694,7 +694,7 @@
     </message>
     <message>
         <source>Enter a keyword to start watching videos.</source>
-        <translation>Εισάγετε μια λέξη-κλειδί για να αρχίσετε να βλέπετε βίντεο.</translation>
+        <translation type="obsolete">Εισάγετε μια λέξη-κλειδί για να αρχίσετε να βλέπετε βίντεο.</translation>
     </message>
     <message>
         <source>Watch</source>
@@ -711,6 +711,31 @@
     <message>
         <source>Make yourself comfortable</source>
         <translation>Βολευτείτε</translation>
+    </message>
+    <message>
+        <source>Get the full version</source>
+        <translation type="unfinished">Αποκτήστε την πλήρη έκδοση</translation>
+    </message>
+    <message>
+        <source>Enter</source>
+        <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>a keyword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>a channel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>to start watching videos.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recent channels</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -745,6 +770,10 @@
     <message>
         <source>Network error: %1 for %2</source>
         <translation>Σφάλμα δικτύου: %1 για %2</translation>
+    </message>
+    <message>
+        <source>Cannot get video stream for %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

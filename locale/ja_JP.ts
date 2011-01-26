@@ -530,7 +530,7 @@
     </message>
     <message>
         <source>You&apos;re watching &quot;%1&quot;</source>
-        <translation>&quot;%1&quot;を閲覧中</translation>
+        <translation type="obsolete">&quot;%1&quot;を閲覧中</translation>
     </message>
     <message>
         <source>You can now paste the YouTube link into another application</source>
@@ -630,7 +630,7 @@
     </message>
     <message>
         <source>Enter a keyword to start watching videos.</source>
-        <translation>探している動画のキーワードを入力。</translation>
+        <translation type="obsolete">探している動画のキーワードを入力。</translation>
     </message>
     <message>
         <source>Watch</source>
@@ -647,6 +647,31 @@
     <message>
         <source>Make yourself comfortable</source>
         <translation>さあリラックスしましょう</translation>
+    </message>
+    <message>
+        <source>Get the full version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter</source>
+        <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>a keyword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>a channel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>to start watching videos.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recent channels</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -665,6 +690,10 @@
     <message>
         <source>Network error: %1 for %2</source>
         <translation>ネットワークエラー: %1 (%2へのアクセスにて)</translation>
+    </message>
+    <message>
+        <source>Cannot get video stream for %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

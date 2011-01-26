@@ -550,7 +550,7 @@
     </message>
     <message>
         <source>You&apos;re watching &quot;%1&quot;</source>
-        <translation>A &quot;%1&quot;-t nézed</translation>
+        <translation type="obsolete">A &quot;%1&quot;-t nézed</translation>
     </message>
     <message>
         <source>You can now paste the YouTube link into another application</source>
@@ -650,7 +650,7 @@
     </message>
     <message>
         <source>Enter a keyword to start watching videos.</source>
-        <translation>Írd be a keresendő kifejezést.</translation>
+        <translation type="obsolete">Írd be a keresendő kifejezést.</translation>
     </message>
     <message>
         <source>Watch</source>
@@ -668,6 +668,31 @@
         <source>Make yourself comfortable</source>
         <translation>Helyezd magad kényelembe</translation>
     </message>
+    <message>
+        <source>Get the full version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter</source>
+        <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>a keyword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>a channel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>to start watching videos.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recent channels</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsView</name>
@@ -681,6 +706,10 @@
     <message>
         <source>Network error: %1 for %2</source>
         <translation>Hálózati hiba: %1 for %2</translation>
+    </message>
+    <message>
+        <source>Cannot get video stream for %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

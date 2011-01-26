@@ -515,7 +515,7 @@
     </message>
     <message>
         <source>You&apos;re watching &quot;%1&quot;</source>
-        <translation>Nyt pyörii &quot;%1&quot;</translation>
+        <translation type="obsolete">Nyt pyörii &quot;%1&quot;</translation>
     </message>
     <message>
         <source>This is just the demo version of %1.</source>
@@ -603,7 +603,7 @@
     </message>
     <message>
         <source>Enter a keyword to start watching videos.</source>
-        <translation>Anna hakusana aloittaaksesi videoiden katselu.</translation>
+        <translation type="obsolete">Anna hakusana aloittaaksesi videoiden katselu.</translation>
     </message>
     <message>
         <source>Watch</source>
@@ -621,12 +621,41 @@
         <source>Make yourself comfortable</source>
         <translation>Tee olosi kotoisaksi</translation>
     </message>
+    <message>
+        <source>Get the full version</source>
+        <translation type="unfinished">Hanki täysi versio</translation>
+    </message>
+    <message>
+        <source>Enter</source>
+        <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>a keyword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>a channel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>to start watching videos.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recent channels</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Video</name>
     <message>
         <source>Network error: %1 for %2</source>
         <translation>Verkkovirhe: &quot;%1&quot; &quot;%2&quot;lle</translation>
+    </message>
+    <message>
+        <source>Cannot get video stream for %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

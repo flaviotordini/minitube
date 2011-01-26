@@ -84,6 +84,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     QBoxLayout *tipLayout = new QHBoxLayout();
     tipLayout->setSpacing(10);
 
+    //: "Enter", as in "type". The whole frase says: "Enter a keyword to start watching videos"
     QLabel *tipLabel = new QLabel(tr("Enter"), this);
     tipLabel->setFont(biggerFont);
     tipLayout->addWidget(tipLabel);
