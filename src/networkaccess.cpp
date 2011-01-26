@@ -12,7 +12,7 @@ const QString USER_AGENT = QString(Constants::APP_NAME)
                            + " (" + Constants::WEBSITE + ")";
 */
 
-const QString USER_AGENT = "Mozilla/5.0 (X11; U; Linux x86; en-US; rv:1.9.2.12) Gecko/20101028 Firefox/3.6.12";
+const QString USER_AGENT = "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_6; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.237 Safari/534.10";
 
 NetworkReply::NetworkReply(QNetworkReply *networkReply) : QObject(networkReply) {
     this->networkReply = networkReply;
@@ -95,7 +95,7 @@ QNetworkReply* NetworkAccess::simpleGet(QUrl url, int operation) {
     request.setRawHeader("Accept-Charset", "ISO-8859-1,utf-8;q=0.7,*;q=0.7");
     request.setRawHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
     request.setRawHeader("Accept-Language", "en-us,en;q=0.5");
-    // request.setRawHeader("Connection", "Keep-Alive");
+    request.setRawHeader("Connection", "Keep-Alive");
 
     return manualGet(request, operation);
 }
