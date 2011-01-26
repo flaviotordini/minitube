@@ -20,6 +20,11 @@ DownloadItem::DownloadItem(Video *video, QUrl url, QString filename, QObject *pa
     , m_status(Idle)
 { }
 
+DownloadItem::~DownloadItem() {
+    if (m_reply) delete m_reply;
+    if (video) delete video;
+}
+
 void DownloadItem::start() {
     m_reply = The::http()->simpleGet(m_url);
     init();
@@ -159,12 +164,12 @@ void DownloadItem::downloadProgress(qint64 bytesReceived, qint64 bytesTotal) {
         percent = bytesReceived * 100 / bytesTotal;
     }
 
-    // qDebug() << bytesReceived << bytesTotal;
+    // qDebug() << bytesReceived << bytesTotal << bytesTotal * .005 << m_downloadTime.msecsTo(now) << percent;
 
     if (m_status != Downloading
-        && bytesReceived > 1024 * 1024
+        && bytesReceived > 1024 * 512
         && bytesReceived > bytesTotal * .01
-        && m_downloadTime.msecsTo(now) > 2000 ) {
+        && m_downloadTime.msecsTo(now) > 1500 ) {
         m_status = Downloading;
         emit statusChanged();
     }
@@ -206,6 +211,7 @@ void DownloadItem::requestFinished() {
     m_reply = 0;
     m_finishedDownloading = true;
     if (!m_startedSaving) {
+        qDebug() << "Request finished but never started saving";
         return;
     }
     m_file.close();

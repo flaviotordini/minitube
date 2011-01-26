@@ -25,6 +25,7 @@ signals:
 
 public:
     DownloadItem(Video *video, QUrl url, QString filename, QObject *parent = 0);
+    ~DownloadItem();
     qint64 bytesTotal() const;
     qint64 bytesReceived() const;
     double remainingTime() const;
