@@ -3,6 +3,7 @@
 
 #define MAX_ITEMS 10
 static const QString recentKeywordsKey = "recentKeywords";
+static const QString recentChannelsKey = "recentChannels";
 
 ListModel::ListModel(QWidget *parent) : QAbstractListModel(parent) {
     youtubeSearch = 0;
@@ -202,17 +203,32 @@ void ListModel::addVideo(Video* video) {
 
         // save keyword
         QString query = searchParams->keywords();
-        if (query.startsWith("http://")) {
-            // Save the video title
-            query += "|" + videos.first()->title();
+        if (!query.isEmpty()) {
+            if (query.startsWith("http://")) {
+                // Save the video title
+                query += "|" + videos.first()->title();
+            }
+            QSettings settings;
+            QStringList keywords = settings.value(recentKeywordsKey).toStringList();
+            keywords.removeAll(query);
+            keywords.prepend(query);
+            while (keywords.size() > 10)
+                keywords.removeLast();
+            settings.setValue(recentKeywordsKey, keywords);
         }
-        QSettings settings;
-        QStringList keywords = settings.value(recentKeywordsKey).toStringList();
-        keywords.removeAll(query);
-        keywords.prepend(query);
-        while (keywords.size() > 10)
-            keywords.removeLast();
-        settings.setValue(recentKeywordsKey, keywords);
+
+        // save channel
+        QString channel = searchParams->author();
+        if (!channel.isEmpty()) {
+            QSettings settings;
+            QStringList channels = settings.value(recentChannelsKey).toStringList();
+            channels.removeAll(channel);
+            channels.prepend(channel);
+            while (channels.size() > 10)
+                channels.removeLast();
+            settings.setValue(recentChannelsKey, channels);
+        }
+
     }
 
 }

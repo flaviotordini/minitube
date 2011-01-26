@@ -6,6 +6,10 @@
 #include "searchlineedit.h"
 #include "updatechecker.h"
 
+class SearchParams;
+class YouTubeSuggest;
+class ChannelSuggest;
+
 class SearchView : public QWidget, public View {
 
     Q_OBJECT
@@ -13,9 +17,11 @@ class SearchView : public QWidget, public View {
 public:
     SearchView(QWidget *parent);
     void updateRecentKeywords();
+    void updateRecentChannels();
 
     void appear() {
         updateRecentKeywords();
+        updateRecentChannels();
         queryEdit->clear();
         queryEdit->setFocus(Qt::OtherFocusReason);
         queryEdit->enableSuggest();
@@ -32,10 +38,11 @@ public:
 
 public slots:
     void watch(QString query);
+    void watchChannel(QString channel);
     void gotNewVersion(QString version);
 
 signals:
-    void search(QString query);
+    void search(SearchParams*);
 
 protected:
     void paintEvent(QPaintEvent *);
@@ -43,13 +50,20 @@ protected:
 private slots:
     void watch();
     void textChanged(const QString &text);
+    void searchTypeChanged(int index);
 
 private:
     void checkForUpdate();
 
+    YouTubeSuggest *youtubeSuggest;
+    ChannelSuggest *channelSuggest;
+
+    QComboBox *typeCombo;
     SearchLineEdit *queryEdit;
     QLabel *recentKeywordsLabel;
-    QVBoxLayout *recentKeywordsLayout;
+    QBoxLayout *recentKeywordsLayout;
+    QLabel *recentChannelsLabel;
+    QBoxLayout *recentChannelsLayout;
     QLabel *message;
     QPushButton *watchButton;
 

@@ -1,6 +1,6 @@
 CONFIG += release
 TEMPLATE = app
-VERSION = 1.3
+VERSION = 1.4
 DEFINES += APP_VERSION="$$VERSION"
 INCLUDEPATH += /usr/include/phonon
 
@@ -36,7 +36,7 @@ HEADERS += src/MainWindow.h \
     src/minisplitter.h \
     src/loadingwidget.h \
     src/videoareawidget.h \
-    src/googlesuggest.h \
+    src/autocomplete.h \
     src/videowidget.h \
     src/videodefinition.h \
     src/fontutils.h \
@@ -48,7 +48,10 @@ HEADERS += src/MainWindow.h \
     src/downloadview.h \
     src/downloadmodel.h \
     src/downloadlistview.h \
-    src/downloadsettings.h
+    src/downloadsettings.h \
+    src/youtubesuggest.h \
+    src/suggester.h \
+    src/channelsuggest.h
 SOURCES += src/main.cpp \
     src/MainWindow.cpp \
     src/SearchView.cpp \
@@ -72,7 +75,7 @@ SOURCES += src/main.cpp \
     src/minisplitter.cpp \
     src/loadingwidget.cpp \
     src/videoareawidget.cpp \
-    src/googlesuggest.cpp \
+    src/autocomplete.cpp \
     src/videowidget.cpp \
     src/videodefinition.cpp \
     src/constants.cpp \
@@ -85,7 +88,9 @@ SOURCES += src/main.cpp \
     src/downloadview.cpp \
     src/downloadmodel.cpp \
     src/downloadlistview.cpp \
-    src/downloadsettings.cpp
+    src/downloadsettings.cpp \
+    src/youtubesuggest.cpp \
+    src/channelsuggest.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/

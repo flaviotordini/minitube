@@ -43,6 +43,7 @@
 #define SEARCHLINEEDIT_H
 
 #include "urllineedit.h"
+#include "autocomplete.h"
 
 #include <QtGui/QLineEdit>
 #include <QtGui/QAbstractButton>
@@ -52,7 +53,7 @@ class QMenu;
 QT_END_NAMESPACE
 
 class SearchButton;
-class GSuggestCompletion;
+class Suggester;
 
 /*
     Clear button on the right hand side of the search widget.
@@ -93,6 +94,7 @@ public:
     void enableSuggest();
     void preventSuggest();
     void selectAll() { lineEdit()->selectAll(); };
+    void setSuggester(Suggester *suggester) { completion->setSuggester(suggester); }
 
 protected:
     void resizeEvent(QResizeEvent *event);
@@ -107,7 +109,7 @@ private:
     SearchButton *m_searchButton;
     QString m_inactiveText;
 
-    GSuggestCompletion *completion;
+    AutoComplete *completion;
 };
 
 #endif // SEARCHLINEEDIT_H

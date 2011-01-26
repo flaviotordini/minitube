@@ -31,7 +31,7 @@ private slots:
     void fadeInWidget(QWidget *oldWidget, QWidget *newWidget);
     void goBack();
     void showSearch();
-    void showMedia(QString query);
+    void showMedia(SearchParams *params);
     void visitSite();
     void donate();
     void about();
@@ -62,6 +62,8 @@ private slots:
     void updateDownloadMessage(QString);
     void downloadsFinished();
     void toggleDownloads(bool show);
+
+    void startToolbarSearch(QString query);
 
 private:
     void initPhonon();

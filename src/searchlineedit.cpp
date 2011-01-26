@@ -47,7 +47,7 @@
 #include <QtGui/QStyle>
 #include <QtGui/QStyleOptionFrameV2>
 
-#include "googlesuggest.h"
+#include "autocomplete.h"
 
 ClearButton::ClearButton(QWidget *parent)
     : QAbstractButton(parent)
@@ -180,7 +180,7 @@ m_searchButton(new SearchButton(this))
     setSizePolicy(QSizePolicy::Preferred, policy.verticalPolicy());
 
     // completion
-    completion = new GSuggestCompletion(this, m_lineEdit);
+    completion = new AutoComplete(this, m_lineEdit);
 
 }
 

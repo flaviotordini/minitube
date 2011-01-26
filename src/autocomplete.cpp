@@ -1,14 +1,8 @@
-#include "googlesuggest.h"
-#include "networkaccess.h"
+#include "autocomplete.h"
+#include "suggester.h"
 
-#define GSUGGEST_URL "http://suggestqueries.google.com/complete/search?ds=yt&output=toolbar&hl=%1&q=%2"
-
-namespace The {
-    NetworkAccess* http();
-}
-
-GSuggestCompletion::GSuggestCompletion(QWidget *parent, QLineEdit *editor):
-        QObject(parent), buddy(parent), editor(editor) {
+AutoComplete::AutoComplete(QWidget *parent, QLineEdit *editor):
+        QObject(parent), buddy(parent), editor(editor), suggester(0) {
 
     enabled = true;
 
@@ -40,11 +34,11 @@ GSuggestCompletion::GSuggestCompletion(QWidget *parent, QLineEdit *editor):
 
 }
 
-GSuggestCompletion::~GSuggestCompletion() {
+AutoComplete::~AutoComplete() {
     delete popup;
 }
 
-bool GSuggestCompletion::eventFilter(QObject *obj, QEvent *ev) {
+bool AutoComplete::eventFilter(QObject *obj, QEvent *ev) {
     if (obj != popup)
         return false;
 
@@ -104,7 +98,7 @@ bool GSuggestCompletion::eventFilter(QObject *obj, QEvent *ev) {
     return false;
 }
 
-void GSuggestCompletion::showCompletion(const QStringList &choices) {
+void AutoComplete::showCompletion(const QStringList &choices) {
 
     if (choices.isEmpty())
         return;
@@ -129,7 +123,7 @@ void GSuggestCompletion::showCompletion(const QStringList &choices) {
     popup->show();
 }
 
-void GSuggestCompletion::doneCompletion() {
+void AutoComplete::doneCompletion() {
     timer->stop();
     popup->hide();
     editor->setFocus();
@@ -144,19 +138,25 @@ void GSuggestCompletion::doneCompletion() {
     }
 }
 
-void GSuggestCompletion::preventSuggest() {
+void AutoComplete::preventSuggest() {
     // qDebug() << "preventSuggest";
     timer->stop();
     enabled = false;
     popup->hide();
 }
 
-void GSuggestCompletion::enableSuggest() {
+void AutoComplete::enableSuggest() {
     // qDebug() << "enableSuggest";
     enabled = true;
 }
 
-void GSuggestCompletion::autoSuggest() {
+void AutoComplete::setSuggester(Suggester* suggester) {
+    if (this->suggester) this->suggester->disconnect();
+    this->suggester = suggester;
+    connect(suggester, SIGNAL(ready(QStringList)), SLOT(suggestionsReady(QStringList)));
+}
+
+void AutoComplete::autoSuggest() {
     if (!enabled) return;
 
     QString query = editor->text();
@@ -164,38 +164,16 @@ void GSuggestCompletion::autoSuggest() {
     // qDebug() << "originalText" << originalText;
     if (query.isEmpty()) return;
 
-    QString locale = QLocale::system().name().replace("_", "-");
-    // case for system locales such as "C"
-    if (locale.length() < 2) {
-        locale = "en-US";
-    }
-
-    QString url = QString(GSUGGEST_URL).arg(locale, query);
-
-    QObject *reply = The::http()->get(url);
-    connect(reply, SIGNAL(data(QByteArray)), SLOT(handleNetworkData(QByteArray)));
+    if (suggester)
+        suggester->suggest(query);
 }
 
-void GSuggestCompletion::handleNetworkData(QByteArray response) {
+void AutoComplete::suggestionsReady(QStringList suggestions) {
     if (!enabled) return;
-
-    QStringList choices;
-
-    QXmlStreamReader xml(response);
-    while (!xml.atEnd()) {
-        xml.readNext();
-        if (xml.tokenType() == QXmlStreamReader::StartElement)
-            if (xml.name() == "suggestion") {
-            QStringRef str = xml.attributes().value("data");
-            choices << str.toString();
-        }
-    }
-
-    showCompletion(choices);
-
+    showCompletion(suggestions);
 }
 
-void GSuggestCompletion::currentItemChanged(QListWidgetItem *current) {
+void AutoComplete::currentItemChanged(QListWidgetItem *current) {
     if (current) {
         // qDebug() << "current" << current->text();
         current->setSelected(true);

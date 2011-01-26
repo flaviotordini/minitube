@@ -13,6 +13,7 @@
 // #include "local/mac/mac_startup.h"
 #endif
 #include "downloadmanager.h"
+#include "youtubesuggest.h"
 
 MainWindow::MainWindow() :
         aboutView(0),
@@ -28,7 +29,7 @@ MainWindow::MainWindow() :
 
     // views
     searchView = new SearchView(this);
-    connect(searchView, SIGNAL(search(QString)), this, SLOT(showMedia(QString)));
+    connect(searchView, SIGNAL(search(SearchParams*)), this, SLOT(showMedia(SearchParams*)));
     views->addWidget(searchView);
 
     mediaView = new MediaView(this);
@@ -36,7 +37,8 @@ MainWindow::MainWindow() :
 
     toolbarSearch = new SearchLineEdit(this);
     toolbarSearch->setMinimumWidth(toolbarSearch->fontInfo().pixelSize()*15);
-    connect(toolbarSearch, SIGNAL(search(const QString&)), searchView, SLOT(watch(const QString&)));
+    toolbarSearch->setSuggester(new YouTubeSuggest(this));
+    connect(toolbarSearch, SIGNAL(search(const QString&)), this, SLOT(startToolbarSearch(const QString&)));
 
     // build ui
     createActions();
@@ -620,9 +622,7 @@ void MainWindow::showSearch() {
     totalTime->clear();
 }
 
-void MainWindow::showMedia(QString query) {
-    SearchParams *searchParams = new SearchParams();
-    searchParams->setKeywords(query);
+void MainWindow::showMedia(SearchParams *searchParams) {
     mediaView->search(searchParams);
     showWidget(mediaView);
 }
@@ -980,4 +980,20 @@ void MainWindow::toggleDownloads(bool show) {
     }
     if (show) showWidget(downloadView);
     else goBack();
+}
+
+void MainWindow::startToolbarSearch(QString query) {
+
+    query = query.trimmed();
+
+    // check for empty query
+    if (query.length() == 0) {
+        return;
+    }
+
+    SearchParams *searchParams = new SearchParams();
+    searchParams->setKeywords(query);
+
+    // go!
+    showMedia(searchParams);
 }

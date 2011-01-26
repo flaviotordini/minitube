@@ -1,24 +1,27 @@
-#ifndef GOOGLESUGGEST_H
-#define GOOGLESUGGEST_H
+#ifndef SUGGESTCOMPLETION_H
+#define SUGGESTCOMPLETION_H
 
 #include <QtGui>
 
-class GSuggestCompletion : public QObject {
+class Suggester;
+
+class AutoComplete : public QObject {
     Q_OBJECT
 
 public:
-    GSuggestCompletion(QWidget *parent, QLineEdit *editor);
-    ~GSuggestCompletion();
+    AutoComplete(QWidget *parent, QLineEdit *editor);
+    ~AutoComplete();
     bool eventFilter(QObject *obj, QEvent *ev);
     void showCompletion(const QStringList &choices);
+    void setSuggester(Suggester* suggester);
 
 public slots:
     void doneCompletion();
     void preventSuggest();
     void enableSuggest();
     void autoSuggest();
-    void handleNetworkData(QByteArray response);
     void currentItemChanged(QListWidgetItem *current);
+    void suggestionsReady(QStringList suggestions);
 
 private:
     QWidget *buddy;
@@ -27,7 +30,8 @@ private:
     QListWidget *popup;
     QTimer *timer;
     bool enabled;
+    Suggester* suggester;
 
 };
 
-#endif // GOOGLESUGGEST_H
+#endif // SUGGESTCOMPLETION_H

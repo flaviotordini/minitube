@@ -1,12 +1,16 @@
 #include "SearchView.h"
 #include "constants.h"
 #include "fontutils.h"
+#include "searchparams.h"
+#include "youtubesuggest.h"
+#include "channelsuggest.h"
 
 namespace The {
     QMap<QString, QAction*>* globalActions();
 }
 
 static const QString recentKeywordsKey = "recentKeywords";
+static const QString recentChannelsKey = "recentChannels";
 static const int PADDING = 30;
 
 SearchView::SearchView(QWidget *parent) : QWidget(parent) {
@@ -77,9 +81,24 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
     layout->addSpacing(PADDING / 2);
 
-    QLabel *tipLabel = new QLabel(tr("Enter a keyword to start watching videos."), this);
+    QBoxLayout *tipLayout = new QHBoxLayout();
+    tipLayout->setSpacing(10);
+
+    QLabel *tipLabel = new QLabel(tr("Enter"), this);
     tipLabel->setFont(biggerFont);
-    layout->addWidget(tipLabel);
+    tipLayout->addWidget(tipLabel);
+
+    typeCombo = new QComboBox(this);
+    typeCombo->addItem(tr("a keyword"));
+    typeCombo->addItem(tr("a channel"));
+    typeCombo->setFont(biggerFont);
+    connect(typeCombo, SIGNAL(currentIndexChanged(int)), SLOT(searchTypeChanged(int)));
+    tipLayout->addWidget(typeCombo);
+
+    tipLabel = new QLabel(tr("to start watching videos."), this);
+    tipLabel->setFont(biggerFont);
+    tipLayout->addWidget(tipLabel);
+    layout->addLayout(tipLayout);
 
     layout->addSpacing(PADDING / 2);
 
@@ -93,8 +112,12 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     queryEdit->setFocus(Qt::OtherFocusReason);
     connect(queryEdit, SIGNAL(search(const QString&)), this, SLOT(watch(const QString&)));
     connect(queryEdit, SIGNAL(textChanged(const QString &)), this, SLOT(textChanged(const QString &)));
-    searchLayout->addWidget(queryEdit);
 
+    youtubeSuggest = new YouTubeSuggest(this);
+    channelSuggest = new ChannelSuggest(this);
+    searchTypeChanged(0);
+
+    searchLayout->addWidget(queryEdit);
     searchLayout->addSpacing(10);
 
     watchButton = new QPushButton(tr("Watch"), this);
@@ -113,7 +136,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
     recentKeywordsLayout = new QVBoxLayout();
     recentKeywordsLayout->setSpacing(5);
-    recentKeywordsLayout->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
+    recentKeywordsLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     recentKeywordsLabel = new QLabel(tr("Recent keywords").toUpper(), this);
 #if defined(APP_MAC) | defined(APP_WIN)
     QPalette palette = recentKeywordsLabel->palette();
@@ -127,6 +150,24 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     recentKeywordsLayout->addWidget(recentKeywordsLabel);
 
     otherLayout->addLayout(recentKeywordsLayout);
+
+    // recent channels
+    recentChannelsLayout = new QVBoxLayout();
+    recentChannelsLayout->setSpacing(5);
+    recentChannelsLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+    recentChannelsLabel = new QLabel(tr("Recent channels").toUpper(), this);
+#if defined(APP_MAC) | defined(APP_WIN)
+    palette = recentChannelsLabel->palette();
+    palette.setColor(QPalette::WindowText, QColor(0x65, 0x71, 0x80));
+    recentChannelsLabel->setPalette(palette);
+#else
+    recentChannelsLabel->setForegroundRole(QPalette::Dark);
+#endif
+    recentChannelsLabel->hide();
+    recentChannelsLabel->setFont(smallerFont);
+    recentChannelsLayout->addWidget(recentChannelsLabel);
+
+    otherLayout->addLayout(recentChannelsLayout);
 
     layout->addLayout(otherLayout);
 
@@ -179,10 +220,48 @@ void SearchView::updateRecentKeywords() {
 
 }
 
+void SearchView::updateRecentChannels() {
 
+    // cleanup
+    QLayoutItem *item;
+    while ((item = recentChannelsLayout->takeAt(1)) != 0) {
+        item->widget()->close();
+        delete item;
+    }
+
+    // load
+    QSettings settings;
+    QStringList keywords = settings.value(recentChannelsKey).toStringList();
+    recentChannelsLabel->setVisible(!keywords.isEmpty());
+    // TODO The::globalActions()->value("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
+
+    foreach (QString keyword, keywords) {
+        QString link = keyword;
+        QString display = keyword;
+        if (keyword.startsWith("http://")) {
+            int separator = keyword.indexOf("|");
+            if (separator > 0 && separator + 1 < keyword.length()) {
+                link = keyword.left(separator);
+                display = keyword.mid(separator+1);
+            }
+        }
+        QLabel *itemLabel = new QLabel("<a href=\"" + link
+                                       + "\" style=\"color:palette(text); text-decoration:none\">"
+                                       + display + "</a>", this);
+
+        itemLabel->setMaximumWidth(queryEdit->width() + watchButton->width());
+        // itemLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        // Make links navigable with the keyboard too
+        itemLabel->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard | Qt::LinksAccessibleByMouse);
+
+        connect(itemLabel, SIGNAL(linkActivated(QString)), this, SLOT(watchChannel(QString)));
+        recentChannelsLayout->addWidget(itemLabel);
+    }
+
+}
 
 void SearchView::watch() {
-    QString query = queryEdit->text().simplified();
+    QString query = queryEdit->text();
     watch(query);
 }
 
@@ -192,14 +271,47 @@ void SearchView::textChanged(const QString &text) {
 
 void SearchView::watch(QString query) {
 
+    query = query.simplified();
+
     // check for empty query
     if (query.length() == 0) {
         queryEdit->setFocus(Qt::OtherFocusReason);
         return;
     }
 
+    SearchParams *searchParams = new SearchParams();
+    if (typeCombo->currentIndex() == 0)
+        searchParams->setKeywords(query);
+    else {
+        // remove spaces from channel name
+        query = query.replace(" ", "");
+        searchParams->setAuthor(query);
+        searchParams->setSortBy(SearchParams::SortByNewest);
+    }
+
     // go!
-    emit search(query);
+    emit search(searchParams);
+}
+
+void SearchView::watchChannel(QString channel) {
+
+    channel = channel.simplified();
+
+    // check for empty query
+    if (channel.length() == 0) {
+        queryEdit->setFocus(Qt::OtherFocusReason);
+        return;
+    }
+
+    // remove spaces from channel name
+    channel = channel.replace(" ", "");
+
+    SearchParams *searchParams = new SearchParams();
+    searchParams->setAuthor(channel);
+    searchParams->setSortBy(SearchParams::SortByNewest);
+
+    // go!
+    emit search(searchParams);
 }
 
 void SearchView::checkForUpdate() {
@@ -254,4 +366,12 @@ void SearchView::paintEvent(QPaintEvent * /*event*/) {
     QPainter painter(this);
     painter.fillRect(0, 0, width(), height(), brush);
 #endif
+}
+
+void SearchView::searchTypeChanged(int index) {
+    if (index == 0) {
+        queryEdit->setSuggester(youtubeSuggest);
+    } else {
+        queryEdit->setSuggester(channelSuggest);
+    }
 }
