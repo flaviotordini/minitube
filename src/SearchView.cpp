@@ -214,7 +214,7 @@ void SearchView::updateRecentKeywords() {
         // Make links navigable with the keyboard too
         itemLabel->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard | Qt::LinksAccessibleByMouse);
 
-        connect(itemLabel, SIGNAL(linkActivated(QString)), this, SLOT(watch(QString)));
+        connect(itemLabel, SIGNAL(linkActivated(QString)), this, SLOT(watchKeywords(QString)));
         recentKeywordsLayout->addWidget(itemLabel);
     }
 
@@ -309,6 +309,23 @@ void SearchView::watchChannel(QString channel) {
     SearchParams *searchParams = new SearchParams();
     searchParams->setAuthor(channel);
     searchParams->setSortBy(SearchParams::SortByNewest);
+
+    // go!
+    emit search(searchParams);
+}
+
+void SearchView::watchKeywords(QString query) {
+
+    query = query.simplified();
+
+    // check for empty query
+    if (query.length() == 0) {
+        queryEdit->setFocus(Qt::OtherFocusReason);
+        return;
+    }
+
+    SearchParams *searchParams = new SearchParams();
+    searchParams->setKeywords(query);
 
     // go!
     emit search(searchParams);

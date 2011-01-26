@@ -39,6 +39,7 @@ public:
 public slots:
     void watch(QString query);
     void watchChannel(QString channel);
+    void watchKeywords(QString query);
     void gotNewVersion(QString version);
 
 signals:
