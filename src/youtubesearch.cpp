@@ -12,26 +12,22 @@ YouTubeSearch::YouTubeSearch() : QObject() {}
 void YouTubeSearch::search(SearchParams *searchParams, int max, int skip) {
     this->abortFlag = false;
 
-    QString urlString = QString(
-            "http://gdata.youtube.com/feeds/api/videos?q=%1&max-results=%2&start-index=%3")
-            .arg(searchParams->keywords(), QString::number(max), QString::number(skip));
-
-    // Useful to test with a local webserver
-    /*
-    urlString = QString("http://localhost/~flavio/text.xml?q=%1&max-results=%2&start-index=%3")
-                .arg(searchParams->keywords(), QString::number(max), QString::number(skip));
-    */
+    QUrl url("http://gdata.youtube.com/feeds/api/videos");
+    url.addQueryItem("max-results", QString::number(max));
+    url.addQueryItem("start-index", QString::number(skip));
+    if (!searchParams->keywords().isEmpty())
+    url.addQueryItem("q", searchParams->keywords());
+    if (!searchParams->author().isEmpty())
+    url.addQueryItem("author", searchParams->author());
 
     switch (searchParams->sortBy()) {
     case SearchParams::SortByNewest:
-        urlString.append("&orderby=published");
+        url.addQueryItem("orderby", "published");
         break;
     case SearchParams::SortByViewCount:
-        urlString.append("&orderby=viewCount");
+        url.addQueryItem("orderby", "viewCount");
         break;
     }
-
-    QUrl url(urlString);
 
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResults(QByteArray)));

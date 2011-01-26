@@ -13,6 +13,9 @@ public:
     const QString keywords() const { return m_keywords; }
     void setKeywords( QString keywords ) { m_keywords = keywords; }
 
+    const QString author() const { return m_author; }
+    void setAuthor( QString author ) { m_author = author; }
+
     int sortBy() const { return m_sortBy; }
     void setSortBy( int sortBy ) { m_sortBy = sortBy; }
 
@@ -24,6 +27,7 @@ public:
 
 private:
     QString m_keywords;
+    QString m_author;
     int m_sortBy;
 
 };
