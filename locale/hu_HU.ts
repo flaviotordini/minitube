@@ -80,145 +80,145 @@
     <name>DownloadItem</name>
     <message>
         <source>bytes</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>KB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>bytes/sec</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>KB/sec</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>MB/sec</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>másodperc</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>perc</translation>
     </message>
     <message>
         <source>%4 %5 remaining</source>
-        <translation type="unfinished"></translation>
+        <translation>%4 %5 van hátra</translation>
     </message>
 </context>
 <context>
     <name>DownloadManager</name>
     <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n Letöltés(ek)</numerusform>
         </translation>
     </message>
     <message>
         <source>This is just the demo version of %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ez csak a demo verziója a %1-nak.</translation>
     </message>
     <message>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation type="unfinished"></translation>
+        <translation>Csak rövidebb, mint %1 perces videókat tudsz letölteni a letöltési funkció ellenőrzéséhez.</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Tovább</translation>
     </message>
     <message>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation>Szerezd be a teljes verziót</translation>
     </message>
 </context>
 <context>
     <name>DownloadSettings</name>
     <message>
         <source>Change location...</source>
-        <translation type="unfinished"></translation>
+        <translation>Könyvtár módosítása...</translation>
     </message>
     <message>
         <source>Choose the download location</source>
-        <translation type="unfinished"></translation>
+        <translation>Válaszd ki a letöltési könyvtárat</translation>
     </message>
     <message>
         <source>Download location changed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltési könyvtár megváltoztatva.</translation>
     </message>
     <message>
         <source>Current downloads will still go in the previous location.</source>
-        <translation type="unfinished"></translation>
+        <translation>Az aktuális letöltések a régi letöltési könyvárba lesznek mentve.</translation>
     </message>
     <message>
         <source>Downloading to: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltés a következő könyvtárba: %1</translation>
     </message>
 </context>
 <context>
     <name>DownloadView</name>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltések</translation>
     </message>
 </context>
 <context>
     <name>GlobalShortcuts</name>
     <message>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation>Lejátszás</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Szünet</translation>
     </message>
     <message>
         <source>Play/Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Lejátszás/Szünet</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Megállítás</translation>
     </message>
     <message>
         <source>Stop playing after current track</source>
-        <translation type="unfinished"></translation>
+        <translation>Lejátszás megállítása a jelenlegi videó után</translation>
     </message>
     <message>
         <source>Next track</source>
-        <translation type="unfinished"></translation>
+        <translation>Következő videó</translation>
     </message>
     <message>
         <source>Previous track</source>
-        <translation type="unfinished"></translation>
+        <translation>Előző videó</translation>
     </message>
     <message>
         <source>Increase volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Hangosítás</translation>
     </message>
     <message>
         <source>Decrease volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Halkítás</translation>
     </message>
     <message>
         <source>Mute</source>
-        <translation type="unfinished"></translation>
+        <translation>Némítás</translation>
     </message>
     <message>
         <source>Seek forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Előre teker</translation>
     </message>
     <message>
         <source>Seek backward</source>
-        <translation type="unfinished"></translation>
+        <translation>Hátra teker</translation>
     </message>
 </context>
 <context>
@@ -499,39 +499,39 @@
     </message>
     <message>
         <source>&amp;Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Letöltések</translation>
     </message>
     <message>
         <source>Show details about video downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Videó letöltések részletei</translation>
     </message>
     <message>
         <source>&amp;Download</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Letöltés</translation>
     </message>
     <message>
         <source>Download the current video</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuális videó letöltése</translation>
     </message>
     <message>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltés van folyamatban. Biztos, hogy ki akarsz lépni a %1-ból?</translation>
     </message>
     <message>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ha bezárod a %1-ot, a letöltés megszakad.</translation>
     </message>
     <message>
         <source>Close and cancel download</source>
-        <translation type="unfinished"></translation>
+        <translation>Bezárás és a letöltés megszakítása.</translation>
     </message>
     <message>
         <source>Wait for download to finish</source>
-        <translation type="unfinished"></translation>
+        <translation>Várakozás a letöltés befejezésére</translation>
     </message>
     <message>
         <source>Downloads complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltés befejezve</translation>
     </message>
 </context>
 <context>
@@ -566,23 +566,23 @@
     </message>
     <message>
         <source>This is just the demo version of %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ez csak a demo verziója a %1-nak.</translation>
     </message>
     <message>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lehetőséget nyújt a program kipróbálására.</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Tovább</translation>
     </message>
     <message>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation>Szerezd be a teljes verziót</translation>
     </message>
     <message>
         <source>Downloading %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 letöltése</translation>
     </message>
 </context>
 <context>
@@ -600,39 +600,39 @@
     </message>
     <message>
         <source>%1 of %2 (%3) ? %4</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Preparing</source>
-        <translation type="unfinished"></translation>
+        <translation>Előkészítés</translation>
     </message>
     <message>
         <source>Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Sikertelen</translation>
     </message>
     <message>
         <source>Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>Kész</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Megállítva</translation>
     </message>
     <message>
         <source>Stop downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltés megállítása</translation>
     </message>
     <message>
         <source>Show in %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Mutasd a %1-ban</translation>
     </message>
     <message>
         <source>Open parent folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Szülő könyvtár megnyitása</translation>
     </message>
     <message>
         <source>Restart downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltés újraindítása</translation>
     </message>
 </context>
 <context>
@@ -670,7 +670,7 @@
     </message>
     <message>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Szerezd be a teljes verziót</translation>
     </message>
     <message>
         <source>Enter</source>
