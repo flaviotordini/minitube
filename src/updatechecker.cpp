@@ -12,7 +12,17 @@ UpdateChecker::UpdateChecker() {
 
 void UpdateChecker::checkForUpdate() {
     QUrl updateUrl(QString(Constants::WEBSITE) + "-ws/release.xml");
-    // QUrl updateUrl("http://flavio.tordini.org:8012/release.xml");
+    updateUrl.addQueryItem("v", Constants::VERSION);
+
+#ifdef APP_MAC
+    updateUrl.addQueryItem("os", "mac");
+#endif
+#ifdef APP_WIN
+    updateUrl.addQueryItem("os", "win");
+#endif
+#ifdef APP_DEMO
+    updateUrl.addQueryItem("t", "demo");
+#endif
 
     QObject *reply = The::http()->get(updateUrl);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(requestFinished(QByteArray)));
