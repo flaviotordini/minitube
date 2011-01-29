@@ -408,9 +408,6 @@ void MainWindow::createToolBars() {
     mainToolBar->addWidget(new Spacer());
 
     seekSlider = new Phonon::SeekSlider(this);
-#ifdef Q_WS_X11
-    seekSlider->setDisabled(true);
-#endif
     seekSlider->setIconVisible(false);
     seekSlider->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
     mainToolBar->addWidget(seekSlider);
