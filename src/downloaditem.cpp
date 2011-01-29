@@ -18,7 +18,12 @@ DownloadItem::DownloadItem(Video *video, QUrl url, QString filename, QObject *pa
     , m_reply(0)
     , video(video)
     , m_status(Idle)
-{ }
+{
+    speedCheckTimer = new QTimer(this);
+    speedCheckTimer->setInterval(2000);
+    speedCheckTimer->setSingleShot(true);
+    connect(speedCheckTimer, SIGNAL(timeout()), SLOT(speedCheck()));
+}
 
 DownloadItem::~DownloadItem() {
     if (m_reply) delete m_reply;
@@ -33,6 +38,9 @@ void DownloadItem::start() {
 void DownloadItem::init() {
     if (!m_reply)
         return;
+
+    if (m_file.exists())
+        m_file.remove();
 
     m_status = Starting;
 
@@ -53,6 +61,7 @@ void DownloadItem::init() {
 
     // start timer for the download estimation
     m_downloadTime.start();
+    speedCheckTimer->start();
 
     if (m_reply->error() != QNetworkReply::NoError) {
         error(m_reply->error());
@@ -126,6 +135,8 @@ void DownloadItem::error(QNetworkReply::NetworkError) {
     qDebug() << "DownloadItem::" << __FUNCTION__ << m_reply->errorString() << m_url;
 #endif
 
+    qDebug() << m_reply->errorString();
+
     m_errorMessage = m_reply->errorString();
     m_reply = 0;
     m_status = Failed;
@@ -141,6 +152,7 @@ void DownloadItem::metaDataChanged() {
     QVariant locationHeader = m_reply->header(QNetworkRequest::LocationHeader);
     if (locationHeader.isValid()) {
         m_url = locationHeader.toUrl();
+        // qDebug() << "Redirecting to" << m_url;
         m_reply->deleteLater();
         m_reply = The::http()->simpleGet(m_url);
         init();
@@ -152,30 +164,81 @@ void DownloadItem::metaDataChanged() {
 #endif
 }
 
-void DownloadItem::downloadProgress(qint64 bytesReceived, qint64 bytesTotal) {
-    QTime now = QTime::currentTime();
-    if (m_lastProgressTime.msecsTo(now) < 200)
-        return;
+int DownloadItem::initialBufferSize() {
+    // qDebug() << video->getDefinitionCode();
+    switch (video->getDefinitionCode()) {
+    case 18:
+        return 1024*192;
+    case 22:
+        return 1024*512;
+    case 37:
+        return 1024*768;
+    }
+    return 1024*128;
+}
 
-    m_lastProgressTime = now;
+void DownloadItem::downloadProgress(qint64 bytesReceived, qint64 bytesTotal) {
+
+    if (m_lastProgressTime.elapsed() < 150) return;
+    m_lastProgressTime.start();
 
     m_bytesReceived = bytesReceived;
-    if (bytesTotal > 0) {
-        percent = bytesReceived * 100 / bytesTotal;
+
+    if (m_status != Downloading) {
+
+        int neededBytes = (int) (bytesTotal * .01);
+        qDebug() << bytesReceived << bytesTotal << neededBytes << m_downloadTime.elapsed();
+        int bufferSize = initialBufferSize();
+        if (bytesReceived > bufferSize
+            && bytesReceived > neededBytes
+            && m_downloadTime.elapsed() > 1000 ) {
+            emit bufferProgress(100);
+            m_status = Downloading;
+            emit statusChanged();
+        } else {
+            int bufferPercent = bytesReceived * 100 / qMax(bufferSize, neededBytes);
+            emit bufferProgress(bufferPercent);
+        }
+
+    } else {
+
+        if (bytesTotal > 0) {
+            int percent = bytesReceived * 100 / bytesTotal;
+            if (percent != this->percent) {
+                this->percent = percent;
+                emit progress(percent);
+            }
+        }
+
     }
+}
 
-    // qDebug() << bytesReceived << bytesTotal << bytesTotal * .005 << m_downloadTime.msecsTo(now) << percent;
+void DownloadItem::speedCheck() {
+    if (!m_reply) return;
+    if (m_bytesReceived < initialBufferSize() / 3) {
+        m_reply->disconnect();
+        m_reply->abort();
+        m_reply->deleteLater();
+        m_reply = 0;
 
-    if (m_status != Downloading
-        && bytesReceived > 1024 * 512
-        && bytesReceived > bytesTotal * .01
-        && m_downloadTime.msecsTo(now) > 1500 ) {
-        m_status = Downloading;
-        emit statusChanged();
+        // too slow! retry
+        qDebug() << "Retrying...";
+        connect(video, SIGNAL(gotStreamUrl(QUrl)), SLOT(gotStreamUrl(QUrl)));
+        video->loadStreamUrl();
     }
+}
 
-    emit progress(percent);
-    // emit statusChanged();
+void DownloadItem::gotStreamUrl(QUrl streamUrl) {
+
+    Video *video = static_cast<Video *>(sender());
+    if (!video) {
+        qDebug() << "Cannot get sender";
+        return;
+    }
+    video->disconnect(this);
+
+    m_reply = The::http()->simpleGet(video->getStreamUrl());
+    init();
 }
 
 qint64 DownloadItem::bytesTotal() const {

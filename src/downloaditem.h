@@ -20,8 +20,10 @@ class DownloadItem : public QObject {
 
 signals:
     void statusChanged();
+    void bufferProgress(int percent);
     void progress(int percent);
     void finished();
+    void error(QString);
 
 public:
     DownloadItem(Video *video, QUrl url, QString filename, QObject *parent = 0);
@@ -52,9 +54,12 @@ private slots:
     void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
     void metaDataChanged();
     void requestFinished();
+    void gotStreamUrl(QUrl streamUrl);
+    void speedCheck();
 
 private:
     void init();
+    int initialBufferSize();
 
     qint64 m_bytesReceived;
     QTime m_downloadTime;
@@ -71,6 +76,8 @@ private:
 
     DownloadItemStatus m_status;
     QString m_errorMessage;
+
+    QTimer *speedCheckTimer;
 
 };
 
