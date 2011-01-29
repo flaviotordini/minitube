@@ -76,6 +76,9 @@ void  Video::getVideoInfo() {
     static const QStringList elTypes = QStringList() << "&el=embedded" << "&el=vevo" << "&el=detailpage" << "";
 
     if (elIndex > elTypes.size() - 1) {
+        loadingStreamUrl = false;
+        emit errorStreamUrl("Cannot get video info");
+        /*
         // Don't panic! We have a plan B.
         // get the youtube video webpage
         qDebug() << "Scraping" << webpage().toString();
@@ -83,6 +86,7 @@ void  Video::getVideoInfo() {
         connect(reply, SIGNAL(data(QByteArray)), SLOT(scrapeWebPage(QByteArray)));
         connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
         // see you in scrapWebPage(QByteArray)
+        */
         return;
     }
 
@@ -151,6 +155,7 @@ void  Video::gotVideoInfo(QByteArray data) {
             qDebug() << "Found format" << definitionCode;
             QUrl videoUrl = QUrl::fromEncoded(url.toUtf8(), QUrl::StrictMode);
             m_streamUrl = videoUrl;
+            this->definitionCode = definitionCode;
             emit gotStreamUrl(videoUrl);
             loadingStreamUrl = false;
             return;
@@ -170,6 +175,7 @@ void  Video::gotVideoInfo(QByteArray data) {
             QString url = urlMap.value(definitionCode);
             QUrl videoUrl = QUrl::fromEncoded(url.toUtf8(), QUrl::StrictMode);
             m_streamUrl = videoUrl;
+            this->definitionCode = definitionCode;
             emit gotStreamUrl(videoUrl);
             loadingStreamUrl = false;
             return;
@@ -189,13 +195,13 @@ void Video::foundVideoUrl(QString videoToken, int definitionCode) {
             ).arg(videoId, videoToken, QString::number(definitionCode)));
 
     m_streamUrl = videoUrl;
-    emit gotStreamUrl(videoUrl);
     loadingStreamUrl = false;
+    emit gotStreamUrl(videoUrl);
 }
 
 void Video::errorVideoInfo(QNetworkReply *reply) {
-    emit errorStreamUrl(tr("Network error: %1 for %2").arg(reply->errorString(), reply->url().toString()));
     loadingStreamUrl = false;
+    emit errorStreamUrl(tr("Network error: %1 for %2").arg(reply->errorString(), reply->url().toString()));
 }
 
 void Video::scrapeWebPage(QByteArray data) {

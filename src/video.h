@@ -41,7 +41,7 @@ public:
     const QDateTime published() const { return m_published; }
     void setPublished( QDateTime published ) { m_published = published; }
 
-    bool getDefinitionCode() const { return definitionCode; }
+    int getDefinitionCode() const { return definitionCode; }
 
     void loadStreamUrl();
     QUrl getStreamUrl() { return m_streamUrl; }
