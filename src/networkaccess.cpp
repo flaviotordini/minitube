@@ -16,6 +16,16 @@ const QString USER_AGENT = "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_6; en
 
 NetworkReply::NetworkReply(QNetworkReply *networkReply) : QObject(networkReply) {
     this->networkReply = networkReply;
+
+    // monitor downloadProgress to impl timeout
+    connect(networkReply, SIGNAL(downloadProgress(qint64,qint64)),
+            SLOT(downloadProgress(qint64,qint64)), Qt::AutoConnection);
+
+    readTimeoutTimer = new QTimer(this);
+    readTimeoutTimer->setInterval(5000);
+    readTimeoutTimer->setSingleShot(true);
+    connect(readTimeoutTimer, SIGNAL(timeout()), SLOT(readTimeout()));
+    readTimeoutTimer->start();
 }
 
 void NetworkReply::finished() {
@@ -34,6 +44,15 @@ void NetworkReply::finished() {
         // when the request is finished we'll invoke the target method
         connect(networkReply, SIGNAL(finished()), this, SLOT(finished()), Qt::AutoConnection);
 
+        // monitor downloadProgress to impl timeout
+        connect(networkReply, SIGNAL(downloadProgress(qint64,qint64)),
+                SLOT(downloadProgress(qint64,qint64)), Qt::AutoConnection);
+        readTimeoutTimer->start();
+
+        // error signal
+        connect(networkReply, SIGNAL(error(QNetworkReply::NetworkError)),
+                SLOT(requestError(QNetworkReply::NetworkError)));
+
         return;
     }
 
@@ -50,8 +69,43 @@ void NetworkReply::finished() {
     networkReply->deleteLater();
 }
 
-void NetworkReply::requestError(QNetworkReply::NetworkError code) {
+void NetworkReply::requestError(QNetworkReply::NetworkError /* code */) {
     emit error(networkReply);
+}
+
+void NetworkReply::downloadProgress(qint64 bytesReceived, qint64 /* bytesTotal */) {
+    // qDebug() << "Downloading" << bytesReceived << bytesTotal;
+    if (bytesReceived > 0) {
+        readTimeoutTimer->stop();
+        disconnect(networkReply, SIGNAL(downloadProgress(qint64,qint64)),
+                   this, SLOT(downloadProgress(qint64,qint64)));
+    }
+}
+
+void NetworkReply::readTimeout() {
+    // qDebug() << "HTTP read timeout" << networkReply->url();
+    networkReply->disconnect();
+    networkReply->abort();
+
+    QNetworkReply *retryReply = The::http()->simpleGet(networkReply->url(), networkReply->operation());
+
+    setParent(retryReply);
+    networkReply->deleteLater();
+    networkReply = retryReply;
+
+    // when the request is finished we'll invoke the target method
+    connect(networkReply, SIGNAL(finished()), this, SLOT(finished()), Qt::AutoConnection);
+
+    // monitor downloadProgress to impl timeout
+    connect(networkReply, SIGNAL(downloadProgress(qint64,qint64)),
+            SLOT(downloadProgress(qint64,qint64)), Qt::AutoConnection);
+    readTimeoutTimer->start();
+
+    // error signal
+    connect(networkReply, SIGNAL(error(QNetworkReply::NetworkError)),
+            SLOT(requestError(QNetworkReply::NetworkError)));
+
+    // emit error(networkReply);
 }
 
 /* --- NetworkAccess --- */
@@ -61,6 +115,7 @@ NetworkAccess::NetworkAccess( QObject* parent) : QObject( parent ) {}
 QNetworkReply* NetworkAccess::manualGet(QNetworkRequest request, int operation) {
 
     QNetworkAccessManager *manager = The::networkAccessManager();
+    // manager->setCookieJar(new QNetworkCookieJar());
 
     QNetworkReply *networkReply;
     switch (operation) {

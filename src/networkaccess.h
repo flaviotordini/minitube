@@ -18,6 +18,8 @@ public:
 public slots:
     void finished();
     void requestError(QNetworkReply::NetworkError);
+    void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
+    void readTimeout();
 
 signals:
     void data(QByteArray);
@@ -26,6 +28,7 @@ signals:
 
 private:
     QNetworkReply *networkReply;
+    QTimer *readTimeoutTimer;
 
 };
 
