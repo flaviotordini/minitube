@@ -20,9 +20,8 @@ public slots:
 private:
     QLabel *titleLabel;
     QLabel *descriptionLabel;
-    // TODO uncomment the whole progress bar feature
-    // when the Phonon backends will correctly emit bufferStatus(int)
-    // QProgressBar *progressBar;
+    QProgressBar *progressBar;
+    QTime startTime;
 
 };
 

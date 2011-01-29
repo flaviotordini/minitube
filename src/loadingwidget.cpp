@@ -40,11 +40,14 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
     descriptionLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     layout->addWidget(descriptionLabel);
 
-    /*
     progressBar = new QProgressBar(this);
-    progressBar->hide();
+    progressBar->setAutoFillBackground(false);
+    progressBar->setBackgroundRole(QPalette::Window);
+    progressBar->setPalette(p);
+    // progressBar->hide();
+    progressBar->setStyleSheet("QProgressBar {max-height:3px; background:black; border:0} QProgressBar::chunk {background:white}");
+    progressBar->setTextVisible(false);
     layout->addWidget(progressBar);
-    */
 
     setMouseTracking(true);
 
@@ -60,24 +63,38 @@ void LoadingWidget::setVideo(Video *video) {
     titleLabel->setText(title);
     descriptionLabel->setText(video->description());
     // progressBar->hide();
+    progressBar->setValue(0);
+    startTime.start();
 }
 
 void LoadingWidget::setError(QString message) {
     titleLabel->setText(tr("Error"));
     descriptionLabel->setText(message);
     // progressBar->hide();
+    progressBar->setValue(0);
 }
 
-void LoadingWidget::bufferStatus(int /* percent */) {
+void LoadingWidget::bufferStatus(int percent) {
+    // qDebug() << percent;
+
     /*
-    qDebug() << percent;
-    progressBar->setShown(percent > 0);
+    if (progressBar->isHidden() && percent > 0) {
+        progressBar->show();
+        QPropertyAnimation *animation = new QPropertyAnimation(progressBar, "opacity");
+        animation->setDuration(1000);
+        animation->setStartValue(0.0);
+        animation->setEndValue(1.0);
+        animation->start();
+    }*/
+    // progressBar->setShown(percent > 0);
+    if (startTime.elapsed() < 1000) return;
+    if (progressBar->value() == 0 && percent > 80) return;
     progressBar->setValue(percent);
-    */
 }
 
 void LoadingWidget::clear() {
     titleLabel->clear();
     descriptionLabel->clear();
     // progressBar->hide();
+    progressBar->setValue(0);
 }
