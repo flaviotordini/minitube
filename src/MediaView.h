@@ -83,6 +83,8 @@ private slots:
 #endif
     void startPlaying();
     void downloadStatusChanged();
+    void playbackFinished();
+    void playbackResume();
 
     /*
     void downloadProgress(int percent);

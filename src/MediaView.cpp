@@ -140,12 +140,12 @@ void MediaView::initialize() {
 void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
     this->mediaObject = mediaObject;
     Phonon::createPath(this->mediaObject, videoWidget);
-    connect(mediaObject, SIGNAL(finished()), this, SLOT(skip()));
+    connect(mediaObject, SIGNAL(finished()), this, SLOT(playbackFinished()));
     connect(mediaObject, SIGNAL(stateChanged(Phonon::State, Phonon::State)),
             this, SLOT(stateChanged(Phonon::State, Phonon::State)));
     connect(mediaObject, SIGNAL(currentSourceChanged(Phonon::MediaSource)),
             this, SLOT(currentSourceChanged(Phonon::MediaSource)));
-    connect(mediaObject, SIGNAL(bufferStatus(int)), loadingWidget, SLOT(bufferStatus(int)));
+    // connect(mediaObject, SIGNAL(bufferStatus(int)), loadingWidget, SLOT(bufferStatus(int)));
 }
 
 void MediaView::search(SearchParams *searchParams) {
@@ -214,12 +214,12 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
         break;
 
     case Phonon::PlayingState:
-        qDebug("playing");
+        // qDebug("playing");
         videoAreaWidget->showVideo();
         break;
 
     case Phonon::StoppedState:
-        qDebug("stopped");
+        // qDebug("stopped");
         // play() has already been called when setting the source
         // but Phonon on Linux needs a little more help to start playback
         // if (!reallyStopped) mediaObject->play();
@@ -342,7 +342,10 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
     downloadItem = new DownloadItem(videoCopy, streamUrl, tempFile, this);
     connect(downloadItem, SIGNAL(statusChanged()), SLOT(downloadStatusChanged()));
     // connect(downloadItem, SIGNAL(progress(int)), SLOT(downloadProgress(int)));
+    connect(downloadItem, SIGNAL(bufferProgress(int)), loadingWidget, SLOT(bufferStatus(int)));
     // connect(downloadItem, SIGNAL(finished()), SLOT(itemFinished()));
+    connect(video, SIGNAL(errorStreamUrl(QString)), SLOT(handleError(QString)));
+    connect(downloadItem, SIGNAL(error(QString)), SLOT(handleError(QString)));
     downloadItem->start();
 
 }
@@ -381,15 +384,16 @@ void MediaView::downloadStatusChanged() {
         startPlaying();
         break;
     case Starting:
-        qDebug() << "Starting";
+        // qDebug() << "Starting";
         break;
     case Finished:
-        qDebug() << "Finished";
+        // qDebug() << "Finished" << mediaObject->state();
+        // if (mediaObject->state() == Phonon::StoppedState) startPlaying();
         break;
     case Failed:
-        qDebug() << "Failed";
+        // qDebug() << "Failed";
     case Idle:
-        qDebug() << "Idle";
+        // qDebug() << "Idle";
         break;
     }
 }
@@ -449,6 +453,18 @@ void MediaView::skip() {
     int nextRow = listModel->nextRow();
     if (nextRow == -1) return;
     listModel->setActiveRow(nextRow);
+}
+
+void MediaView::playbackFinished() {
+    if (mediaObject->currentTime() < mediaObject->totalTime()) {
+        // mediaObject->seek(mediaObject->currentTime());
+        QTimer::singleShot(3000, this, SLOT(playbackResume()));
+    } else skip();
+}
+
+void MediaView::playbackResume() {
+    mediaObject->seek(mediaObject->currentTime());
+    mediaObject->play();
 }
 
 void MediaView::openWebPage() {
