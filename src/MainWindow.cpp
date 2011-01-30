@@ -82,6 +82,8 @@ MainWindow::MainWindow() :
             SLOT(updateDownloadMessage(QString)));
     connect(DownloadManager::instance(), SIGNAL(finished()),
             SLOT(downloadsFinished()));
+
+    this->setMouseTracking(true);
 }
 
 MainWindow::~MainWindow() {
@@ -89,13 +91,41 @@ MainWindow::~MainWindow() {
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
+    if (this->mediaView->isVisible()) {
+        if (event->type() == QEvent::MouseMove) {
+            QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(event);
+
+            const int x = mouseEvent->pos().x();
+            const int y = mouseEvent->pos().y();
+
+            if (x >= 0 && x <= 10 && this->m_fullscreen) {
+                this->mediaView->setPlaylistVisible(true);
+            } else if ((x > this->mediaView->getPlaylistSize().width() || x < 0) && this->m_fullscreen) {
+                this->mediaView->setPlaylistVisible(false);
+            } else if (!this->m_fullscreen){
+                this->mediaView->setPlaylistVisible(true);
+            }
+
+            if (y >= 0 && y <= 10 && this->m_fullscreen) {
+                this->mainToolBar->setVisible(true);
+            } else if ((y > this->mainToolBar->size().height() || y < 0) && this->m_fullscreen) {
+                this->mainToolBar->setVisible(false);
+            } else if (!this->m_fullscreen) {
+                this->mainToolBar->setVisible(true);
+            }
+        }
+        if (event->type() == QEvent::FocusOut) {
+            this->mediaView->setPlaylistVisible(false);
+            this->mainToolBar->setVisible(false);
+        }
+    }
+
     if (event->type() == QEvent::ToolTip) {
         // kill tooltips
         return true;
-    } else {
-        // standard event processing
-        return QObject::eventFilter(obj, event);
     }
+    // standard event processing
+    return QObject::eventFilter(obj, event);
 }
 
 void MainWindow::createActions() {
@@ -923,16 +953,6 @@ void MainWindow::toggleDefinitionMode() {
     }
     QString nextDefinition = definitionNames.at(nextIndex);
     setDefinitionMode(nextDefinition);
-}
-
-void MainWindow::showFullscreenToolbar(bool show) {
-    if (!m_fullscreen) return;
-    mainToolBar->setVisible(show);
-}
-
-void MainWindow::showFullscreenPlaylist(bool show) {
-    if (!m_fullscreen) return;
-    mediaView->setPlaylistVisible(show);
 }
 
 void MainWindow::clearRecentKeywords() {

@@ -54,10 +54,6 @@ private slots:
     void volumeChanged(qreal newVolume);
     void volumeMutedChanged(bool muted);
 
-    // fullscreen toolbar
-    void showFullscreenToolbar(bool show);
-    void showFullscreenPlaylist(bool show);
-
     // void setAutoplay(bool enabled);
     void updateDownloadMessage(QString);
     void downloadsFinished();
