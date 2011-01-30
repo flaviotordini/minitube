@@ -114,7 +114,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
                 this->mainToolBar->setVisible(true);
             }
         }
-        if (event->type() == QEvent::FocusOut) {
+        if (event->type() == QEvent::FocusOut && this->m_fullscreen) {
             this->mediaView->setPlaylistVisible(false);
             this->mainToolBar->setVisible(false);
         }
