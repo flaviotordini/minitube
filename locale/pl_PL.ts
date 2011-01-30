@@ -83,47 +83,47 @@
 <context>
     <name>DownloadItem</name>
     <message>
-        <location filename="../src/downloaditem.cpp" line="232"/>
+        <location filename="../src/downloaditem.cpp" line="295"/>
         <source>bytes</source>
         <translation>bajty</translation>
     </message>
     <message>
-        <location filename="../src/downloaditem.cpp" line="235"/>
+        <location filename="../src/downloaditem.cpp" line="298"/>
         <source>KB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/downloaditem.cpp" line="238"/>
+        <location filename="../src/downloaditem.cpp" line="301"/>
         <source>MB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/downloaditem.cpp" line="254"/>
+        <location filename="../src/downloaditem.cpp" line="317"/>
         <source>bytes/sec</source>
         <translation>bajtów/sekundę</translation>
     </message>
     <message>
-        <location filename="../src/downloaditem.cpp" line="257"/>
+        <location filename="../src/downloaditem.cpp" line="320"/>
         <source>KB/sec</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/downloaditem.cpp" line="260"/>
+        <location filename="../src/downloaditem.cpp" line="323"/>
         <source>MB/sec</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/downloaditem.cpp" line="266"/>
+        <location filename="../src/downloaditem.cpp" line="329"/>
         <source>seconds</source>
         <translation>sekund</translation>
     </message>
     <message>
-        <location filename="../src/downloaditem.cpp" line="269"/>
+        <location filename="../src/downloaditem.cpp" line="332"/>
         <source>minutes</source>
         <translation>minut</translation>
     </message>
     <message>
-        <location filename="../src/downloaditem.cpp" line="272"/>
+        <location filename="../src/downloaditem.cpp" line="335"/>
         <source>%4 %5 remaining</source>
         <translation>%4 %5 pozostało do końca</translation>
     </message>
@@ -286,7 +286,7 @@
 <context>
     <name>LoadingWidget</name>
     <message>
-        <location filename="../src/loadingwidget.cpp" line="66"/>
+        <location filename="../src/loadingwidget.cpp" line="71"/>
         <source>Error</source>
         <translation>Błąd</translation>
     </message>
@@ -315,19 +315,19 @@
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="119"/>
-        <location filename="../src/MainWindow.cpp" line="647"/>
+        <location filename="../src/MainWindow.cpp" line="644"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pauza</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="120"/>
-        <location filename="../src/MainWindow.cpp" line="648"/>
+        <location filename="../src/MainWindow.cpp" line="645"/>
         <source>Pause playback</source>
         <translation>Wstrzymaj odtwarzanie</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="126"/>
-        <location filename="../src/MainWindow.cpp" line="731"/>
+        <location filename="../src/MainWindow.cpp" line="728"/>
         <source>&amp;Full Screen</source>
         <translation>Pełny ekran (&amp;F)</translation>
     </message>
@@ -478,7 +478,7 @@
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="277"/>
-        <location filename="../src/MainWindow.cpp" line="960"/>
+        <location filename="../src/MainWindow.cpp" line="957"/>
         <source>&amp;Downloads</source>
         <translation>&amp;Pobrane</translation>
     </message>
@@ -518,93 +518,93 @@
         <translation>&amp;Pomoc</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="442"/>
+        <location filename="../src/MainWindow.cpp" line="439"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
         <translation>Wciścnij %1 żeby zwiększyć głośność, %2 żeby zmiejszyć głośność</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="581"/>
-        <location filename="../src/MainWindow.cpp" line="587"/>
+        <location filename="../src/MainWindow.cpp" line="578"/>
+        <location filename="../src/MainWindow.cpp" line="584"/>
         <source>Opening %1</source>
         <translation>Otwieranie %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="600"/>
+        <location filename="../src/MainWindow.cpp" line="597"/>
         <source>Do you want to exit %1 with a download in progress?</source>
         <translation>Czy na pewno chcesz zamknąć %1 w trakcie pobierania???</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="601"/>
+        <location filename="../src/MainWindow.cpp" line="598"/>
         <source>If you close %1 now, this download will be cancelled.</source>
         <translation>Jeśli zamkniesz %1 teraz, To pobieranie będzie anulowane.</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="604"/>
+        <location filename="../src/MainWindow.cpp" line="601"/>
         <source>Close and cancel download</source>
         <translation>Zamnij i anuluj pobieranie</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="605"/>
+        <location filename="../src/MainWindow.cpp" line="602"/>
         <source>Wait for download to finish</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="638"/>
+        <location filename="../src/MainWindow.cpp" line="635"/>
         <source>Fatal error: %1</source>
         <translation>Fatalny błąd %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="640"/>
+        <location filename="../src/MainWindow.cpp" line="637"/>
         <source>Error: %1</source>
         <translation>Błąd %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="663"/>
+        <location filename="../src/MainWindow.cpp" line="660"/>
         <source>&amp;Play</source>
         <translation>&amp;Odtwarzaj</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="664"/>
+        <location filename="../src/MainWindow.cpp" line="661"/>
         <source>Resume playback</source>
         <translation>Kontynuuj odtwarzanie</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="754"/>
+        <location filename="../src/MainWindow.cpp" line="751"/>
         <source>Exit &amp;Full Screen</source>
         <translation>Opuść pełny ekran (&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="837"/>
+        <location filename="../src/MainWindow.cpp" line="834"/>
         <source>Remaining time: %1</source>
         <translation>Pozostały czas %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="895"/>
+        <location filename="../src/MainWindow.cpp" line="892"/>
         <source>Volume at %1%</source>
         <translation>Głośność na %1%</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="901"/>
+        <location filename="../src/MainWindow.cpp" line="898"/>
         <source>Volume is muted</source>
         <translation>Dźwięk jest wyciszony</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="904"/>
+        <location filename="../src/MainWindow.cpp" line="901"/>
         <source>Volume is unmuted</source>
         <translation>Przywrócono dźwięk</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="911"/>
+        <location filename="../src/MainWindow.cpp" line="908"/>
         <source>Maximum video definition set to %1</source>
         <translation>Maksymalna rozdzielczość wideo ustawiona na %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="945"/>
+        <location filename="../src/MainWindow.cpp" line="942"/>
         <source>Your privacy is now safe</source>
         <translation>Twoja prywatność jest teraz bezpieczna</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="961"/>
+        <location filename="../src/MainWindow.cpp" line="958"/>
         <source>Downloads complete</source>
         <translation>Pobieranie ukończone</translation>
     </message>
@@ -627,42 +627,42 @@
         <translation>Najczęściej odtwarzane</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="468"/>
+        <location filename="../src/MediaView.cpp" line="484"/>
         <source>You can now paste the YouTube link into another application</source>
         <translation>Teraz możesz wkleić link Youtube do innej aplikacji</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="476"/>
+        <location filename="../src/MediaView.cpp" line="492"/>
         <source>You can now paste the video stream URL into another application</source>
         <translation>Teraz możesz wkleić URL do innej aplikacji</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="477"/>
+        <location filename="../src/MediaView.cpp" line="493"/>
         <source>The link will be valid only for a limited time.</source>
         <translation>Link będzie ważny tylko przez ograniczony czas.</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="573"/>
+        <location filename="../src/MediaView.cpp" line="589"/>
         <source>This is just the demo version of %1.</source>
         <translation>To jest tylko wersja demo %1.</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="574"/>
+        <location filename="../src/MediaView.cpp" line="590"/>
         <source>It allows you to test the application and see if it works for you.</source>
         <translation>Pozwala Ci to na testowanie i sprawdzenie działania aplikacji.</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="577"/>
+        <location filename="../src/MediaView.cpp" line="593"/>
         <source>Continue</source>
         <translation>Kontynuuj</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="578"/>
+        <location filename="../src/MediaView.cpp" line="594"/>
         <source>Get the full version</source>
         <translation>Pobierz pełną wersję</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="604"/>
+        <location filename="../src/MediaView.cpp" line="620"/>
         <source>Downloading %1</source>
         <translation>Pobieranie %1</translation>
     </message>
@@ -674,7 +674,7 @@
 <context>
     <name>NetworkAccess</name>
     <message>
-        <location filename="../src/networkaccess.cpp" line="203"/>
+        <location filename="../src/networkaccess.cpp" line="258"/>
         <source>Network error: %1</source>
         <translation>Błąd sieci %1</translation>
     </message>
@@ -806,12 +806,12 @@
 <context>
     <name>Video</name>
     <message>
-        <location filename="../src/video.cpp" line="180"/>
+        <location filename="../src/video.cpp" line="186"/>
         <source>Cannot get video stream for %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/video.cpp" line="197"/>
+        <location filename="../src/video.cpp" line="204"/>
         <source>Network error: %1 for %2</source>
         <translation>Błąd sieci: %1 for %2</translation>
     </message>
