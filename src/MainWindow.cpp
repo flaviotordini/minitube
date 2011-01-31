@@ -184,7 +184,7 @@ void MainWindow::createActions() {
     actions->insert("moveDown", moveDownAct);
     connect(moveDownAct, SIGNAL(triggered()), mediaView, SLOT(moveDownSelected()));
 
-    clearAct = new QAction(tr("&Clear recent keywords"), this);
+    clearAct = new QAction(tr("&Clear recent searches"), this);
     clearAct->setMenuRole(QAction::ApplicationSpecificRole);
     clearAct->setShortcuts(QList<QKeySequence>()
                            << QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Delete)
@@ -938,7 +938,9 @@ void MainWindow::showFullscreenPlaylist(bool show) {
 void MainWindow::clearRecentKeywords() {
     QSettings settings;
     settings.remove("recentKeywords");
+    settings.remove("recentChannels");
     searchView->updateRecentKeywords();
+    searchView->updateRecentChannels();
     statusBar()->showMessage(tr("Your privacy is now safe"));
 }
 
