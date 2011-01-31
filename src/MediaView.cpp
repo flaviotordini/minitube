@@ -328,8 +328,13 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
     }
     video->disconnect(this);
 
+
     QString tempDir = QDesktopServices::storageLocation(QDesktopServices::TempLocation);
+#ifdef Q_WS_X11
+    QString tempFile = tempDir + "/minitube-" + getenv("USERNAME") + ".mp4";
+#else
     QString tempFile = tempDir + "/minitube.mp4";
+#endif
     if (QFile::exists(tempFile) && !QFile::remove(tempFile)) {
         qDebug() << "Cannot remove temp file";
     }
