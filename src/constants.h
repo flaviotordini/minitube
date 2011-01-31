@@ -13,7 +13,6 @@ public:
     static const char *ORG_DOMAIN;
     static const char *WEBSITE;
     static const char *EMAIL;
-    static const QString USER_AGENT;
 
 };
 
