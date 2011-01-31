@@ -471,10 +471,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Clear recent keywords</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Clear the search history. Cannot be undone.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -548,6 +544,10 @@
     </message>
     <message>
         <source>Downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent searches</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

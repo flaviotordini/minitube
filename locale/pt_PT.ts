@@ -331,7 +331,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation>&amp;Limpar pesquisas recentes</translation>
+        <translation type="obsolete">&amp;Limpar pesquisas recentes</translation>
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
@@ -488,6 +488,10 @@
     <message>
         <source>Downloads complete</source>
         <translation>Transferência completa</translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent searches</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

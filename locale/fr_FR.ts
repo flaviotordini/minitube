@@ -451,7 +451,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation>&amp;Effacer les derniers mots-clés</translation>
+        <translation type="obsolete">&amp;Effacer les derniers mots-clés</translation>
     </message>
     <message>
         <source>&amp;Application</source>
@@ -531,6 +531,10 @@
     </message>
     <message>
         <source>Downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent searches</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

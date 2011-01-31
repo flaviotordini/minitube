@@ -328,7 +328,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation>&amp;Poista viimeisimmät hakusanat</translation>
+        <translation type="obsolete">&amp;Poista viimeisimmät hakusanat</translation>
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
@@ -485,6 +485,10 @@
     <message>
         <source>Downloads complete</source>
         <translation>Lataukset ovat valmistuneet</translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent searches</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

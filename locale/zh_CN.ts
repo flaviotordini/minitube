@@ -327,7 +327,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation>清除最近使用的关键字词(&amp;C)</translation>
+        <translation type="obsolete">清除最近使用的关键字词(&amp;C)</translation>
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
@@ -483,6 +483,10 @@
     </message>
     <message>
         <source>Downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent searches</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

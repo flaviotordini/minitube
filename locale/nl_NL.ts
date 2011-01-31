@@ -328,7 +328,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation>&amp;Wis de recente zoekopdrachten</translation>
+        <translation type="obsolete">&amp;Wis de recente zoekopdrachten</translation>
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
@@ -484,6 +484,10 @@
     </message>
     <message>
         <source>Downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent searches</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

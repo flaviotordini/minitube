@@ -433,9 +433,8 @@
         <translation>Posune vybraná videa níž v playlistu</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="187"/>
         <source>&amp;Clear recent keywords</source>
-        <translation>&amp;Vymazat hledané výrazy</translation>
+        <translation type="obsolete">&amp;Vymazat hledané výrazy</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="192"/>
@@ -474,7 +473,7 @@
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="277"/>
-        <location filename="../src/MainWindow.cpp" line="957"/>
+        <location filename="../src/MainWindow.cpp" line="959"/>
         <source>&amp;Downloads</source>
         <translation>&amp;Stahování</translation>
     </message>
@@ -519,7 +518,7 @@
         <translation>Maximální rozlišení videa je %1</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="958"/>
+        <location filename="../src/MainWindow.cpp" line="960"/>
         <source>Downloads complete</source>
         <translation>Všechna stahování byla dokončena</translation>
     </message>
@@ -574,7 +573,7 @@
         <translation type="obsolete">Aktuální video není v HD</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="942"/>
+        <location filename="../src/MainWindow.cpp" line="944"/>
         <source>Your privacy is now safe</source>
         <translation>Vaše soukromí je nyní v bezpečí</translation>
     </message>
@@ -582,6 +581,11 @@
         <location filename="../src/MainWindow.cpp" line="328"/>
         <source>&amp;Application</source>
         <translation>&amp;Aplikace</translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="187"/>
+        <source>&amp;Clear recent searches</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="336"/>
@@ -673,42 +677,42 @@
         <translation>Nejsledovanější</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="484"/>
+        <location filename="../src/MediaView.cpp" line="489"/>
         <source>You can now paste the YouTube link into another application</source>
         <translation>Nyní můžete vložit odkaz na video na YouTube do jiného programu</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="492"/>
+        <location filename="../src/MediaView.cpp" line="497"/>
         <source>You can now paste the video stream URL into another application</source>
         <translation>Nyní můžete vložit odkaz na video stream do jiné aplikace</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="493"/>
+        <location filename="../src/MediaView.cpp" line="498"/>
         <source>The link will be valid only for a limited time.</source>
         <translation>Tento odkaz platí jen po omezenou dobu.</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="589"/>
+        <location filename="../src/MediaView.cpp" line="594"/>
         <source>This is just the demo version of %1.</source>
         <translation>Toto je %1 -- demoverze.</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="590"/>
+        <location filename="../src/MediaView.cpp" line="595"/>
         <source>It allows you to test the application and see if it works for you.</source>
         <translation>Umožňuje vyzkoušet aplikaci, abyste ověřili, jestli pro vás funguje.</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="593"/>
+        <location filename="../src/MediaView.cpp" line="598"/>
         <source>Continue</source>
         <translation>Pokračovat</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="594"/>
+        <location filename="../src/MediaView.cpp" line="599"/>
         <source>Get the full version</source>
         <translation>Stáhnout plnou verzi</translation>
     </message>
     <message>
-        <location filename="../src/MediaView.cpp" line="620"/>
+        <location filename="../src/MediaView.cpp" line="625"/>
         <source>Downloading %1</source>
         <translation>Je stahováno %1</translation>
     </message>

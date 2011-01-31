@@ -472,7 +472,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation>מחיקת &amp;מילות המפתח האחרונות</translation>
+        <translation type="obsolete">מחיקת &amp;מילות המפתח האחרונות</translation>
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
@@ -548,6 +548,10 @@
     </message>
     <message>
         <source>Downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent searches</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

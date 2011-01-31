@@ -451,7 +451,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation>&amp;Legújabb kulcsszavak törlése</translation>
+        <translation type="obsolete">&amp;Legújabb kulcsszavak törlése</translation>
     </message>
     <message>
         <source>&amp;Application</source>
@@ -532,6 +532,10 @@
     <message>
         <source>Downloads complete</source>
         <translation>Letöltés befejezve</translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent searches</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -497,7 +497,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation>&amp;Καθαρισμός πρόσφατων αναζητήσεων</translation>
+        <translation type="obsolete">&amp;Καθαρισμός πρόσφατων αναζητήσεων</translation>
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
@@ -575,6 +575,10 @@
     <message>
         <source>Downloads complete</source>
         <translation>Οι λήψεις ολοκληρώθηκαν</translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent searches</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

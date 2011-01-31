@@ -453,7 +453,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation>Şterge &amp;căutările recente</translation>
+        <translation type="obsolete">Şterge &amp;căutările recente</translation>
     </message>
     <message>
         <source>&amp;Application</source>
@@ -533,6 +533,10 @@
     </message>
     <message>
         <source>Downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent searches</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

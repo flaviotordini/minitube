@@ -497,7 +497,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation>Очистити недавн&amp;ій пошук</translation>
+        <translation type="obsolete">Очистити недавн&amp;ій пошук</translation>
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
@@ -574,6 +574,10 @@
     <message>
         <source>Downloads complete</source>
         <translation>Завантаження завершено</translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent searches</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

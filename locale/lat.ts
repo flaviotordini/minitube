@@ -457,7 +457,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation>Dzēst atslēgvārdu vēsturi</translation>
+        <translation type="obsolete">Dzēst atslēgvārdu vēsturi</translation>
     </message>
     <message>
         <source>&amp;Application</source>
@@ -538,6 +538,10 @@
     <message>
         <source>Downloads complete</source>
         <translation>Lejupielādes pabeigtas</translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent searches</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

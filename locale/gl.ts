@@ -495,7 +495,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation>Limpar palabras &amp;clave recentes</translation>
+        <translation type="obsolete">Limpar palabras &amp;clave recentes</translation>
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
@@ -571,6 +571,10 @@
     </message>
     <message>
         <source>Downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent searches</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

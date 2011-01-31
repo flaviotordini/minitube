@@ -452,7 +452,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation>&amp;Nullstill siste søkeord</translation>
+        <translation type="obsolete">&amp;Nullstill siste søkeord</translation>
     </message>
     <message>
         <source>&amp;Application</source>
@@ -532,6 +532,10 @@
     </message>
     <message>
         <source>Downloads complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Clear recent searches</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
