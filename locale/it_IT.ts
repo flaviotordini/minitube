@@ -608,8 +608,8 @@
         <translation>%1 visualizzazioni</translation>
     </message>
     <message>
-        <source>%1 of %2 (%3) ? %4</source>
-        <translation type="obsolete">%1 di %2 (%3) ? %4</translation>
+        <source>%1 of %2 (%3) — %4</source>
+        <translation type="obsolete">%1 di %2 (%3) — %4</translation>
     </message>
     <message>
         <source>Preparing</source>
@@ -642,10 +642,6 @@
     <message>
         <source>Restart downloading</source>
         <translation>Prova a scaricare di nuovo</translation>
-    </message>
-    <message>
-        <source>%1 of %2 (%3) — %4</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
