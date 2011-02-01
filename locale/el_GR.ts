@@ -120,9 +120,10 @@
     <name>DownloadManager</name>
     <message numerus="yes">
         <source>%n Download(s)</source>
+        <translatorcomment> </translatorcomment>
         <translation>
+            <numerusform>%n Λήψη</numerusform>
             <numerusform>%n Λήψεις</numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -578,7 +579,7 @@
     </message>
     <message>
         <source>&amp;Clear recent searches</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Καθαρισμός πρόσφατων αναζητήσεων</translation>
     </message>
 </context>
 <context>
@@ -646,6 +647,11 @@
         <translation>Προβολές %1</translation>
     </message>
     <message>
+        <source>%1 of %2 (%3) — %4</source>
+        <translatorcomment>needed description of what this variables represent so it can be translated..</translatorcomment>
+        <translation>%1 από %2 (%3) — %4</translation>
+    </message>
+    <message>
         <source>Preparing</source>
         <translation>Προετοιμάζεται</translation>
     </message>
@@ -676,10 +682,6 @@
     <message>
         <source>Restart downloading</source>
         <translation>Επανεκκίνηση λήψης</translation>
-    </message>
-    <message>
-        <source>%1 of %2 (%3) — %4</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -717,28 +719,28 @@
     </message>
     <message>
         <source>Get the full version</source>
-        <translation type="unfinished">Αποκτήστε την πλήρη έκδοση</translation>
+        <translation>Αποκτήστε την πλήρη έκδοση</translation>
     </message>
     <message>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Πληκτρολογήστε</translation>
     </message>
     <message>
         <source>a keyword</source>
-        <translation type="unfinished"></translation>
+        <translation>μια λέξη-κλειδί</translation>
     </message>
     <message>
         <source>a channel</source>
-        <translation type="unfinished"></translation>
+        <translation>ένα κανάλι</translation>
     </message>
     <message>
         <source>to start watching videos.</source>
-        <translation type="unfinished"></translation>
+        <translation>για να αρχίσετε να βλέπετε βίντεο.</translation>
     </message>
     <message>
         <source>Recent channels</source>
-        <translation type="unfinished"></translation>
+        <translation>Πρόσφατα κανάλια</translation>
     </message>
 </context>
 <context>
@@ -776,7 +778,7 @@
     </message>
     <message>
         <source>Cannot get video stream for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Αδυναμία ανάκτησης ροής βίντεο για %1</translation>
     </message>
 </context>
 </TS>

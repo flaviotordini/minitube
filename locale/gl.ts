@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0">
+<!DOCTYPE TS><TS>
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutView</name>
@@ -46,11 +44,11 @@
     </message>
     <message>
         <source>About</source>
-        <translation>Acerca de</translation>
+        <translation>Sobre</translation>
     </message>
     <message>
         <source>What you always wanted to know about %1 and never dared to ask</source>
-        <translation>O que vostede sempre quixo saber acerca de %1 e nunca se atreveu a preguntar</translation>
+        <translation>O que vostede sempre quixo saber sobre %1 e nunca se atreveu a preguntar</translation>
     </message>
     <message>
         <source>Compact mode contributed by %1.</source>
@@ -80,145 +78,144 @@
     <name>DownloadItem</name>
     <message>
         <source>bytes</source>
-        <translation type="unfinished"></translation>
+        <translation>bytes</translation>
     </message>
     <message>
         <source>KB</source>
-        <translation type="unfinished"></translation>
+        <translation>KB</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
     <message>
         <source>bytes/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>bytes/seg</translation>
     </message>
     <message>
         <source>KB/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>KB/seg</translation>
     </message>
     <message>
         <source>MB/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>MB/seg</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>segundos</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>minutos</translation>
     </message>
     <message>
         <source>%4 %5 remaining</source>
-        <translation type="unfinished"></translation>
+        <translation>%4 %5 restantes</translation>
     </message>
 </context>
 <context>
     <name>DownloadManager</name>
-    <message numerus="yes">
+    <message>
         <source>%n Download(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>%n Descarga(s)
         </translation>
     </message>
     <message>
         <source>This is just the demo version of %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Isto é só a versión demo de %1.</translation>
     </message>
     <message>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation type="unfinished"></translation>
+        <translation>Só se poden descargar videos curtos de menos de %1 minutos para que poida probar a utilidade de descargas.</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Continuar</translation>
     </message>
     <message>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation>Obter a versión completa</translation>
     </message>
 </context>
 <context>
     <name>DownloadSettings</name>
     <message>
         <source>Change location...</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiar a localización...</translation>
     </message>
     <message>
         <source>Choose the download location</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolla a localización da descarga</translation>
     </message>
     <message>
         <source>Download location changed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambiada a localización da descarga.</translation>
     </message>
     <message>
         <source>Current downloads will still go in the previous location.</source>
-        <translation type="unfinished"></translation>
+        <translation>A descarga actual aínda se fai na localización anterior.</translation>
     </message>
     <message>
         <source>Downloading to: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Descargando en: %1</translation>
     </message>
 </context>
 <context>
     <name>DownloadView</name>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Descargas</translation>
     </message>
 </context>
 <context>
     <name>GlobalShortcuts</name>
     <message>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation>Reproducir</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Deter</translation>
     </message>
     <message>
         <source>Play/Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Reproducir/deter</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Parar</translation>
     </message>
     <message>
         <source>Stop playing after current track</source>
-        <translation type="unfinished"></translation>
+        <translation>Parar a reprodución despois da pista actual</translation>
     </message>
     <message>
         <source>Next track</source>
-        <translation type="unfinished"></translation>
+        <translation>Seguinte pista</translation>
     </message>
     <message>
         <source>Previous track</source>
-        <translation type="unfinished"></translation>
+        <translation>Pista anterior</translation>
     </message>
     <message>
         <source>Increase volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Aumentar volume</translation>
     </message>
     <message>
         <source>Decrease volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Diminuir volume</translation>
     </message>
     <message>
         <source>Mute</source>
-        <translation type="unfinished"></translation>
+        <translation>Silenciar</translation>
     </message>
     <message>
         <source>Seek forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar cara adiante</translation>
     </message>
     <message>
         <source>Seek backward</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar cara atrás</translation>
     </message>
 </context>
 <context>
@@ -263,11 +260,11 @@
     </message>
     <message>
         <source>&amp;Stop</source>
-        <translation>&amp;Deter</translation>
+        <translation>&amp;Parar</translation>
     </message>
     <message>
         <source>Stop playback and go back to the search view</source>
-        <translation>Deter a reprodución e volver á vista de busca</translation>
+        <translation>Parara a reprodución e volver á vista de busca</translation>
     </message>
     <message>
         <source>Esc</source>
@@ -287,11 +284,11 @@
     </message>
     <message>
         <source>&amp;Pause</source>
-        <translation>&amp;Pausar</translation>
+        <translation>&amp;Deter</translation>
     </message>
     <message>
         <source>Pause playback</source>
-        <translation>Pausar a reprodución</translation>
+        <translation>Detera reprodución</translation>
     </message>
     <message>
         <source>Space</source>
@@ -323,11 +320,11 @@
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>&amp;Eliminar</translation>
+        <translation>&amp;Retirar</translation>
     </message>
     <message>
         <source>Remove the selected videos from the playlist</source>
-        <translation>Eliminar os videos seleccionados da lista de reprodución</translation>
+        <translation>Retirar os videos seleccionados da lista de reprodución</translation>
     </message>
     <message>
         <source>Move &amp;Up</source>
@@ -387,7 +384,7 @@
     </message>
     <message>
         <source>&amp;About</source>
-        <translation>&amp;Acerca de</translation>
+        <translation>&amp;Sobre</translation>
     </message>
     <message>
         <source>Info about %1</source>
@@ -495,7 +492,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation type="obsolete">Limpar palabras &amp;clave recentes</translation>
+        <translation>Limpar palabras &amp;clave recentes</translation>
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
@@ -539,43 +536,39 @@
     </message>
     <message>
         <source>&amp;Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Descargas</translation>
     </message>
     <message>
         <source>Show details about video downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar os detalles sobre as descargas de vídeo</translation>
     </message>
     <message>
         <source>&amp;Download</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Descarga</translation>
     </message>
     <message>
         <source>Download the current video</source>
-        <translation type="unfinished"></translation>
+        <translation>Descargando o vídeo actual</translation>
     </message>
     <message>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation type="unfinished"></translation>
+        <translation>Desexa saír de %1 cunha descarga en proceso?</translation>
     </message>
     <message>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Se pecha %1 agora, esta descarga vai seren cancelada.</translation>
     </message>
     <message>
         <source>Close and cancel download</source>
-        <translation type="unfinished"></translation>
+        <translation>Pechar e cancelar a descarga</translation>
     </message>
     <message>
         <source>Wait for download to finish</source>
-        <translation type="unfinished"></translation>
+        <translation>Agardar a que remate a descarga</translation>
     </message>
     <message>
         <source>Downloads complete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Clear recent searches</source>
-        <translation type="unfinished"></translation>
+        <translation>Descargas complatadas</translation>
     </message>
 </context>
 <context>
@@ -610,30 +603,30 @@
     </message>
     <message>
         <source>This is just the demo version of %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Isto é só a versión demo de %1.</translation>
     </message>
     <message>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation type="unfinished"></translation>
+        <translation>Permítelle probar o aplicativo e comprobar se vai ao seu xeito.</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Continuar</translation>
     </message>
     <message>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation>Obter a versión completa</translation>
     </message>
     <message>
         <source>Downloading %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Descargando %1</translation>
     </message>
 </context>
 <context>
     <name>NetworkAccess</name>
     <message>
         <source>Network error: %1</source>
-        <translation>Erro na rede: %1</translation>
+        <translation>Produciuse un erro na rede: %1</translation>
     </message>
 </context>
 <context>
@@ -643,40 +636,40 @@
         <translation>%1 visualizacións</translation>
     </message>
     <message>
+        <source>%1 of %2 (%3) — %4</source>
+        <translation>%1 de %2 (%3) — %4</translation>
+    </message>
+    <message>
         <source>Preparing</source>
-        <translation type="unfinished"></translation>
+        <translation>Preparando</translation>
     </message>
     <message>
         <source>Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Produciuse un fallo</translation>
     </message>
     <message>
         <source>Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>Completada</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Detida</translation>
     </message>
     <message>
         <source>Stop downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>Deter a descarga</translation>
     </message>
     <message>
         <source>Show in %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar en %1</translation>
     </message>
     <message>
         <source>Open parent folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir o cartafol pai</translation>
     </message>
     <message>
         <source>Restart downloading</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 of %2 (%3) — %4</source>
-        <translation type="unfinished"></translation>
+        <translation>Reiniciar a descarga</translation>
     </message>
 </context>
 <context>
@@ -690,7 +683,7 @@
     <name>SearchView</name>
     <message>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
-        <translation>Benvindo ao &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
+        <translation>Benvido a &lt;a href=&apos;%1&apos;&gt;%2&lt;/a,</translation>
     </message>
     <message>
         <source>Enter a keyword to start watching videos.</source>
@@ -706,7 +699,7 @@
     </message>
     <message>
         <source>A new version of %1 is available. Please &lt;a href=&apos;%2&apos;&gt;update to version %3&lt;/a&gt;</source>
-        <translation>Está dispoñible unha nova versión de %1. Por favor, &lt;a href=&apos;%2&apos;&gt;actualice cara a versión %3&lt;/a&gt;</translation>
+        <translation>Está dispoñíbel unha nova versión de %1. Por favor, &lt;a href=&apos;%2&apos;&gt;actualice cara a versión %3&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Make yourself comfortable</source>
@@ -714,28 +707,27 @@
     </message>
     <message>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation>Obter a versión completa</translation>
     </message>
     <message>
         <source>Enter</source>
-        <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Introduza</translation>
     </message>
     <message>
         <source>a keyword</source>
-        <translation type="unfinished"></translation>
+        <translation>unha palabra clave</translation>
     </message>
     <message>
         <source>a channel</source>
-        <translation type="unfinished"></translation>
+        <translation>un canle</translation>
     </message>
     <message>
         <source>to start watching videos.</source>
-        <translation type="unfinished"></translation>
+        <translation>para comezar a ver vídeos.</translation>
     </message>
     <message>
         <source>Recent channels</source>
-        <translation type="unfinished"></translation>
+        <translation>Canles recentes</translation>
     </message>
 </context>
 <context>
@@ -750,7 +742,7 @@
     </message>
     <message>
         <source>Use high quality video when available</source>
-        <translation type="obsolete">Utilizar vídeo de alta qualidade quando estiver disponível</translation>
+        <translation>Empregar vídeo en alta calidade cando estea dispoñíbel</translation>
     </message>
     <message>
         <source>&amp;Saved recent keywords</source>
@@ -773,7 +765,7 @@
     </message>
     <message>
         <source>Cannot get video stream for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Non é posíbel obter o fluxo de vídeo de %1</translation>
     </message>
 </context>
 </TS>
