@@ -688,8 +688,7 @@
     </message>
     <message>
         <source>a keyword</source>
-        <translatorcomment>una parola chiave</translatorcomment>
-        <translation></translation>
+        <translation>una parola chiave</translation>
     </message>
     <message>
         <source>a channel</source>
