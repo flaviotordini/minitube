@@ -80,145 +80,145 @@
     <name>DownloadItem</name>
     <message>
         <source>bytes</source>
-        <translation type="unfinished"></translation>
+        <translation>byte</translation>
     </message>
     <message>
         <source>KB</source>
-        <translation type="unfinished"></translation>
+        <translation>KB</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>MB</translation>
     </message>
     <message>
         <source>bytes/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>byte/san</translation>
     </message>
     <message>
         <source>KB/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>KB/san</translation>
     </message>
     <message>
         <source>MB/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>MB/san</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>saniye</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>dakika</translation>
     </message>
     <message>
         <source>%4 %5 remaining</source>
-        <translation type="unfinished"></translation>
+        <translation>%4 %5 kaldı</translation>
     </message>
 </context>
 <context>
     <name>DownloadManager</name>
     <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n İndirme</numerusform>
         </translation>
     </message>
     <message>
         <source>This is just the demo version of %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu sadece %&apos;in demo sürümüdür.</translation>
     </message>
     <message>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu sadece %1 dakikadan kısa videoları indirebilir, indirme özelliğini böylece test edebilirsiniz.</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Devam</translation>
     </message>
     <message>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation>Tam sürüme geç</translation>
     </message>
 </context>
 <context>
     <name>DownloadSettings</name>
     <message>
         <source>Change location...</source>
-        <translation type="unfinished"></translation>
+        <translation>Konumu değiştir...</translation>
     </message>
     <message>
         <source>Choose the download location</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirme konumunu seçin</translation>
     </message>
     <message>
         <source>Download location changed.</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirme konumu değişti</translation>
     </message>
     <message>
         <source>Current downloads will still go in the previous location.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mevcut indirmeler önceki konumda devam edecek</translation>
     </message>
     <message>
         <source>Downloading to: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>İndiriliyor: %1</translation>
     </message>
 </context>
 <context>
     <name>DownloadView</name>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirmeler</translation>
     </message>
 </context>
 <context>
     <name>GlobalShortcuts</name>
     <message>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation>Oynat</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Bekle</translation>
     </message>
     <message>
         <source>Play/Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Oynat/Bekle</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Dur</translation>
     </message>
     <message>
         <source>Stop playing after current track</source>
-        <translation type="unfinished"></translation>
+        <translation>Şimdiki videodan sonra oynatmayı durdur</translation>
     </message>
     <message>
         <source>Next track</source>
-        <translation type="unfinished"></translation>
+        <translation>Sonraki video</translation>
     </message>
     <message>
         <source>Previous track</source>
-        <translation type="unfinished"></translation>
+        <translation>Önceki video</translation>
     </message>
     <message>
         <source>Increase volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Sesi arttır</translation>
     </message>
     <message>
         <source>Decrease volume</source>
-        <translation type="unfinished"></translation>
+        <translation>Sesi azalt</translation>
     </message>
     <message>
         <source>Mute</source>
-        <translation type="unfinished"></translation>
+        <translation>Sesi kes</translation>
     </message>
     <message>
         <source>Seek forward</source>
-        <translation type="unfinished"></translation>
+        <translation>İleri sar</translation>
     </message>
     <message>
         <source>Seek backward</source>
-        <translation type="unfinished"></translation>
+        <translation>Geri sar</translation>
     </message>
 </context>
 <context>
@@ -319,7 +319,7 @@
     </message>
     <message>
         <source>&amp;Download</source>
-        <translation type="unfinished">&amp;Herunterladen</translation>
+        <translation>&amp;İndir</translation>
     </message>
     <message>
         <source>Download this video</source>
@@ -559,39 +559,39 @@
     </message>
     <message>
         <source>&amp;Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;İndirmeler</translation>
     </message>
     <message>
         <source>Show details about video downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Video indirmelerinin ayrıntılarını göster</translation>
     </message>
     <message>
         <source>Download the current video</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçerli videoyu indir</translation>
     </message>
     <message>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 İndiriliyor, çıkmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Eğer %1&apos;İ şimdi kapatırsanız, bu indirme iptal edilecek.</translation>
     </message>
     <message>
         <source>Close and cancel download</source>
-        <translation type="unfinished"></translation>
+        <translation>Kapat ve indirmeyi iptal et</translation>
     </message>
     <message>
         <source>Wait for download to finish</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirmenin bitmesini bekle</translation>
     </message>
     <message>
         <source>Downloads complete</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirme tamamlandı</translation>
     </message>
     <message>
         <source>&amp;Clear recent searches</source>
-        <translation type="unfinished"></translation>
+        <translation>Arama geçmişini &amp;temizle</translation>
     </message>
 </context>
 <context>
@@ -626,23 +626,23 @@
     </message>
     <message>
         <source>This is just the demo version of %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu sadece %1&apos;in demo sürümüdür.</translation>
     </message>
     <message>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu, uygulamayı test etmenizi ve çalışıp çalışmadığını görmenizi sağlar.</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Devam</translation>
     </message>
     <message>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation>Tam sürüme geç</translation>
     </message>
     <message>
         <source>Downloading %1</source>
-        <translation type="unfinished"></translation>
+        <translation>İndiriliyor %1</translation>
     </message>
 </context>
 <context>
@@ -659,40 +659,40 @@
         <translation>%1 görüntüleme</translation>
     </message>
     <message>
+        <source>%1 of %2 (%3) — %4</source>
+        <translation></translation>
+    </message>
+    <message>
         <source>Preparing</source>
-        <translation type="unfinished"></translation>
+        <translation>Hazırlanıyor</translation>
     </message>
     <message>
         <source>Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Başarısız oldu</translation>
     </message>
     <message>
         <source>Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamamlandı</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>Durdu</translation>
     </message>
     <message>
         <source>Stop downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirmeyi durdur</translation>
     </message>
     <message>
         <source>Show in %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 içinde göster</translation>
     </message>
     <message>
         <source>Open parent folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Üst dizini aç</translation>
     </message>
     <message>
         <source>Restart downloading</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 of %2 (%3) — %4</source>
-        <translation type="unfinished"></translation>
+        <translation>İndirmeyi tekrar başlat</translation>
     </message>
 </context>
 <context>
@@ -730,28 +730,28 @@
     </message>
     <message>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation>Tam sürüme geç</translation>
     </message>
     <message>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Giriş yapın</translation>
     </message>
     <message>
         <source>a keyword</source>
-        <translation type="unfinished"></translation>
+        <translation>bir anahtar kelime</translation>
     </message>
     <message>
         <source>a channel</source>
-        <translation type="unfinished"></translation>
+        <translation>bir kanal</translation>
     </message>
     <message>
         <source>to start watching videos.</source>
-        <translation type="unfinished"></translation>
+        <translation>ve videoları izlemeye başlayın.</translation>
     </message>
     <message>
         <source>Recent channels</source>
-        <translation type="unfinished"></translation>
+        <translation>Önceki kanallar</translation>
     </message>
 </context>
 <context>
@@ -773,7 +773,7 @@
     </message>
     <message>
         <source>Cannot get video stream for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 için video akışı alınamıyor.</translation>
     </message>
 </context>
 </TS>
