@@ -616,10 +616,6 @@
         <translation>%1-visitas</translation>
     </message>
     <message>
-        <source>%1 of %2 (%3) ? %4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Preparing</source>
         <translation type="unfinished"></translation>
     </message>
@@ -649,6 +645,10 @@
     </message>
     <message>
         <source>Restart downloading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3) — %4</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

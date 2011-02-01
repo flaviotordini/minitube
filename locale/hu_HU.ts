@@ -603,10 +603,6 @@
         <translation>%1x megtekintve</translation>
     </message>
     <message>
-        <source>%1 of %2 (%3) ? %4</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Preparing</source>
         <translation>Előkészítés</translation>
     </message>
@@ -637,6 +633,10 @@
     <message>
         <source>Restart downloading</source>
         <translation>Letöltés újraindítása</translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3) — %4</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

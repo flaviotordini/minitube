@@ -646,11 +646,6 @@
         <translation>Προβολές %1</translation>
     </message>
     <message>
-        <source>%1 of %2 (%3) ? %4</source>
-        <translatorcomment>needed description of what this variables represent so it can be translated..</translatorcomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Preparing</source>
         <translation>Προετοιμάζεται</translation>
     </message>
@@ -681,6 +676,10 @@
     <message>
         <source>Restart downloading</source>
         <translation>Επανεκκίνηση λήψης</translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3) — %4</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

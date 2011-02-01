@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.0" language="pl_PL" sourcelanguage="en">
+<defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutView</name>
     <message>
@@ -691,9 +692,13 @@
         <translation>%1 widziane</translation>
     </message>
     <message>
-        <location filename="../src/playlist/PrettyItemDelegate.cpp" line="286"/>
         <source>%1 of %2 (%3) ? %4</source>
-        <translation>%1 of %2 (%3) ? %4</translation>
+        <translation type="obsolete">%1 of %2 (%3) ? %4</translation>
+    </message>
+    <message>
+        <location filename="../src/playlist/PrettyItemDelegate.cpp" line="286"/>
+        <source>%1 of %2 (%3) — %4</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="293"/>

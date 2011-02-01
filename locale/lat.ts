@@ -610,7 +610,7 @@
     </message>
     <message>
         <source>%1 of %2 (%3) ? %4</source>
-        <translation>%1 no %2 (%3) ? %4</translation>
+        <translation type="obsolete">%1 no %2 (%3) ? %4</translation>
     </message>
     <message>
         <source>Preparing</source>
@@ -643,6 +643,10 @@
     <message>
         <source>Restart downloading</source>
         <translation>Atsākt lejupielādi</translation>
+    </message>
+    <message>
+        <source>%1 of %2 (%3) — %4</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

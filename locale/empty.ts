@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.0">
+<defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutView</name>
     <message>
@@ -679,7 +680,7 @@
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="286"/>
-        <source>%1 of %2 (%3) ? %4</source>
+        <source>%1 of %2 (%3) — %4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

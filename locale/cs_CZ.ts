@@ -737,9 +737,13 @@
         <translation>Shlédnuto %1x</translation>
     </message>
     <message>
-        <location filename="../src/playlist/PrettyItemDelegate.cpp" line="286"/>
         <source>%1 of %2 (%3) ? %4</source>
-        <translation>1 z %2 (%3) ? %4</translation>
+        <translation type="obsolete">1 z %2 (%3) ? %4</translation>
+    </message>
+    <message>
+        <location filename="../src/playlist/PrettyItemDelegate.cpp" line="286"/>
+        <source>%1 of %2 (%3) — %4</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="293"/>

@@ -792,9 +792,13 @@
         <translation>%1 mal betrachtet</translation>
     </message>
     <message>
-        <location filename="../src/playlist/PrettyItemDelegate.cpp" line="286"/>
         <source>%1 of %2 (%3) ? %4</source>
-        <translation>%1 von %2 (%3) – %4</translation>
+        <translation type="obsolete">%1 von %2 (%3) – %4</translation>
+    </message>
+    <message>
+        <location filename="../src/playlist/PrettyItemDelegate.cpp" line="286"/>
+        <source>%1 of %2 (%3) — %4</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="293"/>
