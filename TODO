@@ -6,30 +6,21 @@
 
 ## Killer features
 
-- YouTube related videos
+- Related videos
     List of related videos identical to the playlist.
     When a related video is clicked Minitube will keep playing the next related videos.
     Don't know where the list should appear, maybe on the right, but when activated it should replace the playlist.
     Maybe the playlist should disappear, leaving only the panel on the right.
 
-- Accept YouTube URLs in the search box and as CLI args
-    ./minitube [url]
-    When Minitube has a single video to play, it will continue playing related videos.
-    This feature depends on the related videos above.
-    We could also accept any URL and scrape web pages searching for YouTube videos.
-
-- Windows build
-    Stefan Brueck has compiled on Windows but there are problems with Phonon's directX backend
-    Marco di Antonio tried with the Mplayer backend, but it is very unstable.
-    Waiting for the VLC backend to work.
-
 - Subtitles, see http://google2srt.sourceforge.net/
 
 ## Minor Features
+- Search for playlists http://code.google.com/apis/youtube/2.0/developers_guide_protocol.html#Searching_for_Playlists
 - Safe search levels (in the status bar beside HD)
-- Show buffering progress (when Phonon backends will work)
 - Show more thumbs on hover with animated crossfade
 - Time filter on the bottom of the playlist: Today, 7 days, 30 days
+- Accept any URL and scrape web pages searching for YouTube videos.
+- Accept YouTube URLs as CLI args
 
 ## Unsure features
 - Restore status when a recent keyword is clicked: skipped videos, sortBar and play time
