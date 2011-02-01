@@ -540,7 +540,7 @@
     </message>
     <message>
         <source>&amp;Clear recent searches</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Cancella le ultime ricerche</translation>
     </message>
 </context>
 <context>
@@ -679,28 +679,29 @@
     </message>
     <message>
         <source>Get the full version</source>
-        <translation type="unfinished">Compra la versione completa</translation>
+        <translation>Compra la versione completa</translation>
     </message>
     <message>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Scrivi</translation>
     </message>
     <message>
         <source>a keyword</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>una parola chiave</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <source>a channel</source>
-        <translation type="unfinished"></translation>
+        <translation>un canale</translation>
     </message>
     <message>
         <source>to start watching videos.</source>
-        <translation type="unfinished"></translation>
+        <translation>per iniziare a guardare i video.</translation>
     </message>
     <message>
         <source>Recent channels</source>
-        <translation type="unfinished"></translation>
+        <translation>Ultimi canali</translation>
     </message>
 </context>
 <context>
@@ -730,7 +731,7 @@
     </message>
     <message>
         <source>Cannot get video stream for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile ottenere il flusso video per %1</translation>
     </message>
 </context>
 </TS>
