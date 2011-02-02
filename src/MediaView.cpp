@@ -183,7 +183,10 @@ void MediaView::search(SearchParams *searchParams) {
         if (separator > 0 && separator + 1 < keyword.length()) {
             display = keyword.mid(separator+1);
         }
-    }
+
+        // also hide sidebar
+        playlistWidget->hide();
+    } else playlistWidget->show();
     // tr("You're watching \"%1\"").arg(searchParams->keywords())
 
 }
