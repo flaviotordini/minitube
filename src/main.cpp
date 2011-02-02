@@ -2,6 +2,7 @@
 #include <qtsingleapplication.h>
 #include "constants.h"
 #include "MainWindow.h"
+#include "searchparams.h"
 #ifdef APP_MAC
 // #include "local/mac/mac_startup.h"
 #endif
@@ -83,6 +84,13 @@ int main(int argc, char **argv) {
 
     // all string literals are UTF-8
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+
+    if (app.arguments().size() > 1) {
+        QString query = app.arguments().at(1);
+        SearchParams *searchParams = new SearchParams();
+        searchParams->setKeywords(query);
+        mainWin.showMedia(searchParams);
+    }
 
     return app.exec();
 }

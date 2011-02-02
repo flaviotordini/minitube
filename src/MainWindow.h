@@ -23,6 +23,9 @@ public:
     ~MainWindow();
     Phonon::SeekSlider* getSeekSlider() { return seekSlider; }
 
+public slots:
+    void showMedia(SearchParams *params);
+
 protected:
     void closeEvent(QCloseEvent *);
     bool eventFilter(QObject *obj, QEvent *event);
@@ -31,7 +34,6 @@ private slots:
     void fadeInWidget(QWidget *oldWidget, QWidget *newWidget);
     void goBack();
     void showSearch();
-    void showMedia(SearchParams *params);
     void visitSite();
     void donate();
     void about();
