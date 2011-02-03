@@ -6,7 +6,7 @@
     <name>AboutView</name>
     <message>
         <source>There&apos;s life outside the browser!</source>
-        <translation>Não há vida fora do navegador!</translation>
+        <translation>Há vida fora do navegador!</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -14,7 +14,7 @@
     </message>
     <message>
         <source>This is a &quot;Technology Preview&quot; release, do not expect it to be perfect.</source>
-        <translation type="obsolete">Este é um lançamento &quot;Prévio da Tecnologia&quot;, não esperamos que ela seja perfeita.</translation>
+        <translation type="obsolete">Este é um lançamento &quot;Prévio da Tecnologia&quot;, não espere que esteja perfeito.</translation>
     </message>
     <message>
         <source>Report bugs and send in your ideas to %1</source>
@@ -22,11 +22,11 @@
     </message>
     <message>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 é um Software livre, mas o seu desenvolvimento tem um tempo precioso.</translation>
+        <translation>%1 é um Software livre, mas seu desenvolvimento toma um tempo precioso.</translation>
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate via PayPal&lt;/a&gt; to support the continued development of %2.</source>
-        <translation type="obsolete">Por favor, &lt;a href=&apos;%1&apos;&gt;doções via PayPal&lt;/a&gt; para apoiar o desenvolvimento contínuo de %2.</translation>
+        <translation type="obsolete">Por favor, &lt;a href=&apos;%1&apos;&gt;doe via PayPal&lt;/a&gt; para apoiar o desenvolvimento continuado de %2.</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -58,15 +58,15 @@
     </message>
     <message>
         <source>HTTP proxy support contributed by %1.</source>
-        <translation>Suporte a HTTP proxy contribuído por %1.</translation>
+        <translation>Suporte a proxy HTTP contribuído por %1.</translation>
     </message>
     <message>
         <source>Windows version built by %1</source>
-        <translation type="obsolete">Vesão da janela construída por %1</translation>
+        <translation type="obsolete">Versão de janela construída por %1</translation>
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>Por favor &lt;a href=&apos;%1&apos;&gt;doe&lt;/a&gt; para apoiar o desenvolvimento contínuo de %2.</translation>
+        <translation>Por favor &lt;a href=&apos;%1&apos;&gt;doe&lt;/a&gt; para apoiar o desenvolvimento continuado de %2.</translation>
     </message>
 </context>
 <context>
@@ -126,11 +126,11 @@
     </message>
     <message>
         <source>This is just the demo version of %1.</source>
-        <translation>Esta é apenas a versão demonstação de %1.</translation>
+        <translation>Esta é apenas a versão demonstração de %1.</translation>
     </message>
     <message>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation>Ele só pode fazer download de vídeos curtos de %1 minutos para que você possa testar a funcionalidade de download.</translation>
+        <translation>Só pode fazer download de vídeos menores que %1 minutos para que você possa testar a funcionalidade de download.</translation>
     </message>
     <message>
         <source>Continue</source>
@@ -149,7 +149,7 @@
     </message>
     <message>
         <source>Choose the download location</source>
-        <translation>Escolher um local para o download</translation>
+        <translation>Escolha um local para o download</translation>
     </message>
     <message>
         <source>Download location changed.</source>
@@ -215,11 +215,11 @@
     </message>
     <message>
         <source>Seek forward</source>
-        <translation>Procurar próximo</translation>
+        <translation>Avançar</translation>
     </message>
     <message>
         <source>Seek backward</source>
-        <translation>Procurar anterior</translation>
+        <translation>Voltar</translation>
     </message>
 </context>
 <context>
@@ -230,7 +230,7 @@
     </message>
     <message>
         <source>Show %1 More</source>
-        <translation>Mostrar %1 a mais</translation>
+        <translation>Mostrar mais %1</translation>
     </message>
     <message>
         <source>No videos</source>
@@ -384,7 +384,7 @@
     </message>
     <message>
         <source>Please support the continued development of %1</source>
-        <translation>Por favor, apoie o desenvolvimento contínuo de %1</translation>
+        <translation>Por favor, apoie o desenvolvimento continuado de %1</translation>
     </message>
     <message>
         <source>&amp;About</source>
@@ -695,7 +695,7 @@
     </message>
     <message>
         <source>Enter a keyword to start watching videos.</source>
-        <translation type="obsolete">Digite uma palavra-chave para começar a assistir os vídeos.</translation>
+        <translation type="obsolete">Digite uma palavra-chave para começar a assistir vídeos.</translation>
     </message>
     <message>
         <source>Watch</source>
@@ -759,7 +759,7 @@
     </message>
     <message>
         <source>&amp;Clear recent keywords</source>
-        <translation type="obsolete">Palavras-chave &amp;limpas recentemente</translation>
+        <translation type="obsolete">&amp;Limpar palavras-chave recentes</translation>
     </message>
     <message>
         <source>&amp;Close</source>
