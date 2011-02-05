@@ -42,6 +42,7 @@ public:
 
     void setMediaObject(Phonon::MediaObject *mediaObject);
     void setSlider(QSlider *slider);
+    QSize getPlaylistSize();
 
 public slots:
     void search(SearchParams *searchParams);

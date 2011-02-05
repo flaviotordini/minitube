@@ -82,6 +82,8 @@ MainWindow::MainWindow() :
             SLOT(updateDownloadMessage(QString)));
     connect(DownloadManager::instance(), SIGNAL(finished()),
             SLOT(downloadsFinished()));
+
+    this->setMouseTracking(true);
 }
 
 MainWindow::~MainWindow() {
@@ -99,13 +101,13 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
         if (x < 0)
             this->mediaView->setPlaylistVisible(false);
     }
+
     if (event->type() == QEvent::ToolTip) {
         // kill tooltips
         return true;
-    } else {
-        // standard event processing
-        return QObject::eventFilter(obj, event);
     }
+    // standard event processing
+    return QObject::eventFilter(obj, event);
 }
 
 void MainWindow::createActions() {
@@ -933,16 +935,6 @@ void MainWindow::toggleDefinitionMode() {
     }
     QString nextDefinition = definitionNames.at(nextIndex);
     setDefinitionMode(nextDefinition);
-}
-
-void MainWindow::showFullscreenToolbar(bool show) {
-    if (!m_fullscreen) return;
-    mainToolBar->setVisible(show);
-}
-
-void MainWindow::showFullscreenPlaylist(bool show) {
-    if (!m_fullscreen) return;
-    mediaView->setPlaylistVisible(show);
 }
 
 void MainWindow::clearRecentKeywords() {
