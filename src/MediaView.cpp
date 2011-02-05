@@ -626,10 +626,6 @@ void MediaView::fullscreen() {
     videoAreaWidget->showFullScreen();
 }
 
-QSize MediaView::getPlaylistSize() {
-    return this->playlistWidget->size();
-}
-
 /*
 void MediaView::setSlider(QSlider *slider) {
     this->slider = slider;

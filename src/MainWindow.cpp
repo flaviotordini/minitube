@@ -82,8 +82,6 @@ MainWindow::MainWindow() :
             SLOT(updateDownloadMessage(QString)));
     connect(DownloadManager::instance(), SIGNAL(finished()),
             SLOT(downloadsFinished()));
-
-    this->setMouseTracking(true);
 }
 
 MainWindow::~MainWindow() {
@@ -935,6 +933,16 @@ void MainWindow::toggleDefinitionMode() {
     }
     QString nextDefinition = definitionNames.at(nextIndex);
     setDefinitionMode(nextDefinition);
+}
+
+void MainWindow::showFullscreenToolbar(bool show) {
+    if (!m_fullscreen) return;
+    mainToolBar->setVisible(show);
+}
+
+void MainWindow::showFullscreenPlaylist(bool show) {
+    if (!m_fullscreen) return;
+    mediaView->setPlaylistVisible(show);
 }
 
 void MainWindow::clearRecentKeywords() {
