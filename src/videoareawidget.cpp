@@ -107,11 +107,11 @@ void VideoAreaWidget::mouseMoveEvent(QMouseEvent *event) {
     const int x = event->pos().x();
     const int y = event->pos().y();
 
-    bool visible = y <= 10;
+    bool visible = y <= 0;
     bool ret = QMetaObject::invokeMethod(mainWindow, "showFullscreenToolbar", Qt::DirectConnection, Q_ARG(bool, visible));
     if (!ret) qDebug() << "showFullscreenToolbar invokeMethod failed";
 
-    visible = x <= 10;
+    visible = x <= 0;
     ret = QMetaObject::invokeMethod(mainWindow, "showFullscreenPlaylist", Qt::DirectConnection, Q_ARG(bool, visible));
     if (!ret) qDebug() << "showFullscreenPlaylist invokeMethod failed";
 }
