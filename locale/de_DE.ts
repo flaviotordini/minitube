@@ -7,7 +7,7 @@
     <message>
         <location filename="../src/AboutView.cpp" line="21"/>
         <source>There&apos;s life outside the browser!</source>
-        <translation>Es existiert Leben neben dem Browser!</translation>
+        <translation>Es gibt ein Leben außerhalb des Browsers!</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="22"/>
@@ -386,7 +386,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="187"/>
         <source>&amp;Clear recent searches</source>
-        <translation type="unfinished"></translation>
+        <translation>Kürzlich genutzte S&amp;chlüsselwörter entfernen</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="286"/>
@@ -798,7 +798,7 @@
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="286"/>
         <source>%1 of %2 (%3) — %4</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 von %2 (%3) – %4</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="293"/>
@@ -863,28 +863,28 @@
     <message>
         <location filename="../src/SearchView.cpp" line="41"/>
         <source>Get the full version</source>
-        <translation type="unfinished">Die Vollversion holen</translation>
+        <translation>Die Vollversion holen</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="88"/>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Eingeben</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="93"/>
         <source>a keyword</source>
-        <translation type="unfinished"></translation>
+        <translation>ein Schlüsselwort</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="94"/>
         <source>a channel</source>
-        <translation type="unfinished"></translation>
+        <translation>ein Kanal</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="99"/>
         <source>to start watching videos.</source>
-        <translation type="unfinished"></translation>
+        <translation>um die Wiedergabe zu starten.</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="124"/>
@@ -899,7 +899,7 @@
     <message>
         <location filename="../src/SearchView.cpp" line="159"/>
         <source>Recent channels</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuelle Kanäle</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="358"/>
@@ -928,7 +928,7 @@
     <message>
         <location filename="../src/video.cpp" line="186"/>
         <source>Cannot get video stream for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Konnte Videostream für %1 nicht öffnen</translation>
     </message>
     <message>
         <location filename="../src/video.cpp" line="204"/>
