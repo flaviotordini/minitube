@@ -89,6 +89,16 @@ MainWindow::~MainWindow() {
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
+    if (event->type() == QEvent::MouseMove && this->m_fullscreen) {
+        QMouseEvent *mouseEvent = static_cast<QMouseEvent*> (event);
+        int x = mouseEvent->pos().x();
+        int y = mouseEvent->pos().y();
+
+        if (y < 0 && (obj == this->mainToolBar || !(y <= 10-this->mainToolBar->height() && y >= 0-this->mainToolBar->height() )))
+           this->mainToolBar->setVisible(false);
+        if (x < 0)
+            this->mediaView->setPlaylistVisible(false);
+    }
     if (event->type() == QEvent::ToolTip) {
         // kill tooltips
         return true;
