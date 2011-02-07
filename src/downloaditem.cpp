@@ -187,7 +187,7 @@ void DownloadItem::downloadProgress(qint64 bytesReceived, qint64 bytesTotal) {
     if (m_status != Downloading) {
 
         int neededBytes = (int) (bytesTotal * .01);
-        qDebug() << bytesReceived << bytesTotal << neededBytes << m_downloadTime.elapsed();
+        // qDebug() << bytesReceived << bytesTotal << neededBytes << m_downloadTime.elapsed();
         int bufferSize = initialBufferSize();
         if (bytesReceived > bufferSize
             && bytesReceived > neededBytes
