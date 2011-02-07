@@ -124,7 +124,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
 #ifdef APP_DEMO
     demoTimer = new QTimer(this);
     demoTimer->setSingleShot(true);
-    demoTimer->setInterval(60000);
+    demoTimer->setInterval(30000);
     connect(demoTimer, SIGNAL(timeout()), SLOT(demoMessage()));
 #endif
 
