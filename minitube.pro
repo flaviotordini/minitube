@@ -148,8 +148,6 @@ unix:!mac {
     icon128.files += data/128x128/minitube.png
     icon256.path = $$DATADIR/icons/hicolor/256x256/apps
     icon256.files += data/256x256/minitube.png
-    icon256.path = $$DATADIR/icons/hicolor/512x512/apps
-    icon256.files += data/256x256/minitube.png
     icon512.path = $$DATADIR/icons/hicolor/512x512/apps
     icon512.files += data/512x512/minitube.png
 }
