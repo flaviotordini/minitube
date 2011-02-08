@@ -10,19 +10,19 @@
     </message>
     <message>
         <source>Version %1</source>
-        <translation>版本 %1</translation>
+        <translation>版本：%1</translation>
     </message>
     <message>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1是自由软件。其开发也同样要耗用宝贵时间的。</translation>
+        <translation>%1 是自由软件。其开发也同样要耗用宝贵时间的。</translation>
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>欢迎您的慷慨&lt;a href=&apos;%1&apos;&gt;捐赠&lt;/a&gt;支持我们继续开发%2。</translation>
+        <translation>恭迎您慷慨&lt;a href=&apos;%1&apos;&gt;捐赠&lt;/a&gt;，支持我们继续开发 %2 。</translation>
     </message>
     <message>
         <source>Report bugs and send in your ideas to %1</source>
-        <translation>软件错误和建议请发给 %1</translation>
+        <translation>软件错误和建议敬请发送到：%1</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -38,11 +38,11 @@
     </message>
     <message>
         <source>Translated by %1</source>
-        <translation>翻译：%1</translation>
+        <translation>翻译：%1 。</translation>
     </message>
     <message>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
-        <translation>本软件遵循&lt;a href=&apos;%1&apos;&gt;GNU通用公共许可证&lt;/a&gt;予以发布</translation>
+        <translation>本软件遵循&lt;a href=&apos;%1&apos;&gt;GNU通用公共许可证&lt;/a&gt;予以发布。</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -54,7 +54,7 @@
     </message>
     <message>
         <source>What you always wanted to know about %1 and never dared to ask</source>
-        <translation>您对 %s 的期望都有什么，还请不吝赐教</translation>
+        <translation>您对 %1 的期望都有什么，还请不吝赐教。</translation>
     </message>
 </context>
 <context>
@@ -68,145 +68,145 @@
     <name>DownloadItem</name>
     <message>
         <source>bytes</source>
-        <translation type="unfinished"></translation>
+        <translation>字节</translation>
     </message>
     <message>
         <source>KB</source>
-        <translation type="unfinished"></translation>
+        <translation>千字节</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation type="unfinished"></translation>
+        <translation>兆字节</translation>
     </message>
     <message>
         <source>bytes/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>字节/秒</translation>
     </message>
     <message>
         <source>KB/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>千字节/秒</translation>
     </message>
     <message>
         <source>MB/sec</source>
-        <translation type="unfinished"></translation>
+        <translation>兆字节/秒</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>秒</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"></translation>
+        <translation>分</translation>
     </message>
     <message>
         <source>%4 %5 remaining</source>
-        <translation type="unfinished"></translation>
+        <translation>%4 %5 剩余</translation>
     </message>
 </context>
 <context>
     <name>DownloadManager</name>
     <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>下载数：%n</numerusform>
         </translation>
     </message>
     <message>
         <source>This is just the demo version of %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>这只是 %1 的演示版。</translation>
     </message>
     <message>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation type="unfinished"></translation>
+        <translation>本版本只能下载 %1 分钟以下的视频，仅用于测试下载功能。</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>继续</translation>
     </message>
     <message>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation>获取完整版</translation>
     </message>
 </context>
 <context>
     <name>DownloadSettings</name>
     <message>
         <source>Change location...</source>
-        <translation type="unfinished"></translation>
+        <translation>更改存储位置……</translation>
     </message>
     <message>
         <source>Choose the download location</source>
-        <translation type="unfinished"></translation>
+        <translation>选择下载存储位置</translation>
     </message>
     <message>
         <source>Download location changed.</source>
-        <translation type="unfinished"></translation>
+        <translation>下载存储位置已修改。</translation>
     </message>
     <message>
         <source>Current downloads will still go in the previous location.</source>
-        <translation type="unfinished"></translation>
+        <translation>当前下载仍然保持前一个存储位置。</translation>
     </message>
     <message>
         <source>Downloading to: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>当前下载存储位置：%1</translation>
     </message>
 </context>
 <context>
     <name>DownloadView</name>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>下载情况</translation>
     </message>
 </context>
 <context>
     <name>GlobalShortcuts</name>
     <message>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation>播放</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>暂停</translation>
     </message>
     <message>
         <source>Play/Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>播放/暂停</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>停止</translation>
     </message>
     <message>
         <source>Stop playing after current track</source>
-        <translation type="unfinished"></translation>
+        <translation>当前轨道后停止播放</translation>
     </message>
     <message>
         <source>Next track</source>
-        <translation type="unfinished"></translation>
+        <translation>下一轨道</translation>
     </message>
     <message>
         <source>Previous track</source>
-        <translation type="unfinished"></translation>
+        <translation>上一轨道</translation>
     </message>
     <message>
         <source>Increase volume</source>
-        <translation type="unfinished"></translation>
+        <translation>调高音量</translation>
     </message>
     <message>
         <source>Decrease volume</source>
-        <translation type="unfinished"></translation>
+        <translation>调低音量</translation>
     </message>
     <message>
         <source>Mute</source>
-        <translation type="unfinished"></translation>
+        <translation>静音</translation>
     </message>
     <message>
         <source>Seek forward</source>
-        <translation type="unfinished"></translation>
+        <translation>向前搜索</translation>
     </message>
     <message>
         <source>Seek backward</source>
-        <translation type="unfinished"></translation>
+        <translation>向后搜索</translation>
     </message>
 </context>
 <context>
@@ -451,43 +451,43 @@
     </message>
     <message>
         <source>&amp;Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>下载(&amp;D)</translation>
     </message>
     <message>
         <source>Show details about video downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>显示视频下载详情</translation>
     </message>
     <message>
         <source>&amp;Download</source>
-        <translation type="unfinished"></translation>
+        <translation>下载(&amp;D)</translation>
     </message>
     <message>
         <source>Download the current video</source>
-        <translation type="unfinished"></translation>
+        <translation>下载当前视频</translation>
     </message>
     <message>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation type="unfinished"></translation>
+        <translation>当前还有尚未完成的下载。您确定要退出 %1 吗？</translation>
     </message>
     <message>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation type="unfinished"></translation>
+        <translation>如果您现在关闭 %1 ，那么本下载将被取消。</translation>
     </message>
     <message>
         <source>Close and cancel download</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭并取消下载</translation>
     </message>
     <message>
         <source>Wait for download to finish</source>
-        <translation type="unfinished"></translation>
+        <translation>等待下载完成</translation>
     </message>
     <message>
         <source>Downloads complete</source>
-        <translation type="unfinished"></translation>
+        <translation>下载完成</translation>
     </message>
     <message>
         <source>&amp;Clear recent searches</source>
-        <translation type="unfinished"></translation>
+        <translation>清除最近的检索(&amp;C)</translation>
     </message>
 </context>
 <context>
@@ -522,23 +522,23 @@
     </message>
     <message>
         <source>This is just the demo version of %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>这仅是 %1 的演示版。</translation>
     </message>
     <message>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation type="unfinished"></translation>
+        <translation>本版本允许您测试，以确认本应用是否适合您。</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>继续</translation>
     </message>
     <message>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation>获取完整版</translation>
     </message>
     <message>
         <source>Downloading %1</source>
-        <translation type="unfinished"></translation>
+        <translation>正在下载 %1</translation>
     </message>
 </context>
 <context>
@@ -556,39 +556,39 @@
     </message>
     <message>
         <source>Preparing</source>
-        <translation type="unfinished"></translation>
+        <translation>准备中</translation>
     </message>
     <message>
         <source>Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>已失败</translation>
     </message>
     <message>
         <source>Completed</source>
-        <translation type="unfinished"></translation>
+        <translation>已完成</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>已停止</translation>
     </message>
     <message>
         <source>Stop downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>停止下载</translation>
     </message>
     <message>
         <source>Show in %1</source>
-        <translation type="unfinished"></translation>
+        <translation>显示到 %1</translation>
     </message>
     <message>
         <source>Open parent folder</source>
-        <translation type="unfinished"></translation>
+        <translation>打开上层目录</translation>
     </message>
     <message>
         <source>Restart downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>重新下载</translation>
     </message>
     <message>
         <source>%1 of %2 (%3) — %4</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 之 %2 (%3) — %4</translation>
     </message>
 </context>
 <context>
@@ -602,7 +602,7 @@
     <name>SearchView</name>
     <message>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
-        <translation>欢迎访问&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;，</translation>
+        <translation>欢迎使用&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;！</translation>
     </message>
     <message>
         <source>Enter a keyword to start watching videos.</source>
@@ -614,40 +614,40 @@
     </message>
     <message>
         <source>Recent keywords</source>
-        <translation>最新关键字词</translation>
+        <translation>最近关键字词</translation>
     </message>
     <message>
         <source>A new version of %1 is available. Please &lt;a href=&apos;%2&apos;&gt;update to version %3&lt;/a&gt;</source>
-        <translation>%1已有新版本。请&lt;a href=&apos;%2&apos;&gt;更新到版本%3&lt;/a&gt;</translation>
+        <translation>%1 已有新版本。敬请&lt;a href=&apos;%2&apos;&gt;更新到版本 %3&lt;/a&gt;。</translation>
     </message>
     <message>
         <source>Make yourself comfortable</source>
-        <translation>请您安逸享受</translation>
+        <translation>请您尽情享受吧！</translation>
     </message>
     <message>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation>获取完整版</translation>
     </message>
     <message>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>输入</translation>
     </message>
     <message>
         <source>a keyword</source>
-        <translation type="unfinished"></translation>
+        <translation>关键字</translation>
     </message>
     <message>
         <source>a channel</source>
-        <translation type="unfinished"></translation>
+        <translation>频道名称</translation>
     </message>
     <message>
         <source>to start watching videos.</source>
-        <translation type="unfinished"></translation>
+        <translation>开始观看视频。</translation>
     </message>
     <message>
         <source>Recent channels</source>
-        <translation type="unfinished"></translation>
+        <translation>最近频道</translation>
     </message>
 </context>
 <context>
@@ -658,7 +658,7 @@
     </message>
     <message>
         <source>Cannot get video stream for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>无法获得视频流。可能原因：%1</translation>
     </message>
 </context>
 </TS>
