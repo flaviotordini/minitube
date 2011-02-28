@@ -14,7 +14,7 @@ TRANSLATIONS += \
     cs_CZ.ts \
     uk.ts \
     he_IL.ts \
-    lat.ts \
+    lv.ts \
     hr_HR.ts \
     es.ts \
     gl.ts \
@@ -29,8 +29,8 @@ TRANSLATIONS += \
     pt_PT.ts \
     fi_FI.ts \
     bg_BG.ts \
-    zh_CN.ts \
-    mkd_MKD.ts
+    zh_CN.ts
+    # mkd_MKD.ts
 
 isEmpty(QMAKE_LRELEASE) {
     win32:QMAKE_LRELEASE = $$[QT_INSTALL_BINS]\lrelease.exe
