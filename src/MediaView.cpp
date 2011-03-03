@@ -124,7 +124,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
 #ifdef APP_DEMO
     demoTimer = new QTimer(this);
     demoTimer->setSingleShot(true);
-    demoTimer->setInterval(30000);
+    demoTimer->setInterval(60000);
     connect(demoTimer, SIGNAL(timeout()), SLOT(demoMessage()));
 #endif
 
@@ -607,7 +607,7 @@ void MediaView::demoMessage() {
         QDesktopServices::openUrl(QString(Constants::WEBSITE) + "#download");
     } else {
         mediaObject->play();
-        demoTimer->start();
+        demoTimer->start(300000);
     }
 }
 #endif
