@@ -474,7 +474,11 @@ void MainWindow::readSettings() {
     restoreGeometry(settings.value("geometry").toByteArray());
 #ifdef APP_MAC
     if (!isMaximized())
+#ifdef QT_MAC_USE_COCOA
+        move(x(), y() + 10);
+#else
         move(x(), y() + mainToolBar->height() + 8);
+#endif
 #endif
     setDefinitionMode(settings.value("definition", VideoDefinition::getDefinitionNames().first()).toString());
     audioOutput->setVolume(settings.value("volume", 1).toDouble());
