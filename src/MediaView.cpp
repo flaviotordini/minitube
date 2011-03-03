@@ -464,7 +464,9 @@ void MediaView::skip() {
 }
 
 void MediaView::playbackFinished() {
-    if (mediaObject->currentTime() < mediaObject->totalTime()) {
+    // qDebug() << "finished" << mediaObject->currentTime() << mediaObject->totalTime();
+    // add 10 secs for imprecise Phonon backends (VLC, Xine)
+    if (mediaObject->currentTime() + 10000 < mediaObject->totalTime()) {
         // mediaObject->seek(mediaObject->currentTime());
         QTimer::singleShot(3000, this, SLOT(playbackResume()));
     } else skip();
