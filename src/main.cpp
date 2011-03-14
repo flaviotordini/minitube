@@ -3,8 +3,8 @@
 #include "constants.h"
 #include "MainWindow.h"
 #include "searchparams.h"
-#ifdef APP_MAC
-// #include "local/mac/mac_startup.h"
+#ifdef APP_MAC_STORE
+#include "local/mac/mac_startup.h"
 #endif
 #ifdef APP_WIN
 #include "local/win/qtwin.h"
@@ -12,8 +12,8 @@
 
 int main(int argc, char **argv) {
 
-#ifdef APP_MAC
-    // mac::MacMain();
+#ifdef APP_MAC_STORE
+    mac::MacMain();
 #endif
 
     QtSingleApplication app(argc, argv);

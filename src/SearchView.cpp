@@ -178,7 +178,11 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     setLayout(mainLayout);
 
     updateChecker = 0;
+
+#ifndef APP_MAC_STORE
     checkForUpdate();
+#endif
+
 }
 
 void SearchView::updateRecentKeywords() {
