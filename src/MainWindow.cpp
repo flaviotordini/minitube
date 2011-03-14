@@ -9,8 +9,8 @@
 #ifdef Q_WS_X11
 #include "gnomeglobalshortcutbackend.h"
 #endif
-#ifdef APP_MAC
-// #include "local/mac/mac_startup.h"
+#ifdef APP_MAC_STORE
+#include "local/mac/mac_startup.h"
 #endif
 #include "downloadmanager.h"
 #include "youtubesuggest.h"
