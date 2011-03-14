@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="cs_CZ" sourcelanguage="en_US">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="cs_CZ" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutView</name>
@@ -15,27 +13,19 @@
         <translation>Verze %1</translation>
     </message>
     <message>
-        <source>This is a &quot;Technology Preview&quot; release, do not expect it to be perfect.</source>
-        <translation type="obsolete">Toto je vývojová verze, neočekávejte plnou funkčnost.</translation>
-    </message>
-    <message>
-        <location filename="../src/AboutView.cpp" line="29"/>
-        <source>Report bugs and send in your ideas to %1</source>
-        <translation>Hlaste chyby a posílejte své nápady na %1</translation>
-    </message>
-    <message>
         <location filename="../src/AboutView.cpp" line="25"/>
         <source>%1 is Free Software but its development takes precious time.</source>
         <translation>%1 je svobodný software, ale jeho vývoj stojí drahocenný čas.</translation>
     </message>
     <message>
-        <source>Please &lt;a href=&apos;%1&apos;&gt;donate via PayPal&lt;/a&gt; to support the continued development of %2.</source>
-        <translation type="obsolete">Prosím &lt;a href=&apos;%1&apos;&gt;přispějte přes PayPal&lt;/a&gt; a podpořte další vývoj aplikace %2.</translation>
-    </message>
-    <message>
         <location filename="../src/AboutView.cpp" line="26"/>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
         <translation>Prosím &lt;a href=&apos;%1&apos;&gt;přispějte&lt;/a&gt; na další vývoj %2.</translation>
+    </message>
+    <message>
+        <location filename="../src/AboutView.cpp" line="29"/>
+        <source>Report bugs and send in your ideas to %1</source>
+        <translation>Hlaste chyby a posílejte své nápady na %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="33"/>
@@ -51,10 +41,6 @@
         <location filename="../src/AboutView.cpp" line="35"/>
         <source>HTTP proxy support contributed by %1.</source>
         <translation>Autor podpory HTTP proxy: %1.</translation>
-    </message>
-    <message>
-        <source>Windows version built by %1</source>
-        <translation type="obsolete">Verzi pro Windows sestavil: %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="38"/>
@@ -163,11 +149,7 @@
     <message numerus="yes">
         <location filename="../src/downloadmanager.cpp" line="126"/>
         <source>%n Download(s)</source>
-        <translation>
-            <numerusform>%n stahování</numerusform>
-            <numerusform>%n stahování</numerusform>
-            <numerusform>%n stahování</numerusform>
-        </translation>
+        <translation><numerusform>%n stahování</numerusform><numerusform>%n stahování</numerusform><numerusform>%n stahování</numerusform></translation>
     </message>
 </context>
 <context>
@@ -304,14 +286,6 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <source>&amp;Back</source>
-        <translation type="obsolete">&amp;Zpět</translation>
-    </message>
-    <message>
-        <source>Go to the previous view</source>
-        <translation type="obsolete">Vrátit se k předchozí obrazovce</translation>
-    </message>
-    <message>
         <location filename="../src/MainWindow.cpp" line="105"/>
         <source>&amp;Stop</source>
         <translation>&amp;Stop</translation>
@@ -363,14 +337,6 @@
         <location filename="../src/MainWindow.cpp" line="137"/>
         <source>Hide the playlist and the toolbar</source>
         <translation>Skryje playlist a toolbar</translation>
-    </message>
-    <message>
-        <source>&amp;YouTube</source>
-        <translation type="obsolete">&amp;YouTube</translation>
-    </message>
-    <message>
-        <source>Open the YouTube video page</source>
-        <translation type="obsolete">Otevřít video na YouTube</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="145"/>
@@ -433,8 +399,9 @@
         <translation>Posune vybraná videa níž v playlistu</translation>
     </message>
     <message>
-        <source>&amp;Clear recent keywords</source>
-        <translation type="obsolete">&amp;Vymazat hledané výrazy</translation>
+        <location filename="../src/MainWindow.cpp" line="187"/>
+        <source>&amp;Clear recent searches</source>
+        <translation/>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="192"/>
@@ -472,61 +439,6 @@
         <translation>&amp;Podpořit</translation>
     </message>
     <message>
-        <location filename="../src/MainWindow.cpp" line="277"/>
-        <location filename="../src/MainWindow.cpp" line="959"/>
-        <source>&amp;Downloads</source>
-        <translation>&amp;Stahování</translation>
-    </message>
-    <message>
-        <location filename="../src/MainWindow.cpp" line="278"/>
-        <source>Show details about video downloads</source>
-        <translation>Zobrazit podrobnosti o stahování videí</translation>
-    </message>
-    <message>
-        <location filename="../src/MainWindow.cpp" line="286"/>
-        <source>&amp;Download</source>
-        <translation>&amp;Stáhnout</translation>
-    </message>
-    <message>
-        <location filename="../src/MainWindow.cpp" line="287"/>
-        <source>Download the current video</source>
-        <translation>Stáhnout přávě zobrazené video</translation>
-    </message>
-    <message>
-        <location filename="../src/MainWindow.cpp" line="597"/>
-        <source>Do you want to exit %1 with a download in progress?</source>
-        <translation>Chcete ukončit %1, přestože ještě probíhá stahování?</translation>
-    </message>
-    <message>
-        <location filename="../src/MainWindow.cpp" line="598"/>
-        <source>If you close %1 now, this download will be cancelled.</source>
-        <translation>Jestli nyní ukončíte %1, bude nedokončené stahování přerušeno</translation>
-    </message>
-    <message>
-        <location filename="../src/MainWindow.cpp" line="601"/>
-        <source>Close and cancel download</source>
-        <translation>Přerušit stahování a ukončit aplikaci</translation>
-    </message>
-    <message>
-        <location filename="../src/MainWindow.cpp" line="602"/>
-        <source>Wait for download to finish</source>
-        <translation>Počkat na dokončení stahování</translation>
-    </message>
-    <message>
-        <location filename="../src/MainWindow.cpp" line="908"/>
-        <source>Maximum video definition set to %1</source>
-        <translation>Maximální rozlišení videa je %1</translation>
-    </message>
-    <message>
-        <location filename="../src/MainWindow.cpp" line="960"/>
-        <source>Downloads complete</source>
-        <translation>Všechna stahování byla dokončena</translation>
-    </message>
-    <message>
-        <source>&amp;Donate via PayPal</source>
-        <translation type="obsolete">&amp;Podpořte přes PayPal</translation>
-    </message>
-    <message>
         <location filename="../src/MainWindow.cpp" line="211"/>
         <source>Please support the continued development of %1</source>
         <translation>Prosím přispějte na další vývoj aplikace %1</translation>
@@ -557,35 +469,30 @@
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <source>High Definition video is enabled</source>
-        <translation type="obsolete">HD video je povolené</translation>
+        <location filename="../src/MainWindow.cpp" line="277"/>
+        <location filename="../src/MainWindow.cpp" line="959"/>
+        <source>&amp;Downloads</source>
+        <translation>&amp;Stahování</translation>
     </message>
     <message>
-        <source>High Definition video is not enabled</source>
-        <translation type="obsolete">HD video není povolené</translation>
+        <location filename="../src/MainWindow.cpp" line="278"/>
+        <source>Show details about video downloads</source>
+        <translation>Zobrazit podrobnosti o stahování videí</translation>
     </message>
     <message>
-        <source>The current video is in High Definition</source>
-        <translation type="obsolete">Aktuální video je v HD</translation>
+        <location filename="../src/MainWindow.cpp" line="286"/>
+        <source>&amp;Download</source>
+        <translation>&amp;Stáhnout</translation>
     </message>
     <message>
-        <source>The current video is not in High Definition</source>
-        <translation type="obsolete">Aktuální video není v HD</translation>
-    </message>
-    <message>
-        <location filename="../src/MainWindow.cpp" line="944"/>
-        <source>Your privacy is now safe</source>
-        <translation>Vaše soukromí je nyní v bezpečí</translation>
+        <location filename="../src/MainWindow.cpp" line="287"/>
+        <source>Download the current video</source>
+        <translation>Stáhnout přávě zobrazené video</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="328"/>
         <source>&amp;Application</source>
         <translation>&amp;Aplikace</translation>
-    </message>
-    <message>
-        <location filename="../src/MainWindow.cpp" line="187"/>
-        <source>&amp;Clear recent searches</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="336"/>
@@ -612,6 +519,26 @@
         <location filename="../src/MainWindow.cpp" line="584"/>
         <source>Opening %1</source>
         <translation>Otevírám %1</translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="597"/>
+        <source>Do you want to exit %1 with a download in progress?</source>
+        <translation>Chcete ukončit %1, přestože ještě probíhá stahování?</translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="598"/>
+        <source>If you close %1 now, this download will be cancelled.</source>
+        <translation>Jestli nyní ukončíte %1, bude nedokončené stahování přerušeno</translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="601"/>
+        <source>Close and cancel download</source>
+        <translation>Přerušit stahování a ukončit aplikaci</translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="602"/>
+        <source>Wait for download to finish</source>
+        <translation>Počkat na dokončení stahování</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="635"/>
@@ -657,6 +584,21 @@
         <location filename="../src/MainWindow.cpp" line="901"/>
         <source>Volume is unmuted</source>
         <translation>Zvuk je zapnut</translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="908"/>
+        <source>Maximum video definition set to %1</source>
+        <translation>Maximální rozlišení videa je %1</translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="944"/>
+        <source>Your privacy is now safe</source>
+        <translation>Vaše soukromí je nyní v bezpečí</translation>
+    </message>
+    <message>
+        <location filename="../src/MainWindow.cpp" line="960"/>
+        <source>Downloads complete</source>
+        <translation>Všechna stahování byla dokončena</translation>
     </message>
 </context>
 <context>
@@ -716,10 +658,6 @@
         <source>Downloading %1</source>
         <translation>Je stahováno %1</translation>
     </message>
-    <message>
-        <source>You&apos;re watching &quot;%1&quot;</source>
-        <translation type="obsolete">Sledujete &quot;%1&quot;</translation>
-    </message>
 </context>
 <context>
     <name>NetworkAccess</name>
@@ -737,13 +675,9 @@
         <translation>Shlédnuto %1x</translation>
     </message>
     <message>
-        <source>%1 of %2 (%3) ? %4</source>
-        <translation type="obsolete">1 z %2 (%3) ? %4</translation>
-    </message>
-    <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="286"/>
         <source>%1 of %2 (%3) — %4</source>
-        <translation type="unfinished"></translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="293"/>
@@ -802,34 +736,30 @@
         <translation>Vítejte v &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</translation>
     </message>
     <message>
-        <source>Enter a keyword to start watching videos.</source>
-        <translation type="obsolete">Zadejte klíčové slovo pro vyhledávání videí.</translation>
-    </message>
-    <message>
         <location filename="../src/SearchView.cpp" line="41"/>
         <source>Get the full version</source>
-        <translation type="unfinished"></translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="88"/>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation type="unfinished"></translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="93"/>
         <source>a keyword</source>
-        <translation type="unfinished"></translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="94"/>
         <source>a channel</source>
-        <translation type="unfinished"></translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="99"/>
         <source>to start watching videos.</source>
-        <translation type="unfinished"></translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="124"/>
@@ -844,7 +774,7 @@
     <message>
         <location filename="../src/SearchView.cpp" line="159"/>
         <source>Recent channels</source>
-        <translation type="unfinished"></translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="358"/>
@@ -858,38 +788,11 @@
     </message>
 </context>
 <context>
-    <name>SettingsView</name>
-    <message>
-        <source>Preferences</source>
-        <translation type="obsolete">Nastavení</translation>
-    </message>
-    <message>
-        <source>&amp;Video options</source>
-        <translation type="obsolete">&amp;Nastavení videa</translation>
-    </message>
-    <message>
-        <source>Use high quality video when available</source>
-        <translation type="obsolete">Zobrazit video ve vysoké kvalitě pokud je dostupná</translation>
-    </message>
-    <message>
-        <source>&amp;Saved recent keywords</source>
-        <translation type="obsolete">&amp;Uložit hledané výrazy</translation>
-    </message>
-    <message>
-        <source>&amp;Clear recent keywords</source>
-        <translation type="obsolete">&amp;Vymazat hledané výrazy</translation>
-    </message>
-    <message>
-        <source>&amp;Close</source>
-        <translation type="obsolete">&amp;Zavřít</translation>
-    </message>
-</context>
-<context>
     <name>Video</name>
     <message>
         <location filename="../src/video.cpp" line="186"/>
         <source>Cannot get video stream for %1</source>
-        <translation type="unfinished"></translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/video.cpp" line="204"/>

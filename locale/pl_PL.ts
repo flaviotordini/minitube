@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="pl_PL" sourcelanguage="en">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="pl_PL" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutView</name>
@@ -12,7 +10,6 @@
     <message>
         <location filename="../src/AboutView.cpp" line="22"/>
         <source>Version %1</source>
-        <translatorcomment>Wersja %1</translatorcomment>
         <translation>Wersja %1</translation>
     </message>
     <message>
@@ -38,7 +35,6 @@
     <message>
         <location filename="../src/AboutView.cpp" line="34"/>
         <source>Compact mode contributed by %1.</source>
-        <translatorcomment>ok</translatorcomment>
         <translation>Do wprowadzenia Trybu kompaktowego przyczynił się %1.</translation>
     </message>
     <message>
@@ -49,7 +45,6 @@
     <message>
         <location filename="../src/AboutView.cpp" line="38"/>
         <source>Translated by %1</source>
-        <translatorcomment>Translated by Daniel Korbel</translatorcomment>
         <translation>Przetłumaczył %1</translation>
     </message>
     <message>
@@ -91,12 +86,12 @@
     <message>
         <location filename="../src/downloaditem.cpp" line="298"/>
         <source>KB</source>
-        <translation></translation>
+        <translation>KB</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="301"/>
         <source>MB</source>
-        <translation></translation>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="317"/>
@@ -106,12 +101,12 @@
     <message>
         <location filename="../src/downloaditem.cpp" line="320"/>
         <source>KB/sec</source>
-        <translation></translation>
+        <translation>KB/sek</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="323"/>
         <source>MB/sec</source>
-        <translation></translation>
+        <translation>MB/sek</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="329"/>
@@ -154,11 +149,7 @@
     <message numerus="yes">
         <location filename="../src/downloadmanager.cpp" line="126"/>
         <source>%n Download(s)</source>
-        <translation>
-            <numerusform>%n Pobieranie</numerusform>
-            <numerusform>%n Pobieranie</numerusform>
-            <numerusform>%n Pobieranie</numerusform>
-        </translation>
+        <translation><numerusform>%n Pobieranie</numerusform><numerusform>%n Pobieranie</numerusform><numerusform>%n Pobieranie</numerusform></translation>
     </message>
 </context>
 <context>
@@ -408,13 +399,9 @@
         <translation>Przenieś niżej zaznaczony plik w liście odtwarzania</translation>
     </message>
     <message>
-        <source>&amp;Clear recent keywords</source>
-        <translation type="obsolete">Usuń ostatnio szukane słowa (&amp;D)</translation>
-    </message>
-    <message>
         <location filename="../src/MainWindow.cpp" line="187"/>
         <source>&amp;Clear recent searches</source>
-        <translation type="unfinished"></translation>
+        <translation>Wy&amp;czyść ostatnie wyszukiwania</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="192"/>
@@ -551,7 +538,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="602"/>
         <source>Wait for download to finish</source>
-        <translation></translation>
+        <translation>Poczekaj na zakończenie pobierania</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="635"/>
@@ -671,10 +658,6 @@
         <source>Downloading %1</source>
         <translation>Pobieranie %1</translation>
     </message>
-    <message>
-        <source>You&apos;re watching &quot;%1&quot;</source>
-        <translation type="obsolete">Oglądasz &quot;%1&quot;</translation>
-    </message>
 </context>
 <context>
     <name>NetworkAccess</name>
@@ -692,13 +675,9 @@
         <translation>%1 widziane</translation>
     </message>
     <message>
-        <source>%1 of %2 (%3) ? %4</source>
-        <translation type="obsolete">%1 of %2 (%3) ? %4</translation>
-    </message>
-    <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="286"/>
         <source>%1 of %2 (%3) — %4</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 of %2 (%3) — %4</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="293"/>
@@ -757,34 +736,30 @@
         <translation>Witaj w &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
     </message>
     <message>
-        <source>Enter a keyword to start watching videos.</source>
-        <translation type="obsolete">Wprowadź szukane słowo, aby rozpocząć oglądanie filmów.</translation>
-    </message>
-    <message>
         <location filename="../src/SearchView.cpp" line="41"/>
         <source>Get the full version</source>
-        <translation type="unfinished">Pobierz pełną wersję</translation>
+        <translation>Pobierz pełną wersję</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="88"/>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Zatwierdź</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="93"/>
         <source>a keyword</source>
-        <translation type="unfinished"></translation>
+        <translation>słowo kluczowe</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="94"/>
         <source>a channel</source>
-        <translation type="unfinished"></translation>
+        <translation>kanał</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="99"/>
         <source>to start watching videos.</source>
-        <translation type="unfinished"></translation>
+        <translation>aby rozpocząć oglądanie</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="124"/>
@@ -799,7 +774,7 @@
     <message>
         <location filename="../src/SearchView.cpp" line="159"/>
         <source>Recent channels</source>
-        <translation type="unfinished"></translation>
+        <translation>Odwiedzone kanały</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="358"/>
@@ -817,7 +792,7 @@
     <message>
         <location filename="../src/video.cpp" line="186"/>
         <source>Cannot get video stream for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można uzyskać dostępu do %1</translation>
     </message>
     <message>
         <location filename="../src/video.cpp" line="204"/>
