@@ -425,7 +425,7 @@ void MediaView::startPlaying() {
     }
 
 #ifdef APP_DEMO
-    demoTimer->start();
+    demoTimer->start(30000);
 #endif
 
 }
@@ -609,7 +609,7 @@ void MediaView::demoMessage() {
         QDesktopServices::openUrl(QString(Constants::WEBSITE) + "#download");
     } else {
         mediaObject->play();
-        demoTimer->start();
+        demoTimer->start(300000);
     }
 }
 #endif
