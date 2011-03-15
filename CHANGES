@@ -1,4 +1,9 @@
-1.4 - Feb ??, 2011
+1.4.1 - March 15, 2011
+- Many new and updated translations
+- Fix videos not auto advancing with the Xine Phonon backend on Linux
+- Fix dualscreen behaviour in fullscreen mode (by Georg Grabler)
+
+1.4 - Feb 8, 2011
 - YouTube channel search
 - Fixed many playback issues
 - Progress bar when loading a video
