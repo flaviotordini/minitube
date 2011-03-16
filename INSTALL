@@ -15,7 +15,7 @@ and then:
 Beware of the Qt3 version of qmake! If things go wrong try running qmake-qt4 instead.
 
 ## Running
-./build/target/minitunes
+./build/target/minitube
 
 ## A word about Phonon on Linux
 To be able to actually listen to music you need a working Phonon setup.
