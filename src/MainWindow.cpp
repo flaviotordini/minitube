@@ -560,7 +560,7 @@ void MainWindow::showWidget ( QWidget* widget ) {
     QWidget *oldWidget = views->currentWidget();
     views->setCurrentWidget(widget);
 
-#ifdef APP_MAC
+#if defined(APP_MAC) || defined(APP_WIN)
     // crossfade only on OSX
     // where we can be sure of video performance
     fadeInWidget(oldWidget, widget);
