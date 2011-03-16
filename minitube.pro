@@ -1,6 +1,6 @@
 CONFIG += release
 TEMPLATE = app
-VERSION = 1.4
+VERSION = 1.4.1
 DEFINES += APP_VERSION="$$VERSION"
 INCLUDEPATH += /usr/include/phonon
 

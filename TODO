@@ -1,9 +1,5 @@
 # Minitube TODO list
 
-## Bugs
-- in fullscreen mode at the right screen in a dual-screen setup,
-    will show the song list at the left when working on the left screen.
-
 ## Killer features
 
 - Related videos
@@ -28,10 +24,12 @@
 - Saved playlists
 - Starred videos
 
-## Phonon bugs (Come on Qt and KDE devs, do your job!)
+## Phonon bugs
+- Phonon::MediaSource does not work with QIODevices (this needs to work to implement seeking)
+
+## Phonon bugs that do not apply to Minitube anymore
 - Mac: playback sometimes does not start (got a workaround!)
 - Mac: Phonon freezes the GUI when loading a video
-- Phonon::MediaSource does not work with QIODevices
 - Mac: Cannot seek beyond the buffered part of the video
 - Xine: Seek does not work at all. https://bugs.kde.org/show_bug.cgi?id=197927
 - Phonon does not report the buffering percent correctly. https://bugs.kde.org/show_bug.cgi?id=210336
