@@ -96,11 +96,20 @@ void DownloadManager::gotStreamUrl(QUrl url) {
     QString path = currentDownloadFolder();
 
     // TODO ensure all chars are filename compatible
-    QString basename = video->title().simplified();
+    QString basename = video->title();
     basename.replace('(', '[');
     basename.replace(')', ']');
-    basename.replace('/', '-');
-    basename.replace('\\', '-');
+    basename.replace('/', ' ');
+    basename.replace('\\', ' ');
+    basename.replace('<', ' ');
+    basename.replace('>', ' ');
+    basename.replace(':', ' ');
+    basename.replace('"', ' ');
+    basename.replace('|', ' ');
+    basename.replace('?', ' ');
+    basename.replace('*', ' ');
+    basename = basename.simplified();
+
     QString filename = path + "/" + basename + ".mp4";
 
     Video *videoCopy = video->clone();
