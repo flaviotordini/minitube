@@ -124,7 +124,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
 #ifdef APP_DEMO
     demoTimer = new QTimer(this);
     demoTimer->setSingleShot(true);
-    demoTimer->setInterval(60000);
+    demoTimer->setInterval(30000);
     connect(demoTimer, SIGNAL(timeout()), SLOT(demoMessage()));
 #endif
 
@@ -196,6 +196,11 @@ void MediaView::disappear() {
 }
 
 void MediaView::handleError(QString message) {
+    if (message.indexOf("movie atom") != -1 || message.indexOf("Could not open") != -1) {
+        QTimer::singleShot(1000, this, SLOT(startPlaying()));
+        return;
+    }
+
     videoAreaWidget->showError(message);
     skippedVideo = listModel->activeVideo();
     // recover from errors by skipping to the next video
