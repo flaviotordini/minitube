@@ -1,3 +1,9 @@
+1.4.2 - April 15, 2011
+- Fix some videos not playing
+- Full length videos now start faster
+- Fix invalid download filenames on Windows
+- New Albanian translation
+
 1.4.1 - March 15, 2011
 - Many new and updated translations
 - Fix videos not auto advancing with the Xine Phonon backend on Linux
