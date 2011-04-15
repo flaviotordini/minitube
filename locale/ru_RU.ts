@@ -149,7 +149,7 @@
     <message numerus="yes">
         <location filename="../src/downloadmanager.cpp" line="126"/>
         <source>%n Download(s)</source>
-        <translation><numerusform>Загружается %n файл</numerusform><numerusform>Загружаются %n файла</numerusform><numerusform>Загружаются %n файлов</numerusform><numerusform>Загружаются %n файлов</numerusform></translation>
+        <translation><numerusform>Загружается %n файл</numerusform><numerusform>Загружаются %n файла</numerusform><numerusform>Загружаются %n файлов</numerusform></translation>
     </message>
 </context>
 <context>

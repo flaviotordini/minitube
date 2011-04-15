@@ -1,71 +1,72 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="sr" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="sq" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutView</name>
     <message>
         <location filename="../src/AboutView.cpp" line="21"/>
         <source>There&apos;s life outside the browser!</source>
-        <translation>Може и без веб прегледача!</translation>
+        <translation>Ka jete edhe jashte Shfletuesit te Internetit
+</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="22"/>
         <source>Version %1</source>
-        <translation>Верзија %1</translation>
+        <translation>Version %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="25"/>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 је слободан софтвер, али његов развој одузма драгоцено време.</translation>
+        <translation>%1 Eshte Program i Lire por Programuesit te tij i merr kohe te qmueshme</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="26"/>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>Молимо да &lt;a href=&apos;%1&apos;&gt;донацијама&lt;/a&gt; подржите развој програма %2.</translation>
+        <translation>Ju lutem &lt;a href=&quot;%1&quot;&gt; dhuroni&lt;/a&gt; qe te perkrahni vazhdimin e ndertimit te %2.</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="29"/>
         <source>Report bugs and send in your ideas to %1</source>
-        <translation>Пријавите грешке и пошаљите ваше идеје на %1</translation>
+        <translation>Raportoni gabimet si dhe dergoni idet e juaja per %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="33"/>
         <source>Icon designed by %1.</source>
-        <translation>Иконицу дизајниро %1.</translation>
+        <translation>Dizajnimi i ikones u be nga %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="34"/>
         <source>Compact mode contributed by %1.</source>
-        <translation>Компактни режим допринео %1.</translation>
+        <translation>Per modelin kompakt kontribuan %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="35"/>
         <source>HTTP proxy support contributed by %1.</source>
-        <translation>Подршку за ХТТП прокси допринео %1.</translation>
+        <translation>Ndihmen per HTTP autorizimin kontriboi %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="38"/>
         <source>Translated by %1</source>
-        <translation>Превoдиоци %1</translation>
+        <translation>U perkthye nga %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="66"/>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
-        <translation>Под &lt;a href=&apos;%1&apos;&gt;Гнуовом Општом Јавном Лиценцом</translation>
+        <translation>Leshuar nen &lt;a href=&quot;%1&quot;&gt; GNU Licanca Publike Gjenerale&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="78"/>
         <source>&amp;Close</source>
-        <translation>&amp;Затвори</translation>
+        <translation> Afer</translation>
     </message>
     <message>
         <location filename="../src/AboutView.h" line="18"/>
         <source>About</source>
-        <translation>О програму</translation>
+        <translation>Afersisht</translation>
     </message>
     <message>
         <location filename="../src/AboutView.h" line="20"/>
         <source>What you always wanted to know about %1 and never dared to ask</source>
-        <translation>Све што сте одувек желели да знате о програму %1 али се нисте усудили а питате</translation>
+        <translation>Qfar keni dashur gjithmon te dini per %1 por asnjeher nuk keni guzuar te pyetni</translation>
     </message>
 </context>
 <context>
@@ -73,7 +74,7 @@
     <message>
         <location filename="../src/searchlineedit.cpp" line="56"/>
         <source>Clear</source>
-        <translation>Очисти</translation>
+        <translation>Paster</translation>
     </message>
 </context>
 <context>
@@ -81,7 +82,7 @@
     <message>
         <location filename="../src/downloaditem.cpp" line="295"/>
         <source>bytes</source>
-        <translation>бајтова</translation>
+        <translation>Bajts</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="298"/>
@@ -96,32 +97,32 @@
     <message>
         <location filename="../src/downloaditem.cpp" line="317"/>
         <source>bytes/sec</source>
-        <translation>b/s</translation>
+        <translation>Bajts/Sekond</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="320"/>
         <source>KB/sec</source>
-        <translation>KB/s</translation>
+        <translation>KB/Sekond</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="323"/>
         <source>MB/sec</source>
-        <translation>MB/s</translation>
+        <translation>MB/Sekond</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="329"/>
         <source>seconds</source>
-        <translation>секунди</translation>
+        <translation>Sekonda</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="332"/>
         <source>minutes</source>
-        <translation>минута</translation>
+        <translation>Minuta</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="335"/>
         <source>%4 %5 remaining</source>
-        <translation>%4 %5 преостаје</translation>
+        <translation>%4 %5 Mbetet</translation>
     </message>
 </context>
 <context>
@@ -129,27 +130,27 @@
     <message>
         <location filename="../src/downloadmanager.cpp" line="47"/>
         <source>This is just the demo version of %1.</source>
-        <translation>Ово је тек демо верзија  %1.</translation>
+        <translation>Ky eshte vetem version per demonstrim i %1</translation>
     </message>
     <message>
         <location filename="../src/downloadmanager.cpp" line="49"/>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation>Може преузети само снимке краће од %1 минута тако да можете испробати употребљивост преузимања.</translation>
+        <translation>Mund te shkarkoj vetem video me te shkurta se %1 minut ne menyr qe te testoni funksionimin e shkarkuesit. </translation>
     </message>
     <message>
         <location filename="../src/downloadmanager.cpp" line="53"/>
         <source>Continue</source>
-        <translation>Настави</translation>
+        <translation>Vazhdon</translation>
     </message>
     <message>
         <location filename="../src/downloadmanager.cpp" line="54"/>
         <source>Get the full version</source>
-        <translation>Преузмите пуну верзију</translation>
+        <translation>Merrni versionin e plote</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/downloadmanager.cpp" line="126"/>
         <source>%n Download(s)</source>
-        <translation><numerusform>%n прузимање</numerusform><numerusform>%n прузимања</numerusform><numerusform>%n прузимања</numerusform></translation>
+        <translation><numerusform>%n Shkarkim</numerusform><numerusform>%n Shkarkime</numerusform></translation>
     </message>
 </context>
 <context>
@@ -157,27 +158,27 @@
     <message>
         <location filename="../src/downloadsettings.cpp" line="14"/>
         <source>Change location...</source>
-        <translation>Промените локацију...</translation>
+        <translation>Ndrysho lokacionin</translation>
     </message>
     <message>
         <location filename="../src/downloadsettings.cpp" line="38"/>
         <source>Choose the download location</source>
-        <translation>Изаберите локацију преузимања</translation>
+        <translation>Zghidhni lokacionin e shkarkimeve</translation>
     </message>
     <message>
         <location filename="../src/downloadsettings.cpp" line="49"/>
         <source>Download location changed.</source>
-        <translation>Локација преузимања је промењена.</translation>
+        <translation>Lokacioni i shkarkimeve u ndryshua.</translation>
     </message>
     <message>
         <location filename="../src/downloadsettings.cpp" line="51"/>
         <source>Current downloads will still go in the previous location.</source>
-        <translation>Тренутна преузимања ће се наставити са претходне локације.</translation>
+        <translation>Shkarkimet e tanishme ende do te ruhen ne lokacionin e meparshem te shkarkimeve.</translation>
     </message>
     <message>
         <location filename="../src/downloadsettings.cpp" line="63"/>
         <source>Downloading to: %1</source>
-        <translation>Преузимам у: %1</translation>
+        <translation>Duke shkarkuar ne : %1</translation>
     </message>
 </context>
 <context>
@@ -186,7 +187,7 @@
         <location filename="../src/downloadview.cpp" line="18"/>
         <location filename="../src/downloadview.h" line="22"/>
         <source>Downloads</source>
-        <translation>Преузимања</translation>
+        <translation>Shkarkimet</translation>
     </message>
 </context>
 <context>
@@ -194,62 +195,62 @@
     <message>
         <location filename="../src/globalshortcuts.cpp" line="16"/>
         <source>Play</source>
-        <translation>Пусти</translation>
+        <translation>Luaje</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="17"/>
         <source>Pause</source>
-        <translation>Паузирај</translation>
+        <translation>Pushim</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="18"/>
         <source>Play/Pause</source>
-        <translation>Пусти или паузирај</translation>
+        <translation>Luaje/Pushim</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="19"/>
         <source>Stop</source>
-        <translation>Заустави</translation>
+        <translation>Ndaloje</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="20"/>
         <source>Stop playing after current track</source>
-        <translation>Заустави пуштање након тренутне стазе</translation>
+        <translation>Ndaloje se luajturi pas kenges aktuale</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="21"/>
         <source>Next track</source>
-        <translation>Следећа стаза</translation>
+        <translation>Kenga e ardhshme</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="22"/>
         <source>Previous track</source>
-        <translation>Претходна стаза</translation>
+        <translation>Kenga e meparshme</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="23"/>
         <source>Increase volume</source>
-        <translation>Појачај</translation>
+        <translation>Rrite zerin</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="24"/>
         <source>Decrease volume</source>
-        <translation>Утишај</translation>
+        <translation>Ule zerin</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="25"/>
         <source>Mute</source>
-        <translation>Искључи тон</translation>
+        <translation>Pa ze</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="26"/>
         <source>Seek forward</source>
-        <translation>Премотај унапред</translation>
+        <translation>Kerko perpara</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="27"/>
         <source>Seek backward</source>
-        <translation>Премотај уназад</translation>
+        <translation>Kerko prapa</translation>
     </message>
 </context>
 <context>
@@ -257,22 +258,22 @@
     <message>
         <location filename="../src/ListModel.cpp" line="47"/>
         <source>Searching...</source>
-        <translation>Тражим...</translation>
+        <translation>Duke kerkuar</translation>
     </message>
     <message>
         <location filename="../src/ListModel.cpp" line="48"/>
         <source>Show %1 More</source>
-        <translation>Прикажи још %1</translation>
+        <translation>Shfaq %1 me shume</translation>
     </message>
     <message>
         <location filename="../src/ListModel.cpp" line="49"/>
         <source>No videos</source>
-        <translation>Нема снимака</translation>
+        <translation>Nuk ka video</translation>
     </message>
     <message>
         <location filename="../src/ListModel.cpp" line="50"/>
         <source>No more videos</source>
-        <translation>Нема других снимака</translation>
+        <translation>Nuk ka me video</translation>
     </message>
 </context>
 <context>
@@ -280,7 +281,7 @@
     <message>
         <location filename="../src/loadingwidget.cpp" line="71"/>
         <source>Error</source>
-        <translation>Грешка</translation>
+        <translation>Gabim</translation>
     </message>
 </context>
 <context>
@@ -288,317 +289,317 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="105"/>
         <source>&amp;Stop</source>
-        <translation>&amp;Заустави</translation>
+        <translation>Ndaloje</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="106"/>
         <source>Stop playback and go back to the search view</source>
-        <translation>Зауставља пуштање и враћа се на приказ претраге</translation>
+        <translation>Ndaloje rishikimin dhe kthehu prapa te pamje e kerkimit</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="112"/>
         <source>S&amp;kip</source>
-        <translation>Прес&amp;кочи</translation>
+        <translation>Kaperce</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="113"/>
         <source>Skip to the next video</source>
-        <translation>Пушта следећи снимак</translation>
+        <translation>Kaperce te video e ardhshme</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="119"/>
         <location filename="../src/MainWindow.cpp" line="644"/>
         <source>&amp;Pause</source>
-        <translation>&amp;Паузирај</translation>
+        <translation>Pushoje</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="120"/>
         <location filename="../src/MainWindow.cpp" line="645"/>
         <source>Pause playback</source>
-        <translation>Паузира пуштање</translation>
+        <translation>Pushoje rishikimin</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="126"/>
         <location filename="../src/MainWindow.cpp" line="728"/>
         <source>&amp;Full Screen</source>
-        <translation>&amp;Целоекрански приказ</translation>
+        <translation>Ekran te plote</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="127"/>
         <source>Go full screen</source>
-        <translation>Прелази у целоекрански приказ</translation>
+        <translation>Kalo ne ekran te plot</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="136"/>
         <source>&amp;Compact mode</source>
-        <translation>&amp;Компактан режим</translation>
+        <translation>Menyre kompakte</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="137"/>
         <source>Hide the playlist and the toolbar</source>
-        <translation>Скрива плејлисту и траке алатки</translation>
+        <translation>Fshih listen e videove dhe shiritin e veglave</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="145"/>
         <source>Open the &amp;YouTube page</source>
-        <translation>Отвори страницу на &amp;Јутјубу</translation>
+        <translation>Hap faqen e YouTube</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="146"/>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation>Паузира пуштање и одлази на страницу на Јутјубу</translation>
+        <translation>Kalo ne faqen e videove te YouTube dhe pushoje rishikimin</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="152"/>
         <source>Copy the YouTube &amp;link</source>
-        <translation>Копирај ве&amp;зу са Јутјуба</translation>
+        <translation>Kopjoje linkun e YouTube</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="153"/>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation>Копира Јутјуб везу тренутног видеау у клипборд</translation>
+        <translation>Kopjoje linkun e videos se tanishme ne tabelen e ngjitjes</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="159"/>
         <source>Copy the video stream &amp;URL</source>
-        <translation>Копирај &amp;УРЛ видео тока</translation>
+        <translation>Kopjoje URL e rrjedhes se videos</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="160"/>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation>Копирај УРЛ тренутног видео тока у клипборд</translation>
+        <translation>Kopjoje URL e rrjedhes se videos aktuale  ne tabelen e ngjitjes</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="166"/>
         <source>&amp;Remove</source>
-        <translation>&amp;Уклони</translation>
+        <translation>Largo</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="167"/>
         <source>Remove the selected videos from the playlist</source>
-        <translation>Уклања изабране снимке из плејлисте</translation>
+        <translation>Largoje videon e zgjedhur nga lista e luajtjes</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="173"/>
         <source>Move &amp;Up</source>
-        <translation>Помери на&amp;више</translation>
+        <translation>Leviz lart</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="174"/>
         <source>Move up the selected videos in the playlist</source>
-        <translation>Помера изабране снимке навише у плејлисти</translation>
+        <translation>Levize lart videon e zgjedhur ne listen e luajtjes</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="180"/>
         <source>Move &amp;Down</source>
-        <translation>Помери на&amp;ниже</translation>
+        <translation>Leviz posht</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="181"/>
         <source>Move down the selected videos in the playlist</source>
-        <translation>Помера изабаране снимке наниже у плејлити</translation>
+        <translation>Levize posht videon e zghedhur ne listen e luajtjes</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="187"/>
         <source>&amp;Clear recent searches</source>
-        <translation>&amp;Уклони недавне претраге</translation>
+        <translation>Pastro kerkimet e tanishme</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="192"/>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation>Уклања историјат претраге. Не може се опозвати.</translation>
+        <translation>Pastro historin e kerkimeve . Nuk mund te zhbehet</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="197"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Напусти</translation>
+        <translation>Lëre</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="199"/>
         <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
+        <translation>Ctrl=+Q</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="200"/>
         <source>Bye</source>
-        <translation>Ћао</translation>
+        <translation>Mireupafshim</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="204"/>
         <source>&amp;Website</source>
-        <translation>&amp;Веб сајт</translation>
+        <translation>Adrese interneti</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="206"/>
         <source>%1 on the Web</source>
-        <translation>%1 на вебу</translation>
+        <translation>%1 ne Web</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="210"/>
         <source>Make a &amp;donation</source>
-        <translation>Дајте &amp;донацију</translation>
+        <translation>Beni nje kontribut</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="211"/>
         <source>Please support the continued development of %1</source>
-        <translation>Молимо да подржите даљи развој програма %1</translation>
+        <translation>Ju lutem perkrahni vazhdimin e ndertimit te %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="215"/>
         <source>&amp;About</source>
-        <translation>&amp;О програму</translation>
+        <translation>Rreth</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="217"/>
         <source>Info about %1</source>
-        <translation>Подаци о програму %1</translation>
+        <translation>Informata rreth %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="225"/>
         <source>Search</source>
-        <translation>Претрага</translation>
+        <translation>Kerkim</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="244"/>
         <source>Mute volume</source>
-        <translation>Искључи тон</translation>
+        <translation>Hesht zerin</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="246"/>
         <source>Ctrl+M</source>
-        <translation>Ctrl + M</translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="277"/>
         <location filename="../src/MainWindow.cpp" line="959"/>
         <source>&amp;Downloads</source>
-        <translation>&amp;Преузимања</translation>
+        <translation>Shkarkimet</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="278"/>
         <source>Show details about video downloads</source>
-        <translation>Приказује детаље о преузетим видео снимцима</translation>
+        <translation>Trego detajet rreth videove te shkarkuara</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="286"/>
         <source>&amp;Download</source>
-        <translation>&amp;Преузми</translation>
+        <translation>Shkarko</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="287"/>
         <source>Download the current video</source>
-        <translation>Преузима тренутни видео</translation>
+        <translation>Shkarko videon e tanishme</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="328"/>
         <source>&amp;Application</source>
-        <translation>&amp;Програм</translation>
+        <translation>Aplikacion</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="336"/>
         <source>&amp;Playlist</source>
-        <translation>&amp;Плејлиста</translation>
+        <translation>Lista e luajtjes</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="343"/>
         <source>&amp;Video</source>
-        <translation>&amp;Видео</translation>
+        <translation>Video</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="362"/>
         <source>&amp;Help</source>
-        <translation>&amp;Помоћ</translation>
+        <translation>Ndihma</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="439"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation>Притисните %1 да би појачали, односно %2 да би утишали тон</translation>
+        <translation>Shtyp %1 qe te rrisni zerin , shtyp %2 qe ta ulni zerin</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="578"/>
         <location filename="../src/MainWindow.cpp" line="584"/>
         <source>Opening %1</source>
-        <translation>Отварам %1</translation>
+        <translation>Duke hapur %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="597"/>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation>Желите ли а напустите %1 током активног преузимања?</translation>
+        <translation>Deshironi te dilni %1 me nje shkarkim ne prapavij?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="598"/>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation>Уколико затворите %1 сада ово преузимање ћњ бити отказано.</translation>
+        <translation>Nese e mbyllni %1 tani , ky shkarkim do te nderpritet.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="601"/>
         <source>Close and cancel download</source>
-        <translation>Затвори и откажи преузимање</translation>
+        <translation>Mbyll dhe ndalo shkarkimin</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="602"/>
         <source>Wait for download to finish</source>
-        <translation>Сачекајте да се преузимање заврши</translation>
+        <translation>Prisni per shkarkimin qe te mbaroj</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="635"/>
         <source>Fatal error: %1</source>
-        <translation>Фтална грешка: %1</translation>
+        <translation>Gabim fatal:%1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="637"/>
         <source>Error: %1</source>
-        <translation>Грешка:%1</translation>
+        <translation>Gabim:%1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="660"/>
         <source>&amp;Play</source>
-        <translation>&amp;Пусти</translation>
+        <translation>Luaj</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="661"/>
         <source>Resume playback</source>
-        <translation>Настави пуштање</translation>
+        <translation>Rinis rishikimin</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="751"/>
         <source>Exit &amp;Full Screen</source>
-        <translation>Напусти &amp;целоекрански режим</translation>
+        <translation>Dil nga ekrani i plote</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="834"/>
         <source>Remaining time: %1</source>
-        <translation>Преостало време: %1</translation>
+        <translation>Koha e mbetur:%1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="892"/>
         <source>Volume at %1%</source>
-        <translation>Јачина тона %1%</translation>
+        <translation>Zeri ne %1%</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="898"/>
         <source>Volume is muted</source>
-        <translation>Тон је искључен</translation>
+        <translation>Zeri eshte heshtur</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="901"/>
         <source>Volume is unmuted</source>
-        <translation>Тон  је поново укључен</translation>
+        <translation>Zeri eshte leshuar</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="908"/>
         <source>Maximum video definition set to %1</source>
-        <translation>Максимална дефиниција видеа је постављена на  %1</translation>
+        <translation>Maksimumi i definicionit te videos eshte vendosur ne %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="944"/>
         <source>Your privacy is now safe</source>
-        <translation>Ваша приватност је сада осигурана</translation>
+        <translation>Privatsia juaj tani eshte e sigurt</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="960"/>
         <source>Downloads complete</source>
-        <translation>Преузимања су завршена</translation>
+        <translation>Shkarkimet jan kompletuar</translation>
     </message>
 </context>
 <context>
@@ -606,57 +607,57 @@
     <message>
         <location filename="../src/MediaView.cpp" line="33"/>
         <source>Most relevant</source>
-        <translation>Најрелевантнији</translation>
+        <translation>Me i pershtatshem</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="40"/>
         <source>Most recent</source>
-        <translation>Најновији</translation>
+        <translation>Me i fresket</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="47"/>
         <source>Most viewed</source>
-        <translation>Најгледанији</translation>
+        <translation>Me e shikuara</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="489"/>
         <source>You can now paste the YouTube link into another application</source>
-        <translation>Сад можете налепити везу са Јутјуба у други програм</translation>
+        <translation>Tani ju mund te ngjitni YouTube linqe ne nje tjeter program</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="497"/>
         <source>You can now paste the video stream URL into another application</source>
-        <translation>Сад можете УРЛ видео тока налепити у други програм</translation>
+        <translation>Tani ju mund te ngjitni rrdhjedhen e YouTube URL ne nje tjeter program</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="498"/>
         <source>The link will be valid only for a limited time.</source>
-        <translation>Веза је исправна само одређено време.</translation>
+        <translation>Linku do te jet i vlefshem per nje kohe te kufizuar</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="594"/>
         <source>This is just the demo version of %1.</source>
-        <translation>Ово је тек демо верзија %1.</translation>
+        <translation>Ky eshte version vetem per demonstrim i %1.</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="595"/>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation>Омогућава вам да испробате програм и увидите да ли вам одговара.</translation>
+        <translation>Ju lejon qe te provoni programin dhe te shifni se a funksionon per ju .</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="598"/>
         <source>Continue</source>
-        <translation>Настави</translation>
+        <translation>Vazhdim</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="599"/>
         <source>Get the full version</source>
-        <translation>Преузмите пуну верзију</translation>
+        <translation>Merrni versionin e plote</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="625"/>
         <source>Downloading %1</source>
-        <translation>преузимам %1</translation>
+        <translation>Duke shkarkuar %1</translation>
     </message>
 </context>
 <context>
@@ -664,7 +665,7 @@
     <message>
         <location filename="../src/networkaccess.cpp" line="258"/>
         <source>Network error: %1</source>
-        <translation>Мрежна грешка: %1</translation>
+        <translation>Gabim ne rrjet:%1</translation>
     </message>
 </context>
 <context>
@@ -672,52 +673,52 @@
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="156"/>
         <source>%1 views</source>
-        <translation>%1 прегледа</translation>
+        <translation>%1 Shikime</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="286"/>
         <source>%1 of %2 (%3) — %4</source>
-        <translation>%1 од %2 (%3) — %4</translation>
+        <translation>%1 i %2(%3)-%4</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="293"/>
         <source>Preparing</source>
-        <translation>Припремам</translation>
+        <translation>Duke e pergaditur</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="295"/>
         <source>Failed</source>
-        <translation>Неуспех</translation>
+        <translation>Ka deshtuar</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="297"/>
         <source>Completed</source>
-        <translation>Завршено</translation>
+        <translation>Ka perfunduar</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="299"/>
         <source>Stopped</source>
-        <translation>Заустављено</translation>
+        <translation>Ka ndaluar</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="335"/>
         <source>Stop downloading</source>
-        <translation>Заустави преузимање</translation>
+        <translation>Ndalo shkarkimin</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="345"/>
         <source>Show in %1</source>
-        <translation>Прикажи у %1</translation>
+        <translation>Trego ne %1</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="347"/>
         <source>Open parent folder</source>
-        <translation>Отвори родитељску фасциклу</translation>
+        <translation>Hap dosjen kryesor</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="356"/>
         <source>Restart downloading</source>
-        <translation>Поново покрени преузимање</translation>
+        <translation>Rifilloni shkarkimin</translation>
     </message>
 </context>
 <context>
@@ -725,7 +726,7 @@
     <message>
         <location filename="../src/searchlineedit.cpp" line="177"/>
         <source>Search</source>
-        <translation>Претрага</translation>
+        <translation>Kerkim</translation>
     </message>
 </context>
 <context>
@@ -733,58 +734,58 @@
     <message>
         <location filename="../src/SearchView.cpp" line="74"/>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
-        <translation>Добродошли у &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
+        <translation>Mire se erdhet ne &lt;h href=&quot;%1&quot;&gt;%2&lt;/a&gt;,</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="41"/>
         <source>Get the full version</source>
-        <translation>Преузмите пуну верзију</translation>
+        <translation>Merrni versionin e plote</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="88"/>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation>унесите</translation>
+        <translation>Hyr</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="93"/>
         <source>a keyword</source>
-        <translation>кључну реч</translation>
+        <translation>Nje fjal kyqe</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="94"/>
         <source>a channel</source>
-        <translation>канал</translation>
+        <translation>Nje kanal </translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="99"/>
         <source>to start watching videos.</source>
-        <translation>да би започели преглед видео снимака.</translation>
+        <translation>Per te filluar shikimin e videove.</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="124"/>
         <source>Watch</source>
-        <translation>Гледај</translation>
+        <translation>Shiko</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="141"/>
         <source>Recent keywords</source>
-        <translation>Недавни кључне речи</translation>
+        <translation>Fjalit kyqe te fundit</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="159"/>
         <source>Recent channels</source>
-        <translation>Недавни канали</translation>
+        <translation>Kanali i fundit</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="358"/>
         <source>A new version of %1 is available. Please &lt;a href=&apos;%2&apos;&gt;update to version %3&lt;/a&gt;</source>
-        <translation>Доступна је новија верзија програма %1. &lt;a href=&apos;%2&apos;&gt;Надоградите на верзију %3&lt;/a&gt;</translation>
+        <translation>Nje version i ri eshte %1 i gatshem. Ju lutem&lt;a href+&quot;%2&quot;&gt; perditesoni tek versioni i ri%3&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/SearchView.h" line="35"/>
         <source>Make yourself comfortable</source>
-        <translation>Раскомотите се</translation>
+        <translation>Relaksohuni</translation>
     </message>
 </context>
 <context>
@@ -792,12 +793,12 @@
     <message>
         <location filename="../src/video.cpp" line="186"/>
         <source>Cannot get video stream for %1</source>
-        <translation>не могу да добавим видео ток за %1</translation>
+        <translation>Nuk mund te merr rrjedhen e videos per %1</translation>
     </message>
     <message>
         <location filename="../src/video.cpp" line="204"/>
         <source>Network error: %1 for %2</source>
-        <translation>Мрежна грешка: %1 за %2</translation>
+        <translation>Gabim rrjeti:%1 per %2</translation>
     </message>
 </context>
 </TS>
