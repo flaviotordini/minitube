@@ -124,7 +124,6 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
 #ifdef APP_DEMO
     demoTimer = new QTimer(this);
     demoTimer->setSingleShot(true);
-    demoTimer->setInterval(30000);
     connect(demoTimer, SIGNAL(timeout()), SLOT(demoMessage()));
 #endif
 
@@ -196,15 +195,17 @@ void MediaView::disappear() {
 }
 
 void MediaView::handleError(QString message) {
-    if (message.indexOf("movie atom") != -1 || message.indexOf("Could not open") != -1) {
+    // if (message.indexOf("movie atom") != -1 || message.indexOf("Could not open") != -1) {
         QTimer::singleShot(1000, this, SLOT(startPlaying()));
         return;
-    }
+    // }
 
+    /*
     videoAreaWidget->showError(message);
     skippedVideo = listModel->activeVideo();
     // recover from errors by skipping to the next video
     errorTimer->start(2000);
+    */
 }
 
 void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
@@ -599,11 +600,13 @@ void MediaView::demoMessage() {
     if (mediaObject->state() != Phonon::PlayingState) return;
     mediaObject->pause();
 
-    QMessageBox msgBox;
+    QMessageBox msgBox(this);
     msgBox.setIconPixmap(QPixmap(":/images/app.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     msgBox.setText(tr("This is just the demo version of %1.").arg(Constants::APP_NAME));
     msgBox.setInformativeText(tr("It allows you to test the application and see if it works for you."));
     msgBox.setModal(true);
+    // make it a "sheet" on the Mac
+    msgBox.setWindowModality(Qt::WindowModal);
 
     QPushButton *quitButton = msgBox.addButton(tr("Continue"), QMessageBox::RejectRole);
     QPushButton *buyButton = msgBox.addButton(tr("Get the full version"), QMessageBox::ActionRole);
