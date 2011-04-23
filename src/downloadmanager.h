@@ -32,7 +32,7 @@ private slots:
     void gotStreamUrl(QUrl url);
 
 private:
-    DownloadManager(QObject *parent = 0);
+    DownloadManager(QWidget *parent = 0);
 
     QList<DownloadItem*> items;
     DownloadModel *downloadModel;
