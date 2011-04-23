@@ -134,6 +134,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
     QHBoxLayout *otherLayout = new QHBoxLayout();
     otherLayout->setMargin(0);
+    otherLayout->setSpacing(10);
 
     recentKeywordsLayout = new QVBoxLayout();
     recentKeywordsLayout->setSpacing(5);
