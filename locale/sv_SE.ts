@@ -1,71 +1,71 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="es_ES" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="sv_SE" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutView</name>
     <message>
         <location filename="../src/AboutView.cpp" line="21"/>
         <source>There&apos;s life outside the browser!</source>
-        <translation>¡Hay vida fuera del navegador!</translation>
+        <translation>Det finns ett liv utanför webläsaren!</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="22"/>
         <source>Version %1</source>
-        <translation>Versión %1</translation>
+        <translation>Version %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="25"/>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 es Software Libre pero su desarrollo lleva mucho tiempo.</translation>
+        <translation>%1 är fri programvara men utveklingen tar värdefull tid.</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="26"/>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>Por favor, considere &lt;a href=&apos;%1&apos;&gt;donar&lt;/a&gt; para apoyar el desarrollo de %2.</translation>
+        <translation>Vänligen &lt;a href=&apos;%1&apos;&gt; donera&lt;/a&gt; för att stöda den fortsatta utveklingen utav %2</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="29"/>
         <source>Report bugs and send in your ideas to %1</source>
-        <translation>Informe sobre errores y envíe sus ideas a %1</translation>
+        <translation>Rapportera fel och skicka in dina idéer till %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="33"/>
         <source>Icon designed by %1.</source>
-        <translation>Icono diseñado por %1.</translation>
+        <translation>Ikon designad av %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="34"/>
         <source>Compact mode contributed by %1.</source>
-        <translation>Modo compacto aportado por %1.</translation>
+        <translation>Kompakt läge bidragit av %1.</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="35"/>
         <source>HTTP proxy support contributed by %1.</source>
-        <translation>Soporte de proxy HTTP aportado por %1</translation>
+        <translation>HTTP-proxy stöd bidragit av %1.</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="38"/>
         <source>Translated by %1</source>
-        <translation>Traducido por %1</translation>
+        <translation>Översatt av %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="66"/>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
-        <translation>Publicado bajo la &lt;a href=&apos;%1&apos;&gt;Licencia Pública General GNU&lt;/a&gt;</translation>
+        <translation>Släppt under &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="78"/>
         <source>&amp;Close</source>
-        <translation>&amp;Cerrar</translation>
+        <translation>&amp;Stäng</translation>
     </message>
     <message>
         <location filename="../src/AboutView.h" line="18"/>
         <source>About</source>
-        <translation>Acerca de...</translation>
+        <translation>Om</translation>
     </message>
     <message>
         <location filename="../src/AboutView.h" line="20"/>
         <source>What you always wanted to know about %1 and never dared to ask</source>
-        <translation>Lo que siempre quiso saber sobre el %1 y nunca se atrevió a preguntar</translation>
+        <translation>Vad du alltid velat veta om %1 och aldrig vågat fråga om</translation>
     </message>
 </context>
 <context>
@@ -73,7 +73,7 @@
     <message>
         <location filename="../src/searchlineedit.cpp" line="56"/>
         <source>Clear</source>
-        <translation>Limpiar</translation>
+        <translation>Rensa</translation>
     </message>
 </context>
 <context>
@@ -96,32 +96,32 @@
     <message>
         <location filename="../src/downloaditem.cpp" line="317"/>
         <source>bytes/sec</source>
-        <translation>bytes/seg</translation>
+        <translation>byte / sekund</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="320"/>
         <source>KB/sec</source>
-        <translation>KB/sec</translation>
+        <translation>KB / sekund</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="323"/>
         <source>MB/sec</source>
-        <translation>MB/seg</translation>
+        <translation>MB / sekund</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="329"/>
         <source>seconds</source>
-        <translation>segundos</translation>
+        <translation>sekunder</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="332"/>
         <source>minutes</source>
-        <translation>minutos</translation>
+        <translation>minuter</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="335"/>
         <source>%4 %5 remaining</source>
-        <translation>%4 %5 restante</translation>
+        <translation>%4 %5 återstår</translation>
     </message>
 </context>
 <context>
@@ -129,27 +129,27 @@
     <message>
         <location filename="../src/downloadmanager.cpp" line="47"/>
         <source>This is just the demo version of %1.</source>
-        <translation>Esta es sólo la versión demo de %1.</translation>
+        <translation>Detta är bara en demo version av %1.</translation>
     </message>
     <message>
         <location filename="../src/downloadmanager.cpp" line="49"/>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation>Sólo se pueden descargar vídeos más cortos de %1 minutos, así puede probar la funcionalidad de descarga.</translation>
+        <translation>Det kan bara ladda ner filmer kortare än %1 minuter så att du kan testa ladda ner funktionen.</translation>
     </message>
     <message>
         <location filename="../src/downloadmanager.cpp" line="53"/>
         <source>Continue</source>
-        <translation>Continuar</translation>
+        <translation>Fortsätt</translation>
     </message>
     <message>
         <location filename="../src/downloadmanager.cpp" line="54"/>
         <source>Get the full version</source>
-        <translation>Obtener la versión completa</translation>
+        <translation>Få den fullständiga versionen</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/downloadmanager.cpp" line="126"/>
         <source>%n Download(s)</source>
-        <translation><numerusform>%n Descarga(s)</numerusform><numerusform>%n Descarga(s)</numerusform></translation>
+        <translation><numerusform>%n Nedladning (ar)</numerusform><numerusform>%n Nedladning (ar)</numerusform></translation>
     </message>
 </context>
 <context>
@@ -157,27 +157,27 @@
     <message>
         <location filename="../src/downloadsettings.cpp" line="14"/>
         <source>Change location...</source>
-        <translation>Cambiar ubicación...</translation>
+        <translation>Byt plats ...</translation>
     </message>
     <message>
         <location filename="../src/downloadsettings.cpp" line="38"/>
         <source>Choose the download location</source>
-        <translation>Eligir la ubicación de descarga</translation>
+        <translation>Välj hämtningsplats</translation>
     </message>
     <message>
         <location filename="../src/downloadsettings.cpp" line="49"/>
         <source>Download location changed.</source>
-        <translation>Ubicación de descarga cambiada.</translation>
+        <translation>Hämtningsplatsen har ändrats.</translation>
     </message>
     <message>
         <location filename="../src/downloadsettings.cpp" line="51"/>
         <source>Current downloads will still go in the previous location.</source>
-        <translation>Las descargan actuales irán a parar a la anterior ubicación.</translation>
+        <translation>Aktuella nedladdningar kommer fortfarande att hamna i den tidigare hämtningsplatsen.</translation>
     </message>
     <message>
         <location filename="../src/downloadsettings.cpp" line="63"/>
         <source>Downloading to: %1</source>
-        <translation>Descargado: %1</translation>
+        <translation/>
     </message>
 </context>
 <context>
@@ -186,7 +186,7 @@
         <location filename="../src/downloadview.cpp" line="18"/>
         <location filename="../src/downloadview.h" line="22"/>
         <source>Downloads</source>
-        <translation>Descargas</translation>
+        <translation>Nedladdningar</translation>
     </message>
 </context>
 <context>
@@ -194,62 +194,62 @@
     <message>
         <location filename="../src/globalshortcuts.cpp" line="16"/>
         <source>Play</source>
-        <translation>Reproducir</translation>
+        <translation>Spela</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="17"/>
         <source>Pause</source>
-        <translation>Pausar</translation>
+        <translation>Pausa</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="18"/>
         <source>Play/Pause</source>
-        <translation>Reproducir/Pausar</translation>
+        <translation>Spela / Pausa</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="19"/>
         <source>Stop</source>
-        <translation>Parar</translation>
+        <translation>Stoppa</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="20"/>
         <source>Stop playing after current track</source>
-        <translation>Parar reproducción después esta pista</translation>
+        <translation>Sluta spela efter nuvarande spår</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="21"/>
         <source>Next track</source>
-        <translation>Siguiente pista</translation>
+        <translation>Nästa spår</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="22"/>
         <source>Previous track</source>
-        <translation>Pista anterior</translation>
+        <translation>Föregående spår</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="23"/>
         <source>Increase volume</source>
-        <translation>Subir volumen</translation>
+        <translation>Öka volymen</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="24"/>
         <source>Decrease volume</source>
-        <translation>Bajar volumen</translation>
+        <translation>Minska volymen</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="25"/>
         <source>Mute</source>
-        <translation>Silenciar</translation>
+        <translation>Mute</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="26"/>
         <source>Seek forward</source>
-        <translation>Buscar adelante</translation>
+        <translation>Sök framåt</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="27"/>
         <source>Seek backward</source>
-        <translation>Buscar atrás</translation>
+        <translation>Sök bakåt</translation>
     </message>
 </context>
 <context>
@@ -257,22 +257,22 @@
     <message>
         <location filename="../src/ListModel.cpp" line="47"/>
         <source>Searching...</source>
-        <translation>Buscando...</translation>
+        <translation>Söker...</translation>
     </message>
     <message>
         <location filename="../src/ListModel.cpp" line="48"/>
         <source>Show %1 More</source>
-        <translation>Mostrar %1 más</translation>
+        <translation>Visa %1 Fler</translation>
     </message>
     <message>
         <location filename="../src/ListModel.cpp" line="49"/>
         <source>No videos</source>
-        <translation>No hay vídeos</translation>
+        <translation>Inga videos</translation>
     </message>
     <message>
         <location filename="../src/ListModel.cpp" line="50"/>
         <source>No more videos</source>
-        <translation>No hay más vídeos</translation>
+        <translation>Inga fler videos</translation>
     </message>
 </context>
 <context>
@@ -280,7 +280,7 @@
     <message>
         <location filename="../src/loadingwidget.cpp" line="71"/>
         <source>Error</source>
-        <translation>Error</translation>
+        <translation>Fel</translation>
     </message>
 </context>
 <context>
@@ -288,317 +288,317 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="105"/>
         <source>&amp;Stop</source>
-        <translation>&amp;Parar</translation>
+        <translation>&amp;Stop</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="106"/>
         <source>Stop playback and go back to the search view</source>
-        <translation>Parar reproducción y volver a la vista de búsqueda</translation>
+        <translation>Stoppa uppspelningen och gå tillbaka till Sök vyn</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="112"/>
         <source>S&amp;kip</source>
-        <translation>Sa&amp;ltar</translation>
+        <translation>H&amp;oppa</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="113"/>
         <source>Skip to the next video</source>
-        <translation>Saltar al siguiente vídeo</translation>
+        <translation>Hoppa till nästa video</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="119"/>
         <location filename="../src/MainWindow.cpp" line="644"/>
         <source>&amp;Pause</source>
-        <translation>&amp;Pausar</translation>
+        <translation>&amp;Pausa</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="120"/>
         <location filename="../src/MainWindow.cpp" line="645"/>
         <source>Pause playback</source>
-        <translation>Pausar reproducción</translation>
+        <translation>Pausa uppspelning</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="126"/>
         <location filename="../src/MainWindow.cpp" line="728"/>
         <source>&amp;Full Screen</source>
-        <translation>&amp;Pantalla completa</translation>
+        <translation>&amp;Helskärm</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="127"/>
         <source>Go full screen</source>
-        <translation>Ir a pantalla completa</translation>
+        <translation>Använd helskärm</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="136"/>
         <source>&amp;Compact mode</source>
-        <translation>&amp;Modo compacto</translation>
+        <translation>&amp;Kompakt läge</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="137"/>
         <source>Hide the playlist and the toolbar</source>
-        <translation>Ocultar la lista de reproducción y la barra de herramientas</translation>
+        <translation>Dölj spellistan och verktygsfältet</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="145"/>
         <source>Open the &amp;YouTube page</source>
-        <translation>Abir en la pagina de YouTube</translation>
+        <translation>Öppna &amp;YouTube-sidan</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="146"/>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation>Ir a la página del vídeo en YouTube y pausar la reproducción</translation>
+        <translation>Gå till YouTube-video-sidan och pausa uppspelning</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="152"/>
         <source>Copy the YouTube &amp;link</source>
-        <translation>Copiar enlace del vídeo</translation>
+        <translation>Kopiera YouTube &amp;länken</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="153"/>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation>Copiar al portapapeles el enlace del vídeo de YouTube actual </translation>
+        <translation>Kopiera den aktuella YouTube-video-länken till urklipp</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="159"/>
         <source>Copy the video stream &amp;URL</source>
-        <translation>Copiar la &amp;URL del stream de vídeo</translation>
+        <translation>Kopiera videoströmmens &amp;URL</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="160"/>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation>Copiar al portapapeles la &amp;URL del stream de vídeo actual</translation>
+        <translation>Kopiera den nuvarande videoströmmen URL till urklipp</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="166"/>
         <source>&amp;Remove</source>
-        <translation>Elimina&amp;r</translation>
+        <translation>&amp;Ta bort</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="167"/>
         <source>Remove the selected videos from the playlist</source>
-        <translation>Eliminar los vídeos seleccionados de la lista de reproducción </translation>
+        <translation>Ta bort markerade videoklippen från spellistan</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="173"/>
         <source>Move &amp;Up</source>
-        <translation>S&amp;ubir</translation>
+        <translation>Flytta &amp;upp</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="174"/>
         <source>Move up the selected videos in the playlist</source>
-        <translation>Subir en la lista de reproducción los vídeos seleccionados</translation>
+        <translation>Flytta upp de markerade videoklippen i spellistan</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="180"/>
         <source>Move &amp;Down</source>
-        <translation>&amp;Bajar</translation>
+        <translation>Flytta &amp;nedåt</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="181"/>
         <source>Move down the selected videos in the playlist</source>
-        <translation>Bajar en la lista de reproducción los vídeos seleccionados</translation>
+        <translation>Flytta ner markerade videoklippen i spellistan</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="187"/>
         <source>&amp;Clear recent searches</source>
-        <translation>&amp;Limpiar las búsquedas recientes</translation>
+        <translation>&amp;Rensa senaste sökningar</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="192"/>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation>Limpiar el historial de búsquedas. Esta acción no puede deshacerse.</translation>
+        <translation>Rensa sökhistorik. Kan inte ångras.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="197"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Salir</translation>
+        <translation>&amp;Avsluta</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="199"/>
         <source>Ctrl+Q</source>
-        <translation/>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="200"/>
         <source>Bye</source>
-        <translation>Adiós</translation>
+        <translation>Hej då</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="204"/>
         <source>&amp;Website</source>
-        <translation>Sitio &amp;Web</translation>
+        <translation>&amp;Webbsida</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="206"/>
         <source>%1 on the Web</source>
-        <translation>%1 en la Web</translation>
+        <translation>%1 på webben</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="210"/>
         <source>Make a &amp;donation</source>
-        <translation>Haz una &amp;donación</translation>
+        <translation>Gör en &amp;donation</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="211"/>
         <source>Please support the continued development of %1</source>
-        <translation>Por favor, apoye el continuo desarrollo de %1</translation>
+        <translation>Vänligen stöd den fortsatta utvecklingen av %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="215"/>
         <source>&amp;About</source>
-        <translation>&amp;Acerca de</translation>
+        <translation>&amp;Om</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="217"/>
         <source>Info about %1</source>
-        <translation>Información sobre %1</translation>
+        <translation>Info om %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="225"/>
         <source>Search</source>
-        <translation>Búsqueda</translation>
+        <translation>Sök</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="244"/>
         <source>Mute volume</source>
-        <translation/>
+        <translation>Mute volym</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="246"/>
         <source>Ctrl+M</source>
-        <translation/>
+        <translation>Ctrl + M</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="277"/>
         <location filename="../src/MainWindow.cpp" line="959"/>
         <source>&amp;Downloads</source>
-        <translation>&amp;Descargas</translation>
+        <translation>&amp;Nedladdningar</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="278"/>
         <source>Show details about video downloads</source>
-        <translation>Muestra detalles sobre las descargas de vídeos</translation>
+        <translation>Visa detaljer om video nedladdningar</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="286"/>
         <source>&amp;Download</source>
-        <translation>&amp;Descargar</translation>
+        <translation>&amp;Ladda ner</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="287"/>
         <source>Download the current video</source>
-        <translation>Descarga el vídeo actual</translation>
+        <translation>Ladda ner den aktuella videon</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="328"/>
         <source>&amp;Application</source>
-        <translation>&amp;Aplicación</translation>
+        <translation>&amp;Applikation</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="336"/>
         <source>&amp;Playlist</source>
-        <translation>Lista de Re&amp;producción</translation>
+        <translation>&amp;Spellista</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="343"/>
         <source>&amp;Video</source>
-        <translation>&amp;Vídeo</translation>
+        <translation>&amp;Video</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="362"/>
         <source>&amp;Help</source>
-        <translation>&amp;Ayuda</translation>
+        <translation>&amp;Hjälp</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="439"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation>Presiona %1 para subir el volumen, %2 para bajarlo</translation>
+        <translation>Tryck på %1 för att öka volymen, %2 för att sänka den</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="578"/>
         <location filename="../src/MainWindow.cpp" line="584"/>
         <source>Opening %1</source>
-        <translation>Abriendo %1</translation>
+        <translation>Öppnar %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="597"/>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation>¿Deseas salir de %1 con una descarga activa?</translation>
+        <translation>Vill du avsluta %1 med en nedladdning igång?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="598"/>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation>Si cierras %1, esta descarga se cancelará.</translation>
+        <translation>Om du stänger %1 nu, avbryts nedladdningen.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="601"/>
         <source>Close and cancel download</source>
-        <translation>Cerrar y cancelar la descarga</translation>
+        <translation>Stäng och avbryt nedladdning</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="602"/>
         <source>Wait for download to finish</source>
-        <translation>Esperar la finalización de la descarga</translation>
+        <translation>Vänta på att nedladdning blir klar</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="635"/>
         <source>Fatal error: %1</source>
-        <translation>Error fatal: %1</translation>
+        <translation>Ödesdigert fel: %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="637"/>
         <source>Error: %1</source>
-        <translation>Error: %1</translation>
+        <translation>Fel: %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="660"/>
         <source>&amp;Play</source>
-        <translation>Re&amp;producir</translation>
+        <translation>&amp;Spela</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="661"/>
         <source>Resume playback</source>
-        <translation>Reiniciar la reproducción</translation>
+        <translation>Återuppta uppspelning</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="751"/>
         <source>Exit &amp;Full Screen</source>
-        <translation>Salir de pantalla &amp;completa</translation>
+        <translation>Stäng &amp;Helskärm</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="834"/>
         <source>Remaining time: %1</source>
-        <translation>Tiempo restante: %1</translation>
+        <translation>Återstående tid: %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="892"/>
         <source>Volume at %1%</source>
-        <translation>Volumen al %1%</translation>
+        <translation>Volym %1%</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="898"/>
         <source>Volume is muted</source>
-        <translation>El volumen está desactivado</translation>
+        <translation>Ljudet är avstängt</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="901"/>
         <source>Volume is unmuted</source>
-        <translation>El volumen está activado</translation>
+        <translation>Volymen är på</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="908"/>
         <source>Maximum video definition set to %1</source>
-        <translation/>
+        <translation>Högsta video upplösning är satt till %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="944"/>
         <source>Your privacy is now safe</source>
-        <translation/>
+        <translation>Din integritet är nu säker</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="960"/>
         <source>Downloads complete</source>
-        <translation>Descargas completadas</translation>
+        <translation>Nedladdningar klar</translation>
     </message>
 </context>
 <context>
@@ -606,57 +606,57 @@
     <message>
         <location filename="../src/MediaView.cpp" line="33"/>
         <source>Most relevant</source>
-        <translation>Más relevantes</translation>
+        <translation>Mest relevanta</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="40"/>
         <source>Most recent</source>
-        <translation>Más recientes</translation>
+        <translation>Senaste</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="47"/>
         <source>Most viewed</source>
-        <translation>Más vistos</translation>
+        <translation>Mest sedda</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="489"/>
         <source>You can now paste the YouTube link into another application</source>
-        <translation>Ahora puedes pegar el enlace de Youtube en otra aplicación</translation>
+        <translation>Nu kan du klistra in YouTube-länken i ett annat program</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="497"/>
         <source>You can now paste the video stream URL into another application</source>
-        <translation>Ahora puedes pegar la URL del stream de vídeo en otra aplicación</translation>
+        <translation>Du kan nu klistra in videoströmmens webbadress i ett annat program</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="498"/>
         <source>The link will be valid only for a limited time.</source>
-        <translation>EL enlace será válido sólo por un plazo de tiempo limitado.</translation>
+        <translation>Länken kommer att gälla endast under en begränsad tid.</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="594"/>
         <source>This is just the demo version of %1.</source>
-        <translation>Esta es sólo la versión de demo de %1.</translation>
+        <translation>Detta är bara en demo version av %1.</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="595"/>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation/>
+        <translation>Det tillåter dig att testa programmet och se om det fungerar för dig.</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="598"/>
         <source>Continue</source>
-        <translation>Continuar</translation>
+        <translation>Fortsätt</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="599"/>
         <source>Get the full version</source>
-        <translation>Obtener la versión completa</translation>
+        <translation>Skaffa den fullständiga versionen</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="625"/>
         <source>Downloading %1</source>
-        <translation>Descargand %1</translation>
+        <translation>Hämtar %1</translation>
     </message>
 </context>
 <context>
@@ -664,7 +664,7 @@
     <message>
         <location filename="../src/networkaccess.cpp" line="258"/>
         <source>Network error: %1</source>
-        <translation>Error de red: %1</translation>
+        <translation>Nätverks fel:%1</translation>
     </message>
 </context>
 <context>
@@ -672,52 +672,52 @@
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="156"/>
         <source>%1 views</source>
-        <translation>%1 vistas</translation>
+        <translation>%1 visningar</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="286"/>
         <source>%1 of %2 (%3) — %4</source>
-        <translation>%1 de %2 (%3) -- %4</translation>
+        <translation>%1 av %2 (%3) -%4</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="293"/>
         <source>Preparing</source>
-        <translation>Preparando</translation>
+        <translation>Förbereder</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="295"/>
         <source>Failed</source>
-        <translation>Falló</translation>
+        <translation>Misslyckades</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="297"/>
         <source>Completed</source>
-        <translation>Completo</translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="299"/>
         <source>Stopped</source>
-        <translation>Parado</translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="335"/>
         <source>Stop downloading</source>
-        <translation>Parar descarga</translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="345"/>
         <source>Show in %1</source>
-        <translation>Mostrar en %1</translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="347"/>
         <source>Open parent folder</source>
-        <translation>Abrir carpeta padre</translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="356"/>
         <source>Restart downloading</source>
-        <translation>Reiniciar descarga</translation>
+        <translation/>
     </message>
 </context>
 <context>
@@ -725,7 +725,7 @@
     <message>
         <location filename="../src/searchlineedit.cpp" line="177"/>
         <source>Search</source>
-        <translation>Buscar</translation>
+        <translation/>
     </message>
 </context>
 <context>
@@ -733,48 +733,48 @@
     <message>
         <location filename="../src/SearchView.cpp" line="74"/>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
-        <translation>Bienvenido/a a &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="41"/>
         <source>Get the full version</source>
-        <translation>Obtener la versión completa</translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="88"/>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation>Introducir</translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="93"/>
         <source>a keyword</source>
-        <translation>una palabra clave</translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="94"/>
         <source>a channel</source>
-        <translation>un canal</translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="99"/>
         <source>to start watching videos.</source>
-        <translation>empezar a ver vídeos</translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="124"/>
         <source>Watch</source>
-        <translation>Ver</translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="141"/>
         <source>Recent keywords</source>
-        <translation>Palabras clave recientes</translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="159"/>
         <source>Recent channels</source>
-        <translation>Canales recientes</translation>
+        <translation/>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="358"/>
@@ -784,7 +784,7 @@
     <message>
         <location filename="../src/SearchView.h" line="35"/>
         <source>Make yourself comfortable</source>
-        <translation>Siéntete como en casa</translation>
+        <translation/>
     </message>
 </context>
 <context>
