@@ -169,6 +169,7 @@ void  Video::gotVideoInfo(QByteArray data) {
     int previousIndex = 0;
     while (currentIndex >= 0) {
         previousIndex = currentIndex - 1;
+        if (previousIndex < 0) previousIndex = 0;
         int definitionCode = definitionCodes.at(previousIndex);
         if (urlMap.contains(definitionCode)) {
             qDebug() << "Found format" << definitionCode;

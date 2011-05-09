@@ -414,6 +414,10 @@ void MediaView::downloadStatusChanged() {
 
 void MediaView::startPlaying() {
     if (reallyStopped) return;
+    if (!downloadItem) {
+        skip();
+        return;
+    }
 
     // go!
     qDebug() << "Playing" << downloadItem->currentFilename();
