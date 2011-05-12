@@ -146,6 +146,11 @@ QString DownloadManager::defaultDownloadFolder() {
         // fallback to Desktop
         path = QDesktopServices::storageLocation(QDesktopServices::DesktopLocation);
     }
+    QDir desktopDir(path);
+    if (!desktopDir.exists()) {
+        // fallback to Home
+        path = QDesktopServices::storageLocation(QDesktopServices::HomeLocation);
+    }
     return path;
 }
 
