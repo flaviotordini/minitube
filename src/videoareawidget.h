@@ -32,6 +32,7 @@ protected:
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
+    void leaveEvent(QMouseEvent *event);
 
 private:
     QStackedLayout *stackedLayout;

@@ -122,3 +122,17 @@ void VideoAreaWidget::mouseMoveEvent(QMouseEvent *event) {
     ret = QMetaObject::invokeMethod(mainWindow, "showFullscreenPlaylist", Qt::DirectConnection, Q_ARG(bool, visible));
     if (!ret) qDebug() << "showFullscreenPlaylist invokeMethod failed";
 }
+
+void VideoAreaWidget::leaveEvent(QMouseEvent *event) {
+    QWidget::leaveEvent(event);
+
+    QWidget* mainWindow = window();
+    if (!mainWindow->isFullScreen()) return;
+
+    bool visible = false;
+    bool ret = QMetaObject::invokeMethod(mainWindow, "showFullscreenToolbar", Qt::DirectConnection, Q_ARG(bool, visible));
+    if (!ret) qDebug() << "showFullscreenToolbar invokeMethod failed";
+
+    ret = QMetaObject::invokeMethod(mainWindow, "showFullscreenPlaylist", Qt::DirectConnection, Q_ARG(bool, visible));
+    if (!ret) qDebug() << "showFullscreenPlaylist invokeMethod failed";
+}
