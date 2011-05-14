@@ -710,6 +710,7 @@ void MainWindow::fullscreen() {
 
     // workaround: prevent focus on the search bar
     // it steals the Space key needed for Play/Pause
+    toolbarSearch->setVisible(m_fullscreen);
     toolbarSearch->setEnabled(m_fullscreen);
 
     // Hide anything but the video
@@ -903,7 +904,7 @@ void MainWindow::volumeChanged(qreal newVolume) {
     // automatically unmute when volume changes
     if (volumeSlider->audioOutput()->isMuted())
         volumeSlider->audioOutput()->setMuted(false);
-    statusBar()->showMessage(tr("Volume at %1%").arg(newVolume*100));
+    statusBar()->showMessage(tr("Volume at %1%").arg(((int)newVolume)*100));
 }
 
 void MainWindow::volumeMutedChanged(bool muted) {
@@ -942,6 +943,8 @@ void MainWindow::toggleDefinitionMode() {
 void MainWindow::showFullscreenToolbar(bool show) {
     if (!m_fullscreen) return;
     mainToolBar->setVisible(show);
+    toolbarSearch->setVisible(show);
+    toolbarSearch->setEnabled(show);
 }
 
 void MainWindow::showFullscreenPlaylist(bool show) {
