@@ -1,3 +1,10 @@
+1.4.3 - May 15, 2011
+- Really fixed some videos not playing
+- Hide toolbar and playlist in fullscreen on mouseleave (multiscreen)  (Patch by Rob Halff)
+- Fixed volume level in the statusbar showing as a decimal (Patch by mru00)
+- Fixed disabled search box when in fullscreen on Linux
+- New and updated translations
+
 1.4.2 - April 15, 2011
 - Fix some videos not playing
 - Full length videos now start faster
