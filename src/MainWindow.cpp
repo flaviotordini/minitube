@@ -904,7 +904,7 @@ void MainWindow::volumeChanged(qreal newVolume) {
     // automatically unmute when volume changes
     if (volumeSlider->audioOutput()->isMuted())
         volumeSlider->audioOutput()->setMuted(false);
-    statusBar()->showMessage(tr("Volume at %1%").arg(((int)newVolume)*100));
+    statusBar()->showMessage(tr("Volume at %1%").arg((int)(newVolume*100)));
 }
 
 void MainWindow::volumeMutedChanged(bool muted) {
