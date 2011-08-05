@@ -22,5 +22,8 @@ public:
         return metadata;
     }
 
+protected:
+    void paintEvent(QPaintEvent *);
+
 };
 #endif

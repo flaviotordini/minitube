@@ -17,7 +17,7 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
     layout->setSpacing(30);
     aboutlayout->addLayout(layout);
 
-    QString info = "<html><style>a { color: palette(text); }</style><body><h1>" + QString(Constants::APP_NAME) + "</h1>"
+    QString info = "<html><style>a { color: palette(text); text-decoration: none; font-weight: bold }</style><body><h1>" + QString(Constants::APP_NAME) + "</h1>"
                    "<p>" + tr("There's life outside the browser!") + "</p>"
                    "<p>" + tr("Version %1").arg(Constants::VERSION) + "</p>"
                    + QString("<p><a href=\"%1/\">%1</a></p>").arg(Constants::WEBSITE) +
@@ -35,33 +35,10 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
                    + "<br>" + tr("HTTP proxy support contributed by %1.").arg("Kiwamu Okabe")
                    + "</p>"
 
-                   "<p>" + tr("Translated by %1").arg("Nikita Lyalin (ru_RU), "
-                                                      "Márcio Moraes (pt_BR), "
-                                                      // "Sergio Tocalini Joerg (es_AR), "
-                                                      "Stefan Brück (de_DE), "
-                                                      "Grzegorz Gibas (pl_PL), "
-                                                      "Kiwamu Okabe (ja_JP), "
-                                                      "Dan Vrátil (cs_CZ), "
-                                                      // "Rafa (es_ES), "
-                                                      "Yaron Shahrabani (he_IL), "
-                                                      "Oleksandr Korneta (uk), "
-                                                      "Inga Muste (lat), "
-                                                      "Srecko Belaic & Zvonimir Đeri (hr_HR), "
-                                                      "Miguel Anxo Bouzada (es, gl), "
-                                                      "Guillaume Betous & Mathieu Dimanche (fr_FR), "
-                                                      "Krisztián Horváth (hu_HU), "
-                                                      "Ali E. İmrek (tr_TR), "
-                                                      "Jan W. Skjoldal & Halvor Lyche Strandvoll (nb_NO), "
-                                                      "Ovidiu Niţan (ro_RO), "
-                                                      "Giorgos Skettos (el_GR), "
-                                                      "Brian Keetman (nl_NL), "
-                                                      "Sderawi (ar), "
-                                                      "Daniel Rodrigues (pt_PT), "
-                                                      "Jesse Jaara (fi_FI), "
-                                                      "Tsvyatko Makazchiev (bg_BG), "
-                                                      "Changtai Liang (zh_CN), "
-                                                      "Veta Branislav (mkd_MKD)"
-                                                      ) + "</p>"
+                   "<p>" + tr("Translated by the cool people at %1")
+                   .arg("<a href='http://www.transifex.net/projects/p/minitube/resource/main/'>Transifex</a>")
+                   + "</p>"
+
 #if !defined(APP_MAC) && !defined(APP_WIN)
                    "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")
                    .arg("http://www.gnu.org/licenses/gpl.html") + "</p>"
@@ -85,4 +62,17 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
 
     layout->addLayout(buttonLayout);
 
+}
+
+void AboutView::paintEvent(QPaintEvent * /*event*/) {
+#if defined(APP_MAC) | defined(APP_WIN)
+    QBrush brush;
+    if (window()->isActiveWindow()) {
+        brush = QBrush(QColor(0xdd, 0xe4, 0xeb));
+    } else {
+        brush = palette().window();
+    }
+    QPainter painter(this);
+    painter.fillRect(0, 0, width(), height(), brush);
+#endif
 }
