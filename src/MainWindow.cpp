@@ -82,6 +82,8 @@ MainWindow::MainWindow() :
             SLOT(updateDownloadMessage(QString)));
     connect(DownloadManager::instance(), SIGNAL(finished()),
             SLOT(downloadsFinished()));
+
+    setAcceptDrops(true);
 }
 
 MainWindow::~MainWindow() {
@@ -217,10 +219,12 @@ void MainWindow::createActions() {
     actions->insert("site", siteAct);
     connect(siteAct, SIGNAL(triggered()), this, SLOT(visitSite()));
 
+#if !defined(APP_MAC) && !defined(APP_WIN)
     donateAct = new QAction(tr("Make a &donation"), this);
     donateAct->setStatusTip(tr("Please support the continued development of %1").arg(Constants::APP_NAME));
     actions->insert("donate", donateAct);
     connect(donateAct, SIGNAL(triggered()), this, SLOT(donate()));
+#endif
 
     aboutAct = new QAction(tr("&About"), this);
     aboutAct->setMenuRole(QAction::AboutRole);
@@ -295,7 +299,9 @@ void MainWindow::createActions() {
 
     action = new QAction(tr("&Download"), this);
     action->setStatusTip(tr("Download the current video"));
+#ifndef APP_NO_DOWNLOADS
     action->setShortcut(QKeySequence::Save);
+#endif
     action->setIcon(QtIconLoader::icon("go-down"));
     action->setEnabled(false);
 #if QT_VERSION >= 0x040600
@@ -355,12 +361,16 @@ void MainWindow::createMenus() {
     viewMenu->addAction(stopAct);
     viewMenu->addAction(pauseAct);
     viewMenu->addAction(skipAct);
+#ifndef APP_NO_DOWNLOADS
     viewMenu->addSeparator();
     viewMenu->addAction(The::globalActions()->value("download"));
+#endif
     viewMenu->addSeparator();
     viewMenu->addAction(webPageAct);
     viewMenu->addAction(copyPageAct);
+#ifndef APP_NO_DOWNLOADS
     viewMenu->addAction(copyLinkAct);
+#endif
     viewMenu->addSeparator();
     viewMenu->addAction(compactViewAct);
     viewMenu->addAction(fullscreenAct);
@@ -406,7 +416,9 @@ void MainWindow::createToolBars() {
     mainToolBar->addAction(pauseAct);
     mainToolBar->addAction(skipAct);
     mainToolBar->addAction(fullscreenAct);
+#ifndef APP_NO_DOWNLOADS
     mainToolBar->addAction(The::globalActions()->value("download"));
+#endif
 
     mainToolBar->addWidget(new Spacer());
 
@@ -634,6 +646,9 @@ void MainWindow::showSearch() {
 }
 
 void MainWindow::showMedia(SearchParams *searchParams) {
+    if (toolbarSearch->text().isEmpty() && !searchParams->keywords().isEmpty()) {
+        toolbarSearch->lineEdit()->setText(searchParams->keywords());
+    }
     mediaView->search(searchParams);
     showWidget(mediaView);
 }
@@ -1012,4 +1027,30 @@ void MainWindow::startToolbarSearch(QString query) {
 
     // go!
     showMedia(searchParams);
+}
+
+void MainWindow::dragEnterEvent(QDragEnterEvent *event) {
+    if (event->mimeData()->hasFormat("text/uri-list")) {
+        QList<QUrl> urls = event->mimeData()->urls();
+        if (urls.isEmpty())
+            return;
+        QUrl url = urls.first();
+        QString videoId = YouTubeSearch::videoIdFromUrl(url.toString());
+        if (!videoId.isNull())
+            event->acceptProposedAction();
+    }
+}
+
+void MainWindow::dropEvent(QDropEvent *event) {
+    QList<QUrl> urls = event->mimeData()->urls();
+    if (urls.isEmpty())
+        return;
+    QUrl url = urls.first();
+    QString videoId = YouTubeSearch::videoIdFromUrl(url.toString());
+    if (!videoId.isNull()) {
+        setWindowTitle(url.toString());
+        SearchParams *searchParams = new SearchParams();
+        searchParams->setKeywords(videoId);
+        showMedia(searchParams);
+    }
 }

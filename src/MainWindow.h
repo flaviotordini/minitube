@@ -29,6 +29,8 @@ public slots:
 protected:
     void closeEvent(QCloseEvent *);
     bool eventFilter(QObject *obj, QEvent *event);
+    void dragEnterEvent(QDragEnterEvent *event);
+    void dropEvent(QDropEvent *event);
 
 private slots:
     void fadeInWidget(QWidget *oldWidget, QWidget *newWidget);
