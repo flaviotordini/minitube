@@ -125,7 +125,7 @@ void  Video::gotVideoInfo(QByteArray data) {
     this->videoToken = videoToken;
 
     // get fmt_url_map
-    re = QRegExp("^.*&fmt_url_map=([^&]+).*$");
+    re = QRegExp("^.*&url_encoded_fmt_stream_map=([^&]+).*$");
     match = re.exactMatch(videoInfo);
     // handle regexp failure
     if (!match || re.numCaptures() < 1) {
@@ -146,10 +146,24 @@ void  Video::gotVideoInfo(QByteArray data) {
     QStringList formatUrls = fmtUrlMap.split(",", QString::SkipEmptyParts);
     QHash<int, QString> urlMap;
     foreach(QString formatUrl, formatUrls) {
-        int separator = formatUrl.indexOf("|");
-        if (separator == -1) continue;
-        int format = formatUrl.left(separator).toInt();
-        QString url = formatUrl.mid(separator + 1);
+        // formatUrl = QByteArray::fromPercentEncoding(formatUrl.toUtf8());
+        qDebug() << "formatUrl" << formatUrl;
+        QStringList urlParams = formatUrl.split("&", QString::SkipEmptyParts);
+        // qDebug() << "urlParams" << urlParams;
+
+        int format = -1;
+        QString url;
+        foreach(QString urlParam, urlParams) {
+            if (urlParam.startsWith("itag=")) {
+                int separator = urlParam.indexOf("=");
+                format = urlParam.mid(separator + 1).toInt();
+            } else if (urlParam.startsWith("url=")) {
+                int separator = urlParam.indexOf("=");
+                url = urlParam.mid(separator + 1);
+                url = QByteArray::fromPercentEncoding(url.toUtf8());
+            }
+        }
+        if (format == -1 || url.isNull()) continue;
 
         if (format == definitionCode) {
             qDebug() << "Found format" << definitionCode;
