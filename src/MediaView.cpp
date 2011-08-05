@@ -177,7 +177,7 @@ void MediaView::search(SearchParams *searchParams) {
 
     QString keyword = searchParams->keywords();
     QString display = keyword;
-    if (keyword.startsWith("http://")) {
+    if (keyword.startsWith("http://") || keyword.startsWith("https://")) {
         int separator = keyword.indexOf("|");
         if (separator > 0 && separator + 1 < keyword.length()) {
             display = keyword.mid(separator+1);
@@ -322,6 +322,13 @@ void MediaView::activeRowChanged(int row) {
     if (mainWindow) mainWindow->statusBar()->showMessage(video->title());
 
     The::globalActions()->value("download")->setEnabled(DownloadManager::instance()->itemForVideo(video) == 0);
+
+    // ensure active item is visible
+    // int row = listModel->activeRow();
+    if (row != -1) {
+        QModelIndex index = listModel->index(row, 0, QModelIndex());
+        listView->scrollTo(index, QAbstractItemView::EnsureVisible);
+    }
 
     // see you in gotStreamUrl...
 

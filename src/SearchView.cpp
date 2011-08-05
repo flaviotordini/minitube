@@ -204,7 +204,7 @@ void SearchView::updateRecentKeywords() {
     foreach (QString keyword, keywords) {
         QString link = keyword;
         QString display = keyword;
-        if (keyword.startsWith("http://")) {
+        if (keyword.startsWith("http://") || keyword.startsWith("https://")) {
             int separator = keyword.indexOf("|");
             if (separator > 0 && separator + 1 < keyword.length()) {
                 link = keyword.left(separator);
@@ -244,7 +244,7 @@ void SearchView::updateRecentChannels() {
     foreach (QString keyword, keywords) {
         QString link = keyword;
         QString display = keyword;
-        if (keyword.startsWith("http://")) {
+        if (keyword.startsWith("http://") || keyword.startsWith("https://")) {
             int separator = keyword.indexOf("|");
             if (separator > 0 && separator + 1 < keyword.length()) {
                 link = keyword.left(separator);
