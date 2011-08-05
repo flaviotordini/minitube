@@ -15,27 +15,27 @@
     <message>
         <location filename="../src/AboutView.cpp" line="25"/>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 er Fri Programvare men utviklingen tar verdifull tid.</translation>
+        <translation>%1 er gratis programvare, men utviklingen bruker dyrebar tid.</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="26"/>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>Vennligst &lt;a href=&apos;%1&apos;&gt;doner&lt;/a&gt; for og støtte vidre utvikling av %2.</translation>
+        <translation>Vennligst &lt;a href=&apos;%1&apos;&gt;doner&lt;/a&gt; for og støtte videre utvikling av %2.</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="29"/>
         <source>Report bugs and send in your ideas to %1</source>
-        <translation>Rapporter bugs og send inn dine ideer til %1</translation>
+        <translation>Rapporter feil og send inn dine ideer til %1</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="33"/>
         <source>Icon designed by %1.</source>
-        <translation>Ikon er designet av %1.</translation>
+        <translation>Ikonet er designet av %1.</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="34"/>
         <source>Compact mode contributed by %1.</source>
-        <translation>Kompakt-Visning er utviklet av %1.</translation>
+        <translation>Kompaktmodus er utviklet av %1.</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="35"/>
@@ -50,7 +50,7 @@
     <message>
         <location filename="../src/AboutView.cpp" line="66"/>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
-        <translation>Sluppet under &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</translation>
+        <translation>Utgitt under &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/AboutView.cpp" line="78"/>
@@ -65,7 +65,7 @@
     <message>
         <location filename="../src/AboutView.h" line="20"/>
         <source>What you always wanted to know about %1 and never dared to ask</source>
-        <translation>Hva du alltid har villet visst om %1 men aldri torde å spørre om</translation>
+        <translation>Hva du alltid har ønsket å vite om %1, men aldri turte spørre om</translation>
     </message>
 </context>
 <context>
@@ -81,47 +81,47 @@
     <message>
         <location filename="../src/downloaditem.cpp" line="295"/>
         <source>bytes</source>
-        <translation/>
+        <translation>bytes</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="298"/>
         <source>KB</source>
-        <translation/>
+        <translation>KB</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="301"/>
         <source>MB</source>
-        <translation/>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="317"/>
         <source>bytes/sec</source>
-        <translation/>
+        <translation>bytes/sek</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="320"/>
         <source>KB/sec</source>
-        <translation/>
+        <translation>KB/sek</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="323"/>
         <source>MB/sec</source>
-        <translation/>
+        <translation>MB/sek</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="329"/>
         <source>seconds</source>
-        <translation/>
+        <translation>sekunder</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="332"/>
         <source>minutes</source>
-        <translation/>
+        <translation>minutter</translation>
     </message>
     <message>
         <location filename="../src/downloaditem.cpp" line="335"/>
         <source>%4 %5 remaining</source>
-        <translation/>
+        <translation>%4 %5 gjenstår</translation>
     </message>
 </context>
 <context>
@@ -129,27 +129,27 @@
     <message>
         <location filename="../src/downloadmanager.cpp" line="47"/>
         <source>This is just the demo version of %1.</source>
-        <translation/>
+        <translation>Dette er kun demo-versjonen av %1.</translation>
     </message>
     <message>
         <location filename="../src/downloadmanager.cpp" line="49"/>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation/>
+        <translation>Den kan kun laste ned videoer på under %1 minutter, for at du skal kunne prøve ut nedlastingsfunksjonen.</translation>
     </message>
     <message>
         <location filename="../src/downloadmanager.cpp" line="53"/>
         <source>Continue</source>
-        <translation/>
+        <translation>Fortsett</translation>
     </message>
     <message>
         <location filename="../src/downloadmanager.cpp" line="54"/>
         <source>Get the full version</source>
-        <translation/>
+        <translation>Kjøp fullversjonen</translation>
     </message>
     <message numerus="yes">
         <location filename="../src/downloadmanager.cpp" line="126"/>
         <source>%n Download(s)</source>
-        <translation><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n nedlasting</numerusform><numerusform>%n nedlastinger</numerusform></translation>
     </message>
 </context>
 <context>
@@ -157,27 +157,27 @@
     <message>
         <location filename="../src/downloadsettings.cpp" line="14"/>
         <source>Change location...</source>
-        <translation/>
+        <translation>Endre sted ...</translation>
     </message>
     <message>
         <location filename="../src/downloadsettings.cpp" line="38"/>
         <source>Choose the download location</source>
-        <translation/>
+        <translation>Velg nedlastingsmappe</translation>
     </message>
     <message>
         <location filename="../src/downloadsettings.cpp" line="49"/>
         <source>Download location changed.</source>
-        <translation/>
+        <translation>Nedlastingsmappe endret.</translation>
     </message>
     <message>
         <location filename="../src/downloadsettings.cpp" line="51"/>
         <source>Current downloads will still go in the previous location.</source>
-        <translation/>
+        <translation>Pågående nedlastinger vil bli lagret i den forrige mappen.</translation>
     </message>
     <message>
         <location filename="../src/downloadsettings.cpp" line="63"/>
         <source>Downloading to: %1</source>
-        <translation/>
+        <translation>Laster ned til: %1</translation>
     </message>
 </context>
 <context>
@@ -186,7 +186,7 @@
         <location filename="../src/downloadview.cpp" line="18"/>
         <location filename="../src/downloadview.h" line="22"/>
         <source>Downloads</source>
-        <translation/>
+        <translation>Nedlastinger</translation>
     </message>
 </context>
 <context>
@@ -194,62 +194,62 @@
     <message>
         <location filename="../src/globalshortcuts.cpp" line="16"/>
         <source>Play</source>
-        <translation/>
+        <translation>Spill av</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="17"/>
         <source>Pause</source>
-        <translation/>
+        <translation>Pause</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="18"/>
         <source>Play/Pause</source>
-        <translation/>
+        <translation>Spill av/Pause</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="19"/>
         <source>Stop</source>
-        <translation/>
+        <translation>Stopp</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="20"/>
         <source>Stop playing after current track</source>
-        <translation/>
+        <translation>Stopp avspilling etter denne videoen.</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="21"/>
         <source>Next track</source>
-        <translation/>
+        <translation>Neste video</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="22"/>
         <source>Previous track</source>
-        <translation/>
+        <translation>Forrige video</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="23"/>
         <source>Increase volume</source>
-        <translation/>
+        <translation>Øk lydvolumet</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="24"/>
         <source>Decrease volume</source>
-        <translation/>
+        <translation>Senk lydvolumet</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="25"/>
         <source>Mute</source>
-        <translation/>
+        <translation>Lydløs</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="26"/>
         <source>Seek forward</source>
-        <translation/>
+        <translation>Søk forover</translation>
     </message>
     <message>
         <location filename="../src/globalshortcuts.cpp" line="27"/>
         <source>Seek backward</source>
-        <translation/>
+        <translation>Søk bakover</translation>
     </message>
 </context>
 <context>
@@ -293,7 +293,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="106"/>
         <source>Stop playback and go back to the search view</source>
-        <translation>Stopp avspilling og gå tilbake til dine søk</translation>
+        <translation>Stopp avspilling og gå tilbake til søkevisningen</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="112"/>
@@ -303,7 +303,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="113"/>
         <source>Skip to the next video</source>
-        <translation>Hopp over neste video</translation>
+        <translation>Hopp til neste video</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="119"/>
@@ -331,7 +331,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="136"/>
         <source>&amp;Compact mode</source>
-        <translation>&amp;Kompakt-Visning</translation>
+        <translation>&amp;Kompaktvisning</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="137"/>
@@ -401,12 +401,12 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="187"/>
         <source>&amp;Clear recent searches</source>
-        <translation/>
+        <translation>&amp;fjern seneste søkehistorie</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="192"/>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation>Klarer søkehistorie. Kan ikke bli angert.</translation>
+        <translation>Fjern all søkehistorie. Kan ikke angres.</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="197"/>
@@ -421,7 +421,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="200"/>
         <source>Bye</source>
-        <translation>Ha en fin dag</translation>
+        <translation>Farvel</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="204"/>
@@ -436,12 +436,12 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="210"/>
         <source>Make a &amp;donation</source>
-        <translation>Gjør en &amp;donasjon</translation>
+        <translation>&amp;donér</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="211"/>
         <source>Please support the continued development of %1</source>
-        <translation>Bidra til fortsatt utvikling av %1</translation>
+        <translation>Vi håper du kan bidra til å fortsette arbeidet med utvikling av %1</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="215"/>
@@ -461,7 +461,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="244"/>
         <source>Mute volume</source>
-        <translation>Mute</translation>
+        <translation>Lydløs</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="246"/>
@@ -472,22 +472,22 @@
         <location filename="../src/MainWindow.cpp" line="277"/>
         <location filename="../src/MainWindow.cpp" line="959"/>
         <source>&amp;Downloads</source>
-        <translation/>
+        <translation>&amp;Nedlastinger</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="278"/>
         <source>Show details about video downloads</source>
-        <translation/>
+        <translation>Vis detaljer om nedlasting av video</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="286"/>
         <source>&amp;Download</source>
-        <translation/>
+        <translation>&amp;Nedlasting</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="287"/>
         <source>Download the current video</source>
-        <translation/>
+        <translation>Last ned denne videoen</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="328"/>
@@ -512,7 +512,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="439"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation>Trykk på %1 for å stille opp volum, %2 for å skru ned</translation>
+        <translation>Trykk på %1 for å øke lydvolumet, %2 for å senke</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="578"/>
@@ -523,22 +523,22 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="597"/>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation/>
+        <translation>Vil du avslutte %1 mens nedlastinger pågår?</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="598"/>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation/>
+        <translation>Vis du stenger %1 nå, vil nedlastingen bli avbrutt</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="601"/>
         <source>Close and cancel download</source>
-        <translation/>
+        <translation>Steng og avbryt nedlastingen </translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="602"/>
         <source>Wait for download to finish</source>
-        <translation/>
+        <translation>Vent mens nedlastingen fullføres</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="635"/>
@@ -578,12 +578,12 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="898"/>
         <source>Volume is muted</source>
-        <translation>Mute er på</translation>
+        <translation>Lydløst er på</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="901"/>
         <source>Volume is unmuted</source>
-        <translation>Mute er av</translation>
+        <translation>Lydløst er av</translation>
     </message>
     <message>
         <location filename="../src/MainWindow.cpp" line="908"/>
@@ -598,7 +598,7 @@
     <message>
         <location filename="../src/MainWindow.cpp" line="960"/>
         <source>Downloads complete</source>
-        <translation/>
+        <translation>Nedlastinger fullført</translation>
     </message>
 </context>
 <context>
@@ -636,27 +636,27 @@
     <message>
         <location filename="../src/MediaView.cpp" line="594"/>
         <source>This is just the demo version of %1.</source>
-        <translation/>
+        <translation>Dette er kun demoversjonen av %1.</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="595"/>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation/>
+        <translation>Dette gir deg muligheten til å prøve ut applikasjonen og se om du den er noe for deg.</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="598"/>
         <source>Continue</source>
-        <translation/>
+        <translation>Fortsett</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="599"/>
         <source>Get the full version</source>
-        <translation/>
+        <translation>Kjøp fullversjonen</translation>
     </message>
     <message>
         <location filename="../src/MediaView.cpp" line="625"/>
         <source>Downloading %1</source>
-        <translation/>
+        <translation>Nedlasting %1</translation>
     </message>
 </context>
 <context>
@@ -677,47 +677,47 @@
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="286"/>
         <source>%1 of %2 (%3) — %4</source>
-        <translation/>
+        <translation>%1 av %2 (%3) — %4</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="293"/>
         <source>Preparing</source>
-        <translation/>
+        <translation>Forbereder</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="295"/>
         <source>Failed</source>
-        <translation/>
+        <translation>Feilet</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="297"/>
         <source>Completed</source>
-        <translation/>
+        <translation>Fullført</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="299"/>
         <source>Stopped</source>
-        <translation/>
+        <translation>Stoppet</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="335"/>
         <source>Stop downloading</source>
-        <translation/>
+        <translation>Stop nedlasting</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="345"/>
         <source>Show in %1</source>
-        <translation/>
+        <translation>Vis i %1</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="347"/>
         <source>Open parent folder</source>
-        <translation/>
+        <translation>Åpne vertsmappen</translation>
     </message>
     <message>
         <location filename="../src/playlist/PrettyItemDelegate.cpp" line="356"/>
         <source>Restart downloading</source>
-        <translation/>
+        <translation>Start nedlastingen på nytt</translation>
     </message>
 </context>
 <context>
@@ -733,48 +733,48 @@
     <message>
         <location filename="../src/SearchView.cpp" line="74"/>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
-        <translation>Velommen til &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
+        <translation>Velkommen til &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="41"/>
         <source>Get the full version</source>
-        <translation/>
+        <translation>Kjøpfullversjon</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="88"/>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation/>
+        <translation>Skriv</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="93"/>
         <source>a keyword</source>
-        <translation/>
+        <translation>ett nøkkelord</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="94"/>
         <source>a channel</source>
-        <translation/>
+        <translation>en kanal</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="99"/>
         <source>to start watching videos.</source>
-        <translation/>
+        <translation>for å begynne avspilling av video</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="124"/>
         <source>Watch</source>
-        <translation>Se Film</translation>
+        <translation>Se</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="141"/>
         <source>Recent keywords</source>
-        <translation>Aktuelle søkeord</translation>
+        <translation>Seneste søkeord</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="159"/>
         <source>Recent channels</source>
-        <translation/>
+        <translation>Seneste kanaler</translation>
     </message>
     <message>
         <location filename="../src/SearchView.cpp" line="358"/>
@@ -792,7 +792,7 @@
     <message>
         <location filename="../src/video.cpp" line="186"/>
         <source>Cannot get video stream for %1</source>
-        <translation/>
+        <translation>Kan ikke hente mediastrøm for %1</translation>
     </message>
     <message>
         <location filename="../src/video.cpp" line="204"/>
