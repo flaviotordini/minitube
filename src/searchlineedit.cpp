@@ -56,6 +56,7 @@ ClearButton::ClearButton(QWidget *parent)
     setToolTip(tr("Clear"));
     setVisible(false);
     setFocusPolicy(Qt::NoFocus);
+    setShortcut(QKeySequence(Qt::Key_Escape));
 }
 
 void ClearButton::paintEvent(QPaintEvent *event)
@@ -65,7 +66,7 @@ void ClearButton::paintEvent(QPaintEvent *event)
     int height = this->height();
 
     painter.setRenderHint(QPainter::Antialiasing, true);
-    QColor color = palette().color(QPalette::Mid);
+    // QColor color = palette().color(QPalette::Mid);
     painter.setBrush(isDown()
                      ? palette().color(QPalette::Dark)
                          : palette().color(QPalette::Mid));
