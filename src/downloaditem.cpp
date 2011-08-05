@@ -135,9 +135,11 @@ void DownloadItem::error(QNetworkReply::NetworkError) {
     qDebug() << "DownloadItem::" << __FUNCTION__ << m_reply->errorString() << m_url;
 #endif
 
-    qDebug() << m_reply->errorString();
+    if (m_reply) {
+        qDebug() << m_reply->errorString();
+        m_errorMessage = m_reply->errorString();
+    }
 
-    m_errorMessage = m_reply->errorString();
     m_reply = 0;
     m_status = Failed;
 
