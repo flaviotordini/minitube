@@ -146,8 +146,7 @@ void  Video::gotVideoInfo(QByteArray data) {
     QStringList formatUrls = fmtUrlMap.split(",", QString::SkipEmptyParts);
     QHash<int, QString> urlMap;
     foreach(QString formatUrl, formatUrls) {
-        // formatUrl = QByteArray::fromPercentEncoding(formatUrl.toUtf8());
-        qDebug() << "formatUrl" << formatUrl;
+        // qDebug() << "formatUrl" << formatUrl;
         QStringList urlParams = formatUrl.split("&", QString::SkipEmptyParts);
         // qDebug() << "urlParams" << urlParams;
 
