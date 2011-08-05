@@ -15,10 +15,14 @@ void YouTubeSearch::search(SearchParams *searchParams, int max, int skip) {
     QUrl url("http://gdata.youtube.com/feeds/api/videos");
     url.addQueryItem("max-results", QString::number(max));
     url.addQueryItem("start-index", QString::number(skip));
-    if (!searchParams->keywords().isEmpty())
-    url.addQueryItem("q", searchParams->keywords());
+    if (!searchParams->keywords().isEmpty()) {
+        if (searchParams->keywords().startsWith("http://") ||
+                searchParams->keywords().startsWith("https://")) {
+            url.addQueryItem("q", YouTubeSearch::videoIdFromUrl(searchParams->keywords()));
+        } else url.addQueryItem("q", searchParams->keywords());
+    }
     if (!searchParams->author().isEmpty())
-    url.addQueryItem("author", searchParams->author());
+        url.addQueryItem("author", searchParams->author());
 
     switch (searchParams->sortBy()) {
     case SearchParams::SortByNewest:
@@ -67,4 +71,13 @@ QList<Video*> YouTubeSearch::getResults() {
 
 void YouTubeSearch::abort() {
     this->abortFlag = true;
+}
+
+QString YouTubeSearch::videoIdFromUrl(QString url) {
+    QRegExp re = QRegExp("^.*\\?v=([^&]+).*$");
+    if (re.exactMatch(url)) {
+        QString videoId = re.cap(1);
+        return videoId;
+    }
+    return QString();
 }

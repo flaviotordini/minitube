@@ -13,6 +13,7 @@ public:
     void search(SearchParams *searchParams, int max, int skip);
     void abort();
     QList<Video*> getResults();
+    static QString videoIdFromUrl(QString url);
 
 signals:
     void gotVideo(Video*);
