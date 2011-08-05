@@ -661,7 +661,9 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
 
     case Phonon::ErrorState:
         if (mediaObject->errorType() == Phonon::FatalError) {
-            statusBar()->showMessage(tr("Fatal error: %1").arg(mediaObject->errorString()));
+            // Do not display because we try to play incomplete video files and sometimes trigger this
+            // We retry automatically (in MediaView) so no need to show it
+            // statusBar()->showMessage(tr("Fatal error: %1").arg(mediaObject->errorString()));
         } else {
             statusBar()->showMessage(tr("Error: %1").arg(mediaObject->errorString()));
         }
