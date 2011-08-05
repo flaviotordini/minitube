@@ -1,3 +1,9 @@
+1.5 - Aug 5, 2011
+- Works again after YouTube changes
+- Drag'n'drop YouTube URLs to Minitube window
+- When pasting YouTube URLs, Minitube now correctly plays videos
+- New and updated translations
+
 1.4.3 - May 15, 2011
 - Really fixed some videos not playing
 - Hide toolbar and playlist in fullscreen on mouseleave (multiscreen)  (Patch by Rob Halff)

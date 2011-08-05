@@ -1,6 +1,6 @@
 CONFIG += release
 TEMPLATE = app
-VERSION = 1.4.3
+VERSION = 1.5
 DEFINES += APP_VERSION="$$VERSION"
 INCLUDEPATH += /usr/include/phonon
 
@@ -152,3 +152,4 @@ unix:!mac {
     icon512.files += data/512x512/minitube.png
 }
 mac|win32:include(local/local.pri)
+include(local/meego/meego.pri)
