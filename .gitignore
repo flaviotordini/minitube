@@ -7,4 +7,4 @@ minitube.pro.user
 .project
 local/
 *.swp
-
+.tx
