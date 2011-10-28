@@ -17,34 +17,44 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
     layout->setSpacing(30);
     aboutlayout->addLayout(layout);
 
-    QString info = "<html><style>a { color: palette(text); text-decoration: none; font-weight: bold }</style><body><h1>" + QString(Constants::APP_NAME) + "</h1>"
-                   "<p>" + tr("There's life outside the browser!") + "</p>"
-                   "<p>" + tr("Version %1").arg(Constants::VERSION) + "</p>"
-                   + QString("<p><a href=\"%1/\">%1</a></p>").arg(Constants::WEBSITE) +
-#if !defined(APP_MAC) && !defined(APP_WIN)
-                   "<p>" +  tr("%1 is Free Software but its development takes precious time.").arg(Constants::APP_NAME) + "<br/>"
-                   + tr("Please <a href='%1'>donate</a> to support the continued development of %2.")
-                   .arg(QString(Constants::WEBSITE).append("#donate"), Constants::APP_NAME) + "</p>"
-#endif
-                   "<p>" + tr("Report bugs and send in your ideas to %1")
-                   .arg(QString("<a href=\"mailto:%1\">%1</a>").arg(Constants::EMAIL)) + "</p>"
+    QString info = "<html><style>a { color: palette(text); text-decoration: none; font-weight: bold }</style><body><h1>" + QString(Constants::NAME) + "</h1>"
+            "<p>" + tr("There's life outside the browser!") + "</p>"
+            "<p>" + tr("Version %1").arg(Constants::VERSION) + "</p>"
+            + QString("<p><a href=\"%1/\">%1</a></p>").arg(Constants::WEBSITE) +
 
-                   "<p>"
-                   + tr("Icon designed by %1.").arg("<a href='http://www.kolorguild.com/'>David Nel</a>")
-                   + "<br>" + tr("Compact mode contributed by %1.").arg("Stefan Brück")
-                   + "<br>" + tr("HTTP proxy support contributed by %1.").arg("Kiwamu Okabe")
-                   + "</p>"
+        #if !defined(APP_MAC) && !defined(APP_WIN)
+            "<p>" +  tr("%1 is Free Software but its development takes precious time.").arg(Constants::NAME) + "<br/>"
+            + tr("Please <a href='%1'>donate</a> to support the continued development of %2.")
+            .arg(QString(Constants::WEBSITE).append("#donate"), Constants::NAME) + "</p>"
+        #endif
 
-                   "<p>" + tr("Translated by the cool people at %1")
-                   .arg("<a href='http://www.transifex.net/projects/p/minitube/resource/main/'>Transifex</a>")
-                   + "</p>"
+            "<p>" + tr("You may want to try my other apps as well:") + "</p>"
+            + "<ul>"
 
-#if !defined(APP_MAC) && !defined(APP_WIN)
-                   "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")
-                   .arg("http://www.gnu.org/licenses/gpl.html") + "</p>"
-#endif
-                   "<p>&copy; 2009-2011 " + Constants::ORG_NAME + "</p>"
-                   "</body></html>";;
+            + "<li>" + tr("%1, a YouTube music player")
+            .arg("<a href='http://flavio.tordini.org/musictube'>Musictube</a>")
+            + "</li>"
+
+            + "<li>" + tr("%1, a music player")
+            .arg("<a href='http://flavio.tordini.org/musique'>Musique</a>")
+            + "</li>"
+
+            + "</ul>"
+
+            "<p>" + tr("Translate %1 to your native language using %2").arg(Constants::NAME)
+            .arg("<a href='http://www.transifex.net/projects/p/" + QString(Constants::UNIX_NAME) + "/resource/main/'>Transifex</a>")
+            + "</p>"
+
+            "<p>"
+            + tr("Icon designed by %1.").arg("<a href='http://www.kolorguild.com/'>David Nel</a>")
+            + "</p>"
+
+        #if !defined(APP_MAC) && !defined(APP_WIN)
+            "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")
+            .arg("http://www.gnu.org/licenses/gpl.html") + "</p>"
+        #endif
+            "<p>&copy; 2009-2011 " + Constants::ORG_NAME + "</p>"
+            "</body></html>";
     QLabel *infoLabel = new QLabel(info, this);
     infoLabel->setOpenExternalLinks(true);
     infoLabel->setWordWrap(true);

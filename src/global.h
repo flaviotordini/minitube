@@ -76,10 +76,10 @@ namespace The {
                 QStringList http_proxy_list = http_proxy.split(QChar('@'));
                 QStringList http_proxy_user_pass = http_proxy_list[0].split(QChar(':'));
                 if (http_proxy_user_pass.size() > 0) {
-                    proxy_user = http_proxy_user_pass[0];
+                    proxy_user = QUrl::fromPercentEncoding(http_proxy_user_pass[0].toUtf8());
                 }
                 if (http_proxy_user_pass.size() == 2) {
-                    proxy_pass = http_proxy_user_pass[1];
+                    proxy_pass = QUrl::fromPercentEncoding(http_proxy_user_pass[1].toUtf8());
                 }
                 if (http_proxy_list.size() > 1) {
                     http_proxy = http_proxy_list[1];

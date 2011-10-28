@@ -48,6 +48,7 @@
 #include "qtlocalpeer.h"
 #include <QtCore/QCoreApplication>
 #include <QtCore/QTime>
+#include <QDebug>
 
 #if defined(Q_OS_WIN)
 #include <QtCore/QLibrary>

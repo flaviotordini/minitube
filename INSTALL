@@ -18,7 +18,7 @@ Beware of the Qt3 version of qmake! If things go wrong try running qmake-qt4 ins
 ./build/target/minitube
 
 ## A word about Phonon on Linux
-To be able to actually listen to music you need a working Phonon setup.
+To be able to actually watch videos you need a working Phonon setup.
 Please don't contact me about this, ask for help on your distribution support channels.
 
 ## Installing on Linux
@@ -27,7 +27,7 @@ Run:
 This is for packagers. End users should not install applications in this way.
 
 ## Legal Stuff
-Copyright (C) 2009-2010 Flavio Tordini
+Copyright (C) Flavio Tordini
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

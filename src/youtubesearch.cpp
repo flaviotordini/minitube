@@ -12,7 +12,7 @@ YouTubeSearch::YouTubeSearch() : QObject() {}
 void YouTubeSearch::search(SearchParams *searchParams, int max, int skip) {
     this->abortFlag = false;
 
-    QUrl url("http://gdata.youtube.com/feeds/api/videos");
+    QUrl url("http://gdata.youtube.com/feeds/api/videos/");
     url.addQueryItem("max-results", QString::number(max));
     url.addQueryItem("start-index", QString::number(skip));
     if (!searchParams->keywords().isEmpty()) {

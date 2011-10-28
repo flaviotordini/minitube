@@ -9,18 +9,29 @@
 #ifdef Q_WS_X11
 #include "gnomeglobalshortcutbackend.h"
 #endif
-#ifdef APP_MAC_STORE
-#include "local/mac/mac_startup.h"
+#ifdef Q_WS_MAC
+#include "mac_startup.h"
+#include "macfullscreen.h"
+#include "macsupport.h"
+#endif
+#ifndef Q_WS_X11
+#include "extra.h"
 #endif
 #include "downloadmanager.h"
 #include "youtubesuggest.h"
+#include "updatechecker.h"
+#ifdef APP_DEMO
+#include "demostartupview.h"
+#endif
+#include "temporary.h"
 
 MainWindow::MainWindow() :
         aboutView(0),
         downloadView(0),
         mediaObject(0),
         audioOutput(0),
-        m_fullscreen(false) {
+        m_fullscreen(false),
+        updateChecker(0) {
 
     // views mechanism
     history = new QStack<QWidget*>();
@@ -63,7 +74,13 @@ MainWindow::MainWindow() :
     readSettings();
 
     // show the initial view
-    showWidget(searchView);
+#ifdef APP_DEMO
+        QWidget *demoStartupView = new DemoStartupView(this);
+        views->addWidget(demoStartupView);
+        showWidget(demoStartupView);
+#else
+    showSearch();
+#endif
 
     // Global shortcuts
     GlobalShortcuts &shortcuts = GlobalShortcuts::instance();
@@ -71,8 +88,8 @@ MainWindow::MainWindow() :
     if (GnomeGlobalShortcutBackend::IsGsdAvailable())
         shortcuts.setBackend(new GnomeGlobalShortcutBackend(&shortcuts));
 #endif
-#ifdef APP_MAC
-    // mac::MacSetup();
+#ifdef Q_WS_MAC
+    mac::MacSetup();
 #endif
     connect(&shortcuts, SIGNAL(PlayPause()), pauseAct, SLOT(trigger()));
     connect(&shortcuts, SIGNAL(Stop()), this, SLOT(stop()));
@@ -84,6 +101,9 @@ MainWindow::MainWindow() :
             SLOT(downloadsFinished()));
 
     setAcceptDrops(true);
+
+    QTimer::singleShot(0, this, SLOT(checkForUpdate()));
+
 }
 
 MainWindow::~MainWindow() {
@@ -91,6 +111,7 @@ MainWindow::~MainWindow() {
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
+#ifdef Q_WS_X11
     if (event->type() == QEvent::MouseMove && this->m_fullscreen) {
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*> (event);
         int x = mouseEvent->pos().x();
@@ -101,6 +122,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
         if (x < 0)
             this->mediaView->setPlaylistVisible(false);
     }
+#endif
 
     if (event->type() == QEvent::ToolTip) {
         // kill tooltips
@@ -137,7 +159,13 @@ void MainWindow::createActions() {
 
     fullscreenAct = new QAction(QtIconLoader::icon("view-fullscreen"), tr("&Full Screen"), this);
     fullscreenAct->setStatusTip(tr("Go full screen"));
-    fullscreenAct->setShortcut(QKeySequence(Qt::ALT + Qt::Key_Return));
+    QList<QKeySequence> fsShortcuts;
+#ifdef APP_MAC
+    fsShortcuts << QKeySequence(Qt::CTRL + Qt::META + Qt::Key_F);
+#else
+    fsShortcuts << QKeySequence(Qt::Key_F11);
+#endif
+    fullscreenAct->setShortcuts(fsShortcuts);
     fullscreenAct->setShortcutContext(Qt::ApplicationShortcut);
 #if QT_VERSION >= 0x040600
     fullscreenAct->setPriority(QAction::LowPriority);
@@ -147,7 +175,11 @@ void MainWindow::createActions() {
 
     compactViewAct = new QAction(tr("&Compact mode"), this);
     compactViewAct->setStatusTip(tr("Hide the playlist and the toolbar"));
-    compactViewAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Return));
+#ifdef APP_MAC
+    compactViewAct->setShortcut(QKeySequence(Qt::CTRL + Qt::META + Qt::Key_C));
+#else
+    compactViewAct->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_C));
+#endif
     compactViewAct->setCheckable(true);
     compactViewAct->setChecked(false);
     compactViewAct->setEnabled(false);
@@ -174,6 +206,13 @@ void MainWindow::createActions() {
     copyLinkAct->setEnabled(false);
     actions->insert("videolink", copyLinkAct);
     connect(copyLinkAct, SIGNAL(triggered()), mediaView, SLOT(copyVideoLink()));
+
+    findVideoPartsAct = new QAction(tr("Find video &parts"), this);
+    findVideoPartsAct->setStatusTip(tr("Find other video parts hopefully in the right order"));
+    findVideoPartsAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_P));
+    findVideoPartsAct->setEnabled(false);
+    connect(findVideoPartsAct, SIGNAL(triggered()), mediaView, SLOT(findVideoParts()));
+    actions->insert("findVideoParts", findVideoPartsAct);
 
     removeAct = new QAction(tr("&Remove"), this);
     removeAct->setStatusTip(tr("Remove the selected videos from the playlist"));
@@ -215,20 +254,20 @@ void MainWindow::createActions() {
 
     siteAct = new QAction(tr("&Website"), this);
     siteAct->setShortcut(QKeySequence::HelpContents);
-    siteAct->setStatusTip(tr("%1 on the Web").arg(Constants::APP_NAME));
+    siteAct->setStatusTip(tr("%1 on the Web").arg(Constants::NAME));
     actions->insert("site", siteAct);
     connect(siteAct, SIGNAL(triggered()), this, SLOT(visitSite()));
 
 #if !defined(APP_MAC) && !defined(APP_WIN)
     donateAct = new QAction(tr("Make a &donation"), this);
-    donateAct->setStatusTip(tr("Please support the continued development of %1").arg(Constants::APP_NAME));
+    donateAct->setStatusTip(tr("Please support the continued development of %1").arg(Constants::NAME));
     actions->insert("donate", donateAct);
     connect(donateAct, SIGNAL(triggered()), this, SLOT(donate()));
 #endif
 
     aboutAct = new QAction(tr("&About"), this);
     aboutAct->setMenuRole(QAction::AboutRole);
-    aboutAct->setStatusTip(tr("Info about %1").arg(Constants::APP_NAME));
+    aboutAct->setStatusTip(tr("Info about %1").arg(Constants::NAME));
     actions->insert("about", aboutAct);
     connect(aboutAct, SIGNAL(triggered()), this, SLOT(about()));
 
@@ -310,6 +349,23 @@ void MainWindow::createActions() {
     connect(action, SIGNAL(triggered()), mediaView, SLOT(downloadVideo()));
     actions->insert("download", action);
 
+    QString shareTip = tr("Share the current video using %1");
+
+    action = new QAction("&Twitter", this);
+    action->setStatusTip(shareTip.arg("Twitter"));
+    actions->insert("twitter", action);
+    connect(action, SIGNAL(triggered()), mediaView, SLOT(shareViaTwitter()));
+
+    action = new QAction("&Facebook", this);
+    action->setStatusTip(shareTip.arg("Facebook"));
+    actions->insert("facebook", action);
+    connect(action, SIGNAL(triggered()), mediaView, SLOT(shareViaFacebook()));
+
+    action = new QAction(tr("&Email"), this);
+    action->setStatusTip(shareTip.arg(tr("Email")));
+    actions->insert("email", action);
+    connect(action, SIGNAL(triggered()), mediaView, SLOT(shareViaEmail()));
+
     // common action properties
     foreach (QAction *action, actions->values()) {
 
@@ -349,6 +405,15 @@ void MainWindow::createMenus() {
 #endif
     fileMenu->addAction(quitAct);
 
+    QMenu* playbackMenu = menuBar()->addMenu(tr("&Playback"));
+    menus->insert("playback", playbackMenu);
+    playbackMenu->addAction(stopAct);
+    playbackMenu->addAction(pauseAct);
+    playbackMenu->addAction(skipAct);
+#ifdef APP_MAC
+    MacSupport::dockMenu(playbackMenu);
+#endif
+
     playlistMenu = menuBar()->addMenu(tr("&Playlist"));
     menus->insert("playlist", playlistMenu);
     playlistMenu->addAction(removeAct);
@@ -356,28 +421,29 @@ void MainWindow::createMenus() {
     playlistMenu->addAction(moveUpAct);
     playlistMenu->addAction(moveDownAct);
 
-    viewMenu = menuBar()->addMenu(tr("&Video"));
-    menus->insert("video", viewMenu);
-    viewMenu->addAction(stopAct);
-    viewMenu->addAction(pauseAct);
-    viewMenu->addAction(skipAct);
+    QMenu* videoMenu = menuBar()->addMenu(tr("&Video"));
+    menus->insert("video", videoMenu);
+    videoMenu->addAction(findVideoPartsAct);
+    videoMenu->addSeparator();
+    videoMenu->addAction(webPageAct);
 #ifndef APP_NO_DOWNLOADS
-    viewMenu->addSeparator();
-    viewMenu->addAction(The::globalActions()->value("download"));
+    videoMenu->addSeparator();
+    videoMenu->addAction(The::globalActions()->value("download"));
+    videoMenu->addAction(copyLinkAct);
 #endif
-    viewMenu->addSeparator();
-    viewMenu->addAction(webPageAct);
-    viewMenu->addAction(copyPageAct);
-#ifndef APP_NO_DOWNLOADS
-    viewMenu->addAction(copyLinkAct);
-#endif
-    viewMenu->addSeparator();
-    viewMenu->addAction(compactViewAct);
+
+    QMenu* viewMenu = menuBar()->addMenu(tr("&View"));
+    menus->insert("view", viewMenu);
     viewMenu->addAction(fullscreenAct);
-#ifdef APP_MAC
-    extern void qt_mac_set_dock_menu(QMenu *);
-    qt_mac_set_dock_menu(viewMenu);
-#endif
+    viewMenu->addAction(compactViewAct);
+
+    QMenu* shareMenu = menuBar()->addMenu(tr("&Share"));
+    menus->insert("share", shareMenu);
+    shareMenu->addAction(copyPageAct);
+    shareMenu->addSeparator();
+    shareMenu->addAction(The::globalActions()->value("twitter"));
+    shareMenu->addAction(The::globalActions()->value("facebook"));
+    shareMenu->addAction(The::globalActions()->value("email"));
 
     helpMenu = menuBar()->addMenu(tr("&Help"));
     helpMenu->addAction(siteAct);
@@ -394,14 +460,6 @@ void MainWindow::createToolBars() {
     mainToolBar = new QToolBar(this);
 #if QT_VERSION < 0x040600 | defined(APP_MAC)
     mainToolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
-#elif defined(APP_WIN)
-    mainToolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    mainToolBar->setStyleSheet(
-            "QToolBar {"
-                "background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #fafcfd, stop:.5 #e6f0fa, stop:.51 #dde9f7, stop:1 #dde9f7);"
-                "border: 0;"
-                "border-bottom: 1px solid #a0afc3;"
-            "}");
 #else
     mainToolBar->setToolButtonStyle(Qt::ToolButtonFollowStyle);
 #endif
@@ -415,7 +473,13 @@ void MainWindow::createToolBars() {
     mainToolBar->addAction(stopAct);
     mainToolBar->addAction(pauseAct);
     mainToolBar->addAction(skipAct);
-    mainToolBar->addAction(fullscreenAct);
+
+    bool addFullScreenAct = true;
+#ifdef Q_WS_MAC
+    addFullScreenAct = !mac::CanGoFullScreen(winId());
+#endif
+    if (addFullScreenAct) mainToolBar->addAction(fullscreenAct);
+
 #ifndef APP_NO_DOWNLOADS
     mainToolBar->addAction(The::globalActions()->value("download"));
 #endif
@@ -475,11 +539,6 @@ void MainWindow::createToolBars() {
 }
 
 void MainWindow::createStatusBar() {
-
-    // remove ugly borders on OSX
-    // also remove excessive spacing
-    statusBar()->setStyleSheet("::item{border:0 solid} QToolBar {padding:0;spacing:0;margin:0;border:0}");
-
     QToolBar *toolBar = new QToolBar(this);
     toolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     toolBar->setIconSize(QSize(16, 16));
@@ -487,7 +546,6 @@ void MainWindow::createStatusBar() {
     // toolBar->addAction(The::globalActions()->value("autoplay"));
     toolBar->addAction(The::globalActions()->value("definition"));
     statusBar()->addPermanentWidget(toolBar);
-
     statusBar()->show();
 }
 
@@ -495,12 +553,7 @@ void MainWindow::readSettings() {
     QSettings settings;
     restoreGeometry(settings.value("geometry").toByteArray());
 #ifdef APP_MAC
-    if (!isMaximized())
-#ifdef QT_MAC_USE_COCOA
-        move(x(), y() + 10);
-#else
-        move(x(), y() + mainToolBar->height() + 8);
-#endif
+    MacSupport::fixGeometry(this);
 #endif
     setDefinitionMode(settings.value("definition", VideoDefinition::getDefinitionNames().first()).toString());
     audioOutput->setVolume(settings.value("volume", 1).toDouble());
@@ -547,16 +600,22 @@ void MainWindow::showWidget ( QWidget* widget ) {
         QString windowTitle = metadata.value("title").toString();
         if (windowTitle.length())
             windowTitle += " - ";
-        setWindowTitle(windowTitle + Constants::APP_NAME);
+        setWindowTitle(windowTitle + Constants::NAME);
         statusBar()->showMessage((metadata.value("description").toString()));
     }
 
     stopAct->setEnabled(widget == mediaView);
-    fullscreenAct->setEnabled(widget == mediaView);
     compactViewAct->setEnabled(widget == mediaView);
     webPageAct->setEnabled(widget == mediaView);
     copyPageAct->setEnabled(widget == mediaView);
     copyLinkAct->setEnabled(widget == mediaView);
+    findVideoPartsAct->setEnabled(widget == mediaView);
+    toolbarSearch->setEnabled(widget == searchView || widget == mediaView || widget == downloadView);
+
+    The::globalActions()->value("twitter")->setEnabled(widget == mediaView);
+    The::globalActions()->value("facebook")->setEnabled(widget == mediaView);
+    The::globalActions()->value("email")->setEnabled(widget == mediaView);
+
     aboutAct->setEnabled(widget != aboutView);
     The::globalActions()->value("download")->setEnabled(widget == mediaView);
     The::globalActions()->value("downloads")->setChecked(widget == downloadView);
@@ -572,23 +631,11 @@ void MainWindow::showWidget ( QWidget* widget ) {
     QWidget *oldWidget = views->currentWidget();
     views->setCurrentWidget(widget);
 
-#if defined(APP_MAC) || defined(APP_WIN)
-    // crossfade only on OSX
-    // where we can be sure of video performance
-    fadeInWidget(oldWidget, widget);
+#ifndef Q_WS_X11
+    Extra::fadeInWidget(oldWidget, widget);
 #endif
 
     history->push(widget);
-}
-
-void MainWindow::fadeInWidget(QWidget *oldWidget, QWidget *newWidget) {
-    if (faderWidget) faderWidget->close();
-    if (!oldWidget || !newWidget) {
-        // qDebug() << "no widgets";
-        return;
-    }
-    faderWidget = new FaderWidget(newWidget);
-    faderWidget->start(QPixmap::grabWidget(oldWidget));
 }
 
 void MainWindow::about() {
@@ -613,6 +660,7 @@ void MainWindow::donate() {
 
 void MainWindow::quit() {
     writeSettings();
+    Temporary::deleteAll();
     qApp->quit();
 }
 
@@ -620,8 +668,8 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     if (DownloadManager::instance()->activeItems() > 0) {
         QMessageBox msgBox;
         msgBox.setIconPixmap(QPixmap(":/images/app.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        msgBox.setText(tr("Do you want to exit %1 with a download in progress?").arg(Constants::APP_NAME));
-        msgBox.setInformativeText(tr("If you close %1 now, this download will be cancelled.").arg(Constants::APP_NAME));
+        msgBox.setText(tr("Do you want to exit %1 with a download in progress?").arg(Constants::NAME));
+        msgBox.setInformativeText(tr("If you close %1 now, this download will be cancelled.").arg(Constants::NAME));
         msgBox.setModal(true);
 
         msgBox.addButton(tr("Close and cancel download"), QMessageBox::RejectRole);
@@ -712,59 +760,51 @@ void MainWindow::stop() {
     showSearch();
 }
 
-void MainWindow::fullscreen() {
-
-    // No compact view action when in full screen
-    compactViewAct->setVisible(m_fullscreen);
-    compactViewAct->setChecked(false);
-
-    // Also no Youtube action since it opens a new window
-    webPageAct->setVisible(m_fullscreen);
-    copyPageAct->setVisible(m_fullscreen);
-    copyLinkAct->setVisible(m_fullscreen);
-
-    stopAct->setVisible(m_fullscreen);
-
-    // workaround: prevent focus on the search bar
-    // it steals the Space key needed for Play/Pause
-    toolbarSearch->setVisible(m_fullscreen);
-    toolbarSearch->setEnabled(m_fullscreen);
-
-    // Hide anything but the video
-    mediaView->setPlaylistVisible(m_fullscreen);
-    statusBar()->setVisible(m_fullscreen);
-
-#ifndef APP_MAC
-    menuBar()->setVisible(m_fullscreen);
-#endif
-
-#ifdef APP_MAC
-    // make the actions work when video is fullscreen (on the Mac)
-    QMap<QString, QAction*> *actions = The::globalActions();
-    foreach (QAction *action, actions->values()) {
-        if (m_fullscreen) {
-            action->setShortcutContext(Qt::WindowShortcut);
-        } else {
-            action->setShortcutContext(Qt::ApplicationShortcut);
+void MainWindow::resizeEvent(QResizeEvent*) {
+#ifdef Q_WS_MAC
+    if (mac::CanGoFullScreen(winId())) {
+        bool isFullscreen = mac::IsFullScreen(winId());
+        if (isFullscreen != m_fullscreen) {
+            m_fullscreen = isFullscreen;
+            updateUIForFullscreen();
         }
     }
 #endif
+}
+
+void MainWindow::fullscreen() {
+
+#ifdef Q_WS_MAC
+    WId handle = winId();
+    if (mac::CanGoFullScreen(handle)) {
+        mac::ToggleFullScreen(handle);
+        return;
+    }
+#endif
+
+    m_fullscreen = !m_fullscreen;
 
     if (m_fullscreen) {
+        // Enter full screen
 
+        m_maximized = isMaximized();
+
+        // save geometry now, if the user quits when in full screen
+        // geometry won't be saved
+        writeSettings();
+
+#ifdef Q_WS_MAC
+        MacSupport::enterFullScreen(this, views);
+#else
+        mainToolBar->hide();
+        showFullScreen();
+#endif
+
+    } else {
         // Exit full screen
 
-        // use setShortcuts instead of setShortcut
-        // the latter seems not to work
-        fullscreenAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::ALT + Qt::Key_Return));
-        fullscreenAct->setText(tr("&Full Screen"));
-        stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
-
-#ifdef APP_MAC
-        setCentralWidget(views);
-        views->showNormal();
-        show();
-        mediaView->setFocus();
+#ifdef Q_WS_MAC
+        MacSupport::exitFullScreen(this, views);
 #else
         mainToolBar->show();
         if (m_maximized) showMaximized();
@@ -774,65 +814,104 @@ void MainWindow::fullscreen() {
         // Make sure the window has focus
         activateWindow();
 
-    } else {
-
-        // Enter full screen
-
-        stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_MediaStop));
-        fullscreenAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::ALT + Qt::Key_Return));
-        fullscreenAct->setText(tr("Exit &Full Screen"));
-        m_maximized = isMaximized();
-
-        // save geometry now, if the user quits when in full screen
-        // geometry won't be saved
-        writeSettings();
-
-#ifdef APP_MAC
-        hide();
-        views->setParent(0);
-        QTimer::singleShot(0, views, SLOT(showFullScreen()));
-#else
-        mainToolBar->hide();
-        showFullScreen();
-#endif
-
     }
 
-    m_fullscreen = !m_fullscreen;
+    updateUIForFullscreen();
 
+}
+
+void MainWindow::updateUIForFullscreen() {
+    static QList<QKeySequence> fsShortcuts;
+    static QString fsText;
+
+    if (m_fullscreen) {
+        fsShortcuts = fullscreenAct->shortcuts();
+        fsText = fullscreenAct->text();
+        fullscreenAct->setShortcuts(QList<QKeySequence>(fsShortcuts)
+                                    << QKeySequence(Qt::Key_Escape));
+        fullscreenAct->setText(tr("Leave &Full Screen"));
+    } else {
+        fullscreenAct->setShortcuts(fsShortcuts);
+        fullscreenAct->setText(fsText);
+    }
+
+    // No compact view action when in full screen
+    compactViewAct->setVisible(!m_fullscreen);
+    compactViewAct->setChecked(false);
+
+    // Hide anything but the video
+    mediaView->setPlaylistVisible(!m_fullscreen);
+    statusBar()->setVisible(!m_fullscreen);
+
+#ifndef APP_MAC
+    menuBar()->setVisible(!m_fullscreen);
+#endif
+
+    if (m_fullscreen) {
+        stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_MediaStop));
+    } else {
+        stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
+    }
+
+#ifdef Q_WS_MAC
+    MacSupport::fullScreenActions(The::globalActions()->values(), m_fullscreen);
+#endif
+
+    if (views->currentWidget() == mediaView)
+        mediaView->setFocus();
 }
 
 void MainWindow::compactView(bool enable) {
 
-    mediaView->setPlaylistVisible(!enable);
-    statusBar()->setVisible(!enable);
+    static QList<QKeySequence> compactShortcuts;
+    static QList<QKeySequence> stopShortcuts;
+
+    /*
+    const static QString key = "compactGeometry";
+    QSettings settings;
+    */
 
 #ifndef APP_MAC
     menuBar()->setVisible(!enable);
 #endif
 
     if (enable) {
-        stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_MediaStop));
-        compactViewAct->setShortcuts(
-                QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_Return)
-                << QKeySequence(Qt::Key_Escape));
+        /*
+        writeSettings();
+        restoreGeometry(settings.value(key).toByteArray());
+        */
+
+        compactShortcuts = compactViewAct->shortcuts();
+        stopShortcuts = stopAct->shortcuts();
+
+        QList<QKeySequence> newStopShortcuts(stopShortcuts);
+        newStopShortcuts.removeAll(QKeySequence(Qt::Key_Escape));
+        stopAct->setShortcuts(newStopShortcuts);
+        compactViewAct->setShortcuts(QList<QKeySequence>(compactShortcuts) << QKeySequence(Qt::Key_Escape));
 
         // ensure focus does not end up to the search box
         // as it would steal the Space shortcut
         mediaView->setFocus();
     } else {
-        compactViewAct->setShortcuts(QList<QKeySequence>() <<  QKeySequence(Qt::CTRL + Qt::Key_Return));
-        stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
+        /*
+        settings.setValue(key, saveGeometry());
+        readSettings();
+        */
+
+        compactViewAct->setShortcuts(compactShortcuts);
+        stopAct->setShortcuts(stopShortcuts);
     }
+
+    mainToolBar->setVisible(!enable);
+    mediaView->setPlaylistVisible(!enable);
+    statusBar()->setVisible(!enable);
 
 }
 
 void MainWindow::searchFocus() {
     QWidget *view = views->currentWidget();
-    if (view == mediaView) {
-        toolbarSearch->selectAll();
-        toolbarSearch->setFocus();
-    }
+    toolbarSearch->selectAll();
+    toolbarSearch->setFocus();
 }
 
 void MainWindow::initPhonon() {
@@ -855,7 +934,9 @@ void MainWindow::initPhonon() {
 
 void MainWindow::tick(qint64 time) {
     if (time <= 0) {
-        currentTime->clear();
+        // the "if" is important because tick is continually called
+        // and we don't want to paint the toolbar every 100ms
+        if (!currentTime->text().isEmpty()) currentTime->clear();
         return;
     }
 
@@ -960,8 +1041,6 @@ void MainWindow::toggleDefinitionMode() {
 void MainWindow::showFullscreenToolbar(bool show) {
     if (!m_fullscreen) return;
     mainToolBar->setVisible(show);
-    toolbarSearch->setVisible(show);
-    toolbarSearch->setEnabled(show);
 }
 
 void MainWindow::showFullscreenPlaylist(bool show) {
@@ -1055,4 +1134,74 @@ void MainWindow::dropEvent(QDropEvent *event) {
         searchParams->setKeywords(videoId);
         showMedia(searchParams);
     }
+}
+
+void MainWindow::checkForUpdate() {
+    static const QString updateCheckKey = "updateCheck";
+
+    // check every 24h
+    QSettings settings;
+    uint unixTime = QDateTime::currentDateTime().toTime_t();
+    int lastCheck = settings.value(updateCheckKey).toInt();
+    int secondsSinceLastCheck = unixTime - lastCheck;
+    // qDebug() << "secondsSinceLastCheck" << unixTime << lastCheck << secondsSinceLastCheck;
+    if (secondsSinceLastCheck < 86400) return;
+
+    // check it out
+    if (updateChecker) delete updateChecker;
+    updateChecker = new UpdateChecker();
+    connect(updateChecker, SIGNAL(newVersion(QString)),
+            this, SLOT(gotNewVersion(QString)));
+    updateChecker->checkForUpdate();
+    settings.setValue(updateCheckKey, unixTime);
+
+}
+
+void MainWindow::gotNewVersion(QString version) {
+    if (updateChecker) {
+        delete updateChecker;
+        updateChecker = 0;
+    }
+
+#if defined(APP_DEMO) || defined(APP_MAC_STORE)
+    return;
+#endif
+
+    QSettings settings;
+    QString checkedVersion = settings.value("checkedVersion").toString();
+    if (checkedVersion == version) return;
+
+    QMessageBox msgBox(this);
+    msgBox.setIconPixmap(QPixmap(":/images/app.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    msgBox.setText(tr("%1 version %2 is now available.").arg(Constants::NAME, version));
+
+    msgBox.setModal(true);
+    // make it a "sheet" on the Mac
+    msgBox.setWindowModality(Qt::WindowModal);
+
+    QPushButton* laterButton = 0;
+    QPushButton* updateButton = 0;
+
+#if defined(APP_MAC) || defined(APP_WIN)
+    msgBox.setInformativeText(
+                tr("To get the updated version, download %1 again from the link you received via email and reinstall.")
+                .arg(Constants::NAME)
+                );
+    laterButton = msgBox.addButton(tr("Remind me later"), QMessageBox::RejectRole);
+    msgBox.addButton(QMessageBox::Ok);
+#else
+    msgBox.addButton(QMessageBox::Close);
+    updateButton = msgBox.addButton(tr("Update"), QMessageBox::AcceptRole);
+#endif
+
+    msgBox.exec();
+
+    if (msgBox.clickedButton() != laterButton) {
+        settings.setValue("checkedVersion", version);
+    }
+
+    if (updateButton && msgBox.clickedButton() == updateButton) {
+        QDesktopServices::openUrl(QUrl(QLatin1String(Constants::WEBSITE) + "#download"));
+    }
+
 }

@@ -3,6 +3,7 @@
 #include "video.h"
 
 #include <QDesktopServices>
+#include <QDebug>
 
 namespace The {
     NetworkAccess* http();
@@ -131,12 +132,8 @@ void DownloadItem::downloadReadyRead() {
 
 void DownloadItem::error(QNetworkReply::NetworkError) {
 
-#ifdef DOWNLOADMANAGER_DEBUG
-    qDebug() << "DownloadItem::" << __FUNCTION__ << m_reply->errorString() << m_url;
-#endif
-
     if (m_reply) {
-        qDebug() << m_reply->errorString();
+        qWarning() << m_reply->errorString() << m_reply->url().toEncoded();
         m_errorMessage = m_reply->errorString();
     }
 
@@ -181,6 +178,8 @@ int DownloadItem::initialBufferSize() {
 
 void DownloadItem::downloadProgress(qint64 bytesReceived, qint64 bytesTotal) {
 
+    // qDebug() << bytesReceived << bytesTotal << m_downloadTime.elapsed();
+
     if (m_lastProgressTime.elapsed() < 150) return;
     m_lastProgressTime.start();
 
@@ -193,7 +192,7 @@ void DownloadItem::downloadProgress(qint64 bytesReceived, qint64 bytesTotal) {
         int bufferSize = initialBufferSize();
         if (bytesReceived > bufferSize
             && bytesReceived > neededBytes
-            && m_downloadTime.elapsed() > 1000 ) {
+            && (m_downloadTime.elapsed() > 1000)) {
             emit bufferProgress(100);
             m_status = Downloading;
             emit statusChanged();
@@ -278,6 +277,10 @@ void DownloadItem::requestFinished() {
     if (!m_startedSaving) {
         qDebug() << "Request finished but never started saving";
         return;
+    }
+    if (m_status == Starting) {
+        m_status = Downloading;
+        emit statusChanged();
     }
     m_file.close();
     m_status = Finished;

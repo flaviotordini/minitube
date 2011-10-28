@@ -7,15 +7,16 @@
 #include "downloadmanager.h"
 #include "downloaditem.h"
 #include "MainWindow.h"
+#include "temporary.h"
 
 namespace The {
-    NetworkAccess* http();
+NetworkAccess* http();
 }
 
 namespace The {
-    QMap<QString, QAction*>* globalActions();
-    QMap<QString, QMenu*>* globalMenus();
-    QNetworkAccessManager* networkAccessManager();
+QMap<QString, QAction*>* globalActions();
+QMap<QString, QMenu*>* globalMenus();
+QNetworkAccessManager* networkAccessManager();
 }
 
 MediaView::MediaView(QWidget *parent) : QWidget(parent) {
@@ -89,7 +90,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     videoAreaWidget = new VideoAreaWidget(this);
     videoAreaWidget->setMinimumSize(320,240);
 
-#ifdef APP_MAC
+#ifdef APP_MAC_NO
     // mouse autohide does not work on the Mac (no mouseMoveEvent)
     videoWidget = new Phonon::VideoWidget(this);
 #else
@@ -106,6 +107,9 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
 
     layout->addWidget(splitter);
     setLayout(layout);
+
+    splitter->setStretchFactor(0, 1);
+    splitter->setStretchFactor(1, 6);
 
     // restore splitter state
     QSettings settings;
@@ -131,9 +135,12 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
 
 void MediaView::initialize() {
     connect(videoAreaWidget, SIGNAL(doubleClicked()), The::globalActions()->value("fullscreen"), SLOT(trigger()));
+
+    /*
     videoAreaWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(videoAreaWidget, SIGNAL(customContextMenuRequested(QPoint)),
             this, SLOT(showVideoContextMenu(QPoint)));
+            */
 }
 
 void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
@@ -184,8 +191,8 @@ void MediaView::search(SearchParams *searchParams) {
         }
 
         // also hide sidebar
-        playlistWidget->hide();
-    } else playlistWidget->show();
+        // playlistWidget->hide();
+    }
     // tr("You're watching \"%1\"").arg(searchParams->keywords())
 
 }
@@ -194,11 +201,9 @@ void MediaView::disappear() {
     timerPlayFlag = true;
 }
 
-void MediaView::handleError(QString message) {
-    // if (message.indexOf("movie atom") != -1 || message.indexOf("Could not open") != -1) {
-        QTimer::singleShot(1000, this, SLOT(startPlaying()));
-        return;
-    // }
+void MediaView::handleError(QString /* message */) {
+
+    QTimer::singleShot(100, this, SLOT(startPlaying()));
 
     /*
     videoAreaWidget->showError(message);
@@ -242,25 +247,26 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
 
         break;
 
-         case Phonon::PausedState:
+    case Phonon::PausedState:
         qDebug("paused");
         break;
 
-         case Phonon::BufferingState:
+    case Phonon::BufferingState:
         qDebug("buffering");
         break;
 
-         case Phonon::LoadingState:
+    case Phonon::LoadingState:
         qDebug("loading");
         break;
 
-         default:
+    default:
         ;
     }
 }
 
 void MediaView::pause() {
     // qDebug() << "pause() called" << mediaObject->state();
+
     switch( mediaObject->state() ) {
     case Phonon::PlayingState:
         mediaObject->pause();
@@ -269,6 +275,11 @@ void MediaView::pause() {
         mediaObject->play();
         break;
     }
+
+}
+
+QRegExp MediaView::wordRE(QString s) {
+    return QRegExp("\\W" + s + "\\W?", Qt::CaseInsensitive);
 }
 
 void MediaView::stop() {
@@ -308,9 +319,9 @@ void MediaView::activeRowChanged(int row) {
     // immediately show the loading widget
     videoAreaWidget->showLoading(video);
 
-    connect(video, SIGNAL(gotStreamUrl(QUrl)), SLOT(gotStreamUrl(QUrl)));
+    connect(video, SIGNAL(gotStreamUrl(QUrl)), SLOT(gotStreamUrl(QUrl)), Qt::UniqueConnection);
     // TODO handle signal in a proper slot and impl item error status
-    connect(video, SIGNAL(errorStreamUrl(QString)), SLOT(handleError(QString)));
+    connect(video, SIGNAL(errorStreamUrl(QString)), SLOT(handleError(QString)), Qt::UniqueConnection);
 
     video->loadStreamUrl();
 
@@ -344,16 +355,7 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
     }
     video->disconnect(this);
 
-
-    QString tempDir = QDesktopServices::storageLocation(QDesktopServices::TempLocation);
-#ifdef Q_WS_X11
-    QString tempFile = tempDir + "/minitube-" + getenv("USERNAME") + ".mp4";
-#else
-    QString tempFile = tempDir + "/minitube.mp4";
-#endif
-    if (QFile::exists(tempFile) && !QFile::remove(tempFile)) {
-        qDebug() << "Cannot remove temp file";
-    }
+    QString tempFile = Temporary::filename();
 
     Video *videoCopy = video->clone();
     if (downloadItem) {
@@ -361,12 +363,12 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
         delete downloadItem;
     }
     downloadItem = new DownloadItem(videoCopy, streamUrl, tempFile, this);
-    connect(downloadItem, SIGNAL(statusChanged()), SLOT(downloadStatusChanged()));
+    connect(downloadItem, SIGNAL(statusChanged()), SLOT(downloadStatusChanged()), Qt::UniqueConnection);
     // connect(downloadItem, SIGNAL(progress(int)), SLOT(downloadProgress(int)));
-    connect(downloadItem, SIGNAL(bufferProgress(int)), loadingWidget, SLOT(bufferStatus(int)));
+    connect(downloadItem, SIGNAL(bufferProgress(int)), loadingWidget, SLOT(bufferStatus(int)), Qt::UniqueConnection);
     // connect(downloadItem, SIGNAL(finished()), SLOT(itemFinished()));
-    connect(video, SIGNAL(errorStreamUrl(QString)), SLOT(handleError(QString)));
-    connect(downloadItem, SIGNAL(error(QString)), SLOT(handleError(QString)));
+    connect(video, SIGNAL(errorStreamUrl(QString)), SLOT(handleError(QString)), Qt::UniqueConnection);
+    connect(downloadItem, SIGNAL(error(QString)), SLOT(handleError(QString)), Qt::UniqueConnection);
     downloadItem->start();
 
 }
@@ -427,8 +429,9 @@ void MediaView::startPlaying() {
     }
 
     // go!
-    qDebug() << "Playing" << downloadItem->currentFilename();
-    mediaObject->setCurrentSource(downloadItem->currentFilename());
+    QString source = downloadItem->currentFilename();
+    qDebug() << "Playing" << source;
+    mediaObject->setCurrentSource(source);
     mediaObject->play();
 
     // ensure we always have 10 videos ahead
@@ -442,7 +445,7 @@ void MediaView::startPlaying() {
     }
 
 #ifdef APP_DEMO
-    demoTimer->start(30000);
+    demoTimer->start(60000);
 #endif
 
 }
@@ -505,7 +508,6 @@ void MediaView::copyWebPage() {
     Video* video = listModel->activeVideo();
     if (!video) return;
     QString address = video->webpage().toString();
-    address.remove("&feature=youtube_gdata");
     QApplication::clipboard()->setText(address);
     QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(window());
     QString message = tr("You can now paste the YouTube link into another application");
@@ -517,7 +519,7 @@ void MediaView::copyVideoLink() {
     if (!video) return;
     QApplication::clipboard()->setText(video->getStreamUrl().toEncoded());
     QString message = tr("You can now paste the video stream URL into another application")
-                      + ". " + tr("The link will be valid only for a limited time.");
+            + ". " + tr("The link will be valid only for a limited time.");
     QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(window());
     if (mainWindow) mainWindow->statusBar()->showMessage(message);
 }
@@ -607,30 +609,53 @@ void MediaView::saveSplitterState() {
 }
 
 #ifdef APP_DEMO
+
+static QPushButton *continueButton;
+
 void MediaView::demoMessage() {
     if (mediaObject->state() != Phonon::PlayingState) return;
     mediaObject->pause();
 
     QMessageBox msgBox(this);
     msgBox.setIconPixmap(QPixmap(":/images/app.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    msgBox.setText(tr("This is just the demo version of %1.").arg(Constants::APP_NAME));
+    msgBox.setText(tr("This is just the demo version of %1.").arg(Constants::NAME));
     msgBox.setInformativeText(tr("It allows you to test the application and see if it works for you."));
     msgBox.setModal(true);
     // make it a "sheet" on the Mac
     msgBox.setWindowModality(Qt::WindowModal);
 
-    QPushButton *quitButton = msgBox.addButton(tr("Continue"), QMessageBox::RejectRole);
+    continueButton = msgBox.addButton("5", QMessageBox::RejectRole);
+    continueButton->setEnabled(false);
     QPushButton *buyButton = msgBox.addButton(tr("Get the full version"), QMessageBox::ActionRole);
+
+    QTimeLine *timeLine = new QTimeLine(6000, this);
+    timeLine->setCurveShape(QTimeLine::LinearCurve);
+    timeLine->setFrameRange(5, 0);
+    connect(timeLine, SIGNAL(frameChanged(int)), SLOT(updateContinueButton(int)));
+    timeLine->start();
 
     msgBox.exec();
 
     if (msgBox.clickedButton() == buyButton) {
-        QDesktopServices::openUrl(QString(Constants::WEBSITE) + "#download");
+        QDesktopServices::openUrl(QUrl(QString(Constants::WEBSITE) + "#download"));
     } else {
         mediaObject->play();
-        demoTimer->start(300000);
+        demoTimer->start(600000);
+    }
+
+    delete timeLine;
+
+}
+
+void MediaView::updateContinueButton(int value) {
+    if (value == 0) {
+        continueButton->setText(tr("Continue"));
+        continueButton->setEnabled(true);
+    } else {
+        continueButton->setText(QString::number(value));
     }
 }
+
 #endif
 
 void MediaView::downloadVideo() {
@@ -701,3 +726,92 @@ void MediaView::seekTo(int value) {
 }
 
 */
+
+void MediaView::findVideoParts() {
+
+    // parts
+    Video* video = listModel->activeVideo();
+    if (!video) return;
+
+    QString query = video->title();
+
+    static QString optionalSpace = "\\s*";
+    static QString staticCounterSeparators = "[\\/\\-]";
+    QString counterSeparators = "( of | " +
+            tr("of", "Used in video parts, as in '2 of 3'") +
+            " |" + staticCounterSeparators + ")";
+
+    // numbers from 1 to 15
+    static QString counterNumber = "([1-9]|1[0-5])";
+
+    // query.remove(QRegExp(counterSeparators + optionalSpace + counterNumber));
+    query.remove(QRegExp(counterNumber + optionalSpace + counterSeparators + optionalSpace + counterNumber));
+    query.remove(wordRE("pr?t\\.?" + optionalSpace + counterNumber));
+    query.remove(wordRE("ep\\.?" + optionalSpace + counterNumber));
+    query.remove(wordRE("part" + optionalSpace + counterNumber));
+    query.remove(wordRE("episode" + optionalSpace + counterNumber));
+    query.remove(wordRE(tr("part", "This is for video parts, as in 'Cool video - part 1'") +
+                        optionalSpace + counterNumber));
+    query.remove(wordRE(tr("episode", "This is for video parts, as in 'Cool series - episode 1'") +
+                        optionalSpace + counterNumber));
+    query.remove(QRegExp("[\\(\\)\\[\\]]"));
+
+#define NUMBERS "one|two|three|four|five|six|seven|eight|nine|ten"
+
+    QRegExp englishNumberRE = QRegExp(QLatin1String(".*(") + NUMBERS + ").*", Qt::CaseInsensitive);
+    // bool numberAsWords = englishNumberRE.exactMatch(query);
+    query.remove(englishNumberRE);
+
+    QRegExp localizedNumberRE = QRegExp(QLatin1String(".*(") + tr(NUMBERS) + ").*", Qt::CaseInsensitive);
+    // if (!numberAsWords) numberAsWords = localizedNumberRE.exactMatch(query);
+    query.remove(localizedNumberRE);
+
+    SearchParams *searchParams = new SearchParams();
+    searchParams->setTransient(true);
+    searchParams->setKeywords(query);
+    searchParams->setAuthor(video->author());
+
+    /*
+    if (!numberAsWords) {
+        qDebug() << "We don't have number as words";
+        // searchParams->setSortBy(SearchParams::SortByNewest);
+        // TODO searchParams->setReverseOrder(true);
+        // TODO searchParams->setMax(50);
+    }
+    */
+
+    search(searchParams);
+
+}
+
+void MediaView::shareViaTwitter() {
+    Video* video = listModel->activeVideo();
+    if (!video) return;
+    QUrl url("https://twitter.com/intent/tweet");
+    url.addQueryItem("via", "minitubeapp");
+    url.addQueryItem("text", video->title());
+    url.addQueryItem("url", video->webpage().toString());
+    QDesktopServices::openUrl(url);
+}
+
+void MediaView::shareViaFacebook() {
+    Video* video = listModel->activeVideo();
+    if (!video) return;
+    QUrl url("https://www.facebook.com/sharer.php");
+    url.addQueryItem("t", video->title());
+    url.addQueryItem("u", video->webpage().toString());
+    QDesktopServices::openUrl(url);
+}
+
+void MediaView::shareViaEmail() {
+    Video* video = listModel->activeVideo();
+    if (!video) return;
+    QUrl url("mailto:");
+    url.addQueryItem("subject", video->title());
+    QString body = video->title() + "\n" +
+            video->webpage().toString() + "\n\n" +
+            tr("Sent from %1").arg(Constants::NAME) + "\n" +
+            Constants::WEBSITE;
+    url.addQueryItem("body", body);
+    QDesktopServices::openUrl(url);
+}

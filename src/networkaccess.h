@@ -32,7 +32,6 @@ private:
 
 };
 
-
 class NetworkAccess : public QObject {
 
     Q_OBJECT
@@ -40,25 +39,14 @@ class NetworkAccess : public QObject {
 public:
     NetworkAccess( QObject* parent=0);
     QNetworkReply* manualGet(QNetworkRequest request, int operation = QNetworkAccessManager::GetOperation);
+    QNetworkRequest buildRequest(QUrl url);
     QNetworkReply* simpleGet(QUrl url, int operation = QNetworkAccessManager::GetOperation);
     NetworkReply* get(QUrl url);
     NetworkReply* head(QUrl url);
-    QNetworkReply* syncGet(QUrl url);
-    QByteArray syncGetBytes(QUrl url);
-    QString syncGetString(QUrl url);
 
 private slots:
     void error(QNetworkReply::NetworkError);
-    void syncMetaDataChanged();
-    void syncFinished();
-
-private:
-    QNetworkReply *networkReply;
-    bool working;
 
 };
-
-typedef QPointer<QObject> ObjectPointer;
-Q_DECLARE_METATYPE(ObjectPointer)
 
 #endif // NETWORKACCESS_H

@@ -74,7 +74,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
                        tr("Welcome to <a href='%1'>%2</a>,")
                        // .replace("<a ", "<a style='color:palette(text)'")
                        .replace("<a href", "<a style='text-decoration:none; color:palette(text); font-weight:bold' href")
-                       .arg(Constants::WEBSITE, Constants::APP_NAME)
+                       .arg(Constants::WEBSITE, Constants::NAME)
                        + "</h1>", this);
     welcomeLabel->setOpenExternalLinks(true);
     layout->addWidget(welcomeLabel);
@@ -178,12 +178,6 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
     setLayout(mainLayout);
 
-    updateChecker = 0;
-
-#ifndef APP_MAC_STORE
-    checkForUpdate();
-#endif
-
 }
 
 void SearchView::updateRecentKeywords() {
@@ -211,15 +205,22 @@ void SearchView::updateRecentKeywords() {
                 display = keyword.mid(separator+1);
             }
         }
+        bool needStatusTip = false;
+        if (display.length() > 24) {
+            display.truncate(24);
+            display.append("...");
+            needStatusTip = true;
+        }
         QLabel *itemLabel = new QLabel("<a href=\"" + link
                                        + "\" style=\"color:palette(text); text-decoration:none\">"
                                        + display + "</a>", this);
-
+        itemLabel->setAttribute(Qt::WA_DeleteOnClose);
         itemLabel->setMaximumWidth(queryEdit->width() + watchButton->width());
         // itemLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         // Make links navigable with the keyboard too
         itemLabel->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard | Qt::LinksAccessibleByMouse);
-
+        if (needStatusTip)
+            itemLabel->setStatusTip(link);
         connect(itemLabel, SIGNAL(linkActivated(QString)), this, SLOT(watchKeywords(QString)));
         recentKeywordsLayout->addWidget(itemLabel);
     }
@@ -254,7 +255,7 @@ void SearchView::updateRecentChannels() {
         QLabel *itemLabel = new QLabel("<a href=\"" + link
                                        + "\" style=\"color:palette(text); text-decoration:none\">"
                                        + display + "</a>", this);
-
+        itemLabel->setAttribute(Qt::WA_DeleteOnClose);
         itemLabel->setMaximumWidth(queryEdit->width() + watchButton->width());
         // itemLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         // Make links navigable with the keyboard too
@@ -335,47 +336,6 @@ void SearchView::watchKeywords(QString query) {
 
     // go!
     emit search(searchParams);
-}
-
-void SearchView::checkForUpdate() {
-    static const QString updateCheckKey = "updateCheck";
-
-    // check every 24h
-    QSettings settings;
-    uint unixTime = QDateTime::currentDateTime().toTime_t();
-    int lastCheck = settings.value(updateCheckKey).toInt();
-    int secondsSinceLastCheck = unixTime - lastCheck;
-    // qDebug() << "secondsSinceLastCheck" << unixTime << lastCheck << secondsSinceLastCheck;
-    if (secondsSinceLastCheck < 86400) return;
-
-    // check it out
-    if (updateChecker) delete updateChecker;
-    updateChecker = new UpdateChecker();
-    connect(updateChecker, SIGNAL(newVersion(QString)),
-            this, SLOT(gotNewVersion(QString)));
-    updateChecker->checkForUpdate();
-    settings.setValue(updateCheckKey, unixTime);
-
-}
-
-void SearchView::gotNewVersion(QString version) {
-    message->setText(
-            tr("A new version of %1 is available. Please <a href='%2'>update to version %3</a>")
-            .replace("<a href", "<a style='text-decoration:none; color:palette(text); font-weight:bold' href")
-            .arg(
-                    Constants::APP_NAME,
-                    QString(Constants::WEBSITE).append("#download"),
-                    version)
-            );
-    message->setOpenExternalLinks(true);
-    message->setMargin(10);
-    message->setAlignment(Qt::AlignCenter);
-    // message->setBackgroundRole(QPalette::ToolTipBase);
-    // message->setForegroundRole(QPalette::ToolTipText);
-    // message->setAutoFillBackground(true);
-    message->setStyleSheet("QLabel { border-bottom: 1px solid palette(mid); }");
-    message->show();
-    if (updateChecker) delete updateChecker;
 }
 
 void SearchView::paintEvent(QPaintEvent * /*event*/) {

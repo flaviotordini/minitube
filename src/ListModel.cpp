@@ -203,7 +203,7 @@ void ListModel::addVideo(Video* video) {
 
         // save keyword
         QString query = searchParams->keywords();
-        if (!query.isEmpty()) {
+        if (!query.isEmpty() && !searchParams->isTransient()) {
             if (query.startsWith("http://")) {
                 // Save the video title
                 query += "|" + videos.first()->title();
@@ -219,7 +219,7 @@ void ListModel::addVideo(Video* video) {
 
         // save channel
         QString channel = searchParams->author();
-        if (!channel.isEmpty()) {
+        if (!channel.isEmpty() && !searchParams->isTransient()) {
             QSettings settings;
             QStringList channels = settings.value(recentChannelsKey).toStringList();
             channels.removeAll(channel);

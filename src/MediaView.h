@@ -52,6 +52,9 @@ public slots:
     void openWebPage();
     void copyWebPage();
     void copyVideoLink();
+    void shareViaTwitter();
+    void shareViaFacebook();
+    void shareViaEmail();
     void removeSelected();
     void moveUpSelected();
     void moveDownSelected();
@@ -59,6 +62,7 @@ public slots:
     void saveSplitterState();
     void downloadVideo();
     void fullscreen();
+    void findVideoParts();
 
 private slots:
     // list/model
@@ -80,6 +84,7 @@ private slots:
     void timerPlay();
 #ifdef APP_DEMO
     void demoMessage();
+    void updateContinueButton(int);
 #endif
     void startPlaying();
     void downloadStatusChanged();
@@ -93,6 +98,7 @@ private slots:
     */
 
 private:
+    static QRegExp wordRE(QString s);
 
     SearchParams *searchParams;
 

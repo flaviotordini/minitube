@@ -52,6 +52,7 @@ void YouTubeStreamReader::readEntry() {
                 && attributes().value("type").toString() == "text/html"
                 ) {
                 QString webpage = attributes().value("href").toString();
+                webpage.remove("&feature=youtube_gdata");
                 // qDebug() << "Webpage: " << webpage;
                 video->setWebpage(QUrl(webpage));
             } else if (name() == "author") {

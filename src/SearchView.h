@@ -4,7 +4,6 @@
 #include <QtGui>
 #include "View.h"
 #include "searchlineedit.h"
-#include "updatechecker.h"
 
 class SearchParams;
 class YouTubeSuggest;
@@ -23,8 +22,8 @@ public:
         updateRecentKeywords();
         updateRecentChannels();
         queryEdit->clear();
-        queryEdit->setFocus(Qt::OtherFocusReason);
         queryEdit->enableSuggest();
+        QTimer::singleShot(0, queryEdit, SLOT(setFocus()));
     }
 
     void disappear() {}
@@ -40,7 +39,6 @@ public slots:
     void watch(QString query);
     void watchChannel(QString channel);
     void watchKeywords(QString query);
-    void gotNewVersion(QString version);
 
 signals:
     void search(SearchParams*);
@@ -54,8 +52,6 @@ private slots:
     void searchTypeChanged(int index);
 
 private:
-    void checkForUpdate();
-
     YouTubeSuggest *youtubeSuggest;
     ChannelSuggest *channelSuggest;
 
@@ -67,8 +63,6 @@ private:
     QBoxLayout *recentChannelsLayout;
     QLabel *message;
     QPushButton *watchButton;
-
-    UpdateChecker *updateChecker;
 
 };
 

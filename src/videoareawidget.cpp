@@ -11,6 +11,7 @@ VideoAreaWidget::VideoAreaWidget(QWidget *parent) : QWidget(parent) {
     p.setBrush(QPalette::Window, Qt::black);
     setPalette(p);
     setAutoFillBackground(true);
+    setStyleSheet("background:black");
 #endif
 
     // hidden message widget
@@ -106,6 +107,7 @@ void VideoAreaWidget::dropEvent(QDropEvent *event) {
 void VideoAreaWidget::mouseMoveEvent(QMouseEvent *event) {
     QWidget::mouseMoveEvent(event);
 
+#ifdef Q_WS_X11
     QWidget* mainWindow = window();
     if (!mainWindow->isFullScreen()) return;
 
@@ -121,11 +123,13 @@ void VideoAreaWidget::mouseMoveEvent(QMouseEvent *event) {
     visible = x <= 10;
     ret = QMetaObject::invokeMethod(mainWindow, "showFullscreenPlaylist", Qt::DirectConnection, Q_ARG(bool, visible));
     if (!ret) qDebug() << "showFullscreenPlaylist invokeMethod failed";
+#endif
 }
 
 void VideoAreaWidget::leaveEvent(QMouseEvent *event) {
     QWidget::leaveEvent(event);
 
+#ifdef Q_WS_X11
     QWidget* mainWindow = window();
     if (!mainWindow->isFullScreen()) return;
 
@@ -135,4 +139,5 @@ void VideoAreaWidget::leaveEvent(QMouseEvent *event) {
 
     ret = QMetaObject::invokeMethod(mainWindow, "showFullscreenPlaylist", Qt::DirectConnection, Q_ARG(bool, visible));
     if (!ret) qDebug() << "showFullscreenPlaylist invokeMethod failed";
+#endif
 }

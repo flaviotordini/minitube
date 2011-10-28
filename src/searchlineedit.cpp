@@ -56,7 +56,6 @@ ClearButton::ClearButton(QWidget *parent)
     setToolTip(tr("Clear"));
     setVisible(false);
     setFocusPolicy(Qt::NoFocus);
-    setShortcut(QKeySequence(Qt::Key_Escape));
 }
 
 void ClearButton::paintEvent(QPaintEvent *event)

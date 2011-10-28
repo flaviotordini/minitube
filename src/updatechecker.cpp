@@ -23,6 +23,9 @@ void UpdateChecker::checkForUpdate() {
 #ifdef APP_DEMO
     updateUrl.addQueryItem("t", "demo");
 #endif
+#ifdef APP_MAC_STORE
+    updateUrl.addQueryItem("store", "mac");
+#endif
 
     QObject *reply = The::http()->get(updateUrl);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(requestFinished(QByteArray)));

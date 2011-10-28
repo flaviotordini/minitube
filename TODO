@@ -2,6 +2,12 @@
 
 ## Major features
 
+- Twitter https://twitter.com/intent/tweet
+- Facebook https://www.facebook.com/sharer.php?u=<url to share>&t=<title of content>
+- Email mailto:?subject=&body=
+
+- Snapshots
+
 - Features for logged in users:
     * Channel subscriptions (r/w)
     * Favorite videos (r/w)

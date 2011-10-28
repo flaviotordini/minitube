@@ -18,7 +18,7 @@ public:
         metadata.insert("title", tr("About"));
         metadata.insert("description",
                         tr("What you always wanted to know about %1 and never dared to ask")
-                        .arg(Constants::APP_NAME));
+                        .arg(Constants::NAME));
         return metadata;
     }
 

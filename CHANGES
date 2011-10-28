@@ -1,3 +1,11 @@
+1.6 - Oct 28, 2011
+- Find video parts
+- Mac OS X Lion fullscreen
+- Menu reorganization
+- Social sharing: Twitter, Facebook, Email
+- Fixed bug with very short videos not playing
+- Enable seekbar on Linux only when the video is fully loaded
+
 1.5 - Aug 5, 2011
 - Works again after YouTube changes
 - Drag'n'drop YouTube URLs to Minitube window

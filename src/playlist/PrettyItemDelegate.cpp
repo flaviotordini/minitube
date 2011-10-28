@@ -58,8 +58,11 @@ void PrettyItemDelegate::paint( QPainter* painter,
 
     int itemType = index.data(ItemTypeRole).toInt();
     if (itemType == ItemTypeVideo) {
-        QApplication::style()->drawPrimitive( QStyle::PE_PanelItemViewItem, &option, painter );
-        paintBody( painter, option, index );
+        QStyleOptionViewItemV4 opt = QStyleOptionViewItemV4(option);
+        initStyleOption(&opt, index);
+        opt.text = "";
+        opt.widget->style()->drawControl(QStyle::CE_ItemViewItem, &opt, painter, opt.widget);
+        paintBody(painter, opt, index);
     } else
         QStyledItemDelegate::paint( painter, option, index );
 
@@ -84,12 +87,6 @@ void PrettyItemDelegate::paintBody( QPainter* painter,
     if (isActive && !isSelected) {
         paintActiveOverlay(painter, line.x(), line.y(), line.width(), line.height());
     }
-
-#if defined(APP_MAC) | defined(APP_WIN)
-    if (isSelected) {
-        paintSelectedOverlay(painter, line.x(), line.y(), line.width(), line.height());
-    }
-#endif
 
     // get the video metadata
     const VideoPointer videoPointer = index.data( VideoRole ).value<VideoPointer>();
@@ -206,20 +203,6 @@ void PrettyItemDelegate::paintActiveOverlay( QPainter *painter, qreal x, qreal y
             qMax(color2.saturation() - gradientRange, 0),
             qMin(color2.value() + gradientRange, 255)
             );
-    QRect rect((int) x, (int) y, (int) w, (int) h);
-    painter->save();
-    painter->setPen(Qt::NoPen);
-    QLinearGradient linearGradient(0, 0, 0, rect.height());
-    linearGradient.setColorAt(0.0, color1);
-    linearGradient.setColorAt(1.0, color2);
-    painter->setBrush(linearGradient);
-    painter->drawRect(rect);
-    painter->restore();
-}
-
-void PrettyItemDelegate::paintSelectedOverlay( QPainter *painter, qreal x, qreal y, qreal w, qreal h ) const {
-    QColor color1 = QColor::fromRgb(0x69, 0xa6, 0xd9);
-    QColor color2 = QColor::fromRgb(0x14, 0x6b, 0xd4);
     QRect rect((int) x, (int) y, (int) w, (int) h);
     painter->save();
     painter->setPen(Qt::NoPen);

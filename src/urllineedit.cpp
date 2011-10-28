@@ -76,6 +76,7 @@ ExLineEdit::ExLineEdit(QWidget *parent)
     m_lineEdit->setFrame(false);
     m_lineEdit->setFocusProxy(this);
     m_lineEdit->setAttribute(Qt::WA_MacShowFocusRect, false);
+    m_lineEdit->setStyleSheet("background:transparent");
     QPalette clearPalette = m_lineEdit->palette();
     clearPalette.setBrush(QPalette::Base, QBrush(Qt::transparent));
     m_lineEdit->setPalette(clearPalette);
@@ -178,6 +179,9 @@ void ExLineEdit::focusOutEvent(QFocusEvent *event)
 
 void ExLineEdit::keyPressEvent(QKeyEvent *event)
 {
+    if (event->key() == Qt::Key_Escape && !m_lineEdit->text().isEmpty()) {
+        m_lineEdit->clear();
+    }
     m_lineEdit->event(event);
     QWidget::keyPressEvent(event);
 }

@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QtGui>
-#include "faderwidget/FaderWidget.h"
 #include "searchlineedit.h"
 #include <phonon/audiooutput.h>
 #include <phonon/volumeslider.h>
@@ -13,6 +12,8 @@
 #include "MediaView.h"
 #include "AboutView.h"
 #include "downloadview.h"
+
+class UpdateChecker;
 
 class MainWindow : public QMainWindow {
 
@@ -31,9 +32,11 @@ protected:
     bool eventFilter(QObject *obj, QEvent *event);
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
+    void resizeEvent(QResizeEvent *);
 
 private slots:
-    void fadeInWidget(QWidget *oldWidget, QWidget *newWidget);
+    void checkForUpdate();
+    void gotNewVersion(QString version);
     void goBack();
     void showSearch();
     void visitSite();
@@ -41,6 +44,7 @@ private slots:
     void about();
     void quit();
     void fullscreen();
+    void updateUIForFullscreen();
     void compactView(bool enable);
     void stop();
     void stateChanged(Phonon::State newState, Phonon::State oldState);
@@ -80,8 +84,9 @@ private:
     void showWidget(QWidget*);
     static QString formatTime(qint64 time);
 
+    UpdateChecker *updateChecker;
+
     // view mechanism
-    QPointer<FaderWidget> faderWidget;
     QStackedWidget *views;
     QStack<QWidget*> *history;
 
@@ -112,6 +117,7 @@ private:
     QAction *volumeUpAct;
     QAction *volumeDownAct;
     QAction *volumeMuteAct;
+    QAction *findVideoPartsAct;
 
     // playlist actions
     QAction *removeAct;
@@ -132,7 +138,6 @@ private:
 
     // phonon
     Phonon::SeekSlider *seekSlider;
-    // QSlider *slider;
     Phonon::VolumeSlider *volumeSlider;
     Phonon::MediaObject *mediaObject;
     Phonon::AudioOutput *audioOutput;

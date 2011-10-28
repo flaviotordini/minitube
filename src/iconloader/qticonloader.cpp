@@ -48,6 +48,9 @@
 #include <QtCore/QLibrary>
 #include <QtCore/QSettings>
 #include <QtCore/QTextStream>
+#ifndef Q_WS_X11
+#include "extra.h"
+#endif
 
 #ifdef Q_WS_X11
 
@@ -115,11 +118,7 @@ Q_GLOBAL_STATIC(QtIconLoaderImplementation, iconLoaderInstance)
     icon = QIcon::fromTheme(name);
 #endif
 #else
-        icon = QIcon(QString(":/images/%1.png").arg(name));
-        if (!icon.isNull()) {
-            icon.addPixmap(QString(":/images/%1_active.png").arg(name), QIcon::Active);
-            icon.addPixmap(QString(":/images/%1_selected.png").arg(name), QIcon::Selected);
-        }
+        icon = Extra::getIcon(name);
 #endif
 
     return icon;

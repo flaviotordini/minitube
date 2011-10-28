@@ -19,6 +19,9 @@ public:
     int sortBy() const { return m_sortBy; }
     void setSortBy( int sortBy ) { m_sortBy = sortBy; }
 
+    int isTransient() const { return m_transient; }
+    void setTransient( int transient ) { m_transient = transient; }
+
     enum SortBy {
         SortByRelevance = 1,
         SortByNewest,
@@ -29,6 +32,7 @@ private:
     QString m_keywords;
     QString m_author;
     int m_sortBy;
+    bool m_transient;
 
 };
 

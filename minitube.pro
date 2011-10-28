@@ -1,8 +1,17 @@
 CONFIG += release
 TEMPLATE = app
-VERSION = 1.5
+VERSION = 1.6
 DEFINES += APP_VERSION="$$VERSION"
 INCLUDEPATH += /usr/include/phonon
+
+APP_NAME = Minitube
+DEFINES += APP_NAME="$$APP_NAME"
+
+APP_UNIX_NAME = minitube
+DEFINES += APP_UNIX_NAME="$$APP_UNIX_NAME"
+
+DEFINES += QT_USE_FAST_CONCATENATION
+DEFINES += QT_USE_FAST_OPERATOR_PLUS
 
 # TODO Saner string behaviour
 # DEFINES += QT_NO_CAST_FROM_ASCII QT_NO_CAST_TO_ASCII QT_STRICT_ITERATORS
@@ -24,7 +33,6 @@ HEADERS += src/MainWindow.h \
     src/spacer.h \
     src/constants.h \
     src/iconloader/qticonloader.h \
-    src/faderwidget/FaderWidget.h \
     src/ListModel.h \
     src/playlist/PrettyItemDelegate.h \
     src/networkaccess.h \
@@ -51,7 +59,8 @@ HEADERS += src/MainWindow.h \
     src/downloadsettings.h \
     src/youtubesuggest.h \
     src/suggester.h \
-    src/channelsuggest.h
+    src/channelsuggest.h \
+    src/temporary.h
 SOURCES += src/main.cpp \
     src/MainWindow.cpp \
     src/SearchView.cpp \
@@ -64,7 +73,6 @@ SOURCES += src/main.cpp \
     src/spacer.cpp \
     src/video.cpp \
     src/iconloader/qticonloader.cpp \
-    src/faderwidget/FaderWidget.cpp \
     src/ListModel.cpp \
     src/playlist/PrettyItemDelegate.cpp \
     src/videomimedata.cpp \
@@ -90,7 +98,8 @@ SOURCES += src/main.cpp \
     src/downloadlistview.cpp \
     src/downloadsettings.cpp \
     src/youtubesuggest.cpp \
-    src/channelsuggest.cpp
+    src/channelsuggest.cpp \
+    src/temporary.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/
@@ -152,4 +161,4 @@ unix:!mac {
     icon512.files += data/512x512/minitube.png
 }
 mac|win32:include(local/local.pri)
-include(local/meego/meego.pri)
+
