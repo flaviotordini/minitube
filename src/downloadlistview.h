@@ -1,8 +1,7 @@
 #ifndef DOWNLOADLISTVIEW_H
 #define DOWNLOADLISTVIEW_H
 
-#include <QListView>
-#include <QModelIndex>
+#include <QtGui>
 
 class DownloadListView : public QListView {
 

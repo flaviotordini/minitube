@@ -1,4 +1,5 @@
 #include "MediaView.h"
+#include "playlistview.h"
 #include "playlist/PrettyItemDelegate.h"
 #include "networkaccess.h"
 #include "videowidget.h"
@@ -30,7 +31,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     splitter = new MiniSplitter(this);
     splitter->setChildrenCollapsible(false);
 
-    sortBar = new THBlackBar(this);
+    sortBar = new SegmentedControl(this);
     mostRelevantAction = new QAction(tr("Most relevant"), this);
     QKeySequence keySequence(Qt::CTRL + Qt::Key_1);
     mostRelevantAction->setShortcut(keySequence);
@@ -53,7 +54,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     connect(mostViewedAction, SIGNAL(triggered()), this, SLOT(searchMostViewed()), Qt::QueuedConnection);
     sortBar->addAction(mostViewedAction);
 
-    listView = new QListView(this);
+    listView = new PlaylistView(this);
     listView->setItemDelegate(new PrettyItemDelegate(this));
     listView->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
@@ -82,6 +83,8 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     connect(listView->selectionModel(),
             SIGNAL(selectionChanged ( const QItemSelection & , const QItemSelection & )),
             this, SLOT(selectionChanged ( const QItemSelection & , const QItemSelection & )));
+
+    connect(listView, SIGNAL(authorPushed(QModelIndex)), SLOT(authorPushed(QModelIndex)));
 
     playlistWidget = new PlaylistWidget(this, sortBar, listView);
 
@@ -197,6 +200,10 @@ void MediaView::search(SearchParams *searchParams) {
 
 }
 
+void MediaView::appear() {
+    listView->setFocus();
+}
+
 void MediaView::disappear() {
     timerPlayFlag = true;
 }
@@ -259,8 +266,6 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
         qDebug("loading");
         break;
 
-    default:
-        ;
     }
 }
 
@@ -332,7 +337,6 @@ void MediaView::activeRowChanged(int row) {
     QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(window());
     if (mainWindow) mainWindow->statusBar()->showMessage(video->title());
 
-    The::globalActions()->value("download")->setEnabled(DownloadManager::instance()->itemForVideo(video) == 0);
 
     // ensure active item is visible
     // int row = listModel->activeRow();
@@ -340,6 +344,12 @@ void MediaView::activeRowChanged(int row) {
         QModelIndex index = listModel->index(row, 0, QModelIndex());
         listView->scrollTo(index, QAbstractItemView::EnsureVisible);
     }
+
+    // enable/disable actions
+    The::globalActions()->value("download")->setEnabled(DownloadManager::instance()->itemForVideo(video) == 0);
+    The::globalActions()->value("skip")->setEnabled(true);
+    The::globalActions()->value("previous")->setEnabled(row > 0);
+    The::globalActions()->value("stopafterthis")->setEnabled(true);
 
     // see you in gotStreamUrl...
 
@@ -483,13 +493,24 @@ void MediaView::skip() {
     listModel->setActiveRow(nextRow);
 }
 
+void MediaView::skipBackward() {
+    int prevRow = listModel->previousRow();
+    if (prevRow == -1) return;
+    listModel->setActiveRow(prevRow);
+}
+
 void MediaView::playbackFinished() {
     // qDebug() << "finished" << mediaObject->currentTime() << mediaObject->totalTime();
     // add 10 secs for imprecise Phonon backends (VLC, Xine)
     if (mediaObject->currentTime() + 10000 < mediaObject->totalTime()) {
         // mediaObject->seek(mediaObject->currentTime());
         QTimer::singleShot(3000, this, SLOT(playbackResume()));
-    } else skip();
+    } else {
+        QAction* stopAfterThisAction = The::globalActions()->value("stopafterthis");
+        if (stopAfterThisAction->isChecked()) {
+            stopAfterThisAction->setChecked(false);
+        } else skip();
+    }
 }
 
 void MediaView::playbackResume() {
@@ -814,4 +835,19 @@ void MediaView::shareViaEmail() {
             Constants::WEBSITE;
     url.addQueryItem("body", body);
     QDesktopServices::openUrl(url);
+}
+
+void MediaView::authorPushed(QModelIndex index) {
+    Video* video = listModel->videoAt(index.row());
+    if (!video) return;
+
+    QString channel = video->author();
+    if (channel.isEmpty()) return;
+
+    SearchParams *searchParams = new SearchParams();
+    searchParams->setAuthor(channel);
+    searchParams->setSortBy(SearchParams::SortByNewest);
+
+    // go!
+    search(searchParams);
 }

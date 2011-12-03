@@ -6,7 +6,7 @@
 #include "downloadsettings.h"
 #include "ListModel.h"
 #include "playlist/PrettyItemDelegate.h"
-#include "thlibrary/thblackbar.h"
+#include "segmentedcontrol.h"
 
 DownloadView::DownloadView(QWidget *parent) : QWidget(parent) {
 
@@ -14,7 +14,7 @@ DownloadView::DownloadView(QWidget *parent) : QWidget(parent) {
     layout->setMargin(0);
     layout->setSpacing(0);
 
-    bar = new THBlackBar(this);
+    bar = new SegmentedControl(this);
     QAction *action = new QAction(tr("Downloads"), this);
     bar->addAction(action);
     layout->addWidget(bar);

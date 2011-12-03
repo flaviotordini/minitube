@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QtGui>
-#include "searchlineedit.h"
 #include <phonon/audiooutput.h>
 #include <phonon/volumeslider.h>
 #include <phonon/mediaobject.h>
@@ -13,6 +12,7 @@
 #include "AboutView.h"
 #include "downloadview.h"
 
+class SearchLineEdit;
 class UpdateChecker;
 
 class MainWindow : public QMainWindow {
@@ -20,14 +20,19 @@ class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
+    static MainWindow* instance();
     MainWindow();
     ~MainWindow();
     Phonon::SeekSlider* getSeekSlider() { return seekSlider; }
+    void readSettings();
+    void writeSettings();
 
 public slots:
     void showMedia(SearchParams *params);
+    void messageReceived(const QString &message);
 
 protected:
+    void changeEvent(QEvent *);
     void closeEvent(QCloseEvent *);
     bool eventFilter(QObject *obj, QEvent *event);
     void dragEnterEvent(QDragEnterEvent *event);
@@ -72,6 +77,9 @@ private slots:
     void toggleDownloads(bool show);
 
     void startToolbarSearch(QString query);
+    void floatOnTop(bool);
+    void showFloatOnTopInStatusBar(bool show);
+    void showStopAfterThisInStatusBar(bool show);
 
 private:
     void initPhonon();
@@ -79,10 +87,9 @@ private:
     void createMenus();
     void createToolBars();
     void createStatusBar();
-    void readSettings();
-    void writeSettings();
     void showWidget(QWidget*);
     static QString formatTime(qint64 time);
+    bool confirmQuit();
 
     UpdateChecker *updateChecker;
 
@@ -106,6 +113,7 @@ private:
     QAction *searchFocusAct;
 
     // media actions
+    QAction *skipBackwardAct;
     QAction *skipAct;
     QAction *pauseAct;
     QAction *stopAct;
@@ -135,6 +143,7 @@ private:
     // toolbar
     QToolBar *mainToolBar;
     SearchLineEdit *toolbarSearch;
+    QToolBar *statusToolBar;
 
     // phonon
     Phonon::SeekSlider *seekSlider;

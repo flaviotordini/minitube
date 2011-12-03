@@ -4,6 +4,11 @@
 #include "searchparams.h"
 #include "youtubesuggest.h"
 #include "channelsuggest.h"
+#ifdef APP_MAC
+#include "searchlineedit_mac.h"
+#else
+#include "searchlineedit.h"
+#endif
 
 namespace The {
     QMap<QString, QAction*>* globalActions();
@@ -109,10 +114,9 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     queryEdit = new SearchLineEdit(this);
     queryEdit->setFont(biggerFont);
     queryEdit->setMinimumWidth(queryEdit->fontInfo().pixelSize()*15);
-    queryEdit->sizeHint();
-    queryEdit->setFocus(Qt::OtherFocusReason);
-    connect(queryEdit, SIGNAL(search(const QString&)), this, SLOT(watch(const QString&)));
-    connect(queryEdit, SIGNAL(textChanged(const QString &)), this, SLOT(textChanged(const QString &)));
+    connect(queryEdit, SIGNAL(search(const QString&)), SLOT(watch(const QString&)));
+    connect(queryEdit, SIGNAL(textChanged(const QString &)), SLOT(textChanged(const QString &)));
+    connect(queryEdit, SIGNAL(suggestionAccepted(const QString&)), SLOT(watch(const QString&)));
 
     youtubeSuggest = new YouTubeSuggest(this);
     channelSuggest = new ChannelSuggest(this);
@@ -140,13 +144,8 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     recentKeywordsLayout->setSpacing(5);
     recentKeywordsLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     recentKeywordsLabel = new QLabel(tr("Recent keywords").toUpper(), this);
-#if defined(APP_MAC) | defined(APP_WIN)
-    QPalette palette = recentKeywordsLabel->palette();
-    palette.setColor(QPalette::WindowText, QColor(0x65, 0x71, 0x80));
-    recentKeywordsLabel->setPalette(palette);
-#else
+    recentKeywordsLabel->setProperty("recentHeader", true);
     recentKeywordsLabel->setForegroundRole(QPalette::Dark);
-#endif
     recentKeywordsLabel->hide();
     recentKeywordsLabel->setFont(smallerFont);
     recentKeywordsLayout->addWidget(recentKeywordsLabel);
@@ -158,13 +157,8 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     recentChannelsLayout->setSpacing(5);
     recentChannelsLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     recentChannelsLabel = new QLabel(tr("Recent channels").toUpper(), this);
-#if defined(APP_MAC) | defined(APP_WIN)
-    palette = recentChannelsLabel->palette();
-    palette.setColor(QPalette::WindowText, QColor(0x65, 0x71, 0x80));
-    recentChannelsLabel->setPalette(palette);
-#else
+    recentChannelsLabel->setProperty("recentHeader", true);
     recentChannelsLabel->setForegroundRole(QPalette::Dark);
-#endif
     recentChannelsLabel->hide();
     recentChannelsLabel->setFont(smallerFont);
     recentChannelsLayout->addWidget(recentChannelsLabel);
@@ -178,6 +172,14 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
     setLayout(mainLayout);
 
+}
+
+void SearchView::appear() {
+    updateRecentKeywords();
+    updateRecentChannels();
+    queryEdit->selectAll();
+    queryEdit->enableSuggest();
+    QTimer::singleShot(0, queryEdit, SLOT(setFocus()));
 }
 
 void SearchView::updateRecentKeywords() {
@@ -215,6 +217,7 @@ void SearchView::updateRecentKeywords() {
                                        + "\" style=\"color:palette(text); text-decoration:none\">"
                                        + display + "</a>", this);
         itemLabel->setAttribute(Qt::WA_DeleteOnClose);
+        itemLabel->setProperty("recentItem", true);
         itemLabel->setMaximumWidth(queryEdit->width() + watchButton->width());
         // itemLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         // Make links navigable with the keyboard too
@@ -256,6 +259,7 @@ void SearchView::updateRecentChannels() {
                                        + "\" style=\"color:palette(text); text-decoration:none\">"
                                        + display + "</a>", this);
         itemLabel->setAttribute(Qt::WA_DeleteOnClose);
+        itemLabel->setProperty("recentItem", true);
         itemLabel->setMaximumWidth(queryEdit->width() + watchButton->width());
         // itemLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         // Make links navigable with the keyboard too
@@ -311,7 +315,7 @@ void SearchView::watchChannel(QString channel) {
     }
 
     // remove spaces from channel name
-    channel = channel.replace(" ", "");
+    channel = channel.remove(" ");
 
     SearchParams *searchParams = new SearchParams();
     searchParams->setAuthor(channel);

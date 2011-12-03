@@ -6,10 +6,14 @@
 
 #include <QFontMetricsF>
 #include <QPainter>
+#include <QHash>
 
 const qreal PrettyItemDelegate::THUMB_HEIGHT = 90.0;
 const qreal PrettyItemDelegate::THUMB_WIDTH = 120.0;
 const qreal PrettyItemDelegate::PADDING = 10.0;
+
+QRect lastAuthorRect;
+QHash<int, QRect> authorRects;
 
 PrettyItemDelegate::PrettyItemDelegate(QObject* parent, bool downloadInfo)
     : QStyledItemDelegate(parent),
@@ -135,14 +139,27 @@ void PrettyItemDelegate::paintBody( QPainter* painter,
     painter->drawText(publishedTextBox, Qt::AlignLeft | Qt::AlignTop, publishedString);
 
     // author
+    bool authorHovered = false;
+    bool authorPressed = false;
+    const bool isHovered = index.data(HoveredItemRole).toBool();
+    if (isHovered) {
+        authorHovered = index.data(AuthorHoveredRole).toBool();
+        authorPressed = index.data(AuthorPressedRole).toBool();
+    }
+
     painter->save();
     painter->setFont(smallerBoldFont);
-    if (!isSelected && !isActive)
-        painter->setPen(QPen(option.palette.brush(QPalette::Mid), 0));
+    if (!isSelected) {
+        if (authorHovered)
+            painter->setPen(QPen(option.palette.brush(QPalette::Highlight), 0));
+        else
+            painter->setPen(QPen(option.palette.brush(QPalette::Mid), 0));
+    }
     QString authorString = video->author();
     QSizeF authorStringSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, authorString ) );
     textLoc.setX(textLoc.x() + publishedStringSize.width() + PADDING);
     QRectF authorTextBox( textLoc , authorStringSize);
+    authorRects.insert(index.row(), authorTextBox.toRect());
     painter->drawText(authorTextBox, Qt::AlignLeft | Qt::AlignTop, authorString);
     painter->restore();
 
@@ -357,4 +374,8 @@ QRect PrettyItemDelegate::downloadButtonRect(QRect line) const {
             PADDING + progressBar->sizeHint().height() / 2 - 8,
             16,
             16);
+}
+
+QRect PrettyItemDelegate::authorRect(const QModelIndex& index) const {
+    return authorRects.value(index.row());
 }

@@ -1,6 +1,6 @@
 CONFIG += release
 TEMPLATE = app
-VERSION = 1.6
+VERSION = 1.7
 DEFINES += APP_VERSION="$$VERSION"
 INCLUDEPATH += /usr/include/phonon
 
@@ -48,7 +48,6 @@ HEADERS += src/MainWindow.h \
     src/videowidget.h \
     src/videodefinition.h \
     src/fontutils.h \
-    src/thlibrary/thblackbar.h \
     src/globalshortcuts.h \
     src/globalshortcutbackend.h \
     src/downloadmanager.h \
@@ -60,7 +59,9 @@ HEADERS += src/MainWindow.h \
     src/youtubesuggest.h \
     src/suggester.h \
     src/channelsuggest.h \
-    src/temporary.h
+    src/temporary.h \
+    src/segmentedcontrol.h \
+    src/playlistview.h
 SOURCES += src/main.cpp \
     src/MainWindow.cpp \
     src/SearchView.cpp \
@@ -88,7 +89,6 @@ SOURCES += src/main.cpp \
     src/videodefinition.cpp \
     src/constants.cpp \
     src/fontutils.cpp \
-    src/thlibrary/thblackbar.cpp \
     src/globalshortcuts.cpp \
     src/globalshortcutbackend.cpp \
     src/downloadmanager.cpp \
@@ -99,7 +99,9 @@ SOURCES += src/main.cpp \
     src/downloadsettings.cpp \
     src/youtubesuggest.cpp \
     src/channelsuggest.cpp \
-    src/temporary.cpp
+    src/temporary.cpp \
+    src/segmentedcontrol.cpp \
+    src/playlistview.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/
@@ -161,4 +163,8 @@ unix:!mac {
     icon512.files += data/512x512/minitube.png
 }
 mac|win32:include(local/local.pri)
+
+
+
+
 

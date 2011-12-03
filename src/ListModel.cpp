@@ -12,6 +12,10 @@ ListModel::ListModel(QWidget *parent) : QAbstractListModel(parent) {
     m_activeVideo = 0;
     m_activeRow = -1;
     skip = 1;
+
+    hoveredRow = -1;
+    authorHovered = false;
+    authorPressed = false;
 }
 
 ListModel::~ListModel() {
@@ -80,6 +84,12 @@ QVariant ListModel::data(const QModelIndex &index, int role) const {
         return video == m_activeVideo;
     case Qt::DisplayRole:
         return video->title();
+    case HoveredItemRole:
+        return hoveredRow == index.row();
+    case AuthorHoveredRole:
+        return authorHovered;
+    case AuthorPressedRole:
+        return authorPressed;
     }
     
     return QVariant();
@@ -110,6 +120,13 @@ int ListModel::nextRow() const {
     int nextRow = m_activeRow + 1;
     if (rowExists(nextRow))
         return nextRow;
+    return -1;
+}
+
+int ListModel::previousRow() const {
+    int prevRow = m_activeRow - 1;
+    if (rowExists(prevRow))
+        return prevRow;
     return -1;
 }
 
@@ -403,4 +420,49 @@ void ListModel::move(QModelIndexList &indexes, bool up) {
 
     emit needSelectionFor(movedVideos);
 
+}
+
+/* row hovering */
+
+void ListModel::setHoveredRow(int row) {
+    int oldRow = hoveredRow;
+    hoveredRow = row;
+    emit dataChanged( createIndex( oldRow, 0 ), createIndex( oldRow, columnCount() - 1 ) );
+    emit dataChanged( createIndex( hoveredRow, 0 ), createIndex( hoveredRow, columnCount() - 1 ) );
+}
+
+void ListModel::clearHover() {
+    emit dataChanged( createIndex( hoveredRow, 0 ), createIndex( hoveredRow, columnCount() - 1 ) );
+    hoveredRow = -1;
+}
+
+/* clickable author */
+
+void ListModel::enterAuthorHover() {
+    if (authorHovered) return;
+    authorHovered = true;
+    updateAuthor();
+}
+
+void ListModel::exitAuthorHover() {
+    if (!authorHovered) return;
+    authorHovered = false;
+    updateAuthor();
+    setHoveredRow(hoveredRow);
+}
+
+void ListModel::enterAuthorPressed() {
+    if (authorPressed) return;
+    authorPressed = true;
+    updateAuthor();
+}
+
+void ListModel::exitAuthorPressed() {
+    if (!authorPressed) return;
+    authorPressed = false;
+    updateAuthor();
+}
+
+void ListModel::updateAuthor() {
+    emit dataChanged( createIndex( hoveredRow, 0 ), createIndex( hoveredRow, columnCount() - 1 ) );
 }

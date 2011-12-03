@@ -3,8 +3,8 @@
 
 #include <QtGui>
 #include "View.h"
-#include "searchlineedit.h"
 
+class SearchLineEdit;
 class SearchParams;
 class YouTubeSuggest;
 class ChannelSuggest;
@@ -17,15 +17,7 @@ public:
     SearchView(QWidget *parent);
     void updateRecentKeywords();
     void updateRecentChannels();
-
-    void appear() {
-        updateRecentKeywords();
-        updateRecentChannels();
-        queryEdit->clear();
-        queryEdit->enableSuggest();
-        QTimer::singleShot(0, queryEdit, SLOT(setFocus()));
-    }
-
+    void appear();
     void disappear() {}
 
     QMap<QString, QVariant> metadata() {

@@ -4,7 +4,7 @@
 #include <QtGui>
 #include "View.h"
 
-class THBlackBar;
+class SegmentedControl;
 class DownloadModel;
 class DownloadListView;
 class DownloadSettings;
@@ -29,7 +29,7 @@ public slots:
     void buttonPushed(QModelIndex index);
 
 private:
-    THBlackBar *bar;
+    SegmentedControl *bar;
     DownloadListView *listView;
     DownloadModel *listModel;
     QTimer *updateTimer;

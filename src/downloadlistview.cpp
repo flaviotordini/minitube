@@ -1,12 +1,8 @@
 #include "downloadlistview.h"
 #include "downloadmodel.h"
 #include "playlist/PrettyItemDelegate.h"
-#include <QtGui>
 
 DownloadListView::DownloadListView(QWidget *parent) : QListView(parent) {
-
-    // playIconHovered = false;
-    // setMouseTracking(true);
 
 }
 
@@ -21,9 +17,9 @@ void DownloadListView::mouseMoveEvent(QMouseEvent *event) {
     QListView::mouseMoveEvent(event);
 
     if (isHoveringPlayIcon(event)) {
-        QMetaObject::invokeMethod(model(), "enterPlayIconHover", Qt::DirectConnection);
+        QMetaObject::invokeMethod(model(), "enterPlayIconHover");
     } else {
-        QMetaObject::invokeMethod(model(), "exitPlayIconHover", Qt::DirectConnection);
+        QMetaObject::invokeMethod(model(), "exitPlayIconHover");
     }
 
 }
@@ -31,7 +27,7 @@ void DownloadListView::mouseMoveEvent(QMouseEvent *event) {
 void DownloadListView::mousePressEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton
         && isHoveringPlayIcon(event)) {
-        QMetaObject::invokeMethod(model(), "enterPlayIconPressed", Qt::DirectConnection);
+        QMetaObject::invokeMethod(model(), "enterPlayIconPressed");
     } else {
         QListView::mousePressEvent(event);
     }
@@ -39,7 +35,7 @@ void DownloadListView::mousePressEvent(QMouseEvent *event) {
 
 void DownloadListView::mouseReleaseEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
-        QMetaObject::invokeMethod(model(), "exitPlayIconPressed", Qt::DirectConnection);
+        QMetaObject::invokeMethod(model(), "exitPlayIconPressed");
         if (isHoveringPlayIcon(event))
             emit downloadButtonPushed(indexAt(event->pos()));
     } else {

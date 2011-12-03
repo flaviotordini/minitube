@@ -14,6 +14,7 @@ public:
     bool eventFilter(QObject *obj, QEvent *ev);
     void showCompletion(const QStringList &choices);
     void setSuggester(Suggester* suggester);
+    QListWidget* getPopup() { return popup; }
 
 public slots:
     void doneCompletion();
@@ -22,6 +23,9 @@ public slots:
     void autoSuggest();
     void currentItemChanged(QListWidgetItem *current);
     void suggestionsReady(QStringList suggestions);
+
+signals:
+    void suggestionAccepted(QString suggestion);
 
 private:
     QWidget *buddy;

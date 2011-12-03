@@ -19,7 +19,8 @@ int main(int argc, char **argv) {
 #endif
 
     QtSingleApplication app(argc, argv);
-    if (app.sendMessage("Wake up!"))
+    QString message = app.arguments().size() > 1 ? app.arguments().at(1) : "";
+    if (app.sendMessage(message))
         return 0;
 
     app.setApplicationName(Constants::NAME);
@@ -69,6 +70,7 @@ int main(int argc, char **argv) {
     mainWin.setWindowTitle(Constants::NAME);
 
 #ifdef Q_WS_MAC
+    app.setQuitOnLastWindowClosed(false);
     mac::SetupFullScreenWindow(mainWin.winId());
 #endif
 
@@ -102,6 +104,7 @@ int main(int argc, char **argv) {
 
     mainWin.show();
 
+    mainWin.connect(&app, SIGNAL(messageReceived(const QString &)), &mainWin, SLOT(messageReceived(const QString &)));
     app.setActivationWindow(&mainWin, true);
 
     // all string literals are UTF-8

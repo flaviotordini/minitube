@@ -13,6 +13,7 @@
 #include "mac_startup.h"
 #include "macfullscreen.h"
 #include "macsupport.h"
+#include "macutils.h"
 #endif
 #ifndef Q_WS_X11
 #include "extra.h"
@@ -24,6 +25,18 @@
 #include "demostartupview.h"
 #endif
 #include "temporary.h"
+#ifdef APP_MAC
+#include "searchlineedit_mac.h"
+#else
+#include "searchlineedit.h"
+#endif
+
+static MainWindow *singleton = 0;
+
+MainWindow* MainWindow::instance() {
+    if (!singleton) singleton = new MainWindow();
+    return singleton;
+}
 
 MainWindow::MainWindow() :
         aboutView(0),
@@ -32,6 +45,8 @@ MainWindow::MainWindow() :
         audioOutput(0),
         m_fullscreen(false),
         updateChecker(0) {
+
+    singleton = this;
 
     // views mechanism
     history = new QStack<QWidget*>();
@@ -45,11 +60,6 @@ MainWindow::MainWindow() :
 
     mediaView = new MediaView(this);
     views->addWidget(mediaView);
-
-    toolbarSearch = new SearchLineEdit(this);
-    toolbarSearch->setMinimumWidth(toolbarSearch->fontInfo().pixelSize()*15);
-    toolbarSearch->setSuggester(new YouTubeSuggest(this));
-    connect(toolbarSearch, SIGNAL(search(const QString&)), this, SLOT(startToolbarSearch(const QString&)));
 
     // build ui
     createActions();
@@ -94,6 +104,7 @@ MainWindow::MainWindow() :
     connect(&shortcuts, SIGNAL(PlayPause()), pauseAct, SLOT(trigger()));
     connect(&shortcuts, SIGNAL(Stop()), this, SLOT(stop()));
     connect(&shortcuts, SIGNAL(Next()), skipAct, SLOT(trigger()));
+    connect(&shortcuts, SIGNAL(Previous()), skipBackwardAct, SLOT(trigger()));
 
     connect(DownloadManager::instance(), SIGNAL(statusMessageChanged(QString)),
             SLOT(updateDownloadMessage(QString)));
@@ -108,6 +119,15 @@ MainWindow::MainWindow() :
 
 MainWindow::~MainWindow() {
     delete history;
+}
+
+void MainWindow::changeEvent(QEvent* event) {
+#ifdef APP_MAC
+    if (event->type() == QEvent::WindowStateChange) {
+        The::globalActions()->value("minimize")->setEnabled(!isMinimized());
+    }
+#endif
+    QMainWindow::changeEvent(event);
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
@@ -143,6 +163,18 @@ void MainWindow::createActions() {
     actions->insert("stop", stopAct);
     connect(stopAct, SIGNAL(triggered()), this, SLOT(stop()));
 
+    skipBackwardAct = new QAction(
+                QtIconLoader::icon("media-skip-backward"),
+                tr("P&revious"), this);
+    skipBackwardAct->setStatusTip(tr("Go back to the previous track"));
+    skipBackwardAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Left));
+#if QT_VERSION >= 0x040600
+    skipBackwardAct->setPriority(QAction::LowPriority);
+#endif
+    skipBackwardAct->setEnabled(false);
+    actions->insert("previous", skipBackwardAct);
+    connect(skipBackwardAct, SIGNAL(triggered()), mediaView, SLOT(skipBackward()));
+
     skipAct = new QAction(QtIconLoader::icon("media-skip-forward"), tr("S&kip"), this);
     skipAct->setStatusTip(tr("Skip to the next video"));
     skipAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_Right) << QKeySequence(Qt::Key_MediaNext));
@@ -163,7 +195,7 @@ void MainWindow::createActions() {
 #ifdef APP_MAC
     fsShortcuts << QKeySequence(Qt::CTRL + Qt::META + Qt::Key_F);
 #else
-    fsShortcuts << QKeySequence(Qt::Key_F11);
+    fsShortcuts << QKeySequence(Qt::Key_F11) << QKeySequence(Qt::ALT + Qt::Key_Return);
 #endif
     fullscreenAct->setShortcuts(fsShortcuts);
     fullscreenAct->setShortcutContext(Qt::ApplicationShortcut);
@@ -247,10 +279,10 @@ void MainWindow::createActions() {
 
     quitAct = new QAction(tr("&Quit"), this);
     quitAct->setMenuRole(QAction::QuitRole);
-    quitAct->setShortcuts(QList<QKeySequence>() << QKeySequence(tr("Ctrl+Q")) << QKeySequence(Qt::CTRL + Qt::Key_W));
+    quitAct->setShortcut(QKeySequence::Quit);
     quitAct->setStatusTip(tr("Bye"));
     actions->insert("quit", quitAct);
-    connect(quitAct, SIGNAL(triggered()), this, SLOT(close()));
+    connect(quitAct, SIGNAL(triggered()), SLOT(quit()));
 
     siteAct = new QAction(tr("&Website"), this);
     siteAct->setShortcut(QKeySequence::HelpContents);
@@ -281,13 +313,13 @@ void MainWindow::createActions() {
     addAction(searchFocusAct);
 
     volumeUpAct = new QAction(this);
-    volumeUpAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_Plus) << QKeySequence(Qt::Key_VolumeUp));
+    volumeUpAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_Plus));
     actions->insert("volume-up", volumeUpAct);
     connect(volumeUpAct, SIGNAL(triggered()), this, SLOT(volumeUp()));
     addAction(volumeUpAct);
 
     volumeDownAct = new QAction(this);
-    volumeDownAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_Minus) << QKeySequence(Qt::Key_VolumeDown));
+    volumeDownAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_Minus));
     actions->insert("volume-down", volumeDownAct);
     connect(volumeDownAct, SIGNAL(triggered()), this, SLOT(volumeDown()));
     addAction(volumeDownAct);
@@ -295,9 +327,7 @@ void MainWindow::createActions() {
     volumeMuteAct = new QAction(this);
     volumeMuteAct->setIcon(QtIconLoader::icon("audio-volume-high"));
     volumeMuteAct->setStatusTip(tr("Mute volume"));
-    volumeMuteAct->setShortcuts(QList<QKeySequence>()
-                                << QKeySequence(tr("Ctrl+M"))
-                                << QKeySequence(Qt::Key_VolumeMute));
+    volumeMuteAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_E));
     actions->insert("volume-mute", volumeMuteAct);
     connect(volumeMuteAct, SIGNAL(triggered()), SLOT(volumeMute()));
     addAction(volumeMuteAct);
@@ -366,6 +396,23 @@ void MainWindow::createActions() {
     actions->insert("email", action);
     connect(action, SIGNAL(triggered()), mediaView, SLOT(shareViaEmail()));
 
+    action = new QAction(tr("&Close"), this);
+    action->setShortcut(QKeySequence(QKeySequence::Close));
+    actions->insert("close", action);
+    connect(action, SIGNAL(triggered()), SLOT(close()));
+
+    action = new QAction(QtIconLoader::icon("go-top"), tr("&Float on Top"), this);
+    action->setCheckable(true);
+    actions->insert("ontop", action);
+    connect(action, SIGNAL(toggled(bool)), SLOT(floatOnTop(bool)));
+
+    action = new QAction(QtIconLoader::icon("media-playback-stop"), tr("&Stop after this video"), this);
+    action->setShortcut(QKeySequence(Qt::SHIFT + Qt::Key_Escape));
+    action->setCheckable(true);
+    action->setEnabled(false);
+    actions->insert("stopafterthis", action);
+    connect(action, SIGNAL(toggled(bool)), SLOT(showStopAfterThisInStatusBar(bool)));
+
     // common action properties
     foreach (QAction *action, actions->values()) {
 
@@ -378,7 +425,6 @@ void MainWindow::createActions() {
         action->setAutoRepeat(false);
 
         // set to something more meaningful then the toolbar text
-        // HELP! how to remove tooltips altogether?!
         if (!action->statusTip().isEmpty())
             action->setToolTip(action->statusTip());
 
@@ -398,7 +444,12 @@ void MainWindow::createMenus() {
     QMap<QString, QMenu*> *menus = The::globalMenus();
 
     fileMenu = menuBar()->addMenu(tr("&Application"));
-    // menus->insert("file", fileMenu);
+#ifdef APP_DEMO
+    QAction* action = new QAction(tr("Buy %1...").arg(Constants::NAME), this);
+    action->setMenuRole(QAction::ApplicationSpecificRole);
+    connect(action, SIGNAL(triggered()), SLOT(buy()));
+    fileMenu->addAction(action);
+#endif
     fileMenu->addAction(clearAct);
 #ifndef APP_MAC
     fileMenu->addSeparator();
@@ -407,9 +458,12 @@ void MainWindow::createMenus() {
 
     QMenu* playbackMenu = menuBar()->addMenu(tr("&Playback"));
     menus->insert("playback", playbackMenu);
-    playbackMenu->addAction(stopAct);
     playbackMenu->addAction(pauseAct);
+    playbackMenu->addAction(stopAct);
+    playbackMenu->addAction(The::globalActions()->value("stopafterthis"));
+    playbackMenu->addSeparator();
     playbackMenu->addAction(skipAct);
+    playbackMenu->addAction(skipBackwardAct);
 #ifdef APP_MAC
     MacSupport::dockMenu(playbackMenu);
 #endif
@@ -436,6 +490,8 @@ void MainWindow::createMenus() {
     menus->insert("view", viewMenu);
     viewMenu->addAction(fullscreenAct);
     viewMenu->addAction(compactViewAct);
+    viewMenu->addSeparator();
+    viewMenu->addAction(The::globalActions()->value("ontop"));
 
     QMenu* shareMenu = menuBar()->addMenu(tr("&Share"));
     menus->insert("share", shareMenu);
@@ -444,6 +500,10 @@ void MainWindow::createMenus() {
     shareMenu->addAction(The::globalActions()->value("twitter"));
     shareMenu->addAction(The::globalActions()->value("facebook"));
     shareMenu->addAction(The::globalActions()->value("email"));
+
+#ifdef APP_MAC
+    MacSupport::windowMenu(this);
+#endif
 
     helpMenu = menuBar()->addMenu(tr("&Help"));
     helpMenu->addAction(siteAct);
@@ -530,16 +590,32 @@ void MainWindow::createToolBars() {
 
     mainToolBar->addWidget(new Spacer());
 
+#ifdef APP_MAC
+    SearchWrapper* searchWrapper = new SearchWrapper(this);
+    toolbarSearch = searchWrapper->getSearchLineEdit();
+#else
+    toolbarSearch = new SearchLineEdit(this);
+#endif
+    toolbarSearch->setMinimumWidth(toolbarSearch->fontInfo().pixelSize()*15);
+    toolbarSearch->setSuggester(new YouTubeSuggest(this));
+    connect(toolbarSearch, SIGNAL(search(const QString&)), this, SLOT(startToolbarSearch(const QString&)));
+    connect(toolbarSearch, SIGNAL(suggestionAccepted(const QString&)), SLOT(startToolbarSearch(const QString&)));
     toolbarSearch->setStatusTip(searchFocusAct->statusTip());
+#ifdef APP_MAC
+    mainToolBar->addWidget(searchWrapper);
+#else
     mainToolBar->addWidget(toolbarSearch);
-
-    mainToolBar->addWidget(new Spacer());
+    Spacer* spacer = new Spacer();
+    spacer->setWidth(4);
+    mainToolBar->addWidget(spacer);
+#endif
 
     addToolBar(mainToolBar);
 }
 
 void MainWindow::createStatusBar() {
-    QToolBar *toolBar = new QToolBar(this);
+    QToolBar* toolBar = new QToolBar(this);
+    statusToolBar = toolBar;
     toolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     toolBar->setIconSize(QSize(16, 16));
     toolBar->addAction(The::globalActions()->value("downloads"));
@@ -547,6 +623,24 @@ void MainWindow::createStatusBar() {
     toolBar->addAction(The::globalActions()->value("definition"));
     statusBar()->addPermanentWidget(toolBar);
     statusBar()->show();
+}
+
+void MainWindow::showStopAfterThisInStatusBar(bool show) {
+    QAction* action = The::globalActions()->value("stopafterthis");
+    if (show) {
+        statusToolBar->insertAction(statusToolBar->actions().first(), action);
+    } else {
+        statusToolBar->removeAction(action);
+    }
+}
+
+void MainWindow::showFloatOnTopInStatusBar(bool show) {
+    QAction* action = The::globalActions()->value("ontop");
+    if (show) {
+        statusToolBar->insertAction(statusToolBar->actions().first(), action);
+    } else {
+        statusToolBar->removeAction(action);
+    }
 }
 
 void MainWindow::readSettings() {
@@ -612,12 +706,18 @@ void MainWindow::showWidget ( QWidget* widget ) {
     findVideoPartsAct->setEnabled(widget == mediaView);
     toolbarSearch->setEnabled(widget == searchView || widget == mediaView || widget == downloadView);
 
+    if (widget == searchView) {
+        skipAct->setEnabled(false);
+        The::globalActions()->value("previous")->setEnabled(false);
+        The::globalActions()->value("download")->setEnabled(false);
+        The::globalActions()->value("stopafterthis")->setEnabled(false);
+    }
+
     The::globalActions()->value("twitter")->setEnabled(widget == mediaView);
     The::globalActions()->value("facebook")->setEnabled(widget == mediaView);
     The::globalActions()->value("email")->setEnabled(widget == mediaView);
 
     aboutAct->setEnabled(widget != aboutView);
-    The::globalActions()->value("download")->setEnabled(widget == mediaView);
     The::globalActions()->value("downloads")->setChecked(widget == downloadView);
 
     // toolbar only for the mediaView
@@ -659,18 +759,39 @@ void MainWindow::donate() {
 }
 
 void MainWindow::quit() {
+#ifdef APP_MAC
+    if (!confirmQuit()) {
+        return;
+    }
+#endif
     writeSettings();
     Temporary::deleteAll();
     qApp->quit();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event) {
+#ifdef APP_MAC
+    mac::closeWindow(winId());
+    event->ignore();
+#else
+    if (!confirmQuit()) {
+        event->ignore();
+        return;
+    }
+    quit();
+    QWidget::closeEvent(event);
+#endif
+}
+
+bool MainWindow::confirmQuit() {
     if (DownloadManager::instance()->activeItems() > 0) {
-        QMessageBox msgBox;
+        QMessageBox msgBox(this);
         msgBox.setIconPixmap(QPixmap(":/images/app.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         msgBox.setText(tr("Do you want to exit %1 with a download in progress?").arg(Constants::NAME));
         msgBox.setInformativeText(tr("If you close %1 now, this download will be cancelled.").arg(Constants::NAME));
         msgBox.setModal(true);
+        // make it a "sheet" on the Mac
+        msgBox.setWindowModality(Qt::WindowModal);
 
         msgBox.addButton(tr("Close and cancel download"), QMessageBox::RejectRole);
         QPushButton *waitButton = msgBox.addButton(tr("Wait for download to finish"), QMessageBox::ActionRole);
@@ -678,13 +799,10 @@ void MainWindow::closeEvent(QCloseEvent *event) {
         msgBox.exec();
 
         if (msgBox.clickedButton() == waitButton) {
-            event->ignore();
-            return;
+            return false;
         }
-
     }
-    quit();
-    QWidget::closeEvent(event);
+    return true;
 }
 
 void MainWindow::showSearch() {
@@ -694,9 +812,6 @@ void MainWindow::showSearch() {
 }
 
 void MainWindow::showMedia(SearchParams *searchParams) {
-    if (toolbarSearch->text().isEmpty() && !searchParams->keywords().isEmpty()) {
-        toolbarSearch->lineEdit()->setText(searchParams->keywords());
-    }
     mediaView->search(searchParams);
     showWidget(mediaView);
 }
@@ -722,18 +837,15 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
         pauseAct->setIcon(QtIconLoader::icon("media-playback-pause"));
         pauseAct->setText(tr("&Pause"));
         pauseAct->setStatusTip(tr("Pause playback") + " (" +  pauseAct->shortcut().toString(QKeySequence::NativeText) + ")");
-        skipAct->setEnabled(true);
         // stopAct->setEnabled(true);
         break;
 
          case Phonon::StoppedState:
         pauseAct->setEnabled(false);
-        skipAct->setEnabled(false);
         // stopAct->setEnabled(false);
         break;
 
          case Phonon::PausedState:
-        skipAct->setEnabled(true);
         pauseAct->setEnabled(true);
         pauseAct->setIcon(QtIconLoader::icon("media-playback-start"));
         pauseAct->setText(tr("&Play"));
@@ -743,7 +855,6 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
 
          case Phonon::BufferingState:
          case Phonon::LoadingState:
-        skipAct->setEnabled(true);
         pauseAct->setEnabled(false);
         currentTime->clear();
         totalTime->clear();
@@ -1204,4 +1315,25 @@ void MainWindow::gotNewVersion(QString version) {
         QDesktopServices::openUrl(QUrl(QLatin1String(Constants::WEBSITE) + "#download"));
     }
 
+}
+
+void MainWindow::floatOnTop(bool onTop) {
+    showFloatOnTopInStatusBar(onTop);
+#ifdef APP_MAC
+    mac::floatOnTop(winId(), onTop);
+    return;
+#endif
+    if (onTop) {
+        setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
+    } else {
+        setWindowFlags(windowFlags() ^ Qt::WindowStaysOnTopHint);
+    }
+}
+
+void MainWindow::messageReceived(const QString &message) {
+    if (!message.isEmpty()) {
+        SearchParams *searchParams = new SearchParams();
+        searchParams->setKeywords(message);
+        showMedia(searchParams);
+    }
 }

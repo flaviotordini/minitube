@@ -7,13 +7,14 @@
 #include <phonon/videowidget.h>
 #include "View.h"
 #include "ListModel.h"
-#include "thlibrary/thblackbar.h"
+#include "segmentedcontrol.h"
 #include "searchparams.h"
 #include "playlistwidget.h"
 #include "loadingwidget.h"
 #include "videoareawidget.h"
 
 class DownloadItem;
+class PlaylistView;
 
 namespace The {
     QMap<QString, QAction*>* globalActions();
@@ -27,9 +28,7 @@ public:
     void initialize();
 
     // View
-    void appear() {
-        listView->setFocus();
-    }
+    void appear();
     void disappear();
     QMap<QString, QVariant> metadata() {
         QMap<QString, QVariant> metadata;
@@ -48,6 +47,7 @@ public slots:
     void pause();
     void stop();
     void skip();
+    void skipBackward();
     void skipVideo();
     void openWebPage();
     void copyWebPage();
@@ -90,6 +90,7 @@ private slots:
     void downloadStatusChanged();
     void playbackFinished();
     void playbackResume();
+    void authorPushed(QModelIndex);
 
     /*
     void downloadProgress(int percent);
@@ -105,11 +106,11 @@ private:
     QSplitter *splitter;
 
     PlaylistWidget *playlistWidget;
-    QListView *listView;
+    PlaylistView *listView;
     ListModel *listModel;
 
     // sortBar
-    THBlackBar *sortBar;
+    SegmentedControl *sortBar;
     QAction *mostRelevantAction;
     QAction *mostRecentAction;
     QAction *mostViewedAction;
@@ -134,7 +135,6 @@ private:
 #endif
 
     DownloadItem *downloadItem;
-    // QSlider *slider;
 
 };
 

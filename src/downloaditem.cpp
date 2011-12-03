@@ -5,6 +5,10 @@
 #include <QDesktopServices>
 #include <QDebug>
 
+#ifdef APP_MAC
+#include "macutils.h"
+#endif
+
 namespace The {
     NetworkAccess* http();
 }
@@ -86,8 +90,12 @@ void DownloadItem::open() {
 
 void DownloadItem::openFolder() {
     QFileInfo info(m_file);
+#ifdef APP_MAC
+    mac::showInFinder(info.absoluteFilePath());
+#else
     QUrl url = QUrl::fromLocalFile(info.absolutePath());
     QDesktopServices::openUrl(url);
+#endif
 }
 
 void DownloadItem::tryAgain() {

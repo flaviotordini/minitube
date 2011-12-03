@@ -18,6 +18,7 @@ public:
     QSize sizeHint( const QStyleOptionViewItem&, const QModelIndex& ) const;
     void paint( QPainter*, const QStyleOptionViewItem&, const QModelIndex& ) const;
     QRect downloadButtonRect(QRect line) const;
+    QRect authorRect(const QModelIndex& index) const;
 
 private:
     void createPlayIcon();
@@ -44,6 +45,7 @@ private:
 
     bool downloadInfo;
     QProgressBar *progressBar;
+
 };
 
 #endif

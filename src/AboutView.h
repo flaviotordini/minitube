@@ -4,6 +4,9 @@
 #include <QtGui>
 #include "View.h"
 #include "constants.h"
+#ifdef APP_MAC
+#include "macutils.h"
+#endif
 
 class AboutView : public QWidget, public View {
 
@@ -11,7 +14,11 @@ class AboutView : public QWidget, public View {
 
 public:
     AboutView(QWidget *parent);
-    void appear() {}
+    void appear() {
+#ifdef APP_MAC
+        mac::uncloseWindow(window()->winId());
+#endif
+    }
     void disappear() {}
     QMap<QString, QVariant> metadata() {
         QMap<QString, QVariant> metadata;

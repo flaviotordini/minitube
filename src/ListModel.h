@@ -12,7 +12,9 @@ enum DataRoles {
     DownloadItemRole,
     HoveredItemRole,
     DownloadButtonHoveredRole,
-    DownloadButtonPressedRole
+    DownloadButtonPressedRole,
+    AuthorHoveredRole,
+    AuthorPressedRole
 };
 
 enum ItemTypes {
@@ -49,6 +51,7 @@ public:
     bool rowExists( int row ) const { return (( row >= 0 ) && ( row < videos.size() ) ); }
     int activeRow() const { return m_activeRow; } // returns -1 if there is no active row
     int nextRow() const;
+    int previousRow() const;
     void removeIndexes(QModelIndexList &indexes);
     int rowForVideo(Video* video);
     QModelIndex indexForVideo(Video* video);
@@ -70,6 +73,14 @@ public slots:
     void searchError(QString message);
     void updateThumbnail();
 
+    void setHoveredRow(int row);
+    void clearHover();
+    void enterAuthorHover();
+    void exitAuthorHover();
+    void enterAuthorPressed();
+    void exitAuthorPressed();
+    void updateAuthor();
+
 signals:
     void activeRowChanged(int);
     void needSelectionFor(QList<Video*>);
@@ -90,6 +101,10 @@ private:
     Video *m_activeVideo;
 
     QString errorMessage;
+
+    int hoveredRow;
+    bool authorHovered;
+    bool authorPressed;
 };
 
 #endif

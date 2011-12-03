@@ -93,7 +93,7 @@ public:
     void updateGeometries();
     void enableSuggest();
     void preventSuggest();
-    void selectAll() { lineEdit()->selectAll(); };
+    void selectAll() { lineEdit()->selectAll(); }
     void setSuggester(Suggester *suggester) { completion->setSuggester(suggester); }
 
 protected:
