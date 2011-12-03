@@ -1,3 +1,13 @@
+1.7 -
+- Clickable usernames in the playlist
+- Added "Stop after this video"
+- Added window "Float on Top" option
+- Added ability to skip to the previous video
+- You can now start Minitube from the command line passing a search query or url. (Go create browser extensions!)
+- on the Mac, showing downloaded video in finder now also selects the file
+- Don't quit app on window close on the Mac
+- UI style enhancements, mainly on the Mac
+
 1.6 - Oct 28, 2011
 - Find video parts
 - Mac OS X Lion fullscreen

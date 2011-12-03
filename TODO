@@ -1,10 +1,6 @@
-# Minitube TODO list
+# Minitube to do list
 
 ## Major features
-
-- Twitter https://twitter.com/intent/tweet
-- Facebook https://www.facebook.com/sharer.php?u=<url to share>&t=<title of content>
-- Email mailto:?subject=&body=
 
 - Snapshots
 
@@ -26,16 +22,11 @@
 - Subtitles, see http://google2srt.sourceforge.net/
 
 ## Minor Features
-- Stop after this video
-- Always on top
-- Accessibility
-- Support YouTube URLs drag'n'drop from browser
 - Search for playlists http://code.google.com/apis/youtube/2.0/developers_guide_protocol.html#Searching_for_Playlists
 - Safe search levels (in the status bar beside the video definition option)
 - Show more thumbs on hover with animated crossfade
 - Time filter on the bottom of the playlist: Today, 7 days, 30 days
 - Accept any URL and scrape web pages searching for YouTube videos.
-- Accept YouTube URLs as CLI args and tell the running Minitube instance
 
 ## Unsure features
 - Restore status when a recent keyword is clicked: skipped videos, sortBar and play time
@@ -45,11 +36,3 @@
 
 ## Phonon bugs
 - Phonon::MediaSource does not work with QIODevices (this needs to work to implement seeking)
-
-## Phonon bugs that do not apply to Minitube anymore
-- Mac: playback sometimes does not start (got a workaround!)
-- Mac: Phonon freezes the GUI when loading a video
-- Mac: Cannot seek beyond the buffered part of the video
-- Xine: Seek does not work at all. https://bugs.kde.org/show_bug.cgi?id=197927
-- Phonon does not report the buffering percent correctly. https://bugs.kde.org/show_bug.cgi?id=210336
-- Linux: The Phonon volume slider mute button does not change: https://bugs.kde.org/show_bug.cgi?id=214543
