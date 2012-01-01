@@ -81,6 +81,7 @@ class SearchLineEdit : public ExLineEdit
 signals:
     void textChanged(const QString &text);
     void search(const QString &text);
+    void suggestionAccepted(const QString &suggestion);
 
 public:
     SearchLineEdit(QWidget *parent = 0);

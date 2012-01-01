@@ -181,6 +181,7 @@ m_searchButton(new SearchButton(this))
 
     // completion
     completion = new AutoComplete(this, m_lineEdit);
+    connect(completion, SIGNAL(suggestionAccepted(const QString &)), SIGNAL(suggestionAccepted(const QString &)));
 
 }
 
