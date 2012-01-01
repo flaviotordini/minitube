@@ -45,7 +45,10 @@ bool SegmentedControl::setCheckedAction(QAction *action) {
     if (d->checkedAction == action) {
         return false;
     }
+    if (d->checkedAction)
+        d->checkedAction->setChecked(false);
     d->checkedAction = action;
+    d->checkedAction->setChecked(true);
     update();
     return true;
 }
