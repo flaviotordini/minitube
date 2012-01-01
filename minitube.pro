@@ -163,8 +163,3 @@ unix:!mac {
     icon512.files += data/512x512/minitube.png
 }
 mac|win32:include(local/local.pri)
-
-
-
-
-
