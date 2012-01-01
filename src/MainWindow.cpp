@@ -59,6 +59,7 @@ MainWindow::MainWindow() :
     views->addWidget(searchView);
 
     mediaView = new MediaView(this);
+    mediaView->setEnabled(false);
     views->addWidget(mediaView);
 
     // build ui
@@ -105,6 +106,7 @@ MainWindow::MainWindow() :
     connect(&shortcuts, SIGNAL(Stop()), this, SLOT(stop()));
     connect(&shortcuts, SIGNAL(Next()), skipAct, SLOT(trigger()));
     connect(&shortcuts, SIGNAL(Previous()), skipBackwardAct, SLOT(trigger()));
+    // connect(&shortcuts, SIGNAL(StopAfter()), The::globalActions()->value("stopafterthis"), SLOT(toggle()));
 
     connect(DownloadManager::instance(), SIGNAL(statusMessageChanged(QString)),
             SLOT(updateDownloadMessage(QString)));
@@ -205,7 +207,7 @@ void MainWindow::createActions() {
     actions->insert("fullscreen", fullscreenAct);
     connect(fullscreenAct, SIGNAL(triggered()), this, SLOT(fullscreen()));
 
-    compactViewAct = new QAction(tr("&Compact mode"), this);
+    compactViewAct = new QAction(tr("&Compact Mode"), this);
     compactViewAct->setStatusTip(tr("Hide the playlist and the toolbar"));
 #ifdef APP_MAC
     compactViewAct->setShortcut(QKeySequence(Qt::CTRL + Qt::META + Qt::Key_C));
@@ -218,28 +220,28 @@ void MainWindow::createActions() {
     actions->insert("compactView", compactViewAct);
     connect(compactViewAct, SIGNAL(toggled(bool)), this, SLOT(compactView(bool)));
 
-    webPageAct = new QAction(tr("Open the &YouTube page"), this);
+    webPageAct = new QAction(tr("Open the &YouTube Page"), this);
     webPageAct->setStatusTip(tr("Go to the YouTube video page and pause playback"));
     webPageAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Y));
     webPageAct->setEnabled(false);
     actions->insert("webpage", webPageAct);
     connect(webPageAct, SIGNAL(triggered()), mediaView, SLOT(openWebPage()));
 
-    copyPageAct = new QAction(tr("Copy the YouTube &link"), this);
+    copyPageAct = new QAction(tr("Copy the YouTube &Link"), this);
     copyPageAct->setStatusTip(tr("Copy the current video YouTube link to the clipboard"));
     copyPageAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_L));
     copyPageAct->setEnabled(false);
     actions->insert("pagelink", copyPageAct);
     connect(copyPageAct, SIGNAL(triggered()), mediaView, SLOT(copyWebPage()));
 
-    copyLinkAct = new QAction(tr("Copy the video stream &URL"), this);
+    copyLinkAct = new QAction(tr("Copy the Video Stream &URL"), this);
     copyLinkAct->setStatusTip(tr("Copy the current video stream URL to the clipboard"));
     copyLinkAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_U));
     copyLinkAct->setEnabled(false);
     actions->insert("videolink", copyLinkAct);
     connect(copyLinkAct, SIGNAL(triggered()), mediaView, SLOT(copyVideoLink()));
 
-    findVideoPartsAct = new QAction(tr("Find video &parts"), this);
+    findVideoPartsAct = new QAction(tr("Find Video &Parts"), this);
     findVideoPartsAct->setStatusTip(tr("Find other video parts hopefully in the right order"));
     findVideoPartsAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_P));
     findVideoPartsAct->setEnabled(false);
@@ -267,7 +269,7 @@ void MainWindow::createActions() {
     actions->insert("moveDown", moveDownAct);
     connect(moveDownAct, SIGNAL(triggered()), mediaView, SLOT(moveDownSelected()));
 
-    clearAct = new QAction(tr("&Clear recent searches"), this);
+    clearAct = new QAction(tr("&Clear Recent Searches"), this);
     clearAct->setMenuRole(QAction::ApplicationSpecificRole);
     clearAct->setShortcuts(QList<QKeySequence>()
                            << QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Delete)
@@ -279,7 +281,7 @@ void MainWindow::createActions() {
 
     quitAct = new QAction(tr("&Quit"), this);
     quitAct->setMenuRole(QAction::QuitRole);
-    quitAct->setShortcut(QKeySequence::Quit);
+    quitAct->setShortcut(QKeySequence(QKeySequence::Quit));
     quitAct->setStatusTip(tr("Bye"));
     actions->insert("quit", quitAct);
     connect(quitAct, SIGNAL(triggered()), SLOT(quit()));
@@ -291,7 +293,7 @@ void MainWindow::createActions() {
     connect(siteAct, SIGNAL(triggered()), this, SLOT(visitSite()));
 
 #if !defined(APP_MAC) && !defined(APP_WIN)
-    donateAct = new QAction(tr("Make a &donation"), this);
+    donateAct = new QAction(tr("Make a &Donation"), this);
     donateAct->setStatusTip(tr("Please support the continued development of %1").arg(Constants::NAME));
     actions->insert("donate", donateAct);
     connect(donateAct, SIGNAL(triggered()), this, SLOT(donate()));
@@ -348,14 +350,12 @@ void MainWindow::createActions() {
 
     QAction *action;
 
-    /*
-    action = new QAction(tr("&Autoplay"), this);
-    action->setStatusTip(tr("Automatically start playing videos"));
-    action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_P));
+    action = new QAction(QtIconLoader::icon("media-playback-start"), tr("&Manually Start Playing"), this);
+    action->setStatusTip(tr("Manually start playing videos"));
+    action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_B));
     action->setCheckable(true);
-    connect(action, SIGNAL(toggled(bool)), SLOT(setAutoplay(bool)));
-    actions->insert("autoplay", action);
-    */
+    connect(action, SIGNAL(toggled(bool)), SLOT(setManualPlay(bool)));
+    actions->insert("manualplay", action);
 
     action = new QAction(tr("&Downloads"), this);
     action->setStatusTip(tr("Show details about video downloads"));
@@ -406,7 +406,7 @@ void MainWindow::createActions() {
     actions->insert("ontop", action);
     connect(action, SIGNAL(toggled(bool)), SLOT(floatOnTop(bool)));
 
-    action = new QAction(QtIconLoader::icon("media-playback-stop"), tr("&Stop after this video"), this);
+    action = new QAction(QtIconLoader::icon("media-playback-stop"), tr("&Stop After This Video"), this);
     action->setShortcut(QKeySequence(Qt::SHIFT + Qt::Key_Escape));
     action->setCheckable(true);
     action->setEnabled(false);
@@ -464,6 +464,8 @@ void MainWindow::createMenus() {
     playbackMenu->addSeparator();
     playbackMenu->addAction(skipAct);
     playbackMenu->addAction(skipBackwardAct);
+    playbackMenu->addSeparator();
+    playbackMenu->addAction(The::globalActions()->value("manualplay"));
 #ifdef APP_MAC
     MacSupport::dockMenu(playbackMenu);
 #endif
@@ -606,7 +608,7 @@ void MainWindow::createToolBars() {
 #else
     mainToolBar->addWidget(toolbarSearch);
     Spacer* spacer = new Spacer();
-    spacer->setWidth(4);
+    // spacer->setWidth(4);
     mainToolBar->addWidget(spacer);
 #endif
 
@@ -619,7 +621,6 @@ void MainWindow::createStatusBar() {
     toolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     toolBar->setIconSize(QSize(16, 16));
     toolBar->addAction(The::globalActions()->value("downloads"));
-    // toolBar->addAction(The::globalActions()->value("autoplay"));
     toolBar->addAction(The::globalActions()->value("definition"));
     statusBar()->addPermanentWidget(toolBar);
     statusBar()->show();
@@ -627,15 +628,10 @@ void MainWindow::createStatusBar() {
 
 void MainWindow::showStopAfterThisInStatusBar(bool show) {
     QAction* action = The::globalActions()->value("stopafterthis");
-    if (show) {
-        statusToolBar->insertAction(statusToolBar->actions().first(), action);
-    } else {
-        statusToolBar->removeAction(action);
-    }
+    showActionInStatusBar(action, show);
 }
 
-void MainWindow::showFloatOnTopInStatusBar(bool show) {
-    QAction* action = The::globalActions()->value("ontop");
+void MainWindow::showActionInStatusBar(QAction* action, bool show) {
     if (show) {
         statusToolBar->insertAction(statusToolBar->actions().first(), action);
     } else {
@@ -652,6 +648,7 @@ void MainWindow::readSettings() {
     setDefinitionMode(settings.value("definition", VideoDefinition::getDefinitionNames().first()).toString());
     audioOutput->setVolume(settings.value("volume", 1).toDouble());
     audioOutput->setMuted(settings.value("volumeMute").toBool());
+    The::globalActions()->value("manualplay")->setChecked(settings.value("manualplay", false).toBool());
 }
 
 void MainWindow::writeSettings() {
@@ -665,6 +662,7 @@ void MainWindow::writeSettings() {
 
     settings.setValue("volume", audioOutput->volume());
     settings.setValue("volumeMute", audioOutput->isMuted());
+    settings.setValue("manualplay", The::globalActions()->value("manualplay")->isChecked());
     mediaView->saveSplitterState();
 }
 
@@ -684,11 +682,13 @@ void MainWindow::showWidget ( QWidget* widget ) {
     View* oldView = dynamic_cast<View *> (views->currentWidget());
     if (oldView) {
         oldView->disappear();
+        views->currentWidget()->setEnabled(false);
     }
 
     // call show method on the new view
     View* newView = dynamic_cast<View *> (widget);
     if (newView) {
+        widget->setEnabled(true);
         newView->appear();
         QMap<QString,QVariant> metadata = newView->metadata();
         QString windowTitle = metadata.value("title").toString();
@@ -885,9 +885,15 @@ void MainWindow::resizeEvent(QResizeEvent*) {
 
 void MainWindow::fullscreen() {
 
+    /*
+    if (compactViewAct->isChecked())
+        compactView(false);
+    */
+
 #ifdef Q_WS_MAC
     WId handle = winId();
     if (mac::CanGoFullScreen(handle)) {
+        mainToolBar->setVisible(true);
         mac::ToggleFullScreen(handle);
         return;
     }
@@ -1168,12 +1174,11 @@ void MainWindow::clearRecentKeywords() {
     statusBar()->showMessage(tr("Your privacy is now safe"));
 }
 
-/*
- void MainWindow::setAutoplay(bool enabled) {
-     QSettings settings;
-     settings.setValue("autoplay", QVariant::fromValue(enabled));
- }
- */
+void MainWindow::setManualPlay(bool enabled) {
+    QSettings settings;
+    settings.setValue("manualplay", QVariant::fromValue(enabled));
+    showActionInStatusBar(The::globalActions()->value("manualplay"), enabled);
+}
 
 void MainWindow::updateDownloadMessage(QString message) {
     The::globalActions()->value("downloads")->setText(message);
@@ -1318,15 +1323,17 @@ void MainWindow::gotNewVersion(QString version) {
 }
 
 void MainWindow::floatOnTop(bool onTop) {
-    showFloatOnTopInStatusBar(onTop);
+    showActionInStatusBar(The::globalActions()->value("ontop"), onTop);
 #ifdef APP_MAC
     mac::floatOnTop(winId(), onTop);
     return;
 #endif
     if (onTop) {
         setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
+        show();
     } else {
         setWindowFlags(windowFlags() ^ Qt::WindowStaysOnTopHint);
+        show();
     }
 }
 

@@ -215,8 +215,11 @@ void ListModel::addVideo(Video* video) {
     
     // first result!
     if (videos.size() == 1) {
-        // autoplay
-        setActiveRow(0);
+
+        // manualplay
+        QSettings settings;
+        if (!settings.value("manualplay", false).toBool())
+            setActiveRow(0);
 
         // save keyword
         QString query = searchParams->keywords();
@@ -225,7 +228,6 @@ void ListModel::addVideo(Video* video) {
                 // Save the video title
                 query += "|" + videos.first()->title();
             }
-            QSettings settings;
             QStringList keywords = settings.value(recentKeywordsKey).toStringList();
             keywords.removeAll(query);
             keywords.prepend(query);

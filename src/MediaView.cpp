@@ -25,7 +25,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     reallyStopped = false;
     downloadItem = 0;
 
-    QBoxLayout *layout = new QHBoxLayout();
+    QBoxLayout *layout = new QVBoxLayout();
     layout->setMargin(0);
 
     splitter = new MiniSplitter(this);
@@ -163,16 +163,8 @@ void MediaView::search(SearchParams *searchParams) {
 #ifdef APP_DEMO
     demoTimer->stop();
 #endif
-
-    videoAreaWidget->clear();
     workaroundTimer->stop();
     errorTimer->stop();
-
-    mediaObject->pause();
-    if (downloadItem) {
-        delete downloadItem;
-        downloadItem = 0;
-    }
 
     this->searchParams = searchParams;
 
@@ -184,7 +176,6 @@ void MediaView::search(SearchParams *searchParams) {
 
     listView->setFocus();
 
-
     QString keyword = searchParams->keywords();
     QString display = keyword;
     if (keyword.startsWith("http://") || keyword.startsWith("https://")) {
@@ -192,11 +183,7 @@ void MediaView::search(SearchParams *searchParams) {
         if (separator > 0 && separator + 1 < keyword.length()) {
             display = keyword.mid(separator+1);
         }
-
-        // also hide sidebar
-        // playlistWidget->hide();
     }
-    // tr("You're watching \"%1\"").arg(searchParams->keywords())
 
 }
 
@@ -461,10 +448,21 @@ void MediaView::startPlaying() {
 }
 
 void MediaView::itemActivated(const QModelIndex &index) {
-    if (listModel->rowExists(index.row()))
-        listModel->setActiveRow(index.row());
+    if (listModel->rowExists(index.row())) {
+
+        // if it's the current video, just rewind and play
+        Video *activeVideo = listModel->activeVideo();
+        Video *video = listModel->videoAt(index.row());
+        if (activeVideo && video && activeVideo == video) {
+            mediaObject->seek(0);
+            mediaObject->play();
+        } else listModel->setActiveRow(index.row());
+
     // the user doubleclicked on the "Search More" item
-    else listModel->searchMore();
+    } else {
+        listModel->searchMore();
+        listView->selectionModel()->clearSelection();
+    }
 }
 
 void MediaView::currentSourceChanged(const Phonon::MediaSource /* source */ ) {
@@ -504,7 +502,7 @@ void MediaView::playbackFinished() {
     // add 10 secs for imprecise Phonon backends (VLC, Xine)
     if (mediaObject->currentTime() + 10000 < mediaObject->totalTime()) {
         // mediaObject->seek(mediaObject->currentTime());
-        QTimer::singleShot(3000, this, SLOT(playbackResume()));
+        QTimer::singleShot(500, this, SLOT(playbackResume()));
     } else {
         QAction* stopAfterThisAction = The::globalActions()->value("stopafterthis");
         if (stopAfterThisAction->isChecked()) {

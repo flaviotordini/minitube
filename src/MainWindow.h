@@ -71,14 +71,14 @@ private slots:
     void showFullscreenToolbar(bool show);
     void showFullscreenPlaylist(bool show);
 
-    // void setAutoplay(bool enabled);
+    void setManualPlay(bool enabled);
     void updateDownloadMessage(QString);
     void downloadsFinished();
     void toggleDownloads(bool show);
 
     void startToolbarSearch(QString query);
     void floatOnTop(bool);
-    void showFloatOnTopInStatusBar(bool show);
+    void showActionInStatusBar(QAction*, bool show);
     void showStopAfterThisInStatusBar(bool show);
 
 private:
