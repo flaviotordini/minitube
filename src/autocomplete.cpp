@@ -26,9 +26,13 @@ AutoComplete::AutoComplete(QWidget *parent, QLineEdit *editor):
 
     timer = new QTimer(this);
     timer->setSingleShot(true);
-    timer->setInterval(300);
+    timer->setInterval(600);
     connect(timer, SIGNAL(timeout()), SLOT(autoSuggest()));
+#ifdef APP_MAC
     connect(parent, SIGNAL(textChanged(QString)), timer, SLOT(start()));
+#else
+    connect(editor, SIGNAL(textEdited(QString)), timer, SLOT(start()));
+#endif
 
 }
 
@@ -112,12 +116,12 @@ void AutoComplete::showCompletion(const QStringList &choices) {
     popup->adjustSize();
     popup->setUpdatesEnabled(true);
 
-    int h = popup->sizeHintForRow(0) * choices.count();
+    int h = popup->sizeHintForRow(0) * choices.count() + 4;
     popup->resize(buddy->width(), h);
 
     popup->move(buddy->mapToGlobal(QPoint(0, buddy->height())));
 
-    popup->setFocus();
+    // popup->setFocus();
     popup->show();
 }
 

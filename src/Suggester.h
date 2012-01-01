@@ -1,7 +1,7 @@
 #ifndef SUGGESTER_H
 #define SUGGESTER_H
 
-#include <QtCore>
+#include <QtGui>
 
 class Suggester : public QObject {
 

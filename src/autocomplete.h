@@ -25,7 +25,7 @@ public slots:
     void suggestionsReady(QStringList suggestions);
 
 signals:
-    void suggestionAccepted(QString suggestion);
+    void suggestionAccepted(const QString &suggestion);
 
 private:
     QWidget *buddy;
