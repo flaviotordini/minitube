@@ -35,10 +35,22 @@ void DownloadSettings::paintEvent(QPaintEvent * /*event*/) {
 }
 
 void DownloadSettings::changeFolder() {
-    QString dir = QFileDialog::getExistingDirectory(this, tr("Choose the download location"),
-                                                    QDesktopServices::storageLocation(QDesktopServices::HomeLocation),
-                                                    QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
 
+#ifdef APP_MAC
+    QFileDialog* dialog = new QFileDialog(this);
+    dialog->setFileMode(QFileDialog::Directory);
+    dialog->setOptions(QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::ReadOnly);
+    dialog->setDirectory(QDesktopServices::storageLocation(QDesktopServices::HomeLocation));
+    dialog->open(this, SLOT(folderChosen(const QString &)));
+#else
+    QString folder = QFileDialog::getExistingDirectory(window(), tr("Choose the download location"),
+                                                    QDesktopServices::storageLocation(QDesktopServices::HomeLocation),
+                                                    QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::ReadOnly);
+    folderChosen(folder);
+#endif
+}
+
+void DownloadSettings::folderChosen(const QString &dir) {
     if (!dir.isEmpty()) {
         QSettings settings;
         settings.setValue("downloadFolder", dir);

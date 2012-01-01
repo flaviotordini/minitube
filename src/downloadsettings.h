@@ -15,6 +15,7 @@ protected:
 
 private slots:
     void changeFolder();
+    void folderChosen(const QString &folder);
 
 private:
     void updateMessage();
