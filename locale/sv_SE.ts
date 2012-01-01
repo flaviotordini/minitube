@@ -43,42 +43,27 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/AboutView.cpp" line="48"/>
-        <source>Report bugs and send in your ideas to %1</source>
-        <translation>Rapportera fel och skicka in dina idéer till %1</translation>
-    </message>
-    <message>
-        <location filename="src/AboutView.cpp" line="52"/>
+        <location filename="src/AboutView.cpp" line="49"/>
         <source>Icon designed by %1.</source>
         <translation>Ikon designad av %1</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="53"/>
-        <source>Compact mode contributed by %1.</source>
-        <translation>Kompakt läge bidragit av %1.</translation>
-    </message>
-    <message>
-        <location filename="src/AboutView.cpp" line="54"/>
-        <source>HTTP proxy support contributed by %1.</source>
-        <translation>HTTP-proxy stöd bidragit av %1.</translation>
-    </message>
-    <message>
-        <location filename="src/AboutView.cpp" line="58"/>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
         <translation>Släppt under &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="src/AboutView.cpp" line="70"/>
+        <location filename="src/AboutView.cpp" line="65"/>
         <source>&amp;Close</source>
         <translation>&amp;Stäng</translation>
     </message>
     <message>
-        <location filename="src/AboutView.h" line="18"/>
+        <location filename="src/AboutView.h" line="25"/>
         <source>About</source>
         <translation>Om</translation>
     </message>
     <message>
-        <location filename="src/AboutView.h" line="20"/>
+        <location filename="src/AboutView.h" line="27"/>
         <source>What you always wanted to know about %1 and never dared to ask</source>
         <translation>Vad du alltid velat veta om %1 och aldrig vågat fråga om</translation>
     </message>
@@ -126,53 +111,53 @@
     <message>
         <location filename="local/src/demostartupview.cpp" line="65"/>
         <source>Get the full version</source>
-        <translation type="unfinished"/>
+        <translation>Skaffa den fullständiga versionen</translation>
     </message>
 </context>
 <context>
     <name>DownloadItem</name>
     <message>
-        <location filename="src/downloaditem.cpp" line="299"/>
+        <location filename="src/downloaditem.cpp" line="308"/>
         <source>bytes</source>
         <translation>bytes</translation>
     </message>
     <message>
-        <location filename="src/downloaditem.cpp" line="302"/>
+        <location filename="src/downloaditem.cpp" line="311"/>
         <source>KB</source>
         <translation>KB</translation>
     </message>
     <message>
-        <location filename="src/downloaditem.cpp" line="305"/>
+        <location filename="src/downloaditem.cpp" line="314"/>
         <source>MB</source>
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="src/downloaditem.cpp" line="321"/>
+        <location filename="src/downloaditem.cpp" line="330"/>
         <source>bytes/sec</source>
         <translation>byte / sekund</translation>
     </message>
     <message>
-        <location filename="src/downloaditem.cpp" line="324"/>
+        <location filename="src/downloaditem.cpp" line="333"/>
         <source>KB/sec</source>
         <translation>KB / sekund</translation>
     </message>
     <message>
-        <location filename="src/downloaditem.cpp" line="327"/>
+        <location filename="src/downloaditem.cpp" line="336"/>
         <source>MB/sec</source>
         <translation>MB / sekund</translation>
     </message>
     <message>
-        <location filename="src/downloaditem.cpp" line="333"/>
+        <location filename="src/downloaditem.cpp" line="342"/>
         <source>seconds</source>
         <translation>sekunder</translation>
     </message>
     <message>
-        <location filename="src/downloaditem.cpp" line="336"/>
+        <location filename="src/downloaditem.cpp" line="345"/>
         <source>minutes</source>
         <translation>minuter</translation>
     </message>
     <message>
-        <location filename="src/downloaditem.cpp" line="339"/>
+        <location filename="src/downloaditem.cpp" line="348"/>
         <source>%4 %5 remaining</source>
         <translation>%4 %5 återstår</translation>
     </message>
@@ -308,22 +293,22 @@
 <context>
     <name>ListModel</name>
     <message>
-        <location filename="src/ListModel.cpp" line="47"/>
+        <location filename="src/ListModel.cpp" line="51"/>
         <source>Searching...</source>
         <translation>Söker...</translation>
     </message>
     <message>
-        <location filename="src/ListModel.cpp" line="48"/>
+        <location filename="src/ListModel.cpp" line="52"/>
         <source>Show %1 More</source>
         <translation>Visa %1 Fler</translation>
     </message>
     <message>
-        <location filename="src/ListModel.cpp" line="49"/>
+        <location filename="src/ListModel.cpp" line="53"/>
         <source>No videos</source>
         <translation>Inga videos</translation>
     </message>
     <message>
-        <location filename="src/ListModel.cpp" line="50"/>
+        <location filename="src/ListModel.cpp" line="54"/>
         <source>No more videos</source>
         <translation>Inga fler videos</translation>
     </message>
@@ -339,453 +324,492 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="src/MainWindow.cpp" line="125"/>
+        <location filename="src/MainWindow.cpp" line="160"/>
         <source>&amp;Stop</source>
         <translation>&amp;Stop</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="126"/>
+        <location filename="src/MainWindow.cpp" line="161"/>
         <source>Stop playback and go back to the search view</source>
         <translation>Stoppa uppspelningen och gå tillbaka till Sök vyn</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="132"/>
+        <location filename="src/MainWindow.cpp" line="179"/>
         <source>S&amp;kip</source>
         <translation>H&amp;oppa</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="133"/>
+        <location filename="src/MainWindow.cpp" line="180"/>
         <source>Skip to the next video</source>
         <translation>Hoppa till nästa video</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="139"/>
-        <location filename="src/MainWindow.cpp" line="740"/>
+        <location filename="src/MainWindow.cpp" line="186"/>
+        <location filename="src/MainWindow.cpp" line="835"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pausa</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="140"/>
-        <location filename="src/MainWindow.cpp" line="741"/>
+        <location filename="src/MainWindow.cpp" line="187"/>
+        <location filename="src/MainWindow.cpp" line="836"/>
         <source>Pause playback</source>
         <translation>Pausa uppspelning</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="146"/>
+        <location filename="src/MainWindow.cpp" line="193"/>
         <source>&amp;Full Screen</source>
         <translation>&amp;Helskärm</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="147"/>
+        <location filename="src/MainWindow.cpp" line="194"/>
         <source>Go full screen</source>
         <translation>Använd helskärm</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="162"/>
-        <source>&amp;Compact mode</source>
-        <translation>&amp;Kompakt läge</translation>
-    </message>
-    <message>
-        <location filename="src/MainWindow.cpp" line="163"/>
+        <location filename="src/MainWindow.cpp" line="210"/>
         <source>Hide the playlist and the toolbar</source>
         <translation>Dölj spellistan och verktygsfältet</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="171"/>
-        <source>Open the &amp;YouTube page</source>
-        <translation>Öppna &amp;YouTube-sidan</translation>
-    </message>
-    <message>
-        <location filename="src/MainWindow.cpp" line="172"/>
+        <location filename="src/MainWindow.cpp" line="223"/>
         <source>Go to the YouTube video page and pause playback</source>
         <translation>Gå till YouTube-video-sidan och pausa uppspelning</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="178"/>
-        <source>Copy the YouTube &amp;link</source>
-        <translation>Kopiera YouTube &amp;länken</translation>
-    </message>
-    <message>
-        <location filename="src/MainWindow.cpp" line="179"/>
+        <location filename="src/MainWindow.cpp" line="230"/>
         <source>Copy the current video YouTube link to the clipboard</source>
         <translation>Kopiera den aktuella YouTube-video-länken till urklipp</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="185"/>
-        <source>Copy the video stream &amp;URL</source>
-        <translation>Kopiera videoströmmens &amp;URL</translation>
-    </message>
-    <message>
-        <location filename="src/MainWindow.cpp" line="186"/>
+        <location filename="src/MainWindow.cpp" line="237"/>
         <source>Copy the current video stream URL to the clipboard</source>
         <translation>Kopiera den nuvarande videoströmmen URL till urklipp</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="192"/>
-        <source>Find video &amp;parts</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="src/MainWindow.cpp" line="193"/>
+        <location filename="src/MainWindow.cpp" line="244"/>
         <source>Find other video parts hopefully in the right order</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="199"/>
+        <location filename="src/MainWindow.cpp" line="250"/>
         <source>&amp;Remove</source>
         <translation>&amp;Ta bort</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="200"/>
+        <location filename="src/MainWindow.cpp" line="251"/>
         <source>Remove the selected videos from the playlist</source>
         <translation>Ta bort markerade videoklippen från spellistan</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="206"/>
+        <location filename="src/MainWindow.cpp" line="257"/>
         <source>Move &amp;Up</source>
         <translation>Flytta &amp;upp</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="207"/>
+        <location filename="src/MainWindow.cpp" line="258"/>
         <source>Move up the selected videos in the playlist</source>
         <translation>Flytta upp de markerade videoklippen i spellistan</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="213"/>
+        <location filename="src/MainWindow.cpp" line="264"/>
         <source>Move &amp;Down</source>
         <translation>Flytta &amp;nedåt</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="214"/>
+        <location filename="src/MainWindow.cpp" line="265"/>
         <source>Move down the selected videos in the playlist</source>
         <translation>Flytta ner markerade videoklippen i spellistan</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="220"/>
-        <source>&amp;Clear recent searches</source>
-        <translation>&amp;Rensa senaste sökningar</translation>
-    </message>
-    <message>
-        <location filename="src/MainWindow.cpp" line="225"/>
+        <location filename="src/MainWindow.cpp" line="276"/>
         <source>Clear the search history. Cannot be undone.</source>
         <translation>Rensa sökhistorik. Kan inte ångras.</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="230"/>
+        <location filename="src/MainWindow.cpp" line="281"/>
         <source>&amp;Quit</source>
         <translation>&amp;Avsluta</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="232"/>
-        <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <location filename="src/MainWindow.cpp" line="233"/>
+        <location filename="src/MainWindow.cpp" line="284"/>
         <source>Bye</source>
         <translation>Hej då</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="237"/>
+        <location filename="src/MainWindow.cpp" line="288"/>
         <source>&amp;Website</source>
         <translation>&amp;Webbsida</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="239"/>
+        <location filename="src/MainWindow.cpp" line="290"/>
         <source>%1 on the Web</source>
         <translation>%1 på webben</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="244"/>
-        <source>Make a &amp;donation</source>
-        <translation>Gör en &amp;donation</translation>
-    </message>
-    <message>
-        <location filename="src/MainWindow.cpp" line="245"/>
+        <location filename="src/MainWindow.cpp" line="296"/>
         <source>Please support the continued development of %1</source>
         <translation>Vänligen stöd den fortsatta utvecklingen av %1</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="250"/>
+        <location filename="src/MainWindow.cpp" line="301"/>
         <source>&amp;About</source>
         <translation>&amp;Om</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="252"/>
+        <location filename="src/MainWindow.cpp" line="303"/>
         <source>Info about %1</source>
         <translation>Info om %1</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="260"/>
+        <location filename="src/MainWindow.cpp" line="311"/>
         <source>Search</source>
         <translation>Sök</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="279"/>
+        <location filename="src/MainWindow.cpp" line="330"/>
         <source>Mute volume</source>
         <translation>Volym av</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="281"/>
-        <source>Ctrl+M</source>
-        <translation>Ctrl + M</translation>
-    </message>
-    <message>
-        <location filename="src/MainWindow.cpp" line="312"/>
-        <location filename="src/MainWindow.cpp" line="1091"/>
+        <location filename="src/MainWindow.cpp" line="359"/>
+        <location filename="src/MainWindow.cpp" line="1179"/>
         <source>&amp;Downloads</source>
         <translation>&amp;Nedladdningar</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="313"/>
+        <location filename="src/MainWindow.cpp" line="360"/>
         <source>Show details about video downloads</source>
         <translation>Visa detaljer om video nedladdningar</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="321"/>
+        <location filename="src/MainWindow.cpp" line="368"/>
         <source>&amp;Download</source>
         <translation>&amp;Ladda ner</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="322"/>
+        <location filename="src/MainWindow.cpp" line="369"/>
         <source>Download the current video</source>
         <translation>Ladda ner den aktuella videon</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="334"/>
+        <location filename="src/MainWindow.cpp" line="381"/>
         <source>Share the current video using %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="346"/>
+        <location filename="src/MainWindow.cpp" line="393"/>
         <source>&amp;Email</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="347"/>
+        <location filename="src/MainWindow.cpp" line="394"/>
         <source>Email</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="382"/>
+        <location filename="src/MainWindow.cpp" line="398"/>
+        <source>&amp;Close</source>
+        <translation>&amp;Stäng</translation>
+    </message>
+    <message>
+        <location filename="src/MainWindow.cpp" line="403"/>
+        <source>&amp;Float on Top</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/MainWindow.cpp" line="408"/>
+        <source>&amp;Stop After This Video</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/MainWindow.cpp" line="445"/>
         <source>&amp;Application</source>
         <translation>&amp;Applikation</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="390"/>
+        <location filename="src/MainWindow.cpp" line="447"/>
+        <source>Buy %1...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/MainWindow.cpp" line="458"/>
         <source>&amp;Playback</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="400"/>
+        <location filename="src/MainWindow.cpp" line="472"/>
         <source>&amp;Playlist</source>
         <translation>&amp;Spellista</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="407"/>
+        <location filename="src/MainWindow.cpp" line="479"/>
         <source>&amp;Video</source>
         <translation>&amp;Video</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="421"/>
+        <location filename="src/MainWindow.cpp" line="490"/>
         <source>&amp;View</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="427"/>
+        <location filename="src/MainWindow.cpp" line="497"/>
         <source>&amp;Share</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="435"/>
+        <location filename="src/MainWindow.cpp" line="509"/>
         <source>&amp;Help</source>
         <translation>&amp;Hjälp</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="520"/>
+        <location filename="src/MainWindow.cpp" line="586"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
         <translation>Tryck på %1 för att öka volymen, %2 för att sänka den</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="669"/>
-        <location filename="src/MainWindow.cpp" line="675"/>
+        <location filename="src/MainWindow.cpp" line="748"/>
+        <location filename="src/MainWindow.cpp" line="754"/>
         <source>Opening %1</source>
         <translation>Öppnar %1</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="688"/>
+        <location filename="src/MainWindow.cpp" line="787"/>
         <source>Do you want to exit %1 with a download in progress?</source>
         <translation>Vill du avsluta %1 med en nedladdning igång?</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="689"/>
+        <location filename="src/MainWindow.cpp" line="788"/>
         <source>If you close %1 now, this download will be cancelled.</source>
         <translation>Om du stänger %1 nu, avbryts nedladdningen.</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="692"/>
+        <location filename="src/MainWindow.cpp" line="793"/>
         <source>Close and cancel download</source>
         <translation>Stäng och avbryt nedladdning</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="693"/>
+        <location filename="src/MainWindow.cpp" line="794"/>
         <source>Wait for download to finish</source>
         <translation>Vänta på att nedladdning blir klar</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="854"/>
+        <location filename="src/MainWindow.cpp" line="940"/>
         <source>Leave &amp;Full Screen</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1195"/>
+        <location filename="src/MainWindow.cpp" line="1283"/>
         <source>%1 version %2 is now available.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1201"/>
+        <location filename="src/MainWindow.cpp" line="1297"/>
         <source>Remind me later</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1207"/>
-        <location filename="src/MainWindow.cpp" line="1213"/>
+        <location filename="src/MainWindow.cpp" line="1294"/>
         <source>To get the updated version, download %1 again from the link you received via email and reinstall.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1216"/>
+        <location filename="src/MainWindow.cpp" line="1301"/>
         <source>Update</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="733"/>
+        <location filename="src/MainWindow.cpp" line="828"/>
         <source>Error: %1</source>
         <translation>Fel: %1</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="756"/>
+        <location filename="src/MainWindow.cpp" line="169"/>
+        <source>P&amp;revious</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/MainWindow.cpp" line="170"/>
+        <source>Go back to the previous track</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/MainWindow.cpp" line="209"/>
+        <source>&amp;Compact Mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/MainWindow.cpp" line="222"/>
+        <source>Open the &amp;YouTube Page</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/MainWindow.cpp" line="229"/>
+        <source>Copy the YouTube &amp;Link</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/MainWindow.cpp" line="236"/>
+        <source>Copy the Video Stream &amp;URL</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/MainWindow.cpp" line="243"/>
+        <source>Find Video &amp;Parts</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/MainWindow.cpp" line="271"/>
+        <source>&amp;Clear Recent Searches</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/MainWindow.cpp" line="295"/>
+        <source>Make a &amp;Donation</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/MainWindow.cpp" line="352"/>
+        <source>&amp;Manually Start Playing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/MainWindow.cpp" line="353"/>
+        <source>Manually start playing videos</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/MainWindow.cpp" line="848"/>
         <source>&amp;Play</source>
         <translation>&amp;Spela</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="757"/>
+        <location filename="src/MainWindow.cpp" line="849"/>
         <source>Resume playback</source>
         <translation>Återuppta uppspelning</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="964"/>
+        <location filename="src/MainWindow.cpp" line="1055"/>
         <source>Remaining time: %1</source>
         <translation>Återstående tid: %1</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1022"/>
+        <location filename="src/MainWindow.cpp" line="1113"/>
         <source>Volume at %1%</source>
         <translation>Volym %1%</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1028"/>
+        <location filename="src/MainWindow.cpp" line="1119"/>
         <source>Volume is muted</source>
         <translation>Ljudet är avstängt</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1031"/>
+        <location filename="src/MainWindow.cpp" line="1122"/>
         <source>Volume is unmuted</source>
         <translation>Volymen är på</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1038"/>
+        <location filename="src/MainWindow.cpp" line="1129"/>
         <source>Maximum video definition set to %1</source>
         <translation>Högsta video upplösning är satt till %1</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1076"/>
+        <location filename="src/MainWindow.cpp" line="1165"/>
         <source>Your privacy is now safe</source>
         <translation>Din integritet är nu säker</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1092"/>
+        <location filename="src/MainWindow.cpp" line="1180"/>
         <source>Downloads complete</source>
         <translation>Nedladdningar klar</translation>
+    </message>
+    <message>
+        <location filename="local/mac/macsupport.cpp" line="58"/>
+        <source>&amp;Window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="local/mac/macsupport.cpp" line="61"/>
+        <source>&amp;Minimize</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>MediaView</name>
     <message>
-        <location filename="src/MediaView.cpp" line="33"/>
+        <location filename="src/MediaView.cpp" line="35"/>
         <source>Most relevant</source>
         <translation>Mest relevanta</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="40"/>
+        <location filename="src/MediaView.cpp" line="42"/>
         <source>Most recent</source>
         <translation>Senaste</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="47"/>
+        <location filename="src/MediaView.cpp" line="49"/>
         <source>Most viewed</source>
         <translation>Mest sedda</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="526"/>
+        <location filename="src/MediaView.cpp" line="521"/>
         <source>You can now paste the YouTube link into another application</source>
         <translation>Nu kan du klistra in YouTube-länken i ett annat program</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="534"/>
+        <location filename="src/MediaView.cpp" line="529"/>
         <source>You can now paste the video stream URL into another application</source>
         <translation>Du kan nu klistra in videoströmmens webbadress i ett annat program</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="535"/>
+        <location filename="src/MediaView.cpp" line="530"/>
         <source>The link will be valid only for a limited time.</source>
         <translation>Länken kommer att gälla endast under en begränsad tid.</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="634"/>
+        <location filename="src/MediaView.cpp" line="629"/>
         <source>This is just the demo version of %1.</source>
         <translation>Detta är bara en demo version av %1.</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="635"/>
+        <location filename="src/MediaView.cpp" line="630"/>
         <source>It allows you to test the application and see if it works for you.</source>
         <translation>Det tillåter dig att testa programmet och se om det fungerar för dig.</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="665"/>
+        <location filename="src/MediaView.cpp" line="660"/>
         <source>Continue</source>
         <translation>Fortsätt</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="754"/>
+        <location filename="src/MediaView.cpp" line="749"/>
         <source>of</source>
         <comment>Used in video parts, as in '2 of 3'</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="766"/>
+        <location filename="src/MediaView.cpp" line="761"/>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="768"/>
+        <location filename="src/MediaView.cpp" line="763"/>
         <source>episode</source>
         <comment>This is for video parts, as in 'Cool series - episode 1'</comment>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="826"/>
+        <location filename="src/MediaView.cpp" line="821"/>
         <source>Sent from %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="642"/>
+        <location filename="src/MediaView.cpp" line="637"/>
         <source>Get the full version</source>
         <translation>Skaffa den fullständiga versionen</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="687"/>
+        <location filename="src/MediaView.cpp" line="682"/>
         <source>Downloading %1</source>
         <translation>Hämtar %1</translation>
     </message>
@@ -801,7 +825,7 @@
 <context>
     <name>PrettyItemDelegate</name>
     <message>
-        <location filename="src/playlist/PrettyItemDelegate.cpp" line="156"/>
+        <location filename="src/playlist/PrettyItemDelegate.cpp" line="170"/>
         <source>%1 views</source>
         <translation>%1 visningar</translation>
     </message>
@@ -862,53 +886,53 @@
 <context>
     <name>SearchView</name>
     <message>
-        <location filename="src/SearchView.cpp" line="74"/>
+        <location filename="src/SearchView.cpp" line="79"/>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
         <translation>Välkommen till &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
     </message>
     <message>
-        <location filename="src/SearchView.cpp" line="41"/>
+        <location filename="src/SearchView.cpp" line="46"/>
         <source>Get the full version</source>
         <translation>Skaffa den kompletta versionen</translation>
     </message>
     <message>
-        <location filename="src/SearchView.cpp" line="88"/>
+        <location filename="src/SearchView.cpp" line="93"/>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
         <translation>Ange</translation>
     </message>
     <message>
-        <location filename="src/SearchView.cpp" line="93"/>
+        <location filename="src/SearchView.cpp" line="98"/>
         <source>a keyword</source>
         <translation>ett sökord</translation>
     </message>
     <message>
-        <location filename="src/SearchView.cpp" line="94"/>
+        <location filename="src/SearchView.cpp" line="99"/>
         <source>a channel</source>
         <translation>en kanal</translation>
     </message>
     <message>
-        <location filename="src/SearchView.cpp" line="99"/>
+        <location filename="src/SearchView.cpp" line="104"/>
         <source>to start watching videos.</source>
         <translation>för att börja titta på video.</translation>
     </message>
     <message>
-        <location filename="src/SearchView.cpp" line="124"/>
+        <location filename="src/SearchView.cpp" line="128"/>
         <source>Watch</source>
         <translation>Titta</translation>
     </message>
     <message>
-        <location filename="src/SearchView.cpp" line="142"/>
+        <location filename="src/SearchView.cpp" line="146"/>
         <source>Recent keywords</source>
         <translation>Senaste sökord</translation>
     </message>
     <message>
-        <location filename="src/SearchView.cpp" line="160"/>
+        <location filename="src/SearchView.cpp" line="159"/>
         <source>Recent channels</source>
         <translation>Senaste kanaler</translation>
     </message>
     <message>
-        <location filename="src/SearchView.h" line="34"/>
+        <location filename="src/SearchView.h" line="26"/>
         <source>Make yourself comfortable</source>
         <translation>Gör dig själv bekväm</translation>
     </message>
