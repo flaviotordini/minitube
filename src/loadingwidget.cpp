@@ -3,7 +3,7 @@
 LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
 
     QPalette p = palette();
-    p.setBrush(QPalette::Window, Qt::black);
+    p.setBrush(backgroundRole(), Qt::black);
     p.setBrush(QPalette::Text, Qt::white);
     setPalette(p);
 

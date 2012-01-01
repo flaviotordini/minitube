@@ -11,7 +11,6 @@ VideoAreaWidget::VideoAreaWidget(QWidget *parent) : QWidget(parent) {
     p.setBrush(QPalette::Window, Qt::black);
     setPalette(p);
     setAutoFillBackground(true);
-    setStyleSheet("background:black");
 #endif
 
     // hidden message widget

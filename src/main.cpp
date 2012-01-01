@@ -7,9 +7,6 @@
 #include "mac_startup.h"
 #include "macfullscreen.h"
 #endif
-#ifdef APP_WIN
-#include "local/win/qtwin.h"
-#endif
 #include "iconloader/qticonloader.h"
 
 int main(int argc, char **argv) {
@@ -95,10 +92,6 @@ int main(int argc, char **argv) {
 #endif
 
 #ifdef APP_WIN
-    if (QtWin::isCompositionEnabled()) {
-        QtWin::extendFrameIntoClientArea(&mainWin);
-        mainWin.setContentsMargins(0, 0, 0, 0);
-    }
     app.setFont(QFont("Segoe UI", 9));
 #endif
 
