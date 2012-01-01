@@ -31,8 +31,14 @@ DownloadItem::DownloadItem(Video *video, QUrl url, QString filename, QObject *pa
 }
 
 DownloadItem::~DownloadItem() {
-    if (m_reply) delete m_reply;
-    if (video) delete video;
+    if (m_reply) {
+        delete m_reply;
+        m_reply = 0;
+    }
+    if (video) {
+        delete video;
+        video = 0;
+    }
 }
 
 void DownloadItem::start() {
@@ -111,6 +117,7 @@ void DownloadItem::tryAgain() {
 }
 
 void DownloadItem::downloadReadyRead() {
+    if (!m_reply) return;
 
     if (!m_file.isOpen()) {
         if (!m_file.open(QIODevice::ReadWrite)) {
@@ -156,6 +163,7 @@ QString DownloadItem::errorMessage() const {
 }
 
 void DownloadItem::metaDataChanged() {
+    if (!m_reply) return;
     QVariant locationHeader = m_reply->header(QNetworkRequest::LocationHeader);
     if (locationHeader.isValid()) {
         m_url = locationHeader.toUrl();
