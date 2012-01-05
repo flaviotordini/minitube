@@ -1,8 +1,9 @@
-1.7 -
+1.7 - Jan 5, 2011
 - Clickable usernames in the playlist
-- Added "Stop after this video"
-- Added window "Float on Top" option
-- Added ability to skip to the previous video
+- "Manually start playing" option
+- "Stop after this video" option
+- Window "Float on Top" option
+- Ability to skip to the previous video
 - You can now start Minitube from the command line passing a search query or url. (Go create browser extensions!)
 - on the Mac, showing downloaded video in finder now also selects the file
 - Don't quit app on window close on the Mac
