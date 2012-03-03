@@ -30,6 +30,7 @@ public:
 public slots:
     void showMedia(SearchParams *params);
     void messageReceived(const QString &message);
+    void quit();
 
 protected:
     void changeEvent(QEvent *);
@@ -47,7 +48,6 @@ private slots:
     void visitSite();
     void donate();
     void about();
-    void quit();
     void fullscreen();
     void updateUIForFullscreen();
     void compactView(bool enable);

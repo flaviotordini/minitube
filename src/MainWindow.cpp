@@ -1279,7 +1279,7 @@ void MainWindow::gotNewVersion(QString version) {
         updateChecker = 0;
     }
 
-#if defined(APP_DEMO) || defined(APP_MAC_STORE)
+#if defined(APP_DEMO) || defined(APP_MAC_STORE) || defined(APP_USC)
     return;
 #endif
 
