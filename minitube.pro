@@ -1,8 +1,7 @@
 CONFIG += release
 TEMPLATE = app
-VERSION = 1.7
+VERSION = 1.7.1
 DEFINES += APP_VERSION="$$VERSION"
-INCLUDEPATH += /usr/include/phonon
 
 APP_NAME = Minitube
 DEFINES += APP_NAME="$$APP_NAME"
@@ -116,7 +115,8 @@ include(locale/locale.pri)
 # deploy
 DISTFILES += CHANGES \
     COPYING
-unix:!mac { 
+unix:!mac {
+    INCLUDEPATH += /usr/include/phonon
     QT += dbus
     HEADERS += src/gnomeglobalshortcutbackend.h
     SOURCES += src/gnomeglobalshortcutbackend.cpp

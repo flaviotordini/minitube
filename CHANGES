@@ -1,4 +1,14 @@
-1.7 - Jan 5, 2011
+1.7.1 - March 3, 2012
+- Fixed searching YouTube videos ids containing the "-" sign
+- Fixed search auto-completion popup appearing when not needed
+- Fixed temporary files not being deleted on Windows
+- Fixed quitting from the Dock on the Mac
+- Fixed bug preventing system shutdown on the Mac
+- Fixed search box selecting text while typing and losing focus on ESC key on the Mac
+- On the Mac, "Quit" and other application menu items are now correctly localized
+- New and updated translations
+
+1.7 - Jan 5, 2012
 - Clickable usernames in the playlist
 - "Manually start playing" option
 - "Stop after this video" option
