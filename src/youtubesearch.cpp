@@ -77,6 +77,7 @@ QString YouTubeSearch::videoIdFromUrl(QString url) {
     QRegExp re = QRegExp("^.*\\?v=([^&]+).*$");
     if (re.exactMatch(url)) {
         QString videoId = re.cap(1);
+        videoId.remove('-');
         return videoId;
     }
     return QString();
