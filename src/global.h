@@ -130,15 +130,6 @@ namespace The {
             networkHttpProxySetting();
             maybeSetSystemProxy();
             nam = new QNetworkAccessManager();
-
-            // A simple disk based cache
-            /*
-            QNetworkDiskCache *cache = new QNetworkDiskCache();
-            QString cacheLocation = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-            qDebug() << cacheLocation;
-            cache->setCacheDirectory(cacheLocation);
-            nam->setCache(cache);
-            */
         }
         return nam;
     }
