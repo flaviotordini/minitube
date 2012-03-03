@@ -30,7 +30,7 @@
     <message>
         <location filename="src/AboutView.cpp" line="34"/>
         <source>%1, a YouTube music player</source>
-        <translation type="unfinished"/>
+        <translation>%1, YouTube müzik oynatıcı</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="38"/>
@@ -91,7 +91,7 @@
     <message>
         <location filename="local/src/demostartupview.cpp" line="41"/>
         <source>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</source>
-        <translation type="unfinished"/>
+        <translation>Tam sürüm %1 dakikadan uzun videoları indirmenize ve videoları kesinti olmadan izlemenize olanak sağlar.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="43"/>
@@ -388,7 +388,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="244"/>
         <source>Find other video parts hopefully in the right order</source>
-        <translation type="unfinished"/>
+        <translation>Doğru sırada olacak şekilde diğer video kısımlarını bul</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="250"/>
@@ -494,17 +494,17 @@
     <message>
         <location filename="src/MainWindow.cpp" line="381"/>
         <source>Share the current video using %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 kullanarak şu an ki videoyu paylaş</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="393"/>
         <source>&amp;Email</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Eposta</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="394"/>
         <source>Email</source>
-        <translation type="unfinished"/>
+        <translation>Eposta</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="398"/>
@@ -514,12 +514,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="403"/>
         <source>&amp;Float on Top</source>
-        <translation type="unfinished"/>
+        <translation>Üstte Sabitle</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="408"/>
         <source>&amp;Stop After This Video</source>
-        <translation type="unfinished"/>
+        <translation>Bu Videodan &amp;Sonra Durdur</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="445"/>
@@ -529,7 +529,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="447"/>
         <source>Buy %1...</source>
-        <translation type="unfinished"/>
+        <translation>%1 Satın Al...</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="458"/>
@@ -554,7 +554,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="497"/>
         <source>&amp;Share</source>
-        <translation type="unfinished"/>
+        <translation>Payla&amp;s</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="509"/>
@@ -615,7 +615,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="1301"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Güncelle</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="828"/>
@@ -625,7 +625,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="169"/>
         <source>P&amp;revious</source>
-        <translation type="unfinished"/>
+        <translation>Önceki</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="170"/>
@@ -635,47 +635,47 @@
     <message>
         <location filename="src/MainWindow.cpp" line="209"/>
         <source>&amp;Compact Mode</source>
-        <translation type="unfinished"/>
+        <translation>Kü&amp;cültümüş Ekran</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="222"/>
         <source>Open the &amp;YouTube Page</source>
-        <translation type="unfinished"/>
+        <translation>&amp;YouTube Sayfasını Aç</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="229"/>
         <source>Copy the YouTube &amp;Link</source>
-        <translation type="unfinished"/>
+        <translation>YouTube &amp;Linkini Kopyala</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="236"/>
         <source>Copy the Video Stream &amp;URL</source>
-        <translation type="unfinished"/>
+        <translation>Video &amp;URL&apos;sini Kopyala</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="243"/>
         <source>Find Video &amp;Parts</source>
-        <translation type="unfinished"/>
+        <translation>Video Bölümlerini Bul</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="271"/>
         <source>&amp;Clear Recent Searches</source>
-        <translation type="unfinished"/>
+        <translation>Son Aramaları Temizle</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="295"/>
         <source>Make a &amp;Donation</source>
-        <translation type="unfinished"/>
+        <translation>Bağış Yap</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="352"/>
         <source>&amp;Manually Start Playing</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Manuel Olarak Çalmaya Başla</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="353"/>
         <source>Manually start playing videos</source>
-        <translation type="unfinished"/>
+        <translation>Videoları manuel olarak çalmaya başla</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="848"/>
@@ -725,12 +725,12 @@
     <message>
         <location filename="local/mac/macsupport.cpp" line="58"/>
         <source>&amp;Window</source>
-        <translation type="unfinished"/>
+        <translation>Pencere</translation>
     </message>
     <message>
         <location filename="local/mac/macsupport.cpp" line="61"/>
         <source>&amp;Minimize</source>
-        <translation type="unfinished"/>
+        <translation>Küçült</translation>
     </message>
 </context>
 <context>
@@ -784,24 +784,24 @@
         <location filename="src/MediaView.cpp" line="749"/>
         <source>of</source>
         <comment>Used in video parts, as in '2 of 3'</comment>
-        <translation type="unfinished"/>
+        <translation>/</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="761"/>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
-        <translation type="unfinished"/>
+        <translation>kısım</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="763"/>
         <source>episode</source>
         <comment>This is for video parts, as in 'Cool series - episode 1'</comment>
-        <translation type="unfinished"/>
+        <translation>bölüm</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="821"/>
         <source>Sent from %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 ile gönderildi</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="637"/>
@@ -832,7 +832,7 @@
     <message>
         <location filename="src/playlist/PrettyItemDelegate.cpp" line="286"/>
         <source>%1 of %2 (%3) — %4</source>
-        <translation type="unfinished"/>
+        <translation>%1 / %2 (%3) — %4</translation>
     </message>
     <message>
         <location filename="src/playlist/PrettyItemDelegate.cpp" line="293"/>

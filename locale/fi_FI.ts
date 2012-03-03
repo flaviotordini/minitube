@@ -10,17 +10,17 @@
     <message>
         <location filename="src/AboutView.cpp" line="22"/>
         <source>Version %1</source>
-        <translation>Versionumero: %1</translation>
+        <translation>Versio: %1</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="26"/>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 on ilmainen ohjelma,mutta sen kehittäminen vie kallista aika.</translation>
+        <translation>%1 on ilmainen ohjelma, mutta sen kehittäminen vie kallista aikaa.</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="27"/>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>Voit tukea  %2n kehityksen jatkumista tekemällä &lt;a href=&apos;%1&apos;&gt;lahjoituksen&lt;/a&gt;.</translation>
+        <translation>Voit tukea %2-kehitystä jatkumista tekemällä &lt;a href=&apos;%1&apos;&gt;lahjoituksen&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="31"/>
@@ -167,12 +167,12 @@
     <message>
         <location filename="src/downloadmanager.cpp" line="47"/>
         <source>This is just the demo version of %1.</source>
-        <translation>Tämä on vain kokeilu versio %1sta.</translation>
+        <translation>Tämä on vain %1-kokeiluversio.</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="49"/>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation>Voit ladata vain videoita jotka ovat lyhyempiä kuin %1 minuuttia, jotta voit testata lataus ominaisuutta.</translation>
+        <translation>Voit ladata vain videoita jotka ovat lyhyempiä kuin %1 minuuttia, jotta voit testata latausominaisuutta.</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="55"/>
@@ -242,7 +242,7 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="18"/>
         <source>Play/Pause</source>
-        <translation>Toista/Keskeytä</translation>
+        <translation>Toista/keskeytä</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="19"/>
@@ -267,17 +267,17 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="23"/>
         <source>Increase volume</source>
-        <translation>Lisää äänen voimakkuutta</translation>
+        <translation>Lisää äänenvoimakkuutta</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="24"/>
         <source>Decrease volume</source>
-        <translation>Vähennä äänen voimakkuutta</translation>
+        <translation>Vähennä äänenvoimakkuutta</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="25"/>
         <source>Mute</source>
-        <translation>Mykistä</translation>
+        <translation>Vaimenna</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="26"/>
@@ -368,22 +368,22 @@
     <message>
         <location filename="src/MainWindow.cpp" line="210"/>
         <source>Hide the playlist and the toolbar</source>
-        <translation>Piilota toistolista sekä työkalupalkki</translation>
+        <translation>Piilota soittolista sekä työkalupalkki</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="223"/>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation>Keskeytä toisto ja mene videon YouTube -sivulle</translation>
+        <translation>Keskeytä toisto ja mene videon YouTube-sivulle</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="230"/>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation>Kopioi nykyisen videon YouTube -linkki leikepöydälle</translation>
+        <translation>Kopioi nykyisen videon YouTube-linkki leikepöydälle</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="237"/>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation>Kopioi nykyisen videvirran osoite (URL) leikepöydälle</translation>
+        <translation>Kopioi nykyisen videovirran osoite leikepöydälle</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="244"/>
@@ -403,22 +403,22 @@
     <message>
         <location filename="src/MainWindow.cpp" line="257"/>
         <source>Move &amp;Up</source>
-        <translation>Siirrä &amp;Ylös</translation>
+        <translation>Siirrä &amp;ylös</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="258"/>
         <source>Move up the selected videos in the playlist</source>
-        <translation>Siirrä valitut videot ylemmäksi toistolistalla</translation>
+        <translation>Siirrä valitut videot ylemmäksi soittolistalla</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="264"/>
         <source>Move &amp;Down</source>
-        <translation>Sirrä &amp;Alas</translation>
+        <translation>Sirrä &amp;alas</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="265"/>
         <source>Move down the selected videos in the playlist</source>
-        <translation>Siirrä valitut videot alemmaksi toistolistalla</translation>
+        <translation>Siirrä valitut videot alemmaksi soittolistalla</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="276"/>
@@ -468,7 +468,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="330"/>
         <source>Mute volume</source>
-        <translation>Mykistä ääni</translation>
+        <translation>Vaimenna ääni</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="359"/>
@@ -494,7 +494,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="381"/>
         <source>Share the current video using %1</source>
-        <translation type="unfinished"/>
+        <translation>Jaa nykyinen video palvelulla %1</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="393"/>
@@ -514,12 +514,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="403"/>
         <source>&amp;Float on Top</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Pysy päällimmäisenä</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="408"/>
         <source>&amp;Stop After This Video</source>
-        <translation type="unfinished"/>
+        <translation>Py&amp;säytä toisto tämän videon jälkeen</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="445"/>
@@ -559,7 +559,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="509"/>
         <source>&amp;Help</source>
-        <translation>&amp;Apua</translation>
+        <translation>&amp;Ohje</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="586"/>
@@ -575,7 +575,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="787"/>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation>Tahdotko lopettaa vaikka %1 lataus(ta) on kesken?</translation>
+        <translation>Haluatko, että %1 sulkeutuu vaikka lataus on kesken?</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="788"/>
@@ -585,7 +585,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="793"/>
         <source>Close and cancel download</source>
-        <translation>Sulje ja keskeytä lataus</translation>
+        <translation>Sulje ja peru lataus</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="794"/>
@@ -625,42 +625,42 @@
     <message>
         <location filename="src/MainWindow.cpp" line="169"/>
         <source>P&amp;revious</source>
-        <translation type="unfinished"/>
+        <translation>E&amp;dellinen</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="170"/>
         <source>Go back to the previous track</source>
-        <translation type="unfinished"/>
+        <translation>Siirry takaisin edelliseen kappaleeseen</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="209"/>
         <source>&amp;Compact Mode</source>
-        <translation type="unfinished"/>
+        <translation>Kompakti &amp;tila</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="222"/>
         <source>Open the &amp;YouTube Page</source>
-        <translation type="unfinished"/>
+        <translation>Avaa &amp;YouTube-sivu</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="229"/>
         <source>Copy the YouTube &amp;Link</source>
-        <translation type="unfinished"/>
+        <translation>Kopioi YouTube-&amp;linkki</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="236"/>
         <source>Copy the Video Stream &amp;URL</source>
-        <translation type="unfinished"/>
+        <translation>Kopioi videovirran &amp;URL</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="243"/>
         <source>Find Video &amp;Parts</source>
-        <translation type="unfinished"/>
+        <translation>Etsi videon &amp;osat</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="271"/>
         <source>&amp;Clear Recent Searches</source>
-        <translation type="unfinished"/>
+        <translation>Ty&amp;hjennä viimeisimmät haut</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="295"/>
@@ -670,12 +670,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="352"/>
         <source>&amp;Manually Start Playing</source>
-        <translation type="unfinished"/>
+        <translation>Aloita toisto &amp;manuaalisesti</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="353"/>
         <source>Manually start playing videos</source>
-        <translation type="unfinished"/>
+        <translation>Aloittaa videoiden toiston manuaalisesti</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="848"/>
@@ -700,17 +700,17 @@
     <message>
         <location filename="src/MainWindow.cpp" line="1119"/>
         <source>Volume is muted</source>
-        <translation>Ääni on mykistetty</translation>
+        <translation>Ääni on vaimennettu</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1122"/>
         <source>Volume is unmuted</source>
-        <translation>Ääni ei ole mykistetty</translation>
+        <translation>Ääni ei ole vaimennettu</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1129"/>
         <source>Maximum video definition set to %1</source>
-        <translation>Korkein videonlaatu on rajoitettu tarkkuteen %1</translation>
+        <translation>Korkein videonlaatu on rajoitettu tarkkuuteen %1</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1165"/>
@@ -725,12 +725,12 @@
     <message>
         <location filename="local/mac/macsupport.cpp" line="58"/>
         <source>&amp;Window</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ikkuna</translation>
     </message>
     <message>
         <location filename="local/mac/macsupport.cpp" line="61"/>
         <source>&amp;Minimize</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Pienennä</translation>
     </message>
 </context>
 <context>
@@ -773,7 +773,7 @@
     <message>
         <location filename="src/MediaView.cpp" line="630"/>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation>Voit kokeilla ohjelmaa nähdäksesi että toimiiko se.</translation>
+        <translation>Voit kokeilla ohjelmaa nähdäksesi, toimiiko se.</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="660"/>
@@ -801,7 +801,7 @@
     <message>
         <location filename="src/MediaView.cpp" line="821"/>
         <source>Sent from %1</source>
-        <translation type="unfinished"/>
+        <translation>Lähetetty palvelusta %1</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="637"/>
@@ -832,7 +832,7 @@
     <message>
         <location filename="src/playlist/PrettyItemDelegate.cpp" line="286"/>
         <source>%1 of %2 (%3) — %4</source>
-        <translation type="unfinished"/>
+        <translation>%1 / %2 (%3) — %4</translation>
     </message>
     <message>
         <location filename="src/playlist/PrettyItemDelegate.cpp" line="293"/>
@@ -942,7 +942,7 @@
     <message>
         <location filename="src/video.cpp" line="200"/>
         <source>Cannot get video stream for %1</source>
-        <translation type="unfinished"/>
+        <translation>Videostriimiä ei saada kohteelle %1</translation>
     </message>
     <message>
         <location filename="src/video.cpp" line="218"/>

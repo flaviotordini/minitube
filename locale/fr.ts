@@ -25,7 +25,7 @@
     <message>
         <location filename="src/AboutView.cpp" line="31"/>
         <source>You may want to try my other apps as well:</source>
-        <translation>Vous serrez surement interessé par mes autres applications :</translation>
+        <translation>Vous serrez sûrement intéressé par mes autres applications :</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="34"/>
@@ -60,7 +60,7 @@
     <message>
         <location filename="src/AboutView.h" line="25"/>
         <source>About</source>
-        <translation>A propos</translation>
+        <translation>À propos</translation>
     </message>
     <message>
         <location filename="src/AboutView.h" line="27"/>
@@ -159,7 +159,7 @@
     <message>
         <location filename="src/downloaditem.cpp" line="348"/>
         <source>%4 %5 remaining</source>
-        <translation>%4 %5 remaining</translation>
+        <translation>%4 %5 restant</translation>
     </message>
 </context>
 <context>
@@ -252,17 +252,17 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="20"/>
         <source>Stop playing after current track</source>
-        <translation>Arrêtez après la plage en cours</translation>
+        <translation>Arrêtez après le morceau en cours</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="21"/>
         <source>Next track</source>
-        <translation>Plage suivante</translation>
+        <translation>Morceau suivant</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="22"/>
         <source>Previous track</source>
-        <translation>Plage précédente</translation>
+        <translation>Monceau précédent</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="23"/>
@@ -277,7 +277,7 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="25"/>
         <source>Mute</source>
-        <translation>Silence</translation>
+        <translation>Muet</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="26"/>
@@ -326,7 +326,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="160"/>
         <source>&amp;Stop</source>
-        <translation>&amp;Stop</translation>
+        <translation>&amp;Arrêter</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="161"/>
@@ -336,7 +336,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="179"/>
         <source>S&amp;kip</source>
-        <translation>&amp;Sauter</translation>
+        <translation>&amp;Passer</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="180"/>
@@ -368,7 +368,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="210"/>
         <source>Hide the playlist and the toolbar</source>
-        <translation>Cacher la playlist</translation>
+        <translation>Cacher la liste de lecture et la barre d&apos;outils</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="223"/>
@@ -453,12 +453,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="301"/>
         <source>&amp;About</source>
-        <translation>&amp;A propos</translation>
+        <translation>&amp;À propos</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="303"/>
         <source>Info about %1</source>
-        <translation>A propos de %1</translation>
+        <translation>À propos de %1</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="311"/>
@@ -499,12 +499,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="393"/>
         <source>&amp;Email</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Email</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="394"/>
         <source>Email</source>
-        <translation type="unfinished"/>
+        <translation>Email</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="398"/>
@@ -514,12 +514,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="403"/>
         <source>&amp;Float on Top</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Laisser au dessus</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="408"/>
         <source>&amp;Stop After This Video</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Arrêter après cette vidéo</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="445"/>
@@ -529,7 +529,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="447"/>
         <source>Buy %1...</source>
-        <translation type="unfinished"/>
+        <translation>Acheter %1 …</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="458"/>
@@ -544,7 +544,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="479"/>
         <source>&amp;Video</source>
-        <translation>&amp;Video</translation>
+        <translation>&amp;Vidéo</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="490"/>
@@ -554,7 +554,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="497"/>
         <source>&amp;Share</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Partager</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="509"/>
@@ -600,7 +600,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="1283"/>
         <source>%1 version %2 is now available.</source>
-        <translation type="unfinished"/>
+        <translation>%1 version %2 est maintenant disponible</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1297"/>
@@ -625,7 +625,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="169"/>
         <source>P&amp;revious</source>
-        <translation type="unfinished"/>
+        <translation>P&amp;récédent</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="170"/>
@@ -635,42 +635,42 @@
     <message>
         <location filename="src/MainWindow.cpp" line="209"/>
         <source>&amp;Compact Mode</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Mode compact</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="222"/>
         <source>Open the &amp;YouTube Page</source>
-        <translation type="unfinished"/>
+        <translation>Ouvrir la page &amp;Youtube</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="229"/>
         <source>Copy the YouTube &amp;Link</source>
-        <translation type="unfinished"/>
+        <translation>Copier le &amp;lien Youtube</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="236"/>
         <source>Copy the Video Stream &amp;URL</source>
-        <translation type="unfinished"/>
+        <translation>Copier l&apos;&amp;URL du flux vidéo </translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="243"/>
         <source>Find Video &amp;Parts</source>
-        <translation type="unfinished"/>
+        <translation>Trouver les &amp;parties de la vidéo</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="271"/>
         <source>&amp;Clear Recent Searches</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Effacer les recherches récentes </translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="295"/>
         <source>Make a &amp;Donation</source>
-        <translation type="unfinished"/>
+        <translation>Faire un &amp;Don</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="352"/>
         <source>&amp;Manually Start Playing</source>
-        <translation type="unfinished"/>
+        <translation>&amp;</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="353"/>
@@ -725,12 +725,12 @@
     <message>
         <location filename="local/mac/macsupport.cpp" line="58"/>
         <source>&amp;Window</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Fenêtre</translation>
     </message>
     <message>
         <location filename="local/mac/macsupport.cpp" line="61"/>
         <source>&amp;Minimize</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Réduire</translation>
     </message>
 </context>
 <context>
@@ -784,24 +784,24 @@
         <location filename="src/MediaView.cpp" line="749"/>
         <source>of</source>
         <comment>Used in video parts, as in '2 of 3'</comment>
-        <translation type="unfinished"/>
+        <translation>de</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="761"/>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
-        <translation type="unfinished"/>
+        <translation>partie</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="763"/>
         <source>episode</source>
         <comment>This is for video parts, as in 'Cool series - episode 1'</comment>
-        <translation type="unfinished"/>
+        <translation>épisode</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="821"/>
         <source>Sent from %1</source>
-        <translation type="unfinished"/>
+        <translation>Envoyé par %1</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="637"/>

@@ -15,7 +15,7 @@
     <message>
         <location filename="src/AboutView.cpp" line="26"/>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 is Gratis Software maar de ontwikkeling vergt kostbare tijd.</translation>
+        <translation>%1 is gratis software, maar de ontwikkeling ervan vergt kostbare tijd.</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="27"/>
@@ -25,17 +25,17 @@
     <message>
         <location filename="src/AboutView.cpp" line="31"/>
         <source>You may want to try my other apps as well:</source>
-        <translation>Misschien wil je ook mijn andere apps proberen:</translation>
+        <translation>Misschien wilt u ook mijn andere apps proberen:</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="34"/>
         <source>%1, a YouTube music player</source>
-        <translation>%1, een YouTube muziek speler</translation>
+        <translation>%1, een YouTube-muziekspeler</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="38"/>
         <source>%1, a music player</source>
-        <translation>%1, een muziek speler</translation>
+        <translation>%1, een muziekspeler</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="44"/>
@@ -45,7 +45,7 @@
     <message>
         <location filename="src/AboutView.cpp" line="49"/>
         <source>Icon designed by %1.</source>
-        <translation>Icon ontworpen door %1.</translation>
+        <translation>Pictogram ontworpen door %1.</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="53"/>
@@ -55,7 +55,7 @@
     <message>
         <location filename="src/AboutView.cpp" line="65"/>
         <source>&amp;Close</source>
-        <translation>&amp;Sluiten</translation>
+        <translation>&amp;Sluit</translation>
     </message>
     <message>
         <location filename="src/AboutView.h" line="25"/>
@@ -81,7 +81,7 @@
     <message>
         <location filename="local/src/demostartupview.cpp" line="35"/>
         <source>Please license %1</source>
-        <translation>Alstublieft, Licenceer  %1</translation>
+        <translation>Licenceer alstublieft  %1</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="39"/>
@@ -101,17 +101,17 @@
     <message>
         <location filename="local/src/demostartupview.cpp" line="45"/>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
-        <translation>Door dit produkt te kopen beloon je mij voor het harde werk dat ik geïnvesteerd heb in het maken van %1.</translation>
+        <translation>Door dit produkt te kopen beloont u mij voor het harde werk dat ik geïnvesteerd heb in het maken van %1.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="57"/>
         <source>Use Demo</source>
-        <translation>Gebruik de demo</translation>
+        <translation>Gebruik demo</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="65"/>
         <source>Get the full version</source>
-        <translation>Haal de volledige versie</translation>
+        <translation>Verkrijg de volledige versie</translation>
     </message>
 </context>
 <context>
@@ -159,7 +159,7 @@
     <message>
         <location filename="src/downloaditem.cpp" line="348"/>
         <source>%4 %5 remaining</source>
-        <translation>%4 %5 over</translation>
+        <translation>%4 %5 resterend</translation>
     </message>
 </context>
 <context>
@@ -167,17 +167,17 @@
     <message>
         <location filename="src/downloadmanager.cpp" line="47"/>
         <source>This is just the demo version of %1.</source>
-        <translation>Dit is slechts de demo versie van %1</translation>
+        <translation>Dit is slechts de demoversie van %1.</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="49"/>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation>Het kan alleen maar videos downloaden korter dan %1 minuten zodat je de download functionaliteit kan testen.</translation>
+        <translation>Het kan alleen maar videos downloaden korter dan %1 minuten zodat u de downloadfunctionaliteit kunt testen.</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="55"/>
         <source>Continue</source>
-        <translation>Doorgaan</translation>
+        <translation>Ga door</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="56"/>
@@ -200,12 +200,12 @@
     <message>
         <location filename="src/downloadsettings.cpp" line="38"/>
         <source>Choose the download location</source>
-        <translation>Kies de download locatie</translation>
+        <translation>Kies de downloadlocatie</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="49"/>
         <source>Download location changed.</source>
-        <translation>Download locatie aangepast.</translation>
+        <translation>Downloadlocatie aangepast.</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="51"/>
@@ -232,17 +232,17 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="16"/>
         <source>Play</source>
-        <translation>Afspelen</translation>
+        <translation>Speel af</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="17"/>
         <source>Pause</source>
-        <translation>Pauzeren</translation>
+        <translation>Pauzeer</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="18"/>
         <source>Play/Pause</source>
-        <translation>Afspelen/Pauzeren</translation>
+        <translation>Speel af/Pauzeer</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="19"/>
@@ -252,32 +252,32 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="20"/>
         <source>Stop playing after current track</source>
-        <translation>Stop afspelen na huidige nummer</translation>
+        <translation>Stop afspelen na huidig nummer</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="21"/>
         <source>Next track</source>
-        <translation>Volgende nummer</translation>
+        <translation>Volgend nummer</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="22"/>
         <source>Previous track</source>
-        <translation>Vorige nummer</translation>
+        <translation>Vorig nummer</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="23"/>
         <source>Increase volume</source>
-        <translation>Volume verhogen</translation>
+        <translation>Verhoog volume</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="24"/>
         <source>Decrease volume</source>
-        <translation>Volume verlagen</translation>
+        <translation>Verlaag volume</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="25"/>
         <source>Mute</source>
-        <translation>Onderdrukken</translation>
+        <translation>Demp</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="26"/>
@@ -295,7 +295,7 @@
     <message>
         <location filename="src/ListModel.cpp" line="51"/>
         <source>Searching...</source>
-        <translation>Bezig met Zoeken...</translation>
+        <translation>Bezig met zoeken...</translation>
     </message>
     <message>
         <location filename="src/ListModel.cpp" line="52"/>
@@ -331,17 +331,17 @@
     <message>
         <location filename="src/MainWindow.cpp" line="161"/>
         <source>Stop playback and go back to the search view</source>
-        <translation>Stop het afspelen en ga terug naar het zoek overzicht</translation>
+        <translation>Stop het afspelen en keer terug naar het zoekvenster</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="179"/>
         <source>S&amp;kip</source>
-        <translation>&amp;Overslaan</translation>
+        <translation>&amp;Sla over</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="180"/>
         <source>Skip to the next video</source>
-        <translation>Overslaan en naar de volgende video</translation>
+        <translation>Spoel door naar de volgende vieo</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="186"/>
@@ -363,32 +363,32 @@
     <message>
         <location filename="src/MainWindow.cpp" line="194"/>
         <source>Go full screen</source>
-        <translation>Ga naar volledig scherm</translation>
+        <translation>Schakel over naar Volledig scherm</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="210"/>
         <source>Hide the playlist and the toolbar</source>
-        <translation>Verberg de overzichtslijst en de werkbalk</translation>
+        <translation>Verberg de afspeellijst en de werkbalk</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="223"/>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation>Ga naar de YouTube video pagina en pauzeer het afspelen</translation>
+        <translation>Ga naar de YouTube-videopagina en pauzeer het afspelen</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="230"/>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation>Kopieer de huidige YouTube link naar het klembord</translation>
+        <translation>Kopieer de huidige YouTube-link naar het klembord</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="237"/>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation>Kopieer de huidige video stream URL naar het klembord</translation>
+        <translation>Kopieer de huidige videostream-URL naar het klembord</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="244"/>
         <source>Find other video parts hopefully in the right order</source>
-        <translation>Vind gerelateerde video&apos;s gedeelten hopelijk in de juiste volgorde</translation>
+        <translation>Vind gerelateerde videofragmenten, hopelijk in de juiste volgorde</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="250"/>
@@ -398,12 +398,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="251"/>
         <source>Remove the selected videos from the playlist</source>
-        <translation>Verwijder de geselecteerde video&apos;s van de afspeellijst</translation>
+        <translation>Verwijder de geselecteerde video&apos;s uit de afspeellijst</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="257"/>
         <source>Move &amp;Up</source>
-        <translation>Verplaats &amp;Omhoog</translation>
+        <translation>Verplaats &amp;omhoog</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="258"/>
@@ -413,7 +413,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="264"/>
         <source>Move &amp;Down</source>
-        <translation>Verplaats &amp;Omlaag</translation>
+        <translation>Verplaats &amp;omlaag</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="265"/>
@@ -428,7 +428,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="281"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Afsluiten</translation>
+        <translation>&amp;Sluit af</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="284"/>
@@ -448,7 +448,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="296"/>
         <source>Please support the continued development of %1</source>
-        <translation>Ondersteun de ontwikkeling van %1</translation>
+        <translation>Ondersteun alstublieft de ontwikkeling van %1</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="301"/>
@@ -468,7 +468,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="330"/>
         <source>Mute volume</source>
-        <translation>Volume Dempen</translation>
+        <translation>Demp volume</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="359"/>
@@ -479,7 +479,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="360"/>
         <source>Show details about video downloads</source>
-        <translation>Geef details weer van video downloads</translation>
+        <translation>Geef details weer van videodownloads</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="368"/>
@@ -494,37 +494,37 @@
     <message>
         <location filename="src/MainWindow.cpp" line="381"/>
         <source>Share the current video using %1</source>
-        <translation>Deel de huidige video doormiddel van %1</translation>
+        <translation>Deel de huidige video door middel van %1</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="393"/>
         <source>&amp;Email</source>
-        <translation>&amp;Email</translation>
+        <translation>&amp;E-mail</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="394"/>
         <source>Email</source>
-        <translation>Email</translation>
+        <translation>E-mail</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="398"/>
         <source>&amp;Close</source>
-        <translation>&amp;Sluiten</translation>
+        <translation>&amp;Sluit</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="403"/>
         <source>&amp;Float on Top</source>
-        <translation>&amp;Zweef boven</translation>
+        <translation>&amp;Zweef erboven</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="408"/>
         <source>&amp;Stop After This Video</source>
-        <translation>&amp;Stop Na Deze Video</translation>
+        <translation>&amp;Stop na deze video</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="445"/>
         <source>&amp;Application</source>
-        <translation>&amp;Applicatie</translation>
+        <translation>&amp;Programma</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="447"/>
@@ -534,7 +534,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="458"/>
         <source>&amp;Playback</source>
-        <translation>&amp;Terug spelen</translation>
+        <translation>&amp;Afspeelopties</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="472"/>
@@ -549,12 +549,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="490"/>
         <source>&amp;View</source>
-        <translation>&amp;Bekijken</translation>
+        <translation>&amp;Weergave</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="497"/>
         <source>&amp;Share</source>
-        <translation>&amp;Delen</translation>
+        <translation>&amp;Deel</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="509"/>
@@ -564,18 +564,18 @@
     <message>
         <location filename="src/MainWindow.cpp" line="586"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation>Druk op %1 om het volume te verhogen, op %2 voor verlagen</translation>
+        <translation>Druk op %1 om het volume te verhogen, op %2 om het te verlagen</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="748"/>
         <location filename="src/MainWindow.cpp" line="754"/>
         <source>Opening %1</source>
-        <translation>Openen van %1</translation>
+        <translation>Bezig met openen van %1</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="787"/>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation>Wil je %1 afsluiten terwijl er een download bezig is?</translation>
+        <translation>Wilt u %1 afsluiten terwijl er een download bezig is?</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="788"/>
@@ -585,17 +585,17 @@
     <message>
         <location filename="src/MainWindow.cpp" line="793"/>
         <source>Close and cancel download</source>
-        <translation>Sluit af en annuleer het downloaden</translation>
+        <translation>Sluit en annuleer het downloaden</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="794"/>
         <source>Wait for download to finish</source>
-        <translation>Wachten tot het downloaden is voltooid</translation>
+        <translation>Wacht tot het downloaden is voltooid</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="940"/>
         <source>Leave &amp;Full Screen</source>
-        <translation>Verlaat &amp;Volledig scherm</translation>
+        <translation>Verlaat &amp;volledig scherm</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1283"/>
@@ -610,12 +610,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="1294"/>
         <source>To get the updated version, download %1 again from the link you received via email and reinstall.</source>
-        <translation>Om de nieuwste versie te krijgen. download %1 opnieuw via de link in de email en herinstalleer.</translation>
+        <translation>Om de nieuwste versie te verkrijgen. download %1 opnieuw via de link in de e-mail en herinstalleer.</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1301"/>
         <source>Update</source>
-        <translation>Vernieuwen</translation>
+        <translation>Werk bij</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="828"/>
@@ -640,57 +640,57 @@
     <message>
         <location filename="src/MainWindow.cpp" line="222"/>
         <source>Open the &amp;YouTube Page</source>
-        <translation>Open de &amp;Youtube pagina</translation>
+        <translation>Open de &amp;Youtube-pagina</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="229"/>
         <source>Copy the YouTube &amp;Link</source>
-        <translation>Kopieer de Youtube &amp;Link</translation>
+        <translation>Kopieer de YouTube-&amp;link</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="236"/>
         <source>Copy the Video Stream &amp;URL</source>
-        <translation>Kopieer de Video Stream &amp;URL    </translation>
+        <translation>Kopieer de videostream-&amp;URL</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="243"/>
         <source>Find Video &amp;Parts</source>
-        <translation>Vind Video &amp;delen</translation>
+        <translation>Vind video&amp;fragmenten</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="271"/>
         <source>&amp;Clear Recent Searches</source>
-        <translation>&amp;Wis Recente Zoekopdrachten</translation>
+        <translation>&amp;Wis recente zoekopdrachten</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="295"/>
         <source>Make a &amp;Donation</source>
-        <translation>Geef een &amp;Donatie</translation>
+        <translation>Geef een &amp;donatie</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="352"/>
         <source>&amp;Manually Start Playing</source>
-        <translation>&amp;Speel Handmatig Af</translation>
+        <translation>&amp;Speel handmatig af</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="353"/>
         <source>Manually start playing videos</source>
-        <translation>Speel handmatig videos af</translation>
+        <translation>Speel handmatig video&apos;s af</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="848"/>
         <source>&amp;Play</source>
-        <translation>&amp;Afspelen</translation>
+        <translation>&amp;Speel af</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="849"/>
         <source>Resume playback</source>
-        <translation>Afspelen hervatten</translation>
+        <translation>Hervat afspelen</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1055"/>
         <source>Remaining time: %1</source>
-        <translation>Overblijvende tijd: %1</translation>
+        <translation>Resterende tijd: %1</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1113"/>
@@ -705,17 +705,17 @@
     <message>
         <location filename="src/MainWindow.cpp" line="1122"/>
         <source>Volume is unmuted</source>
-        <translation>Volume is aan</translation>
+        <translation>Volume is niet gedempt</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1129"/>
         <source>Maximum video definition set to %1</source>
-        <translation>Maximale video defititie staat op %1</translation>
+        <translation>Maximale videokwaliteit staat op %1</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1165"/>
         <source>Your privacy is now safe</source>
-        <translation>Uw privacy is nu veilig</translation>
+        <translation>Uw privacy is nu gewaarborgd</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1180"/>
@@ -730,7 +730,7 @@
     <message>
         <location filename="local/mac/macsupport.cpp" line="61"/>
         <source>&amp;Minimize</source>
-        <translation>&amp;Verkleinen</translation>
+        <translation>&amp;Minimaliseer</translation>
     </message>
 </context>
 <context>
@@ -753,12 +753,12 @@
     <message>
         <location filename="src/MediaView.cpp" line="521"/>
         <source>You can now paste the YouTube link into another application</source>
-        <translation>U kunt nu uw YouTube link kopieeren naar een andere applicatie</translation>
+        <translation>U kunt nu uw YouTube-link kopieren naar een ander programma</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="529"/>
         <source>You can now paste the video stream URL into another application</source>
-        <translation>U kunt nu uw video stream URL kopieren naar een andere applicatie</translation>
+        <translation>U kunt nu uw videostream-URL kopieren naar een ander programma</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="530"/>
@@ -768,7 +768,7 @@
     <message>
         <location filename="src/MediaView.cpp" line="629"/>
         <source>This is just the demo version of %1.</source>
-        <translation>Dit is slechts de demo versie van %1.</translation>
+        <translation>Dit is slechts de demoversie van %1.</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="630"/>
@@ -778,7 +778,7 @@
     <message>
         <location filename="src/MediaView.cpp" line="660"/>
         <source>Continue</source>
-        <translation>Doorgaan</translation>
+        <translation>Ga door</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="749"/>
@@ -790,7 +790,7 @@
         <location filename="src/MediaView.cpp" line="761"/>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
-        <translation>gedeelte</translation>
+        <translation>fragment</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="763"/>
@@ -801,7 +801,7 @@
     <message>
         <location filename="src/MediaView.cpp" line="821"/>
         <source>Sent from %1</source>
-        <translation>Verstuur vanaf %1</translation>
+        <translation>Verstuurd vanaf %1</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="637"/>
@@ -811,7 +811,7 @@
     <message>
         <location filename="src/MediaView.cpp" line="682"/>
         <source>Downloading %1</source>
-        <translation>Downloaden van %1</translation>
+        <translation>Bezig met downloaden van %1</translation>
     </message>
 </context>
 <context>
@@ -819,7 +819,7 @@
     <message>
         <location filename="src/networkaccess.cpp" line="214"/>
         <source>Network error: %1</source>
-        <translation>Netwerk fout %1</translation>
+        <translation>Netwerkfout: %1</translation>
     </message>
 </context>
 <context>
@@ -837,7 +837,7 @@
     <message>
         <location filename="src/playlist/PrettyItemDelegate.cpp" line="293"/>
         <source>Preparing</source>
-        <translation>Aan het voorbereiden</translation>
+        <translation>Bezig met voorbereiden</translation>
     </message>
     <message>
         <location filename="src/playlist/PrettyItemDelegate.cpp" line="295"/>
@@ -862,17 +862,17 @@
     <message>
         <location filename="src/playlist/PrettyItemDelegate.cpp" line="345"/>
         <source>Show in %1</source>
-        <translation>Laat zien in %1</translation>
+        <translation>Toon in %1</translation>
     </message>
     <message>
         <location filename="src/playlist/PrettyItemDelegate.cpp" line="347"/>
         <source>Open parent folder</source>
-        <translation>Open initiële map</translation>
+        <translation>Open oudermap</translation>
     </message>
     <message>
         <location filename="src/playlist/PrettyItemDelegate.cpp" line="356"/>
         <source>Restart downloading</source>
-        <translation>Herstart download</translation>
+        <translation>Herstart downloaden</translation>
     </message>
 </context>
 <context>
@@ -899,7 +899,7 @@
         <location filename="src/SearchView.cpp" line="93"/>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation>Geef in</translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="src/SearchView.cpp" line="98"/>
@@ -914,7 +914,7 @@
     <message>
         <location filename="src/SearchView.cpp" line="104"/>
         <source>to start watching videos.</source>
-        <translation>om te starten met het bekijken van de video&apos;s</translation>
+        <translation>om te beginnen met het bekijken van video&apos;s.</translation>
     </message>
     <message>
         <location filename="src/SearchView.cpp" line="128"/>
@@ -924,7 +924,7 @@
     <message>
         <location filename="src/SearchView.cpp" line="146"/>
         <source>Recent keywords</source>
-        <translation>Recente zoekopdrachten</translation>
+        <translation>Recente zoekwoorden</translation>
     </message>
     <message>
         <location filename="src/SearchView.cpp" line="159"/>
@@ -942,12 +942,12 @@
     <message>
         <location filename="src/video.cpp" line="200"/>
         <source>Cannot get video stream for %1</source>
-        <translation>Kan de video stream niet vinden voor %1</translation>
+        <translation>Kan de videostream niet verkrijgen voor %1</translation>
     </message>
     <message>
         <location filename="src/video.cpp" line="218"/>
         <source>Network error: %1 for %2</source>
-        <translation>Netwerk fout: %1 voor %2</translation>
+        <translation>Netwerkfout: %1 voor %2</translation>
     </message>
 </context>
 </TS>

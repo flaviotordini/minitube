@@ -15,7 +15,7 @@
     <message>
         <location filename="src/AboutView.cpp" line="26"/>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 er gratis programvare, men utviklingen bruker dyrebar tid.</translation>
+        <translation>%1 er fri programvare, men utviklingen tar dyrebar tid.</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="27"/>
@@ -25,22 +25,22 @@
     <message>
         <location filename="src/AboutView.cpp" line="31"/>
         <source>You may want to try my other apps as well:</source>
-        <translation type="unfinished"/>
+        <translation>Du vil kanskje prøve mine andre programmer også:</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="34"/>
         <source>%1, a YouTube music player</source>
-        <translation type="unfinished"/>
+        <translation>%1, en musikkspiller for YouTube</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="38"/>
         <source>%1, a music player</source>
-        <translation type="unfinished"/>
+        <translation>%1, en musikkspiller</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="44"/>
         <source>Translate %1 to your native language using %2</source>
-        <translation type="unfinished"/>
+        <translation>Oversett %1 til ditt morsmål ved hjelp av %2</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="49"/>
@@ -81,32 +81,32 @@
     <message>
         <location filename="local/src/demostartupview.cpp" line="35"/>
         <source>Please license %1</source>
-        <translation type="unfinished"/>
+        <translation>Vennligst lisensier %1</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="39"/>
         <source>This demo has expired.</source>
-        <translation type="unfinished"/>
+        <translation>Demoen er utløpt.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="41"/>
         <source>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</source>
-        <translation type="unfinished"/>
+        <translation>Fullversjonen lar deg laste ned videoer lenger enn %1 minutt og se videoer uten avbrytelser.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="43"/>
         <source>This demo will expire in %1 days.</source>
-        <translation type="unfinished"/>
+        <translation>Demoen utløper om %1 dager.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="45"/>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
-        <translation type="unfinished"/>
+        <translation>Ved å kjøpe fullversjonen, støtter du det harde arbeidet som ble lagt inn i å skape %1.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="57"/>
         <source>Use Demo</source>
-        <translation type="unfinished"/>
+        <translation>Bruk demoen</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="65"/>
@@ -388,7 +388,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="244"/>
         <source>Find other video parts hopefully in the right order</source>
-        <translation type="unfinished"/>
+        <translation>Finn andre videosegment, forhåpentligvis i rett rekkefølge</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="250"/>
@@ -494,17 +494,17 @@
     <message>
         <location filename="src/MainWindow.cpp" line="381"/>
         <source>Share the current video using %1</source>
-        <translation type="unfinished"/>
+        <translation>Del denne videoen med %1</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="393"/>
         <source>&amp;Email</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Epost</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="394"/>
         <source>Email</source>
-        <translation type="unfinished"/>
+        <translation>Epost</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="398"/>
@@ -514,12 +514,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="403"/>
         <source>&amp;Float on Top</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Vis over andre</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="408"/>
         <source>&amp;Stop After This Video</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Stopp etter denne videoen</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="445"/>
@@ -529,7 +529,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="447"/>
         <source>Buy %1...</source>
-        <translation type="unfinished"/>
+        <translation>Kjøp %1 …</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="458"/>
@@ -554,7 +554,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="497"/>
         <source>&amp;Share</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Del</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="509"/>
@@ -600,22 +600,22 @@
     <message>
         <location filename="src/MainWindow.cpp" line="1283"/>
         <source>%1 version %2 is now available.</source>
-        <translation type="unfinished"/>
+        <translation>Versjon %2 av %1 er nå tilgjengelig.</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1297"/>
         <source>Remind me later</source>
-        <translation type="unfinished"/>
+        <translation>Minn meg på det senere</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1294"/>
         <source>To get the updated version, download %1 again from the link you received via email and reinstall.</source>
-        <translation type="unfinished"/>
+        <translation>Last ned %1 igjen fra lenken du fikk via epost for å få den oppdaterte versjone, og installer så på nytt.</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1301"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Oppdater</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="828"/>
@@ -625,7 +625,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="169"/>
         <source>P&amp;revious</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Forrige</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="170"/>
@@ -635,47 +635,47 @@
     <message>
         <location filename="src/MainWindow.cpp" line="209"/>
         <source>&amp;Compact Mode</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Kompakt modus</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="222"/>
         <source>Open the &amp;YouTube Page</source>
-        <translation type="unfinished"/>
+        <translation>Åpne siden på &amp;YouTube</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="229"/>
         <source>Copy the YouTube &amp;Link</source>
-        <translation type="unfinished"/>
+        <translation>Kopier &amp;lenken til YouTube</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="236"/>
         <source>Copy the Video Stream &amp;URL</source>
-        <translation type="unfinished"/>
+        <translation>Kopier &amp;URL-en til videostrømmen</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="243"/>
         <source>Find Video &amp;Parts</source>
-        <translation type="unfinished"/>
+        <translation>Finn &amp;deler av videoen</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="271"/>
         <source>&amp;Clear Recent Searches</source>
-        <translation type="unfinished"/>
+        <translation>T&amp;øm siste søk</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="295"/>
         <source>Make a &amp;Donation</source>
-        <translation type="unfinished"/>
+        <translation>Gi en &amp;donasjon</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="352"/>
         <source>&amp;Manually Start Playing</source>
-        <translation type="unfinished"/>
+        <translation>Start avspillingen &amp;manuelt</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="353"/>
         <source>Manually start playing videos</source>
-        <translation type="unfinished"/>
+        <translation>Spill av videoer manuelt</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="848"/>
@@ -725,12 +725,12 @@
     <message>
         <location filename="local/mac/macsupport.cpp" line="58"/>
         <source>&amp;Window</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Vindu</translation>
     </message>
     <message>
         <location filename="local/mac/macsupport.cpp" line="61"/>
         <source>&amp;Minimize</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Minimer</translation>
     </message>
 </context>
 <context>
@@ -784,24 +784,24 @@
         <location filename="src/MediaView.cpp" line="749"/>
         <source>of</source>
         <comment>Used in video parts, as in '2 of 3'</comment>
-        <translation type="unfinished"/>
+        <translation>av</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="761"/>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
-        <translation type="unfinished"/>
+        <translation>del</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="763"/>
         <source>episode</source>
         <comment>This is for video parts, as in 'Cool series - episode 1'</comment>
-        <translation type="unfinished"/>
+        <translation>episode</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="821"/>
         <source>Sent from %1</source>
-        <translation type="unfinished"/>
+        <translation>Sent fra %1</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="637"/>

@@ -25,22 +25,22 @@
     <message>
         <location filename="src/AboutView.cpp" line="31"/>
         <source>You may want to try my other apps as well:</source>
-        <translation type="unfinished"/>
+        <translation>Vielleicht möchten Sie auch meine anderen Apps ausprobieren:</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="34"/>
         <source>%1, a YouTube music player</source>
-        <translation type="unfinished"/>
+        <translation>%1, ein YouTube-Musik-Player</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="38"/>
         <source>%1, a music player</source>
-        <translation type="unfinished"/>
+        <translation>%1, ein Musik-Player</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="44"/>
         <source>Translate %1 to your native language using %2</source>
-        <translation type="unfinished"/>
+        <translation>Übersetzen Sie %1 in Ihre Muttersprache mit %2</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="49"/>
@@ -81,37 +81,37 @@
     <message>
         <location filename="local/src/demostartupview.cpp" line="35"/>
         <source>Please license %1</source>
-        <translation type="unfinished"/>
+        <translation>Bitte lizenzieren Sie %1</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="39"/>
         <source>This demo has expired.</source>
-        <translation type="unfinished"/>
+        <translation>Diese Demo ist abgelaufen.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="41"/>
         <source>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</source>
-        <translation type="unfinished"/>
+        <translation>Die Vollversion erlaubt es Ihnen Videos länger als %1 Minuten herunterzuladen und Videos ohne Unterbrechungen zu sehen.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="43"/>
         <source>This demo will expire in %1 days.</source>
-        <translation type="unfinished"/>
+        <translation>Diese Demo wird in %1 Tagen ablaufen.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="45"/>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
-        <translation type="unfinished"/>
+        <translation>Mit dem Kauf der Vollversion unterstützen Sie auch die harte Arbeit, die ich in die Erstellung von %1 gesteckt habe.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="57"/>
         <source>Use Demo</source>
-        <translation type="unfinished"/>
+        <translation>Demo verwenden</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="65"/>
         <source>Get the full version</source>
-        <translation type="unfinished"/>
+        <translation>Holen Sie sich die Vollversion</translation>
     </message>
 </context>
 <context>
@@ -388,7 +388,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="244"/>
         <source>Find other video parts hopefully in the right order</source>
-        <translation type="unfinished"/>
+        <translation>Findet andere Teile des Videos, hoffentlich in der richtigen Reihenfolge</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="250"/>
@@ -494,32 +494,32 @@
     <message>
         <location filename="src/MainWindow.cpp" line="381"/>
         <source>Share the current video using %1</source>
-        <translation type="unfinished"/>
+        <translation>Teilen Sie das aktuellen Video mit %1</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="393"/>
         <source>&amp;Email</source>
-        <translation type="unfinished"/>
+        <translation>&amp;E-Mail</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="394"/>
         <source>Email</source>
-        <translation type="unfinished"/>
+        <translation>E-Mail</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="398"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Schließen</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="403"/>
         <source>&amp;Float on Top</source>
-        <translation type="unfinished"/>
+        <translation>Im Vordergrund &amp;bleiben</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="408"/>
         <source>&amp;Stop After This Video</source>
-        <translation type="unfinished"/>
+        <translation>Nach diesem Video &amp;anhalten</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="445"/>
@@ -529,12 +529,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="447"/>
         <source>Buy %1...</source>
-        <translation type="unfinished"/>
+        <translation>%1 kaufen...</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="458"/>
         <source>&amp;Playback</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Wiedergabe</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="472"/>
@@ -549,12 +549,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="490"/>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ansehen</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="497"/>
         <source>&amp;Share</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Teilen</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="509"/>
@@ -595,27 +595,27 @@
     <message>
         <location filename="src/MainWindow.cpp" line="940"/>
         <source>Leave &amp;Full Screen</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Vollbild verlassen</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1283"/>
         <source>%1 version %2 is now available.</source>
-        <translation type="unfinished"/>
+        <translation>%1 Version %2 ist jetzt verfügbar.</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1297"/>
         <source>Remind me later</source>
-        <translation type="unfinished"/>
+        <translation>Erinnere mich später</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1294"/>
         <source>To get the updated version, download %1 again from the link you received via email and reinstall.</source>
-        <translation type="unfinished"/>
+        <translation>Für die aktualisierte Version, laden Sie bitte %1 ,mit Hilfe des Links den Sie erhalten per E-Mail erhalten haben, runter und installieren Sie es erneut.</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1301"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Aktualisierung</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="828"/>
@@ -625,57 +625,57 @@
     <message>
         <location filename="src/MainWindow.cpp" line="169"/>
         <source>P&amp;revious</source>
-        <translation type="unfinished"/>
+        <translation>V&amp;origes</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="170"/>
         <source>Go back to the previous track</source>
-        <translation type="unfinished"/>
+        <translation>Zum vorherigen Titel zurückgehen</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="209"/>
         <source>&amp;Compact Mode</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Kompakt-Modus</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="222"/>
         <source>Open the &amp;YouTube Page</source>
-        <translation type="unfinished"/>
+        <translation>&amp;YouTube-Seite öffnen</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="229"/>
         <source>Copy the YouTube &amp;Link</source>
-        <translation type="unfinished"/>
+        <translation>YouTube &amp;Link kopieren</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="236"/>
         <source>Copy the Video Stream &amp;URL</source>
-        <translation type="unfinished"/>
+        <translation>Video-Stream &amp;URL kopieren</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="243"/>
         <source>Find Video &amp;Parts</source>
-        <translation type="unfinished"/>
+        <translation>Suche Video &amp;Teile</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="271"/>
         <source>&amp;Clear Recent Searches</source>
-        <translation type="unfinished"/>
+        <translation>Vorherige Suchbegriffe löschen</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="295"/>
         <source>Make a &amp;Donation</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Spenden</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="352"/>
         <source>&amp;Manually Start Playing</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Manuelles Starten der Wiedergabe</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="353"/>
         <source>Manually start playing videos</source>
-        <translation type="unfinished"/>
+        <translation>Manuelles Starten der Video-Wiedergabe</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="848"/>
@@ -725,12 +725,12 @@
     <message>
         <location filename="local/mac/macsupport.cpp" line="58"/>
         <source>&amp;Window</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Fenster</translation>
     </message>
     <message>
         <location filename="local/mac/macsupport.cpp" line="61"/>
         <source>&amp;Minimize</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Minimieren</translation>
     </message>
 </context>
 <context>
@@ -784,24 +784,24 @@
         <location filename="src/MediaView.cpp" line="749"/>
         <source>of</source>
         <comment>Used in video parts, as in '2 of 3'</comment>
-        <translation type="unfinished"/>
+        <translation>von </translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="761"/>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
-        <translation type="unfinished"/>
+        <translation>Teil</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="763"/>
         <source>episode</source>
         <comment>This is for video parts, as in 'Cool series - episode 1'</comment>
-        <translation type="unfinished"/>
+        <translation>Episode</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="821"/>
         <source>Sent from %1</source>
-        <translation type="unfinished"/>
+        <translation>Gesendet von %1</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="637"/>

@@ -514,12 +514,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="403"/>
         <source>&amp;Float on Top</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Többi ablak fölött</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="408"/>
         <source>&amp;Stop After This Video</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Videó után leállítás</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="445"/>
@@ -529,7 +529,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="447"/>
         <source>Buy %1...</source>
-        <translation type="unfinished"/>
+        <translation>%1 megvásárlása...</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="458"/>
@@ -610,7 +610,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="1294"/>
         <source>To get the updated version, download %1 again from the link you received via email and reinstall.</source>
-        <translation>A frissebb verzió beszerzéséhez töltse le újból a %1 programot az emailben lévő hivatkozáson keresztül, és telepítse újra a programot.</translation>
+        <translation>A frissebb verzió beszerzéséhez töltse le újból a %1 programot az e-mailben lévő hivatkozáson keresztül, és telepítse újra a programot.</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1301"/>
@@ -625,7 +625,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="169"/>
         <source>P&amp;revious</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Előző</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="170"/>
@@ -635,47 +635,47 @@
     <message>
         <location filename="src/MainWindow.cpp" line="209"/>
         <source>&amp;Compact Mode</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Kompaktmód</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="222"/>
         <source>Open the &amp;YouTube Page</source>
-        <translation type="unfinished"/>
+        <translation>&amp;YouTube oldal megnyitása</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="229"/>
         <source>Copy the YouTube &amp;Link</source>
-        <translation type="unfinished"/>
+        <translation>YouTube &amp;hivatkozás másolása</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="236"/>
         <source>Copy the Video Stream &amp;URL</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Videó-URL másolása</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="243"/>
         <source>Find Video &amp;Parts</source>
-        <translation type="unfinished"/>
+        <translation>További videó&amp;részletek keresése</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="271"/>
         <source>&amp;Clear Recent Searches</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Legutóbbi keresések törlése</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="295"/>
         <source>Make a &amp;Donation</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Támogasd</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="352"/>
         <source>&amp;Manually Start Playing</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Manuális lejátszás</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="353"/>
         <source>Manually start playing videos</source>
-        <translation type="unfinished"/>
+        <translation>Videók lejátszása manuális indítással</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="848"/>
@@ -725,12 +725,12 @@
     <message>
         <location filename="local/mac/macsupport.cpp" line="58"/>
         <source>&amp;Window</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ablak</translation>
     </message>
     <message>
         <location filename="local/mac/macsupport.cpp" line="61"/>
         <source>&amp;Minimize</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Minimalizálás</translation>
     </message>
 </context>
 <context>
@@ -784,7 +784,7 @@
         <location filename="src/MediaView.cpp" line="749"/>
         <source>of</source>
         <comment>Used in video parts, as in '2 of 3'</comment>
-        <translation type="unfinished"/>
+        <translation> - </translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="761"/>
@@ -924,7 +924,7 @@
     <message>
         <location filename="src/SearchView.cpp" line="146"/>
         <source>Recent keywords</source>
-        <translation>Legutóbbi kucsszavak</translation>
+        <translation>Legutóbbi kulcsszavak</translation>
     </message>
     <message>
         <location filename="src/SearchView.cpp" line="159"/>
@@ -947,7 +947,7 @@
     <message>
         <location filename="src/video.cpp" line="218"/>
         <source>Network error: %1 for %2</source>
-        <translation>Hálózati hiba: %1 a követezőhöz: %2</translation>
+        <translation>Hálózati hiba: %1 a következőhöz: %2</translation>
     </message>
 </context>
 </TS>

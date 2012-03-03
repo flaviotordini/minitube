@@ -514,12 +514,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="403"/>
         <source>&amp;Float on Top</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Поверх всех окон</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="408"/>
         <source>&amp;Stop After This Video</source>
-        <translation>Ост%анвоить после этого видео</translation>
+        <translation>Ост&amp;ановить после этого видео</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="445"/>
@@ -625,7 +625,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="169"/>
         <source>P&amp;revious</source>
-        <translation>П&amp;редидущий</translation>
+        <translation>Пр&amp;едыдущий</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="170"/>
@@ -635,7 +635,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="209"/>
         <source>&amp;Compact Mode</source>
-        <translation>Компак%тный режим</translation>
+        <translation>Компак&amp;тный режим</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="222"/>
@@ -655,13 +655,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="243"/>
         <source>Find Video &amp;Parts</source>
-        <translation type="unfinished"/>
+        <translation>Найти &amp;фрагменты видео</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="271"/>
         <source>&amp;Clear Recent Searches</source>
-        <translation>	
-О&amp;чистить последние поисковые запросы</translation>
+        <translation>О&amp;чистить последние поисковые запросы</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="295"/>
@@ -671,12 +670,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="352"/>
         <source>&amp;Manually Start Playing</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Начать проигрывание вручную</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="353"/>
         <source>Manually start playing videos</source>
-        <translation type="unfinished"/>
+        <translation>Начать проигрывание видео вручную</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="848"/>

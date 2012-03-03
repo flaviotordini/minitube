@@ -15,7 +15,7 @@
     <message>
         <location filename="src/AboutView.cpp" line="26"/>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 és Software Lliure però el seu desenvolupament pren un temps preciós.</translation>
+        <translation>%1 és programari lliure, però el seu desenvolupament pren un temps preciós.</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="27"/>
@@ -134,17 +134,17 @@
     <message>
         <location filename="src/downloaditem.cpp" line="330"/>
         <source>bytes/sec</source>
-        <translation>bytes/seg</translation>
+        <translation>bytes/s</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="333"/>
         <source>KB/sec</source>
-        <translation>KB/seg</translation>
+        <translation>KB/s</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="336"/>
         <source>MB/sec</source>
-        <translation>MB/seg</translation>
+        <translation>MB/s</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="342"/>
@@ -237,12 +237,12 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="17"/>
         <source>Pause</source>
-        <translation>Pausa</translation>
+        <translation>Posa en pausa</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="18"/>
         <source>Play/Pause</source>
-        <translation>Reprodueix/Pausa</translation>
+        <translation>Reprodueix/posa en pausa</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="19"/>
@@ -277,7 +277,7 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="25"/>
         <source>Mute</source>
-        <translation>Silenci</translation>
+        <translation>Silencia</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="26"/>
@@ -295,7 +295,7 @@
     <message>
         <location filename="src/ListModel.cpp" line="51"/>
         <source>Searching...</source>
-        <translation>Buscant...</translation>
+        <translation>S&apos;està cercant...</translation>
     </message>
     <message>
         <location filename="src/ListModel.cpp" line="52"/>
@@ -358,7 +358,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="193"/>
         <source>&amp;Full Screen</source>
-        <translation>Pantalla &amp;Completa</translation>
+        <translation>Pantalla &amp;completa</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="194"/>
@@ -373,12 +373,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="223"/>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation>Ves a la pàgina del vídeo de YouTube i pausa la reproducció</translation>
+        <translation>Ves a la pàgina del vídeo del YouTube i pausa la reproducció</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="230"/>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation>Copia l&apos;enllaç del vídeo actual de YouTube al porta-retalls</translation>
+        <translation>Copia l&apos;enllaç del vídeo actual del YouTube al porta-retalls</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="237"/>
@@ -403,7 +403,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="257"/>
         <source>Move &amp;Up</source>
-        <translation>Mou &amp;Amunt</translation>
+        <translation>Mou &amp;amunt</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="258"/>
@@ -413,7 +413,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="264"/>
         <source>Move &amp;Down</source>
-        <translation>Mou A&amp;vall</translation>
+        <translation>Mou a&amp;vall</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="265"/>
@@ -438,12 +438,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="288"/>
         <source>&amp;Website</source>
-        <translation>Pàgina &amp;Web</translation>
+        <translation>Pàgina &amp;web</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="290"/>
         <source>%1 on the Web</source>
-        <translation>%1 en la Web</translation>
+        <translation>%1 a la xarxa</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="296"/>
@@ -463,12 +463,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="311"/>
         <source>Search</source>
-        <translation>Busca</translation>
+        <translation>Cerca</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="330"/>
         <source>Mute volume</source>
-        <translation>Silencia volum</translation>
+        <translation>Silencia el volum</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="359"/>
@@ -564,7 +564,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="586"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation>Prem %1 per pujar el volum, %2 per baixar-lo</translation>
+        <translation>Premeu %1 per pujar el volum, %2 per baixar-lo</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="748"/>
@@ -700,12 +700,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="1119"/>
         <source>Volume is muted</source>
-        <translation>Volum silenciat</translation>
+        <translation>El volum està silenciat</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1122"/>
         <source>Volume is unmuted</source>
-        <translation>Volum de-silenciat</translation>
+        <translation>El volum no està silenciat</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1129"/>
@@ -715,7 +715,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="1165"/>
         <source>Your privacy is now safe</source>
-        <translation>La seva privacitat ara és segura</translation>
+        <translation>La vostra privacitat ara és segura</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1180"/>
@@ -753,7 +753,7 @@
     <message>
         <location filename="src/MediaView.cpp" line="521"/>
         <source>You can now paste the YouTube link into another application</source>
-        <translation>Ja pot enganxar l&apos;enllaç de YouTube en una altra aplicació</translation>
+        <translation>Ja podeu enganxar l&apos;enllaç de YouTube en una altra aplicació</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="529"/>
@@ -773,7 +773,7 @@
     <message>
         <location filename="src/MediaView.cpp" line="630"/>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation>Li permet probar l&apos;aplicació i veure si li va bé.</translation>
+        <translation>Us permet probar l&apos;aplicació i veure si us va bé.</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="660"/>
@@ -806,7 +806,7 @@
     <message>
         <location filename="src/MediaView.cpp" line="637"/>
         <source>Get the full version</source>
-        <translation>Aconsegueix la versió completa</translation>
+        <translation>Aconseguiu la versió completa</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="682"/>
@@ -880,7 +880,7 @@
     <message>
         <location filename="src/searchlineedit.cpp" line="177"/>
         <source>Search</source>
-        <translation>Busca</translation>
+        <translation>Cerca</translation>
     </message>
 </context>
 <context>

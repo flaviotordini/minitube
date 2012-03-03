@@ -529,7 +529,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="447"/>
         <source>Buy %1...</source>
-        <translation type="unfinished"/>
+        <translation>Comprar %1...</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="458"/>
@@ -655,7 +655,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="243"/>
         <source>Find Video &amp;Parts</source>
-        <translation type="unfinished"/>
+        <translation>Cercar &amp;partes de video</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="271"/>
