@@ -300,7 +300,7 @@ void MediaView::activeRowChanged(int row) {
     workaroundTimer->stop();
     errorTimer->stop();
 
-    mediaObject->pause();
+    mediaObject->stop();
     if (downloadItem) {
         downloadItem->stop();
         delete downloadItem;
