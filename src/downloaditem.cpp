@@ -121,7 +121,7 @@ void DownloadItem::downloadReadyRead() {
 
     if (!m_file.isOpen()) {
         if (!m_file.open(QIODevice::ReadWrite)) {
-            qDebug() << QString("Error opening output file: %1").arg(m_file.errorString());
+            qWarning() << QString("Error opening output file: %1").arg(m_file.errorString());
             stop();
             emit statusChanged();
             return;
@@ -129,14 +129,11 @@ void DownloadItem::downloadReadyRead() {
         emit statusChanged();
     }
 
+    m_startedSaving = true;
+
     if (-1 == m_file.write(m_reply->readAll())) {
-        /*
-        downloadInfoLabel->setText(tr("Error saving: %1")
-                                   .arg(m_output.errorString()));
-        stopButton->click();
-        */
+        qWarning() << "Error saving." << m_file.errorString();
     } else {
-        m_startedSaving = true;
         if (m_status != Downloading) {
             // m_status = Downloading;
             // emit statusChanged();
@@ -183,7 +180,7 @@ int DownloadItem::initialBufferSize() {
     // qDebug() << video->getDefinitionCode();
     switch (video->getDefinitionCode()) {
     case 18:
-        return 1024*192;
+        return 1024*256;
     case 22:
         return 1024*512;
     case 37:
@@ -203,12 +200,12 @@ void DownloadItem::downloadProgress(qint64 bytesReceived, qint64 bytesTotal) {
 
     if (m_status != Downloading) {
 
-        int neededBytes = (int) (bytesTotal * .001);
+        int neededBytes = (int) (bytesTotal * .005);
         // qDebug() << bytesReceived << bytesTotal << neededBytes << m_downloadTime.elapsed();
         int bufferSize = initialBufferSize();
         if (bytesReceived > bufferSize
             && bytesReceived > neededBytes
-            && (m_downloadTime.elapsed() > 1000)) {
+            && m_downloadTime.elapsed() > 2000) {
             emit bufferProgress(100);
             m_status = Downloading;
             emit statusChanged();
@@ -288,10 +285,13 @@ double DownloadItem::currentSpeed() const {
 }
 
 void DownloadItem::requestFinished() {
-    m_reply = 0;
     m_finishedDownloading = true;
     if (!m_startedSaving) {
         qDebug() << "Request finished but never started saving";
+        if (m_reply) {
+            if (-1 == m_file.write(m_reply->readAll()))
+                qDebug() << "Error saving." << m_file.errorString();
+        }
         return;
     }
     if (m_status == Starting) {
@@ -302,6 +302,8 @@ void DownloadItem::requestFinished() {
     m_status = Finished;
     emit statusChanged();
     emit finished();
+    m_reply->deleteLater();
+    m_reply = 0;
 }
 
 QString DownloadItem::formattedFilesize(qint64 size) {
