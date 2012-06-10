@@ -35,7 +35,7 @@ void ChannelSuggest::handleNetworkData(QByteArray data) {
     while ((pos = re.indexIn(html, pos)) != -1) {
         // qDebug() << re.cap(0) << re.cap(1);
         QString choice = re.cap(1);
-        if (!choices.contains(choice)) {
+        if (!choices.contains(choice, Qt::CaseInsensitive)) {
             choices << choice;
             if (choices.size() == 10) break;
         }
