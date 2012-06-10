@@ -5,6 +5,7 @@
 #include <QtNetwork>
 #include <phonon/mediaobject.h>
 #include <phonon/videowidget.h>
+#include <phonon/seekslider.h>
 #include "View.h"
 #include "ListModel.h"
 #include "segmentedcontrol.h"
@@ -40,7 +41,7 @@ public:
     }
 
     void setMediaObject(Phonon::MediaObject *mediaObject);
-    void setSlider(QSlider *slider);
+    void setSlider(Phonon::SeekSlider *slider) { this->seekSlider = slider; }
 
 public slots:
     void search(SearchParams *searchParams);
@@ -76,6 +77,7 @@ private slots:
     void stateChanged(Phonon::State newState, Phonon::State oldState);
     void currentSourceChanged(const Phonon::MediaSource source);
     void showVideoContextMenu(QPoint point);
+    void aboutToFinish();
     // bar
     void searchMostRelevant();
     void searchMostRecent();
@@ -118,6 +120,7 @@ private:
     // phonon
     Phonon::MediaObject *mediaObject;
     Phonon::VideoWidget *videoWidget;
+    Phonon::SeekSlider *seekSlider;
 
     // loadingWidget
     VideoAreaWidget *videoAreaWidget;

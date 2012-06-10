@@ -91,9 +91,9 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     splitter->addWidget(playlistWidget);
 
     videoAreaWidget = new VideoAreaWidget(this);
-    videoAreaWidget->setMinimumSize(320,240);
+    // videoAreaWidget->setMinimumSize(320,240);
 
-#ifdef APP_MAC_NO
+#ifdef APP_MAC
     // mouse autohide does not work on the Mac (no mouseMoveEvent)
     videoWidget = new Phonon::VideoWidget(this);
 #else
@@ -155,6 +155,7 @@ void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
     connect(mediaObject, SIGNAL(currentSourceChanged(Phonon::MediaSource)),
             this, SLOT(currentSourceChanged(Phonon::MediaSource)));
     // connect(mediaObject, SIGNAL(bufferStatus(int)), loadingWidget, SLOT(bufferStatus(int)));
+    connect(mediaObject, SIGNAL(aboutToFinish()), SLOT(aboutToFinish()));
 }
 
 void MediaView::search(SearchParams *searchParams) {
@@ -197,7 +198,7 @@ void MediaView::disappear() {
 
 void MediaView::handleError(QString /* message */) {
 
-    QTimer::singleShot(100, this, SLOT(startPlaying()));
+    QTimer::singleShot(500, this, SLOT(startPlaying()));
 
     /*
     videoAreaWidget->showError(message);
@@ -207,10 +208,8 @@ void MediaView::handleError(QString /* message */) {
     */
 }
 
-void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
-{
-
-    // qDebug() << "Phonon state: " << newState << oldState;
+void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/) {
+    // qDebug() << "Phonon state: " << newState;
     // slider->setEnabled(newState == Phonon::PlayingState);
 
     switch (newState) {
@@ -409,6 +408,9 @@ void MediaView::downloadStatusChanged() {
     case Finished:
         // qDebug() << "Finished" << mediaObject->state();
         // if (mediaObject->state() == Phonon::StoppedState) startPlaying();
+#ifdef Q_WS_X11
+        seekSlider->setEnabled(mediaObject->isSeekable());
+#endif
         break;
     case Failed:
         // qDebug() << "Failed";
@@ -430,6 +432,9 @@ void MediaView::startPlaying() {
     qDebug() << "Playing" << source;
     mediaObject->setCurrentSource(source);
     mediaObject->play();
+#ifdef Q_WS_X11
+    seekSlider->setEnabled(false);
+#endif
 
     // ensure we always have 10 videos ahead
     listModel->searchNeeded();
@@ -497,7 +502,19 @@ void MediaView::skipBackward() {
     listModel->setActiveRow(prevRow);
 }
 
+void MediaView::aboutToFinish() {
+    qint64 currentTime = mediaObject->currentTime();
+    qDebug() << __PRETTY_FUNCTION__ << currentTime;
+    if (currentTime + 10000 < mediaObject->totalTime()) {
+        // mediaObject->seek(mediaObject->currentTime());
+        // QTimer::singleShot(500, this, SLOT(playbackResume()));
+        mediaObject->seek(currentTime);
+        mediaObject->play();
+    }
+}
+
 void MediaView::playbackFinished() {
+    qDebug() << __PRETTY_FUNCTION__ << mediaObject->currentTime();
     // qDebug() << "finished" << mediaObject->currentTime() << mediaObject->totalTime();
     // add 10 secs for imprecise Phonon backends (VLC, Xine)
     if (mediaObject->currentTime() + 10000 < mediaObject->totalTime()) {
@@ -512,6 +529,7 @@ void MediaView::playbackFinished() {
 }
 
 void MediaView::playbackResume() {
+    qDebug() << __PRETTY_FUNCTION__ << mediaObject->currentTime();
     mediaObject->seek(mediaObject->currentTime());
     mediaObject->play();
 }
