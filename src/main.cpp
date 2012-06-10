@@ -28,6 +28,7 @@ int main(int argc, char **argv) {
 #endif
 
 #ifdef APP_MAC
+    app.setAttribute(Qt::AA_NativeWindows);
     QFile file(":/mac.css");
     file.open(QFile::ReadOnly);
     app.setStyleSheet(QLatin1String(file.readAll()));
