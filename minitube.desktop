@@ -1,16 +1,16 @@
 [Desktop Entry]
 Name=Minitube
-Name[en_US]=Minitube
+Name[en]=Minitube
 Comment=Watch YouTube videos
 Comment[es]=Vea los videos de YouTube
 Comment[gl]=Vexa os vídeos de YouTube
 Comment[it]=Guarda i video di YouTube
 Comment[tr]=YouTube videoları izleyin
-GenericName=YouTube client
-GenericName[en_US]=YouTube client
+GenericName=YouTube app
+GenericName[en]=YouTube app
 GenericName[es]=Cliente de YouTube
 GenericName[gl]=Cliente de YouTube
-GenericName[it]=Client per YouTube
+GenericName[it]=Applicazione per YouTube
 GenericName[tr]=YouTube istemcisi
 Exec=minitube
 Terminal=false
@@ -18,3 +18,16 @@ Type=Application
 Icon=minitube
 Categories=Application;Qt;AudioVideo;Video;
 StartupNotify=true
+Actions=TogglePlaying;Next;Previous;
+
+[Desktop Action TogglePlaying]
+Name=Play/Pause
+Exec=minitube --toggle-playing
+
+[Desktop Action Next]
+Name=Next
+Exec=minitube --next
+
+[Desktop Action Previous]
+Name=Previous
+Exec=minitube --previous
