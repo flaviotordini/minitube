@@ -29,6 +29,7 @@ public:
 
 public slots:
     void showMedia(SearchParams *params);
+    void restore();
     void messageReceived(const QString &message);
     void quit();
 

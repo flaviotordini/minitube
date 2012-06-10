@@ -69,7 +69,7 @@ MainWindow::MainWindow() :
     createStatusBar();
 
     initPhonon();
-    // mediaView->setSlider(slider);
+    mediaView->setSlider(seekSlider);
     mediaView->setMediaObject(mediaObject);
 
     // remove that useless menu/toolbar context menu
@@ -81,8 +81,17 @@ MainWindow::MainWindow() :
     // event filter to block ugly toolbar tooltips
     qApp->installEventFilter(this);
 
+    setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+
     // restore window position
     readSettings();
+
+    // fix stacked widget minimum size
+    for (int i = 0; i < views->count(); i++) {
+        QWidget* view = views->widget(i);
+        if (view) view->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+    }
+    setMinimumWidth(0);
 
     // show the initial view
 #ifdef APP_DEMO
@@ -401,6 +410,11 @@ void MainWindow::createActions() {
     actions->insert("close", action);
     connect(action, SIGNAL(triggered()), SLOT(close()));
 
+    action = new QAction(Constants::NAME, this);
+    action->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_1));
+    actions->insert("restore", action);
+    connect(action, SIGNAL(triggered()), SLOT(restore()));
+
     action = new QAction(QtIconLoader::icon("go-top"), tr("&Float on Top"), this);
     action->setCheckable(true);
     actions->insert("ontop", action);
@@ -641,10 +655,14 @@ void MainWindow::showActionInStatusBar(QAction* action, bool show) {
 
 void MainWindow::readSettings() {
     QSettings settings;
-    restoreGeometry(settings.value("geometry").toByteArray());
+    if (settings.contains("geometry")) {
+        restoreGeometry(settings.value("geometry").toByteArray());
 #ifdef APP_MAC
     MacSupport::fixGeometry(this);
 #endif
+    } else {
+        setGeometry(100, 100, 1000, 500);
+    }
     setDefinitionMode(settings.value("definition", VideoDefinition::getDefinitionNames().first()).toString());
     audioOutput->setVolume(settings.value("volume", 1).toDouble());
     audioOutput->setMuted(settings.value("volumeMute").toBool());
@@ -652,18 +670,14 @@ void MainWindow::readSettings() {
 }
 
 void MainWindow::writeSettings() {
-
     QSettings settings;
 
-    // do not save geometry when in full screen
-    if (!m_fullscreen) {
-        settings.setValue("geometry", saveGeometry());
-    }
+    settings.setValue("geometry", saveGeometry());
+    mediaView->saveSplitterState();
 
     settings.setValue("volume", audioOutput->volume());
     settings.setValue("volumeMute", audioOutput->isMuted());
     settings.setValue("manualplay", The::globalActions()->value("manualplay")->isChecked());
-    mediaView->saveSplitterState();
 }
 
 void MainWindow::goBack() {
@@ -675,6 +689,9 @@ void MainWindow::goBack() {
 }
 
 void MainWindow::showWidget ( QWidget* widget ) {
+
+    if (compactViewAct->isChecked())
+        compactViewAct->toggle();
 
     setUpdatesEnabled(false);
 
@@ -729,7 +746,12 @@ void MainWindow::showWidget ( QWidget* widget ) {
     setUpdatesEnabled(true);
 
     QWidget *oldWidget = views->currentWidget();
+    if (oldWidget)
+        oldWidget->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+
     views->setCurrentWidget(widget);
+    widget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    // adjustSize();
 
 #ifndef Q_WS_X11
     Extra::fadeInWidget(oldWidget, widget);
@@ -764,7 +786,10 @@ void MainWindow::quit() {
         return;
     }
 #endif
-    writeSettings();
+    // do not save geometry when in full screen or in compact mode
+    if (!m_fullscreen && !compactViewAct->isChecked()) {
+        writeSettings();
+    }
     Temporary::deleteAll();
     qApp->quit();
 }
@@ -778,8 +803,8 @@ void MainWindow::closeEvent(QCloseEvent *event) {
         event->ignore();
         return;
     }
-    quit();
     QWidget::closeEvent(event);
+    quit();
 #endif
 }
 
@@ -876,6 +901,10 @@ void MainWindow::resizeEvent(QResizeEvent*) {
     if (mac::CanGoFullScreen(winId())) {
         bool isFullscreen = mac::IsFullScreen(winId());
         if (isFullscreen != m_fullscreen) {
+            if (compactViewAct->isChecked()) {
+                compactViewAct->setChecked(false);
+                compactView(false);
+            }
             m_fullscreen = isFullscreen;
             updateUIForFullscreen();
         }
@@ -885,10 +914,8 @@ void MainWindow::resizeEvent(QResizeEvent*) {
 
 void MainWindow::fullscreen() {
 
-    /*
     if (compactViewAct->isChecked())
-        compactView(false);
-    */
+        compactViewAct->toggle();
 
 #ifdef Q_WS_MAC
     WId handle = winId();
@@ -983,20 +1010,28 @@ void MainWindow::compactView(bool enable) {
     static QList<QKeySequence> compactShortcuts;
     static QList<QKeySequence> stopShortcuts;
 
-    /*
     const static QString key = "compactGeometry";
     QSettings settings;
-    */
 
 #ifndef APP_MAC
     menuBar()->setVisible(!enable);
 #endif
 
     if (enable) {
-        /*
+        setMinimumSize(160, 120);
+#ifdef Q_WS_MAC
+        mac::RemoveFullScreenWindow(winId());
+#endif
         writeSettings();
-        restoreGeometry(settings.value(key).toByteArray());
-        */
+
+        if (settings.contains(key))
+            restoreGeometry(settings.value(key).toByteArray());
+        else
+            resize(320, 240);
+
+        mainToolBar->setVisible(!enable);
+        mediaView->setPlaylistVisible(!enable);
+        statusBar()->setVisible(!enable);
 
         compactShortcuts = compactViewAct->shortcuts();
         stopShortcuts = stopAct->shortcuts();
@@ -1009,20 +1044,25 @@ void MainWindow::compactView(bool enable) {
         // ensure focus does not end up to the search box
         // as it would steal the Space shortcut
         mediaView->setFocus();
+
     } else {
-        /*
+        // unset minimum size
+        setMinimumSize(0, 0);
+#ifdef Q_WS_MAC
+        mac::SetupFullScreenWindow(winId());
+#endif
         settings.setValue(key, saveGeometry());
+        mainToolBar->setVisible(!enable);
+        mediaView->setPlaylistVisible(!enable);
+        statusBar()->setVisible(!enable);
         readSettings();
-        */
 
         compactViewAct->setShortcuts(compactShortcuts);
         stopAct->setShortcuts(stopShortcuts);
     }
 
-    mainToolBar->setVisible(!enable);
-    mediaView->setPlaylistVisible(!enable);
-    statusBar()->setVisible(!enable);
-
+    // auto float on top
+    floatOnTop(enable);
 }
 
 void MainWindow::searchFocus() {
@@ -1337,8 +1377,17 @@ void MainWindow::floatOnTop(bool onTop) {
     }
 }
 
+void MainWindow::restore() {
+#ifdef APP_MAC
+    mac::uncloseWindow(window()->winId());
+#endif
+}
+
 void MainWindow::messageReceived(const QString &message) {
-    if (!message.isEmpty()) {
+    if (message == "--toggle-playing" && pauseAct->isEnabled()) pauseAct->trigger();
+    else if (message == "--next" && skipAct->isEnabled()) skipAct->trigger();
+    else if (message == "--previous" && skipBackwardAct->isEnabled()) skipBackwardAct->trigger();
+    else if (!message.isEmpty()) {
         SearchParams *searchParams = new SearchParams();
         searchParams->setKeywords(message);
         showMedia(searchParams);
