@@ -58,9 +58,9 @@ QSize SegmentedControl::minimumSizeHint (void) const {
     return(QSize(itemsWidth, QFontMetrics(font()).height() * 1.9));
 }
 
-void SegmentedControl::paintEvent (QPaintEvent *event) {
-    int height = event->rect().height();
-    int width = event->rect().width();
+void SegmentedControl::paintEvent (QPaintEvent * /*event*/) {
+    int height = rect().height();
+    int width = rect().width();
 
     QPainter p(this);
 
