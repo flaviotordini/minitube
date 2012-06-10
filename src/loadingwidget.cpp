@@ -9,22 +9,13 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
 
     setAutoFillBackground(true);
 
-    QFont bigFont;
-    bigFont.setPointSize(bigFont.pointSize()*4);
-    QFontMetrics fm(bigFont);
-    int textHeightInPixels = fm.height();
-    int spacing = textHeightInPixels / 2;
-
     QBoxLayout *layout = new QVBoxLayout();
-    layout->setSpacing(spacing);
-    layout->setMargin(spacing);
 
     titleLabel = new QLabel(this);
     titleLabel->setAlignment(Qt::AlignHCenter | Qt::AlignBottom);
     titleLabel->setPalette(p);
     titleLabel->setForegroundRole(QPalette::Text);
     titleLabel->setWordWrap(true);
-    titleLabel->setFont(bigFont);
     titleLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     layout->addWidget(titleLabel);
 
@@ -36,7 +27,6 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
     descriptionLabel->setPalette(p);
     descriptionLabel->setForegroundRole(QPalette::Text);
     descriptionLabel->setWordWrap(true);
-    descriptionLabel->setFont(biggerFont);
     descriptionLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     layout->addWidget(descriptionLabel);
 
@@ -55,13 +45,42 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
 }
 
 void LoadingWidget::setVideo(Video *video) {
+
+    QFont titleFont;
+    int smallerDimension = qMin(height(), width());
+    titleFont.setPixelSize(smallerDimension / 12);
+    QFontMetrics fm(titleFont);
+    int textHeightInPixels = fm.height();
+    int spacing = textHeightInPixels / 2;
+    layout()->setSpacing(spacing);
+    layout()->setMargin(spacing);
+
     QString title = video->title();
     // enhance legibility by splitting the title
     title = title.replace(" - ", "<p>");
     title = title.replace("] ", "]<p>");
     title = title.replace(" [", "<p>[");
     titleLabel->setText(title);
-    descriptionLabel->setText(video->description());
+    titleLabel->setVisible(window()->height() > 100);
+    titleLabel->setFont(titleFont);
+
+    static const int maxVideoLength = 256;
+    QString videoDesc = video->description();
+    if (videoDesc.length() > maxVideoLength) {
+        videoDesc.truncate(maxVideoLength-1);
+        videoDesc.append("...");
+    }
+    QFont descFont(titleFont);
+    descFont.setPixelSize(descFont.pixelSize() / 2);
+    descriptionLabel->setFont(descFont);
+    descriptionLabel->setText(videoDesc);
+    bool hiddenDesc = height() < 400;
+    if (hiddenDesc)
+        titleLabel->setAlignment(Qt::AlignCenter);
+    else
+        titleLabel->setAlignment(Qt::AlignHCenter | Qt::AlignBottom);
+    descriptionLabel->setVisible(!hiddenDesc);
+
     // progressBar->hide();
     progressBar->setValue(0);
     startTime.start();

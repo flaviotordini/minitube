@@ -56,8 +56,8 @@ void VideoAreaWidget::showError(QString message) {
 }
 
 void VideoAreaWidget::showLoading(Video *video) {
-    this->loadingWidget->setVideo(video);
     stackedLayout->setCurrentWidget(loadingWidget);
+    this->loadingWidget->setVideo(video);
     messageLabel->hide();
     messageLabel->clear();
 }
