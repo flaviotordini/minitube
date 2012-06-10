@@ -82,8 +82,12 @@ void DownloadItem::init() {
 
 
 void DownloadItem::stop() {
-    if (m_reply)
+    if (m_reply) {
+        m_reply->disconnect();
         m_reply->abort();
+        m_reply->deleteLater();
+        m_reply = 0;
+    }
     m_status = Idle;
     emit statusChanged();
 }
@@ -105,15 +109,8 @@ void DownloadItem::openFolder() {
 }
 
 void DownloadItem::tryAgain() {
-    if (m_reply)
-        m_reply->abort();
-
-    if (m_file.exists())
-        m_file.remove();
-
-    m_reply = The::http()->simpleGet(m_url);
-    init();
-    emit statusChanged();
+    stop();
+    start();
 }
 
 void DownloadItem::downloadReadyRead() {
@@ -129,16 +126,13 @@ void DownloadItem::downloadReadyRead() {
         emit statusChanged();
     }
 
-    m_startedSaving = true;
-
     if (-1 == m_file.write(m_reply->readAll())) {
         qWarning() << "Error saving." << m_file.errorString();
     } else {
-        if (m_status != Downloading) {
-            // m_status = Downloading;
-            // emit statusChanged();
-        } else if (m_finishedDownloading)
-            requestFinished();
+
+        m_startedSaving = true;
+
+        // if (m_finishedDownloading) requestFinished();
     }
 }
 
@@ -164,10 +158,8 @@ void DownloadItem::metaDataChanged() {
     QVariant locationHeader = m_reply->header(QNetworkRequest::LocationHeader);
     if (locationHeader.isValid()) {
         m_url = locationHeader.toUrl();
-        // qDebug() << "Redirecting to" << m_url;
-        m_reply->deleteLater();
-        m_reply = The::http()->simpleGet(m_url);
-        init();
+        qDebug() << "Redirecting to" << m_url;
+        tryAgain();
         return;
     }
 
@@ -180,11 +172,11 @@ int DownloadItem::initialBufferSize() {
     // qDebug() << video->getDefinitionCode();
     switch (video->getDefinitionCode()) {
     case 18:
-        return 1024*256;
-    case 22:
         return 1024*512;
+    case 22:
+        return 1024*1024;
     case 37:
-        return 1024*768;
+        return 1024*1024*2;
     }
     return 1024*128;
 }
@@ -201,8 +193,9 @@ void DownloadItem::downloadProgress(qint64 bytesReceived, qint64 bytesTotal) {
     if (m_status != Downloading) {
 
         int neededBytes = (int) (bytesTotal * .005);
-        // qDebug() << bytesReceived << bytesTotal << neededBytes << m_downloadTime.elapsed();
         int bufferSize = initialBufferSize();
+        if (bufferSize > bytesTotal) bufferSize = bytesTotal;
+        // qDebug() << bytesReceived << bytesTotal << neededBytes << bufferSize << m_downloadTime.elapsed();
         if (bytesReceived > bufferSize
             && bytesReceived > neededBytes
             && m_downloadTime.elapsed() > 2000) {
@@ -229,20 +222,20 @@ void DownloadItem::downloadProgress(qint64 bytesReceived, qint64 bytesTotal) {
 
 void DownloadItem::speedCheck() {
     if (!m_reply) return;
-    if (m_bytesReceived < initialBufferSize() / 3) {
-        m_reply->disconnect();
-        m_reply->abort();
-        m_reply->deleteLater();
-        m_reply = 0;
+    int bytesTotal = m_reply->size();
+    int bufferSize = initialBufferSize();
+    if (bufferSize > bytesTotal) bufferSize = 0;
+    if (m_bytesReceived < bufferSize / 3) {
+        stop();
 
         // too slow! retry
         qDebug() << "Retrying...";
-        connect(video, SIGNAL(gotStreamUrl(QUrl)), SLOT(gotStreamUrl(QUrl)));
+        connect(video, SIGNAL(gotStreamUrl(QUrl)), SLOT(gotStreamUrl(QUrl)), Qt::UniqueConnection);
         video->loadStreamUrl();
     }
 }
 
-void DownloadItem::gotStreamUrl(QUrl streamUrl) {
+void DownloadItem::gotStreamUrl(QUrl /*streamUrl*/) {
 
     Video *video = static_cast<Video *>(sender());
     if (!video) {
@@ -251,8 +244,8 @@ void DownloadItem::gotStreamUrl(QUrl streamUrl) {
     }
     video->disconnect(this);
 
-    m_reply = The::http()->simpleGet(video->getStreamUrl());
-    init();
+    m_url = video->getStreamUrl();
+    start();
 }
 
 qint64 DownloadItem::bytesTotal() const {
@@ -285,15 +278,20 @@ double DownloadItem::currentSpeed() const {
 }
 
 void DownloadItem::requestFinished() {
-    m_finishedDownloading = true;
     if (!m_startedSaving) {
         qDebug() << "Request finished but never started saving";
-        if (m_reply) {
-            if (-1 == m_file.write(m_reply->readAll()))
-                qDebug() << "Error saving." << m_file.errorString();
-        }
+        tryAgain();
         return;
     }
+
+    if (m_bytesReceived <= 0) {
+        qDebug() << "Request finished but saved 0 bytes";
+        tryAgain();
+        return;
+    }
+
+    m_finishedDownloading = true;
+
     if (m_status == Starting) {
         m_status = Downloading;
         emit statusChanged();
@@ -307,12 +305,6 @@ void DownloadItem::requestFinished() {
 }
 
 QString DownloadItem::formattedFilesize(qint64 size) {
-    /*
-    if (size < 1024) return tr("%1 bytes").arg(size);
-    else if (size < 1024*1024) return tr("%1 KB").arg(size/1024);
-    else if (size < 1024*1024*1024) return tr("%1 MB").arg(size/1024/1024);
-    else return tr("%1 GB").arg(size/1024/1024/1024);
-    */
     QString unit;
     if (size < 1024) {
         unit = tr("bytes");
@@ -327,13 +319,6 @@ QString DownloadItem::formattedFilesize(qint64 size) {
 }
 
 QString DownloadItem::formattedSpeed(double speed) {
-    /*
-    static const int K = 1024;
-    if (speed < K) return tr("%1 bytes/s").arg(speed);
-    else if (speed < K*K) return tr("%1 KB/s").arg(speed/K);
-    else if (speed < K*K*K) return tr("%1 MB/s").arg(speed/K/K);
-    else return tr("%1 GB/s").arg(speed/K/K/K);
-    */
     int speedInt = (int) speed;
     QString unit;
     if (speedInt < 1024) {
