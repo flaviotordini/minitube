@@ -361,5 +361,6 @@ void SearchView::searchTypeChanged(int index) {
     } else {
         queryEdit->setSuggester(channelSuggest);
     }
+    queryEdit->selectAll();
     queryEdit->setFocus();
 }
