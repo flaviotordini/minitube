@@ -494,7 +494,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="381"/>
         <source>Share the current video using %1</source>
-        <translation type="unfinished"/>
+        <translation>Compartir le video currente usante %1</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="393"/>
@@ -519,7 +519,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="408"/>
         <source>&amp;Stop After This Video</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Stoppar depost de iste video</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="445"/>
@@ -554,7 +554,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="497"/>
         <source>&amp;Share</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Compartir</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="509"/>
@@ -670,7 +670,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="352"/>
         <source>&amp;Manually Start Playing</source>
-        <translation type="unfinished"/>
+        <translation>Initiar le reproduction &amp;manualmente</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="353"/>
@@ -685,7 +685,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="849"/>
         <source>Resume playback</source>
-        <translation type="unfinished"/>
+        <translation>Resumer reproduction</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1055"/>

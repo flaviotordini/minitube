@@ -5,7 +5,7 @@
     <message>
         <location filename="src/AboutView.cpp" line="21"/>
         <source>There&apos;s life outside the browser!</source>
-        <translation>Žije to aj mimo prehliadač!</translation>
+        <translation>Ešte stále existuje život aj mimo prehliadač!</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="22"/>
@@ -15,17 +15,17 @@
     <message>
         <location filename="src/AboutView.cpp" line="26"/>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 je Slobodný Softvér, avšak jeho vývoj si berie značnú dávku času.</translation>
+        <translation>%1 je Slobodným Softvérom, ktorého vývoj si žiada značnú dávku času.</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="27"/>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>Prosím &lt;a href=&apos;%1&apos;&gt;prispejte&lt;/a&gt; na podporenie ďalšieho vývoja %2.</translation>
+        <translation>Prosím o finančnú &lt;a href=&apos;%1&apos;&gt;podporu&lt;/a&gt; pokračujúceho vývoja %2.</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="31"/>
         <source>You may want to try my other apps as well:</source>
-        <translation>Mohli by ste chcieť vyskúšať aj moje ostatné aplikácie:</translation>
+        <translation>Je možné, že ťa zaujmú aj moje ostatné aplikácie:</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="34"/>
@@ -35,22 +35,22 @@
     <message>
         <location filename="src/AboutView.cpp" line="38"/>
         <source>%1, a music player</source>
-        <translation>%1, hudobný prehrávač</translation>
+        <translation>%1, kvalitný hudobný prehrávač</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="44"/>
         <source>Translate %1 to your native language using %2</source>
-        <translation>Preložiť %1 do tvojho materského jazyka pomocou %2</translation>
+        <translation>Prelož %1 do svojho materinského jazyka cez %2</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="49"/>
         <source>Icon designed by %1.</source>
-        <translation>Dizajn ikony od %1.</translation>
+        <translation>Dizajn ikony spravil %1.</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="53"/>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
-        <translation>Uvoľnené pod licenciou &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</translation>
+        <translation>Vydané pod &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="65"/>
@@ -60,12 +60,12 @@
     <message>
         <location filename="src/AboutView.h" line="25"/>
         <source>About</source>
-        <translation>O programe</translation>
+        <translation>O projekte</translation>
     </message>
     <message>
         <location filename="src/AboutView.h" line="27"/>
         <source>What you always wanted to know about %1 and never dared to ask</source>
-        <translation>Všetko čo ste kedy chceli vedieť o %1 a ešte ste sa nespýtali</translation>
+        <translation>Všetko čo chceš o %1 vedieť, bez potreby sa vopred spýtať </translation>
     </message>
 </context>
 <context>
@@ -81,32 +81,32 @@
     <message>
         <location filename="local/src/demostartupview.cpp" line="35"/>
         <source>Please license %1</source>
-        <translation>Prosím obstarajte si licenciu %1</translation>
+        <translation>Licencuj si %1 prosím</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="39"/>
         <source>This demo has expired.</source>
-        <translation>Táto demoverzia expirovala.</translation>
+        <translation>Aktuálna demoverzia expirovala.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="41"/>
         <source>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</source>
-        <translation>Plná verzia Vám umožní sťahovanie videí dlhších ako %1 minút a sledovanie videí bez prerušení.</translation>
+        <translation>S plnou verziou budeš môcť sťahovať videá dlhšie ako %1 minút a sledovanie bude bez prerušení.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="43"/>
         <source>This demo will expire in %1 days.</source>
-        <translation>Táto demoverzia expiruje za %1 dní.</translation>
+        <translation>Aktuálna demoverzia expiruje za %1 dní.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="45"/>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
-        <translation>Zakúpením plnej verzie taktiež podporíte náročnú prácu, ktorú som vložil do vytvorenia %1.</translation>
+        <translation>Zakúpením plnej verzie podporíš námahu, vynaloženú pri tvorbe %1.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="57"/>
         <source>Use Demo</source>
-        <translation>Použiť Demo</translation>
+        <translation>Použiť demoverziu</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="65"/>
@@ -159,7 +159,7 @@
     <message>
         <location filename="src/downloaditem.cpp" line="348"/>
         <source>%4 %5 remaining</source>
-        <translation>%4 %5 zostávajúcich</translation>
+        <translation>zostáva %4 %5</translation>
     </message>
 </context>
 <context>
@@ -167,22 +167,22 @@
     <message>
         <location filename="src/downloadmanager.cpp" line="47"/>
         <source>This is just the demo version of %1.</source>
-        <translation>Toto je iba demoverzia %1.</translation>
+        <translation>Ide o demoverziu %1.</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="49"/>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation>Umožňuje stiahnuť iba videa kratšie ako %1 minút, takže môžte otestovať túto funkcionalitu.</translation>
+        <translation>Umožní ti stiahnuť iba videý kratšie ako %1 minút, takže aspoň môžeš otestovať túto funkcionalitu.</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="55"/>
         <source>Continue</source>
-        <translation>Pokračovať</translation>
+        <translation>Pokračuj</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="56"/>
         <source>Get the full version</source>
-        <translation>Získajte plnú verziu.</translation>
+        <translation>Získať plnú verziu</translation>
     </message>
     <message numerus="yes">
         <location filename="src/downloadmanager.cpp" line="137"/>
@@ -200,7 +200,7 @@
     <message>
         <location filename="src/downloadsettings.cpp" line="38"/>
         <source>Choose the download location</source>
-        <translation>Zmeniť umiestnenie pre sťahovanie</translation>
+        <translation>Zmeniť umiestnenie sťahovaní</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="49"/>
@@ -210,7 +210,7 @@
     <message>
         <location filename="src/downloadsettings.cpp" line="51"/>
         <source>Current downloads will still go in the previous location.</source>
-        <translation>Aktuálne sťahovania pôjdu ešte na predchádzajúce umiestnenie.</translation>
+        <translation>Aktuálne sťahovania sa uložia ešte na predchádzajúcom umiestnení.</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="63"/>
@@ -237,12 +237,12 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="17"/>
         <source>Pause</source>
-        <translation>Pauza</translation>
+        <translation>Pozastaviť</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="18"/>
         <source>Play/Pause</source>
-        <translation>Prehrať/Pauza</translation>
+        <translation>Prehrať/Pozastaviť</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="19"/>
@@ -252,17 +252,17 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="20"/>
         <source>Stop playing after current track</source>
-        <translation>Zastaviť prehrávanie po aktuálnej skladbe</translation>
+        <translation>Zastav hranie po aktuálnom videu</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="21"/>
         <source>Next track</source>
-        <translation>Nasledujúca skladba</translation>
+        <translation>Nasledovné video</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="22"/>
         <source>Previous track</source>
-        <translation>Predchádzajúca skladba</translation>
+        <translation>Predošlé video</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="23"/>
@@ -295,12 +295,12 @@
     <message>
         <location filename="src/ListModel.cpp" line="51"/>
         <source>Searching...</source>
-        <translation>Vyhľadávam...</translation>
+        <translation>Hľadám...</translation>
     </message>
     <message>
         <location filename="src/ListModel.cpp" line="52"/>
         <source>Show %1 More</source>
-        <translation>Zobraz %1 Viac</translation>
+        <translation>Zobraziť %1 ďalších</translation>
     </message>
     <message>
         <location filename="src/ListModel.cpp" line="53"/>
@@ -331,7 +331,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="161"/>
         <source>Stop playback and go back to the search view</source>
-        <translation>Zastaviť prehrávanie a prejsť späť k hľadaniu</translation>
+        <translation>Zastaviť prehrávanie a vrátiť sa k výsledkom hľadania</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="179"/>
@@ -341,13 +341,13 @@
     <message>
         <location filename="src/MainWindow.cpp" line="180"/>
         <source>Skip to the next video</source>
-        <translation>Preskočiť na ďalšie video</translation>
+        <translation>Preskočiť na nasledovné video</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="186"/>
         <location filename="src/MainWindow.cpp" line="835"/>
         <source>&amp;Pause</source>
-        <translation>&amp;Pauza</translation>
+        <translation>&amp;Pozasaviť</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="187"/>
@@ -373,12 +373,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="223"/>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation>Ísť na YouTube stránku videa a zastaviť prehrávanie</translation>
+        <translation>Prejsť na YouTube stránku videa a pozastaviť prehrávanie</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="230"/>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation>Kopírovať odkaz aktuálneho videa z YouTube do schránky</translation>
+        <translation>Kopírovať YouTube odkaz aktuálneho videa do schránky</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="237"/>
@@ -388,7 +388,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="244"/>
         <source>Find other video parts hopefully in the right order</source>
-        <translation>Nájsť zvyšné video časti s trochou šťastia v správnom poradí</translation>
+        <translation>Pokúsiť sa nájsť zvyšné video časti</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="250"/>
@@ -433,7 +433,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="284"/>
         <source>Bye</source>
-        <translation>Majte sa</translation>
+        <translation>Maj sa</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="288"/>
@@ -443,22 +443,22 @@
     <message>
         <location filename="src/MainWindow.cpp" line="290"/>
         <source>%1 on the Web</source>
-        <translation>%1 na Webe</translation>
+        <translation>%1 na Internete</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="296"/>
         <source>Please support the continued development of %1</source>
-        <translation>Prosíme o Vašu podporu pri pokračovaní vývoja %1</translation>
+        <translation>Podpor prosím pokračujúci vývoj %1</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="301"/>
         <source>&amp;About</source>
-        <translation>&amp;O programe</translation>
+        <translation>&amp;O projekte</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="303"/>
         <source>Info about %1</source>
-        <translation>Info o %1</translation>
+        <translation>Informácie o %1</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="311"/>
@@ -479,7 +479,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="360"/>
         <source>Show details about video downloads</source>
-        <translation>Zobraziť detaily o sťahovaniach videí</translation>
+        <translation>Zobraziť detaily o sťahovaní</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="368"/>
@@ -494,7 +494,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="381"/>
         <source>Share the current video using %1</source>
-        <translation>Zdieľať aktuálne video za použitia %1</translation>
+        <translation>Zdieľať aktuálne video cez %1</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="393"/>
@@ -504,7 +504,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="394"/>
         <source>Email</source>
-        <translation>E-mail</translation>
+        <translation>E-mailová adresa</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="398"/>
@@ -519,7 +519,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="408"/>
         <source>&amp;Stop After This Video</source>
-        <translation>&amp;Zastaviť za týmto videom</translation>
+        <translation>&amp;Zastav po tomto videu</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="445"/>
@@ -564,7 +564,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="586"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation>Stlačte %1 pre zvýšenie hlasitosti, %2 pre jej zníženie</translation>
+        <translation>Stlač %1 pre zvýšenie hlasitosti, %2 pre jej zníženie</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="748"/>
@@ -575,12 +575,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="787"/>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation>Chcete ukončiť %1 aj napriek prebiehajúcemu sťahovaniu?</translation>
+        <translation>Chceš ukončiť %1 aj napriek prebiehajúcemu sťahovaniu?</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="788"/>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation>Pokiaľ teraz ukončíte %1, toto sťahovanie bude zrušené.</translation>
+        <translation>Pokiaľ teraz ukončíš %1, prídeš o aktuálne sťahovanie.</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="793"/>
@@ -590,7 +590,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="794"/>
         <source>Wait for download to finish</source>
-        <translation>Počkajte kým prebehne sťahovanie</translation>
+        <translation>Počkať kým skončí sťahovanie</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="940"/>
@@ -600,7 +600,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="1283"/>
         <source>%1 version %2 is now available.</source>
-        <translation>%1 verzia %2 je k dispozícii.</translation>
+        <translation>%1 verzie %2 je k dispozícii.</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1297"/>
@@ -610,7 +610,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="1294"/>
         <source>To get the updated version, download %1 again from the link you received via email and reinstall.</source>
-        <translation>Pre získanie aktualizovanej verzie, stiahnite %1 znova z odkazu, ktorý Vám bol zaslaný na e-mailovú adresu a reinštalujte.</translation>
+        <translation>Pre získanie novšej verzie stiahni %1 z odkazu, ktorý ti bude zaslaný na e-mailovú adresu a preinštaluj aplikáciu.</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1301"/>
@@ -625,12 +625,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="169"/>
         <source>P&amp;revious</source>
-        <translation>&amp;Predchádzajúca</translation>
+        <translation>&amp;Predošlé</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="170"/>
         <source>Go back to the previous track</source>
-        <translation>Ísť na predchádzajúcu skladbu</translation>
+        <translation>Ísť na predošlé video</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="209"/>
@@ -655,17 +655,17 @@
     <message>
         <location filename="src/MainWindow.cpp" line="243"/>
         <source>Find Video &amp;Parts</source>
-        <translation>Nájsť &amp;Časti videa</translation>
+        <translation>Nájsť zvyšné &amp;časti videa</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="271"/>
         <source>&amp;Clear Recent Searches</source>
-        <translation>&amp;Vyčistiť Nedávne hľadania</translation>
+        <translation>&amp;Vyčistiť posledné hľadania</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="295"/>
         <source>Make a &amp;Donation</source>
-        <translation>Dať &amp;Príspevok</translation>
+        <translation>Darovať &amp;príspevok</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="352"/>
@@ -715,7 +715,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="1165"/>
         <source>Your privacy is now safe</source>
-        <translation>Vaše súkromie je teraz v bezpečí</translation>
+        <translation>Nemaj obavy o súkromie</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1180"/>
@@ -753,32 +753,32 @@
     <message>
         <location filename="src/MediaView.cpp" line="521"/>
         <source>You can now paste the YouTube link into another application</source>
-        <translation>Teraz môžte prilepiť YouTube odkaz do inej aplikácie</translation>
+        <translation>Takto môžeš prilepiť YouTube odkaz do inej aplikácie</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="529"/>
         <source>You can now paste the video stream URL into another application</source>
-        <translation>Teraz môžte prilepiť odkaz video streamu do inej aplikácie</translation>
+        <translation>Budeš môcť prilepiť odkaz video streamu do inej aplikácie</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="530"/>
         <source>The link will be valid only for a limited time.</source>
-        <translation>Odkaz bude platný len po určitú dobu.</translation>
+        <translation>Odkaz bude platný len obmedzenú dobu.</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="629"/>
         <source>This is just the demo version of %1.</source>
-        <translation>Toto je iba demoverzia %1.</translation>
+        <translation>Ide o demoverziu %1.</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="630"/>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation>Umožňuje Vám otestovať aplikáciu a zistiť ako pre Vás funguje.</translation>
+        <translation>Umožní ti aplikáciu vyskúšať a pohodlne otestovať.</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="660"/>
         <source>Continue</source>
-        <translation>Pokračovať</translation>
+        <translation>Pokračuj</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="749"/>
@@ -806,7 +806,7 @@
     <message>
         <location filename="src/MediaView.cpp" line="637"/>
         <source>Get the full version</source>
-        <translation>Získajte plnú verziu</translation>
+        <translation>Získať plnú verziu</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="682"/>
@@ -837,7 +837,7 @@
     <message>
         <location filename="src/playlist/PrettyItemDelegate.cpp" line="293"/>
         <source>Preparing</source>
-        <translation>Pripravujem</translation>
+        <translation>Pripravovanie</translation>
     </message>
     <message>
         <location filename="src/playlist/PrettyItemDelegate.cpp" line="295"/>
@@ -862,7 +862,7 @@
     <message>
         <location filename="src/playlist/PrettyItemDelegate.cpp" line="345"/>
         <source>Show in %1</source>
-        <translation>Zobraz v %1</translation>
+        <translation>Zobraziť v %1</translation>
     </message>
     <message>
         <location filename="src/playlist/PrettyItemDelegate.cpp" line="347"/>
@@ -888,18 +888,18 @@
     <message>
         <location filename="src/SearchView.cpp" line="79"/>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
-        <translation>Vitajte v &lt;a href=&apos;%1&gt;%2&lt;/a&gt;,</translation>
+        <translation>Vitaj v aplikácii &lt;a href=&apos;%1&gt;%2&lt;/a&gt;,</translation>
     </message>
     <message>
         <location filename="src/SearchView.cpp" line="46"/>
         <source>Get the full version</source>
-        <translation>Získajte plnú verziu</translation>
+        <translation>Získať plnú verziu</translation>
     </message>
     <message>
         <location filename="src/SearchView.cpp" line="93"/>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation>Vložiť</translation>
+        <translation>Vlož</translation>
     </message>
     <message>
         <location filename="src/SearchView.cpp" line="98"/>
@@ -909,32 +909,32 @@
     <message>
         <location filename="src/SearchView.cpp" line="99"/>
         <source>a channel</source>
-        <translation>kanál</translation>
+        <translation>názov kanálu</translation>
     </message>
     <message>
         <location filename="src/SearchView.cpp" line="104"/>
         <source>to start watching videos.</source>
-        <translation>pre začatie sledovania.</translation>
+        <translation>pre spustenie sledovania.</translation>
     </message>
     <message>
         <location filename="src/SearchView.cpp" line="128"/>
         <source>Watch</source>
-        <translation>Sledovať</translation>
+        <translation>Pozerať</translation>
     </message>
     <message>
         <location filename="src/SearchView.cpp" line="146"/>
         <source>Recent keywords</source>
-        <translation>Nedávne kľúčové slová</translation>
+        <translation>Posledné kľúčové slová</translation>
     </message>
     <message>
         <location filename="src/SearchView.cpp" line="159"/>
         <source>Recent channels</source>
-        <translation>Nedávne kanály</translation>
+        <translation>Posledné kanály</translation>
     </message>
     <message>
         <location filename="src/SearchView.h" line="26"/>
         <source>Make yourself comfortable</source>
-        <translation>Pohodlne sa usaďte</translation>
+        <translation>Pohodlne sa usaď</translation>
     </message>
 </context>
 <context>
@@ -942,7 +942,7 @@
     <message>
         <location filename="src/video.cpp" line="200"/>
         <source>Cannot get video stream for %1</source>
-        <translation>Nebolo možné získať video stream pre %1</translation>
+        <translation>Nedostupný video stream pre %1</translation>
     </message>
     <message>
         <location filename="src/video.cpp" line="218"/>

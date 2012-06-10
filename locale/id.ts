@@ -514,12 +514,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="403"/>
         <source>&amp;Float on Top</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Mengambang ke puncak</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="408"/>
         <source>&amp;Stop After This Video</source>
-        <translation type="unfinished"/>
+        <translation>&amp;berhenti setelah video ini</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="445"/>
@@ -529,7 +529,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="447"/>
         <source>Buy %1...</source>
-        <translation type="unfinished"/>
+        <translation>Beli %1...</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="458"/>
@@ -625,7 +625,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="169"/>
         <source>P&amp;revious</source>
-        <translation type="unfinished"/>
+        <translation>S&amp;ebelumnya</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="170"/>
@@ -635,17 +635,17 @@
     <message>
         <location filename="src/MainWindow.cpp" line="209"/>
         <source>&amp;Compact Mode</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Model kompak</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="222"/>
         <source>Open the &amp;YouTube Page</source>
-        <translation type="unfinished"/>
+        <translation>Buka &amp;Halaman YouTube</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="229"/>
         <source>Copy the YouTube &amp;Link</source>
-        <translation type="unfinished"/>
+        <translation>Salin YouTube &amp;Pintasan</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="236"/>
@@ -655,27 +655,27 @@
     <message>
         <location filename="src/MainWindow.cpp" line="243"/>
         <source>Find Video &amp;Parts</source>
-        <translation type="unfinished"/>
+        <translation>Mencari Video &amp;Perkakas</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="271"/>
         <source>&amp;Clear Recent Searches</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Bersihkan Jejak Pencarian</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="295"/>
         <source>Make a &amp;Donation</source>
-        <translation type="unfinished"/>
+        <translation>Buat &amp;Sumbangan</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="352"/>
         <source>&amp;Manually Start Playing</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Mulai Memainkan secara Manual</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="353"/>
         <source>Manually start playing videos</source>
-        <translation type="unfinished"/>
+        <translation>Mulai memainkan video secara manual</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="848"/>
@@ -725,12 +725,12 @@
     <message>
         <location filename="local/mac/macsupport.cpp" line="58"/>
         <source>&amp;Window</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Jendela</translation>
     </message>
     <message>
         <location filename="local/mac/macsupport.cpp" line="61"/>
         <source>&amp;Minimize</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Minimalkan</translation>
     </message>
 </context>
 <context>

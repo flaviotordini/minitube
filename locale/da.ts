@@ -514,7 +514,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="403"/>
         <source>&amp;Float on Top</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Behold øverst</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="408"/>
@@ -630,37 +630,38 @@
     <message>
         <location filename="src/MainWindow.cpp" line="170"/>
         <source>Go back to the previous track</source>
-        <translation type="unfinished"/>
+        <translation>Gå tilbage til forrige nummer</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="209"/>
         <source>&amp;Compact Mode</source>
-        <translation type="unfinished"/>
+        <translation>%</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="222"/>
         <source>Open the &amp;YouTube Page</source>
-        <translation type="unfinished"/>
+        <translation>Åbn &amp;Youtube-siden</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="229"/>
         <source>Copy the YouTube &amp;Link</source>
-        <translation type="unfinished"/>
+        <translation>Kopier &amp;link til Youtube</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="236"/>
         <source>Copy the Video Stream &amp;URL</source>
-        <translation type="unfinished"/>
+        <translation>	
+Kopiér &amp;URL&apos;en til videostrømmen</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="243"/>
         <source>Find Video &amp;Parts</source>
-        <translation type="unfinished"/>
+        <translation>Find dele af videoen</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="271"/>
         <source>&amp;Clear Recent Searches</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ryd seneste søgninger</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="295"/>
@@ -670,12 +671,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="352"/>
         <source>&amp;Manually Start Playing</source>
-        <translation type="unfinished"/>
+        <translation>Start afspilning &amp;manuelt</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="353"/>
         <source>Manually start playing videos</source>
-        <translation type="unfinished"/>
+        <translation>Start afspilning af videoer manuelt</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="848"/>

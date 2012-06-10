@@ -5,7 +5,7 @@
     <message>
         <location filename="src/AboutView.cpp" line="21"/>
         <source>There&apos;s life outside the browser!</source>
-        <translation>Există viaţă dincolo de browser!</translation>
+        <translation>Există viață dincolo de browser!</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="22"/>
@@ -15,42 +15,42 @@
     <message>
         <location filename="src/AboutView.cpp" line="26"/>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 este un program gratuit, dar dezvoltarea acestuia necesită timp preţios.</translation>
+        <translation>%1 este un program gratuit, dar dezvoltarea acestuia necesită timp prețios.</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="27"/>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>Vă rugăm să &lt;a href=&apos;%1&apos;&gt;donaţi&lt;/a&gt; pentru a ajuta la continuarea dezvoltării %2.</translation>
+        <translation>Vă rugăm să &lt;a href=&apos;%1&apos;&gt;donați&lt;/a&gt; pentru a ajuta la continuarea dezvoltării %2.</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="31"/>
         <source>You may want to try my other apps as well:</source>
-        <translation type="unfinished"/>
+        <translation>Puteți încerca și celelalte aplicații ale mele:</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="34"/>
         <source>%1, a YouTube music player</source>
-        <translation type="unfinished"/>
+        <translation>%1, un player pentru colecția muzicală de pe YouTube</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="38"/>
         <source>%1, a music player</source>
-        <translation type="unfinished"/>
+        <translation>%1, un player pentru colecția muzicală proprie</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="44"/>
         <source>Translate %1 to your native language using %2</source>
-        <translation type="unfinished"/>
+        <translation>Tradu %1 în limba proprie folosind %2</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="49"/>
         <source>Icon designed by %1.</source>
-        <translation>Iconul a fost conceput de %1.</translation>
+        <translation>Iconița a fost concepută de %1.</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="53"/>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
-        <translation>Oferit sub &lt;a href=&apos;%1&apos;&gt;Licenţa Publică Generală GNU&lt;/a&gt;</translation>
+        <translation>Oferit sub &lt;a href=&apos;%1&apos;&gt;Licența Publică Generală GNU&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="65"/>
@@ -65,7 +65,7 @@
     <message>
         <location filename="src/AboutView.h" line="27"/>
         <source>What you always wanted to know about %1 and never dared to ask</source>
-        <translation>Tot ce ai vrut să ştii despre %1 dar n-ai vrut să îndrăzneşti a întreba</translation>
+        <translation>Tot ce ai vrut să știi despre %1 dar nu ai îndrăznit să întrebi</translation>
     </message>
 </context>
 <context>
@@ -73,7 +73,7 @@
     <message>
         <location filename="src/searchlineedit.cpp" line="56"/>
         <source>Clear</source>
-        <translation>Şterge</translation>
+        <translation>Șterge</translation>
     </message>
 </context>
 <context>
@@ -81,37 +81,37 @@
     <message>
         <location filename="local/src/demostartupview.cpp" line="35"/>
         <source>Please license %1</source>
-        <translation type="unfinished"/>
+        <translation>Licențiază %1</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="39"/>
         <source>This demo has expired.</source>
-        <translation type="unfinished"/>
+        <translation>Acest demo a expirat.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="41"/>
         <source>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</source>
-        <translation type="unfinished"/>
+        <translation>Versiunea integrală permite descărcarea videoclipurilor mai lungi de %1 minute și vizualizarea neîntreruptă a acestora.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="43"/>
         <source>This demo will expire in %1 days.</source>
-        <translation type="unfinished"/>
+        <translation>Acest demo va expira în %1 zile.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="45"/>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
-        <translation type="unfinished"/>
+        <translation>Cumpărând versiunea integrală sprijini munca mea depusă în realizarea %1.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="57"/>
         <source>Use Demo</source>
-        <translation type="unfinished"/>
+        <translation>Folosește demo</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="65"/>
         <source>Get the full version</source>
-        <translation>Ia versiunea completă</translation>
+        <translation>Obține versiunea integrală</translation>
     </message>
 </context>
 <context>
@@ -119,32 +119,32 @@
     <message>
         <location filename="src/downloaditem.cpp" line="308"/>
         <source>bytes</source>
-        <translation>octeţi</translation>
+        <translation>bytes</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="311"/>
         <source>KB</source>
-        <translation>kiloocteţi</translation>
+        <translation>KB</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="314"/>
         <source>MB</source>
-        <translation>megaocteţi</translation>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="330"/>
         <source>bytes/sec</source>
-        <translation>octeţi/secundă</translation>
+        <translation>bytes/sec</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="333"/>
         <source>KB/sec</source>
-        <translation>kiloocteţi/secundă</translation>
+        <translation>KB/sec</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="336"/>
         <source>MB/sec</source>
-        <translation>megaocteţi/secundă</translation>
+        <translation>MB/sec</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="342"/>
@@ -167,12 +167,12 @@
     <message>
         <location filename="src/downloadmanager.cpp" line="47"/>
         <source>This is just the demo version of %1.</source>
-        <translation>Acesta este doar o versiune demo a %1.</translation>
+        <translation>Aceasta este doar o versiune demo a %1.</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="49"/>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation>Poate doar să descarce clipuri mai mici de %1 minute în aşa fel încât să puteţi testa funcţionalitatea de descărcare.</translation>
+        <translation>Poate să descarce doar videoclipurile mai mici de %1 minute în așa fel încât să puteți testa funcționalitatea de descărcare.</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="55"/>
@@ -182,12 +182,12 @@
     <message>
         <location filename="src/downloadmanager.cpp" line="56"/>
         <source>Get the full version</source>
-        <translation>Ia versiunea completă</translation>
+        <translation>ObțineIa versiunea integrală</translation>
     </message>
     <message numerus="yes">
         <location filename="src/downloadmanager.cpp" line="137"/>
         <source>%n Download(s)</source>
-        <translation><numerusform>%n Descărcare (descărcări)</numerusform><numerusform>%n Descărcare (descărcări)</numerusform><numerusform>%n Descărcare (descărcări)</numerusform></translation>
+        <translation><numerusform>%n Descărcare</numerusform><numerusform>%n Descărcări</numerusform><numerusform>%n Descărcări</numerusform></translation>
     </message>
 </context>
 <context>
@@ -195,22 +195,22 @@
     <message>
         <location filename="src/downloadsettings.cpp" line="14"/>
         <source>Change location...</source>
-        <translation>Schimbare locaţie...</translation>
+        <translation>Schimbă locația...</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="38"/>
         <source>Choose the download location</source>
-        <translation>Alege locaţia de descărcare</translation>
+        <translation>Alege locația de descărcare</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="49"/>
         <source>Download location changed.</source>
-        <translation>Locaţia de descărcare a fost schimbată.</translation>
+        <translation>Locația de descărcare a fost schimbată.</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="51"/>
         <source>Current downloads will still go in the previous location.</source>
-        <translation>Fişierele în curs de descărcare vor fi salvate în locaţia anterioară.</translation>
+        <translation>Fişierele în curs de descărcare vor fi salvate în locația anterioară.</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="63"/>
@@ -267,12 +267,12 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="23"/>
         <source>Increase volume</source>
-        <translation>Creştere volum</translation>
+        <translation>Creștere volumul</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="24"/>
         <source>Decrease volume</source>
-        <translation>Descreştere volum</translation>
+        <translation>Descreștere volumul</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="25"/>
@@ -282,12 +282,12 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="26"/>
         <source>Seek forward</source>
-        <translation>Căutare înainte</translation>
+        <translation>Caută înainte</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="27"/>
         <source>Seek backward</source>
-        <translation>Căutare înapoi</translation>
+        <translation>Caută înapoi</translation>
     </message>
 </context>
 <context>
@@ -300,7 +300,7 @@
     <message>
         <location filename="src/ListModel.cpp" line="52"/>
         <source>Show %1 More</source>
-        <translation>Afişează încă %1</translation>
+        <translation>Afișează încă %1</translation>
     </message>
     <message>
         <location filename="src/ListModel.cpp" line="53"/>
@@ -331,7 +331,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="161"/>
         <source>Stop playback and go back to the search view</source>
-        <translation>Opreşte redarea şi întoarce-te la căsuţa de căutare</translation>
+        <translation>Oprește redarea și întoarce-te la căsuța de căutare</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="179"/>
@@ -363,12 +363,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="194"/>
         <source>Go full screen</source>
-        <translation>Schimbă modul de vizualizare pe tot ecranul</translation>
+        <translation>Vizualizează pe tot ecranul</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="210"/>
         <source>Hide the playlist and the toolbar</source>
-        <translation>Ascunde lista de redare şi bara de unelte</translation>
+        <translation>Ascunde lista de redare și bara de unelte</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="223"/>
@@ -378,27 +378,27 @@
     <message>
         <location filename="src/MainWindow.cpp" line="230"/>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation>Copiază link-ul videoclipului curent în clipboard</translation>
+        <translation>Copiază adresa videoclipului YouTube curent în clipboard</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="237"/>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation>Copiază adresa stream-ului în clipboard</translation>
+        <translation>Copiază adresa fluxului video curent în clipboard</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="244"/>
         <source>Find other video parts hopefully in the right order</source>
-        <translation type="unfinished"/>
+        <translation>Caută alte părți ale videoclipului</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="250"/>
         <source>&amp;Remove</source>
-        <translation>Ş&amp;terge</translation>
+        <translation>Ș&amp;terge</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="251"/>
         <source>Remove the selected videos from the playlist</source>
-        <translation>Şterge clipul selectat din lista de redare</translation>
+        <translation>Șterge videoclipul selectat din lista de redare</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="257"/>
@@ -423,12 +423,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="276"/>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation>Curăţă istoricul de căutări. Această acţiune nu poate fi anulată.</translation>
+        <translation>Curăță istoricul de căutări. Acțiune ireversibilă.</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="281"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Ieşire</translation>
+        <translation>&amp;Ieșire</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="284"/>
@@ -448,7 +448,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="296"/>
         <source>Please support the continued development of %1</source>
-        <translation>Te rog să susţii dezvoltarea aplicaţiei %1</translation>
+        <translation>Te rog să susții dezvoltarea aplicației %1</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="301"/>
@@ -458,7 +458,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="303"/>
         <source>Info about %1</source>
-        <translation>Informaţii despre %1</translation>
+        <translation>Informații despre %1</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="311"/>
@@ -489,22 +489,22 @@
     <message>
         <location filename="src/MainWindow.cpp" line="369"/>
         <source>Download the current video</source>
-        <translation>Descarcă clipul curent</translation>
+        <translation>Descarcă videoclipul curent</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="381"/>
         <source>Share the current video using %1</source>
-        <translation type="unfinished"/>
+        <translation>Împărtășește videoclipul curent folosind %1</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="393"/>
         <source>&amp;Email</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Email</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="394"/>
         <source>Email</source>
-        <translation type="unfinished"/>
+        <translation>Email</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="398"/>
@@ -514,27 +514,27 @@
     <message>
         <location filename="src/MainWindow.cpp" line="403"/>
         <source>&amp;Float on Top</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Detașează</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="408"/>
         <source>&amp;Stop After This Video</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Oprește După Acest Videoclip</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="445"/>
         <source>&amp;Application</source>
-        <translation>&amp;Aplicaţie</translation>
+        <translation>&amp;Aplicație</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="447"/>
         <source>Buy %1...</source>
-        <translation type="unfinished"/>
+        <translation>Cumpără %1...</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="458"/>
         <source>&amp;Playback</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Redare</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="472"/>
@@ -549,12 +549,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="490"/>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>Vi&amp;zualizare</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="497"/>
         <source>&amp;Share</source>
-        <translation type="unfinished"/>
+        <translation>Î&amp;mpărtășește</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="509"/>
@@ -575,47 +575,47 @@
     <message>
         <location filename="src/MainWindow.cpp" line="787"/>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation>Doriţi să ieşiţi din %1 cu o descărcare în progres?</translation>
+        <translation>Doriţi să ieșiți din %1 cu o descărcare în progres?</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="788"/>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation>Dacă ieşiţi acum din %1, procesul de descărcare va fi anulat.</translation>
+        <translation>Dacă ieșiți acum din %1, procesul de descărcare va fi anulat.</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="793"/>
         <source>Close and cancel download</source>
-        <translation>Închide şi anulează descărcarea</translation>
+        <translation>Închide și anulează descărcarea</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="794"/>
         <source>Wait for download to finish</source>
-        <translation>Aşteaptă ca descărcarea să se încheie</translation>
+        <translation>Așteaptă ca descărcarea să se încheie</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="940"/>
         <source>Leave &amp;Full Screen</source>
-        <translation type="unfinished"/>
+        <translation>Ieși din Ec&amp;ran Complet</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1283"/>
         <source>%1 version %2 is now available.</source>
-        <translation type="unfinished"/>
+        <translation>Versiunea %1 a %2 este acum disponibilă.</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1297"/>
         <source>Remind me later</source>
-        <translation type="unfinished"/>
+        <translation>Reamintește-mi mai târziu</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1294"/>
         <source>To get the updated version, download %1 again from the link you received via email and reinstall.</source>
-        <translation type="unfinished"/>
+        <translation>Pentru a avea versiunea la zi, descarcă %1 folosind adresa de internet primită prin email și reinstalează aplicația.</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1301"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Actualizează</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="828"/>
@@ -625,57 +625,57 @@
     <message>
         <location filename="src/MainWindow.cpp" line="169"/>
         <source>P&amp;revious</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Anterioare</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="170"/>
         <source>Go back to the previous track</source>
-        <translation type="unfinished"/>
+        <translation>Mergi înapoi la piesa precedentă</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="209"/>
         <source>&amp;Compact Mode</source>
-        <translation type="unfinished"/>
+        <translation>Modul &amp;Compact</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="222"/>
         <source>Open the &amp;YouTube Page</source>
-        <translation type="unfinished"/>
+        <translation>Deschide Pagina &amp;YouTube</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="229"/>
         <source>Copy the YouTube &amp;Link</source>
-        <translation type="unfinished"/>
+        <translation>Copiază &amp;adresa videoclipului YouTube</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="236"/>
         <source>Copy the Video Stream &amp;URL</source>
-        <translation type="unfinished"/>
+        <translation>Copiază adresa &amp;fluxului video</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="243"/>
         <source>Find Video &amp;Parts</source>
-        <translation type="unfinished"/>
+        <translation>Caută &amp;Părți ale Videoclipului</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="271"/>
         <source>&amp;Clear Recent Searches</source>
-        <translation type="unfinished"/>
+        <translation>Șt&amp;erge Căutările Recente</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="295"/>
         <source>Make a &amp;Donation</source>
-        <translation type="unfinished"/>
+        <translation>Fă o &amp;Donație</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="352"/>
         <source>&amp;Manually Start Playing</source>
-        <translation type="unfinished"/>
+        <translation>Pornește Redarea &amp;Manual</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="353"/>
         <source>Manually start playing videos</source>
-        <translation type="unfinished"/>
+        <translation>Pornește redarea videoclipurilor manual</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="848"/>
@@ -710,12 +710,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="1129"/>
         <source>Maximum video definition set to %1</source>
-        <translation>Rezoluţia maxima a videoclipului este setată la %1</translation>
+        <translation>Rezoluția maxima a videoclipului este setată la %1</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1165"/>
         <source>Your privacy is now safe</source>
-        <translation>Intimitatea dumneavoastră este acum în siguranţă</translation>
+        <translation>Intimitatea dumneavoastră este acum în siguranță</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1180"/>
@@ -725,12 +725,12 @@
     <message>
         <location filename="local/mac/macsupport.cpp" line="58"/>
         <source>&amp;Window</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Fereastră</translation>
     </message>
     <message>
         <location filename="local/mac/macsupport.cpp" line="61"/>
         <source>&amp;Minimize</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Minimizare</translation>
     </message>
 </context>
 <context>
@@ -753,27 +753,27 @@
     <message>
         <location filename="src/MediaView.cpp" line="521"/>
         <source>You can now paste the YouTube link into another application</source>
-        <translation>Acum poţi lipi link-ul într-o altă aplicaţie</translation>
+        <translation>Acum poți adăuga adresa YouTube într-o altă aplicație</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="529"/>
         <source>You can now paste the video stream URL into another application</source>
-        <translation>Acum poţi lipi link-ul stream-ului într-o altă aplicaţie</translation>
+        <translation>Acum poți adăuga adresa fluxului video într-o altă aplicație</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="530"/>
         <source>The link will be valid only for a limited time.</source>
-        <translation>Link-ul va fi valid doar pentru o perioadă limitată de timp.</translation>
+        <translation>Adresa va fi validă doar pentru o perioadă limitată de timp.</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="629"/>
         <source>This is just the demo version of %1.</source>
-        <translation>Aceasta este doar o versiune demonstrativă a %1.</translation>
+        <translation>Aceasta este doar o versiune demo a %1.</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="630"/>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation>Vă permite să testaţi aplicaţia şi să vedeţi dacă funcţionează.</translation>
+        <translation>Vă permite să testați aplicația și să vedeți dacă funcționează.</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="660"/>
@@ -784,29 +784,29 @@
         <location filename="src/MediaView.cpp" line="749"/>
         <source>of</source>
         <comment>Used in video parts, as in '2 of 3'</comment>
-        <translation type="unfinished"/>
+        <translation>din</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="761"/>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
-        <translation type="unfinished"/>
+        <translation>partea</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="763"/>
         <source>episode</source>
         <comment>This is for video parts, as in 'Cool series - episode 1'</comment>
-        <translation type="unfinished"/>
+        <translation>episodul</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="821"/>
         <source>Sent from %1</source>
-        <translation type="unfinished"/>
+        <translation>Trimis din %1</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="637"/>
         <source>Get the full version</source>
-        <translation>Ia versiunea completă</translation>
+        <translation>Obține versiunea integrală</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="682"/>
@@ -819,7 +819,7 @@
     <message>
         <location filename="src/networkaccess.cpp" line="214"/>
         <source>Network error: %1</source>
-        <translation>Eroare de reţea : %1</translation>
+        <translation>Eroare de rețea : %1</translation>
     </message>
 </context>
 <context>
@@ -842,7 +842,7 @@
     <message>
         <location filename="src/playlist/PrettyItemDelegate.cpp" line="295"/>
         <source>Failed</source>
-        <translation>Eşuat</translation>
+        <translation>Eșuat</translation>
     </message>
     <message>
         <location filename="src/playlist/PrettyItemDelegate.cpp" line="297"/>
@@ -857,7 +857,7 @@
     <message>
         <location filename="src/playlist/PrettyItemDelegate.cpp" line="335"/>
         <source>Stop downloading</source>
-        <translation>Opreşte descărcarea</translation>
+        <translation>Oprește descărcarea</translation>
     </message>
     <message>
         <location filename="src/playlist/PrettyItemDelegate.cpp" line="345"/>
@@ -867,7 +867,7 @@
     <message>
         <location filename="src/playlist/PrettyItemDelegate.cpp" line="347"/>
         <source>Open parent folder</source>
-        <translation>Deschide folder-ul părinte</translation>
+        <translation>Deschide directorul părinte</translation>
     </message>
     <message>
         <location filename="src/playlist/PrettyItemDelegate.cpp" line="356"/>
@@ -880,7 +880,7 @@
     <message>
         <location filename="src/searchlineedit.cpp" line="177"/>
         <source>Search</source>
-        <translation>Căutare</translation>
+        <translation>Caută</translation>
     </message>
 </context>
 <context>
@@ -888,18 +888,18 @@
     <message>
         <location filename="src/SearchView.cpp" line="79"/>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
-        <translation>Bine aţi venit la &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
+        <translation>Bine ați venit la &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
     </message>
     <message>
         <location filename="src/SearchView.cpp" line="46"/>
         <source>Get the full version</source>
-        <translation>Ia versiunea completă</translation>
+        <translation>Obține versiunea integrală</translation>
     </message>
     <message>
         <location filename="src/SearchView.cpp" line="93"/>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation>Introduceţi</translation>
+        <translation>Introduceți</translation>
     </message>
     <message>
         <location filename="src/SearchView.cpp" line="98"/>
@@ -914,12 +914,12 @@
     <message>
         <location filename="src/SearchView.cpp" line="104"/>
         <source>to start watching videos.</source>
-        <translation>pentru a începe să vizionaţi videoclipuri.</translation>
+        <translation>pentru a începe să vizionați videoclipuri.</translation>
     </message>
     <message>
         <location filename="src/SearchView.cpp" line="128"/>
         <source>Watch</source>
-        <translation>Urmăreşte</translation>
+        <translation>Urmărește</translation>
     </message>
     <message>
         <location filename="src/SearchView.cpp" line="146"/>
@@ -942,7 +942,7 @@
     <message>
         <location filename="src/video.cpp" line="200"/>
         <source>Cannot get video stream for %1</source>
-        <translation>Nu pot prelua streamul video pentru %1</translation>
+        <translation>Nu poate fi accesat fluxul video pentru %1</translation>
     </message>
     <message>
         <location filename="src/video.cpp" line="218"/>

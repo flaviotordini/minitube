@@ -20,7 +20,7 @@
     <message>
         <location filename="src/AboutView.cpp" line="27"/>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>Ver venleg og &lt;a href=&apos;%1&apos;&gt;doner&lt;/a&gt; for og støtta vidare utvikling av %2.</translation>
+        <translation>Ver venleg og &lt;a href=&apos;%1&apos;&gt;doner&lt;/a&gt; for å støtta vidare utvikling av %2.</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="31"/>
@@ -50,7 +50,7 @@
     <message>
         <location filename="src/AboutView.cpp" line="53"/>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
-        <translation>Utgjeve under &lt;a href=&apos;%1&apos;&gt;Gnu General Public License&lt;/a&gt;</translation>
+        <translation>Utgjeve under &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="65"/>
@@ -252,7 +252,7 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="20"/>
         <source>Stop playing after current track</source>
-        <translation>Stopp avspilling etter denne videoen.</translation>
+        <translation>Stopp avspelinga etter denne videoen</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="21"/>
@@ -331,7 +331,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="161"/>
         <source>Stop playback and go back to the search view</source>
-        <translation>Stoppar avspilling og gå tilbake til søkevisninga</translation>
+        <translation>Stoppar avspeling og går tilbake til søkjevisinga</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="179"/>
@@ -353,7 +353,7 @@
         <location filename="src/MainWindow.cpp" line="187"/>
         <location filename="src/MainWindow.cpp" line="836"/>
         <source>Pause playback</source>
-        <translation>Sett avspilling på pause</translation>
+        <translation>Set avspeling på pause</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="193"/>
@@ -373,7 +373,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="223"/>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation>Gå til video-sida på YouTube og sett avspillinga på pause</translation>
+        <translation>Gå til video-sida på YouTube og set avspelinga på pause</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="230"/>
@@ -524,7 +524,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="445"/>
         <source>&amp;Application</source>
-        <translation>Applikasjon</translation>
+        <translation>&amp;Program</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="447"/>
@@ -534,7 +534,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="458"/>
         <source>&amp;Playback</source>
-        <translation>&amp;Avspilling</translation>
+        <translation>&amp;Avspeling</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="472"/>
@@ -685,7 +685,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="849"/>
         <source>Resume playback</source>
-        <translation>Gjenoppta avspilling</translation>
+        <translation>Gjenoppta avspeling</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1055"/>
@@ -758,7 +758,7 @@
     <message>
         <location filename="src/MediaView.cpp" line="529"/>
         <source>You can now paste the video stream URL into another application</source>
-        <translation>Du kan no lima inn videostraumlenkja i ein annan applikasjon</translation>
+        <translation>Du kan no lima inn videostraumlenkja i eit anna program</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="530"/>
@@ -773,7 +773,7 @@
     <message>
         <location filename="src/MediaView.cpp" line="630"/>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation>Dette gjev deg høvet til å prøva ut applikasjonen og sjå om du han er noko for deg.</translation>
+        <translation>Dette lèt prøva ut programmet og sjå om det er noko for deg.</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="660"/>

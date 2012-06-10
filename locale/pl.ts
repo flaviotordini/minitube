@@ -40,7 +40,7 @@
     <message>
         <location filename="src/AboutView.cpp" line="44"/>
         <source>Translate %1 to your native language using %2</source>
-        <translation type="unfinished"/>
+        <translation>Przetłumacz %1 na swój język używając %2</translation>
     </message>
     <message>
         <location filename="src/AboutView.cpp" line="49"/>
@@ -86,7 +86,7 @@
     <message>
         <location filename="local/src/demostartupview.cpp" line="39"/>
         <source>This demo has expired.</source>
-        <translation type="unfinished"/>
+        <translation>Te demo wygasło.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="41"/>
@@ -96,7 +96,7 @@
     <message>
         <location filename="local/src/demostartupview.cpp" line="43"/>
         <source>This demo will expire in %1 days.</source>
-        <translation type="unfinished"/>
+        <translation>Te demo wygasa za %1 dni.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="45"/>
@@ -106,7 +106,7 @@
     <message>
         <location filename="local/src/demostartupview.cpp" line="57"/>
         <source>Use Demo</source>
-        <translation type="unfinished"/>
+        <translation>Użyj Dema</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="65"/>
@@ -499,12 +499,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="393"/>
         <source>&amp;Email</source>
-        <translation type="unfinished"/>
+        <translation>&amp;E-mail</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="394"/>
         <source>Email</source>
-        <translation type="unfinished"/>
+        <translation>E-mail</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="398"/>
@@ -529,7 +529,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="447"/>
         <source>Buy %1...</source>
-        <translation type="unfinished"/>
+        <translation>Kup %1...</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="458"/>
@@ -605,7 +605,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="1297"/>
         <source>Remind me later</source>
-        <translation type="unfinished"/>
+        <translation>Przypomnij mi później</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="1294"/>
@@ -615,7 +615,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="1301"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizuj</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="828"/>
@@ -625,7 +625,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="169"/>
         <source>P&amp;revious</source>
-        <translation type="unfinished"/>
+        <translation>Pop&amp;rzedni</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="170"/>
@@ -730,7 +730,7 @@
     <message>
         <location filename="local/mac/macsupport.cpp" line="61"/>
         <source>&amp;Minimize</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Minimalizuj</translation>
     </message>
 </context>
 <context>
@@ -784,19 +784,19 @@
         <location filename="src/MediaView.cpp" line="749"/>
         <source>of</source>
         <comment>Used in video parts, as in '2 of 3'</comment>
-        <translation type="unfinished"/>
+        <translation>z</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="761"/>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
-        <translation type="unfinished"/>
+        <translation>część</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="763"/>
         <source>episode</source>
         <comment>This is for video parts, as in 'Cool series - episode 1'</comment>
-        <translation type="unfinished"/>
+        <translation>odcinek</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="821"/>
