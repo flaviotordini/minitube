@@ -1,3 +1,19 @@
+1.8 - June 28, 2012
+- Enhanced Compact Mode: window on top, can be made smaller and remembers its own position
+- Adaptive video title font size
+- Unity & GNOME 3 actions (aka Quicklists)
+- Mac Sandbox support
+- Added missing menu item to restore hidden window, as per the OS X HIG
+- Fixed duplicate channel names in suggestions popup
+- More responsive UI while loading videos on the Mac
+- Selecting a recent keyword now also sets the searchbox text
+- Selecting a suggestion now also sets the searchbox text on the Mac
+- Fixed search box being erroneously focused on the Mac
+- Fixed wrong localization of some menu items on the Mac
+- Fixed playback not starting or being interrupted on Linux
+- Seeking is now disabled on Linux until the video is completely downloaded
+- New and updated translations
+
 1.7.1 - March 3, 2012
 - Fixed searching YouTube videos ids containing the "-" sign
 - Fixed search auto-completion popup appearing when not needed
