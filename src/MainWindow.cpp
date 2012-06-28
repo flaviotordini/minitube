@@ -1384,10 +1384,13 @@ void MainWindow::restore() {
 }
 
 void MainWindow::messageReceived(const QString &message) {
-    if (message == "--toggle-playing" && pauseAct->isEnabled()) pauseAct->trigger();
-    else if (message == "--next" && skipAct->isEnabled()) skipAct->trigger();
-    else if (message == "--previous" && skipBackwardAct->isEnabled()) skipBackwardAct->trigger();
-    else if (!message.isEmpty()) {
+    if (message == "--toggle-playing") {
+        if (pauseAct->isEnabled()) pauseAct->trigger();
+    } else if (message == "--next") {
+        if (skipAct->isEnabled()) skipAct->trigger();
+    } else if (message == "--previous") {
+        if (skipBackwardAct->isEnabled()) skipBackwardAct->trigger();
+    } else if (!message.isEmpty()) {
         SearchParams *searchParams = new SearchParams();
         searchParams->setKeywords(message);
         showMedia(searchParams);
