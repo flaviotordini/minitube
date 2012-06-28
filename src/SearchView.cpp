@@ -335,6 +335,9 @@ void SearchView::watchKeywords(QString query) {
         return;
     }
 
+    if (typeCombo->currentIndex() == 0)
+        queryEdit->setText(query);
+
     SearchParams *searchParams = new SearchParams();
     searchParams->setKeywords(query);
 

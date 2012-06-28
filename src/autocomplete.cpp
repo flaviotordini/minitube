@@ -1,9 +1,15 @@
 #include "autocomplete.h"
 #include "suggester.h"
+#ifdef APP_MAC
+#include "searchlineedit_mac.h"
+#else
+#include "searchlineedit.h"
+#endif
 
-AutoComplete::AutoComplete(QWidget *parent, QLineEdit *editor):
-    QObject(parent), buddy(parent), editor(editor), suggester(0) {
+AutoComplete::AutoComplete(SearchLineEdit *parent, QLineEdit *editor):
+    QObject(parent), editor(editor), suggester(0) {
 
+    buddy = parent;
     enabled = true;
 
     popup = new QListWidget;
@@ -49,7 +55,7 @@ bool AutoComplete::eventFilter(QObject *obj, QEvent *ev) {
     if (ev->type() == QEvent::MouseButtonPress) {
         popup->hide();
         buddy->setFocus();
-        editor->setText(originalText);
+        buddy->setText(originalText);
         return true;
     }
 
@@ -133,7 +139,7 @@ void AutoComplete::doneCompletion() {
     buddy->setFocus();
     QListWidgetItem *item = popup->currentItem();
     if (item) {
-        editor->setText(item->text());
+        buddy->setText(item->text());
         emit suggestionAccepted(item->text());
     }
 }
@@ -182,7 +188,7 @@ void AutoComplete::currentItemChanged(QListWidgetItem *current) {
     if (current) {
         // qDebug() << "current" << current->text();
         current->setSelected(true);
-        editor->setText(current->text());
+        buddy->setText(current->text());
         editor->setSelection(originalText.length(), editor->text().length());
     }
 }

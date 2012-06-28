@@ -4,12 +4,13 @@
 #include <QtGui>
 
 class Suggester;
+class SearchLineEdit;
 
 class AutoComplete : public QObject {
     Q_OBJECT
 
 public:
-    AutoComplete(QWidget *parent, QLineEdit *editor);
+    AutoComplete(SearchLineEdit *parent, QLineEdit *editor);
     ~AutoComplete();
     bool eventFilter(QObject *obj, QEvent *ev);
     void showCompletion(const QStringList &choices);
@@ -28,7 +29,7 @@ signals:
     void suggestionAccepted(const QString &suggestion);
 
 private:
-    QWidget *buddy;
+    SearchLineEdit *buddy;
     QLineEdit *editor;
     QString originalText;
     QListWidget *popup;

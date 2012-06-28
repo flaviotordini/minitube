@@ -96,6 +96,7 @@ public:
     void preventSuggest();
     void selectAll() { lineEdit()->selectAll(); }
     void setSuggester(Suggester *suggester) { completion->setSuggester(suggester); }
+    void setText(const QString &text) { lineEdit()->setText(text); }
 
 protected:
     void resizeEvent(QResizeEvent *event);
