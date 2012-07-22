@@ -427,6 +427,15 @@ void MainWindow::createActions() {
     actions->insert("stopafterthis", action);
     connect(action, SIGNAL(toggled(bool)), SLOT(showStopAfterThisInStatusBar(bool)));
 
+    action = new QAction(tr("&Report an Issue..."), this);
+    actions->insert("report-issue", action);
+    connect(action, SIGNAL(triggered()), SLOT(reportIssue()));
+
+    action = new QAction(tr("&Refine Search..."), this);
+    action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_R));
+    action->setCheckable(true);
+    actions->insert("refine-search", action);
+
     // common action properties
     foreach (QAction *action, actions->values()) {
 
@@ -490,6 +499,8 @@ void MainWindow::createMenus() {
     playlistMenu->addSeparator();
     playlistMenu->addAction(moveUpAct);
     playlistMenu->addAction(moveDownAct);
+    playlistMenu->addSeparator();
+    playlistMenu->addAction(The::globalActions()->value("refine-search"));
 
     QMenu* videoMenu = menuBar()->addMenu(tr("&Video"));
     menus->insert("video", videoMenu);
@@ -526,6 +537,7 @@ void MainWindow::createMenus() {
 #if !defined(APP_MAC) && !defined(APP_WIN)
     helpMenu->addAction(donateAct);
 #endif
+    helpMenu->addAction(The::globalActions()->value("report-issue"));
     helpMenu->addAction(aboutAct);
 }
 
@@ -777,6 +789,11 @@ void MainWindow::visitSite() {
 void MainWindow::donate() {
     QUrl url(QString(Constants::WEBSITE) + "#donate");
     statusBar()->showMessage(QString(tr("Opening %1").arg(url.toString())));
+    QDesktopServices::openUrl(url);
+}
+
+void MainWindow::reportIssue() {
+    QUrl url("http://flavio.tordini.org/forums/forum/minitube-forums/minitube-troubleshooting");
     QDesktopServices::openUrl(url);
 }
 

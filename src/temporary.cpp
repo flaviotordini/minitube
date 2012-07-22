@@ -24,6 +24,8 @@ QString Temporary::filename() {
         tempFile += "-" + userName;
 #endif
 
+    // tempFile += ".mp4";
+
     if (QFile::exists(tempFile) && !QFile::remove(tempFile)) {
         qDebug() << "Cannot remove temp file" << tempFile;
     }

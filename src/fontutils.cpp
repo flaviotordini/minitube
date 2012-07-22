@@ -25,6 +25,27 @@ const QFont FontUtils::smallBold() {
     return font;
 }
 
+const QFont FontUtils::medium() {
+    static QFont font;
+    static bool initialized = false;
+    if (!initialized) {
+      initialized = true;
+      font.setPointSize(font.pointSize()*1.1);
+    }
+    return font;
+}
+
+const QFont FontUtils::mediumBold() {
+    static QFont font;
+    static bool initialized = false;
+    if (!initialized) {
+      initialized = true;
+      font.setPointSize(font.pointSize()*0.9);
+      font.setBold(true);
+    }
+    return font;
+}
+
 const QFont FontUtils::big() {
     static QFont font;
     static bool initialized = false;

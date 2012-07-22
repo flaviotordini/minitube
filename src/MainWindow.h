@@ -48,6 +48,7 @@ private slots:
     void showSearch();
     void visitSite();
     void donate();
+    void reportIssue();
     void about();
     void fullscreen();
     void updateUIForFullscreen();

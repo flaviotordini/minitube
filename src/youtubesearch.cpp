@@ -13,14 +13,18 @@ void YouTubeSearch::search(SearchParams *searchParams, int max, int skip) {
     this->abortFlag = false;
 
     QUrl url("http://gdata.youtube.com/feeds/api/videos/");
+    url.addQueryItem("v", "2");
+
     url.addQueryItem("max-results", QString::number(max));
     url.addQueryItem("start-index", QString::number(skip));
+
     if (!searchParams->keywords().isEmpty()) {
         if (searchParams->keywords().startsWith("http://") ||
                 searchParams->keywords().startsWith("https://")) {
             url.addQueryItem("q", YouTubeSearch::videoIdFromUrl(searchParams->keywords()));
         } else url.addQueryItem("q", searchParams->keywords());
     }
+
     if (!searchParams->author().isEmpty())
         url.addQueryItem("author", searchParams->author());
 
@@ -30,6 +34,39 @@ void YouTubeSearch::search(SearchParams *searchParams, int max, int skip) {
         break;
     case SearchParams::SortByViewCount:
         url.addQueryItem("orderby", "viewCount");
+        break;
+    case SearchParams::SortByRating:
+        url.addQueryItem("orderby", "rating");
+        break;
+    }
+
+    switch (searchParams->duration()) {
+    case SearchParams::DurationShort:
+        url.addQueryItem("duration", "short");
+        break;
+    case SearchParams::DurationMedium:
+        url.addQueryItem("duration", "medium");
+        break;
+    case SearchParams::DurationLong:
+        url.addQueryItem("duration", "long");
+        break;
+    }
+
+    switch (searchParams->time()) {
+    case SearchParams::TimeToday:
+        url.addQueryItem("time", "today");
+        break;
+    case SearchParams::TimeWeek:
+        url.addQueryItem("time", "this_week");
+        break;
+    case SearchParams::TimeMonth:
+        url.addQueryItem("time", "this_month");
+        break;
+    }
+
+    switch (searchParams->quality()) {
+    case SearchParams::QualityHD:
+        url.addQueryItem("hd", "true");
         break;
     }
 

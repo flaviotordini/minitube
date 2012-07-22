@@ -9,6 +9,10 @@
 #include "downloaditem.h"
 #include "MainWindow.h"
 #include "temporary.h"
+#include "sidebarwidget.h"
+#include "playlistwidget.h"
+#include "refinesearchwidget.h"
+#include "sidebarwidget.h"
 
 namespace The {
 NetworkAccess* http();
@@ -30,29 +34,6 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
 
     splitter = new MiniSplitter(this);
     splitter->setChildrenCollapsible(false);
-
-    sortBar = new SegmentedControl(this);
-    mostRelevantAction = new QAction(tr("Most relevant"), this);
-    QKeySequence keySequence(Qt::CTRL + Qt::Key_1);
-    mostRelevantAction->setShortcut(keySequence);
-    mostRelevantAction->setStatusTip(mostRelevantAction->text() + " (" + keySequence.toString(QKeySequence::NativeText) + ")");
-    addAction(mostRelevantAction);
-    connect(mostRelevantAction, SIGNAL(triggered()), this, SLOT(searchMostRelevant()), Qt::QueuedConnection);
-    sortBar->addAction(mostRelevantAction);
-    mostRecentAction = new QAction(tr("Most recent"), this);
-    keySequence = QKeySequence(Qt::CTRL + Qt::Key_2);
-    mostRecentAction->setShortcut(keySequence);
-    mostRecentAction->setStatusTip(mostRecentAction->text() + " (" + keySequence.toString(QKeySequence::NativeText) + ")");
-    addAction(mostRecentAction);
-    connect(mostRecentAction, SIGNAL(triggered()), this, SLOT(searchMostRecent()), Qt::QueuedConnection);
-    sortBar->addAction(mostRecentAction);
-    mostViewedAction = new QAction(tr("Most viewed"), this);
-    keySequence = QKeySequence(Qt::CTRL + Qt::Key_3);
-    mostViewedAction->setShortcut(keySequence);
-    mostViewedAction->setStatusTip(mostViewedAction->text() + " (" + keySequence.toString(QKeySequence::NativeText) + ")");
-    addAction(mostViewedAction);
-    connect(mostViewedAction, SIGNAL(triggered()), this, SLOT(searchMostViewed()), Qt::QueuedConnection);
-    sortBar->addAction(mostViewedAction);
 
     listView = new PlaylistView(this);
     listView->setItemDelegate(new PrettyItemDelegate(this));
@@ -86,9 +67,11 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
 
     connect(listView, SIGNAL(authorPushed(QModelIndex)), SLOT(authorPushed(QModelIndex)));
 
-    playlistWidget = new PlaylistWidget(this, sortBar, listView);
-
-    splitter->addWidget(playlistWidget);
+    sidebar = new SidebarWidget(this);
+    sidebar->setPlaylist(listView);
+    connect(sidebar->getRefineSearchWidget(), SIGNAL(searchRefined()),
+            SLOT(searchAgain()));
+    splitter->addWidget(sidebar);
 
     videoAreaWidget = new VideoAreaWidget(this);
     // videoAreaWidget->setMinimumSize(320,240);
@@ -144,6 +127,10 @@ void MediaView::initialize() {
     connect(videoAreaWidget, SIGNAL(customContextMenuRequested(QPoint)),
             this, SLOT(showVideoContextMenu(QPoint)));
             */
+
+    QAction* refineSearchAction = The::globalActions()->value("refine-search");
+    connect(refineSearchAction, SIGNAL(toggled(bool)),
+            sidebar, SLOT(toggleRefineSearch(bool)));
 }
 
 void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
@@ -172,9 +159,7 @@ void MediaView::search(SearchParams *searchParams) {
     // start serching for videos
     listModel->search(searchParams);
 
-    // this implies that the enum and the bar action order is the same
-    sortBar->setCheckedAction(searchParams->sortBy()-1);
-
+    sidebar->showPlaylist();
     listView->setFocus();
 
     QString keyword = searchParams->keywords();
@@ -186,6 +171,11 @@ void MediaView::search(SearchParams *searchParams) {
         }
     }
 
+    sidebar->getRefineSearchWidget()->setSearchParams(searchParams);
+}
+
+void MediaView::searchAgain() {
+    search(searchParams);
 }
 
 void MediaView::appear() {
@@ -286,6 +276,7 @@ void MediaView::stop() {
         delete downloadItem;
         downloadItem = 0;
     }
+    qDebug() << searchParams->duration();
 }
 
 void MediaView::activeRowChanged(int row) {
@@ -626,7 +617,7 @@ void MediaView::searchMostViewed() {
 }
 
 void MediaView::setPlaylistVisible(bool visible) {
-    playlistWidget->setVisible(visible);
+    splitter->widget(0)->setVisible(visible);
 }
 
 void MediaView::timerPlay() {

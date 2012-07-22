@@ -10,12 +10,12 @@
 #include "ListModel.h"
 #include "segmentedcontrol.h"
 #include "searchparams.h"
-#include "playlistwidget.h"
 #include "loadingwidget.h"
 #include "videoareawidget.h"
 
 class DownloadItem;
 class PlaylistView;
+class SidebarWidget;
 
 namespace The {
     QMap<QString, QAction*>* globalActions();
@@ -93,6 +93,7 @@ private slots:
     void playbackFinished();
     void playbackResume();
     void authorPushed(QModelIndex);
+    void searchAgain();
 
     /*
     void downloadProgress(int percent);
@@ -107,7 +108,7 @@ private:
 
     QSplitter *splitter;
 
-    PlaylistWidget *playlistWidget;
+    SidebarWidget *sidebar;
     PlaylistView *listView;
     ListModel *listModel;
 

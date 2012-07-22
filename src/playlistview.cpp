@@ -18,9 +18,7 @@ void PlaylistView::leaveEvent(QEvent * /* event */) {
 }
 
 void PlaylistView::mouseMoveEvent(QMouseEvent *event) {
-    // qDebug() << "PlaylistView::mouseMoveEvent" << event->pos();
-
-    QListView::mouseMoveEvent(event);
+    QWidget::mouseMoveEvent(event);
 
     if (isHoveringAuthor(event)) {
 

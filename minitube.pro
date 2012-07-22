@@ -1,6 +1,6 @@
 CONFIG += release
 TEMPLATE = app
-VERSION = 1.8
+VERSION = 1.9
 DEFINES += APP_VERSION="$$VERSION"
 
 APP_NAME = Minitube
@@ -60,7 +60,10 @@ HEADERS += src/MainWindow.h \
     src/channelsuggest.h \
     src/temporary.h \
     src/segmentedcontrol.h \
-    src/playlistview.h
+    src/playlistview.h \
+    src/refinesearchwidget.h \
+    src/refinesearchbutton.h \
+    src/sidebarwidget.h
 SOURCES += src/main.cpp \
     src/MainWindow.cpp \
     src/SearchView.cpp \
@@ -100,7 +103,10 @@ SOURCES += src/main.cpp \
     src/channelsuggest.cpp \
     src/temporary.cpp \
     src/segmentedcontrol.cpp \
-    src/playlistview.cpp
+    src/playlistview.cpp \
+    src/refinesearchwidget.cpp \
+    src/refinesearchbutton.cpp \
+    src/sidebarwidget.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/
