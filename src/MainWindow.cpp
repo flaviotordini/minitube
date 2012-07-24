@@ -388,6 +388,13 @@ void MainWindow::createActions() {
     connect(action, SIGNAL(triggered()), mediaView, SLOT(downloadVideo()));
     actions->insert("download", action);
 
+    /*
+    action = new QAction(tr("&Snapshot"), this);
+    action->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_S));
+    actions->insert("snapshot", action);
+    connect(action, SIGNAL(triggered()), mediaView, SLOT(snapshot()));
+    */
+
     QString shareTip = tr("Share the current video using %1");
 
     action = new QAction("&Twitter", this);
@@ -507,11 +514,12 @@ void MainWindow::createMenus() {
     videoMenu->addAction(findVideoPartsAct);
     videoMenu->addSeparator();
     videoMenu->addAction(webPageAct);
-#ifndef APP_NO_DOWNLOADS
     videoMenu->addSeparator();
+#ifndef APP_NO_DOWNLOADS
     videoMenu->addAction(The::globalActions()->value("download"));
-    videoMenu->addAction(copyLinkAct);
+    // videoMenu->addAction(copyLinkAct);
 #endif
+    // videoMenu->addAction(The::globalActions()->value("snapshot"));
 
     QMenu* viewMenu = menuBar()->addMenu(tr("&View"));
     menus->insert("view", viewMenu);

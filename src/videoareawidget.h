@@ -21,6 +21,7 @@ public:
     void setListModel(ListModel *listModel) {
         this->listModel = listModel;
     }
+    void showSnapshotPreview(QPixmap pixmap);
 
 signals:
     void doubleClicked();
@@ -34,12 +35,16 @@ protected:
     void mouseMoveEvent(QMouseEvent *event);
     void leaveEvent(QMouseEvent *event);
 
+private slots:
+    void hideSnapshotPreview();
+
 private:
     QStackedLayout *stackedLayout;
     QWidget *videoWidget;
     LoadingWidget *loadingWidget;
     ListModel *listModel;
     QLabel *messageLabel;
+    QLabel *snapshotPreview;
 
 };
 

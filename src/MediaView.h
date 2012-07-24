@@ -62,6 +62,7 @@ public slots:
     void setPlaylistVisible(bool visible=true);
     void saveSplitterState();
     void downloadVideo();
+    void snapshot();
     void fullscreen();
     void findVideoParts();
 

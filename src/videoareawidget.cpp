@@ -1,5 +1,8 @@
 #include "videoareawidget.h"
 #include "videomimedata.h"
+#ifndef Q_WS_X11
+#include "extra.h"
+#endif
 
 VideoAreaWidget::VideoAreaWidget(QWidget *parent) : QWidget(parent) {
     QBoxLayout *vLayout = new QVBoxLayout(this);
@@ -26,6 +29,9 @@ VideoAreaWidget::VideoAreaWidget(QWidget *parent) : QWidget(parent) {
     
     stackedLayout = new QStackedLayout();
     vLayout->addLayout(stackedLayout);
+
+    snapshotPreview = new QLabel(this);
+    stackedLayout->addWidget(snapshotPreview);
     
     setLayout(vLayout);
     setAcceptDrops(true);
@@ -62,11 +68,25 @@ void VideoAreaWidget::showLoading(Video *video) {
     messageLabel->clear();
 }
 
+void VideoAreaWidget::showSnapshotPreview(QPixmap pixmap) {
+    snapshotPreview->setPixmap(pixmap);
+    stackedLayout->setCurrentWidget(snapshotPreview);
+#ifndef Q_WS_X11
+    Extra::flashInWidget(snapshotPreview);
+#endif
+    QTimer::singleShot(1500, this, SLOT(hideSnapshotPreview()));
+}
+
+void VideoAreaWidget::hideSnapshotPreview() {
+    stackedLayout->setCurrentWidget(videoWidget);
+}
+
 void VideoAreaWidget::clear() {
     stackedLayout->setCurrentWidget(loadingWidget);
     loadingWidget->clear();
     messageLabel->hide();
     messageLabel->clear();
+    snapshotPreview->clear();
 }
 
 void VideoAreaWidget::mouseDoubleClickEvent(QMouseEvent *event) {

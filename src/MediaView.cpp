@@ -76,7 +76,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     videoAreaWidget = new VideoAreaWidget(this);
     // videoAreaWidget->setMinimumSize(320,240);
 
-#ifdef APP_MAC
+#ifdef APP_MAC_NO
     // mouse autohide does not work on the Mac (no mouseMoveEvent)
     videoWidget = new Phonon::VideoWidget(this);
 #else
@@ -701,6 +701,15 @@ void MediaView::downloadVideo() {
     QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(window());
     QString message = tr("Downloading %1").arg(video->title());
     if (mainWindow) mainWindow->statusBar()->showMessage(message);
+}
+
+void MediaView::snapshot() {
+    QImage image = videoWidget->snapshot();
+    qDebug() << image.size();
+
+    const QPixmap& pixmap = QPixmap::grabWindow(videoWidget->winId());
+    // qDebug() << pixmap.size();
+    videoAreaWidget->showSnapshotPreview(pixmap);
 }
 
 void MediaView::fullscreen() {

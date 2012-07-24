@@ -10,7 +10,7 @@ VideoWidget::VideoWidget(QWidget *parent) : Phonon::VideoWidget(parent) {
 }
 
 void VideoWidget::mouseMoveEvent(QMouseEvent *event) {
-    Phonon::VideoWidget::mouseMoveEvent(event);
+    QWidget::mouseMoveEvent(event);
 
     // qDebug() << "VideoWidget::mouseMoveEvent" << event->pos();
 
