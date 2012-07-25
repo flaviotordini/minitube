@@ -87,6 +87,7 @@ void YouTubeSearch::parseResults(QByteArray data) {
         qDebug() << "Error parsing XML";
     }
     videos = reader.getVideos();
+    suggestions = reader.getSuggestions();
 
     foreach (Video *video, videos) {
         // send it to the model
@@ -104,6 +105,10 @@ void YouTubeSearch::parseResults(QByteArray data) {
 
 QList<Video*> YouTubeSearch::getResults() {
     return videos;
+}
+
+const QStringList & YouTubeSearch::getSuggestions() const {
+    return suggestions;
 }
 
 void YouTubeSearch::abort() {

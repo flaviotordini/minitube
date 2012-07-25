@@ -15,11 +15,16 @@ public:
     void setPlaylist(QListView *playlist);
     void showPlaylist();
     RefineSearchWidget* getRefineSearchWidget() { return refineSearchWidget; }
+    void hideSuggestions();
 
 public slots:
     void showRefineSearchWidget();
     void hideRefineSearchWidget();
     void toggleRefineSearch(bool show = false);
+    void showSuggestions(const QStringList &suggestions);
+
+signals:
+    void suggestionAccepted(QString);
 
 protected:
     void resizeEvent(QResizeEvent *);
@@ -38,6 +43,7 @@ private:
     QListView *playlist;
     RefineSearchWidget *refineSearchWidget;
     QTimer *mouseTimer;
+    QLabel *messageLabel;
     
 };
 

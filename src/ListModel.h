@@ -84,6 +84,7 @@ public slots:
 signals:
     void activeRowChanged(int);
     void needSelectionFor(QList<Video*>);
+    void haveSuggestions(const QStringList &suggestions);
 
 private:
     void searchMore(int max);

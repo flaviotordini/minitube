@@ -13,6 +13,7 @@ public:
     void search(SearchParams *searchParams, int max, int skip);
     void abort();
     QList<Video*> getResults();
+    const QStringList & getSuggestions() const;
     static QString videoIdFromUrl(QString url);
 
 signals:
@@ -27,6 +28,7 @@ private slots:
 private:
 
     QList<Video*> videos;
+    QStringList suggestions;
 
     bool abortFlag;
 

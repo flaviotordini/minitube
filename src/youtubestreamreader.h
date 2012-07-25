@@ -11,11 +11,13 @@ public:
     YouTubeStreamReader();
     bool read(QByteArray data);
     QList<Video*> getVideos();
+    const QStringList & getSuggestions() const;
 
 private:
     void readMediaGroup();
     void readEntry();
     QList<Video*> videos;
+    QStringList suggestions;
 };
 
 #endif // YOUTUBESTREAMREADER_H

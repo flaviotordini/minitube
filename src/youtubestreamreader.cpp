@@ -17,6 +17,10 @@ bool YouTubeStreamReader::read(QByteArray data) {
                     readNext();
                     if (isStartElement() && name() == "entry") {
                         readEntry();
+                    } else if (name() == "link"
+                        && attributes().value("rel").toString()
+                           == "http://schemas.google.com/g/2006#spellcorrection") {
+                        suggestions << attributes().value("title").toString();
                     }
                 }
             }
@@ -55,6 +59,7 @@ void YouTubeStreamReader::readEntry() {
                 webpage.remove("&feature=youtube_gdata");
                 // qDebug() << "Webpage: " << webpage;
                 video->setWebpage(QUrl(webpage));
+
             } else if (name() == "author") {
                 readNext();
                 if (name() == "name") {
@@ -109,4 +114,8 @@ void YouTubeStreamReader::readEntry() {
 
 QList<Video*> YouTubeStreamReader::getVideos() {
     return videos;
+}
+
+const QStringList & YouTubeStreamReader::getSuggestions() const {
+    return suggestions;
 }

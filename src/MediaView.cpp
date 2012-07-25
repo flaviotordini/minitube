@@ -71,6 +71,10 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     sidebar->setPlaylist(listView);
     connect(sidebar->getRefineSearchWidget(), SIGNAL(searchRefined()),
             SLOT(searchAgain()));
+    connect(listModel, SIGNAL(haveSuggestions(const QStringList &)),
+            sidebar, SLOT(showSuggestions(const QStringList &)));
+    connect(sidebar, SIGNAL(suggestionAccepted(QString)),
+            MainWindow::instance(), SLOT(startToolbarSearch(QString)));
     splitter->addWidget(sidebar);
 
     videoAreaWidget = new VideoAreaWidget(this);
@@ -172,6 +176,7 @@ void MediaView::search(SearchParams *searchParams) {
     }
 
     sidebar->getRefineSearchWidget()->setSearchParams(searchParams);
+    sidebar->hideSuggestions();
 }
 
 void MediaView::searchAgain() {

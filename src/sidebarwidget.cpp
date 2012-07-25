@@ -14,7 +14,24 @@ SidebarWidget::SidebarWidget(QWidget *parent) :
     playlist = 0;
 
     QBoxLayout *layout = new QVBoxLayout(this);
+    layout->setSpacing(1);
     layout->setMargin(0);
+
+    // hidden message widget
+    messageLabel = new QLabel(this);
+    messageLabel->setMargin(10);
+    messageLabel->setBackgroundRole(QPalette::ToolTipBase);
+    messageLabel->setForegroundRole(QPalette::ToolTipText);
+    messageLabel->setAutoFillBackground(true);
+    messageLabel->setWordWrap(true);
+    messageLabel->setTextFormat(Qt::RichText);
+    messageLabel->setTextInteractionFlags(
+                Qt::LinksAccessibleByKeyboard |
+                Qt::LinksAccessibleByMouse);
+    connect(messageLabel, SIGNAL(linkActivated(QString)),
+            SIGNAL(suggestionAccepted(QString)));
+    messageLabel->hide();
+    layout->addWidget(messageLabel);
 
     stackedWidget = new QStackedWidget(this);
     layout->addWidget(stackedWidget);
@@ -118,4 +135,30 @@ void SidebarWidget::showRefineSearchButton() {
                 playlist->viewport()->width() - refineSearchButton->minimumWidth(),
                 height() - refineSearchButton->minimumHeight());
     refineSearchButton->show();
+}
+
+void SidebarWidget::showSuggestions(const QStringList &suggestions) {
+    QString message = tr("Did you mean: %1");
+
+    QString suggestionLinks;
+    foreach (QString suggestion, suggestions) {
+        suggestionLinks += "<a href='" + suggestion + "'>" + suggestion + "</a> ";
+    }
+    message = message.arg(suggestionLinks);
+
+    QString html =
+            "<html>"
+            "<style>"
+            "a { color: palette(text); text-decoration: none; font-weight: bold }"
+            "</style>"
+            "<body>%1</body>"
+            "</html>";
+    html = html.arg(message);
+    messageLabel->setText(html);
+    messageLabel->show();
+}
+
+void SidebarWidget::hideSuggestions() {
+    messageLabel->hide();
+    messageLabel->clear();
 }

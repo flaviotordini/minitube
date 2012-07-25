@@ -197,6 +197,10 @@ void ListModel::searchFinished(int total) {
 
     // update the message item
     emit dataChanged( createIndex( MAX_ITEMS, 0 ), createIndex( MAX_ITEMS, columnCount() - 1 ) );
+
+    if (!youtubeSearch->getSuggestions().isEmpty()) {
+        emit haveSuggestions(youtubeSearch->getSuggestions());
+    }
 }
 
 void ListModel::searchError(QString message) {

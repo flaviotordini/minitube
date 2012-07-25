@@ -32,6 +32,7 @@ public slots:
     void restore();
     void messageReceived(const QString &message);
     void quit();
+    void startToolbarSearch(QString query);
 
 protected:
     void changeEvent(QEvent *);
@@ -78,7 +79,6 @@ private slots:
     void downloadsFinished();
     void toggleDownloads(bool show);
 
-    void startToolbarSearch(QString query);
     void floatOnTop(bool);
     void showActionInStatusBar(QAction*, bool show);
     void showStopAfterThisInStatusBar(bool show);
