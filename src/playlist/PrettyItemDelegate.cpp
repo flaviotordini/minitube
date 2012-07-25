@@ -3,6 +3,7 @@
 #include "../fontutils.h"
 #include "../downloaditem.h"
 #include "../iconloader/qticonloader.h"
+#include "../videodefinition.h"
 
 #include <QFontMetricsF>
 #include <QPainter>
@@ -133,9 +134,9 @@ void PrettyItemDelegate::paintBody( QPainter* painter,
 
     // published date
     QString publishedString = video->published().date().toString(Qt::DefaultLocaleShortDate);
-    QSizeF publishedStringSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, publishedString ) );
+    QSizeF stringSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, publishedString ) );
     QPointF textLoc(PADDING+THUMB_WIDTH, PADDING*2 + textBox.height());
-    QRectF publishedTextBox( textLoc , publishedStringSize);
+    QRectF publishedTextBox(textLoc , stringSize);
     painter->drawText(publishedTextBox, Qt::AlignLeft | Qt::AlignTop, publishedString);
 
     // author
@@ -156,9 +157,9 @@ void PrettyItemDelegate::paintBody( QPainter* painter,
             painter->setPen(QPen(option.palette.brush(QPalette::Mid), 0));
     }
     QString authorString = video->author();
-    QSizeF authorStringSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, authorString ) );
-    textLoc.setX(textLoc.x() + publishedStringSize.width() + PADDING);
-    QRectF authorTextBox( textLoc , authorStringSize);
+    textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
+    stringSize = QSizeF(QFontMetrics(painter->font()).size( Qt::TextSingleLine, authorString ) );
+    QRectF authorTextBox(textLoc , stringSize);
     authorRects.insert(index.row(), authorTextBox.toRect());
     painter->drawText(authorTextBox, Qt::AlignLeft | Qt::AlignTop, authorString);
     painter->restore();
@@ -168,10 +169,20 @@ void PrettyItemDelegate::paintBody( QPainter* painter,
         painter->save();
         QLocale locale;
         QString viewCountString = tr("%1 views").arg(locale.toString(video->viewCount()));
-        QSizeF viewCountStringSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, viewCountString ) );
-        textLoc.setX(textLoc.x() + authorStringSize.width() + PADDING);
-        QRectF viewCountTextBox( textLoc , viewCountStringSize);
+        textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
+        stringSize = QSizeF(QFontMetrics(painter->font()).size( Qt::TextSingleLine, viewCountString ) );
+        QRectF viewCountTextBox(textLoc , stringSize);
         painter->drawText(viewCountTextBox, Qt::AlignLeft | Qt::AlignBottom, viewCountString);
+        painter->restore();
+    }
+
+    if (downloadInfo) {
+        painter->save();
+        QString definitionString = VideoDefinition::getDefinitionName(video->getDefinitionCode());
+        textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
+        stringSize = QSizeF(QFontMetrics(painter->font()).size( Qt::TextSingleLine, definitionString ) );
+        QRectF viewCountTextBox(textLoc , stringSize);
+        painter->drawText(viewCountTextBox, Qt::AlignLeft | Qt::AlignBottom, definitionString);
         painter->restore();
     }
 

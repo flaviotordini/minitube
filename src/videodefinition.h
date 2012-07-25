@@ -10,6 +10,7 @@ public:
     static QList<int> getDefinitionCodes();
     static QHash<QString, int> getDefinitions();
     static int getDefinitionCode(QString name);
+    static QString getDefinitionName(int code);
 
 };
 

@@ -23,3 +23,7 @@ QHash<QString, int> VideoDefinition::getDefinitions() {
 int VideoDefinition::getDefinitionCode(QString name) {
     return VideoDefinition::getDefinitions().value(name);
 }
+
+QString VideoDefinition::getDefinitionName(int code) {
+    return getDefinitions().key(code);
+}
