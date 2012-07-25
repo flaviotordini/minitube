@@ -117,9 +117,8 @@ void DownloadManager::gotStreamUrl(QUrl url) {
     Video *videoCopy = video->clone();
     DownloadItem *item = new DownloadItem(videoCopy, url, filename, this);
 
-    int row = items.count();
-    downloadModel->beginInsertRows(QModelIndex(), row, row);
-    items.append(item);
+    downloadModel->beginInsertRows(QModelIndex(), 0, 0);
+    items.prepend(item);
     downloadModel->endInsertRows();
 
     // connect(item, SIGNAL(statusChanged()), SLOT(updateStatusMessage()));
