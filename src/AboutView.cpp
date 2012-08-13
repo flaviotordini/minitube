@@ -1,5 +1,8 @@
 #include "AboutView.h"
 #include "constants.h"
+#ifndef Q_WS_X11
+#include "extra.h"
+#endif
 
 AboutView::AboutView(QWidget *parent) : QWidget(parent) {
 
@@ -9,7 +12,11 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
     aboutlayout->setSpacing(30);
 
     QLabel *logo = new QLabel(this);
-    logo->setPixmap(QPixmap(":/images/app.png"));
+    QString resource = "app";
+#ifndef Q_WS_X11
+    resource = Extra::resourceName(resource);
+#endif
+    logo->setPixmap(QPixmap(":/images/" + resource + ".png"));
     aboutlayout->addWidget(logo, 0, Qt::AlignTop);
 
     QBoxLayout *layout = new QVBoxLayout();
@@ -62,13 +69,20 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
 
     QLayout *buttonLayout = new QHBoxLayout();
     buttonLayout->setAlignment(Qt::AlignLeft);
+
     QPushButton *closeButton = new QPushButton(tr("&Close"), this);
     closeButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-
     closeButton->setDefault(true);
     closeButton->setFocus(Qt::OtherFocusReason);
     connect(closeButton, SIGNAL(clicked()), parent, SLOT(goBack()));
     buttonLayout->addWidget(closeButton);
+
+    /*
+    QPushButton *issueButton = new QPushButton(tr("&Report an issue"), this);
+    issueButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+    connect(issueButton, SIGNAL(clicked()), window(), SLOT(reportIssue()));
+    buttonLayout->addWidget(issueButton);
+    */
 
     layout->addLayout(buttonLayout);
 

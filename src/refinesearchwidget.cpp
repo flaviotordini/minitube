@@ -1,6 +1,9 @@
 #include "refinesearchwidget.h"
 #include "fontutils.h"
 #include "searchparams.h"
+#ifndef Q_WS_X11
+#include "extra.h"
+#endif
 
 RefineSearchWidget::RefineSearchWidget(QWidget *parent) :
     QWidget(parent) {
@@ -130,8 +133,11 @@ void RefineSearchWidget::setupLabel(QString text, QBoxLayout *layout, QString pa
 
     QLabel *icon = new QLabel(this);
     icon->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    // TODO
-    QPixmap pixmap = QPixmap(":/images/search-" + paramName + ".png");
+    QString resource = paramName;
+#ifndef Q_WS_X11
+    resource = Extra::resourceName(resource);
+#endif
+    QPixmap pixmap = QPixmap(":/images/search-" + resource + ".png");
     QPixmap translucentPixmap(pixmap.size());
     translucentPixmap.fill(Qt::transparent);
     QPainter painter;

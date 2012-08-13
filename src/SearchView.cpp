@@ -9,6 +9,12 @@
 #else
 #include "searchlineedit.h"
 #endif
+#ifndef Q_WS_X11
+#include "extra.h"
+#endif
+#ifdef APP_MAC
+#include <QtSvg>
+#endif
 
 namespace The {
     QMap<QString, QAction*>* globalActions();
@@ -66,7 +72,13 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     mainLayout->addLayout(hLayout);
 
     QLabel *logo = new QLabel(this);
-    logo->setPixmap(QPixmap(":/images/app.png"));
+    QString resource = "app";
+#ifndef Q_WS_X11
+    resource = Extra::resourceName(resource);
+    logo->setMaximumSize(128, 128);
+    logo->setScaledContents(true);
+#endif
+    logo->setPixmap(QPixmap(":/images/" + resource + ".png"));
     hLayout->addWidget(logo, 0, Qt::AlignTop);
     hLayout->addSpacing(PADDING);
 
