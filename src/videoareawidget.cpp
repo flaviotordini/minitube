@@ -9,12 +9,10 @@ VideoAreaWidget::VideoAreaWidget(QWidget *parent) : QWidget(parent) {
     vLayout->setMargin(0);
     vLayout->setSpacing(0);
 
-#ifdef APP_WIN
     QPalette p = palette();
     p.setBrush(QPalette::Window, Qt::black);
     setPalette(p);
     setAutoFillBackground(true);
-#endif
 
     // hidden message widget
     messageLabel = new QLabel(this);
@@ -26,7 +24,7 @@ VideoAreaWidget::VideoAreaWidget(QWidget *parent) : QWidget(parent) {
     messageLabel->setWordWrap(true);
     messageLabel->hide();
     vLayout->addWidget(messageLabel);
-    
+
     stackedLayout = new QStackedLayout();
     vLayout->addLayout(stackedLayout);
 
