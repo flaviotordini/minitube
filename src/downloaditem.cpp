@@ -71,6 +71,7 @@ void DownloadItem::init() {
             this, SLOT(requestFinished()));
 
     // start timer for the download estimation
+    m_totalTime = 0;
     m_downloadTime.start();
     speedCheckTimer->start();
 
@@ -298,6 +299,7 @@ void DownloadItem::requestFinished() {
     }
     m_file.close();
     m_status = Finished;
+    m_totalTime = m_downloadTime.elapsed() / 1000.0;
     emit statusChanged();
     emit finished();
     m_reply->deleteLater();
@@ -333,14 +335,15 @@ QString DownloadItem::formattedSpeed(double speed) {
     return QString(QLatin1String("%1 %2")).arg(speedInt).arg(unit);
 }
 
-QString DownloadItem::formattedTime(double timeRemaining) {
+QString DownloadItem::formattedTime(double timeRemaining, bool remaining) {
     QString timeRemainingString = tr("seconds");
     if (timeRemaining > 60) {
         timeRemaining = timeRemaining / 60;
         timeRemainingString = tr("minutes");
     }
     timeRemaining = floor(timeRemaining);
-    return tr("%4 %5 remaining")
+    QString msg = remaining ? tr("%4 %5 remaining") : "%4 %5";
+        return msg
             .arg(timeRemaining)
             .arg(timeRemainingString);
 }

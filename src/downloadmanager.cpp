@@ -8,8 +8,8 @@
 static DownloadManager *downloadManagerInstance = 0;
 
 DownloadManager::DownloadManager(QWidget *parent) :
-        QObject(parent),
-        downloadModel(new DownloadModel(this, this))
+    QObject(parent),
+    downloadModel(new DownloadModel(this, this))
 { }
 
 DownloadManager* DownloadManager::instance() {
@@ -47,8 +47,8 @@ void DownloadManager::addItem(Video *video) {
         msgBox.setIconPixmap(QPixmap(":/images/app.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         msgBox.setText(tr("This is just the demo version of %1.").arg(Constants::NAME));
         msgBox.setInformativeText(
-                tr("It can only download videos shorter than %1 minutes so you can test the download functionality.")
-                .arg(4));
+                    tr("It can only download videos shorter than %1 minutes so you can test the download functionality.")
+                    .arg(4));
         msgBox.setModal(true);
         // make it a "sheet" on the Mac
         msgBox.setWindowModality(Qt::WindowModal);
@@ -130,6 +130,21 @@ void DownloadManager::gotStreamUrl(QUrl url) {
 
 void DownloadManager::itemFinished() {
     if (activeItems() == 0) emit finished();
+#ifdef Q_WS_MAC
+    if (mac::canNotify()) {
+        DownloadItem *item = static_cast<DownloadItem*>(sender());
+        if (!item) {
+            qDebug() << "Cannot get item in" << __FUNCTION__;
+            return;
+        }
+        Video *video = item->getVideo();
+        if (!video) return;
+        QString stats = tr("%1 downloaded in %2").arg(
+                    DownloadItem::formattedFilesize(item->bytesTotal()),
+                    DownloadItem::formattedTime(item->totalTime(), false));
+        mac::notify(tr("Download finished"), video->title(), stats);
+    }
+#endif
 }
 
 void DownloadManager::updateStatusMessage() {

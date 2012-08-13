@@ -31,6 +31,7 @@ public:
     qint64 bytesTotal() const;
     qint64 bytesReceived() const;
     double remainingTime() const;
+    double totalTime() { return m_totalTime; }
     double currentSpeed() const;
     int currentPercent() const { return percent; }
     Video* getVideo() const { return video; }
@@ -38,7 +39,7 @@ public:
     DownloadItemStatus status() const { return m_status; }
     static QString formattedFilesize(qint64 size);
     static QString formattedSpeed(double speed);
-    static QString formattedTime(double time);
+    static QString formattedTime(double time, bool remaining = true);
     QString errorMessage() const;
 
 public slots:
@@ -67,6 +68,7 @@ private:
     bool m_finishedDownloading;
     QTime m_lastProgressTime;
     int percent;
+    double m_totalTime;
 
     QUrl m_url;
 
