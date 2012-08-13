@@ -9,6 +9,7 @@
     * Favorite videos (r/w)
     * Comments (r/w)
     * Likes (r/w)
+    * Playlists (r/w)
 
 - Related videos
     List of related videos identical to the playlist.
@@ -25,14 +26,12 @@
 - Search for playlists http://code.google.com/apis/youtube/2.0/developers_guide_protocol.html#Searching_for_Playlists
 - Safe search levels (in the status bar beside the video definition option)
 - Show more thumbs on hover with animated crossfade
-- Time filter on the bottom of the playlist: Today, 7 days, 30 days
 - Accept any URL and scrape web pages searching for YouTube videos.
 
 ## Unsure features
 - Restore status when a recent keyword is clicked: skipped videos, sortBar and play time
 - Add menu entries for Most relevant, Most recent, Most viewed (Playlist => ...)
 - Saved playlists
-- Starred videos
 
 ## Phonon bugs
 - Phonon::MediaSource does not work with QIODevices (this needs to work to implement seeking)
