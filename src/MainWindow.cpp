@@ -407,6 +407,11 @@ void MainWindow::createActions() {
     actions->insert("facebook", action);
     connect(action, SIGNAL(triggered()), mediaView, SLOT(shareViaFacebook()));
 
+    action = new QAction("&Buffer", this);
+    action->setStatusTip(shareTip.arg("Buffer"));
+    actions->insert("buffer", action);
+    connect(action, SIGNAL(triggered()), mediaView, SLOT(shareViaBuffer()));
+
     action = new QAction(tr("&Email"), this);
     action->setStatusTip(shareTip.arg(tr("Email")));
     actions->insert("email", action);
@@ -534,6 +539,8 @@ void MainWindow::createMenus() {
     shareMenu->addSeparator();
     shareMenu->addAction(The::globalActions()->value("twitter"));
     shareMenu->addAction(The::globalActions()->value("facebook"));
+    shareMenu->addAction(The::globalActions()->value("buffer"));
+    shareMenu->addSeparator();
     shareMenu->addAction(The::globalActions()->value("email"));
 
 #ifdef APP_MAC
@@ -1276,7 +1283,6 @@ void MainWindow::toggleDownloads(bool show) {
 }
 
 void MainWindow::startToolbarSearch(QString query) {
-
     query = query.trimmed();
 
     // check for empty query

@@ -55,6 +55,7 @@ public slots:
     void copyVideoLink();
     void shareViaTwitter();
     void shareViaFacebook();
+    void shareViaBuffer();
     void shareViaEmail();
     void removeSelected();
     void moveUpSelected();
