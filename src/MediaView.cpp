@@ -281,7 +281,7 @@ void MediaView::stop() {
         delete downloadItem;
         downloadItem = 0;
     }
-    qDebug() << searchParams->duration();
+    The::globalActions()->value("refine-search")->setChecked(false);
 }
 
 void MediaView::activeRowChanged(int row) {
