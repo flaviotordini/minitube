@@ -12,9 +12,6 @@
 #ifndef Q_WS_X11
 #include "extra.h"
 #endif
-#ifdef APP_MAC
-#include <QtSvg>
-#endif
 
 namespace The {
     QMap<QString, QAction*>* globalActions();
