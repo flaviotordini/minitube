@@ -124,6 +124,11 @@ MainWindow::MainWindow() :
 
     setAcceptDrops(true);
 
+    mouseTimer = new QTimer(this);
+    mouseTimer->setInterval(3000);
+    mouseTimer->setSingleShot(true);
+    connect(mouseTimer, SIGNAL(timeout()), SLOT(hideMouse()));
+
     QTimer::singleShot(0, this, SLOT(checkForUpdate()));
 
 }
@@ -155,12 +160,35 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
     }
 #endif
 
+#ifndef Q_WS_X11
+    // mac::IsFullScreen(winId())
+    if (event->type() == QEvent::MouseMove && m_fullscreen) {
+
+        // show the normal cursor
+        unsetCursor();
+        // then hide it again after a few seconds
+        mouseTimer->start();
+
+        QMouseEvent *mouseEvent = static_cast<QMouseEvent*> (event);
+        const int x = mouseEvent->pos().x();
+        const QString className = QString(obj->metaObject()->className());
+        const bool isHoveringVideo = className == "QGLWidget";
+        // qDebug() << obj << x << isHoveringVideo << mediaView->isPlaylistVisible();
+        if (mediaView->isPlaylistVisible()) {
+            if (isHoveringVideo && x > 5) mediaView->setPlaylistVisible(false);
+        } else {
+            bool visible = (isHoveringVideo && x >= 0 && x < 5);
+            mediaView->setPlaylistVisible(visible);
+        }
+    }
+#endif
+
     if (event->type() == QEvent::ToolTip) {
         // kill tooltips
         return true;
     }
     // standard event processing
-    return QObject::eventFilter(obj, event);
+    return QMainWindow::eventFilter(obj, event);
 }
 
 void MainWindow::createActions() {
@@ -1035,6 +1063,11 @@ void MainWindow::updateUIForFullscreen() {
 
     if (views->currentWidget() == mediaView)
         mediaView->setFocus();
+
+    if (!m_fullscreen) {
+        mouseTimer->stop();
+        unsetCursor();
+    }
 }
 
 void MainWindow::compactView(bool enable) {
@@ -1426,4 +1459,9 @@ void MainWindow::messageReceived(const QString &message) {
         searchParams->setKeywords(message);
         showMedia(searchParams);
     }
+}
+
+void MainWindow::hideMouse() {
+    setCursor(Qt::BlankCursor);
+    mediaView->setPlaylistVisible(false);
 }

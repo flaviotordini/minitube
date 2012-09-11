@@ -60,6 +60,7 @@ public slots:
     void removeSelected();
     void moveUpSelected();
     void moveDownSelected();
+    bool isPlaylistVisible();
     void setPlaylistVisible(bool visible=true);
     void saveSplitterState();
     void downloadVideo();

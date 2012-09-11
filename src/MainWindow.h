@@ -83,6 +83,8 @@ private slots:
     void showActionInStatusBar(QAction*, bool show);
     void showStopAfterThisInStatusBar(bool show);
 
+    void hideMouse();
+
 private:
     void initPhonon();
     void createActions();
@@ -157,6 +159,8 @@ private:
 
     bool m_fullscreen;
     bool m_maximized;
+
+    QTimer *mouseTimer;
 
 };
 

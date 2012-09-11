@@ -13,6 +13,9 @@
 #include "playlistwidget.h"
 #include "refinesearchwidget.h"
 #include "sidebarwidget.h"
+#ifdef APP_MAC
+#include "macfullscreen.h"
+#endif
 
 namespace The {
 NetworkAccess* http();
@@ -80,7 +83,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     videoAreaWidget = new VideoAreaWidget(this);
     // videoAreaWidget->setMinimumSize(320,240);
 
-#ifdef APP_MAC_NO
+#ifdef APP_MAC
     // mouse autohide does not work on the Mac (no mouseMoveEvent)
     videoWidget = new Phonon::VideoWidget(this);
 #else
@@ -177,6 +180,7 @@ void MediaView::search(SearchParams *searchParams) {
 
     sidebar->getRefineSearchWidget()->setSearchParams(searchParams);
     sidebar->hideSuggestions();
+
 }
 
 void MediaView::searchAgain() {
@@ -622,7 +626,13 @@ void MediaView::searchMostViewed() {
 }
 
 void MediaView::setPlaylistVisible(bool visible) {
+    if (splitter->widget(0)->isVisible() == visible) return;
     splitter->widget(0)->setVisible(visible);
+    listView->setFocus();
+}
+
+bool MediaView::isPlaylistVisible() {
+    return splitter->widget(0)->isVisible();
 }
 
 void MediaView::timerPlay() {
