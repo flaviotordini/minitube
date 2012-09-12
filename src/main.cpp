@@ -17,6 +17,11 @@ int main(int argc, char **argv) {
 
     QtSingleApplication app(argc, argv);
     QString message = app.arguments().size() > 1 ? app.arguments().at(1) : "";
+    if (message == "--help") {
+        MainWindow::printHelp();
+        return 0;
+    }
+
     if (app.sendMessage(message))
         return 0;
 
@@ -106,9 +111,14 @@ int main(int argc, char **argv) {
 
     if (app.arguments().size() > 1) {
         QString query = app.arguments().at(1);
-        SearchParams *searchParams = new SearchParams();
-        searchParams->setKeywords(query);
-        mainWin.showMedia(searchParams);
+        if (query.startsWith("--")) {
+            mainWin.messageReceived(query);
+            return 0;
+        } else {
+            SearchParams *searchParams = new SearchParams();
+            searchParams->setKeywords(query);
+            mainWin.showMedia(searchParams);
+        }
     }
 
     // Seed random number generator

@@ -44,7 +44,6 @@ HEADERS += src/MainWindow.h \
     src/loadingwidget.h \
     src/videoareawidget.h \
     src/autocomplete.h \
-    src/videowidget.h \
     src/videodefinition.h \
     src/fontutils.h \
     src/globalshortcuts.h \
@@ -87,7 +86,6 @@ SOURCES += src/main.cpp \
     src/loadingwidget.cpp \
     src/videoareawidget.cpp \
     src/autocomplete.cpp \
-    src/videowidget.cpp \
     src/videodefinition.cpp \
     src/constants.cpp \
     src/fontutils.cpp \

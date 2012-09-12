@@ -26,6 +26,7 @@ public:
     Phonon::SeekSlider* getSeekSlider() { return seekSlider; }
     void readSettings();
     void writeSettings();
+    static void printHelp();
 
 public slots:
     void showMedia(SearchParams *params);

@@ -30,6 +30,7 @@
 #else
 #include "searchlineedit.h"
 #endif
+#include <iostream>
 
 static MainWindow *singleton = 0;
 
@@ -39,12 +40,12 @@ MainWindow* MainWindow::instance() {
 }
 
 MainWindow::MainWindow() :
+        updateChecker(0),
         aboutView(0),
         downloadView(0),
         mediaObject(0),
         audioOutput(0),
-        m_fullscreen(false),
-        updateChecker(0) {
+        m_fullscreen(false) {
 
     singleton = this;
 
@@ -125,7 +126,7 @@ MainWindow::MainWindow() :
     setAcceptDrops(true);
 
     mouseTimer = new QTimer(this);
-    mouseTimer->setInterval(3000);
+    mouseTimer->setInterval(5000);
     mouseTimer->setSingleShot(true);
     connect(mouseTimer, SIGNAL(timeout()), SLOT(hideMouse()));
 
@@ -147,41 +148,37 @@ void MainWindow::changeEvent(QEvent* event) {
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
-#ifdef Q_WS_X11
-    if (event->type() == QEvent::MouseMove && this->m_fullscreen) {
+
+    if (m_fullscreen && event->type() == QEvent::MouseMove) {
+
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*> (event);
-        int x = mouseEvent->pos().x();
-        int y = mouseEvent->pos().y();
+        const int x = mouseEvent->pos().x();
+        const QString className = QString(obj->metaObject()->className());
+        const bool isHoveringVideo = (className == "QGLWidget") || (className == "VideoAreaWidget");
 
-        if (y < 0 && (obj == this->mainToolBar || !(y <= 10-this->mainToolBar->height() && y >= 0-this->mainToolBar->height() )))
-           this->mainToolBar->setVisible(false);
-        if (x < 0)
-            this->mediaView->setPlaylistVisible(false);
-    }
+        // qDebug() << obj << mouseEvent->pos() << isHoveringVideo << mediaView->isPlaylistVisible();
+
+        if (mediaView->isPlaylistVisible()) {
+            if (isHoveringVideo && x > 5) mediaView->setPlaylistVisible(false);
+        } else {
+            if (isHoveringVideo && x >= 0 && x < 5) mediaView->setPlaylistVisible(true);
+        }
+
+#ifndef APP_MAC
+        const int y = mouseEvent->pos().y();
+        if (mainToolBar->isVisible()) {
+            if (isHoveringVideo && y > 5) mainToolBar->setVisible(false);
+        } else {
+            if (isHoveringVideo && y >= 0 && y < 5) mainToolBar->setVisible(true);
+        }
 #endif
-
-#ifndef Q_WS_X11
-    // mac::IsFullScreen(winId())
-    if (event->type() == QEvent::MouseMove && m_fullscreen) {
 
         // show the normal cursor
         unsetCursor();
         // then hide it again after a few seconds
         mouseTimer->start();
 
-        QMouseEvent *mouseEvent = static_cast<QMouseEvent*> (event);
-        const int x = mouseEvent->pos().x();
-        const QString className = QString(obj->metaObject()->className());
-        const bool isHoveringVideo = className == "QGLWidget";
-        // qDebug() << obj << x << isHoveringVideo << mediaView->isPlaylistVisible();
-        if (mediaView->isPlaylistVisible()) {
-            if (isHoveringVideo && x > 5) mediaView->setPlaylistVisible(false);
-        } else {
-            bool visible = (isHoveringVideo && x >= 0 && x < 5);
-            mediaView->setPlaylistVisible(visible);
-        }
     }
-#endif
 
     if (event->type() == QEvent::ToolTip) {
         // kill tooltips
@@ -1132,7 +1129,6 @@ void MainWindow::compactView(bool enable) {
 }
 
 void MainWindow::searchFocus() {
-    QWidget *view = views->currentWidget();
     toolbarSearch->selectAll();
     toolbarSearch->setFocus();
 }
@@ -1455,6 +1451,8 @@ void MainWindow::messageReceived(const QString &message) {
         if (skipAct->isEnabled()) skipAct->trigger();
     } else if (message == "--previous") {
         if (skipBackwardAct->isEnabled()) skipBackwardAct->trigger();
+    }  else if (message.startsWith("--")) {
+        MainWindow::printHelp();
     } else if (!message.isEmpty()) {
         SearchParams *searchParams = new SearchParams();
         searchParams->setKeywords(message);
@@ -1465,4 +1463,20 @@ void MainWindow::messageReceived(const QString &message) {
 void MainWindow::hideMouse() {
     setCursor(Qt::BlankCursor);
     mediaView->setPlaylistVisible(false);
+#ifndef APP_MAC
+    mainToolBar->setVisible(false);
+#endif
+}
+
+void MainWindow::printHelp() {
+    QString msg = QString("%1 %2\n\n").arg(Constants::NAME, Constants::VERSION);
+    msg += "Usage: minitube [options]\n";
+    msg += "Options:\n";
+    msg += "  --toggle-playing\t";
+    msg += "Start or pause playback.\n";
+    msg += "  --next\t\t";
+    msg += "Skip to the next video.\n";
+    msg += "  --previous\t\t";
+    msg += "Go back to the previous video.\n";
+    std::cout << msg.toLocal8Bit().data();
 }

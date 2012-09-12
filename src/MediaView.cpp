@@ -82,14 +82,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
 
     videoAreaWidget = new VideoAreaWidget(this);
     // videoAreaWidget->setMinimumSize(320,240);
-
-#ifdef APP_MAC
-    // mouse autohide does not work on the Mac (no mouseMoveEvent)
     videoWidget = new Phonon::VideoWidget(this);
-#else
-    videoWidget = new VideoWidget(this);
-#endif
-
     videoAreaWidget->setVideoWidget(videoWidget);
     videoAreaWidget->setListModel(listModel);
 
