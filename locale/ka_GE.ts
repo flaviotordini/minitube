@@ -3,57 +3,57 @@
 <context>
     <name>AboutView</name>
     <message>
-        <location filename="src/AboutView.cpp" line="21"/>
+        <location filename="src/AboutView.cpp" line="28"/>
         <source>There&apos;s life outside the browser!</source>
         <translation>სიცოცხლე ბრაუზერის გარეთ!</translation>
     </message>
     <message>
-        <location filename="src/AboutView.cpp" line="22"/>
+        <location filename="src/AboutView.cpp" line="29"/>
         <source>Version %1</source>
         <translation>ვერსია %1</translation>
     </message>
     <message>
-        <location filename="src/AboutView.cpp" line="26"/>
+        <location filename="src/AboutView.cpp" line="33"/>
         <source>%1 is Free Software but its development takes precious time.</source>
         <translation>%1 უფასო პროგრამაა, მაგრამ მისი შექმნა ძვირფას დროს მოითხოვს.</translation>
     </message>
     <message>
-        <location filename="src/AboutView.cpp" line="27"/>
+        <location filename="src/AboutView.cpp" line="34"/>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
         <translation>გთხოვთ &lt;a href=&apos;%1&apos;&gt;გააკეთეთ შემოწირულობა&lt;/a&gt;  რომ დაეხმაროთ %2 -ის განვითარებას.</translation>
     </message>
     <message>
-        <location filename="src/AboutView.cpp" line="31"/>
+        <location filename="src/AboutView.cpp" line="38"/>
         <source>You may want to try my other apps as well:</source>
         <translation>თქვენ შეგიძლიათ ცადოთ ჩემი სხვა პროგრამები:</translation>
     </message>
     <message>
-        <location filename="src/AboutView.cpp" line="34"/>
+        <location filename="src/AboutView.cpp" line="41"/>
         <source>%1, a YouTube music player</source>
         <translation>%1, Youtube მუსიკალური დამკვრელი</translation>
     </message>
     <message>
-        <location filename="src/AboutView.cpp" line="38"/>
+        <location filename="src/AboutView.cpp" line="45"/>
         <source>%1, a music player</source>
         <translation>%1, მუსიკალური დამკვრელი</translation>
     </message>
     <message>
-        <location filename="src/AboutView.cpp" line="44"/>
+        <location filename="src/AboutView.cpp" line="51"/>
         <source>Translate %1 to your native language using %2</source>
         <translation>გადათარგმნეთ %1 თქვენს მშობლიურ ენაზე %2 -ის გამოყენებით</translation>
     </message>
     <message>
-        <location filename="src/AboutView.cpp" line="49"/>
+        <location filename="src/AboutView.cpp" line="56"/>
         <source>Icon designed by %1.</source>
         <translation>ხატულის ავტორია %1.</translation>
     </message>
     <message>
-        <location filename="src/AboutView.cpp" line="53"/>
+        <location filename="src/AboutView.cpp" line="60"/>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
         <translation>გამოცემა &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt; ლიცენზიით</translation>
     </message>
     <message>
-        <location filename="src/AboutView.cpp" line="65"/>
+        <location filename="src/AboutView.cpp" line="73"/>
         <source>&amp;Close</source>
         <translation>&amp;დახურვა</translation>
     </message>
@@ -117,47 +117,47 @@
 <context>
     <name>DownloadItem</name>
     <message>
-        <location filename="src/downloaditem.cpp" line="308"/>
+        <location filename="src/downloaditem.cpp" line="312"/>
         <source>bytes</source>
         <translation>ბაიტები</translation>
     </message>
     <message>
-        <location filename="src/downloaditem.cpp" line="311"/>
+        <location filename="src/downloaditem.cpp" line="315"/>
         <source>KB</source>
         <translation>კბ</translation>
     </message>
     <message>
-        <location filename="src/downloaditem.cpp" line="314"/>
+        <location filename="src/downloaditem.cpp" line="318"/>
         <source>MB</source>
         <translation>მბ</translation>
     </message>
     <message>
-        <location filename="src/downloaditem.cpp" line="330"/>
+        <location filename="src/downloaditem.cpp" line="327"/>
         <source>bytes/sec</source>
         <translation>ბაიტი/წმ</translation>
     </message>
     <message>
-        <location filename="src/downloaditem.cpp" line="333"/>
+        <location filename="src/downloaditem.cpp" line="330"/>
         <source>KB/sec</source>
         <translation>კბ/წმ</translation>
     </message>
     <message>
-        <location filename="src/downloaditem.cpp" line="336"/>
+        <location filename="src/downloaditem.cpp" line="333"/>
         <source>MB/sec</source>
         <translation>მბ/წმ</translation>
     </message>
     <message>
-        <location filename="src/downloaditem.cpp" line="342"/>
+        <location filename="src/downloaditem.cpp" line="339"/>
         <source>seconds</source>
         <translation>წამები</translation>
     </message>
     <message>
-        <location filename="src/downloaditem.cpp" line="345"/>
+        <location filename="src/downloaditem.cpp" line="342"/>
         <source>minutes</source>
         <translation>წუთები</translation>
     </message>
     <message>
-        <location filename="src/downloaditem.cpp" line="348"/>
+        <location filename="src/downloaditem.cpp" line="345"/>
         <source>%4 %5 remaining</source>
         <translation>დარჩა %4 %5</translation>
     </message>
@@ -165,27 +165,37 @@
 <context>
     <name>DownloadManager</name>
     <message>
-        <location filename="src/downloadmanager.cpp" line="47"/>
+        <location filename="src/downloadmanager.cpp" line="48"/>
         <source>This is just the demo version of %1.</source>
         <translation>ეს %1 -ის მხოლოდ დემო ვერსიაა.</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="49"/>
+        <location filename="src/downloadmanager.cpp" line="50"/>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
         <translation>შესაძლებელია მხოლოდ %1 -ზე მოკლე ვიდეოების გადმოწერა, პროგრამის მუშაობის შესამოწმებლად.</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="55"/>
+        <location filename="src/downloadmanager.cpp" line="56"/>
         <source>Continue</source>
         <translation>გაგრძელება</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="56"/>
+        <location filename="src/downloadmanager.cpp" line="57"/>
         <source>Get the full version</source>
         <translation>მთლიანი ვერსიის გადმოწერა</translation>
     </message>
+    <message>
+        <location filename="src/downloadmanager.cpp" line="142"/>
+        <source>%1 downloaded in %2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/downloadmanager.cpp" line="145"/>
+        <source>Download finished</source>
+        <translation type="unfinished"/>
+    </message>
     <message numerus="yes">
-        <location filename="src/downloadmanager.cpp" line="137"/>
+        <location filename="src/downloadmanager.cpp" line="151"/>
         <source>%n Download(s)</source>
         <translation type="unfinished"><numerusform></numerusform></translation>
     </message>
@@ -198,22 +208,22 @@
         <translation>ადგილმდებარეობის შეცვლა</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="38"/>
+        <location filename="src/downloadsettings.cpp" line="46"/>
         <source>Choose the download location</source>
         <translation>მიუთითეთ გადმოწერის ადგილმდებარეობის </translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="49"/>
+        <location filename="src/downloadsettings.cpp" line="61"/>
         <source>Download location changed.</source>
         <translation>გადმოწერის ადგილმდებარეობა შეცვლილია.</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="51"/>
+        <location filename="src/downloadsettings.cpp" line="63"/>
         <source>Current downloads will still go in the previous location.</source>
         <translation>ახლანდელი გადმოწერები ისევ ძველ დირექტორიაში შეინახებიან.</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="63"/>
+        <location filename="src/downloadsettings.cpp" line="75"/>
         <source>Downloading to: %1</source>
         <translation>ფაილები ინახება: %1</translation>
     </message>
@@ -316,7 +326,7 @@
 <context>
     <name>LoadingWidget</name>
     <message>
-        <location filename="src/loadingwidget.cpp" line="71"/>
+        <location filename="src/loadingwidget.cpp" line="90"/>
         <source>Error</source>
         <translation>შეცდომა</translation>
     </message>
@@ -324,492 +334,477 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="src/MainWindow.cpp" line="160"/>
+        <location filename="src/MainWindow.cpp" line="170"/>
         <source>&amp;Stop</source>
         <translation>&amp;შეჩერება</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="161"/>
+        <location filename="src/MainWindow.cpp" line="171"/>
         <source>Stop playback and go back to the search view</source>
         <translation>დაკვრის შეჩერება და ძებნის ფორმაში გადასვლა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="179"/>
+        <location filename="src/MainWindow.cpp" line="189"/>
         <source>S&amp;kip</source>
         <translation>პ&amp;შემდეგი</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="180"/>
+        <location filename="src/MainWindow.cpp" line="190"/>
         <source>Skip to the next video</source>
         <translation>შემდეგ ვიდეოზე გადასვლა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="186"/>
-        <location filename="src/MainWindow.cpp" line="835"/>
+        <location filename="src/MainWindow.cpp" line="196"/>
+        <location filename="src/MainWindow.cpp" line="895"/>
         <source>&amp;Pause</source>
         <translation>&amp;პაუზა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="187"/>
-        <location filename="src/MainWindow.cpp" line="836"/>
+        <location filename="src/MainWindow.cpp" line="197"/>
+        <location filename="src/MainWindow.cpp" line="896"/>
         <source>Pause playback</source>
         <translation> დაკვრის დაპაუზება</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="193"/>
+        <location filename="src/MainWindow.cpp" line="203"/>
         <source>&amp;Full Screen</source>
         <translation>&amp;მთლიან ეკრანზე</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="194"/>
+        <location filename="src/MainWindow.cpp" line="204"/>
         <source>Go full screen</source>
         <translation>მთლიან  ეკრანზე გაშლა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="210"/>
+        <location filename="src/MainWindow.cpp" line="220"/>
         <source>Hide the playlist and the toolbar</source>
         <translation>ვიდეოების სიის და პანელის დამალვა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="223"/>
+        <location filename="src/MainWindow.cpp" line="233"/>
         <source>Go to the YouTube video page and pause playback</source>
         <translation>YouTube-ს გვერდზე გადასვლა და დაკვრის შეჩერება</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="230"/>
+        <location filename="src/MainWindow.cpp" line="240"/>
         <source>Copy the current video YouTube link to the clipboard</source>
         <translation>YouTube-ს ბმულის კოპირება ბუფერში</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="237"/>
+        <location filename="src/MainWindow.cpp" line="247"/>
         <source>Copy the current video stream URL to the clipboard</source>
         <translation>ამ ვიდეო ნაკადის შენახვა ბუფერში</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="244"/>
+        <location filename="src/MainWindow.cpp" line="254"/>
         <source>Find other video parts hopefully in the right order</source>
         <translation>ვიდეოს სხვა ნაწილების მოძებნა სწორი განლაგებით</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="250"/>
+        <location filename="src/MainWindow.cpp" line="260"/>
         <source>&amp;Remove</source>
         <translation>&amp;წაშლა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="251"/>
+        <location filename="src/MainWindow.cpp" line="261"/>
         <source>Remove the selected videos from the playlist</source>
         <translation>მონიშნული ვიდეოების სიიდან ამოშლა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="257"/>
+        <location filename="src/MainWindow.cpp" line="267"/>
         <source>Move &amp;Up</source>
         <translation>&amp;ზემოთ აწევა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="258"/>
+        <location filename="src/MainWindow.cpp" line="268"/>
         <source>Move up the selected videos in the playlist</source>
         <translation>მონიშნული ვიდეოების გადატანა მაღლა აწევა სიაში</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="264"/>
+        <location filename="src/MainWindow.cpp" line="274"/>
         <source>Move &amp;Down</source>
         <translation>&amp;ქვემოთ ჩაწევა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="265"/>
+        <location filename="src/MainWindow.cpp" line="275"/>
         <source>Move down the selected videos in the playlist</source>
         <translation>მონიშნული ვიდეოების გადატანა დაბლა დაწევა სიაში</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="276"/>
+        <location filename="src/MainWindow.cpp" line="286"/>
         <source>Clear the search history. Cannot be undone.</source>
         <translation>ძებნის ისტორიის გასუფთავება. </translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="281"/>
+        <location filename="src/MainWindow.cpp" line="291"/>
         <source>&amp;Quit</source>
         <translation>&amp;დასრულება</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="284"/>
+        <location filename="src/MainWindow.cpp" line="294"/>
         <source>Bye</source>
         <translation>ნახვამდის</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="288"/>
+        <location filename="src/MainWindow.cpp" line="298"/>
         <source>&amp;Website</source>
         <translation>&amp;საიტი</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="290"/>
+        <location filename="src/MainWindow.cpp" line="300"/>
         <source>%1 on the Web</source>
         <translation>%1 საიტზე</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="296"/>
+        <location filename="src/MainWindow.cpp" line="306"/>
         <source>Please support the continued development of %1</source>
         <translation>გთხოვთ მხარი დაუჭიროთ  %1 -ის დეველოპმენტს</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="301"/>
+        <location filename="src/MainWindow.cpp" line="311"/>
         <source>&amp;About</source>
         <translation>&amp;შესახებ</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="303"/>
+        <location filename="src/MainWindow.cpp" line="313"/>
         <source>Info about %1</source>
         <translation>ინფორმაცია %1 შესახებ</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="311"/>
+        <location filename="src/MainWindow.cpp" line="321"/>
         <source>Search</source>
         <translation>ძებნა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="330"/>
+        <location filename="src/MainWindow.cpp" line="340"/>
         <source>Mute volume</source>
         <translation>გაჩუმება</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="359"/>
-        <location filename="src/MainWindow.cpp" line="1179"/>
+        <location filename="src/MainWindow.cpp" line="369"/>
+        <location filename="src/MainWindow.cpp" line="1260"/>
         <source>&amp;Downloads</source>
         <translation>$გადმოწერები</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="360"/>
+        <location filename="src/MainWindow.cpp" line="370"/>
         <source>Show details about video downloads</source>
         <translation>ვიდეოების გადმოწერების დეტალური ნახვა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="368"/>
+        <location filename="src/MainWindow.cpp" line="378"/>
         <source>&amp;Download</source>
         <translation>&amp;გადმოწერა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="369"/>
+        <location filename="src/MainWindow.cpp" line="379"/>
         <source>Download the current video</source>
         <translation>ამ ვიდეოს გადმოწერა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="381"/>
+        <location filename="src/MainWindow.cpp" line="398"/>
         <source>Share the current video using %1</source>
         <translation>ვიდეოს გაზიარება %1 -ის გამოყენებით</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="393"/>
+        <location filename="src/MainWindow.cpp" line="415"/>
         <source>&amp;Email</source>
         <translation>&amp;ელფოსტა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="394"/>
+        <location filename="src/MainWindow.cpp" line="416"/>
         <source>Email</source>
         <translation>ელფოსტა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="398"/>
+        <location filename="src/MainWindow.cpp" line="420"/>
         <source>&amp;Close</source>
         <translation>&amp;დახურვა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="403"/>
+        <location filename="src/MainWindow.cpp" line="430"/>
         <source>&amp;Float on Top</source>
         <translation>&amp;ზემოთ განთავსება</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="408"/>
+        <location filename="src/MainWindow.cpp" line="435"/>
         <source>&amp;Stop After This Video</source>
         <translation>ამ ვიდეოს შემდეგ &amp;შეჩერება</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="445"/>
+        <location filename="src/MainWindow.cpp" line="442"/>
+        <source>&amp;Report an Issue...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/MainWindow.cpp" line="446"/>
+        <source>&amp;Refine Search...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/MainWindow.cpp" line="481"/>
         <source>&amp;Application</source>
         <translation>&amp;აპლიკაცია</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="447"/>
+        <location filename="src/MainWindow.cpp" line="483"/>
         <source>Buy %1...</source>
         <translation>იყიდეთ %1</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="458"/>
+        <location filename="src/MainWindow.cpp" line="494"/>
         <source>&amp;Playback</source>
         <translation>&amp;დაკვრა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="472"/>
+        <location filename="src/MainWindow.cpp" line="508"/>
         <source>&amp;Playlist</source>
         <translation>&amp;ვიდეოების სია</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="479"/>
+        <location filename="src/MainWindow.cpp" line="517"/>
         <source>&amp;Video</source>
         <translation>&amp;ვიდეო</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="490"/>
+        <location filename="src/MainWindow.cpp" line="529"/>
         <source>&amp;View</source>
         <translation>&amp;ხედი</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="497"/>
+        <location filename="src/MainWindow.cpp" line="536"/>
         <source>&amp;Share</source>
         <translation>&amp;გაზიარება</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="509"/>
+        <location filename="src/MainWindow.cpp" line="550"/>
         <source>&amp;Help</source>
         <translation>&amp;დახმარება</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="586"/>
+        <location filename="src/MainWindow.cpp" line="628"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
         <translation>ხმის ასაჭერად დააჭირე ღილაკს %1 და დასაწევად %2</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="748"/>
-        <location filename="src/MainWindow.cpp" line="754"/>
+        <location filename="src/MainWindow.cpp" line="800"/>
+        <location filename="src/MainWindow.cpp" line="806"/>
         <source>Opening %1</source>
         <translation>იხსნება %1</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="787"/>
+        <location filename="src/MainWindow.cpp" line="847"/>
         <source>Do you want to exit %1 with a download in progress?</source>
         <translation>თქვენ გინდათ დახუროთ %1 გადმოწერის პროცესში?</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="788"/>
+        <location filename="src/MainWindow.cpp" line="848"/>
         <source>If you close %1 now, this download will be cancelled.</source>
         <translation>თუ თქვენ დახურავთ %1 -ს, ეს გადმოწერა შეწყდება.</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="793"/>
+        <location filename="src/MainWindow.cpp" line="853"/>
         <source>Close and cancel download</source>
         <translation>დახურვა და გადმოწერის შეწყვეტა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="794"/>
+        <location filename="src/MainWindow.cpp" line="854"/>
         <source>Wait for download to finish</source>
         <translation>გადმოწერის დასრულებამდე მოცდა.</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="940"/>
+        <location filename="src/MainWindow.cpp" line="1008"/>
         <source>Leave &amp;Full Screen</source>
         <translation>მთლიანი ეკრანის რეჟიმის დატოვება</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1283"/>
+        <location filename="src/MainWindow.cpp" line="1363"/>
         <source>%1 version %2 is now available.</source>
         <translation>%1 ვერსია %2 უკვე ხელმისაწვდომია.</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1297"/>
+        <location filename="src/MainWindow.cpp" line="1377"/>
         <source>Remind me later</source>
         <translation>მოგვიანებით შეხსენება</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1294"/>
+        <location filename="src/MainWindow.cpp" line="1374"/>
         <source>To get the updated version, download %1 again from the link you received via email and reinstall.</source>
         <translation>განახლებული ვერსიი მისარებად, ისევ გადმოიწერეთ %1  ბმულიდან რომელიც მოგივიდათ ელფოსტაზე და გაუკეთეთ რეინსტალაცია.</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1301"/>
+        <location filename="src/MainWindow.cpp" line="1381"/>
         <source>Update</source>
         <translation>განახლება</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="828"/>
+        <location filename="src/MainWindow.cpp" line="888"/>
         <source>Error: %1</source>
         <translation>შეცდომა: %1</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="169"/>
+        <location filename="src/MainWindow.cpp" line="179"/>
         <source>P&amp;revious</source>
         <translation>პ&amp;წინა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="170"/>
+        <location filename="src/MainWindow.cpp" line="180"/>
         <source>Go back to the previous track</source>
         <translation>წინა ბილიკზე დაბრუნება</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="209"/>
+        <location filename="src/MainWindow.cpp" line="219"/>
         <source>&amp;Compact Mode</source>
         <translation>&amp;კომპაქტური ხედი</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="222"/>
+        <location filename="src/MainWindow.cpp" line="232"/>
         <source>Open the &amp;YouTube Page</source>
         <translation>გახსენი &amp;YouTube-ს გვერდი</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="229"/>
+        <location filename="src/MainWindow.cpp" line="239"/>
         <source>Copy the YouTube &amp;Link</source>
         <translation>YouTube-ს &amp;ბმულის დაკოპირება</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="236"/>
+        <location filename="src/MainWindow.cpp" line="246"/>
         <source>Copy the Video Stream &amp;URL</source>
         <translation>ვიდეოს ნაკადის &amp;ბმულის დაკოპირება</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="243"/>
+        <location filename="src/MainWindow.cpp" line="253"/>
         <source>Find Video &amp;Parts</source>
         <translation>მოძებნე ვიდეოს &amp;ნაწილები</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="271"/>
+        <location filename="src/MainWindow.cpp" line="281"/>
         <source>&amp;Clear Recent Searches</source>
         <translation>&amp;გაასუფთავე ბოლო ძებნები</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="295"/>
+        <location filename="src/MainWindow.cpp" line="305"/>
         <source>Make a &amp;Donation</source>
         <translation>&amp;შემოწირულობის გაკეთება</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="352"/>
+        <location filename="src/MainWindow.cpp" line="362"/>
         <source>&amp;Manually Start Playing</source>
         <translation>დაკვრის დაწყება &amp;ხელით  </translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="353"/>
+        <location filename="src/MainWindow.cpp" line="363"/>
         <source>Manually start playing videos</source>
         <translation>ხელით ვიდეოს დაკვრის დაწყება</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="848"/>
+        <location filename="src/MainWindow.cpp" line="908"/>
         <source>&amp;Play</source>
         <translation>&amp;დაკვრა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="849"/>
+        <location filename="src/MainWindow.cpp" line="909"/>
         <source>Resume playback</source>
         <translation>დაკვრის გაგრძელება</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1055"/>
+        <location filename="src/MainWindow.cpp" line="1136"/>
         <source>Remaining time: %1</source>
         <translation>დარჩენილი დრო %1</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1113"/>
+        <location filename="src/MainWindow.cpp" line="1194"/>
         <source>Volume at %1%</source>
         <translation>ხმის სიმაღლე %1%</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1119"/>
+        <location filename="src/MainWindow.cpp" line="1200"/>
         <source>Volume is muted</source>
         <translation>ხმა გამორთულია</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1122"/>
+        <location filename="src/MainWindow.cpp" line="1203"/>
         <source>Volume is unmuted</source>
         <translation>ხმა ჩართულია</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1129"/>
+        <location filename="src/MainWindow.cpp" line="1210"/>
         <source>Maximum video definition set to %1</source>
         <translation>ვიდეოს მაქსიმალური გაფართოებაა არის %1</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1165"/>
+        <location filename="src/MainWindow.cpp" line="1246"/>
         <source>Your privacy is now safe</source>
         <translation>თქვენი პირადი პარამეტრები ახლა უსაფრთხოა</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cpp" line="1180"/>
+        <location filename="src/MainWindow.cpp" line="1261"/>
         <source>Downloads complete</source>
         <translation>გადმოწერები დასრულებულია</translation>
-    </message>
-    <message>
-        <location filename="local/mac/macsupport.cpp" line="58"/>
-        <source>&amp;Window</source>
-        <translation>&amp;ფანჯარა</translation>
-    </message>
-    <message>
-        <location filename="local/mac/macsupport.cpp" line="61"/>
-        <source>&amp;Minimize</source>
-        <translation>&amp;ჩაკეცვა</translation>
     </message>
 </context>
 <context>
     <name>MediaView</name>
     <message>
-        <location filename="src/MediaView.cpp" line="35"/>
-        <source>Most relevant</source>
-        <translation>ყველაზე რეველანტური</translation>
-    </message>
-    <message>
-        <location filename="src/MediaView.cpp" line="42"/>
-        <source>Most recent</source>
-        <translation>ყველაზე ახლები</translation>
-    </message>
-    <message>
-        <location filename="src/MediaView.cpp" line="49"/>
-        <source>Most viewed</source>
-        <translation>ყველაზე პოპულარულები</translation>
-    </message>
-    <message>
-        <location filename="src/MediaView.cpp" line="521"/>
+        <location filename="src/MediaView.cpp" line="546"/>
         <source>You can now paste the YouTube link into another application</source>
         <translation>თქვენ  უკვე შეგიძლიათ ჩასვათ YouTube-ს ბმული სხვა აპლიკაციაში</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="529"/>
+        <location filename="src/MediaView.cpp" line="554"/>
         <source>You can now paste the video stream URL into another application</source>
         <translation>თქვენ უკვე სეგიძლიად დააკოპიროთ ვიდეოს ბმული სხვა აპლიკაციაში</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="530"/>
+        <location filename="src/MediaView.cpp" line="555"/>
         <source>The link will be valid only for a limited time.</source>
         <translation>ეს ბმული ვალიდური იქნება მხოლოდ გარკვეული დროის განმავლობაში.</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="629"/>
+        <location filename="src/MediaView.cpp" line="654"/>
         <source>This is just the demo version of %1.</source>
         <translation>ეს მხოლოდ %1 -ის დემო ვერსიაა.</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="630"/>
+        <location filename="src/MediaView.cpp" line="655"/>
         <source>It allows you to test the application and see if it works for you.</source>
         <translation>ის საშუალებას გაძლევთ ტესტირება გაუკეთოთ აპლიკაციას და ნახოთ ის მუშაობს თუ არა თქვენთვის.</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="660"/>
+        <location filename="src/MediaView.cpp" line="685"/>
         <source>Continue</source>
         <translation>გაგრძელება</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="749"/>
+        <location filename="src/MediaView.cpp" line="783"/>
         <source>of</source>
         <comment>Used in video parts, as in '2 of 3'</comment>
         <translation>გან</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="761"/>
+        <location filename="src/MediaView.cpp" line="795"/>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
         <translation>ნაწილი</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="763"/>
+        <location filename="src/MediaView.cpp" line="797"/>
         <source>episode</source>
         <comment>This is for video parts, as in 'Cool series - episode 1'</comment>
         <translation>ეპიზოდი</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="821"/>
+        <location filename="src/MediaView.cpp" line="867"/>
         <source>Sent from %1</source>
         <translation>გამოგზავნილია %1 -დან</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="637"/>
+        <location filename="src/MediaView.cpp" line="662"/>
         <source>Get the full version</source>
         <translation>სრული ვერსიის გადმოწერა</translation>
     </message>
     <message>
-        <location filename="src/MediaView.cpp" line="682"/>
+        <location filename="src/MediaView.cpp" line="707"/>
         <source>Downloading %1</source>
         <translation>ვტვირთავ %1</translation>
     </message>
@@ -825,54 +820,164 @@
 <context>
     <name>PrettyItemDelegate</name>
     <message>
-        <location filename="src/playlist/PrettyItemDelegate.cpp" line="170"/>
+        <location filename="src/playlist/PrettyItemDelegate.cpp" line="171"/>
         <source>%1 views</source>
         <translation>%1 ნახვა</translation>
     </message>
     <message>
-        <location filename="src/playlist/PrettyItemDelegate.cpp" line="286"/>
+        <location filename="src/playlist/PrettyItemDelegate.cpp" line="297"/>
         <source>%1 of %2 (%3) — %4</source>
         <translation>გადმოწერილია %1 %2 -დან (%3) — %4</translation>
     </message>
     <message>
-        <location filename="src/playlist/PrettyItemDelegate.cpp" line="293"/>
+        <location filename="src/playlist/PrettyItemDelegate.cpp" line="304"/>
         <source>Preparing</source>
         <translation>მიმდინარეობს მზადება</translation>
     </message>
     <message>
-        <location filename="src/playlist/PrettyItemDelegate.cpp" line="295"/>
+        <location filename="src/playlist/PrettyItemDelegate.cpp" line="306"/>
         <source>Failed</source>
         <translation>შეცდომა</translation>
     </message>
     <message>
-        <location filename="src/playlist/PrettyItemDelegate.cpp" line="297"/>
+        <location filename="src/playlist/PrettyItemDelegate.cpp" line="308"/>
         <source>Completed</source>
         <translation>დასრულებულია</translation>
     </message>
     <message>
-        <location filename="src/playlist/PrettyItemDelegate.cpp" line="299"/>
+        <location filename="src/playlist/PrettyItemDelegate.cpp" line="310"/>
         <source>Stopped</source>
         <translation>შეჩერებულია</translation>
     </message>
     <message>
-        <location filename="src/playlist/PrettyItemDelegate.cpp" line="335"/>
+        <location filename="src/playlist/PrettyItemDelegate.cpp" line="346"/>
         <source>Stop downloading</source>
         <translation>გადმოწერის შეჩერება</translation>
     </message>
     <message>
-        <location filename="src/playlist/PrettyItemDelegate.cpp" line="345"/>
+        <location filename="src/playlist/PrettyItemDelegate.cpp" line="356"/>
         <source>Show in %1</source>
         <translation>ანახე %1 -ში</translation>
     </message>
     <message>
-        <location filename="src/playlist/PrettyItemDelegate.cpp" line="347"/>
+        <location filename="src/playlist/PrettyItemDelegate.cpp" line="358"/>
         <source>Open parent folder</source>
         <translation>დირექტორიის გახსნა</translation>
     </message>
     <message>
-        <location filename="src/playlist/PrettyItemDelegate.cpp" line="356"/>
+        <location filename="src/playlist/PrettyItemDelegate.cpp" line="367"/>
         <source>Restart downloading</source>
         <translation>გადმოწერის თავიდან დაწყება</translation>
+    </message>
+</context>
+<context>
+    <name>RefineSearchWidget</name>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="27"/>
+        <source>Sort by</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="31"/>
+        <source>Relevance</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="32"/>
+        <location filename="src/refinesearchwidget.cpp" line="48"/>
+        <source>Date</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="33"/>
+        <source>View Count</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="34"/>
+        <source>Rating</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="52"/>
+        <source>Anytime</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="53"/>
+        <source>Today</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="54"/>
+        <source>7 Days</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="55"/>
+        <source>30 Days</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="69"/>
+        <source>Duration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="73"/>
+        <location filename="src/refinesearchwidget.cpp" line="100"/>
+        <source>All</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="74"/>
+        <source>Short</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="75"/>
+        <source>Medium</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="76"/>
+        <source>Long</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="79"/>
+        <source>Less than 4 minutes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="80"/>
+        <source>Between 4 and 20 minutes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="81"/>
+        <source>Longer than 20 minutes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="96"/>
+        <source>Quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="101"/>
+        <source>High Definition</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="104"/>
+        <source>720p or higher</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/refinesearchwidget.cpp" line="118"/>
+        <source>Done</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -886,48 +991,48 @@
 <context>
     <name>SearchView</name>
     <message>
-        <location filename="src/SearchView.cpp" line="79"/>
+        <location filename="src/SearchView.cpp" line="88"/>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
         <translation>მოგესალმებით &lt;a href=&apos;%1&apos;&gt;%2 -ში&lt;/a&gt;,</translation>
     </message>
     <message>
-        <location filename="src/SearchView.cpp" line="46"/>
+        <location filename="src/SearchView.cpp" line="49"/>
         <source>Get the full version</source>
         <translation>სრული ვერსიის ყიდვა</translation>
     </message>
     <message>
-        <location filename="src/SearchView.cpp" line="93"/>
+        <location filename="src/SearchView.cpp" line="102"/>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole frase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
         <translation>შეიყვანეთ</translation>
     </message>
     <message>
-        <location filename="src/SearchView.cpp" line="98"/>
+        <location filename="src/SearchView.cpp" line="107"/>
         <source>a keyword</source>
         <translation>საკვანძო სიტყვა</translation>
     </message>
     <message>
-        <location filename="src/SearchView.cpp" line="99"/>
+        <location filename="src/SearchView.cpp" line="108"/>
         <source>a channel</source>
         <translation>არხი</translation>
     </message>
     <message>
-        <location filename="src/SearchView.cpp" line="104"/>
+        <location filename="src/SearchView.cpp" line="113"/>
         <source>to start watching videos.</source>
         <translation>ვიდეოს ყურების დასაწყებად</translation>
     </message>
     <message>
-        <location filename="src/SearchView.cpp" line="128"/>
+        <location filename="src/SearchView.cpp" line="137"/>
         <source>Watch</source>
         <translation>ყურება</translation>
     </message>
     <message>
-        <location filename="src/SearchView.cpp" line="146"/>
+        <location filename="src/SearchView.cpp" line="155"/>
         <source>Recent keywords</source>
         <translation>ბოლო საკვანძო სიტყვები</translation>
     </message>
     <message>
-        <location filename="src/SearchView.cpp" line="159"/>
+        <location filename="src/SearchView.cpp" line="168"/>
         <source>Recent channels</source>
         <translation>ბოლო არხები</translation>
     </message>
@@ -935,6 +1040,19 @@
         <location filename="src/SearchView.h" line="26"/>
         <source>Make yourself comfortable</source>
         <translation>შეიქმენით კომფორტი</translation>
+    </message>
+</context>
+<context>
+    <name>SidebarWidget</name>
+    <message>
+        <location filename="src/sidebarwidget.cpp" line="48"/>
+        <source>Refine Search</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/sidebarwidget.cpp" line="141"/>
+        <source>Did you mean: %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
