@@ -787,6 +787,7 @@ void MainWindow::showWidget ( QWidget* widget ) {
 
     The::globalActions()->value("twitter")->setEnabled(widget == mediaView);
     The::globalActions()->value("facebook")->setEnabled(widget == mediaView);
+    The::globalActions()->value("buffer")->setEnabled(widget == mediaView);
     The::globalActions()->value("email")->setEnabled(widget == mediaView);
 
     aboutAct->setEnabled(widget != aboutView);
