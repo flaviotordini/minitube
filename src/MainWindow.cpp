@@ -1062,7 +1062,9 @@ void MainWindow::updateUIForFullscreen() {
     if (views->currentWidget() == mediaView)
         mediaView->setFocus();
 
-    if (!m_fullscreen) {
+    if (m_fullscreen) {
+        hideMouse();
+    } else {
         mouseTimer->stop();
         unsetCursor();
     }
