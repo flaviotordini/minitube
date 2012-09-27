@@ -1,3 +1,18 @@
+1.9 - September 27, 2012
+- Adapted to YouTube changes
+- New search filter UI. Filter results by publication date, video duration and video quality.
+- Sort by rating
+- Search spell suggestions: "Did you mean..."
+- New downloads are now added at the top of the list
+- Video definition indicator while downloading videos
+- Simple integration with Buffer app
+- Better fullscreen experience on the Mac: sidebar shows when the mouse hits the left side, mouse and playlist autohide
+- Compatible with OS X Mountain Lion Gatekeeper
+- Partial Retina Display support. Still using 1x bitmaps because of Qt not being ready
+- OS X Mountain Lion notifications when a download finishes
+- Fixed flickering in fullscreen controls on Linux, also playlist and toolbar now autohide
+- New and updated translations
+
 1.8 - June 28, 2012
 - Enhanced Compact Mode: window on top, can be made smaller and remembers its own position
 - Adaptive video title font size
