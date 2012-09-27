@@ -91,7 +91,7 @@
     <message>
         <location filename="local/src/demostartupview.cpp" line="41"/>
         <source>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</source>
-        <translation type="unfinished"/>
+        <translation>Versi lengkap mungkinake sampeyan ngunduhi video luwih suwi seko %1 menit lan nggo nonton video tanpo intrupsi.</translation>
     </message>
     <message>
         <location filename="local/src/demostartupview.cpp" line="43"/>
@@ -187,12 +187,12 @@
     <message>
         <location filename="src/downloadmanager.cpp" line="142"/>
         <source>%1 downloaded in %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 ngunduhe ing %2</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="145"/>
         <source>Download finished</source>
-        <translation type="unfinished"/>
+        <translation>Ngunduhe wislebar</translation>
     </message>
     <message numerus="yes">
         <location filename="src/downloadmanager.cpp" line="151"/>
@@ -524,22 +524,22 @@
     <message>
         <location filename="src/MainWindow.cpp" line="430"/>
         <source>&amp;Float on Top</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ngambang ing Pucuk</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="435"/>
         <source>&amp;Stop After This Video</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Mandek Sakwise Video Iki</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="442"/>
         <source>&amp;Report an Issue...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Laporke sakwijining Isu...</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="446"/>
         <source>&amp;Refine Search...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Nyaring Penggolekan...</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="481"/>
@@ -549,7 +549,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="483"/>
         <source>Buy %1...</source>
-        <translation type="unfinished"/>
+        <translation>Tuku %1...</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="494"/>
@@ -635,7 +635,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="1381"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Nganyarke</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="888"/>
@@ -645,7 +645,7 @@
     <message>
         <location filename="src/MainWindow.cpp" line="179"/>
         <source>P&amp;revious</source>
-        <translation type="unfinished"/>
+        <translation>P&amp;revious</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="180"/>
@@ -655,47 +655,47 @@
     <message>
         <location filename="src/MainWindow.cpp" line="219"/>
         <source>&amp;Compact Mode</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Mode Praktis</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="232"/>
         <source>Open the &amp;YouTube Page</source>
-        <translation type="unfinished"/>
+        <translation>Mbukak &amp;YouTube Halamane</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="239"/>
         <source>Copy the YouTube &amp;Link</source>
-        <translation type="unfinished"/>
+        <translation>Njiplak YouTube &amp;Link</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="246"/>
         <source>Copy the Video Stream &amp;URL</source>
-        <translation type="unfinished"/>
+        <translation>Njiplak Video Stream &amp;URL</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="253"/>
         <source>Find Video &amp;Parts</source>
-        <translation type="unfinished"/>
+        <translation>Nggoleki Video &amp;Seri</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="281"/>
         <source>&amp;Clear Recent Searches</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ngresiki Penggolekan Sing ketuang</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="305"/>
         <source>Make a &amp;Donation</source>
-        <translation type="unfinished"/>
+        <translation>Nggawe sakwijining &amp;Sumbangan</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="362"/>
         <source>&amp;Manually Start Playing</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Mainke Secoro Manual</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="363"/>
         <source>Manually start playing videos</source>
-        <translation type="unfinished"/>
+        <translation>Ngawiti maenke video secoro manual</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="908"/>
@@ -779,24 +779,24 @@
         <location filename="src/MediaView.cpp" line="783"/>
         <source>of</source>
         <comment>Used in video parts, as in '2 of 3'</comment>
-        <translation type="unfinished"/>
+        <translation>seko</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="795"/>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
-        <translation type="unfinished"/>
+        <translation>seri</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="797"/>
         <source>episode</source>
         <comment>This is for video parts, as in 'Cool series - episode 1'</comment>
-        <translation type="unfinished"/>
+        <translation>episode</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="867"/>
         <source>Sent from %1</source>
-        <translation type="unfinished"/>
+        <translation>Kirim seko %1</translation>
     </message>
     <message>
         <location filename="src/MediaView.cpp" line="662"/>
@@ -875,109 +875,109 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="27"/>
         <source>Sort by</source>
-        <translation type="unfinished"/>
+        <translation>Bidik didasarke</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="31"/>
         <source>Relevance</source>
-        <translation type="unfinished"/>
+        <translation>Relefan</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="32"/>
         <location filename="src/refinesearchwidget.cpp" line="48"/>
         <source>Date</source>
-        <translation type="unfinished"/>
+        <translation>Tanggale</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="33"/>
         <source>View Count</source>
-        <translation type="unfinished"/>
+        <translation>Ndeloki Itungane</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="34"/>
         <source>Rating</source>
-        <translation type="unfinished"/>
+        <translation>Rating</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="52"/>
         <source>Anytime</source>
-        <translation type="unfinished"/>
+        <translation>Kapanwae</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="53"/>
         <source>Today</source>
-        <translation type="unfinished"/>
+        <translation>Dinoiki</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="54"/>
         <source>7 Days</source>
-        <translation type="unfinished"/>
+        <translation>7 Ndino</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="55"/>
         <source>30 Days</source>
-        <translation type="unfinished"/>
+        <translation>30 Dino</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="69"/>
         <source>Duration</source>
-        <translation type="unfinished"/>
+        <translation>Durasine</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="73"/>
         <location filename="src/refinesearchwidget.cpp" line="100"/>
         <source>All</source>
-        <translation type="unfinished"/>
+        <translation>Kabeh</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="74"/>
         <source>Short</source>
-        <translation type="unfinished"/>
+        <translation>Cekak</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="75"/>
         <source>Medium</source>
-        <translation type="unfinished"/>
+        <translation>Sedengan</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="76"/>
         <source>Long</source>
-        <translation type="unfinished"/>
+        <translation>Dowo</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="79"/>
         <source>Less than 4 minutes</source>
-        <translation type="unfinished"/>
+        <translation>Kurang seko 4 menit</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="80"/>
         <source>Between 4 and 20 minutes</source>
-        <translation type="unfinished"/>
+        <translation>Antarane 4 lan 20 menit</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="81"/>
         <source>Longer than 20 minutes</source>
-        <translation type="unfinished"/>
+        <translation>Dowone luwih seko 20 menit</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="96"/>
         <source>Quality</source>
-        <translation type="unfinished"/>
+        <translation>Kualitas</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="101"/>
         <source>High Definition</source>
-        <translation type="unfinished"/>
+        <translation>Definisi duwur</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="104"/>
         <source>720p or higher</source>
-        <translation type="unfinished"/>
+        <translation>720p utowo saknduwure</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="118"/>
         <source>Done</source>
-        <translation type="unfinished"/>
+        <translation>Rampung</translation>
     </message>
 </context>
 <context>
@@ -1047,12 +1047,12 @@
     <message>
         <location filename="src/sidebarwidget.cpp" line="48"/>
         <source>Refine Search</source>
-        <translation type="unfinished"/>
+        <translation>Nyaring Penggolekane</translation>
     </message>
     <message>
         <location filename="src/sidebarwidget.cpp" line="141"/>
         <source>Did you mean: %1</source>
-        <translation type="unfinished"/>
+        <translation>Opo sing bekmaksud: %1</translation>
     </message>
 </context>
 <context>

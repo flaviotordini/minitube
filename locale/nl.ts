@@ -187,12 +187,12 @@
     <message>
         <location filename="src/downloadmanager.cpp" line="142"/>
         <source>%1 downloaded in %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 gedownload in %2</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="145"/>
         <source>Download finished</source>
-        <translation type="unfinished"/>
+        <translation>Download greed</translation>
     </message>
     <message numerus="yes">
         <location filename="src/downloadmanager.cpp" line="151"/>
@@ -534,12 +534,12 @@
     <message>
         <location filename="src/MainWindow.cpp" line="442"/>
         <source>&amp;Report an Issue...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Rapporteer een Probleem...</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="446"/>
         <source>&amp;Refine Search...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Verfijn Zoekopdracht...</translation>
     </message>
     <message>
         <location filename="src/MainWindow.cpp" line="481"/>
@@ -875,109 +875,109 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="27"/>
         <source>Sort by</source>
-        <translation type="unfinished"/>
+        <translation>Sorteer op</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="31"/>
         <source>Relevance</source>
-        <translation type="unfinished"/>
+        <translation>Relevantie</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="32"/>
         <location filename="src/refinesearchwidget.cpp" line="48"/>
         <source>Date</source>
-        <translation type="unfinished"/>
+        <translation>Datum</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="33"/>
         <source>View Count</source>
-        <translation type="unfinished"/>
+        <translation>Weergaven</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="34"/>
         <source>Rating</source>
-        <translation type="unfinished"/>
+        <translation>Waardering</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="52"/>
         <source>Anytime</source>
-        <translation type="unfinished"/>
+        <translation>Elke Periode</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="53"/>
         <source>Today</source>
-        <translation type="unfinished"/>
+        <translation>Vandaag</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="54"/>
         <source>7 Days</source>
-        <translation type="unfinished"/>
+        <translation>7 Dagen</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="55"/>
         <source>30 Days</source>
-        <translation type="unfinished"/>
+        <translation>30 Dagen</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="69"/>
         <source>Duration</source>
-        <translation type="unfinished"/>
+        <translation>Duur</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="73"/>
         <location filename="src/refinesearchwidget.cpp" line="100"/>
         <source>All</source>
-        <translation type="unfinished"/>
+        <translation>Alles</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="74"/>
         <source>Short</source>
-        <translation type="unfinished"/>
+        <translation>Kort</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="75"/>
         <source>Medium</source>
-        <translation type="unfinished"/>
+        <translation>Gemiddeld</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="76"/>
         <source>Long</source>
-        <translation type="unfinished"/>
+        <translation>Lang</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="79"/>
         <source>Less than 4 minutes</source>
-        <translation type="unfinished"/>
+        <translation>Minder dan 4 minuten</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="80"/>
         <source>Between 4 and 20 minutes</source>
-        <translation type="unfinished"/>
+        <translation>Tussen 4 en 20 minuten</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="81"/>
         <source>Longer than 20 minutes</source>
-        <translation type="unfinished"/>
+        <translation>Langer dan 20 minuten</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="96"/>
         <source>Quality</source>
-        <translation type="unfinished"/>
+        <translation>Kwaliteit</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="101"/>
         <source>High Definition</source>
-        <translation type="unfinished"/>
+        <translation>HD Resolutie </translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="104"/>
         <source>720p or higher</source>
-        <translation type="unfinished"/>
+        <translation>720p of hover</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="118"/>
         <source>Done</source>
-        <translation type="unfinished"/>
+        <translation>Klaar</translation>
     </message>
 </context>
 <context>
@@ -1047,12 +1047,12 @@
     <message>
         <location filename="src/sidebarwidget.cpp" line="48"/>
         <source>Refine Search</source>
-        <translation type="unfinished"/>
+        <translation>Verfijn Zoekopdracht</translation>
     </message>
     <message>
         <location filename="src/sidebarwidget.cpp" line="141"/>
         <source>Did you mean: %1</source>
-        <translation type="unfinished"/>
+        <translation>Bedoelde je: %1</translation>
     </message>
 </context>
 <context>
