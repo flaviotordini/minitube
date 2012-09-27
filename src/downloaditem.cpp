@@ -204,7 +204,10 @@ void DownloadItem::downloadProgress(qint64 bytesReceived, qint64 bytesTotal) {
             m_status = Downloading;
             emit statusChanged();
         } else {
-            int bufferPercent = bytesReceived * 100 / qMax(bufferSize, neededBytes);
+            int bytes = qMax(bufferSize, neededBytes);
+            int bufferPercent = 0;
+            if (bytes > 0)
+                bufferPercent = bytesReceived * 100 / bytes;
             emit bufferProgress(bufferPercent);
         }
 
@@ -262,7 +265,10 @@ double DownloadItem::remainingTime() const {
     if (m_finishedDownloading)
         return -1.0;
 
-    double timeRemaining = ((double)(bytesTotal() - bytesReceived())) / currentSpeed();
+    double speed = currentSpeed();
+    double timeRemaining = 0.0;
+    if (speed > 0.0)
+        timeRemaining = ((double)(bytesTotal() - bytesReceived())) / speed;
 
     // When downloading the eta should never be 0
     if (timeRemaining == 0)
@@ -275,7 +281,11 @@ double DownloadItem::currentSpeed() const {
     if (m_finishedDownloading)
         return -1.0;
 
-    return m_bytesReceived * 1000.0 / m_downloadTime.elapsed();
+    int elapsed = m_downloadTime.elapsed();
+    double speed = -1.0;
+    if (elapsed > 0)
+        speed = m_bytesReceived * 1000.0 / elapsed;
+    return speed;
 }
 
 void DownloadItem::requestFinished() {
