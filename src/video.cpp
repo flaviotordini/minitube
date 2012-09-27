@@ -142,7 +142,7 @@ void  Video::gotVideoInfo(QByteArray data) {
     QString definitionName = settings.value("definition").toString();
     int definitionCode = VideoDefinition::getDefinitionCode(definitionName);
 
-    // qDebug() << "fmtUrlMap" << fmtUrlMap;
+    qDebug() << "fmtUrlMap" << fmtUrlMap;
     QStringList formatUrls = fmtUrlMap.split(",", QString::SkipEmptyParts);
     QHash<int, QString> urlMap;
     foreach(QString formatUrl, formatUrls) {
@@ -152,6 +152,7 @@ void  Video::gotVideoInfo(QByteArray data) {
 
         int format = -1;
         QString url;
+        QString sig;
         foreach(QString urlParam, urlParams) {
             if (urlParam.startsWith("itag=")) {
                 int separator = urlParam.indexOf("=");
@@ -160,9 +161,15 @@ void  Video::gotVideoInfo(QByteArray data) {
                 int separator = urlParam.indexOf("=");
                 url = urlParam.mid(separator + 1);
                 url = QByteArray::fromPercentEncoding(url.toUtf8());
+            } else if (urlParam.startsWith("sig=")) {
+                int separator = urlParam.indexOf("=");
+                sig = urlParam.mid(separator + 1);
+                sig = QByteArray::fromPercentEncoding(sig.toUtf8());
             }
         }
         if (format == -1 || url.isNull()) continue;
+
+        url += "&signature=" + sig;
 
         if (format == definitionCode) {
             qDebug() << "Found format" << definitionCode;
