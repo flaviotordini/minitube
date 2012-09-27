@@ -142,7 +142,7 @@ void  Video::gotVideoInfo(QByteArray data) {
     QString definitionName = settings.value("definition").toString();
     int definitionCode = VideoDefinition::getDefinitionCode(definitionName);
 
-    qDebug() << "fmtUrlMap" << fmtUrlMap;
+    // qDebug() << "fmtUrlMap" << fmtUrlMap;
     QStringList formatUrls = fmtUrlMap.split(",", QString::SkipEmptyParts);
     QHash<int, QString> urlMap;
     foreach(QString formatUrl, formatUrls) {
