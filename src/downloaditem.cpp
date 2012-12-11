@@ -42,7 +42,7 @@ DownloadItem::~DownloadItem() {
 }
 
 void DownloadItem::start() {
-    m_reply = The::http()->simpleGet(m_url);
+    m_reply = The::http()->request(m_url);
     init();
 }
 

@@ -3,7 +3,7 @@
 #include <QtGui>
 
 namespace The {
-    NetworkAccess* http();
+NetworkAccess* http();
 }
 
 /*
@@ -12,61 +12,53 @@ const QString USER_AGENT = QString(Constants::NAME)
                            + " (" + Constants::WEBSITE + ")";
 */
 
-const QString USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.46 Safari/536.5";
+const QString USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11";
 
 NetworkReply::NetworkReply(QNetworkReply *networkReply) : QObject(networkReply) {
     this->networkReply = networkReply;
-
-    // monitor downloadProgress to impl timeout
-    connect(networkReply, SIGNAL(downloadProgress(qint64,qint64)),
-            SLOT(downloadProgress(qint64,qint64)), Qt::UniqueConnection);
+    setupReply();
 
     readTimeoutTimer = new QTimer(this);
-    readTimeoutTimer->setInterval(5000);
+    readTimeoutTimer->setInterval(10000);
     readTimeoutTimer->setSingleShot(true);
-    connect(readTimeoutTimer, SIGNAL(timeout()), SLOT(readTimeout()));
+    connect(readTimeoutTimer, SIGNAL(timeout()), SLOT(readTimeout()), Qt::UniqueConnection);
     readTimeoutTimer->start();
 }
 
+void NetworkReply::setupReply() {
+    connect(networkReply, SIGNAL(error(QNetworkReply::NetworkError)),
+            SLOT(requestError(QNetworkReply::NetworkError)), Qt::UniqueConnection);
+    connect(networkReply, SIGNAL(finished()),
+            SLOT(finished()), Qt::UniqueConnection);
+    connect(networkReply, SIGNAL(downloadProgress(qint64,qint64)),
+            SLOT(downloadProgress(qint64,qint64)), Qt::UniqueConnection);
+}
+
 void NetworkReply::finished() {
-    // qDebug() << "Finished" << networkReply->url();
-
-    QUrl redirection = networkReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+    QUrl redirection = networkReply->attribute(
+                QNetworkRequest::RedirectionTargetAttribute).toUrl();
     if (redirection.isValid()) {
-
-        // qDebug() << "Redirect!"; // << redirection;
-
-        QNetworkReply *redirectReply = The::http()->simpleGet(redirection, networkReply->operation());
-
-        setParent(redirectReply);
-        networkReply->deleteLater();
-        networkReply = redirectReply;
-
-        // when the request is finished we'll invoke the target method
-        connect(networkReply, SIGNAL(finished()), this, SLOT(finished()), Qt::UniqueConnection);
-
-        // monitor downloadProgress to impl timeout
-        connect(networkReply, SIGNAL(downloadProgress(qint64,qint64)),
-                SLOT(downloadProgress(qint64,qint64)), Qt::UniqueConnection);
-        readTimeoutTimer->start();
-
-        // error signal
-        connect(networkReply, SIGNAL(error(QNetworkReply::NetworkError)),
-                SLOT(requestError(QNetworkReply::NetworkError)), Qt::UniqueConnection);
-
-        connect(readTimeoutTimer, SIGNAL(timeout()), SLOT(readTimeout()), Qt::UniqueConnection);
-        readTimeoutTimer->start();
-
-        return;
+        if (networkReply->operation() == QNetworkAccessManager::GetOperation
+                || networkReply->operation() == QNetworkAccessManager::HeadOperation) {
+            QNetworkReply *redirectReply =
+                    The::http()->request(redirection, networkReply->operation());
+            setParent(redirectReply);
+            networkReply->deleteLater();
+            networkReply = redirectReply;
+            setupReply();
+            readTimeoutTimer->start();
+            return;
+        } else qWarning("Redirection not supported");
     }
 
-    emit data(networkReply->readAll());
-    emit finished(networkReply);
+    if (receivers(SIGNAL(data(QByteArray))) > 0)
+        emit data(networkReply->readAll());
+    else if (receivers(SIGNAL(finished(QNetworkReply*))) > 0)
+        emit finished(networkReply);
 
 #ifndef QT_NO_DEBUG_OUTPUT
-    if (!networkReply->attribute(QNetworkRequest::SourceIsFromCacheAttribute).toBool()) {
+    if (!networkReply->attribute(QNetworkRequest::SourceIsFromCacheAttribute).toBool())
         qDebug() << networkReply->url().toEncoded();
-    }
 #endif
 
     // bye bye my reply
@@ -74,13 +66,15 @@ void NetworkReply::finished() {
     networkReply->deleteLater();
 }
 
-void NetworkReply::requestError(QNetworkReply::NetworkError /* code */) {
+void NetworkReply::requestError(QNetworkReply::NetworkError code) {
+    qDebug() << networkReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt()
+             << networkReply->errorString() << code;
     emit error(networkReply);
 }
 
-void NetworkReply::downloadProgress(qint64 bytesReceived, qint64 bytesTotal) {
+void NetworkReply::downloadProgress(qint64 bytesReceived, qint64 /* bytesTotal */) {
     // qDebug() << "Downloading" << bytesReceived << bytesTotal << networkReply->url();
-    if (bytesReceived > 0) {
+    if (bytesReceived > 0 && readTimeoutTimer->isActive()) {
         readTimeoutTimer->stop();
         disconnect(networkReply, SIGNAL(downloadProgress(qint64,qint64)),
                    this, SLOT(downloadProgress(qint64,qint64)));
@@ -88,65 +82,25 @@ void NetworkReply::downloadProgress(qint64 bytesReceived, qint64 bytesTotal) {
 }
 
 void NetworkReply::readTimeout() {
-    // qDebug() << "HTTP read timeout" << networkReply->url();
     networkReply->disconnect();
     networkReply->abort();
-
-    QNetworkReply *retryReply = The::http()->simpleGet(networkReply->url(), networkReply->operation());
-
-    setParent(retryReply);
     networkReply->deleteLater();
+
+    if (networkReply->operation() != QNetworkAccessManager::GetOperation
+            || networkReply->operation() != QNetworkAccessManager::HeadOperation) {
+        emit error(networkReply);
+        return;
+    }
+
+    QNetworkReply *retryReply = The::http()->request(networkReply->url(), networkReply->operation());
+    setParent(retryReply);
     networkReply = retryReply;
-
-    // when the request is finished we'll invoke the target method
-    connect(networkReply, SIGNAL(finished()), this, SLOT(finished()), Qt::UniqueConnection);
-
-    // monitor downloadProgress to impl timeout
-    connect(networkReply, SIGNAL(downloadProgress(qint64,qint64)),
-            SLOT(downloadProgress(qint64,qint64)), Qt::UniqueConnection);
-    readTimeoutTimer->start();
-
-    // error signal
-    connect(networkReply, SIGNAL(error(QNetworkReply::NetworkError)),
-            SLOT(requestError(QNetworkReply::NetworkError)));
-
-    // emit error(networkReply);
+    setupReply();
 }
 
 /* --- NetworkAccess --- */
 
 NetworkAccess::NetworkAccess( QObject* parent) : QObject( parent ) {}
-
-QNetworkReply* NetworkAccess::manualGet(QNetworkRequest request, int operation) {
-
-    QNetworkAccessManager *manager = The::networkAccessManager();
-    // manager->setCookieJar(new QNetworkCookieJar());
-
-    QNetworkReply *networkReply;
-    switch (operation) {
-
-    case QNetworkAccessManager::GetOperation:
-        // qDebug() << "GET" << request.url().toEncoded();
-        networkReply = manager->get(request);
-        break;
-
-    case QNetworkAccessManager::HeadOperation:
-        // qDebug() << "HEAD" << request.url().toEncoded();
-        networkReply = manager->head(request);
-        break;
-
-    default:
-        qDebug() << "Unknown operation:" << operation;
-        return 0;
-
-    }
-
-    // error handling
-    connect(networkReply, SIGNAL(error(QNetworkReply::NetworkError)),
-            this, SLOT(error(QNetworkReply::NetworkError)));
-
-    return networkReply;
-}
 
 QNetworkRequest NetworkAccess::buildRequest(QUrl url) {
     QNetworkRequest request(url);
@@ -158,60 +112,56 @@ QNetworkRequest NetworkAccess::buildRequest(QUrl url) {
     return request;
 }
 
-QNetworkReply* NetworkAccess::simpleGet(QUrl url, int operation) {
-    return manualGet(buildRequest(url), operation);
+QNetworkReply* NetworkAccess::request(QUrl url, int operation, const QByteArray& body) {
+    QNetworkAccessManager *manager = The::networkAccessManager();
+
+    QNetworkRequest request = buildRequest(url);
+
+    QNetworkReply *networkReply;
+    switch (operation) {
+
+    case QNetworkAccessManager::GetOperation:
+        networkReply = manager->get(request);
+        break;
+
+    case QNetworkAccessManager::HeadOperation:
+        networkReply = manager->head(request);
+        break;
+
+    case QNetworkAccessManager::PostOperation:
+        if (!body.isEmpty())
+            request.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+        networkReply = manager->post(request, body);
+        break;
+
+    default:
+        qWarning() << "Unknown operation:" << operation;
+        return 0;
+    }
+
+    return networkReply;
 }
 
 NetworkReply* NetworkAccess::get(const QUrl url) {
-
-    QNetworkReply *networkReply = simpleGet(url);
-    NetworkReply *reply = new NetworkReply(networkReply);
-
-    // error signal
-    connect(networkReply, SIGNAL(error(QNetworkReply::NetworkError)),
-            reply, SLOT(requestError(QNetworkReply::NetworkError)));
-
-    // when the request is finished we'll invoke the target method
-    connect(networkReply, SIGNAL(finished()), reply, SLOT(finished()), Qt::UniqueConnection);
-
-    return reply;
-
+    QNetworkReply *networkReply = request(url);
+    return new NetworkReply(networkReply);
 }
 
 NetworkReply* NetworkAccess::head(const QUrl url) {
-
-    QNetworkReply *networkReply = simpleGet(url, QNetworkAccessManager::HeadOperation);
-    NetworkReply *reply = new NetworkReply(networkReply);
-
-    // error signal
-    connect(networkReply, SIGNAL(error(QNetworkReply::NetworkError)),
-            reply, SLOT(requestError(QNetworkReply::NetworkError)));
-
-    // when the request is finished we'll invoke the target method
-    connect(networkReply, SIGNAL(finished()), reply, SLOT(finished()), Qt::UniqueConnection);
-
-    return reply;
-
+    QNetworkReply *networkReply = request(url, QNetworkAccessManager::HeadOperation);
+    return new NetworkReply(networkReply);
 }
 
-void NetworkAccess::error(QNetworkReply::NetworkError code) {
-    // get the QNetworkReply that sent the signal
-    QNetworkReply *networkReply = static_cast<QNetworkReply *>(sender());
-    if (!networkReply) {
-        qDebug() << "Cannot get sender";
-        return;
+NetworkReply* NetworkAccess::post(const QUrl url, const QMap<QString, QString>& params) {
+    QByteArray body;
+    QMapIterator<QString, QString> i(params);
+    while (i.hasNext()) {
+        i.next();
+        body += QUrl::toPercentEncoding(i.key())
+                + '='
+                + QUrl::toPercentEncoding(i.value())
+                + '&';
     }
-
-    networkReply->deleteLater();
-
-    // Ignore HEADs
-    if (networkReply->operation() == QNetworkAccessManager::HeadOperation)
-        return;
-
-    // report the error in the status bar
-    QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(qApp->topLevelWidgets().first());
-    if (mainWindow) mainWindow->statusBar()->showMessage(
-            tr("Network error: %1").arg(networkReply->errorString()));
-
-    qDebug() << "Network error:" << networkReply->errorString() << code;
+    QNetworkReply *networkReply = request(url, QNetworkAccessManager::PostOperation, body);
+    return new NetworkReply(networkReply);
 }

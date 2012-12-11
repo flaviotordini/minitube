@@ -27,6 +27,7 @@ signals:
     void finished(QNetworkReply*);
 
 private:
+    void setupReply();
     QNetworkReply *networkReply;
     QTimer *readTimeoutTimer;
 
@@ -37,15 +38,16 @@ class NetworkAccess : public QObject {
     Q_OBJECT
 
 public:
-    NetworkAccess( QObject* parent=0);
-    QNetworkReply* manualGet(QNetworkRequest request, int operation = QNetworkAccessManager::GetOperation);
-    QNetworkRequest buildRequest(QUrl url);
-    QNetworkReply* simpleGet(QUrl url, int operation = QNetworkAccessManager::GetOperation);
+    NetworkAccess(QObject* parent = 0);
+    QNetworkReply* request(QUrl url,
+                             int operation = QNetworkAccessManager::GetOperation,
+                             const QByteArray &body = QByteArray());
     NetworkReply* get(QUrl url);
     NetworkReply* head(QUrl url);
+    NetworkReply* post(QUrl url, const QMap<QString, QString>& params);
 
-private slots:
-    void error(QNetworkReply::NetworkError);
+private:
+    QNetworkRequest buildRequest(QUrl url);
 
 };
 
