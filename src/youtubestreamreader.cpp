@@ -57,22 +57,23 @@ void YouTubeStreamReader::readEntry() {
                 ) {
                 QString webpage = attributes().value("href").toString();
                 webpage.remove("&feature=youtube_gdata");
-                // qDebug() << "Webpage: " << webpage;
                 video->setWebpage(QUrl(webpage));
-
             } else if (name() == "author") {
-                readNext();
-                if (name() == "name") {
-                    QString author = readElementText();
-                    // qDebug() << "Author: " << author;
-                    video->setAuthor(author);
-                }
+                while(readNextStartElement())
+                    if (name() == "name") {
+                        QString author = readElementText();
+                        video->setAuthor(author);
+                    } else if (name() == "uri") {
+                        QString uri = readElementText();
+                        int i = uri.lastIndexOf('/');
+                        if (i != -1) uri = uri.mid(i+1);
+                        video->setAuthorUri(uri);
+                    } else skipCurrentElement();
             } else if (name() == "published") {
                 video->setPublished(QDateTime::fromString(readElementText(), Qt::ISODate));
-            } else if (namespaceUri() == "http://gdata.youtube.com/schemas/2007" && name() == "statistics") {
-
+            } else if (namespaceUri() == "http://gdata.youtube.com/schemas/2007"
+                       && name() == "statistics") {
                 QString viewCount = attributes().value("viewCount").toString();
-                // qDebug() << "viewCount: " << viewCount;
                 video->setViewCount(viewCount.toInt());
             }
             else if (namespaceUri() == "http://search.yahoo.com/mrss/" && name() == "group") {

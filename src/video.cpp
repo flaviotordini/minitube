@@ -19,6 +19,7 @@ Video* Video::clone() {
     cloneVideo->m_title = m_title;
     cloneVideo->m_description = m_description;
     cloneVideo->m_author = m_author;
+    cloneVideo->m_authorUri = m_authorUri;
     cloneVideo->m_webpage = m_webpage;
     cloneVideo->m_streamUrl = m_streamUrl;
     cloneVideo->m_thumbnail = m_thumbnail;

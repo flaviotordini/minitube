@@ -21,6 +21,9 @@ public:
     const QString author() const { return m_author; }
     void setAuthor( QString author ) { m_author = author; }
 
+    const QString authorUri() const { return m_authorUri; }
+    void setAuthorUri( QString authorUri ) { m_authorUri = authorUri; }
+
     const QUrl webpage() const { return m_webpage; }
     void setWebpage( QUrl webpage ) { m_webpage = webpage; }
 
@@ -70,6 +73,7 @@ private:
     QString m_title;
     QString m_description;
     QString m_author;
+    QString m_authorUri;
     QUrl m_webpage;
     QUrl m_streamUrl;
     QImage m_thumbnail;
