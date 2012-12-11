@@ -16,6 +16,9 @@
 #ifdef APP_MAC
 #include "macfullscreen.h"
 #endif
+#ifdef APP_ACTIVATION
+#include "activation.h"
+#endif
 
 namespace The {
 NetworkAccess* http();
@@ -81,7 +84,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     splitter->addWidget(sidebar);
 
     videoAreaWidget = new VideoAreaWidget(this);
-    // videoAreaWidget->setMinimumSize(320,240);
+    videoAreaWidget->setMinimumSize(320,240);
     videoWidget = new Phonon::VideoWidget(this);
     videoAreaWidget->setVideoWidget(videoWidget);
     videoAreaWidget->setListModel(listModel);
@@ -111,7 +114,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     workaroundTimer->setInterval(3000);
     connect(workaroundTimer, SIGNAL(timeout()), SLOT(timerPlay()));
 
-#ifdef APP_DEMO
+#ifdef APP_ACTIVATION
     demoTimer = new QTimer(this);
     demoTimer->setSingleShot(true);
     connect(demoTimer, SIGNAL(timeout()), SLOT(demoMessage()));
@@ -148,7 +151,7 @@ void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
 void MediaView::search(SearchParams *searchParams) {
     reallyStopped = false;
 
-#ifdef APP_DEMO
+#ifdef APP_ACTIVATION
     demoTimer->stop();
 #endif
     workaroundTimer->stop();
@@ -313,9 +316,7 @@ void MediaView::activeRowChanged(int row) {
     timerPlayFlag = false;
 
     // video title in the statusbar
-    QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(window());
-    if (mainWindow) mainWindow->statusBar()->showMessage(video->title());
-
+    MainWindow::instance()->showMessage(video->title());
 
     // ensure active item is visible
     // int row = listModel->activeRow();
@@ -439,8 +440,9 @@ void MediaView::startPlaying() {
         listView->scrollTo(index, QAbstractItemView::EnsureVisible);
     }
 
-#ifdef APP_DEMO
-    demoTimer->start(60000);
+#ifdef APP_ACTIVATION
+    if (!Activation::instance().isActivated())
+        demoTimer->start(180000);
 #endif
 
 }
@@ -539,9 +541,8 @@ void MediaView::copyWebPage() {
     if (!video) return;
     QString address = video->webpage().toString();
     QApplication::clipboard()->setText(address);
-    QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(window());
     QString message = tr("You can now paste the YouTube link into another application");
-    if (mainWindow) mainWindow->statusBar()->showMessage(message);
+    MainWindow::instance()->showMessage(message);
 }
 
 void MediaView::copyVideoLink() {
@@ -550,8 +551,7 @@ void MediaView::copyVideoLink() {
     QApplication::clipboard()->setText(video->getStreamUrl().toEncoded());
     QString message = tr("You can now paste the video stream URL into another application")
             + ". " + tr("The link will be valid only for a limited time.");
-    QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(window());
-    if (mainWindow) mainWindow->statusBar()->showMessage(message);
+    MainWindow::instance()->showMessage(message);
 }
 
 void MediaView::removeSelected() {
@@ -644,7 +644,7 @@ void MediaView::saveSplitterState() {
     settings.setValue("splitter", splitter->saveState());
 }
 
-#ifdef APP_DEMO
+#ifdef APP_ACTIVATION
 
 static QPushButton *continueButton;
 
@@ -673,7 +673,7 @@ void MediaView::demoMessage() {
     msgBox.exec();
 
     if (msgBox.clickedButton() == buyButton) {
-        QDesktopServices::openUrl(QUrl(QString(Constants::WEBSITE) + "#download"));
+        MainWindow::instance()->showActivationView();
     } else {
         mediaObject->play();
         demoTimer->start(600000);
@@ -697,18 +697,10 @@ void MediaView::updateContinueButton(int value) {
 void MediaView::downloadVideo() {
     Video* video = listModel->activeVideo();
     if (!video) return;
-
     DownloadManager::instance()->addItem(video);
-
-    // TODO animate
-
     The::globalActions()->value("downloads")->setVisible(true);
-
-    // The::globalActions()->value("download")->setEnabled(DownloadManager::instance()->itemForVideo(video) == 0);
-
-    QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(window());
     QString message = tr("Downloading %1").arg(video->title());
-    if (mainWindow) mainWindow->statusBar()->showMessage(message);
+    MainWindow::instance()->showMessage(message);
 }
 
 void MediaView::snapshot() {
@@ -877,7 +869,8 @@ void MediaView::authorPushed(QModelIndex index) {
     Video* video = listModel->videoAt(index.row());
     if (!video) return;
 
-    QString channel = video->author();
+    QString channel = video->authorUri();
+    if (channel.isEmpty()) channel = video->author();
     if (channel.isEmpty()) return;
 
     SearchParams *searchParams = new SearchParams();

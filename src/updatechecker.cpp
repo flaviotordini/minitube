@@ -1,6 +1,9 @@
 #include "updatechecker.h"
 #include "networkaccess.h"
 #include "constants.h"
+#ifdef APP_ACTIVATION
+#include "activation.h"
+#endif
 
 namespace The {
     NetworkAccess* http();
@@ -20,8 +23,10 @@ void UpdateChecker::checkForUpdate() {
 #ifdef APP_WIN
     updateUrl.addQueryItem("os", "win");
 #endif
-#ifdef APP_DEMO
-    updateUrl.addQueryItem("t", "demo");
+#ifdef APP_ACTIVATION
+    QString t = "demo";
+    if (Activation::instance().isActivated()) t = "active";
+    updateUrl.addQueryItem("t", t);
 #endif
 #ifdef APP_MAC_STORE
     updateUrl.addQueryItem("store", "mac");

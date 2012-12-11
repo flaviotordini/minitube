@@ -87,7 +87,7 @@ private slots:
     void searchMostViewed();
     // timer
     void timerPlay();
-#ifdef APP_DEMO
+#ifdef APP_ACTIVATION
     void demoMessage();
     void updateContinueButton(int);
 #endif
@@ -137,7 +137,7 @@ private:
     QTimer *workaroundTimer;
     Video *skippedVideo;
 
-#ifdef APP_DEMO
+#ifdef APP_ACTIVATION
     QTimer *demoTimer;
 #endif
 

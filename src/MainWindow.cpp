@@ -15,15 +15,9 @@
 #include "macsupport.h"
 #include "macutils.h"
 #endif
-#ifndef Q_WS_X11
-#include "extra.h"
-#endif
 #include "downloadmanager.h"
 #include "youtubesuggest.h"
 #include "updatechecker.h"
-#ifdef APP_DEMO
-#include "demostartupview.h"
-#endif
 #include "temporary.h"
 #ifdef APP_MAC
 #include "searchlineedit_mac.h"
@@ -31,6 +25,15 @@
 #include "searchlineedit.h"
 #endif
 #include <iostream>
+#ifndef Q_WS_X11
+#include "extra.h"
+#include "updatedialog.h"
+#endif
+#ifdef APP_ACTIVATION
+#include "activation.h"
+#include "activationview.h"
+#include "activationdialog.h"
+#endif
 
 static MainWindow *singleton = 0;
 
@@ -52,7 +55,6 @@ MainWindow::MainWindow() :
     // views mechanism
     history = new QStack<QWidget*>();
     views = new QStackedWidget(this);
-    setCentralWidget(views);
 
     // views
     searchView = new SearchView(this);
@@ -95,13 +97,14 @@ MainWindow::MainWindow() :
     setMinimumWidth(0);
 
     // show the initial view
-#ifdef APP_DEMO
-        QWidget *demoStartupView = new DemoStartupView(this);
-        views->addWidget(demoStartupView);
-        showWidget(demoStartupView);
-#else
-    showSearch();
+    showSearch(false);
+
+#ifdef APP_ACTIVATION
+    if (!Activation::instance().isActivated())
+        showActivationView(false);
 #endif
+
+    setCentralWidget(views);
 
     // Global shortcuts
     GlobalShortcuts &shortcuts = GlobalShortcuts::instance();
@@ -473,6 +476,10 @@ void MainWindow::createActions() {
     action->setCheckable(true);
     actions->insert("refine-search", action);
 
+#ifdef APP_ACTIVATION
+    Extra::createActivationAction(tr("Buy %1...").arg(Constants::NAME));
+#endif
+
     // common action properties
     foreach (QAction *action, actions->values()) {
 
@@ -491,10 +498,6 @@ void MainWindow::createActions() {
         // show keyboard shortcuts in the status bar
         if (!action->shortcut().isEmpty())
             action->setStatusTip(action->statusTip() + " (" + action->shortcut().toString(QKeySequence::NativeText) + ")");
-
-        // no icons in menus
-        action->setIconVisibleInMenu(false);
-
     }
 
 }
@@ -504,11 +507,12 @@ void MainWindow::createMenus() {
     QMap<QString, QMenu*> *menus = The::globalMenus();
 
     fileMenu = menuBar()->addMenu(tr("&Application"));
-#ifdef APP_DEMO
-    QAction* action = new QAction(tr("Buy %1...").arg(Constants::NAME), this);
-    action->setMenuRole(QAction::ApplicationSpecificRole);
-    connect(action, SIGNAL(triggered()), SLOT(buy()));
-    fileMenu->addAction(action);
+#ifdef APP_ACTIVATION
+    QAction *buyAction = The::globalActions()->value("buy");
+    if (buyAction) fileMenu->addAction(buyAction);
+#ifndef APP_MAC
+    fileMenu->addSeparator();
+#endif
 #endif
     fileMenu->addAction(clearAct);
 #ifndef APP_MAC
@@ -740,7 +744,7 @@ void MainWindow::goBack() {
     }
 }
 
-void MainWindow::showWidget ( QWidget* widget ) {
+void MainWindow::showWidget(QWidget* widget, bool transition) {
 
     if (compactViewAct->isChecked())
         compactViewAct->toggle();
@@ -752,7 +756,7 @@ void MainWindow::showWidget ( QWidget* widget ) {
     if (oldView) {
         oldView->disappear();
         views->currentWidget()->setEnabled(false);
-    }
+    } else qDebug() << "Cannot cast view";
 
     // call show method on the new view
     View* newView = dynamic_cast<View *> (widget);
@@ -767,13 +771,15 @@ void MainWindow::showWidget ( QWidget* widget ) {
         statusBar()->showMessage((metadata.value("description").toString()));
     }
 
-    stopAct->setEnabled(widget == mediaView);
-    compactViewAct->setEnabled(widget == mediaView);
-    webPageAct->setEnabled(widget == mediaView);
-    copyPageAct->setEnabled(widget == mediaView);
-    copyLinkAct->setEnabled(widget == mediaView);
-    findVideoPartsAct->setEnabled(widget == mediaView);
-    toolbarSearch->setEnabled(widget == searchView || widget == mediaView || widget == downloadView);
+    const bool isMediaView = widget == mediaView;
+
+    stopAct->setEnabled(isMediaView);
+    compactViewAct->setEnabled(isMediaView);
+    webPageAct->setEnabled(isMediaView);
+    copyPageAct->setEnabled(isMediaView);
+    copyLinkAct->setEnabled(isMediaView);
+    findVideoPartsAct->setEnabled(isMediaView);
+    toolbarSearch->setEnabled(widget == searchView || isMediaView || widget == downloadView);
 
     if (widget == searchView) {
         skipAct->setEnabled(false);
@@ -782,19 +788,13 @@ void MainWindow::showWidget ( QWidget* widget ) {
         The::globalActions()->value("stopafterthis")->setEnabled(false);
     }
 
-    The::globalActions()->value("twitter")->setEnabled(widget == mediaView);
-    The::globalActions()->value("facebook")->setEnabled(widget == mediaView);
-    The::globalActions()->value("buffer")->setEnabled(widget == mediaView);
-    The::globalActions()->value("email")->setEnabled(widget == mediaView);
+    The::globalActions()->value("twitter")->setEnabled(isMediaView);
+    The::globalActions()->value("facebook")->setEnabled(isMediaView);
+    The::globalActions()->value("buffer")->setEnabled(isMediaView);
+    The::globalActions()->value("email")->setEnabled(isMediaView);
 
     aboutAct->setEnabled(widget != aboutView);
     The::globalActions()->value("downloads")->setChecked(widget == downloadView);
-
-    // toolbar only for the mediaView
-    /* mainToolBar->setVisible(
-            (widget == mediaView && !compactViewAct->isChecked())
-            || widget == downloadView
-            ); */
 
     setUpdatesEnabled(true);
 
@@ -804,10 +804,9 @@ void MainWindow::showWidget ( QWidget* widget ) {
 
     views->setCurrentWidget(widget);
     widget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    // adjustSize();
 
 #ifndef Q_WS_X11
-    Extra::fadeInWidget(oldWidget, widget);
+    if (transition) Extra::fadeInWidget(oldWidget, widget);
 #endif
 
     history->push(widget);
@@ -888,8 +887,8 @@ bool MainWindow::confirmQuit() {
     return true;
 }
 
-void MainWindow::showSearch() {
-    showWidget(searchView);
+void MainWindow::showSearch(bool transition) {
+    showWidget(searchView, transition);
     currentTime->clear();
     totalTime->clear();
 }
@@ -1373,7 +1372,6 @@ void MainWindow::checkForUpdate() {
             this, SLOT(gotNewVersion(QString)));
     updateChecker->checkForUpdate();
     settings.setValue(updateCheckKey, unixTime);
-
 }
 
 void MainWindow::gotNewVersion(QString version) {
@@ -1382,47 +1380,36 @@ void MainWindow::gotNewVersion(QString version) {
         updateChecker = 0;
     }
 
-#if defined(APP_DEMO) || defined(APP_MAC_STORE) || defined(APP_USC)
-    return;
-#endif
-
     QSettings settings;
     QString checkedVersion = settings.value("checkedVersion").toString();
     if (checkedVersion == version) return;
 
-    QMessageBox msgBox(this);
-    msgBox.setIconPixmap(QPixmap(":/images/app.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    msgBox.setText(tr("%1 version %2 is now available.").arg(Constants::NAME, version));
-
-    msgBox.setModal(true);
-    // make it a "sheet" on the Mac
-    msgBox.setWindowModality(Qt::WindowModal);
-
-    QPushButton* laterButton = 0;
-    QPushButton* updateButton = 0;
-
-#if defined(APP_MAC) || defined(APP_WIN)
-    msgBox.setInformativeText(
-                tr("To get the updated version, download %1 again from the link you received via email and reinstall.")
-                .arg(Constants::NAME)
-                );
-    laterButton = msgBox.addButton(tr("Remind me later"), QMessageBox::RejectRole);
-    msgBox.addButton(QMessageBox::Ok);
-#else
-    msgBox.addButton(QMessageBox::Close);
-    updateButton = msgBox.addButton(tr("Update"), QMessageBox::AcceptRole);
+#ifdef APP_SIMPLEUPDATE
+    simpleUpdateDialog(version);
 #endif
+#if defined(APP_ACTIVATION) && !defined(APP_MAC)
+    UpdateDialog *dialog = new UpdateDialog(version, this);
+    dialog->show();
+#endif
+}
 
+void MainWindow::simpleUpdateDialog(QString version) {
+    QMessageBox msgBox(this);
+    msgBox.setIconPixmap(
+                QPixmap(":/images/app.png")
+                .scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    msgBox.setText(tr("%1 version %2 is now available.").arg(Constants::NAME, version));
+    msgBox.setModal(true);
+    msgBox.setWindowModality(Qt::WindowModal);
+    msgBox.addButton(QMessageBox::Close);
+    QPushButton* laterButton = msgBox.addButton(tr("Remind me later"), QMessageBox::RejectRole);
+    QPushButton* updateButton = msgBox.addButton(tr("Update"), QMessageBox::AcceptRole);
     msgBox.exec();
-
     if (msgBox.clickedButton() != laterButton) {
+        QSettings settings;
         settings.setValue("checkedVersion", version);
     }
-
-    if (updateButton && msgBox.clickedButton() == updateButton) {
-        QDesktopServices::openUrl(QUrl(QLatin1String(Constants::WEBSITE) + "#download"));
-    }
-
+    if (msgBox.clickedButton() == updateButton) visitSite();
 }
 
 void MainWindow::floatOnTop(bool onTop) {
@@ -1482,3 +1469,33 @@ void MainWindow::printHelp() {
     msg += "Go back to the previous video.\n";
     std::cout << msg.toLocal8Bit().data();
 }
+
+void MainWindow::showMessage(QString message) {
+    statusBar()->showMessage(message, 60000);
+}
+
+#ifdef APP_ACTIVATION
+void MainWindow::showActivationView(bool transition) {
+    QWidget *activationView = ActivationView::instance();
+    if (views->currentWidget() == activationView) {
+        buy();
+        return;
+    }
+    views->addWidget(activationView);
+    showWidget(activationView, transition);
+}
+
+void MainWindow::showActivationDialog() {
+    QTimer::singleShot(0, new ActivationDialog(this), SLOT(show()));
+}
+
+void MainWindow::buy() {
+    Extra::buy();
+}
+
+void MainWindow::hideBuyAction() {
+    QAction *action = The::globalActions()->value("buy");
+    action->setVisible(false);
+    action->setEnabled(false);
+}
+#endif

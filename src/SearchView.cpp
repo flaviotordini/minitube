@@ -12,9 +12,13 @@
 #ifndef Q_WS_X11
 #include "extra.h"
 #endif
+#ifdef APP_ACTIVATION
+#include "activation.h"
+#endif
+#include "MainWindow.h"
 
 namespace The {
-    QMap<QString, QAction*>* globalActions();
+QMap<QString, QAction*>* globalActions();
 }
 
 static const QString recentKeywordsKey = "recentKeywords";
@@ -41,24 +45,9 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     message->hide();
     mainLayout->addWidget(message);
 
-#ifdef APP_DEMO
-    QLabel *buy = new QLabel(this);
-    buy->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
-    buy->setText(QString("<a style='color:palette(text);text-decoration:none' href='%1'>%2</a>").arg(
-            QString(Constants::WEBSITE) + "#download",
-            tr("Get the full version").toUpper()
-            ));
-    buy->setOpenExternalLinks(true);
-    buy->setMargin(7);
-    buy->setAlignment(Qt::AlignRight);
-    buy->setStyleSheet("QLabel {"
-                       "background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #CCD6E0, stop: 1 #ADBCCC);"
-                       "border-bottom-left-radius: 8px;"
-                       "border-bottom-right-radius: 8px;"
-                       "font-size: 10px;"
-                       "margin-right: 50px;"
-                       "}");
-    mainLayout->addWidget(buy, 0, Qt::AlignRight);
+#ifdef APP_ACTIVATION
+    if (!Activation::instance().isActivated())
+        mainLayout->addWidget(Extra::buyButton(tr("Get the full version")), 0, Qt::AlignCenter);
 #endif
 
     mainLayout->addStretch();
@@ -69,13 +58,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     mainLayout->addLayout(hLayout);
 
     QLabel *logo = new QLabel(this);
-    QString resource = "app";
-#ifndef Q_WS_X11
-    resource = Extra::resourceName(resource);
-    logo->setMaximumSize(128, 128);
-    logo->setScaledContents(true);
-#endif
-    logo->setPixmap(QPixmap(":/images/" + resource + ".png"));
+    logo->setPixmap(QPixmap(":/images/app.png"));
     hLayout->addWidget(logo, 0, Qt::AlignTop);
     hLayout->addSpacing(PADDING);
 
@@ -98,7 +81,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     QBoxLayout *tipLayout = new QHBoxLayout();
     tipLayout->setSpacing(10);
 
-    //: "Enter", as in "type". The whole frase says: "Enter a keyword to start watching videos"
+    //: "Enter", as in "type". The whole phrase says: "Enter a keyword to start watching videos"
     QLabel *tipLabel = new QLabel(tr("Enter"), this);
     tipLabel->setFont(biggerFont);
     tipLayout->addWidget(tipLabel);

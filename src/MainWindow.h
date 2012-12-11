@@ -34,6 +34,14 @@ public slots:
     void messageReceived(const QString &message);
     void quit();
     void startToolbarSearch(QString query);
+    void goBack();
+    void showMessage(QString message);
+#ifdef APP_ACTIVATION
+    void showActivationView(bool transition = true);
+    void showActivationDialog();
+    void buy();
+    void hideBuyAction();
+#endif
 
 protected:
     void changeEvent(QEvent *);
@@ -46,8 +54,7 @@ protected:
 private slots:
     void checkForUpdate();
     void gotNewVersion(QString version);
-    void goBack();
-    void showSearch();
+    void showSearch(bool transition = true);
     void visitSite();
     void donate();
     void reportIssue();
@@ -92,9 +99,10 @@ private:
     void createMenus();
     void createToolBars();
     void createStatusBar();
-    void showWidget(QWidget*);
+    void showWidget(QWidget*, bool transition = true);
     static QString formatTime(qint64 time);
     bool confirmQuit();
+    void simpleUpdateDialog(QString version);
 
     UpdateChecker *updateChecker;
 
