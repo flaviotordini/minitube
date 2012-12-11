@@ -11,17 +11,15 @@
 
 namespace The {
 
-    static QMap<QString, QAction*> *g_actions = 0;
-
     QMap<QString, QAction*>* globalActions() {
+        static QMap<QString, QAction*> *g_actions = 0;
         if (!g_actions)
             g_actions = new QMap<QString, QAction*>;
         return g_actions;
     }
 
-    static QMap<QString, QMenu*> *g_menus = 0;
-
     QMap<QString, QMenu*>* globalMenus() {
+        static QMap<QString, QMenu*> *g_menus = 0;
         if (!g_menus)
             g_menus = new QMap<QString, QMenu*>;
         return g_menus;
@@ -123,9 +121,8 @@ namespace The {
         }
     }
 
-    static QNetworkAccessManager *nam = 0;
-
     QNetworkAccessManager* networkAccessManager() {
+        static QNetworkAccessManager *nam = 0;
         if (!nam) {
             networkHttpProxySetting();
             maybeSetSystemProxy();
@@ -134,8 +131,8 @@ namespace The {
         return nam;
     }
 
-    static NetworkAccess *g_http = 0;
     NetworkAccess* http() {
+        static NetworkAccess *g_http = 0;
         if (!g_http) {
             // qDebug() << "Creating NetworkAccess";
             g_http = new NetworkAccess();

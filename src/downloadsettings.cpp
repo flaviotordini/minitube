@@ -1,5 +1,6 @@
 #include "downloadsettings.h"
 #include "downloadmanager.h"
+#include "MainWindow.h"
 
 DownloadSettings::DownloadSettings(QWidget *parent) : QWidget(parent) {
 
@@ -55,14 +56,10 @@ void DownloadSettings::folderChosen(const QString &dir) {
         QSettings settings;
         settings.setValue("downloadFolder", dir);
         updateMessage();
-        QMainWindow* mainWindow = dynamic_cast<QMainWindow*>(window());
-        if (mainWindow) {
-            QString status;
-            status = tr("Download location changed.");
-            if (DownloadManager::instance()->activeItems() > 0)
-                status += " " + tr("Current downloads will still go in the previous location.");
-            mainWindow->statusBar()->showMessage(status);
-        }
+        QString status = tr("Download location changed.");
+        if (DownloadManager::instance()->activeItems() > 0)
+            status += " " + tr("Current downloads will still go in the previous location.");
+        MainWindow::instance()->showMessage(status);
     }
 }
 

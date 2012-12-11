@@ -3,11 +3,13 @@
 #include "constants.h"
 #include "MainWindow.h"
 #include "searchparams.h"
+#include "iconloader/qticonloader.h"
+#ifndef Q_WS_X11
+#include "extra.h"
+#endif
 #ifdef Q_WS_MAC
 #include "mac_startup.h"
-#include "macfullscreen.h"
 #endif
-#include "iconloader/qticonloader.h"
 
 int main(int argc, char **argv) {
 
@@ -21,7 +23,6 @@ int main(int argc, char **argv) {
         MainWindow::printHelp();
         return 0;
     }
-
     if (app.sendMessage(message))
         return 0;
 
@@ -31,18 +32,10 @@ int main(int argc, char **argv) {
 #ifndef APP_WIN
     app.setWheelScrollLines(1);
 #endif
+    app.setAttribute(Qt::AA_DontShowIconsInMenus);
 
-#ifdef APP_MAC
-    app.setAttribute(Qt::AA_NativeWindows);
-    QFile file(":/mac.css");
-    file.open(QFile::ReadOnly);
-    app.setStyleSheet(QLatin1String(file.readAll()));
-#endif
-
-#ifdef APP_WIN
-    QFile file(":/win.css");
-    file.open(QFile::ReadOnly);
-    app.setStyleSheet(QLatin1String(file.readAll()));
+#ifndef Q_WS_X11
+    Extra::appSetup(&app);
 #endif
 
     const QString locale = QLocale::system().name();
@@ -72,9 +65,8 @@ int main(int argc, char **argv) {
     MainWindow mainWin;
     mainWin.setWindowTitle(Constants::NAME);
 
-#ifdef Q_WS_MAC
-    app.setQuitOnLastWindowClosed(false);
-    mac::SetupFullScreenWindow(mainWin.winId());
+#ifndef Q_WS_X11
+    Extra::windowSetup(&mainWin);
 #endif
 
 // no window icon on Mac
@@ -95,10 +87,6 @@ int main(int argc, char **argv) {
         appIcon.addFile(":/images/app.png");
     }
     mainWin.setWindowIcon(appIcon);
-#endif
-
-#ifdef APP_WIN
-    app.setFont(QFont("Segoe UI", 9));
 #endif
 
     mainWin.show();
