@@ -6,5 +6,6 @@
         <file>images/search-sortBy.png</file>
         <file>images/search-quality.png</file>
         <file>images/search-duration.png</file>
+        <file>qml/categories.qml</file>
     </qresource>
 </RCC>

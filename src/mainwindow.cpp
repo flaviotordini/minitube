@@ -1,4 +1,9 @@
-#include "MainWindow.h"
+#include "mainwindow.h"
+#include "homeview.h"
+#include "searchview.h"
+#include "mediaview.h"
+#include "aboutview.h"
+#include "downloadview.h"
 #include "spacer.h"
 #include "constants.h"
 #include "iconloader/qticonloader.h"
@@ -57,10 +62,10 @@ MainWindow::MainWindow() :
     views = new QStackedWidget(this);
 
     // views
-    searchView = new SearchView(this);
-    connect(searchView, SIGNAL(search(SearchParams*)), this, SLOT(showMedia(SearchParams*)));
-    views->addWidget(searchView);
+    homeView = new HomeView(this);
+    views->addWidget(homeView);
 
+    // TODO make this lazy
     mediaView = new MediaView(this);
     mediaView->setEnabled(false);
     views->addWidget(mediaView);
@@ -97,7 +102,7 @@ MainWindow::MainWindow() :
     setMinimumWidth(0);
 
     // show the initial view
-    showSearch(false);
+    showHome(false);
 
 #ifdef APP_ACTIVATION
     if (!Activation::instance().isActivated())
@@ -763,12 +768,12 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
     if (newView) {
         widget->setEnabled(true);
         newView->appear();
-        QMap<QString,QVariant> metadata = newView->metadata();
-        QString windowTitle = metadata.value("title").toString();
-        if (windowTitle.length())
-            windowTitle += " - ";
-        setWindowTitle(windowTitle + Constants::NAME);
-        statusBar()->showMessage((metadata.value("description").toString()));
+        QHash<QString,QVariant> metadata = newView->metadata();
+        QString title = metadata.value("title").toString();
+        if (!title.isEmpty()) title += " - ";
+        setWindowTitle(title + Constants::NAME);
+        QString desc = metadata.value("description").toString();
+        if (!desc.isEmpty()) showMessage(desc);
     }
 
     const bool isMediaView = widget == mediaView;
@@ -779,9 +784,9 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
     copyPageAct->setEnabled(isMediaView);
     copyLinkAct->setEnabled(isMediaView);
     findVideoPartsAct->setEnabled(isMediaView);
-    toolbarSearch->setEnabled(widget == searchView || isMediaView || widget == downloadView);
+    toolbarSearch->setEnabled(widget == homeView || isMediaView || widget == downloadView);
 
-    if (widget == searchView) {
+    if (widget == homeView) {
         skipAct->setEnabled(false);
         The::globalActions()->value("previous")->setEnabled(false);
         The::globalActions()->value("download")->setEnabled(false);
@@ -887,8 +892,8 @@ bool MainWindow::confirmQuit() {
     return true;
 }
 
-void MainWindow::showSearch(bool transition) {
-    showWidget(searchView, transition);
+void MainWindow::showHome(bool transition) {
+    showWidget(homeView, transition);
     currentTime->clear();
     totalTime->clear();
 }
@@ -950,7 +955,7 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
 
 void MainWindow::stop() {
     mediaView->stop();
-    showSearch();
+    showHome();
 }
 
 void MainWindow::resizeEvent(QResizeEvent*) {
@@ -1272,9 +1277,12 @@ void MainWindow::clearRecentKeywords() {
     QSettings settings;
     settings.remove("recentKeywords");
     settings.remove("recentChannels");
-    searchView->updateRecentKeywords();
-    searchView->updateRecentChannels();
-    statusBar()->showMessage(tr("Your privacy is now safe"));
+    if (views->currentWidget() == homeView) {
+        SearchView *searchView = homeView->getSearchView();
+        searchView->updateRecentKeywords();
+        searchView->updateRecentChannels();
+    }
+    showMessage(tr("Your privacy is now safe"));
 }
 
 void MainWindow::setManualPlay(bool enabled) {

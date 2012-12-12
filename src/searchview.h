@@ -2,7 +2,7 @@
 #define __SEARCHVIEW_H__
 
 #include <QtGui>
-#include "View.h"
+#include "view.h"
 
 class SearchLineEdit;
 class SearchParams;
@@ -17,17 +17,14 @@ public:
     SearchView(QWidget *parent);
     void updateRecentKeywords();
     void updateRecentChannels();
-    void appear();
-    void disappear() {}
-
-    QMap<QString, QVariant> metadata() {
-        QMap<QString, QVariant> metadata;
-        metadata.insert("title", "");
+    QHash<QString, QVariant> metadata() {
+        QHash<QString, QVariant> metadata;
         metadata.insert("description", tr("Make yourself comfortable"));
         return metadata;
     }
 
 public slots:
+    void appear();
     void watch(QString query);
     void watchChannel(QString channel);
     void watchKeywords(QString query);

@@ -1,6 +1,6 @@
 #include "downloadsettings.h"
 #include "downloadmanager.h"
-#include "MainWindow.h"
+#include "mainwindow.h"
 
 DownloadSettings::DownloadSettings(QWidget *parent) : QWidget(parent) {
 

@@ -2,7 +2,7 @@
 #define DOWNLOADVIEW_H
 
 #include <QtGui>
-#include "View.h"
+#include "view.h"
 
 class SegmentedControl;
 class DownloadModel;
@@ -17,10 +17,9 @@ public:
     DownloadView(QWidget *parent);
     void appear();
     void disappear();
-    QMap<QString, QVariant> metadata() {
-        QMap<QString, QVariant> metadata;
+    QHash<QString, QVariant> metadata() {
+        QHash<QString, QVariant> metadata;
         metadata.insert("title", tr("Downloads"));
-        metadata.insert("description", "");
         return metadata;
     }
 

@@ -1,4 +1,4 @@
-#include "SearchView.h"
+#include "searchview.h"
 #include "constants.h"
 #include "fontutils.h"
 #include "searchparams.h"
@@ -15,7 +15,7 @@
 #ifdef APP_ACTIVATION
 #include "activation.h"
 #endif
-#include "MainWindow.h"
+#include "mainwindow.h"
 
 namespace The {
 QMap<QString, QAction*>* globalActions();

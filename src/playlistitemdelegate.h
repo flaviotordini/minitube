@@ -7,13 +7,13 @@
 class QPainter;
 class QProgressBar;
 
-class PrettyItemDelegate : public QStyledItemDelegate {
+class PlaylistItemDelegate : public QStyledItemDelegate {
 
     Q_OBJECT
 
 public:
-    PrettyItemDelegate(QObject* parent, bool downloadInfo = false);
-    ~PrettyItemDelegate();
+    PlaylistItemDelegate(QObject* parent, bool downloadInfo = false);
+    ~PlaylistItemDelegate();
 
     QSize sizeHint( const QStyleOptionViewItem&, const QModelIndex& ) const;
     void paint( QPainter*, const QStyleOptionViewItem&, const QModelIndex& ) const;

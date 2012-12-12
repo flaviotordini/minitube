@@ -6,14 +6,14 @@
 #include <phonon/volumeslider.h>
 #include <phonon/mediaobject.h>
 #include <phonon/seekslider.h>
-#include "View.h"
-#include "SearchView.h"
-#include "MediaView.h"
-#include "AboutView.h"
-#include "downloadview.h"
+#include "view.h"
 
+class HomeView;
+class MediaView;
+class DownloadView;
 class SearchLineEdit;
 class UpdateChecker;
+class SearchParams;
 
 class MainWindow : public QMainWindow {
 
@@ -29,6 +29,7 @@ public:
     static void printHelp();
 
 public slots:
+    void showHome(bool transition = true);
     void showMedia(SearchParams *params);
     void restore();
     void messageReceived(const QString &message);
@@ -54,7 +55,6 @@ protected:
 private slots:
     void checkForUpdate();
     void gotNewVersion(QString version);
-    void showSearch(bool transition = true);
     void visitSite();
     void donate();
     void reportIssue();
@@ -111,7 +111,7 @@ private:
     QStack<QWidget*> *history;
 
     // view widgets
-    SearchView *searchView;
+    HomeView *homeView;
     MediaView *mediaView;
     QWidget *aboutView;
     QWidget *downloadView;

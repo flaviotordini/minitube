@@ -1,6 +1,6 @@
 CONFIG += release
 TEMPLATE = app
-VERSION = 1.9
+VERSION = 2.0
 DEFINES += APP_VERSION="$$VERSION"
 
 APP_NAME = Minitube
@@ -11,29 +11,23 @@ DEFINES += APP_UNIX_NAME="$$APP_UNIX_NAME"
 
 DEFINES += QT_USE_FAST_CONCATENATION
 DEFINES += QT_USE_FAST_OPERATOR_PLUS
+DEFINES += QT_STRICT_ITERATORS
 
 # TODO Saner string behaviour
-# DEFINES += QT_NO_CAST_FROM_ASCII QT_NO_CAST_TO_ASCII QT_STRICT_ITERATORS
+# DEFINES += QT_NO_CAST_FROM_ASCII QT_NO_CAST_TO_ASCII
 TARGET = minitube
-QT += network \
-    xml \
-    phonon
+QT += network xml phonon declarative
 include(src/qtsingleapplication/qtsingleapplication.pri)
-HEADERS += src/MainWindow.h \
-    src/SearchView.h \
-    src/MediaView.h \
-    src/AboutView.h \
+HEADERS += \
     src/youtubesearch.h \
     src/video.h \
     src/youtubestreamreader.h \
-    src/View.h \
     src/searchlineedit.h \
     src/urllineedit.h \
     src/spacer.h \
     src/constants.h \
     src/iconloader/qticonloader.h \
-    src/ListModel.h \
-    src/playlist/PrettyItemDelegate.h \
+    src/playlistitemdelegate.h \
     src/networkaccess.h \
     src/videomimedata.h \
     src/global.h \
@@ -62,12 +56,18 @@ HEADERS += src/MainWindow.h \
     src/playlistview.h \
     src/refinesearchwidget.h \
     src/refinesearchbutton.h \
-    src/sidebarwidget.h
+    src/sidebarwidget.h \
+    src/homeview.h \
+    src/aboutview.h \
+    src/listmodel.h \
+    src/mainwindow.h \
+    src/mediaview.h \
+    src/searchview.h \
+    src/view.h \
+    src/categoriesview.h \
+    src/userview.h \
+    src/youtubecategories.h
 SOURCES += src/main.cpp \
-    src/MainWindow.cpp \
-    src/SearchView.cpp \
-    src/MediaView.cpp \
-    src/AboutView.cpp \
     src/youtubesearch.cpp \
     src/youtubestreamreader.cpp \
     src/searchlineedit.cpp \
@@ -75,8 +75,6 @@ SOURCES += src/main.cpp \
     src/spacer.cpp \
     src/video.cpp \
     src/iconloader/qticonloader.cpp \
-    src/ListModel.cpp \
-    src/playlist/PrettyItemDelegate.cpp \
     src/videomimedata.cpp \
     src/updatechecker.cpp \
     src/networkaccess.cpp \
@@ -104,7 +102,17 @@ SOURCES += src/main.cpp \
     src/playlistview.cpp \
     src/refinesearchwidget.cpp \
     src/refinesearchbutton.cpp \
-    src/sidebarwidget.cpp
+    src/sidebarwidget.cpp \
+    src/homeview.cpp \
+    src/mainwindow.cpp \
+    src/mediaview.cpp \
+    src/listmodel.cpp \
+    src/aboutview.cpp \
+    src/searchview.cpp \
+    src/categoriesview.cpp \
+    src/userview.cpp \
+    src/playlistitemdelegate.cpp \
+    src/youtubecategories.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/
@@ -117,8 +125,7 @@ CODECFORSRC = UTF-8
 include(locale/locale.pri)
 
 # deploy
-DISTFILES += CHANGES \
-    COPYING
+DISTFILES += CHANGES COPYING
 unix:!mac {
     INCLUDEPATH += /usr/include/phonon
     QT += dbus
@@ -167,3 +174,6 @@ unix:!mac {
     icon512.files += data/512x512/minitube.png
 }
 mac|win32:include(local/local.pri)
+
+OTHER_FILES += \
+    qml/categories.qml

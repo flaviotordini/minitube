@@ -8,3 +8,5 @@ minitube.pro.user
 local/
 *.swp
 .tx
+android
+qtc_packaging

@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "video.h"
 #include "loadingwidget.h"
-#include "ListModel.h"
+#include "listmodel.h"
 
 class VideoAreaWidget : public QWidget {
 

@@ -4,8 +4,8 @@
 #include "downloadlistview.h"
 #include "downloaditem.h"
 #include "downloadsettings.h"
-#include "ListModel.h"
-#include "playlist/PrettyItemDelegate.h"
+#include "listmodel.h"
+#include "playlistitemdelegate.h"
 #include "segmentedcontrol.h"
 
 DownloadView::DownloadView(QWidget *parent) : QWidget(parent) {
@@ -28,7 +28,7 @@ DownloadView::DownloadView(QWidget *parent) : QWidget(parent) {
     p.setColor(QPalette::Base, palette().color(QPalette::Window));
     listView->setPalette(p);
     */
-    PrettyItemDelegate *delegate = new PrettyItemDelegate(this, true);
+    PlaylistItemDelegate *delegate = new PlaylistItemDelegate(this, true);
     listView->setItemDelegate(delegate);
     listView->setSelectionMode(QAbstractItemView::NoSelection);
 

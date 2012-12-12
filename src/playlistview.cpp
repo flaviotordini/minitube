@@ -1,6 +1,6 @@
 #include "playlistview.h"
-#include "ListModel.h"
-#include "playlist/PrettyItemDelegate.h"
+#include "listmodel.h"
+#include "playlistitemdelegate.h"
 
 PlaylistView::PlaylistView(QWidget *parent) : QListView(parent) {
     connect(this, SIGNAL(entered(const QModelIndex &)), SLOT(itemEntered(const QModelIndex &)));
@@ -62,7 +62,7 @@ bool PlaylistView::isHoveringAuthor(QMouseEvent *event) {
     const QRect itemRect = visualRect(itemIndex);
     // qDebug() << " itemRect.x()" <<  itemRect.x();
 
-    PrettyItemDelegate *delegate = dynamic_cast<PrettyItemDelegate *>(itemDelegate());
+    PlaylistItemDelegate *delegate = dynamic_cast<PlaylistItemDelegate *>(itemDelegate());
     if (!delegate) return false;
 
     QRect rect = delegate->authorRect(itemIndex);

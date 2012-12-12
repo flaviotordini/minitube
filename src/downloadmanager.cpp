@@ -3,7 +3,7 @@
 #include "downloadmodel.h"
 #include "video.h"
 #include "constants.h"
-#include "MainWindow.h"
+#include "mainwindow.h"
 #ifdef APP_ACTIVATION
 #include "activation.h"
 #endif

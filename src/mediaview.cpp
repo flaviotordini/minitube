@@ -1,13 +1,13 @@
-#include "MediaView.h"
+#include "mediaview.h"
 #include "playlistview.h"
-#include "playlist/PrettyItemDelegate.h"
+#include "playlistitemdelegate.h"
 #include "networkaccess.h"
 #include "videowidget.h"
 #include "minisplitter.h"
 #include "constants.h"
 #include "downloadmanager.h"
 #include "downloaditem.h"
-#include "MainWindow.h"
+#include "mainwindow.h"
 #include "temporary.h"
 #include "sidebarwidget.h"
 #include "playlistwidget.h"
@@ -42,7 +42,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     splitter->setChildrenCollapsible(false);
 
     listView = new PlaylistView(this);
-    listView->setItemDelegate(new PrettyItemDelegate(this));
+    listView->setItemDelegate(new PlaylistItemDelegate(this));
     listView->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     // dragndrop

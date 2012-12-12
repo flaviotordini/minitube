@@ -6,8 +6,8 @@
 #include <phonon/mediaobject.h>
 #include <phonon/videowidget.h>
 #include <phonon/seekslider.h>
-#include "View.h"
-#include "ListModel.h"
+#include "view.h"
+#include "listmodel.h"
 #include "segmentedcontrol.h"
 #include "searchparams.h"
 #include "loadingwidget.h"
@@ -28,17 +28,8 @@ public:
     MediaView(QWidget *parent);
     void initialize();
 
-    // View
     void appear();
     void disappear();
-    QMap<QString, QVariant> metadata() {
-        QMap<QString, QVariant> metadata;
-        if (searchParams) {
-            metadata.insert("title", "");
-            metadata.insert("description", "");
-        }
-        return metadata;
-    }
 
     void setMediaObject(Phonon::MediaObject *mediaObject);
     void setSlider(Phonon::SeekSlider *slider) { this->seekSlider = slider; }

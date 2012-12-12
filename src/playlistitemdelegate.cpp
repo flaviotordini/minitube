@@ -1,22 +1,22 @@
-#include "PrettyItemDelegate.h"
-#include "../ListModel.h"
-#include "../fontutils.h"
-#include "../downloaditem.h"
-#include "../iconloader/qticonloader.h"
-#include "../videodefinition.h"
+#include "playlistitemdelegate.h"
+#include "listmodel.h"
+#include "fontutils.h"
+#include "downloaditem.h"
+#include "iconloader/qticonloader.h"
+#include "videodefinition.h"
 
 #include <QFontMetricsF>
 #include <QPainter>
 #include <QHash>
 
-const qreal PrettyItemDelegate::THUMB_HEIGHT = 90.0;
-const qreal PrettyItemDelegate::THUMB_WIDTH = 120.0;
-const qreal PrettyItemDelegate::PADDING = 10.0;
+const qreal PlaylistItemDelegate::THUMB_HEIGHT = 90.0;
+const qreal PlaylistItemDelegate::THUMB_WIDTH = 120.0;
+const qreal PlaylistItemDelegate::PADDING = 10.0;
 
 QRect lastAuthorRect;
 QHash<int, QRect> authorRects;
 
-PrettyItemDelegate::PrettyItemDelegate(QObject* parent, bool downloadInfo)
+PlaylistItemDelegate::PlaylistItemDelegate(QObject* parent, bool downloadInfo)
     : QStyledItemDelegate(parent),
     downloadInfo(downloadInfo) {
     boldFont.setBold(true);
@@ -33,7 +33,7 @@ PrettyItemDelegate::PrettyItemDelegate(QObject* parent, bool downloadInfo)
     } else createPlayIcon();
 }
 
-void PrettyItemDelegate::createPlayIcon() {
+void PlaylistItemDelegate::createPlayIcon() {
     playIcon = QPixmap(THUMB_WIDTH, THUMB_HEIGHT);
     playIcon.fill(Qt::transparent);
     QPainter painter(&playIcon);
@@ -52,13 +52,13 @@ void PrettyItemDelegate::createPlayIcon() {
     painter.drawPolygon(polygon);
 }
 
-PrettyItemDelegate::~PrettyItemDelegate() { }
+PlaylistItemDelegate::~PlaylistItemDelegate() { }
 
-QSize PrettyItemDelegate::sizeHint( const QStyleOptionViewItem& /*option*/, const QModelIndex& /*index*/ ) const {
+QSize PlaylistItemDelegate::sizeHint( const QStyleOptionViewItem& /*option*/, const QModelIndex& /*index*/ ) const {
     return QSize( 256, THUMB_HEIGHT+1.0);
 }
 
-void PrettyItemDelegate::paint( QPainter* painter,
+void PlaylistItemDelegate::paint( QPainter* painter,
                                 const QStyleOptionViewItem& option, const QModelIndex& index ) const {
 
     int itemType = index.data(ItemTypeRole).toInt();
@@ -73,7 +73,7 @@ void PrettyItemDelegate::paint( QPainter* painter,
 
 }
 
-void PrettyItemDelegate::paintBody( QPainter* painter,
+void PlaylistItemDelegate::paintBody( QPainter* painter,
                                     const QStyleOptionViewItem& option,
                                     const QModelIndex& index ) const {
 
@@ -213,7 +213,7 @@ void PrettyItemDelegate::paintBody( QPainter* painter,
 
 }
 
-void PrettyItemDelegate::paintActiveOverlay( QPainter *painter, qreal x, qreal y, qreal w, qreal h ) const {
+void PlaylistItemDelegate::paintActiveOverlay( QPainter *painter, qreal x, qreal y, qreal w, qreal h ) const {
 
     QPalette palette;
     QColor highlightColor = palette.color(QPalette::Highlight);
@@ -242,14 +242,14 @@ void PrettyItemDelegate::paintActiveOverlay( QPainter *painter, qreal x, qreal y
     painter->restore();
 }
 
-void PrettyItemDelegate::paintPlayIcon(QPainter *painter) const {
+void PlaylistItemDelegate::paintPlayIcon(QPainter *painter) const {
     painter->save();
     painter->setOpacity(.5);
     painter->drawPixmap(playIcon.rect(), playIcon);
     painter->restore();
 }
 
-void PrettyItemDelegate::drawTime(QPainter *painter, QString time, QRectF line) const {
+void PlaylistItemDelegate::drawTime(QPainter *painter, QString time, QRectF line) const {
     static const int timePadding = 4;
     QRectF textBox = painter->boundingRect(line, Qt::AlignLeft | Qt::AlignTop, time);
     // add padding
@@ -270,7 +270,7 @@ void PrettyItemDelegate::drawTime(QPainter *painter, QString time, QRectF line) 
     painter->restore();
 }
 
-void PrettyItemDelegate::paintDownloadInfo( QPainter* painter,
+void PlaylistItemDelegate::paintDownloadInfo( QPainter* painter,
                                             const QStyleOptionViewItem& option,
                                             const QModelIndex& index ) const {
 
@@ -379,7 +379,7 @@ void PrettyItemDelegate::paintDownloadInfo( QPainter* painter,
 
 }
 
-QRect PrettyItemDelegate::downloadButtonRect(QRect line) const {
+QRect PlaylistItemDelegate::downloadButtonRect(QRect line) const {
     return QRect(
             line.width() - PADDING*2 - 16,
             PADDING + progressBar->sizeHint().height() / 2 - 8,
@@ -387,6 +387,6 @@ QRect PrettyItemDelegate::downloadButtonRect(QRect line) const {
             16);
 }
 
-QRect PrettyItemDelegate::authorRect(const QModelIndex& index) const {
+QRect PlaylistItemDelegate::authorRect(const QModelIndex& index) const {
     return authorRects.value(index.row());
 }

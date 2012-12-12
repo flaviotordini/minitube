@@ -1,7 +1,7 @@
 #include <QtGui>
 #include <qtsingleapplication.h>
 #include "constants.h"
-#include "MainWindow.h"
+#include "mainwindow.h"
 #include "searchparams.h"
 #include "iconloader/qticonloader.h"
 #ifndef Q_WS_X11

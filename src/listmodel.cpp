@@ -1,4 +1,4 @@
-#include "ListModel.h"
+#include "listmodel.h"
 #include "videomimedata.h"
 
 #define MAX_ITEMS 10
@@ -311,16 +311,12 @@ Qt::DropActions ListModel::supportedDropActions() const {
 }
 
 Qt::ItemFlags ListModel::flags(const QModelIndex &index) const {
-    Qt::ItemFlags defaultFlags = QAbstractListModel::flags(index);
-
-    if (index.isValid()) {
+    if (index.isValid())
         if (index.row() == videos.size()) {
             // don't drag the "show 10 more" item
-            return defaultFlags;
-        } else
-            return ( defaultFlags | Qt::ItemIsDropEnabled | Qt::ItemIsDragEnabled );
-    } else
-        return Qt::ItemIsDropEnabled | defaultFlags;
+            return Qt::ItemIsEnabled;
+        } else return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsDragEnabled);
+    return Qt::ItemIsDropEnabled;
 }
 
 QStringList ListModel::mimeTypes() const {

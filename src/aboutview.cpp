@@ -1,4 +1,4 @@
-#include "AboutView.h"
+#include "aboutview.h"
 #include "constants.h"
 #ifndef Q_WS_X11
 #include "extra.h"
