@@ -1,5 +1,6 @@
 #include "segmentedcontrol.h"
 #include "fontutils.h"
+#include "mainwindow.h"
 
 static const QColor borderColor = QColor(0x26, 0x26, 0x26);
 
@@ -104,7 +105,7 @@ void SegmentedControl::mouseMoveEvent (QMouseEvent *event) {
         update();
 
         // status tip
-        static_cast<QMainWindow*>(window())->statusBar()->showMessage(action->statusTip());
+        MainWindow::instance()->statusBar()->showMessage(action->statusTip());
     }
 }
 
@@ -127,8 +128,8 @@ void SegmentedControl::mouseReleaseEvent(QMouseEvent *event) {
 
 void SegmentedControl::leaveEvent(QEvent *event) {
     QWidget::leaveEvent(event);
-    // status tip
-    static_cast<QMainWindow*>(window())->statusBar()->clearMessage();
+    // status tip    
+    MainWindow::instance()->statusBar()->clearMessage();
     d->hoveredAction = 0;
     d->pressedAction = 0;
     update();
