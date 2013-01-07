@@ -156,7 +156,7 @@ void DownloadManager::itemFinished() {
 }
 
 void DownloadManager::updateStatusMessage() {
-    QString message = tr("%n Download(s)", "", items.size());
+    QString message = tr("%n Download(s)", "", activeItems());
     emit statusMessageChanged(message);
 }
 
