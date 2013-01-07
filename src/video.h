@@ -27,16 +27,19 @@ public:
     const QUrl webpage() const { return m_webpage; }
     void setWebpage( QUrl webpage ) { m_webpage = webpage; }
 
-    QList<QUrl> thumbnailUrls() const { return m_thumbnailUrls; }
-    void addThumbnailUrl(QUrl url) {
-        m_thumbnailUrls << url;
-    }
+    void loadThumbnail();
+    const QPixmap & thumbnail() const { return m_thumbnail; }
 
-    void preloadThumbnail();
-    const QImage thumbnail() const;
+    QString thumbnailUrl() { return m_thumbnailUrl; }
+    void setThumbnailUrl(QString url) { m_thumbnailUrl = url; }
+
+    void loadMediumThumbnail();
+    QString mediumThumbnailUrl() { return m_mediumThumbnailUrl; }
+    void setMediumThumbnailUrl(QString url) { m_mediumThumbnailUrl = url; }
 
     int duration() const { return m_duration; }
     void setDuration( int duration ) { m_duration = duration; }
+    QString formattedDuration() const;
 
     int viewCount() const { return m_viewCount; }
     void setViewCount( int viewCount ) { m_viewCount = viewCount; }
@@ -51,15 +54,14 @@ public:
 
     QString id() { return videoId; }
 
-public slots:
-    void setThumbnail(QByteArray bytes);
-
 signals:
     void gotThumbnail();
+    void gotMediumThumbnail(QByteArray bytes);
     void gotStreamUrl(QUrl streamUrl);
     void errorStreamUrl(QString message);
 
 private slots:
+    void setThumbnail(QByteArray bytes);
     void gotVideoInfo(QByteArray);
     void errorVideoInfo(QNetworkReply*);
     void scrapeWebPage(QByteArray);
@@ -76,16 +78,14 @@ private:
     QString m_authorUri;
     QUrl m_webpage;
     QUrl m_streamUrl;
-    QImage m_thumbnail;
-    QList<QUrl> m_thumbnailUrls;
+    QPixmap m_thumbnail;
+    QString m_thumbnailUrl;
+    QString m_mediumThumbnailUrl;
     int m_duration;
     QDateTime m_published;
     int m_viewCount;
 
-    // The YouTube video id
-    // This is needed by the gotVideoInfo callback
     QString videoId;
-
     QString videoToken;
     int definitionCode;
 

@@ -1,6 +1,8 @@
 #include "mediaview.h"
+#include "playlistmodel.h"
 #include "playlistview.h"
-#include "playlistitemdelegate.h"
+#include "loadingwidget.h"
+#include "videoareawidget.h"
 #include "networkaccess.h"
 #include "videowidget.h"
 #include "minisplitter.h"
@@ -9,75 +11,67 @@
 #include "downloaditem.h"
 #include "mainwindow.h"
 #include "temporary.h"
-#include "sidebarwidget.h"
-#include "playlistwidget.h"
 #include "refinesearchwidget.h"
 #include "sidebarwidget.h"
+#include "sidebarheader.h"
 #ifdef APP_MAC
 #include "macfullscreen.h"
+#include "macutils.h"
 #endif
 #ifdef APP_ACTIVATION
 #include "activation.h"
 #endif
+#include "videosource.h"
+#include "ytsearch.h"
+#include "searchparams.h"
+#include "ytsinglevideosource.h"
 
 namespace The {
 NetworkAccess* http();
-}
-
-namespace The {
 QMap<QString, QAction*>* globalActions();
 QMap<QString, QMenu*>* globalMenus();
 QNetworkAccessManager* networkAccessManager();
 }
 
-MediaView::MediaView(QWidget *parent) : QWidget(parent) {
+MediaView* MediaView::instance() {
+    static MediaView *i = new MediaView();
+    return i;
+}
 
+MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     reallyStopped = false;
     downloadItem = 0;
 
-    QBoxLayout *layout = new QVBoxLayout();
+    QBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
 
-    splitter = new MiniSplitter(this);
+    splitter = new MiniSplitter();
     splitter->setChildrenCollapsible(false);
 
-    listView = new PlaylistView(this);
-    listView->setItemDelegate(new PlaylistItemDelegate(this));
-    listView->setSelectionMode(QAbstractItemView::ExtendedSelection);
-
-    // dragndrop
-    listView->setDragEnabled(true);
-    listView->setAcceptDrops(true);
-    listView->setDropIndicatorShown(true);
-    listView->setDragDropMode(QAbstractItemView::DragDrop);
-
-    // cosmetics
-    listView->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
-    listView->setFrameShape( QFrame::NoFrame );
-    listView->setAttribute(Qt::WA_MacShowFocusRect, false);
-    listView->setMinimumSize(320,240);
-    listView->setUniformItemSizes(true);
-
+    playlistView = new PlaylistView(this);
     // respond to the user doubleclicking a playlist item
-    connect(listView, SIGNAL(activated(const QModelIndex &)), this, SLOT(itemActivated(const QModelIndex &)));
+    connect(playlistView, SIGNAL(activated(const QModelIndex &)),
+            SLOT(itemActivated(const QModelIndex &)));
 
-    listModel = new ListModel(this);
-    connect(listModel, SIGNAL(activeRowChanged(int)), this, SLOT(activeRowChanged(int)));
+    playlistModel = new PlaylistModel();
+    connect(playlistModel, SIGNAL(activeRowChanged(int)),
+            SLOT(activeRowChanged(int)));
     // needed to restore the selection after dragndrop
-    connect(listModel, SIGNAL(needSelectionFor(QList<Video*>)), this, SLOT(selectVideos(QList<Video*>)));
-    listView->setModel(listModel);
+    connect(playlistModel, SIGNAL(needSelectionFor(QList<Video*>)),
+            SLOT(selectVideos(QList<Video*>)));
+    playlistView->setModel(playlistModel);
 
-    connect(listView->selectionModel(),
-            SIGNAL(selectionChanged ( const QItemSelection & , const QItemSelection & )),
-            this, SLOT(selectionChanged ( const QItemSelection & , const QItemSelection & )));
+    connect(playlistView->selectionModel(),
+            SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
+            SLOT(selectionChanged(const QItemSelection &, const QItemSelection &)));
 
-    connect(listView, SIGNAL(authorPushed(QModelIndex)), SLOT(authorPushed(QModelIndex)));
+    connect(playlistView, SIGNAL(authorPushed(QModelIndex)), SLOT(authorPushed(QModelIndex)));
 
     sidebar = new SidebarWidget(this);
-    sidebar->setPlaylist(listView);
+    sidebar->setPlaylist(playlistView);
     connect(sidebar->getRefineSearchWidget(), SIGNAL(searchRefined()),
             SLOT(searchAgain()));
-    connect(listModel, SIGNAL(haveSuggestions(const QStringList &)),
+    connect(playlistModel, SIGNAL(haveSuggestions(const QStringList &)),
             sidebar, SLOT(showSuggestions(const QStringList &)));
     connect(sidebar, SIGNAL(suggestionAccepted(QString)),
             MainWindow::instance(), SLOT(startToolbarSearch(QString)));
@@ -87,7 +81,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     videoAreaWidget->setMinimumSize(320,240);
     videoWidget = new Phonon::VideoWidget(this);
     videoAreaWidget->setVideoWidget(videoWidget);
-    videoAreaWidget->setListModel(listModel);
+    videoAreaWidget->setListModel(playlistModel);
 
     loadingWidget = new LoadingWidget(this);
     videoAreaWidget->setLoadingWidget(loadingWidget);
@@ -95,7 +89,6 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     splitter->addWidget(videoAreaWidget);
 
     layout->addWidget(splitter);
-    setLayout(layout);
 
     splitter->setStretchFactor(0, 1);
     splitter->setStretchFactor(1, 6);
@@ -109,11 +102,6 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     errorTimer->setInterval(3000);
     connect(errorTimer, SIGNAL(timeout()), SLOT(skipVideo()));
 
-    workaroundTimer = new QTimer(this);
-    workaroundTimer->setSingleShot(true);
-    workaroundTimer->setInterval(3000);
-    connect(workaroundTimer, SIGNAL(timeout()), SLOT(timerPlay()));
-
 #ifdef APP_ACTIVATION
     demoTimer = new QTimer(this);
     demoTimer->setSingleShot(true);
@@ -123,13 +111,8 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
 }
 
 void MediaView::initialize() {
-    connect(videoAreaWidget, SIGNAL(doubleClicked()), The::globalActions()->value("fullscreen"), SLOT(trigger()));
-
-    /*
-    videoAreaWidget->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(videoAreaWidget, SIGNAL(customContextMenuRequested(QPoint)),
-            this, SLOT(showVideoContextMenu(QPoint)));
-            */
+    connect(videoAreaWidget, SIGNAL(doubleClicked()),
+            The::globalActions()->value("fullscreen"), SLOT(trigger()));
 
     QAction* refineSearchAction = The::globalActions()->value("refine-search");
     connect(refineSearchAction, SIGNAL(toggled(bool)),
@@ -138,121 +121,131 @@ void MediaView::initialize() {
 
 void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
     this->mediaObject = mediaObject;
-    Phonon::createPath(this->mediaObject, videoWidget);
-    connect(mediaObject, SIGNAL(finished()), this, SLOT(playbackFinished()));
+    Phonon::createPath(mediaObject, videoWidget);
+    connect(mediaObject, SIGNAL(finished()), SLOT(playbackFinished()));
     connect(mediaObject, SIGNAL(stateChanged(Phonon::State, Phonon::State)),
-            this, SLOT(stateChanged(Phonon::State, Phonon::State)));
+            SLOT(stateChanged(Phonon::State, Phonon::State)));
     connect(mediaObject, SIGNAL(currentSourceChanged(Phonon::MediaSource)),
-            this, SLOT(currentSourceChanged(Phonon::MediaSource)));
-    // connect(mediaObject, SIGNAL(bufferStatus(int)), loadingWidget, SLOT(bufferStatus(int)));
+            SLOT(currentSourceChanged(Phonon::MediaSource)));
     connect(mediaObject, SIGNAL(aboutToFinish()), SLOT(aboutToFinish()));
 }
 
+SearchParams* MediaView::getSearchParams() {
+    VideoSource *videoSource = playlistModel->getVideoSource();
+    if (videoSource && videoSource->metaObject()->className() == QLatin1String("YTSearch")) {
+        YTSearch *search = dynamic_cast<YTSearch *>(videoSource);
+        return search->getSearchParams();
+    }
+    return 0;
+}
+
 void MediaView::search(SearchParams *searchParams) {
+    if (!searchParams->keywords().isEmpty()) {
+        if (searchParams->keywords().startsWith("http://") ||
+                searchParams->keywords().startsWith("https://")) {
+            QString videoId = YTSearch::videoIdFromUrl(searchParams->keywords());
+            if (!videoId.isEmpty()) {
+                qDebug() << "single video";
+                YTSingleVideoSource *singleVideoSource = new YTSingleVideoSource(this);
+                singleVideoSource->setVideoId(videoId);
+                setVideoSource(singleVideoSource);
+                return;
+            }
+        }
+    }
+    setVideoSource(new YTSearch(searchParams, this));
+}
+
+void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory) {
     reallyStopped = false;
 
 #ifdef APP_ACTIVATION
     demoTimer->stop();
 #endif
-    workaroundTimer->stop();
     errorTimer->stop();
 
-    this->searchParams = searchParams;
-
-    // start serching for videos
-    listModel->search(searchParams);
-
-    sidebar->showPlaylist();
-    listView->setFocus();
-
-    QString keyword = searchParams->keywords();
-    QString display = keyword;
-    if (keyword.startsWith("http://") || keyword.startsWith("https://")) {
-        int separator = keyword.indexOf("|");
-        if (separator > 0 && separator + 1 < keyword.length()) {
-            display = keyword.mid(separator+1);
+    if (addToHistory) {
+        int currentIndex = getHistoryIndex();
+        if (currentIndex >= 0 && currentIndex < history.size() - 1) {
+            for (int i = currentIndex + 1; i < history.size(); i++) {
+                VideoSource *vs = history.takeAt(i);
+                if (!vs->parent()) delete vs;
+            }
         }
+        history.append(videoSource);
     }
 
-    sidebar->getRefineSearchWidget()->setSearchParams(searchParams);
-    sidebar->hideSuggestions();
+    playlistModel->setVideoSource(videoSource);
 
+    sidebar->showPlaylist();
+    sidebar->getRefineSearchWidget()->setSearchParams(getSearchParams());
+    sidebar->hideSuggestions();
+    sidebar->getHeader()->updateInfo();
+
+    SearchParams *searchParams = getSearchParams();
+    bool isChannel = searchParams && !searchParams->author().isEmpty();
+    playlistView->setClickableAuthors(!isChannel);
 }
 
 void MediaView::searchAgain() {
-    search(searchParams);
+    VideoSource *currentVideoSource = playlistModel->getVideoSource();
+    setVideoSource(currentVideoSource, false);
+}
+
+bool MediaView::canGoBack() {
+    return getHistoryIndex() > 0;
+}
+
+void MediaView::goBack() {
+    if (history.size() > 1) {
+        int currentIndex = getHistoryIndex();
+        if (currentIndex > 0) {
+            VideoSource *previousVideoSource = history.at(currentIndex - 1);
+            setVideoSource(previousVideoSource, false);
+        }
+    }
+}
+
+bool MediaView::canGoForward() {
+    int currentIndex = getHistoryIndex();
+    return currentIndex >= 0 && currentIndex < history.size() - 1;
+}
+
+void MediaView::goForward() {
+    if (canGoForward()) {
+        int currentIndex = getHistoryIndex();
+        VideoSource *nextVideoSource = history.at(currentIndex + 1);
+        setVideoSource(nextVideoSource, false);
+    }
+}
+
+int MediaView::getHistoryIndex() {
+    return history.lastIndexOf(playlistModel->getVideoSource());
 }
 
 void MediaView::appear() {
-    listView->setFocus();
+    playlistView->setFocus();
 }
 
 void MediaView::disappear() {
-    timerPlayFlag = true;
+
 }
 
 void MediaView::handleError(QString /* message */) {
-
     QTimer::singleShot(500, this, SLOT(startPlaying()));
-
-    /*
-    videoAreaWidget->showError(message);
-    skippedVideo = listModel->activeVideo();
-    // recover from errors by skipping to the next video
-    errorTimer->start(2000);
-    */
 }
 
 void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/) {
-    // qDebug() << "Phonon state: " << newState;
-    // slider->setEnabled(newState == Phonon::PlayingState);
-
-    switch (newState) {
-
-    case Phonon::ErrorState:
+    if (newState == Phonon::PlayingState)
+        videoAreaWidget->showVideo();
+    else if (newState == Phonon::ErrorState) {
         qDebug() << "Phonon error:" << mediaObject->errorString() << mediaObject->errorType();
         if (mediaObject->errorType() == Phonon::FatalError)
             handleError(mediaObject->errorString());
-        break;
-
-    case Phonon::PlayingState:
-        // qDebug("playing");
-        videoAreaWidget->showVideo();
-        break;
-
-    case Phonon::StoppedState:
-        // qDebug("stopped");
-        // play() has already been called when setting the source
-        // but Phonon on Linux needs a little more help to start playback
-        // if (!reallyStopped) mediaObject->play();
-
-#ifdef APP_MAC
-        // Workaround for Mac playback start problem
-        if (!timerPlayFlag) {
-            // workaroundTimer->start();
-        }
-#endif
-
-        break;
-
-    case Phonon::PausedState:
-        qDebug("paused");
-        break;
-
-    case Phonon::BufferingState:
-        qDebug("buffering");
-        break;
-
-    case Phonon::LoadingState:
-        qDebug("loading");
-        break;
-
     }
 }
 
 void MediaView::pause() {
-    // qDebug() << "pause() called" << mediaObject->state();
-
     switch( mediaObject->state() ) {
     case Phonon::PlayingState:
         mediaObject->pause();
@@ -261,7 +254,6 @@ void MediaView::pause() {
         mediaObject->play();
         break;
     }
-
 }
 
 QRegExp MediaView::wordRE(QString s) {
@@ -269,31 +261,45 @@ QRegExp MediaView::wordRE(QString s) {
 }
 
 void MediaView::stop() {
-    listModel->abortSearch();
+    playlistModel->abortSearch();
     reallyStopped = true;
     mediaObject->stop();
     videoAreaWidget->clear();
-    workaroundTimer->stop();
     errorTimer->stop();
-    listView->selectionModel()->clearSelection();
+    playlistView->selectionModel()->clearSelection();
     if (downloadItem) {
         downloadItem->stop();
         delete downloadItem;
         downloadItem = 0;
     }
     The::globalActions()->value("refine-search")->setChecked(false);
+
+    while (!history.isEmpty()) {
+        VideoSource *videoSource = history.takeFirst();
+        if (!videoSource->parent()) delete videoSource;
+    }
 }
 
 void MediaView::activeRowChanged(int row) {
     if (reallyStopped) return;
 
-    Video *video = listModel->videoAt(row);
+    Video *video = playlistModel->videoAt(row);
     if (!video) return;
 
-    // now that we have a new video to play
-    // stop all the timers
-    workaroundTimer->stop();
+    // Related videos without video interruption
+    if (row == 0) {
+        VideoSource *videoSource = playlistModel->getVideoSource();
+        if (videoSource && !history.isEmpty() &&
+                mediaObject->state() == Phonon::PlayingState &&
+                videoSource->metaObject()->className() == QLatin1String("YTSingleVideoSource")) {
+            if (playlistModel->videoAt(row)->title() == downloadItem->getVideo()->title())
+                return;
+        }
+    }
+
     errorTimer->stop();
+
+    videoAreaWidget->showLoading(video);
 
     mediaObject->stop();
     if (downloadItem) {
@@ -301,19 +307,13 @@ void MediaView::activeRowChanged(int row) {
         delete downloadItem;
         downloadItem = 0;
     }
-    // slider->setMinimum(0);
 
-    // immediately show the loading widget
-    videoAreaWidget->showLoading(video);
-
-    connect(video, SIGNAL(gotStreamUrl(QUrl)), SLOT(gotStreamUrl(QUrl)), Qt::UniqueConnection);
-    // TODO handle signal in a proper slot and impl item error status
-    connect(video, SIGNAL(errorStreamUrl(QString)), SLOT(handleError(QString)), Qt::UniqueConnection);
+    connect(video, SIGNAL(gotStreamUrl(QUrl)),
+            SLOT(gotStreamUrl(QUrl)), Qt::UniqueConnection);
+    connect(video, SIGNAL(errorStreamUrl(QString)),
+            SLOT(handleError(QString)), Qt::UniqueConnection);
 
     video->loadStreamUrl();
-
-    // reset the timer flag
-    timerPlayFlag = false;
 
     // video title in the statusbar
     MainWindow::instance()->showMessage(video->title());
@@ -321,8 +321,8 @@ void MediaView::activeRowChanged(int row) {
     // ensure active item is visible
     // int row = listModel->activeRow();
     if (row != -1) {
-        QModelIndex index = listModel->index(row, 0, QModelIndex());
-        listView->scrollTo(index, QAbstractItemView::EnsureVisible);
+        QModelIndex index = playlistModel->index(row, 0, QModelIndex());
+        playlistView->scrollTo(index, QAbstractItemView::EnsureVisible);
     }
 
     // enable/disable actions
@@ -340,7 +340,7 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
 
     Video *video = static_cast<Video *>(sender());
     if (!video) {
-        qDebug() << "Cannot get sender";
+        qDebug() << "Cannot get sender in" << __PRETTY_FUNCTION__;
         return;
     }
     video->disconnect(this);
@@ -361,6 +361,10 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
     connect(downloadItem, SIGNAL(error(QString)), SLOT(handleError(QString)), Qt::UniqueConnection);
     downloadItem->start();
 
+#ifdef Q_WS_MAC
+    if (mac::canNotify())
+        mac::notify(video->title(), video->author(), video->formattedDuration());
+#endif
 }
 
 /*
@@ -403,7 +407,7 @@ void MediaView::downloadStatusChanged() {
         // qDebug() << "Finished" << mediaObject->state();
         // if (mediaObject->state() == Phonon::StoppedState) startPlaying();
 #ifdef Q_WS_X11
-        seekSlider->setEnabled(mediaObject->isSeekable());
+        MainWindow::instance()->getSeekSlider()->setEnabled(mediaObject->isSeekable());
 #endif
         break;
     case Failed:
@@ -427,17 +431,17 @@ void MediaView::startPlaying() {
     mediaObject->setCurrentSource(source);
     mediaObject->play();
 #ifdef Q_WS_X11
-    seekSlider->setEnabled(false);
+    MainWindow::instance()->getSeekSlider()->setEnabled(false);
 #endif
 
     // ensure we always have 10 videos ahead
-    listModel->searchNeeded();
+    playlistModel->searchNeeded();
 
     // ensure active item is visible
-    int row = listModel->activeRow();
+    int row = playlistModel->activeRow();
     if (row != -1) {
-        QModelIndex index = listModel->index(row, 0, QModelIndex());
-        listView->scrollTo(index, QAbstractItemView::EnsureVisible);
+        QModelIndex index = playlistModel->index(row, 0, QModelIndex());
+        playlistView->scrollTo(index, QAbstractItemView::EnsureVisible);
     }
 
 #ifdef APP_ACTIVATION
@@ -448,20 +452,20 @@ void MediaView::startPlaying() {
 }
 
 void MediaView::itemActivated(const QModelIndex &index) {
-    if (listModel->rowExists(index.row())) {
+    if (playlistModel->rowExists(index.row())) {
 
         // if it's the current video, just rewind and play
-        Video *activeVideo = listModel->activeVideo();
-        Video *video = listModel->videoAt(index.row());
+        Video *activeVideo = playlistModel->activeVideo();
+        Video *video = playlistModel->videoAt(index.row());
         if (activeVideo && video && activeVideo == video) {
             mediaObject->seek(0);
             mediaObject->play();
-        } else listModel->setActiveRow(index.row());
+        } else playlistModel->setActiveRow(index.row());
 
-    // the user doubleclicked on the "Search More" item
+        // the user doubleclicked on the "Search More" item
     } else {
-        listModel->searchMore();
-        listView->selectionModel()->clearSelection();
+        playlistModel->searchMore();
+        playlistView->selectionModel()->clearSelection();
     }
 }
 
@@ -474,27 +478,27 @@ void MediaView::skipVideo() {
     // in order to be sure that we're skipping the video we wanted
     // and not another one
     if (skippedVideo) {
-        if (listModel->activeVideo() != skippedVideo) {
+        if (playlistModel->activeVideo() != skippedVideo) {
             qDebug() << "Skip of video canceled";
             return;
         }
-        int nextRow = listModel->rowForVideo(skippedVideo);
+        int nextRow = playlistModel->rowForVideo(skippedVideo);
         nextRow++;
         if (nextRow == -1) return;
-        listModel->setActiveRow(nextRow);
+        playlistModel->setActiveRow(nextRow);
     }
 }
 
 void MediaView::skip() {
-    int nextRow = listModel->nextRow();
+    int nextRow = playlistModel->nextRow();
     if (nextRow == -1) return;
-    listModel->setActiveRow(nextRow);
+    playlistModel->setActiveRow(nextRow);
 }
 
 void MediaView::skipBackward() {
-    int prevRow = listModel->previousRow();
+    int prevRow = playlistModel->previousRow();
     if (prevRow == -1) return;
-    listModel->setActiveRow(prevRow);
+    playlistModel->setActiveRow(prevRow);
 }
 
 void MediaView::aboutToFinish() {
@@ -530,14 +534,14 @@ void MediaView::playbackResume() {
 }
 
 void MediaView::openWebPage() {
-    Video* video = listModel->activeVideo();
+    Video* video = playlistModel->activeVideo();
     if (!video) return;
     mediaObject->pause();
     QDesktopServices::openUrl(video->webpage());
 }
 
 void MediaView::copyWebPage() {
-    Video* video = listModel->activeVideo();
+    Video* video = playlistModel->activeVideo();
     if (!video) return;
     QString address = video->webpage().toString();
     QApplication::clipboard()->setText(address);
@@ -546,7 +550,7 @@ void MediaView::copyWebPage() {
 }
 
 void MediaView::copyVideoLink() {
-    Video* video = listModel->activeVideo();
+    Video* video = playlistModel->activeVideo();
     if (!video) return;
     QApplication::clipboard()->setText(video->getStreamUrl().toEncoded());
     QString message = tr("You can now paste the video stream URL into another application")
@@ -555,88 +559,58 @@ void MediaView::copyVideoLink() {
 }
 
 void MediaView::removeSelected() {
-    if (!listView->selectionModel()->hasSelection()) return;
-    QModelIndexList indexes = listView->selectionModel()->selectedIndexes();
-    listModel->removeIndexes(indexes);
+    if (!playlistView->selectionModel()->hasSelection()) return;
+    QModelIndexList indexes = playlistView->selectionModel()->selectedIndexes();
+    playlistModel->removeIndexes(indexes);
 }
 
 void MediaView::selectVideos(QList<Video*> videos) {
     foreach (Video *video, videos) {
-        QModelIndex index = listModel->indexForVideo(video);
-        listView->selectionModel()->select(index, QItemSelectionModel::Select);
-        listView->scrollTo(index, QAbstractItemView::EnsureVisible);
+        QModelIndex index = playlistModel->indexForVideo(video);
+        playlistView->selectionModel()->select(index, QItemSelectionModel::Select);
+        playlistView->scrollTo(index, QAbstractItemView::EnsureVisible);
     }
 }
 
 void MediaView::selectionChanged(const QItemSelection & /*selected*/, const QItemSelection & /*deselected*/) {
-    const bool gotSelection = listView->selectionModel()->hasSelection();
+    const bool gotSelection = playlistView->selectionModel()->hasSelection();
     The::globalActions()->value("remove")->setEnabled(gotSelection);
     The::globalActions()->value("moveUp")->setEnabled(gotSelection);
     The::globalActions()->value("moveDown")->setEnabled(gotSelection);
 }
 
 void MediaView::moveUpSelected() {
-    if (!listView->selectionModel()->hasSelection()) return;
+    if (!playlistView->selectionModel()->hasSelection()) return;
 
-    QModelIndexList indexes = listView->selectionModel()->selectedIndexes();
+    QModelIndexList indexes = playlistView->selectionModel()->selectedIndexes();
     qStableSort(indexes.begin(), indexes.end());
-    listModel->move(indexes, true);
+    playlistModel->move(indexes, true);
 
     // set current index after row moves to something more intuitive
     int row = indexes.first().row();
-    listView->selectionModel()->setCurrentIndex(listModel->index(row>1?row:1), QItemSelectionModel::NoUpdate);
+    playlistView->selectionModel()->setCurrentIndex(playlistModel->index(row>1?row:1), QItemSelectionModel::NoUpdate);
 }
 
 void MediaView::moveDownSelected() {
-    if (!listView->selectionModel()->hasSelection()) return;
+    if (!playlistView->selectionModel()->hasSelection()) return;
 
-    QModelIndexList indexes = listView->selectionModel()->selectedIndexes();
+    QModelIndexList indexes = playlistView->selectionModel()->selectedIndexes();
     qStableSort(indexes.begin(), indexes.end(), qGreater<QModelIndex>());
-    listModel->move(indexes, false);
+    playlistModel->move(indexes, false);
 
     // set current index after row moves to something more intuitive (respect 1 static item on bottom)
-    int row = indexes.first().row()+1, max = listModel->rowCount() - 2;
-    listView->selectionModel()->setCurrentIndex(listModel->index(row>max?max:row), QItemSelectionModel::NoUpdate);
-}
-
-void MediaView::showVideoContextMenu(QPoint point) {
-    The::globalMenus()->value("video")->popup(videoWidget->mapToGlobal(point));
-}
-
-void MediaView::searchMostRelevant() {
-    searchParams->setSortBy(SearchParams::SortByRelevance);
-    search(searchParams);
-}
-
-void MediaView::searchMostRecent() {
-    searchParams->setSortBy(SearchParams::SortByNewest);
-    search(searchParams);
-}
-
-void MediaView::searchMostViewed() {
-    searchParams->setSortBy(SearchParams::SortByViewCount);
-    search(searchParams);
+    int row = indexes.first().row()+1, max = playlistModel->rowCount() - 2;
+    playlistView->selectionModel()->setCurrentIndex(playlistModel->index(row>max?max:row), QItemSelectionModel::NoUpdate);
 }
 
 void MediaView::setPlaylistVisible(bool visible) {
     if (splitter->widget(0)->isVisible() == visible) return;
     splitter->widget(0)->setVisible(visible);
-    listView->setFocus();
+    playlistView->setFocus();
 }
 
 bool MediaView::isPlaylistVisible() {
     return splitter->widget(0)->isVisible();
-}
-
-void MediaView::timerPlay() {
-    // Workaround Phonon bug on Mac OSX
-    // qDebug() << mediaObject->currentTime();
-    if (mediaObject->currentTime() <= 0 && mediaObject->state() == Phonon::PlayingState) {
-        // qDebug() << "Mac playback workaround";
-        mediaObject->pause();
-        // QTimer::singleShot(1000, mediaObject, SLOT(play()));
-        mediaObject->play();
-    }
 }
 
 void MediaView::saveSplitterState() {
@@ -695,7 +669,7 @@ void MediaView::updateContinueButton(int value) {
 #endif
 
 void MediaView::downloadVideo() {
-    Video* video = listModel->activeVideo();
+    Video* video = playlistModel->activeVideo();
     if (!video) return;
     DownloadManager::instance()->addItem(video);
     The::globalActions()->value("downloads")->setVisible(true);
@@ -740,7 +714,6 @@ void MediaView::sliderMoved(int value) {
 void MediaView::seekTo(int value) {
     qDebug() << __func__;
     mediaObject->pause();
-    workaroundTimer->stop();
     errorTimer->stop();
     // mediaObject->clear();
 
@@ -767,7 +740,7 @@ void MediaView::seekTo(int value) {
 void MediaView::findVideoParts() {
 
     // parts
-    Video* video = listModel->activeVideo();
+    Video* video = playlistModel->activeVideo();
     if (!video) return;
 
     QString query = video->title();
@@ -822,7 +795,7 @@ void MediaView::findVideoParts() {
 }
 
 void MediaView::shareViaTwitter() {
-    Video* video = listModel->activeVideo();
+    Video* video = playlistModel->activeVideo();
     if (!video) return;
     QUrl url("https://twitter.com/intent/tweet");
     url.addQueryItem("via", "minitubeapp");
@@ -832,7 +805,7 @@ void MediaView::shareViaTwitter() {
 }
 
 void MediaView::shareViaFacebook() {
-    Video* video = listModel->activeVideo();
+    Video* video = playlistModel->activeVideo();
     if (!video) return;
     QUrl url("https://www.facebook.com/sharer.php");
     url.addQueryItem("t", video->title());
@@ -841,19 +814,18 @@ void MediaView::shareViaFacebook() {
 }
 
 void MediaView::shareViaBuffer() {
-    Video* video = listModel->activeVideo();
+    Video* video = playlistModel->activeVideo();
     if (!video) return;
     QUrl url("http://bufferapp.com/add");
     url.addQueryItem("via", "minitubeapp");
     url.addQueryItem("text", video->title());
     url.addQueryItem("url", video->webpage().toString());
-    if (!video->thumbnailUrls().isEmpty())
-        url.addQueryItem("picture", video->thumbnailUrls().first().toString());
+    url.addQueryItem("picture", video->thumbnailUrl());
     QDesktopServices::openUrl(url);
 }
 
 void MediaView::shareViaEmail() {
-    Video* video = listModel->activeVideo();
+    Video* video = playlistModel->activeVideo();
     if (!video) return;
     QUrl url("mailto:");
     url.addQueryItem("subject", video->title());
@@ -866,7 +838,7 @@ void MediaView::shareViaEmail() {
 }
 
 void MediaView::authorPushed(QModelIndex index) {
-    Video* video = listModel->videoAt(index.row());
+    Video* video = playlistModel->videoAt(index.row());
     if (!video) return;
 
     QString channel = video->authorUri();

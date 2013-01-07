@@ -1,6 +1,6 @@
 #include "searchparams.h"
 
-SearchParams::SearchParams() {
+SearchParams::SearchParams(QObject *parent) : QObject(parent) {
     m_transient = false;
     m_sortBy = SortByRelevance;
     m_duration = DurationAny;

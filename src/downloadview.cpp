@@ -4,7 +4,7 @@
 #include "downloadlistview.h"
 #include "downloaditem.h"
 #include "downloadsettings.h"
-#include "listmodel.h"
+#include "playlistmodel.h"
 #include "playlistitemdelegate.h"
 #include "segmentedcontrol.h"
 

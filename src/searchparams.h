@@ -39,7 +39,7 @@ public:
         TimeMonth
     };
 
-    SearchParams();
+    SearchParams(QObject *parent = 0);
 
     const QString keywords() const { return m_keywords; }
     void setKeywords( QString keywords ) { m_keywords = keywords; }
@@ -61,6 +61,11 @@ public:
 
     int time() const { return m_time; }
     void setTime( int time ) { m_time = time; }
+
+    bool operator==(const SearchParams &other) const {
+        return m_keywords == other.keywords() &&
+                m_author == other.author();
+    }
 
 public slots:
     void setParam(QString name, QVariant value);

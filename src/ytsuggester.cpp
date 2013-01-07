@@ -1,4 +1,4 @@
-#include "youtubesuggest.h"
+#include "ytsuggester.h"
 #include <QtXml>
 #include "networkaccess.h"
 
@@ -8,12 +8,19 @@ namespace The {
     NetworkAccess* http();
 }
 
-YouTubeSuggest::YouTubeSuggest(QObject *parent) : Suggester() {
+YTSuggester::YTSuggester(QObject *parent) : Suggester() {
 
 }
 
-void YouTubeSuggest::suggest(QString query) {
+void YTSuggester::suggest(QString query) {
+    if (query.startsWith("http")) return;
+
+#if QT_VERSION >= 0x040800
+    QString locale = QLocale::system().uiLanguages().first();
+#else
     QString locale = QLocale::system().name().replace("_", "-");
+#endif
+
     // case for system locales such as "C"
     if (locale.length() < 2) {
         locale = "en-US";
@@ -25,7 +32,7 @@ void YouTubeSuggest::suggest(QString query) {
     connect(reply, SIGNAL(data(QByteArray)), SLOT(handleNetworkData(QByteArray)));
 }
 
-void YouTubeSuggest::handleNetworkData(QByteArray response) {
+void YTSuggester::handleNetworkData(QByteArray response) {
     QStringList choices;
 
     QXmlStreamReader xml(response);

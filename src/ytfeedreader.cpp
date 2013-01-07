@@ -1,42 +1,21 @@
-#include "youtubestreamreader.h"
-#include <QtGui>
+#include "ytfeedreader.h"
+#include "video.h"
 
-
-YouTubeStreamReader::YouTubeStreamReader() {
-
-}
-
-bool YouTubeStreamReader::read(QByteArray data) {
-    addData(data);
-
+YTFeedReader::YTFeedReader(const QByteArray &bytes) : QXmlStreamReader(bytes) {
     while (!atEnd()) {
         readNext();
-        if (isStartElement()) {
-            if (name() == "feed") {
-                while (!atEnd()) {
-                    readNext();
-                    if (isStartElement() && name() == "entry") {
-                        readEntry();
-                    } else if (name() == "link"
-                        && attributes().value("rel").toString()
-                           == "http://schemas.google.com/g/2006#spellcorrection") {
-                        suggestions << attributes().value("title").toString();
-                    }
-                }
-            }
+        if (isStartElement() && name() == "entry") {
+            readEntry();
+        } else if (name() == "link"
+                   && attributes().value("rel").toString()
+                   == "http://schemas.google.com/g/2006#spellcorrection") {
+            suggestions << attributes().value("title").toString();
         }
     }
-
-    return !error();
 }
 
-void YouTubeStreamReader::readMediaGroup() {
-
-}
-
-void YouTubeStreamReader::readEntry() {
+void YTFeedReader::readEntry() {
     Video* video = new Video();
-    // qDebug(" *** ENTRY ***");
 
     while (!atEnd()) {
         readNext();
@@ -52,9 +31,9 @@ void YouTubeStreamReader::readEntry() {
         if (isStartElement()) {
 
             if (name() == "link"
-                && attributes().value("rel").toString() == "alternate"
-                && attributes().value("type").toString() == "text/html"
-                ) {
+                    && attributes().value("rel").toString() == "alternate"
+                    && attributes().value("type").toString() == "text/html"
+                    ) {
                 QString webpage = attributes().value("href").toString();
                 webpage.remove("&feature=youtube_gdata");
                 video->setWebpage(QUrl(webpage));
@@ -85,8 +64,13 @@ void YouTubeStreamReader::readEntry() {
                     if (isStartElement()) {
                         if (name() == "thumbnail") {
                             // qDebug() << "Thumb: " << attributes().value("url").toString();
-                            // video->thumbnailUrls() << QUrl(attributes().value("url").toString());
-                            video->addThumbnailUrl(QUrl(attributes().value("url").toString()));
+                            QStringRef name = attributes().value("yt:name");
+                            if (name == "default")
+                                video->setThumbnailUrl(
+                                            attributes().value("url").toString());
+                            else if (name == "hqdefault")
+                                video->setMediumThumbnailUrl(
+                                            attributes().value("url").toString());
                         }
                         else if (name() == "title") {
                             QString title = readElementText();
@@ -113,10 +97,10 @@ void YouTubeStreamReader::readEntry() {
 
 }
 
-QList<Video*> YouTubeStreamReader::getVideos() {
+const QList<Video *> &YTFeedReader::getVideos() {
     return videos;
 }
 
-const QStringList & YouTubeStreamReader::getSuggestions() const {
+const QStringList & YTFeedReader::getSuggestions() const {
     return suggestions;
 }

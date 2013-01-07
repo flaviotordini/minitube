@@ -1,28 +1,29 @@
-#include "listmodel.h"
+#include "playlistmodel.h"
 #include "videomimedata.h"
+#include "videosource.h"
+#include "ytsearch.h"
+#include "video.h"
+#include "searchparams.h"
 
-#define MAX_ITEMS 10
+static const int maxItems = 10;
 static const QString recentKeywordsKey = "recentKeywords";
 static const QString recentChannelsKey = "recentChannels";
 
-ListModel::ListModel(QWidget *parent) : QAbstractListModel(parent) {
-    youtubeSearch = 0;
+PlaylistModel::PlaylistModel(QWidget *parent) : QAbstractListModel(parent) {
+    videoSource = 0;
     searching = false;
     canSearchMore = true;
     m_activeVideo = 0;
     m_activeRow = -1;
     skip = 1;
+    max = 0;
 
     hoveredRow = -1;
     authorHovered = false;
     authorPressed = false;
 }
 
-ListModel::~ListModel() {
-    delete youtubeSearch;
-}
-
-int ListModel::rowCount(const QModelIndex &/*parent*/) const {
+int PlaylistModel::rowCount(const QModelIndex &/*parent*/) const {
     int count = videos.size();
     
     // add the message item
@@ -32,7 +33,7 @@ int ListModel::rowCount(const QModelIndex &/*parent*/) const {
     return count;
 }
 
-QVariant ListModel::data(const QModelIndex &index, int role) const {
+QVariant PlaylistModel::data(const QModelIndex &index, int role) const {
     
     int row = index.row();
     
@@ -49,7 +50,7 @@ QVariant ListModel::data(const QModelIndex &index, int role) const {
         case Qt::StatusTipRole:
             if (!errorMessage.isEmpty()) return errorMessage;
             if (searching) return tr("Searching...");
-            if (canSearchMore) return tr("Show %1 More").arg(MAX_ITEMS);
+            if (canSearchMore) return tr("Show %1 More").arg(maxItems);
             if (videos.isEmpty()) return tr("No videos");
             else return tr("No more videos");
         case Qt::TextAlignmentRole:
@@ -95,7 +96,7 @@ QVariant ListModel::data(const QModelIndex &index, int role) const {
     return QVariant();
 }
 
-void ListModel::setActiveRow( int row) {
+void PlaylistModel::setActiveRow( int row) {
     if ( rowExists( row ) ) {
         
         m_activeRow = row;
@@ -116,102 +117,99 @@ void ListModel::setActiveRow( int row) {
 
 }
 
-int ListModel::nextRow() const {
+int PlaylistModel::nextRow() const {
     int nextRow = m_activeRow + 1;
     if (rowExists(nextRow))
         return nextRow;
     return -1;
 }
 
-int ListModel::previousRow() const {
+int PlaylistModel::previousRow() const {
     int prevRow = m_activeRow - 1;
     if (rowExists(prevRow))
         return prevRow;
     return -1;
 }
 
-Video* ListModel::videoAt( int row ) const {
+Video* PlaylistModel::videoAt( int row ) const {
     if ( rowExists( row ) )
         return videos.at( row );
     return 0;
 }
 
-Video* ListModel::activeVideo() const {
+Video* PlaylistModel::activeVideo() const {
     return m_activeVideo;
 }
 
-void ListModel::search(SearchParams *searchParams) {
-
-    // delete current videos
+void PlaylistModel::setVideoSource(VideoSource *videoSource) {
     while (!videos.isEmpty())
         delete videos.takeFirst();
+
     m_activeVideo = 0;
     m_activeRow = -1;
     skip = 1;
-    errorMessage.clear();
     reset();
 
-    // (re)initialize the YouTubeSearch
-    if (youtubeSearch) delete youtubeSearch;
-    youtubeSearch = new YouTubeSearch();
-    connect(youtubeSearch, SIGNAL(gotVideo(Video*)), this, SLOT(addVideo(Video*)));
-    connect(youtubeSearch, SIGNAL(finished(int)), this, SLOT(searchFinished(int)));
-    connect(youtubeSearch, SIGNAL(error(QString)), this, SLOT(searchError(QString)));
+    this->videoSource = videoSource;
+    connect(videoSource, SIGNAL(gotVideo(Video*)),
+            SLOT(addVideo(Video*)), Qt::UniqueConnection);
+    connect(videoSource, SIGNAL(finished(int)),
+            SLOT(searchFinished(int)), Qt::UniqueConnection);
+    connect(videoSource, SIGNAL(error(QString)),
+            SLOT(searchError(QString)), Qt::UniqueConnection);
 
-    this->searchParams = searchParams;
-    searching = true;
-    youtubeSearch->search(searchParams, MAX_ITEMS, skip);
-    skip += MAX_ITEMS;
+    searchMore();
 }
 
-void ListModel::searchMore(int max) {
+void PlaylistModel::searchMore(int max) {
     if (searching) return;
     searching = true;
+    this->max = max;
     errorMessage.clear();
-    youtubeSearch->search(searchParams, max, skip);
+    videoSource->loadVideos(max, skip);
     skip += max;
 }
 
-void ListModel::searchMore() {
-    searchMore(MAX_ITEMS);
+void PlaylistModel::searchMore() {
+    searchMore(maxItems);
 }
 
-void ListModel::searchNeeded() {
+void PlaylistModel::searchNeeded() {
     int remainingRows = videos.size() - m_activeRow;
-    int rowsNeeded = MAX_ITEMS - remainingRows;
+    int rowsNeeded = maxItems - remainingRows;
     if (rowsNeeded > 0)
         searchMore(rowsNeeded);
 }
 
-void ListModel::abortSearch() {
+void PlaylistModel::abortSearch() {
     while (!videos.isEmpty())
         delete videos.takeFirst();
     reset();
-    youtubeSearch->abort();
+    videoSource->abort();
     searching = false;
 }
 
-void ListModel::searchFinished(int total) {
+void PlaylistModel::searchFinished(int total) {
     searching = false;
-    canSearchMore = total > 0;
+    canSearchMore = total >= max;
 
     // update the message item
-    emit dataChanged( createIndex( MAX_ITEMS, 0 ), createIndex( MAX_ITEMS, columnCount() - 1 ) );
+    emit dataChanged( createIndex( maxItems, 0 ), createIndex( maxItems, columnCount() - 1 ) );
 
-    if (!youtubeSearch->getSuggestions().isEmpty()) {
-        emit haveSuggestions(youtubeSearch->getSuggestions());
-    }
+    if (!videoSource->getSuggestions().isEmpty())
+        emit haveSuggestions(videoSource->getSuggestions());
 }
 
-void ListModel::searchError(QString message) {
+void PlaylistModel::searchError(QString message) {
     errorMessage = message;
     // update the message item
-    emit dataChanged( createIndex( MAX_ITEMS, 0 ), createIndex( MAX_ITEMS, columnCount() - 1 ) );
+    emit dataChanged( createIndex( maxItems, 0 ), createIndex( maxItems, columnCount() - 1 ) );
 }
 
-void ListModel::addVideo(Video* video) {
+void PlaylistModel::addVideo(Video* video) {
     
-    connect(video, SIGNAL(gotThumbnail()), this, SLOT(updateThumbnail()));
+    connect(video, SIGNAL(gotThumbnail()), SLOT(updateThumbnail()), Qt::UniqueConnection);
+    video->loadThumbnail();
 
     beginInsertRows(QModelIndex(), videos.size(), videos.size());
     videos << video;
@@ -225,38 +223,47 @@ void ListModel::addVideo(Video* video) {
         if (!settings.value("manualplay", false).toBool())
             setActiveRow(0);
 
-        // save keyword
-        QString query = searchParams->keywords();
-        if (!query.isEmpty() && !searchParams->isTransient()) {
-            if (query.startsWith("http://")) {
-                // Save the video title
-                query += "|" + videos.first()->title();
-            }
-            QStringList keywords = settings.value(recentKeywordsKey).toStringList();
-            keywords.removeAll(query);
-            keywords.prepend(query);
-            while (keywords.size() > 10)
-                keywords.removeLast();
-            settings.setValue(recentKeywordsKey, keywords);
-        }
+        if (videoSource->metaObject()->className() == QLatin1String("YTSearch")) {
 
-        // save channel
-        QString channel = searchParams->author();
-        if (!channel.isEmpty() && !searchParams->isTransient()) {
-            QSettings settings;
-            QStringList channels = settings.value(recentChannelsKey).toStringList();
-            channels.removeAll(channel);
-            channels.prepend(channel);
-            while (channels.size() > 10)
-                channels.removeLast();
-            settings.setValue(recentChannelsKey, channels);
+            static const int maxRecentElements = 10;
+
+            YTSearch *search = dynamic_cast<YTSearch *>(videoSource);
+            SearchParams *searchParams = search->getSearchParams();
+
+            // save keyword
+            QString query = searchParams->keywords();
+            if (!query.isEmpty() && !searchParams->isTransient()) {
+                if (query.startsWith("http://")) {
+                    // Save the video title
+                    query += "|" + videos.first()->title();
+                }
+                QStringList keywords = settings.value(recentKeywordsKey).toStringList();
+                keywords.removeAll(query);
+                keywords.prepend(query);
+                while (keywords.size() > maxRecentElements)
+                    keywords.removeLast();
+                settings.setValue(recentKeywordsKey, keywords);
+            }
+
+            // save channel
+            QString channel = searchParams->author();
+            if (!channel.isEmpty() && !searchParams->isTransient()) {
+                if (!video->authorUri().isEmpty())
+                    channel = video->authorUri() + "|" + video->author();
+                QStringList channels = settings.value(recentChannelsKey).toStringList();
+                channels.removeAll(channel);
+                channels.prepend(channel);
+                while (channels.size() > maxRecentElements)
+                    channels.removeLast();
+                settings.setValue(recentChannelsKey, channels);
+            }
         }
 
     }
 
 }
 
-void ListModel::updateThumbnail() {
+void PlaylistModel::updateThumbnail() {
 
     Video *video = static_cast<Video *>(sender());
     if (!video) {
@@ -274,7 +281,7 @@ void ListModel::updateThumbnail() {
 /**
   * This function does not free memory
   */
-bool ListModel::removeRows(int position, int rows, const QModelIndex & /*parent*/) {
+bool PlaylistModel::removeRows(int position, int rows, const QModelIndex & /*parent*/) {
     beginRemoveRows(QModelIndex(), position, position+rows-1);
     for (int row = 0; row < rows; ++row) {
         videos.removeAt(position);
@@ -283,7 +290,7 @@ bool ListModel::removeRows(int position, int rows, const QModelIndex & /*parent*
     return true;
 }
 
-void ListModel::removeIndexes(QModelIndexList &indexes) {
+void PlaylistModel::removeIndexes(QModelIndexList &indexes) {
     QList<Video*> originalList(videos);
     QList<Video*> delitems;
     foreach (QModelIndex index, indexes) {
@@ -306,26 +313,26 @@ void ListModel::removeIndexes(QModelIndexList &indexes) {
 
 
 
-Qt::DropActions ListModel::supportedDropActions() const {
+Qt::DropActions PlaylistModel::supportedDropActions() const {
     return Qt::MoveAction;
 }
 
-Qt::ItemFlags ListModel::flags(const QModelIndex &index) const {
+Qt::ItemFlags PlaylistModel::flags(const QModelIndex &index) const {
     if (index.isValid())
         if (index.row() == videos.size()) {
             // don't drag the "show 10 more" item
-            return Qt::ItemIsEnabled;
+            return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
         } else return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsDragEnabled);
     return Qt::ItemIsDropEnabled;
 }
 
-QStringList ListModel::mimeTypes() const {
+QStringList PlaylistModel::mimeTypes() const {
     QStringList types;
     types << "application/x-minitube-video";
     return types;
 }
 
-QMimeData* ListModel::mimeData( const QModelIndexList &indexes ) const {
+QMimeData* PlaylistModel::mimeData( const QModelIndexList &indexes ) const {
     VideoMimeData* mime = new VideoMimeData();
 
     foreach( const QModelIndex &it, indexes ) {
@@ -337,9 +344,9 @@ QMimeData* ListModel::mimeData( const QModelIndexList &indexes ) const {
     return mime;
 }
 
-bool ListModel::dropMimeData(const QMimeData *data,
-                             Qt::DropAction action, int row, int column,
-                             const QModelIndex &parent) {
+bool PlaylistModel::dropMimeData(const QMimeData *data,
+                                 Qt::DropAction action, int row, int column,
+                                 const QModelIndex &parent) {
     if (action == Qt::IgnoreAction)
         return true;
 
@@ -384,15 +391,15 @@ bool ListModel::dropMimeData(const QMimeData *data,
 
 }
 
-int ListModel::rowForVideo(Video* video) {
+int PlaylistModel::rowForVideo(Video* video) {
     return videos.indexOf(video);
 }
 
-QModelIndex ListModel::indexForVideo(Video* video) {
+QModelIndex PlaylistModel::indexForVideo(Video* video) {
     return createIndex(videos.indexOf(video), 0);
 }
 
-void ListModel::move(QModelIndexList &indexes, bool up) {
+void PlaylistModel::move(QModelIndexList &indexes, bool up) {
     QList<Video*> movedVideos;
 
     foreach (QModelIndex index, indexes) {
@@ -426,45 +433,45 @@ void ListModel::move(QModelIndexList &indexes, bool up) {
 
 /* row hovering */
 
-void ListModel::setHoveredRow(int row) {
+void PlaylistModel::setHoveredRow(int row) {
     int oldRow = hoveredRow;
     hoveredRow = row;
     emit dataChanged( createIndex( oldRow, 0 ), createIndex( oldRow, columnCount() - 1 ) );
     emit dataChanged( createIndex( hoveredRow, 0 ), createIndex( hoveredRow, columnCount() - 1 ) );
 }
 
-void ListModel::clearHover() {
+void PlaylistModel::clearHover() {
     emit dataChanged( createIndex( hoveredRow, 0 ), createIndex( hoveredRow, columnCount() - 1 ) );
     hoveredRow = -1;
 }
 
 /* clickable author */
 
-void ListModel::enterAuthorHover() {
+void PlaylistModel::enterAuthorHover() {
     if (authorHovered) return;
     authorHovered = true;
     updateAuthor();
 }
 
-void ListModel::exitAuthorHover() {
+void PlaylistModel::exitAuthorHover() {
     if (!authorHovered) return;
     authorHovered = false;
     updateAuthor();
     setHoveredRow(hoveredRow);
 }
 
-void ListModel::enterAuthorPressed() {
+void PlaylistModel::enterAuthorPressed() {
     if (authorPressed) return;
     authorPressed = true;
     updateAuthor();
 }
 
-void ListModel::exitAuthorPressed() {
+void PlaylistModel::exitAuthorPressed() {
     if (!authorPressed) return;
     authorPressed = false;
     updateAuthor();
 }
 
-void ListModel::updateAuthor() {
+void PlaylistModel::updateAuthor() {
     emit dataChanged( createIndex( hoveredRow, 0 ), createIndex( hoveredRow, columnCount() - 1 ) );
 }

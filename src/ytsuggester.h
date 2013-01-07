@@ -1,16 +1,15 @@
-#ifndef YOUTUBESUGGEST_H
-#define YOUTUBESUGGEST_H
+#ifndef YTSUGGESTER_H
+#define YTSUGGESTER_H
 
 #include <QtCore>
-
 #include "suggester.h"
 
-class YouTubeSuggest : public Suggester {
+class YTSuggester : public Suggester {
 
     Q_OBJECT
 
 public:
-    YouTubeSuggest(QObject *parent = 0);
+    YTSuggester(QObject *parent = 0);
     void suggest(QString query);
 
 signals:
@@ -21,4 +20,4 @@ private slots:
 
 };
 
-#endif // YOUTUBESUGGEST_H
+#endif // YTSUGGESTER_H

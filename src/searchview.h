@@ -6,7 +6,7 @@
 
 class SearchLineEdit;
 class SearchParams;
-class YouTubeSuggest;
+class YTSuggester;
 class ChannelSuggest;
 
 class SearchView : public QWidget, public View {
@@ -14,7 +14,7 @@ class SearchView : public QWidget, public View {
     Q_OBJECT
 
 public:
-    SearchView(QWidget *parent);
+    SearchView(QWidget *parent = 0);
     void updateRecentKeywords();
     void updateRecentChannels();
     QHash<QString, QVariant> metadata() {
@@ -25,6 +25,7 @@ public:
 
 public slots:
     void appear();
+    void disappear() { }
     void watch(QString query);
     void watchChannel(QString channel);
     void watchKeywords(QString query);
@@ -41,7 +42,7 @@ private slots:
     void searchTypeChanged(int index);
 
 private:
-    YouTubeSuggest *youtubeSuggest;
+    YTSuggester *youtubeSuggest;
     ChannelSuggest *channelSuggest;
 
     QComboBox *typeCombo;

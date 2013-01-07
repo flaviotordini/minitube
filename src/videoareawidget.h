@@ -4,21 +4,21 @@
 #include <QWidget>
 #include "video.h"
 #include "loadingwidget.h"
-#include "listmodel.h"
+#include "playlistmodel.h"
 
 class VideoAreaWidget : public QWidget {
 
     Q_OBJECT
 
 public:
-    VideoAreaWidget(QWidget *parent);
+    VideoAreaWidget(QWidget *parent = 0);
     void setVideoWidget(QWidget *videoWidget);
     void setLoadingWidget(LoadingWidget *loadingWidget);
     void showLoading(Video* video);
     void showVideo();
     void showError(QString message);
     void clear();
-    void setListModel(ListModel *listModel) {
+    void setListModel(PlaylistModel *listModel) {
         this->listModel = listModel;
     }
     void showSnapshotPreview(QPixmap pixmap);
@@ -40,7 +40,7 @@ private:
     QStackedLayout *stackedLayout;
     QWidget *videoWidget;
     LoadingWidget *loadingWidget;
-    ListModel *listModel;
+    PlaylistModel *listModel;
     QLabel *messageLabel;
     QLabel *snapshotPreview;
 

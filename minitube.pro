@@ -1,4 +1,4 @@
-CONFIG += release
+CONFIG += debug
 TEMPLATE = app
 VERSION = 2.0
 DEFINES += APP_VERSION="$$VERSION"
@@ -13,15 +13,11 @@ DEFINES += QT_USE_FAST_CONCATENATION
 DEFINES += QT_USE_FAST_OPERATOR_PLUS
 DEFINES += QT_STRICT_ITERATORS
 
-# TODO Saner string behaviour
-# DEFINES += QT_NO_CAST_FROM_ASCII QT_NO_CAST_TO_ASCII
 TARGET = minitube
-QT += network xml phonon declarative
+QT += network xml phonon
 include(src/qtsingleapplication/qtsingleapplication.pri)
 HEADERS += \
-    src/youtubesearch.h \
     src/video.h \
-    src/youtubestreamreader.h \
     src/searchlineedit.h \
     src/urllineedit.h \
     src/spacer.h \
@@ -32,7 +28,6 @@ HEADERS += \
     src/videomimedata.h \
     src/global.h \
     src/updatechecker.h \
-    src/playlistwidget.h \
     src/searchparams.h \
     src/minisplitter.h \
     src/loadingwidget.h \
@@ -48,7 +43,6 @@ HEADERS += \
     src/downloadmodel.h \
     src/downloadlistview.h \
     src/downloadsettings.h \
-    src/youtubesuggest.h \
     src/suggester.h \
     src/channelsuggest.h \
     src/temporary.h \
@@ -59,17 +53,25 @@ HEADERS += \
     src/sidebarwidget.h \
     src/homeview.h \
     src/aboutview.h \
-    src/listmodel.h \
     src/mainwindow.h \
     src/mediaview.h \
     src/searchview.h \
     src/view.h \
-    src/categoriesview.h \
     src/userview.h \
-    src/youtubecategories.h
+    src/playlistmodel.h \
+    src/videosource.h \
+    src/ytsearch.h \
+    src/ytstandardfeed.h \
+    src/standardfeedsview.h \
+    src/ytregions.h \
+    src/ytcategories.h \
+    src/ytfeedreader.h \
+    src/ytsuggester.h \
+    src/videosourcewidget.h \
+    src/regionsview.h \
+    src/ytsinglevideosource.h \
+    src/sidebarheader.h
 SOURCES += src/main.cpp \
-    src/youtubesearch.cpp \
-    src/youtubestreamreader.cpp \
     src/searchlineedit.cpp \
     src/urllineedit.cpp \
     src/spacer.cpp \
@@ -78,7 +80,6 @@ SOURCES += src/main.cpp \
     src/videomimedata.cpp \
     src/updatechecker.cpp \
     src/networkaccess.cpp \
-    src/playlistwidget.cpp \
     src/searchparams.cpp \
     src/minisplitter.cpp \
     src/loadingwidget.cpp \
@@ -95,7 +96,6 @@ SOURCES += src/main.cpp \
     src/downloadmodel.cpp \
     src/downloadlistview.cpp \
     src/downloadsettings.cpp \
-    src/youtubesuggest.cpp \
     src/channelsuggest.cpp \
     src/temporary.cpp \
     src/segmentedcontrol.cpp \
@@ -106,13 +106,23 @@ SOURCES += src/main.cpp \
     src/homeview.cpp \
     src/mainwindow.cpp \
     src/mediaview.cpp \
-    src/listmodel.cpp \
     src/aboutview.cpp \
     src/searchview.cpp \
-    src/categoriesview.cpp \
     src/userview.cpp \
     src/playlistitemdelegate.cpp \
-    src/youtubecategories.cpp
+    src/playlistmodel.cpp \
+    src/videosource.cpp \
+    src/ytsearch.cpp \
+    src/ytstandardfeed.cpp \
+    src/standardfeedsview.cpp \
+    src/ytregions.cpp \
+    src/ytcategories.cpp \
+    src/ytfeedreader.cpp \
+    src/ytsuggester.cpp \
+    src/videosourcewidget.cpp \
+    src/regionsview.cpp \
+    src/ytsinglevideosource.cpp \
+    src/sidebarheader.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/
@@ -174,6 +184,3 @@ unix:!mac {
     icon512.files += data/512x512/minitube.png
 }
 mac|win32:include(local/local.pri)
-
-OTHER_FILES += \
-    qml/categories.qml

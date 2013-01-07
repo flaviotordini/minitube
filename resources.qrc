@@ -6,6 +6,53 @@
         <file>images/search-sortBy.png</file>
         <file>images/search-quality.png</file>
         <file>images/search-duration.png</file>
-        <file>qml/categories.qml</file>
+        <file>flags/dz.png</file>
+        <file>flags/ar.png</file>
+        <file>flags/au.png</file>
+        <file>flags/be.png</file>
+        <file>flags/br.png</file>
+        <file>flags/ca.png</file>
+        <file>flags/cl.png</file>
+        <file>flags/co.png</file>
+        <file>flags/cz.png</file>
+        <file>flags/eg.png</file>
+        <file>flags/fr.png</file>
+        <file>flags/de.png</file>
+        <file>flags/gh.png</file>
+        <file>flags/gr.png</file>
+        <file>flags/hk.png</file>
+        <file>flags/hu.png</file>
+        <file>flags/in.png</file>
+        <file>flags/id.png</file>
+        <file>flags/ie.png</file>
+        <file>flags/il.png</file>
+        <file>flags/it.png</file>
+        <file>flags/jp.png</file>
+        <file>flags/jo.png</file>
+        <file>flags/ke.png</file>
+        <file>flags/my.png</file>
+        <file>flags/mx.png</file>
+        <file>flags/ma.png</file>
+        <file>flags/nl.png</file>
+        <file>flags/nz.png</file>
+        <file>flags/ng.png</file>
+        <file>flags/pe.png</file>
+        <file>flags/ph.png</file>
+        <file>flags/pl.png</file>
+        <file>flags/ru.png</file>
+        <file>flags/sa.png</file>
+        <file>flags/sg.png</file>
+        <file>flags/za.png</file>
+        <file>flags/kr.png</file>
+        <file>flags/es.png</file>
+        <file>flags/se.png</file>
+        <file>flags/tw.png</file>
+        <file>flags/tn.png</file>
+        <file>flags/tr.png</file>
+        <file>flags/ug.png</file>
+        <file>flags/ae.png</file>
+        <file>flags/gb.png</file>
+        <file>flags/ye.png</file>
+        <file>style.css</file>
     </qresource>
 </RCC>

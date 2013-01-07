@@ -14,6 +14,7 @@ class DownloadView;
 class SearchLineEdit;
 class UpdateChecker;
 class SearchParams;
+class VideoSource;
 
 class MainWindow : public QMainWindow {
 
@@ -27,10 +28,15 @@ public:
     void readSettings();
     void writeSettings();
     static void printHelp();
+    MediaView* getMediaView() { return mediaView; }
+    QToolButton* getRegionButton() { return regionButton; }
+    QAction* getRegionAction() { return regionAction; }
 
 public slots:
     void showHome(bool transition = true);
     void showMedia(SearchParams *params);
+    void showMedia(VideoSource *videoSource);
+    void showRegionsView();
     void restore();
     void messageReceived(const QString &message);
     void quit();
@@ -115,6 +121,7 @@ private:
     MediaView *mediaView;
     QWidget *aboutView;
     QWidget *downloadView;
+    QWidget *regionsView;
 
     // actions
     QAction *addGadgetAct;
@@ -153,10 +160,12 @@ private:
     QMenu *playlistMenu;
     QMenu *helpMenu;
 
-    // toolbar
+    // toolbar & statusbar
     QToolBar *mainToolBar;
     SearchLineEdit *toolbarSearch;
     QToolBar *statusToolBar;
+    QToolButton *regionButton;
+    QAction *regionAction;
 
     // phonon
     Phonon::SeekSlider *seekSlider;
@@ -166,11 +175,10 @@ private:
     QLabel *currentTime;
     QLabel *totalTime;
 
+    // fullscreen
     bool m_fullscreen;
     bool m_maximized;
-
     QTimer *mouseTimer;
-
 };
 
 #endif

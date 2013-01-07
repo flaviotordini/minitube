@@ -7,35 +7,40 @@
 #include <phonon/videowidget.h>
 #include <phonon/seekslider.h>
 #include "view.h"
-#include "listmodel.h"
-#include "segmentedcontrol.h"
-#include "searchparams.h"
-#include "loadingwidget.h"
-#include "videoareawidget.h"
 
+class Video;
+class PlaylistModel;
+class SearchParams;
+class LoadingWidget;
+class VideoAreaWidget;
 class DownloadItem;
 class PlaylistView;
 class SidebarWidget;
+class VideoSource;
 
 namespace The {
     QMap<QString, QAction*>* globalActions();
 }
 
 class MediaView : public QWidget, public View {
+
     Q_OBJECT
 
 public:
-    MediaView(QWidget *parent);
+    static MediaView* instance();
     void initialize();
 
     void appear();
     void disappear();
 
     void setMediaObject(Phonon::MediaObject *mediaObject);
-    void setSlider(Phonon::SeekSlider *slider) { this->seekSlider = slider; }
+    const QList<VideoSource*> & getHistory() { return history; }
+    int getHistoryIndex();
+    PlaylistModel* getPlaylistModel() { return playlistModel; }
 
 public slots:
     void search(SearchParams *searchParams);
+    void setVideoSource(VideoSource *videoSource, bool addToHistory = true);
     void pause();
     void stop();
     void skip();
@@ -58,6 +63,10 @@ public slots:
     void snapshot();
     void fullscreen();
     void findVideoParts();
+    bool canGoBack();
+    void goBack();
+    bool canGoForward();
+    void goForward();
 
 private slots:
     // list/model
@@ -70,14 +79,7 @@ private slots:
     // phonon
     void stateChanged(Phonon::State newState, Phonon::State oldState);
     void currentSourceChanged(const Phonon::MediaSource source);
-    void showVideoContextMenu(QPoint point);
     void aboutToFinish();
-    // bar
-    void searchMostRelevant();
-    void searchMostRecent();
-    void searchMostViewed();
-    // timer
-    void timerPlay();
 #ifdef APP_ACTIVATION
     void demoMessage();
     void updateContinueButton(int);
@@ -96,36 +98,23 @@ private slots:
     */
 
 private:
+    MediaView(QWidget *parent = 0);
+    SearchParams* getSearchParams();
     static QRegExp wordRE(QString s);
 
-    SearchParams *searchParams;
-
     QSplitter *splitter;
-
     SidebarWidget *sidebar;
-    PlaylistView *listView;
-    ListModel *listModel;
-
-    // sortBar
-    SegmentedControl *sortBar;
-    QAction *mostRelevantAction;
-    QAction *mostRecentAction;
-    QAction *mostViewedAction;
+    PlaylistView *playlistView;
+    PlaylistModel *playlistModel;
+    VideoAreaWidget *videoAreaWidget;
+    LoadingWidget *loadingWidget;
 
     // phonon
     Phonon::MediaObject *mediaObject;
     Phonon::VideoWidget *videoWidget;
-    Phonon::SeekSlider *seekSlider;
 
-    // loadingWidget
-    VideoAreaWidget *videoAreaWidget;
-    LoadingWidget *loadingWidget;
-
-    bool timerPlayFlag;
     bool reallyStopped;
-
     QTimer *errorTimer;
-    QTimer *workaroundTimer;
     Video *skippedVideo;
 
 #ifdef APP_ACTIVATION
@@ -133,7 +122,7 @@ private:
 #endif
 
     DownloadItem *downloadItem;
-
+    QList<VideoSource*> history;
 };
 
 #endif // __MEDIAVIEW_H__

@@ -36,13 +36,16 @@ int main(int argc, char **argv) {
 
 #ifndef Q_WS_X11
     Extra::appSetup(&app);
+#else
+    QFile cssFile(":/style.css");
+    cssFile.open(QFile::ReadOnly);
+    QString styleSheet = QLatin1String(cssFile.readAll());
+    app.setStyleSheet(styleSheet);
 #endif
-
-    const QString locale = QLocale::system().name();
 
     // qt translations
     QTranslator qtTranslator;
-    qtTranslator.load("qt_" + locale,
+    qtTranslator.load("qt_" + QLocale::system().name(),
                       QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     app.installTranslator(&qtTranslator);
 
@@ -52,13 +55,13 @@ int main(int argc, char **argv) {
 #else
     QString dataDir = "";
 #endif
-    QString localeDir = qApp->applicationDirPath() + QDir::separator() + "locale";
+    QString localeDir = qApp->applicationDirPath() + "/locale";
     if (!QDir(localeDir).exists()) {
-        localeDir = dataDir + QDir::separator() + "locale";
+        localeDir = dataDir + "/locale";
     }
     // qDebug() << "Using locale dir" << localeDir << locale;
     QTranslator translator;
-    translator.load(locale, localeDir);
+    translator.load(QLocale::system(), localeDir);
     app.installTranslator(&translator);
     QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
 

@@ -5,6 +5,7 @@
 
 class RefineSearchButton;
 class RefineSearchWidget;
+class SidebarHeader;
 
 class SidebarWidget : public QWidget {
 
@@ -15,6 +16,7 @@ public:
     void setPlaylist(QListView *playlist);
     void showPlaylist();
     RefineSearchWidget* getRefineSearchWidget() { return refineSearchWidget; }
+    SidebarHeader* getHeader() { return sidebarHeader; }
     void hideSuggestions();
 
 public slots:
@@ -44,7 +46,7 @@ private:
     RefineSearchWidget *refineSearchWidget;
     QTimer *mouseTimer;
     QLabel *messageLabel;
-    
+    SidebarHeader *sidebarHeader;
 };
 
 #endif // SIDEBARWIDGET_H

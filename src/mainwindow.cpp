@@ -11,6 +11,9 @@
 #include "videodefinition.h"
 #include "fontutils.h"
 #include "globalshortcuts.h"
+#include "searchparams.h"
+#include "videosource.h"
+#include "ytsearch.h"
 #ifdef Q_WS_X11
 #include "gnomeglobalshortcutbackend.h"
 #endif
@@ -21,7 +24,7 @@
 #include "macutils.h"
 #endif
 #include "downloadmanager.h"
-#include "youtubesuggest.h"
+#include "ytsuggester.h"
 #include "updatechecker.h"
 #include "temporary.h"
 #ifdef APP_MAC
@@ -39,6 +42,9 @@
 #include "activationview.h"
 #include "activationdialog.h"
 #endif
+#include "ytregions.h"
+#include "regionsview.h"
+#include "standardfeedsview.h"
 
 static MainWindow *singleton = 0;
 
@@ -48,12 +54,13 @@ MainWindow* MainWindow::instance() {
 }
 
 MainWindow::MainWindow() :
-        updateChecker(0),
-        aboutView(0),
-        downloadView(0),
-        mediaObject(0),
-        audioOutput(0),
-        m_fullscreen(false) {
+    updateChecker(0),
+    aboutView(0),
+    downloadView(0),
+    regionsView(0),
+    mediaObject(0),
+    audioOutput(0),
+    m_fullscreen(false) {
 
     singleton = this;
 
@@ -66,7 +73,7 @@ MainWindow::MainWindow() :
     views->addWidget(homeView);
 
     // TODO make this lazy
-    mediaView = new MediaView(this);
+    mediaView = MediaView::instance();
     mediaView->setEnabled(false);
     views->addWidget(mediaView);
 
@@ -77,7 +84,6 @@ MainWindow::MainWindow() :
     createStatusBar();
 
     initPhonon();
-    mediaView->setSlider(seekSlider);
     mediaView->setMediaObject(mediaObject);
 
     // remove that useless menu/toolbar context menu
@@ -479,7 +485,17 @@ void MainWindow::createActions() {
     action = new QAction(tr("&Refine Search..."), this);
     action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_R));
     action->setCheckable(true);
+    action->setEnabled(false);
     actions->insert("refine-search", action);
+
+    action = new QAction(YTRegions::worldwideRegion().name, this);
+    actions->insert("worldwide-region", action);
+
+    action = new QAction(YTRegions::localRegion().name, this);
+    actions->insert("local-region", action);
+
+    action = new QAction(tr("More..."), this);
+    actions->insert("more-region", action);
 
 #ifdef APP_ACTIVATION
     Extra::createActivationAction(tr("Buy %1...").arg(Constants::NAME));
@@ -635,7 +651,7 @@ void MainWindow::createToolBars() {
     seekSlider->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
     mainToolBar->addWidget(seekSlider);
 
-/*
+    /*
     mainToolBar->addWidget(new Spacer());
     slider = new QSlider(this);
     slider->setOrientation(Qt::Horizontal);
@@ -660,7 +676,7 @@ void MainWindow::createToolBars() {
     QSlider* volumeQSlider = volumeSlider->findChild<QSlider*>();
     if (volumeQSlider)
         volumeQSlider->setStatusTip(tr("Press %1 to raise the volume, %2 to lower it").arg(
-                volumeUpAct->shortcut().toString(QKeySequence::NativeText), volumeDownAct->shortcut().toString(QKeySequence::NativeText)));
+                                        volumeUpAct->shortcut().toString(QKeySequence::NativeText), volumeDownAct->shortcut().toString(QKeySequence::NativeText)));
     // this makes the volume slider smaller
     volumeSlider->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     mainToolBar->addWidget(volumeSlider);
@@ -674,7 +690,7 @@ void MainWindow::createToolBars() {
     toolbarSearch = new SearchLineEdit(this);
 #endif
     toolbarSearch->setMinimumWidth(toolbarSearch->fontInfo().pixelSize()*15);
-    toolbarSearch->setSuggester(new YouTubeSuggest(this));
+    toolbarSearch->setSuggester(new YTSuggester(this));
     connect(toolbarSearch, SIGNAL(search(const QString&)), this, SLOT(startToolbarSearch(const QString&)));
     connect(toolbarSearch, SIGNAL(suggestionAccepted(const QString&)), SLOT(startToolbarSearch(const QString&)));
     toolbarSearch->setStatusTip(searchFocusAct->statusTip());
@@ -691,13 +707,42 @@ void MainWindow::createToolBars() {
 }
 
 void MainWindow::createStatusBar() {
-    QToolBar* toolBar = new QToolBar(this);
-    statusToolBar = toolBar;
-    toolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    toolBar->setIconSize(QSize(16, 16));
-    toolBar->addAction(The::globalActions()->value("downloads"));
-    toolBar->addAction(The::globalActions()->value("definition"));
-    statusBar()->addPermanentWidget(toolBar);
+    statusToolBar = new QToolBar(this);
+    statusToolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    statusToolBar->setIconSize(QSize(16, 16));
+    statusToolBar->addAction(The::globalActions()->value("downloads"));
+
+    regionButton = new QToolButton(this);
+    regionButton->setStatusTip(tr("Choose your content location"));
+    regionButton->setIcon(QtIconLoader::icon("go-down"));
+    regionButton->setIconSize(QSize(16, 16));
+    regionButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    regionAction = statusToolBar->addWidget(regionButton);
+    regionAction->setVisible(false);
+
+    QAction *localAction = The::globalActions()->value("local-region");
+    if (!localAction->text().isEmpty()) {
+        regionButton->setPopupMode(QToolButton::InstantPopup);
+        QMenu *regionMenu = new QMenu(this);
+        regionMenu->addAction(The::globalActions()->value("worldwide-region"));
+        regionMenu->addAction(localAction);
+        regionMenu->addSeparator();
+        QAction *moreRegionsAction = The::globalActions()->value("more-region");
+        regionMenu->addAction(moreRegionsAction);
+        connect(moreRegionsAction, SIGNAL(triggered()), SLOT(showRegionsView()));
+        regionButton->setMenu(regionMenu);
+    } else {
+        connect(regionButton, SIGNAL(clicked()), SLOT(showRegionsView()));
+    }
+
+    /* Stupid code that generates the QRC items
+    foreach(YTRegion r, YTRegions::list())
+        qDebug() << QString("<file>flags/%1.png</file>").arg(r.id.toLower());
+    */
+
+    statusToolBar->addAction(The::globalActions()->value("definition"));
+
+    statusBar()->addPermanentWidget(statusToolBar);
     statusBar()->show();
 }
 
@@ -719,7 +764,7 @@ void MainWindow::readSettings() {
     if (settings.contains("geometry")) {
         restoreGeometry(settings.value("geometry").toByteArray());
 #ifdef APP_MAC
-    MacSupport::fixGeometry(this);
+        MacSupport::fixGeometry(this);
 #endif
     } else {
         setGeometry(100, 100, 1000, 500);
@@ -770,8 +815,9 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
         newView->appear();
         QHash<QString,QVariant> metadata = newView->metadata();
         QString title = metadata.value("title").toString();
-        if (!title.isEmpty()) title += " - ";
-        setWindowTitle(title + Constants::NAME);
+        if (title.isEmpty()) title = Constants::NAME;
+        else title += QLatin1String(" - ") + Constants::NAME;
+        setWindowTitle(title);
         QString desc = metadata.value("description").toString();
         if (!desc.isEmpty()) showMessage(desc);
     }
@@ -811,7 +857,8 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
     widget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
 #ifndef Q_WS_X11
-    if (transition) Extra::fadeInWidget(oldWidget, widget);
+    if (transition && oldWidget != mediaView)
+        Extra::fadeInWidget(oldWidget, widget);
 #endif
 
     history->push(widget);
@@ -903,6 +950,11 @@ void MainWindow::showMedia(SearchParams *searchParams) {
     showWidget(mediaView);
 }
 
+void MainWindow::showMedia(VideoSource *videoSource) {
+    mediaView->setVideoSource(videoSource);
+    showWidget(mediaView);
+}
+
 void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState */) {
 
     // qDebug() << "Phonon state: " << newState;
@@ -919,7 +971,7 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
         }
         break;
 
-         case Phonon::PlayingState:
+    case Phonon::PlayingState:
         pauseAct->setEnabled(true);
         pauseAct->setIcon(QtIconLoader::icon("media-playback-pause"));
         pauseAct->setText(tr("&Pause"));
@@ -927,12 +979,12 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
         // stopAct->setEnabled(true);
         break;
 
-         case Phonon::StoppedState:
+    case Phonon::StoppedState:
         pauseAct->setEnabled(false);
         // stopAct->setEnabled(false);
         break;
 
-         case Phonon::PausedState:
+    case Phonon::PausedState:
         pauseAct->setEnabled(true);
         pauseAct->setIcon(QtIconLoader::icon("media-playback-start"));
         pauseAct->setText(tr("&Play"));
@@ -940,15 +992,15 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
         // stopAct->setEnabled(true);
         break;
 
-         case Phonon::BufferingState:
-         case Phonon::LoadingState:
+    case Phonon::BufferingState:
+    case Phonon::LoadingState:
         pauseAct->setEnabled(false);
         currentTime->clear();
         totalTime->clear();
         // stopAct->setEnabled(true);
         break;
 
-         default:
+    default:
         ;
     }
 }
@@ -1305,11 +1357,11 @@ void MainWindow::toggleDownloads(bool show) {
     if (show) {
         stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_MediaStop));
         The::globalActions()->value("downloads")->setShortcuts(
-                QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_J)
-                << QKeySequence(Qt::Key_Escape));
+                    QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_J)
+                    << QKeySequence(Qt::Key_Escape));
     } else {
         The::globalActions()->value("downloads")->setShortcuts(
-                QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_J));
+                    QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_J));
         stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
     }
 
@@ -1342,7 +1394,7 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *event) {
         if (urls.isEmpty())
             return;
         QUrl url = urls.first();
-        QString videoId = YouTubeSearch::videoIdFromUrl(url.toString());
+        QString videoId = YTSearch::videoIdFromUrl(url.toString());
         if (!videoId.isNull())
             event->acceptProposedAction();
     }
@@ -1353,7 +1405,7 @@ void MainWindow::dropEvent(QDropEvent *event) {
     if (urls.isEmpty())
         return;
     QUrl url = urls.first();
-    QString videoId = YouTubeSearch::videoIdFromUrl(url.toString());
+    QString videoId = YTSearch::videoIdFromUrl(url.toString());
     if (!videoId.isNull()) {
         setWindowTitle(url.toString());
         SearchParams *searchParams = new SearchParams();
@@ -1507,3 +1559,13 @@ void MainWindow::hideBuyAction() {
     action->setEnabled(false);
 }
 #endif
+
+void MainWindow::showRegionsView() {
+    if (!regionsView) {
+        regionsView = new RegionsView(this);
+        connect(regionsView, SIGNAL(regionChanged()),
+                homeView->getStandardFeedsView(), SLOT(load()));
+        views->addWidget(regionsView);
+    }
+    showWidget(regionsView);
+}

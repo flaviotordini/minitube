@@ -2,7 +2,7 @@
 #include "downloadmanager.h"
 #include "downloaditem.h"
 #include "video.h"
-#include "listmodel.h"
+#include "playlistmodel.h"
 
 DownloadModel::DownloadModel(DownloadManager *downloadManager, QObject *parent) :
         QAbstractListModel(parent),

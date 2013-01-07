@@ -31,9 +31,7 @@ VideoAreaWidget::VideoAreaWidget(QWidget *parent) : QWidget(parent) {
     snapshotPreview = new QLabel(this);
     stackedLayout->addWidget(snapshotPreview);
     
-    setLayout(vLayout);
-    setAcceptDrops(true);
-    
+    setAcceptDrops(true);    
     setMouseTracking(true);
 }
 

@@ -1,11 +1,7 @@
-#ifndef PRETTYITEMDELEGATE_H
-#define PRETTYITEMDELEGATE_H
+#ifndef PLAYLISTITEMDELEGATE_H
+#define PLAYLISTITEMDELEGATE_H
 
-#include <QModelIndex>
-#include <QStyledItemDelegate>
-
-class QPainter;
-class QProgressBar;
+#include <QtGui>
 
 class PlaylistItemDelegate : public QStyledItemDelegate {
 

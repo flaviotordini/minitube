@@ -23,7 +23,8 @@ Video* Video::clone() {
     cloneVideo->m_webpage = m_webpage;
     cloneVideo->m_streamUrl = m_streamUrl;
     cloneVideo->m_thumbnail = m_thumbnail;
-    cloneVideo->m_thumbnailUrls = m_thumbnailUrls;
+    cloneVideo->m_thumbnailUrl = m_thumbnailUrl;
+    cloneVideo->m_mediumThumbnailUrl = m_mediumThumbnailUrl;
     cloneVideo->m_duration = m_duration;
     cloneVideo->m_published = m_published;
     cloneVideo->m_viewCount = m_viewCount;
@@ -33,19 +34,20 @@ Video* Video::clone() {
     return cloneVideo;
 }
 
-void Video::preloadThumbnail() {
-    if (m_thumbnailUrls.isEmpty()) return;
-    QObject *reply = The::http()->get(m_thumbnailUrls.first());
+void Video::loadThumbnail() {
+    QObject *reply = The::http()->get(m_thumbnailUrl);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(setThumbnail(QByteArray)));
 }
 
 void Video::setThumbnail(QByteArray bytes) {
-    m_thumbnail = QImage::fromData(bytes);
+    m_thumbnail.loadFromData(bytes);
     emit gotThumbnail();
 }
 
-const QImage Video::thumbnail() const {
-    return m_thumbnail;
+void Video::loadMediumThumbnail() {
+    if (m_mediumThumbnailUrl.isEmpty()) return;
+    QObject *reply = The::http()->get(m_mediumThumbnailUrl);
+    connect(reply, SIGNAL(data(QByteArray)), SIGNAL(gotMediumThumbnail(QByteArray)));
 }
 
 void Video::loadStreamUrl() {
@@ -60,9 +62,10 @@ void Video::loadStreamUrl() {
     // Get Video ID
     // youtube-dl line 428
     // QRegExp re("^((?:http://)?(?:\\w+\\.)?youtube\\.com/(?:(?:v/)|(?:(?:watch(?:\\.php)?)?\\?(?:.+&)?v=)))?([0-9A-Za-z_-]+)(?(1).+)?$");
-    QRegExp re("^http://www\\.youtube\\.com/watch\\?v=([0-9A-Za-z_-]+).*");
+    QRegExp re("^https?://www\\.youtube\\.com/watch\\?v=([0-9A-Za-z_-]+).*");
     bool match = re.exactMatch(m_webpage.toString());
     if (!match || re.numCaptures() < 1) {
+        qDebug() << QString("Cannot get video id for %1").arg(m_webpage.toString());
         emit errorStreamUrl(QString("Cannot get video id for %1").arg(m_webpage.toString()));
         loadingStreamUrl = false;
         return;
@@ -316,4 +319,10 @@ void Video::findVideoUrl(int definitionCode) {
 
     // see you in gotHeadHeaders()
 
+}
+
+
+QString Video::formattedDuration() const {
+    QString format = m_duration > 3600 ? "h:mm:ss" : "m:ss";
+    return QTime().addSecs(m_duration).toString(format);
 }

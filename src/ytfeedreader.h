@@ -1,23 +1,21 @@
-#ifndef YOUTUBESTREAMREADER_H
-#define YOUTUBESTREAMREADER_H
+#ifndef YTFEEDREADER_H
+#define YTFEEDREADER_H
 
-#include <QXmlStreamReader>
-#include <QBuffer>
-#include "video.h"
+#include <QtXml>
 
-class YouTubeStreamReader : public QXmlStreamReader
-{
+class Video;
+
+class YTFeedReader : public QXmlStreamReader {
+
 public:
-    YouTubeStreamReader();
-    bool read(QByteArray data);
-    QList<Video*> getVideos();
+    YTFeedReader(const QByteArray &bytes);
+    const QList<Video*> & getVideos();
     const QStringList & getSuggestions() const;
 
 private:
-    void readMediaGroup();
     void readEntry();
     QList<Video*> videos;
     QStringList suggestions;
 };
 
-#endif // YOUTUBESTREAMREADER_H
+#endif // YTFEEDREADER_H

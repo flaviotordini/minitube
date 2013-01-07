@@ -1,13 +1,10 @@
 #include "playlistitemdelegate.h"
-#include "listmodel.h"
+#include "playlistmodel.h"
 #include "fontutils.h"
 #include "downloaditem.h"
 #include "iconloader/qticonloader.h"
 #include "videodefinition.h"
-
-#include <QFontMetricsF>
-#include <QPainter>
-#include <QHash>
+#include "video.h"
 
 const qreal PlaylistItemDelegate::THUMB_HEIGHT = 90.0;
 const qreal PlaylistItemDelegate::THUMB_WIDTH = 120.0;
@@ -98,23 +95,14 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
     const Video *video = videoPointer.data();
 
     // thumb
-    if (!video->thumbnail().isNull()) {
-        painter->drawImage(QRect(0, 0, THUMB_WIDTH, THUMB_HEIGHT), video->thumbnail());
+    painter->drawPixmap(0, 0, THUMB_WIDTH, THUMB_HEIGHT, video->thumbnail());
 
-        // play icon overlayed on the thumb
-        if (isActive)
-            paintPlayIcon(painter);
+    // play icon overlayed on the thumb
+    if (isActive)
+        paintPlayIcon(painter);
 
-        // time
-        QString timeString;
-        int duration = video->duration();
-        if ( duration > 3600 )
-            timeString = QTime().addSecs(duration).toString("h:mm:ss");
-        else
-            timeString = QTime().addSecs(duration).toString("m:ss");
-        drawTime(painter, timeString, line);
-
-    }
+    // time
+    drawTime(painter, video->formattedDuration(), line);
 
     if (isActive) painter->setFont(boldFont);
 

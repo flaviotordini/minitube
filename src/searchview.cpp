@@ -2,7 +2,7 @@
 #include "constants.h"
 #include "fontutils.h"
 #include "searchparams.h"
-#include "youtubesuggest.h"
+#include "ytsuggester.h"
 #include "channelsuggest.h"
 #ifdef APP_MAC
 #include "searchlineedit_mac.h"
@@ -110,7 +110,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     connect(queryEdit, SIGNAL(textChanged(const QString &)), SLOT(textChanged(const QString &)));
     connect(queryEdit, SIGNAL(suggestionAccepted(const QString&)), SLOT(watch(const QString&)));
 
-    youtubeSuggest = new YouTubeSuggest(this);
+    youtubeSuggest = new YTSuggester(this);
     channelSuggest = new ChannelSuggest(this);
     searchTypeChanged(0);
 
@@ -240,12 +240,10 @@ void SearchView::updateRecentChannels() {
     foreach (QString keyword, keywords) {
         QString link = keyword;
         QString display = keyword;
-        if (keyword.startsWith("http://") || keyword.startsWith("https://")) {
-            int separator = keyword.indexOf("|");
-            if (separator > 0 && separator + 1 < keyword.length()) {
-                link = keyword.left(separator);
-                display = keyword.mid(separator+1);
-            }
+        int separator = keyword.indexOf('|');
+        if (separator > 0 && separator + 1 < keyword.length()) {
+            link = keyword.left(separator);
+            display = keyword.mid(separator+1);
         }
         QLabel *itemLabel = new QLabel("<a href=\"" + link
                                        + "\" style=\"color:palette(text); text-decoration:none\">"

@@ -1,9 +1,10 @@
-#ifndef LISTMODEL_H
-#define LISTMODEL_H
+#ifndef PLAYLISTMODEL_H
+#define PLAYLISTMODEL_H
 
-#include "video.h"
-#include "youtubesearch.h"
-#include "searchparams.h"
+#include <QtGui>
+
+class Video;
+class VideoSource;
 
 enum DataRoles {
     ItemTypeRole = Qt::UserRole,
@@ -22,19 +23,15 @@ enum ItemTypes {
     ItemTypeShowMore
 };
 
-class ListModel : public QAbstractListModel {
+class PlaylistModel : public QAbstractListModel {
 
     Q_OBJECT
 
 public:
+    PlaylistModel(QWidget *parent = 0);
 
-    ListModel(QWidget *parent);
-    ~ListModel();
-
-    // inherited from QAbstractListModel
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    // int rowCount( const QModelIndex& parent = QModelIndex() ) const { Q_UNUSED( parent ); return videos.size(); }
-    int columnCount( const QModelIndex& parent = QModelIndex() ) const { Q_UNUSED( parent ); return 4; }
+    int columnCount( const QModelIndex& parent = QModelIndex() ) const { Q_UNUSED( parent ); return 1; }
     QVariant data(const QModelIndex &index, int role) const;
     bool removeRows(int position, int rows, const QModelIndex &parent);
 
@@ -46,7 +43,6 @@ public:
                       Qt::DropAction action, int row, int column,
                       const QModelIndex &parent);
 
-    // custom methods
     void setActiveRow( int row );
     bool rowExists( int row ) const { return (( row >= 0 ) && ( row < videos.size() ) ); }
     int activeRow() const { return m_activeRow; } // returns -1 if there is no active row
@@ -60,10 +56,9 @@ public:
     Video* videoAt( int row ) const;
     Video* activeVideo() const;
 
-    // video search methods
-    void search(SearchParams *searchParams);
+    VideoSource* getVideoSource() { return videoSource; }
+    void setVideoSource(VideoSource *videoSource);
     void abortSearch();
-
 
 public slots:
     void searchMore();
@@ -89,15 +84,14 @@ signals:
 private:
     void searchMore(int max);
 
-    YouTubeSearch *youtubeSearch;
-    SearchParams *searchParams;
+    VideoSource *videoSource;
     bool searching;
     bool canSearchMore;
 
     QList<Video*> videos;
     int skip;
+    int max;
 
-    // the row being played
     int m_activeRow;
     Video *m_activeVideo;
 

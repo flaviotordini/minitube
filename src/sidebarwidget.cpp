@@ -1,6 +1,7 @@
 #include "sidebarwidget.h"
 #include "refinesearchbutton.h"
 #include "refinesearchwidget.h"
+#include "sidebarheader.h"
 #ifndef Q_WS_X11
 #include "extra.h"
 #endif
@@ -14,8 +15,11 @@ SidebarWidget::SidebarWidget(QWidget *parent) :
     playlist = 0;
 
     QBoxLayout *layout = new QVBoxLayout(this);
-    layout->setSpacing(1);
+    layout->setSpacing(0);
     layout->setMargin(0);
+
+    sidebarHeader = new SidebarHeader();
+    layout->addWidget(sidebarHeader);
 
     // hidden message widget
     messageLabel = new QLabel(this);
@@ -70,9 +74,11 @@ void SidebarWidget::setPlaylist(QListView *playlist) {
 void SidebarWidget::showPlaylist() {
     setup();
     stackedWidget->setCurrentWidget(playlist);
+    The::globalActions()->value("refine-search")->setChecked(false);
 }
 
 void SidebarWidget::showRefineSearchWidget() {
+    if (!refineSearchWidget->isEnabled()) return;
     refineSearchWidget->setDirty(false);
     stackedWidget->setCurrentWidget(refineSearchWidget);
     refineSearchWidget->setFocus();
@@ -131,6 +137,7 @@ void SidebarWidget::handleMouseMove() {
 }
 
 void SidebarWidget::showRefineSearchButton() {
+    if (!refineSearchWidget->isEnabled()) return;
     refineSearchButton->move(
                 playlist->viewport()->width() - refineSearchButton->minimumWidth(),
                 height() - refineSearchButton->minimumHeight());
