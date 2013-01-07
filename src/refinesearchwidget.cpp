@@ -5,6 +5,10 @@
 #include "extra.h"
 #endif
 
+namespace The {
+QMap<QString, QAction*>* globalActions();
+}
+
 RefineSearchWidget::RefineSearchWidget(QWidget *parent) :
     QWidget(parent) {
     dirty = false;
@@ -204,6 +208,11 @@ void RefineSearchWidget::actionTriggered(QAction *action) {
 void RefineSearchWidget::setSearchParams(SearchParams *params) {
     setup();
 
+    The::globalActions()->value("refine-search")->setEnabled(params);
+    setEnabled(params);
+
+    if (!params) return;
+
     QToolBar* bar;
     QAction* action;
 
@@ -223,6 +232,7 @@ void RefineSearchWidget::setSearchParams(SearchParams *params) {
     action = bar->actions().at(params->quality());
     if (action) action->setChecked(true);
 
+    disconnect(SIGNAL(paramChanged(QString,QVariant)));
     connect(this, SIGNAL(paramChanged(QString,QVariant)),
             params, SLOT(setParam(QString,QVariant)),
             Qt::UniqueConnection);
