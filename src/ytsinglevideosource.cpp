@@ -44,7 +44,7 @@ const QStringList & YTSingleVideoSource::getSuggestions() {
 }
 
 QString YTSingleVideoSource::getName() {
-    return QString();
+    return name;
 }
 
 void YTSingleVideoSource::parse(QByteArray data) {
@@ -52,6 +52,11 @@ void YTSingleVideoSource::parse(QByteArray data) {
 
     YTFeedReader reader(data);
     QList<Video*> videos = reader.getVideos();
+
+    if (name.isEmpty() && !videos.isEmpty() && skip == 1) {
+        name = videos.first()->title();
+        emit nameChanged(name);
+    }
 
     foreach (Video *video, videos)
         emit gotVideo(video);

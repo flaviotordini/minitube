@@ -26,6 +26,7 @@ private:
     bool aborted;
     int skip;
     int max;
+    QString name;
 };
 
 #endif // YTSINGLEVIDEOSOURCE_H
