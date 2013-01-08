@@ -22,7 +22,6 @@ HEADERS += \
     src/urllineedit.h \
     src/spacer.h \
     src/constants.h \
-    src/iconloader/qticonloader.h \
     src/playlistitemdelegate.h \
     src/networkaccess.h \
     src/videomimedata.h \
@@ -70,13 +69,13 @@ HEADERS += \
     src/videosourcewidget.h \
     src/regionsview.h \
     src/ytsinglevideosource.h \
-    src/sidebarheader.h
+    src/sidebarheader.h \
+    src/utils.h
 SOURCES += src/main.cpp \
     src/searchlineedit.cpp \
     src/urllineedit.cpp \
     src/spacer.cpp \
     src/video.cpp \
-    src/iconloader/qticonloader.cpp \
     src/videomimedata.cpp \
     src/updatechecker.cpp \
     src/networkaccess.cpp \
@@ -122,7 +121,8 @@ SOURCES += src/main.cpp \
     src/videosourcewidget.cpp \
     src/regionsview.cpp \
     src/ytsinglevideosource.cpp \
-    src/sidebarheader.cpp
+    src/sidebarheader.cpp \
+    src/utils.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/

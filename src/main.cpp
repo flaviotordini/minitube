@@ -3,7 +3,7 @@
 #include "constants.h"
 #include "mainwindow.h"
 #include "searchparams.h"
-#include "iconloader/qticonloader.h"
+#include "utils.h"
 #ifndef Q_WS_X11
 #include "extra.h"
 #endif
@@ -76,7 +76,7 @@ int main(int argc, char **argv) {
 #ifndef APP_MAC
     QIcon appIcon;
     if (QDir(dataDir).exists()) {
-        appIcon = QtIconLoader::icon(Constants::UNIX_NAME);
+        appIcon = Utils::icon(Constants::UNIX_NAME);
     } else {
         dataDir = qApp->applicationDirPath() + "/data";
         const int iconSizes [] = { 16, 22, 32, 48, 64, 128, 256, 512 };

@@ -1,5 +1,5 @@
 #include "sidebarheader.h"
-#include "iconloader/qticonloader.h"
+#include "utils.h"
 #include "mediaview.h"
 #include "videosource.h"
 #include "fontutils.h"
@@ -12,13 +12,13 @@ void SidebarHeader::setup() {
     isSetup = true;
 
     backAction = new QAction(
-                QtIconLoader::icon("go-previous"),
+                Utils::icon("go-previous"),
                 tr("&Back"), this);
     connect(backAction, SIGNAL(triggered()), MediaView::instance(), SLOT(goBack()));
     addAction(backAction);
 
     forwardAction = new QAction(
-                QtIconLoader::icon("go-next"),
+                Utils::icon("go-next"),
                 tr("&Back"), this);
     connect(forwardAction, SIGNAL(triggered()), MediaView::instance(), SLOT(goForward()));
     addAction(forwardAction);
