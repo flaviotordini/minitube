@@ -16,7 +16,7 @@ YTSearch::YTSearch(SearchParams *searchParams, QObject *parent) :
 }
 
 void YTSearch::loadVideos(int max, int skip) {
-    this->aborted = false;
+    aborted = false;
 
     QUrl url("https://gdata.youtube.com/feeds/api/videos/");
     url.addQueryItem("v", "2");
@@ -102,7 +102,7 @@ void YTSearch::parseResults(QByteArray data) {
     QList<Video*> videos = reader.getVideos();
     suggestions = reader.getSuggestions();
 
-    if (!searchParams->author().isEmpty()) {
+    if (name.isEmpty() && !searchParams->author().isEmpty()) {
         if (videos.isEmpty()) name = searchParams->author();
         else name = videos.first()->author();
         emit nameChanged(name);
