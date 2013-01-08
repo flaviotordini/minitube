@@ -167,8 +167,8 @@ void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory) {
     if (addToHistory) {
         int currentIndex = getHistoryIndex();
         if (currentIndex >= 0 && currentIndex < history.size() - 1) {
-            for (int i = currentIndex + 1; i < history.size(); i++) {
-                VideoSource *vs = history.takeAt(i);
+            while (history.size() > currentIndex + 1) {
+                VideoSource *vs = history.takeLast();
                 if (!vs->parent()) delete vs;
             }
         }
@@ -286,15 +286,12 @@ void MediaView::activeRowChanged(int row) {
     Video *video = playlistModel->videoAt(row);
     if (!video) return;
 
-    // Related videos without video interruption
-    if (row == 0) {
-        VideoSource *videoSource = playlistModel->getVideoSource();
-        if (videoSource && !history.isEmpty() &&
-                mediaObject->state() == Phonon::PlayingState &&
-                videoSource->metaObject()->className() == QLatin1String("YTSingleVideoSource")) {
-            if (playlistModel->videoAt(row)->title() == downloadItem->getVideo()->title())
-                return;
-        }
+    // Do not stop/start playing if the first video result is the current video
+    if (row == 0 && !history.isEmpty()) {
+        Video *currentVideo = 0;
+        if (downloadItem && downloadItem->getVideo()) currentVideo = downloadItem->getVideo();
+        if (currentVideo && playlistModel->videoAt(row)->webpage() == currentVideo->webpage())
+            return;
     }
 
     errorTimer->stop();
@@ -319,14 +316,14 @@ void MediaView::activeRowChanged(int row) {
     MainWindow::instance()->showMessage(video->title());
 
     // ensure active item is visible
-    // int row = listModel->activeRow();
     if (row != -1) {
         QModelIndex index = playlistModel->index(row, 0, QModelIndex());
         playlistView->scrollTo(index, QAbstractItemView::EnsureVisible);
     }
 
     // enable/disable actions
-    The::globalActions()->value("download")->setEnabled(DownloadManager::instance()->itemForVideo(video) == 0);
+    The::globalActions()->value("download")->setEnabled(
+                DownloadManager::instance()->itemForVideo(video) == 0);
     The::globalActions()->value("skip")->setEnabled(true);
     The::globalActions()->value("previous")->setEnabled(row > 0);
     The::globalActions()->value("stopafterthis")->setEnabled(true);
@@ -353,12 +350,16 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
         delete downloadItem;
     }
     downloadItem = new DownloadItem(videoCopy, streamUrl, tempFile, this);
-    connect(downloadItem, SIGNAL(statusChanged()), SLOT(downloadStatusChanged()), Qt::UniqueConnection);
+    connect(downloadItem, SIGNAL(statusChanged()),
+            SLOT(downloadStatusChanged()), Qt::UniqueConnection);
     // connect(downloadItem, SIGNAL(progress(int)), SLOT(downloadProgress(int)));
-    connect(downloadItem, SIGNAL(bufferProgress(int)), loadingWidget, SLOT(bufferStatus(int)), Qt::UniqueConnection);
+    connect(downloadItem, SIGNAL(bufferProgress(int)),
+            loadingWidget, SLOT(bufferStatus(int)), Qt::UniqueConnection);
     // connect(downloadItem, SIGNAL(finished()), SLOT(itemFinished()));
-    connect(video, SIGNAL(errorStreamUrl(QString)), SLOT(handleError(QString)), Qt::UniqueConnection);
-    connect(downloadItem, SIGNAL(error(QString)), SLOT(handleError(QString)), Qt::UniqueConnection);
+    connect(video, SIGNAL(errorStreamUrl(QString)),
+            SLOT(handleError(QString)), Qt::UniqueConnection);
+    connect(downloadItem, SIGNAL(error(QString)),
+            SLOT(handleError(QString)), Qt::UniqueConnection);
     downloadItem->start();
 
 #ifdef Q_WS_MAC
@@ -792,6 +793,14 @@ void MediaView::findVideoParts() {
 
     search(searchParams);
 
+}
+
+void MediaView::relatedVideos() {
+    Video* video = playlistModel->activeVideo();
+    if (!video) return;
+    YTSingleVideoSource *singleVideoSource = new YTSingleVideoSource();
+    singleVideoSource->setVideoId(video->id());
+    setVideoSource(singleVideoSource);
 }
 
 void MediaView::shareViaTwitter() {

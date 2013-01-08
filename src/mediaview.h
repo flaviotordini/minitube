@@ -63,6 +63,7 @@ public slots:
     void snapshot();
     void fullscreen();
     void findVideoParts();
+    void relatedVideos();
     bool canGoBack();
     void goBack();
     bool canGoForward();

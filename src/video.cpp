@@ -34,6 +34,23 @@ Video* Video::clone() {
     return cloneVideo;
 }
 
+void Video::setWebpage(QUrl webpage) {
+    m_webpage = webpage;
+
+    // Get Video ID
+    // youtube-dl line 428
+    // QRegExp re("^((?:http://)?(?:\\w+\\.)?youtube\\.com/(?:(?:v/)|(?:(?:watch(?:\\.php)?)?\\?(?:.+&)?v=)))?([0-9A-Za-z_-]+)(?(1).+)?$");
+    QRegExp re("^https?://www\\.youtube\\.com/watch\\?v=([0-9A-Za-z_-]+).*");
+    bool match = re.exactMatch(m_webpage.toString());
+    if (!match || re.numCaptures() < 1) {
+        qDebug() << QString("Cannot get video id for %1").arg(m_webpage.toString());
+        // emit errorStreamUrl(QString("Cannot get video id for %1").arg(m_webpage.toString()));
+        // loadingStreamUrl = false;
+        return;
+    }
+    videoId = re.cap(1);
+}
+
 void Video::loadThumbnail() {
     QObject *reply = The::http()->get(m_thumbnailUrl);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(setThumbnail(QByteArray)));
@@ -58,22 +75,7 @@ void Video::loadStreamUrl() {
     loadingStreamUrl = true;
 
     // https://develop.participatoryculture.org/trac/democracy/browser/trunk/tv/portable/flashscraper.py
-
-    // Get Video ID
-    // youtube-dl line 428
-    // QRegExp re("^((?:http://)?(?:\\w+\\.)?youtube\\.com/(?:(?:v/)|(?:(?:watch(?:\\.php)?)?\\?(?:.+&)?v=)))?([0-9A-Za-z_-]+)(?(1).+)?$");
-    QRegExp re("^https?://www\\.youtube\\.com/watch\\?v=([0-9A-Za-z_-]+).*");
-    bool match = re.exactMatch(m_webpage.toString());
-    if (!match || re.numCaptures() < 1) {
-        qDebug() << QString("Cannot get video id for %1").arg(m_webpage.toString());
-        emit errorStreamUrl(QString("Cannot get video id for %1").arg(m_webpage.toString()));
-        loadingStreamUrl = false;
-        return;
-    }
-    videoId = re.cap(1);
-
     getVideoInfo();
-
 }
 
 void  Video::getVideoInfo() {

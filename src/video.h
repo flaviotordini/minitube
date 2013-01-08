@@ -25,7 +25,7 @@ public:
     void setAuthorUri( QString authorUri ) { m_authorUri = authorUri; }
 
     const QUrl webpage() const { return m_webpage; }
-    void setWebpage( QUrl webpage ) { m_webpage = webpage; }
+    void setWebpage(QUrl webpage);
 
     void loadThumbnail();
     const QPixmap & thumbnail() const { return m_thumbnail; }
