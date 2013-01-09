@@ -14,7 +14,7 @@ class YTCategories : public QObject {
 
 public:
     YTCategories(QObject *parent = 0);
-    void loadCategories();
+    void loadCategories(QString language = QString());
     
 signals:
     void categoriesLoaded(const QList<YTCategory> &);
@@ -23,6 +23,9 @@ signals:
 private slots:
     void parseCategories(QByteArray bytes);
     void requestError(QNetworkReply *reply);
+
+private:
+    QString lastLanguage;
 
 };
 

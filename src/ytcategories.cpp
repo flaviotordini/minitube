@@ -8,14 +8,12 @@ NetworkAccess* http();
 
 YTCategories::YTCategories(QObject *parent) : QObject(parent) { }
 
-void YTCategories::loadCategories() {
-    QString url = "http://gdata.youtube.com/schemas/2007/categories.cat?hl=";
-#if QT_VERSION >= 0x040800
-    url += QLocale::system().uiLanguages().first();
-#else
-    url += QLocale::system().name().replace('_', '-');
-#endif
-    qDebug() << url;
+void YTCategories::loadCategories(QString language) {
+    if (language.isEmpty())
+        language = QLocale::system().uiLanguages().first();
+    lastLanguage = language;
+
+    QString url = "http://gdata.youtube.com/schemas/2007/categories.cat?hl=" + language;
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseCategories(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
@@ -49,5 +47,6 @@ void YTCategories::parseCategories(QByteArray bytes) {
 }
 
 void YTCategories::requestError(QNetworkReply *reply) {
-    emit error(reply->errorString());
+    if (lastLanguage != "en") loadCategories("en");
+    else emit error(reply->errorString());
 }
