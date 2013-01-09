@@ -31,7 +31,7 @@ public:
     PlaylistModel(QWidget *parent = 0);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    int columnCount( const QModelIndex& parent = QModelIndex() ) const { Q_UNUSED( parent ); return 1; }
+    int columnCount( const QModelIndex& parent = QModelIndex() ) const { Q_UNUSED( parent ); return 4; }
     QVariant data(const QModelIndex &index, int role) const;
     bool removeRows(int position, int rows, const QModelIndex &parent);
 
@@ -55,6 +55,7 @@ public:
 
     Video* videoAt( int row ) const;
     Video* activeVideo() const;
+    bool hasVideo(Video *video) const { return videos.contains(video); }
 
     VideoSource* getVideoSource() { return videoSource; }
     void setVideoSource(VideoSource *videoSource);
