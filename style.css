@@ -33,10 +33,10 @@ RegionsView QPushButton[regionId]:checked {
 SidebarHeader {
     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                          stop: 0 #262626, stop: 1 #3c3c3c);
-    border: 0;
     padding: 0;
     margin: 0;
     spacing: 0;
+    border-bottom: 1px solid black;
 }
 
 SidebarHeader QToolButton {
@@ -57,4 +57,56 @@ SidebarHeader QPushButton {
 SidebarHeader QComboBox::drop-down {
     width: 0;
     border-style: none;
+}
+
+/* Ambiance */
+
+MainWindow[style="Ambiance"] > QToolBar {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                     stop: 0 #3c3b37, stop: 1 #474641);
+    border-top: 1px solid #474641;
+}
+
+MainWindow[style="Ambiance"] > QToolBar QLabel {
+    color: #dfdbd2;
+}
+
+MainWindow[style="Ambiance"] QSlider::groove:horizontal {
+     border: 1px solid #808080;
+     height: 8px;
+     background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #B1B1B1, stop:1 #ccc);
+     border-radius: 5px;
+}
+
+MainWindow[style="Ambiance"] QSlider::sub-page:horizontal {
+    border: 1px solid #808080;
+    height: 8px;
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #6c6c6c, stop:1 #B1B1B1);
+    border-radius: 5px;
+}
+
+MainWindow[style="Ambiance"] QSlider::handle:horizontal {
+    border: 1px solid #5c5c5c;
+    width: 14px;
+    height: 16px;
+    margin: -4px 0;
+    border-radius: 8px;
+    background: qradialgradient(
+        cx: .5, cy: .5,
+        fx: .33, fy: .33,
+        radius: .5,
+        stop: 0 #fff, stop: 1 #ccc);
+}
+
+MainWindow[style="Ambiance"] QSlider::handle:pressed {
+    background: qradialgradient(
+        cx: .5, cy: .5,
+        fx: .33, fy: .33,
+        radius: .5,
+        stop: 0 #ccc, stop: 1 #9c9c9c);
+}
+
+MainWindow[style="Ambiance"] Phonon--SeekSlider QSlider::sub-page:horizontal {
+    border: 1px solid #808080;
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #B1B1B1, stop:1 #6c6c6c);
 }

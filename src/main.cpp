@@ -11,6 +11,53 @@
 #include "mac_startup.h"
 #endif
 
+#ifdef Q_WS_X11
+QString getThemeName() {
+    QString themeName;
+
+    QProcess process;
+    process.start("dconf",
+                  QStringList() << "read" << "/org/gnome/desktop/interface/gtk-theme");
+    if (process.waitForFinished()) {
+        themeName = process.readAllStandardOutput();
+        themeName = themeName.trimmed();
+        themeName.remove('\'');
+        if (!themeName.isEmpty()) return themeName;
+    }
+
+    QString rcPaths = QString::fromLocal8Bit(qgetenv("GTK2_RC_FILES"));
+    if (!rcPaths.isEmpty()) {
+        QStringList paths = rcPaths.split(QLatin1String(":"));
+        foreach (const QString &rcPath, paths) {
+            if (!rcPath.isEmpty()) {
+                QFile rcFile(rcPath);
+                if (rcFile.exists() && rcFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+                    QTextStream in(&rcFile);
+                    while(!in.atEnd()) {
+                        QString line = in.readLine();
+                        if (line.contains(QLatin1String("gtk-theme-name"))) {
+                            line = line.right(line.length() - line.indexOf(QLatin1Char('=')) - 1);
+                            line.remove(QLatin1Char('\"'));
+                            line = line.trimmed();
+                            themeName = line;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (!themeName.isEmpty())
+                break;
+        }
+    }
+
+    // Fall back to gconf
+    if (themeName.isEmpty())
+        themeName = QGtkStyle::getGConfString(QLatin1String("/desktop/gnome/interface/gtk_theme"));
+
+    return themeName;
+}
+#endif
+
 int main(int argc, char **argv) {
 
 #ifdef Q_WS_MAC
@@ -29,14 +76,18 @@ int main(int argc, char **argv) {
     app.setApplicationName(Constants::NAME);
     app.setOrganizationName(Constants::ORG_NAME);
     app.setOrganizationDomain(Constants::ORG_DOMAIN);
-#ifndef APP_WIN
     app.setWheelScrollLines(1);
-#endif
     app.setAttribute(Qt::AA_DontShowIconsInMenus);
 
 #ifndef Q_WS_X11
     Extra::appSetup(&app);
 #else
+    bool isGtk = app.style()->metaObject()->className() == QLatin1String("QGtkStyle");
+    if (isGtk) {
+        app.setProperty("gtk", isGtk);
+        QString themeName = getThemeName();
+        app.setProperty("style", themeName);
+    }
     QFile cssFile(":/style.css");
     cssFile.open(QFile::ReadOnly);
     QString styleSheet = QLatin1String(cssFile.readAll());
@@ -70,6 +121,8 @@ int main(int argc, char **argv) {
 
 #ifndef Q_WS_X11
     Extra::windowSetup(&mainWin);
+#else
+    mainWin.setProperty("style", app.property("style"));
 #endif
 
 // no window icon on Mac
@@ -92,8 +145,6 @@ int main(int argc, char **argv) {
     mainWin.setWindowIcon(appIcon);
 #endif
 
-    mainWin.show();
-
     mainWin.connect(&app, SIGNAL(messageReceived(const QString &)), &mainWin, SLOT(messageReceived(const QString &)));
     app.setActivationWindow(&mainWin, true);
 
@@ -111,6 +162,8 @@ int main(int argc, char **argv) {
             mainWin.showMedia(searchParams);
         }
     }
+
+    mainWin.show();
 
     // Seed random number generator
     qsrand(QDateTime::currentDateTime().toTime_t());

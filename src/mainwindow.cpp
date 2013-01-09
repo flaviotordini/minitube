@@ -66,7 +66,9 @@ MainWindow::MainWindow() :
 
     // views mechanism
     history = new QStack<QWidget*>();
-    views = new QStackedWidget(this);
+    views = new QStackedWidget();
+    views->hide();
+    setCentralWidget(views);
 
     // views
     homeView = new HomeView(this);
@@ -115,7 +117,7 @@ MainWindow::MainWindow() :
         showActivationView(false);
 #endif
 
-    setCentralWidget(views);
+    views->show();
 
     // Global shortcuts
     GlobalShortcuts &shortcuts = GlobalShortcuts::instance();
@@ -409,7 +411,7 @@ void MainWindow::createActions() {
     action->setStatusTip(tr("Show details about video downloads"));
     action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_J));
     action->setCheckable(true);
-    action->setIcon(Utils::icon("go-down"));
+    action->setIcon(Utils::icon("document-save"));
     action->setVisible(false);
     connect(action, SIGNAL(toggled(bool)), SLOT(toggleDownloads(bool)));
     actions->insert("downloads", action);
@@ -419,7 +421,7 @@ void MainWindow::createActions() {
 #ifndef APP_NO_DOWNLOADS
     action->setShortcut(QKeySequence::Save);
 #endif
-    action->setIcon(Utils::icon("go-down"));
+    action->setIcon(Utils::icon("document-save"));
     action->setEnabled(false);
 #if QT_VERSION >= 0x040600
     action->setPriority(QAction::LowPriority);
@@ -497,7 +499,7 @@ void MainWindow::createActions() {
     action = new QAction(tr("More..."), this);
     actions->insert("more-region", action);
 
-    action = new QAction(Utils::icon("related-videos"), tr("&Related Videos"), this);
+    action = new QAction(Utils::icon(QStringList() << "view-list" << "format-justify-fill"), tr("&Related Videos"), this);
     action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_R));
     action->setStatusTip(tr("Watch videos related to the current one"));
     action->setEnabled(false);
@@ -619,11 +621,7 @@ void MainWindow::createToolBars() {
     setUnifiedTitleAndToolBarOnMac(true);
 
     mainToolBar = new QToolBar(this);
-#if QT_VERSION < 0x040600 | defined(APP_MAC)
     mainToolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
-#else
-    mainToolBar->setToolButtonStyle(Qt::ToolButtonFollowStyle);
-#endif
     mainToolBar->setFloatable(false);
     mainToolBar->setMovable(false);
 
@@ -634,17 +632,17 @@ void MainWindow::createToolBars() {
     mainToolBar->addAction(stopAct);
     mainToolBar->addAction(pauseAct);
     mainToolBar->addAction(skipAct);
+
     mainToolBar->addAction(The::globalActions()->value("related-videos"));
+#ifndef APP_NO_DOWNLOADS
+    mainToolBar->addAction(The::globalActions()->value("download"));
+#endif
 
     bool addFullScreenAct = true;
 #ifdef Q_WS_MAC
     addFullScreenAct = !mac::CanGoFullScreen(winId());
 #endif
     if (addFullScreenAct) mainToolBar->addAction(fullscreenAct);
-
-#ifndef APP_NO_DOWNLOADS
-    mainToolBar->addAction(The::globalActions()->value("download"));
-#endif
 
     mainToolBar->addWidget(new Spacer());
 
@@ -723,7 +721,6 @@ void MainWindow::createStatusBar() {
 
     regionButton = new QToolButton(this);
     regionButton->setStatusTip(tr("Choose your content location"));
-    regionButton->setIcon(Utils::icon("go-down"));
     regionButton->setIconSize(QSize(16, 16));
     regionButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     regionAction = statusToolBar->addWidget(regionButton);
