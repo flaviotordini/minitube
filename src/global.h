@@ -8,6 +8,7 @@
 #include <QNetworkProxyFactory>
 #include <cstdlib>
 #include "networkaccess.h"
+#include "diskcache.h"
 
 namespace The {
 
@@ -127,16 +128,17 @@ namespace The {
             networkHttpProxySetting();
             maybeSetSystemProxy();
             nam = new QNetworkAccessManager();
+            QNetworkDiskCache *cache = new DiskCache();
+            QString cacheLocation = QDesktopServices::storageLocation(
+                        QDesktopServices::DataLocation);
+            cache->setCacheDirectory(cacheLocation);
+            nam->setCache(cache);
         }
         return nam;
     }
 
     NetworkAccess* http() {
-        static NetworkAccess *g_http = 0;
-        if (!g_http) {
-            // qDebug() << "Creating NetworkAccess";
-            g_http = new NetworkAccess();
-        }
+        static NetworkAccess *g_http = new NetworkAccess();
         return g_http;
     }
 
