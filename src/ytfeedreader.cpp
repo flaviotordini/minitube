@@ -4,11 +4,11 @@
 YTFeedReader::YTFeedReader(const QByteArray &bytes) : QXmlStreamReader(bytes) {
     while (!atEnd()) {
         readNext();
-        if (isStartElement() && name() == "entry") {
+        if (isStartElement() && name() == QLatin1String("entry")) {
             readEntry();
-        } else if (name() == "link"
+        } else if (name() == QLatin1String("link")
                    && attributes().value("rel").toString()
-                   == "http://schemas.google.com/g/2006#spellcorrection") {
+                   == QLatin1String("http://schemas.google.com/g/2006#spellcorrection")) {
             suggestions << attributes().value("title").toString();
         }
     }
@@ -27,62 +27,63 @@ void YTFeedReader::readEntry() {
             qDebug() << attribute.name() << ":" << attribute.value();
         */
 
-        if (isEndElement() && name() == "entry") break;
+        if (isEndElement() && name() == QLatin1String("entry")) break;
         if (isStartElement()) {
 
-            if (name() == "link"
-                    && attributes().value("rel").toString() == "alternate"
-                    && attributes().value("type").toString() == "text/html"
+            if (name() == QLatin1String("link")
+                    && attributes().value("rel").toString() == QLatin1String("alternate")
+                    && attributes().value("type").toString() == QLatin1String("text/html")
                     ) {
                 QString webpage = attributes().value("href").toString();
                 webpage.remove("&feature=youtube_gdata");
                 video->setWebpage(QUrl(webpage));
-            } else if (name() == "author") {
+            } else if (name() == QLatin1String("author")) {
                 while(readNextStartElement())
-                    if (name() == "name") {
+                    if (name() == QLatin1String("name")) {
                         QString author = readElementText();
                         video->setAuthor(author);
-                    } else if (name() == "uri") {
+                    } else if (name() == QLatin1String("uri")) {
                         QString uri = readElementText();
                         int i = uri.lastIndexOf('/');
                         if (i != -1) uri = uri.mid(i+1);
                         video->setAuthorUri(uri);
                     } else skipCurrentElement();
-            } else if (name() == "published") {
+            } else if (name() == QLatin1String("published")) {
                 video->setPublished(QDateTime::fromString(readElementText(), Qt::ISODate));
-            } else if (namespaceUri() == "http://gdata.youtube.com/schemas/2007"
-                       && name() == "statistics") {
+            } else if (namespaceUri() == QLatin1String("http://gdata.youtube.com/schemas/2007")
+                       && name() == QLatin1String("statistics")) {
                 QString viewCount = attributes().value("viewCount").toString();
                 video->setViewCount(viewCount.toInt());
             }
-            else if (namespaceUri() == "http://search.yahoo.com/mrss/" && name() == "group") {
+            else if (namespaceUri() == QLatin1String("http://search.yahoo.com/mrss/")
+                     && name() == QLatin1String("group")) {
 
                 // read media group
                 while (!atEnd()) {
                     readNext();
-                    if (isEndElement() && name() == "group") break;
+                    if (isEndElement() && name() == QLatin1String("group")) break;
                     if (isStartElement()) {
-                        if (name() == "thumbnail") {
+                        if (name() == QLatin1String("thumbnail")) {
                             // qDebug() << "Thumb: " << attributes().value("url").toString();
                             QStringRef name = attributes().value("yt:name");
-                            if (name == "default")
+                            if (name == QLatin1String("default"))
                                 video->setThumbnailUrl(
                                             attributes().value("url").toString());
-                            else if (name == "hqdefault")
+                            else if (name == QLatin1String("hqdefault"))
                                 video->setMediumThumbnailUrl(
                                             attributes().value("url").toString());
                         }
-                        else if (name() == "title") {
+                        else if (name() == QLatin1String("title")) {
                             QString title = readElementText();
                             // qDebug() << "Title: " << title;
                             video->setTitle(title);
                         }
-                        else if (name() == "description") {
+                        else if (name() == QLatin1String("description")) {
                             QString desc = readElementText();
                             // qDebug() << "Description: " << desc;
                             video->setDescription(desc);
                         }
-                        else if (name() == "duration") {
+                        else if (name() == QLatin1String("duration")) {
                             QString duration = attributes().value("seconds").toString();
                             // qDebug() << "Duration: " << duration;
                             video->setDuration(duration.toInt());

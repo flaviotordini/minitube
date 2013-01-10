@@ -25,11 +25,11 @@ void YTCategories::parseCategories(QByteArray bytes) {
     QXmlStreamReader xml(bytes);
     while (!xml.atEnd()) {
         xml.readNext();
-        if (xml.isStartElement() && xml.name() == "category") {
+        if (xml.isStartElement() && xml.name() == QLatin1String("category")) {
             QString term = xml.attributes().value("term").toString();
             QString label = xml.attributes().value("label").toString();
             while(xml.readNextStartElement())
-                if (xml.name() == "assignable") {
+                if (xml.name() == QLatin1String("assignable")) {
                     YTCategory category;
                     category.term = term;
                     category.label = label;

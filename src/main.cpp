@@ -65,17 +65,17 @@ int main(int argc, char **argv) {
 #endif
 
     QtSingleApplication app(argc, argv);
-    QString message = app.arguments().size() > 1 ? app.arguments().at(1) : "";
-    if (message == "--help") {
+    QString message = app.arguments().size() > 1 ? app.arguments().at(1) : QString();
+    if (message == QLatin1String("--help")) {
         MainWindow::printHelp();
         return 0;
     }
     if (app.sendMessage(message))
         return 0;
 
-    app.setApplicationName(Constants::NAME);
-    app.setOrganizationName(Constants::ORG_NAME);
-    app.setOrganizationDomain(Constants::ORG_DOMAIN);
+    app.setApplicationName(QLatin1String(Constants::NAME));
+    app.setOrganizationName(QLatin1String(Constants::ORG_NAME));
+    app.setOrganizationDomain(QLatin1String(Constants::ORG_DOMAIN));
     app.setWheelScrollLines(1);
     app.setAttribute(Qt::AA_DontShowIconsInMenus);
 
@@ -149,11 +149,11 @@ int main(int argc, char **argv) {
     app.setActivationWindow(&mainWin, true);
 
     // all string literals are UTF-8
-    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+    // QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 
     if (app.arguments().size() > 1) {
         QString query = app.arguments().at(1);
-        if (query.startsWith("--")) {
+        if (query.startsWith(QLatin1String("--"))) {
             mainWin.messageReceived(query);
             return 0;
         } else {

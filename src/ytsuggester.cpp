@@ -39,7 +39,7 @@ void YTSuggester::handleNetworkData(QByteArray response) {
     while (!xml.atEnd()) {
         xml.readNext();
         if (xml.tokenType() == QXmlStreamReader::StartElement) {
-            if (xml.name() == "suggestion") {
+            if (xml.name() == QLatin1String("suggestion")) {
                 QStringRef str = xml.attributes().value("data");
                 choices << str.toString();
             }

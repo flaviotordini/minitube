@@ -9,5 +9,5 @@ QStringList VideoMimeData::formats() const {
 }
 
 bool VideoMimeData::hasFormat( const QString &mimeType ) const {
-    return mimeType == "application/x-minitube-video";
+    return mimeType == QLatin1String("application/x-minitube-video");
 }

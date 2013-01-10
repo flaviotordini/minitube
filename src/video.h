@@ -52,7 +52,11 @@ public:
     void loadStreamUrl();
     QUrl getStreamUrl() { return m_streamUrl; }
 
-    QString id() { return videoId; }
+    QString id() const { return videoId; }
+
+    bool operator==(const Video &other) const {
+        return videoId == other.id();
+    }
 
 signals:
     void gotThumbnail();

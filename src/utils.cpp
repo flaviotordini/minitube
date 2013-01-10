@@ -14,7 +14,7 @@ QIcon getIcon(const QString &name) {
 QIcon Utils::icon(const QString &name) {
 #ifdef Q_WS_X11
     QString themeName = qApp->property("style").toString();
-    if (themeName == "Ambiance")
+    if (themeName == QLatin1String("Ambiance"))
         return icon(QStringList() << name + "-symbolic" << name);
     else return getIcon(name);
 #else
