@@ -841,7 +841,6 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
     copyPageAct->setEnabled(isMediaView);
     copyLinkAct->setEnabled(isMediaView);
     findVideoPartsAct->setEnabled(isMediaView);
-    The::globalActions()->value("related-videos")->setEnabled(isMediaView);
     toolbarSearch->setEnabled(widget == homeView || isMediaView || widget == downloadView);
 
     if (widget == homeView) {
@@ -1346,6 +1345,8 @@ void MainWindow::clearRecentKeywords() {
         searchView->updateRecentKeywords();
         searchView->updateRecentChannels();
     }
+    QAbstractNetworkCache *cache = The::networkAccessManager()->cache();
+    if (cache) cache->clear();
     showMessage(tr("Your privacy is now safe"));
 }
 
