@@ -289,9 +289,12 @@ void MediaView::activeRowChanged(int row) {
     // Do not stop/start playing if the first video result is the current video
     if (row == 0 && !history.isEmpty()) {
         Video *currentVideo = 0;
-        if (downloadItem && downloadItem->getVideo()) currentVideo = downloadItem->getVideo();
-        if (currentVideo && playlistModel->videoAt(row)->webpage() == currentVideo->webpage())
+        if (downloadItem && downloadItem->getVideo())
+            currentVideo = downloadItem->getVideo();
+        if (currentVideo && playlistModel->videoAt(row)->webpage() == currentVideo->webpage()) {
+            The::globalActions()->value("related-videos")->setEnabled(false);
             return;
+        }
     }
 
     errorTimer->stop();
@@ -327,6 +330,7 @@ void MediaView::activeRowChanged(int row) {
     The::globalActions()->value("skip")->setEnabled(true);
     The::globalActions()->value("previous")->setEnabled(row > 0);
     The::globalActions()->value("stopafterthis")->setEnabled(true);
+    The::globalActions()->value("related-videos")->setEnabled(true);
 
     // see you in gotStreamUrl...
 
