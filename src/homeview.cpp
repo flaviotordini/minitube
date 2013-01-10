@@ -37,7 +37,7 @@ void HomeView::setupBar() {
     bar->addAction(action);
     bar->setCheckedAction(action);
 
-    action = new QAction(tr("Categories"), this);
+    action = new QAction(tr("Browse"), this);
     action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_2));
     action->setStatusTip(tr("Browse videos by category"));
     connect(action, SIGNAL(triggered()), SLOT(showStandardFeeds()));
