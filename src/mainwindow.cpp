@@ -170,7 +170,9 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*> (event);
         const int x = mouseEvent->pos().x();
         const QString className = QString(obj->metaObject()->className());
-        const bool isHoveringVideo = (className == "QGLWidget") || (className == "VideoAreaWidget");
+        const bool isHoveringVideo =
+                (className == QLatin1String("QGLWidget")) ||
+                (className == QLatin1String("VideoAreaWidget"));
 
         // qDebug() << obj << mouseEvent->pos() << isHoveringVideo << mediaView->isPlaylistVisible();
 
@@ -499,10 +501,13 @@ void MainWindow::createActions() {
     action = new QAction(tr("More..."), this);
     actions->insert("more-region", action);
 
-    action = new QAction(Utils::icon(QStringList() << "view-list" << "format-justify-fill"), tr("&Related Videos"), this);
+    action = new QAction(Utils::icon(QStringList() << "view-list-symbolic" << "view-list" << "format-justify-fill"), tr("&Related Videos"), this);
     action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_R));
     action->setStatusTip(tr("Watch videos related to the current one"));
     action->setEnabled(false);
+#if QT_VERSION >= 0x040600
+    action->setPriority(QAction::LowPriority);
+#endif
     connect(action, SIGNAL(triggered()), mediaView, SLOT(relatedVideos()));
     actions->insert("related-videos", action);
 
@@ -621,7 +626,7 @@ void MainWindow::createToolBars() {
     setUnifiedTitleAndToolBarOnMac(true);
 
     mainToolBar = new QToolBar(this);
-    mainToolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
+    mainToolBar->setToolButtonStyle(Qt::ToolButtonFollowStyle);
     mainToolBar->setFloatable(false);
     mainToolBar->setMovable(false);
 
@@ -1501,11 +1506,11 @@ void MainWindow::restore() {
 }
 
 void MainWindow::messageReceived(const QString &message) {
-    if (message == "--toggle-playing") {
+    if (message == QLatin1String("--toggle-playing")) {
         if (pauseAct->isEnabled()) pauseAct->trigger();
-    } else if (message == "--next") {
+    } else if (message == QLatin1String("--next")) {
         if (skipAct->isEnabled()) skipAct->trigger();
-    } else if (message == "--previous") {
+    } else if (message == QLatin1String("--previous")) {
         if (skipBackwardAct->isEnabled()) skipBackwardAct->trigger();
     }  else if (message.startsWith("--")) {
         MainWindow::printHelp();
