@@ -156,6 +156,6 @@ YTRegion YTRegions::regionById(QString id) {
 }
 
 QIcon YTRegions::iconForRegionId(QString regionId) {
-    if (regionId.isEmpty()) return QIcon(":flags/worldwide.png");
+    if (regionId.isEmpty()) return QIcon(":images/worldwide.png");
     return QIcon(":flags/" + regionId.toLower() + ".png");
 }

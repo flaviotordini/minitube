@@ -58,7 +58,7 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
             "</ul>"
 
             "<p>" + tr("Translate %1 to your native language using %2").arg(Constants::NAME)
-            .arg("<a href='http://www.transifex.net/projects/p/" + QString(Constants::UNIX_NAME) + "/resource/main/'>Transifex</a>")
+            .arg("<a href='http://www.transifex.net/projects/p/" + QString(Constants::UNIX_NAME) + "/'>Transifex</a>")
             + "</p>"
 
             "<p>"
