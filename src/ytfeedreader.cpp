@@ -66,7 +66,7 @@ void YTFeedReader::readEntry() {
                         if (name() == QLatin1String("thumbnail")) {
                             // qDebug() << "Thumb: " << attributes().value("url").toString();
                             QStringRef name = attributes().value("yt:name");
-                            if (name == QLatin1String("default"))
+                            if (name == QLatin1String("mqdefault"))
                                 video->setThumbnailUrl(
                                             attributes().value("url").toString());
                             else if (name == QLatin1String("hqdefault"))

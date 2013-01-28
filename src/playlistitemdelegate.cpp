@@ -7,7 +7,7 @@
 #include "video.h"
 
 const qreal PlaylistItemDelegate::THUMB_HEIGHT = 90.0;
-const qreal PlaylistItemDelegate::THUMB_WIDTH = 120.0;
+const qreal PlaylistItemDelegate::THUMB_WIDTH = 160.0;
 const qreal PlaylistItemDelegate::PADDING = 10.0;
 
 QRect lastAuthorRect;
@@ -35,9 +35,11 @@ void PlaylistItemDelegate::createPlayIcon() {
     playIcon.fill(Qt::transparent);
     QPainter painter(&playIcon);
     QPolygon polygon;
-    polygon << QPoint(PADDING*4, PADDING*2)
-            << QPoint(THUMB_WIDTH-PADDING*4, THUMB_HEIGHT/2)
-            << QPoint(PADDING*4, THUMB_HEIGHT-PADDING*2);
+    const int hPadding = PADDING*6;
+    const int vPadding = PADDING*2;
+    polygon << QPoint(hPadding, vPadding)
+            << QPoint(THUMB_WIDTH-hPadding, THUMB_HEIGHT/2)
+            << QPoint(hPadding, THUMB_HEIGHT-vPadding);
     painter.setRenderHints(QPainter::Antialiasing, true);
     painter.setBrush(Qt::white);
     QPen pen;

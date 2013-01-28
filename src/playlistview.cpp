@@ -106,7 +106,7 @@ bool PlaylistView::isHoveringAuthor(QMouseEvent *event) {
 bool PlaylistView::isHoveringThumbnail(QMouseEvent *event) {
     const QModelIndex index = indexAt(event->pos());
     const QRect itemRect = visualRect(index);
-    QRect thumbRect(0, 0, 120, 90);
+    static const QRect thumbRect(0, 0, 160, 90);
     const int x = event->x() - itemRect.x() - thumbRect.x();
     const int y = event->y() - itemRect.y() - thumbRect.y();
     return x > 0 && x < thumbRect.width() && y > 0 && y < thumbRect.height();
