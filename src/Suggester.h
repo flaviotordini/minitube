@@ -8,6 +8,7 @@ class Suggester : public QObject {
     Q_OBJECT
 
 public:
+    Suggester(QObject *parent = 0) : QObject(parent) { }
     virtual void suggest(QString query) = 0;
 
 signals:

@@ -5,23 +5,14 @@ namespace The {
     NetworkAccess* http();
 }
 
-ChannelSuggest::ChannelSuggest(QObject *parent) : Suggester() {
+ChannelSuggest::ChannelSuggest(QObject *parent) : Suggester(parent) {
 
 }
 
 void ChannelSuggest::suggest(QString query) {
-
-    /* // TODO how to localize results?
-    QString locale = QLocale::system().name().replace("_", "-");
-    // case for system locales such as "C"
-    if (locale.length() < 2) {
-        locale = "en-US";
-    }*/
-
-    QUrl url("http://www.youtube.com/results?search_type=search_users");
+    QUrl url("http://www.youtube.com/results");
+    url.addQueryItem("search_type", "search_users");
     url.addQueryItem("search_query", query);
-    // url.addQueryItem("hl", "it-IT");
-
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(handleNetworkData(QByteArray)));
 }

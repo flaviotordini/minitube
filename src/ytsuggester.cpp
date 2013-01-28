@@ -8,7 +8,7 @@ namespace The {
     NetworkAccess* http();
 }
 
-YTSuggester::YTSuggester(QObject *parent) : Suggester() {
+YTSuggester::YTSuggester(QObject *parent) : Suggester(parent) {
 
 }
 
