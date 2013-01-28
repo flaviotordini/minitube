@@ -54,5 +54,6 @@
         <file>flags/gb.png</file>
         <file>flags/ye.png</file>
         <file>style.css</file>
+        <file>images/worldwide.png</file>
     </qresource>
 </RCC>
