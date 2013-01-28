@@ -1,3 +1,18 @@
+/* statusbar */
+
+QStatusBar QToolBar {
+    padding:0;
+    spacing:0;
+    margin:0;
+    border:0;
+}
+
+QStatusBar QToolButton::menu-indicator {
+    image: none;
+}
+
+/* Regions */
+
 RegionsView QPushButton[regionId] {
     margin: 5px;
     padding: 10px;
@@ -29,6 +44,8 @@ RegionsView QPushButton[regionId]:checked {
     fx: 0.5, fy: 0,
     radius: 1.35, stop: 0 rgba(0,0,0,128), stop: 1 rgba(0,0,0,64));
 }
+
+/* Sidebar */
 
 SidebarHeader {
     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -64,7 +81,6 @@ SidebarHeader QComboBox::drop-down {
 MainWindow[style="Ambiance"] > QToolBar {
     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                      stop: 0 #3c3b37, stop: 1 #474641);
-    border-top: 1px solid #474641;
 }
 
 MainWindow[style="Ambiance"] > QToolBar QToolButton,
@@ -72,19 +88,25 @@ MainWindow[style="Ambiance"] > QToolBar QLabel {
     color: #dfdbd2;
 }
 
-MainWindow[style="Ambiance"] > QToolBar QToolButton::hover {
+MainWindow[style="Ambiance"] > QToolBar QToolButton:disabled {
+    color: #8f8c86;
+}
+
+MainWindow[style="Ambiance"] > QToolBar QToolButton:hover {
     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                  stop: 0 #474641, stop: 1 #3c3b37);
                  border-radius: 5px;
     border: 1px outset #3c3b37;
 }
 
-MainWindow[style="Ambiance"] > QToolBar QToolButton::pressed {
+MainWindow[style="Ambiance"] > QToolBar QToolButton:pressed,
+MainWindow[style="Ambiance"] > QToolBar QToolButton:checked {
     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                  stop: 0 #3b3a36, stop: 1 #363531);
                  border-radius: 5px;
     border: 1px inset #292825;
 }
+
 
 MainWindow[style="Ambiance"] QSlider::groove:horizontal {
      border: 1px solid #808080;
