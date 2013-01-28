@@ -18,7 +18,7 @@
 #include "mainwindow.h"
 
 namespace The {
-QMap<QString, QAction*>* globalActions();
+QHash<QString, QAction*>* globalActions();
 }
 
 static const QString recentKeywordsKey = "recentKeywords";
@@ -37,18 +37,13 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 #endif
 
     QBoxLayout *mainLayout = new QVBoxLayout();
-    mainLayout->setMargin(0);
+    mainLayout->setMargin(PADDING);
     mainLayout->setSpacing(0);
 
     // hidden message widget
     message = new QLabel(this);
     message->hide();
     mainLayout->addWidget(message);
-
-#ifdef APP_ACTIVATION
-    if (!Activation::instance().isActivated())
-        mainLayout->addWidget(Extra::buyButton(tr("Get the full version")), 0, Qt::AlignCenter);
-#endif
 
     mainLayout->addStretch();
     mainLayout->addSpacing(PADDING);
@@ -161,6 +156,11 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
     mainLayout->addSpacing(PADDING);
     mainLayout->addStretch();
+
+#ifdef APP_ACTIVATION
+    if (!Activation::instance().isActivated())
+        mainLayout->addWidget(Extra::buyButton(tr("Get the full version")), 0, Qt::AlignRight);
+#endif
 
     setLayout(mainLayout);
 
@@ -338,6 +338,8 @@ void SearchView::watchKeywords(QString query) {
 }
 
 void SearchView::paintEvent(QPaintEvent * /*event*/) {
+    QPainter painter(this);
+
 #if defined(APP_MAC) | defined(APP_WIN)
     QBrush brush;
     if (window()->isActiveWindow()) {
@@ -345,9 +347,21 @@ void SearchView::paintEvent(QPaintEvent * /*event*/) {
     } else {
         brush = palette().window();
     }
-    QPainter painter(this);
     painter.fillRect(0, 0, width(), height(), brush);
 #endif
+
+    static QLinearGradient shadow;
+    static const int shadowHeight = 10;
+    if (shadow.stops().count() == 2) {
+        shadow.setFinalStop(0, shadowHeight);
+        const qreal initialOpacity = 96;
+        for (qreal i = 0; i <= 1; i += 1.0/shadowHeight) {
+            qreal opacity = qPow(initialOpacity, (1.0 - i)) - 1;
+            shadow.setColorAt(i, QColor(0x00, 0x00, 0x00, opacity));
+        }
+    }
+    QRect r = rect();
+    painter.fillRect(r.x(), r.y(), r.width(), shadowHeight, QBrush(shadow));
 }
 
 void SearchView::searchTypeChanged(int index) {
