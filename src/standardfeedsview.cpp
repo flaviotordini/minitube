@@ -6,7 +6,7 @@
 #include "mainwindow.h"
 
 namespace The {
-QMap<QString, QAction*>* globalActions();
+QHash<QString, QAction*>* globalActions();
 }
 
 static const int cols = 5;

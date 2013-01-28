@@ -12,18 +12,14 @@
 
 namespace The {
 
-    QMap<QString, QAction*>* globalActions() {
-        static QMap<QString, QAction*> *g_actions = 0;
-        if (!g_actions)
-            g_actions = new QMap<QString, QAction*>;
-        return g_actions;
+    QHash<QString, QAction*>* globalActions() {
+        static QHash<QString, QAction*> *actions = new QHash<QString, QAction*>;
+        return actions;
     }
 
-    QMap<QString, QMenu*>* globalMenus() {
-        static QMap<QString, QMenu*> *g_menus = 0;
-        if (!g_menus)
-            g_menus = new QMap<QString, QMenu*>;
-        return g_menus;
+    QHash<QString, QMenu*>* globalMenus() {
+        static QHash<QString, QMenu*> *menus = new QHash<QString, QMenu*>;
+        return menus;
     }
 
     void maybeSetSystemProxy() {
@@ -138,8 +134,8 @@ namespace The {
     }
 
     NetworkAccess* http() {
-        static NetworkAccess *g_http = new NetworkAccess();
-        return g_http;
+        static NetworkAccess *na = new NetworkAccess();
+        return na;
     }
 
 }

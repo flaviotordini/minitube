@@ -6,7 +6,7 @@
 #endif
 
 namespace The {
-QMap<QString, QAction*>* globalActions();
+QHash<QString, QAction*>* globalActions();
 }
 
 RefineSearchWidget::RefineSearchWidget(QWidget *parent) :
@@ -198,15 +198,16 @@ void RefineSearchWidget::actionTriggered(QAction *action) {
     QString paramName = bar->property("paramName").toString();
     QVariant paramValue = action->property("paramValue");
 
-    qDebug() << "param changed" << paramName << paramValue;
+    // qDebug() << "param changed" << paramName << paramValue;
     emit paramChanged(paramName, paramValue);
 
-    qDebug() << __PRETTY_FUNCTION__;
     dirty = true;
 }
 
 void RefineSearchWidget::setSearchParams(SearchParams *params) {
     setup();
+
+    qDebug() << (params != 0);
 
     The::globalActions()->value("refine-search")->setEnabled(params);
     setEnabled(params);

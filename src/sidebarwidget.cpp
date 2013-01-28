@@ -7,7 +7,7 @@
 #endif
 
 namespace The {
-QMap<QString, QAction*>* globalActions();
+QHash<QString, QAction*>* globalActions();
 }
 
 SidebarWidget::SidebarWidget(QWidget *parent) :
