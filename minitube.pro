@@ -1,4 +1,4 @@
-CONFIG += debug
+CONFIG += release
 TEMPLATE = app
 VERSION = 2.0
 DEFINES += APP_VERSION="$$VERSION"
@@ -70,7 +70,8 @@ HEADERS += \
     src/regionsview.h \
     src/ytsinglevideosource.h \
     src/sidebarheader.h \
-    src/utils.h
+    src/utils.h \
+    src/diskcache.h
 SOURCES += src/main.cpp \
     src/searchlineedit.cpp \
     src/urllineedit.cpp \
@@ -122,7 +123,8 @@ SOURCES += src/main.cpp \
     src/regionsview.cpp \
     src/ytsinglevideosource.cpp \
     src/sidebarheader.cpp \
-    src/utils.cpp
+    src/utils.cpp \
+    src/diskcache.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/
