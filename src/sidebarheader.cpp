@@ -14,14 +14,21 @@ void SidebarHeader::setup() {
     backAction = new QAction(
                 Utils::icon("go-previous"),
                 tr("&Back"), this);
+    backAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Left));
     connect(backAction, SIGNAL(triggered()), MediaView::instance(), SLOT(goBack()));
     addAction(backAction);
 
     forwardAction = new QAction(
                 Utils::icon("go-next"),
                 tr("&Back"), this);
+    forwardAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Right));
     connect(forwardAction, SIGNAL(triggered()), MediaView::instance(), SLOT(goForward()));
     addAction(forwardAction);
+
+    foreach (QAction* action, actions()) {
+        window()->addAction(action);
+        action->setAutoRepeat(false);
+    }
 
     /*
     QWidget *spacerWidget = new QWidget(this);
@@ -43,11 +50,14 @@ void SidebarHeader::updateInfo() {
 
     bool canGoForward = MediaView::instance()->canGoForward();
     forwardAction->setVisible(canGoForward);
+    forwardAction->setEnabled(canGoForward);
     if (canGoForward) {
         VideoSource *nextVideoSource = history.at(currentIndex + 1);
         forwardAction->setStatusTip(
                     tr("Forward to %1")
-                    .arg(nextVideoSource->getName()));
+                    .arg(nextVideoSource->getName())
+                    + " (" + forwardAction->shortcut().toString(QKeySequence::NativeText) + ")"
+                    );
     }
 
     bool canGoBack = MediaView::instance()->canGoBack();
@@ -58,7 +68,9 @@ void SidebarHeader::updateInfo() {
         VideoSource *previousVideoSource = history.at(currentIndex - 1);
         backAction->setStatusTip(
                     tr("Back to %1")
-                    .arg(previousVideoSource->getName()));
+                    .arg(previousVideoSource->getName())
+                    + " (" + backAction->shortcut().toString(QKeySequence::NativeText) + ")"
+                    );
     }
 
     VideoSource *currentVideoSource = history.at(currentIndex);
