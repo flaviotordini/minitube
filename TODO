@@ -2,20 +2,11 @@
 
 ## Major features
 
-- Snapshots
+- Snapshots (Cannot be done with Phonon)
 
-- Features for logged in users:
-    * Channel subscriptions (r/w)
-    * Favorite videos (r/w)
-    * Comments (r/w)
-    * Likes (r/w)
-    * Playlists (r/w)
+- Channel subscriptions
 
-- Related videos
-    List of related videos identical to the playlist.
-    When a related video is clicked Minitube will keep playing the next related videos.
-    Don't know where the list should appear, maybe on the right, but when activated it should replace the playlist.
-    Maybe the playlist should disappear, leaving only the panel on the right.
+- Favorite videos
 
 - Info view
     Displays video metadata. Could be somewhat linked with related videos...
