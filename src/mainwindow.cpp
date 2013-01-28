@@ -208,7 +208,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
 
 void MainWindow::createActions() {
 
-    QMap<QString, QAction*> *actions = The::globalActions();
+    QHash<QString, QAction*> *actions = The::globalActions();
 
     stopAct = new QAction(Utils::icon("media-playback-stop"), tr("&Stop"), this);
     stopAct->setStatusTip(tr("Stop playback and go back to the search view"));
@@ -539,7 +539,7 @@ void MainWindow::createActions() {
 
 void MainWindow::createMenus() {
 
-    QMap<QString, QMenu*> *menus = The::globalMenus();
+    QHash<QString, QMenu*> *menus = The::globalMenus();
 
     fileMenu = menuBar()->addMenu(tr("&Application"));
 #ifdef APP_ACTIVATION
@@ -782,7 +782,7 @@ void MainWindow::readSettings() {
     }
     setDefinitionMode(settings.value("definition", VideoDefinition::getDefinitionNames().first()).toString());
     audioOutput->setVolume(settings.value("volume", 1).toDouble());
-    audioOutput->setMuted(settings.value("volumeMute").toBool());
+    // audioOutput->setMuted(settings.value("volumeMute").toBool());
     The::globalActions()->value("manualplay")->setChecked(settings.value("manualplay", false).toBool());
 }
 
@@ -848,6 +848,7 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
         The::globalActions()->value("previous")->setEnabled(false);
         The::globalActions()->value("download")->setEnabled(false);
         The::globalActions()->value("stopafterthis")->setEnabled(false);
+        The::globalActions()->value("related-videos")->setEnabled(false);
     }
 
     The::globalActions()->value("twitter")->setEnabled(isMediaView);
@@ -1459,8 +1460,7 @@ void MainWindow::gotNewVersion(QString version) {
 
 #ifdef APP_SIMPLEUPDATE
     simpleUpdateDialog(version);
-#endif
-#if defined(APP_ACTIVATION) && !defined(APP_MAC)
+#elif defined(APP_ACTIVATION) && !defined(APP_MAC)
     UpdateDialog *dialog = new UpdateDialog(version, this);
     dialog->show();
 #endif
