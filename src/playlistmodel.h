@@ -38,12 +38,13 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const;
     QStringList mimeTypes() const;
     Qt::DropActions supportedDropActions() const;
+    Qt::DropActions supportedDragActions() const;
     QMimeData* mimeData( const QModelIndexList &indexes ) const;
     bool dropMimeData(const QMimeData *data,
                       Qt::DropAction action, int row, int column,
                       const QModelIndex &parent);
 
-    void setActiveRow( int row );
+    void setActiveRow(int row , bool notify = true);
     bool rowExists( int row ) const { return (( row >= 0 ) && ( row < videos.size() ) ); }
     int activeRow() const { return m_activeRow; } // returns -1 if there is no active row
     int nextRow() const;
@@ -55,7 +56,7 @@ public:
 
     Video* videoAt( int row ) const;
     Video* activeVideo() const;
-    bool hasVideo(Video *video) const { return videos.contains(video); }
+    int rowForCloneVideo(Video *video) const;
 
     VideoSource* getVideoSource() { return videoSource; }
     void setVideoSource(VideoSource *videoSource);
@@ -64,7 +65,7 @@ public:
 public slots:
     void searchMore();
     void searchNeeded();
-    void addVideo(Video* video);
+    void addVideos(QList<Video*> newVideos);
     void searchFinished(int total);
     void searchError(QString message);
     void updateThumbnail();
@@ -83,11 +84,13 @@ signals:
     void haveSuggestions(const QStringList &suggestions);
 
 private:
+    void handleFirstVideo(Video* video);
     void searchMore(int max);
 
     VideoSource *videoSource;
     bool searching;
     bool canSearchMore;
+    bool firstSearch;
 
     QList<Video*> videos;
     int skip;

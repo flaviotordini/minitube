@@ -19,7 +19,7 @@ class SidebarWidget;
 class VideoSource;
 
 namespace The {
-    QMap<QString, QAction*>* globalActions();
+    QHash<QString, QAction*>* globalActions();
 }
 
 class MediaView : public QWidget, public View {
@@ -37,6 +37,7 @@ public:
     const QList<VideoSource*> & getHistory() { return history; }
     int getHistoryIndex();
     PlaylistModel* getPlaylistModel() { return playlistModel; }
+    Video* getCurrentVideo();
 
 public slots:
     void search(SearchParams *searchParams);

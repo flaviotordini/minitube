@@ -28,7 +28,7 @@
 
 namespace The {
 NetworkAccess* http();
-QMap<QString, QAction*>* globalActions();
+QHash<QString, QAction*>* globalActions();
 QMap<QString, QMenu*>* globalMenus();
 QNetworkAccessManager* networkAccessManager();
 }
@@ -145,7 +145,6 @@ void MediaView::search(SearchParams *searchParams) {
                 searchParams->keywords().startsWith("https://")) {
             QString videoId = YTSearch::videoIdFromUrl(searchParams->keywords());
             if (!videoId.isEmpty()) {
-                qDebug() << "single video";
                 YTSingleVideoSource *singleVideoSource = new YTSingleVideoSource(this);
                 singleVideoSource->setVideoId(videoId);
                 setVideoSource(singleVideoSource);
@@ -185,6 +184,8 @@ void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory) {
     SearchParams *searchParams = getSearchParams();
     bool isChannel = searchParams && !searchParams->author().isEmpty();
     playlistView->setClickableAuthors(!isChannel);
+
+    The::globalActions()->value("related-videos")->setEnabled(true);
 }
 
 void MediaView::searchAgain() {
@@ -280,22 +281,18 @@ void MediaView::stop() {
     }
 }
 
+Video* MediaView::getCurrentVideo() {
+    Video *currentVideo = 0;
+    if (downloadItem)
+        currentVideo = downloadItem->getVideo();
+    return currentVideo;
+}
+
 void MediaView::activeRowChanged(int row) {
     if (reallyStopped) return;
 
     Video *video = playlistModel->videoAt(row);
     if (!video) return;
-
-    // Do not stop/start playing if the first video result is the current video
-    if (row == 0 && !history.isEmpty()) {
-        Video *currentVideo = 0;
-        if (downloadItem && downloadItem->getVideo())
-            currentVideo = downloadItem->getVideo();
-        if (currentVideo && playlistModel->videoAt(row)->webpage() == currentVideo->webpage()) {
-            The::globalActions()->value("related-videos")->setEnabled(false);
-            return;
-        }
-    }
 
     errorTimer->stop();
 
@@ -333,7 +330,6 @@ void MediaView::activeRowChanged(int row) {
     The::globalActions()->value("related-videos")->setEnabled(true);
 
     // see you in gotStreamUrl...
-
 }
 
 void MediaView::gotStreamUrl(QUrl streamUrl) {
@@ -518,11 +514,12 @@ void MediaView::aboutToFinish() {
 }
 
 void MediaView::playbackFinished() {
-    qDebug() << __PRETTY_FUNCTION__ << mediaObject->currentTime();
-    // qDebug() << "finished" << mediaObject->currentTime() << mediaObject->totalTime();
+    const int totalTime = mediaObject->totalTime();
+    const int currentTime = mediaObject->currentTime();
+    qDebug() << __PRETTY_FUNCTION__ << mediaObject->currentTime() << totalTime;
     // add 10 secs for imprecise Phonon backends (VLC, Xine)
-    if (mediaObject->currentTime() + 10000 < mediaObject->totalTime()) {
-        // mediaObject->seek(mediaObject->currentTime());
+    if (currentTime > 0 && currentTime + 10000 < totalTime) {
+        // mediaObject->seek(currentTime);
         QTimer::singleShot(500, this, SLOT(playbackResume()));
     } else {
         QAction* stopAfterThisAction = The::globalActions()->value("stopafterthis");
@@ -805,6 +802,7 @@ void MediaView::relatedVideos() {
     YTSingleVideoSource *singleVideoSource = new YTSingleVideoSource();
     singleVideoSource->setVideoId(video->id());
     setVideoSource(singleVideoSource);
+    The::globalActions()->value("related-videos")->setEnabled(false);
 }
 
 void MediaView::shareViaTwitter() {

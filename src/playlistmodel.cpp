@@ -4,6 +4,7 @@
 #include "ytsearch.h"
 #include "video.h"
 #include "searchparams.h"
+#include "mediaview.h"
 
 static const int maxItems = 10;
 static const QString recentKeywordsKey = "recentKeywords";
@@ -13,11 +14,11 @@ PlaylistModel::PlaylistModel(QWidget *parent) : QAbstractListModel(parent) {
     videoSource = 0;
     searching = false;
     canSearchMore = true;
+    firstSearch = false;
     m_activeVideo = 0;
     m_activeRow = -1;
     skip = 1;
     max = 0;
-
     hoveredRow = -1;
     authorHovered = false;
     authorPressed = false;
@@ -96,7 +97,7 @@ QVariant PlaylistModel::data(const QModelIndex &index, int role) const {
     return QVariant();
 }
 
-void PlaylistModel::setActiveRow( int row) {
+void PlaylistModel::setActiveRow(int row, bool notify) {
     if ( rowExists( row ) ) {
         
         m_activeRow = row;
@@ -108,7 +109,7 @@ void PlaylistModel::setActiveRow( int row) {
             emit dataChanged( createIndex( oldactiverow, 0 ), createIndex( oldactiverow, columnCount() - 1 ) );
         
         emit dataChanged( createIndex( m_activeRow, 0 ), createIndex( m_activeRow, columnCount() - 1 ) );
-        emit activeRowChanged(row);
+        if (notify) emit activeRowChanged(row);
         
     } else {
         m_activeRow = -1;
@@ -151,8 +152,8 @@ void PlaylistModel::setVideoSource(VideoSource *videoSource) {
     reset();
 
     this->videoSource = videoSource;
-    connect(videoSource, SIGNAL(gotVideo(Video*)),
-            SLOT(addVideo(Video*)), Qt::UniqueConnection);
+    connect(videoSource, SIGNAL(gotVideos(QList<Video*>)),
+            SLOT(addVideos(QList<Video*>)), Qt::UniqueConnection);
     connect(videoSource, SIGNAL(finished(int)),
             SLOT(searchFinished(int)), Qt::UniqueConnection);
     connect(videoSource, SIGNAL(error(QString)),
@@ -164,6 +165,7 @@ void PlaylistModel::setVideoSource(VideoSource *videoSource) {
 void PlaylistModel::searchMore(int max) {
     if (searching) return;
     searching = true;
+    firstSearch = skip == 1;
     this->max = max;
     errorMessage.clear();
     videoSource->loadVideos(max, skip);
@@ -198,6 +200,9 @@ void PlaylistModel::searchFinished(int total) {
 
     if (!videoSource->getSuggestions().isEmpty())
         emit haveSuggestions(videoSource->getSuggestions());
+
+    if (firstSearch && !videos.isEmpty())
+        handleFirstVideo(videos.first());
 }
 
 void PlaylistModel::searchError(QString message) {
@@ -206,61 +211,79 @@ void PlaylistModel::searchError(QString message) {
     emit dataChanged( createIndex( maxItems, 0 ), createIndex( maxItems, columnCount() - 1 ) );
 }
 
-void PlaylistModel::addVideo(Video* video) {
-    
-    connect(video, SIGNAL(gotThumbnail()), SLOT(updateThumbnail()), Qt::UniqueConnection);
-    video->loadThumbnail();
+void PlaylistModel::addVideos(QList<Video*> newVideos) {
+    if (newVideos.isEmpty()) return;
 
-    beginInsertRows(QModelIndex(), videos.size(), videos.size());
-    videos << video;
+    bool isFirstVideo = videos.isEmpty();
+
+    beginInsertRows(QModelIndex(), videos.size(), videos.size() + newVideos.size() - 1);
+    videos.append(newVideos);
     endInsertRows();
-    
-    // first result!
-    if (videos.size() == 1) {
 
-        // manualplay
+    foreach (Video* video, newVideos) {
+        connect(video, SIGNAL(gotThumbnail()),
+                SLOT(updateThumbnail()), Qt::UniqueConnection);
+        video->loadThumbnail();
+    }
+
+    // if (isFirstVideo) handleFirstVideo(newVideos.first());
+}
+
+void PlaylistModel::handleFirstVideo(Video *video) {
+
+    int currentVideoRow = rowForCloneVideo(MediaView::instance()->getCurrentVideo());
+    if (currentVideoRow != -1) setActiveRow(currentVideoRow, false);
+    else {
         QSettings settings;
         if (!settings.value("manualplay", false).toBool())
             setActiveRow(0);
-
-        if (videoSource->metaObject()->className() == QLatin1String("YTSearch")) {
-
-            static const int maxRecentElements = 10;
-
-            YTSearch *search = dynamic_cast<YTSearch *>(videoSource);
-            SearchParams *searchParams = search->getSearchParams();
-
-            // save keyword
-            QString query = searchParams->keywords();
-            if (!query.isEmpty() && !searchParams->isTransient()) {
-                if (query.startsWith("http://")) {
-                    // Save the video title
-                    query += "|" + videos.first()->title();
-                }
-                QStringList keywords = settings.value(recentKeywordsKey).toStringList();
-                keywords.removeAll(query);
-                keywords.prepend(query);
-                while (keywords.size() > maxRecentElements)
-                    keywords.removeLast();
-                settings.setValue(recentKeywordsKey, keywords);
-            }
-
-            // save channel
-            QString channel = searchParams->author();
-            if (!channel.isEmpty() && !searchParams->isTransient()) {
-                if (!video->authorUri().isEmpty())
-                    channel = video->authorUri() + "|" + video->author();
-                QStringList channels = settings.value(recentChannelsKey).toStringList();
-                channels.removeAll(channel);
-                channels.prepend(channel);
-                while (channels.size() > maxRecentElements)
-                    channels.removeLast();
-                settings.setValue(recentChannelsKey, channels);
-            }
-        }
-
     }
 
+    QSettings settings;
+    if (!settings.value("manualplay", false).toBool()) {
+        int newActiveRow = rowForCloneVideo(MediaView::instance()->getCurrentVideo());
+        if (newActiveRow != -1) setActiveRow(newActiveRow, false);
+        else setActiveRow(0);
+    }
+
+    if (videoSource->metaObject()->className() == QLatin1String("YTSearch")) {
+
+        static const int maxRecentElements = 10;
+
+        YTSearch *search = dynamic_cast<YTSearch *>(videoSource);
+        SearchParams *searchParams = search->getSearchParams();
+
+        // save keyword
+        QString query = searchParams->keywords();
+        if (!query.isEmpty() && !searchParams->isTransient()) {
+            if (query.startsWith("http://")) {
+                // Save the video title
+                query += "|" + videos.first()->title();
+            }
+            QStringList keywords = settings.value(recentKeywordsKey).toStringList();
+            keywords.removeAll(query);
+            keywords.prepend(query);
+            while (keywords.size() > maxRecentElements)
+                keywords.removeLast();
+            settings.setValue(recentKeywordsKey, keywords);
+        }
+
+        // save channel
+        QString channel = searchParams->author();
+        if (!channel.isEmpty() && !searchParams->isTransient()) {
+            QString value;
+            if (!video->authorUri().isEmpty() && video->authorUri() != video->author())
+                value = video->authorUri() + "|" + video->author();
+            else value = video->author();
+            QStringList channels = settings.value(recentChannelsKey).toStringList();
+            channels.removeAll(value);
+            channels.removeAll(channel);
+            channels.prepend(value);
+            while (channels.size() > maxRecentElements)
+                channels.removeLast();
+            settings.setValue(recentChannelsKey, channels);
+        }
+    }
 }
 
 void PlaylistModel::updateThumbnail() {
@@ -314,15 +337,20 @@ void PlaylistModel::removeIndexes(QModelIndexList &indexes) {
 
 
 Qt::DropActions PlaylistModel::supportedDropActions() const {
-    return Qt::MoveAction;
+    return Qt::CopyAction;
+}
+
+Qt::DropActions PlaylistModel::supportedDragActions() const {
+    return Qt::CopyAction;
 }
 
 Qt::ItemFlags PlaylistModel::flags(const QModelIndex &index) const {
-    if (index.isValid())
+    if (index.isValid()) {
         if (index.row() == videos.size()) {
             // don't drag the "show 10 more" item
             return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
         } else return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsDragEnabled);
+    }
     return Qt::ItemIsDropEnabled;
 }
 
@@ -389,6 +417,15 @@ bool PlaylistModel::dropMimeData(const QMimeData *data,
 
     return true;
 
+}
+
+int PlaylistModel::rowForCloneVideo(Video *video) const {
+    if (!video) return -1;
+    for (int i = 0; i < videos.size(); ++i) {
+        Video *v = videos.at(i);
+        if (v->id() == video->id()) return i;
+    }
+    return -1;
 }
 
 int PlaylistModel::rowForVideo(Video* video) {
