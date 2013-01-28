@@ -98,7 +98,7 @@ void  Video::getVideoInfo() {
 
     // Get Video Token
     QUrl videoInfoUrl = QUrl(QString(
-            "https://www.youtube.com/get_video_info?video_id=%1%2&ps=default&eurl=&gl=US&hl=en"
+            "http://www.youtube.com/get_video_info?video_id=%1%2&ps=default&eurl=&gl=US&hl=en"
             ).arg(videoId, elTypes.at(elIndex)));
 
     QObject *reply = The::http()->get(videoInfoUrl);
