@@ -54,10 +54,6 @@ public:
 
     QString id() const { return videoId; }
 
-    bool operator==(const Video &other) const {
-        return videoId == other.id();
-    }
-
 signals:
     void gotThumbnail();
     void gotMediumThumbnail(QByteArray bytes);
