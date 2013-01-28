@@ -15,7 +15,7 @@ YTStandardFeed::YTStandardFeed(QObject *parent)
 void YTStandardFeed::loadVideos(int max, int skip) {
     aborted = false;
 
-    QString s = "https://gdata.youtube.com/feeds/api/standardfeeds/";
+    QString s = "http://gdata.youtube.com/feeds/api/standardfeeds/";
     if (!regionId.isEmpty()) s += regionId + "/";
     s += feedId;
     if (!category.isEmpty()) s += "_" + category;
@@ -49,9 +49,7 @@ void YTStandardFeed::parse(QByteArray data) {
     YTFeedReader reader(data);
     QList<Video*> videos = reader.getVideos();
 
-    foreach (Video *video, videos)
-        emit gotVideo(video);
-
+    emit gotVideos(videos);
     emit finished(videos.size());
 }
 

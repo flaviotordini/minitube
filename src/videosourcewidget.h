@@ -27,7 +27,7 @@ protected:
 
 private slots:
     void activate();
-    void previewVideo(Video*);
+    void previewVideo(QList<Video*> videos);
     void setPixmapData(QByteArray bytes);
 
 private:

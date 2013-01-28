@@ -13,8 +13,8 @@ VideoSourceWidget::VideoSourceWidget(VideoSource *videoSource, QWidget *parent)
     setCursor(Qt::PointingHandCursor);
     setFocusPolicy(Qt::StrongFocus);
 
-    connect(videoSource, SIGNAL(gotVideo(Video*)),
-            SLOT(previewVideo(Video*)), Qt::UniqueConnection);
+    connect(videoSource, SIGNAL(gotVideos(QList<Video*>)),
+            SLOT(previewVideo(QList<Video*>)), Qt::UniqueConnection);
     videoSource->loadVideos(1, 1);
 }
 
@@ -22,9 +22,10 @@ void VideoSourceWidget::activate() {
     emit activated(videoSource);
 }
 
-void VideoSourceWidget::previewVideo(Video *video) {
+void VideoSourceWidget::previewVideo(QList<Video*> videos) {
     videoSource->disconnect();
-    this->video = video;
+    if (videos.isEmpty()) return;
+    video = videos.first();
     connect(video, SIGNAL(gotMediumThumbnail(QByteArray)),
             SLOT(setPixmapData(QByteArray)), Qt::UniqueConnection);
     video->loadMediumThumbnail();

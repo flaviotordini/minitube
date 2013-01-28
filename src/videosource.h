@@ -20,7 +20,7 @@ public slots:
     void setParam(QString name, QVariant value);
 
 signals:
-    void gotVideo(Video *video);
+    void gotVideos(QList<Video*> videos);
     void finished(int total);
     void error(QString message);
     void nameChanged(QString name);

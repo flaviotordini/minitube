@@ -18,7 +18,7 @@ YTSearch::YTSearch(SearchParams *searchParams, QObject *parent) :
 void YTSearch::loadVideos(int max, int skip) {
     aborted = false;
 
-    QUrl url("https://gdata.youtube.com/feeds/api/videos/");
+    QUrl url("http://gdata.youtube.com/feeds/api/videos/");
     url.addQueryItem("v", "2");
 
     url.addQueryItem("max-results", QString::number(max));
@@ -108,9 +108,7 @@ void YTSearch::parseResults(QByteArray data) {
         emit nameChanged(name);
     }
 
-    foreach (Video *video, videos)
-        emit gotVideo(video);
-
+    emit gotVideos(videos);
     emit finished(videos.size());
 }
 

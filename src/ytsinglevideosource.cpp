@@ -19,8 +19,8 @@ void YTSingleVideoSource::loadVideos(int max, int skip) {
     this->max = max;
 
     QString s;
-    if (skip == 1) s = "https://gdata.youtube.com/feeds/api/videos/" + videoId;
-    else s = QString("https://gdata.youtube.com/feeds/api/videos/%1/related").arg(videoId);
+    if (skip == 1) s = "http://gdata.youtube.com/feeds/api/videos/" + videoId;
+    else s = QString("http://gdata.youtube.com/feeds/api/videos/%1/related").arg(videoId);
     QUrl url(s);
     url.addQueryItem("v", "2");
 
@@ -58,8 +58,7 @@ void YTSingleVideoSource::parse(QByteArray data) {
         emit nameChanged(name);
     }
 
-    foreach (Video *video, videos)
-        emit gotVideo(video);
+    emit gotVideos(videos);
 
     if (skip == 1) loadVideos(max - 1, 2);
     else if (skip == 2) emit finished(videos.size() + 1);
