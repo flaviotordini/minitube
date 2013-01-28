@@ -18,7 +18,7 @@ PlaylistView::PlaylistView(QWidget *parent) : QListView(parent) {
     setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     setFrameShape(QFrame::NoFrame);
     setAttribute(Qt::WA_MacShowFocusRect, false);
-    setMinimumSize(320, 240);
+    // setMinimumSize(120, 240);
     setUniformItemSizes(true);
 
     connect(this, SIGNAL(entered(const QModelIndex &)),
