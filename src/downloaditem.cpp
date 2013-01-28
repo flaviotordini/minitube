@@ -159,7 +159,7 @@ void DownloadItem::metaDataChanged() {
     QVariant locationHeader = m_reply->header(QNetworkRequest::LocationHeader);
     if (locationHeader.isValid()) {
         m_url = locationHeader.toUrl();
-        qDebug() << "Redirecting to" << m_url;
+        // qDebug() << "Redirecting to" << m_url;
         tryAgain();
         return;
     }
