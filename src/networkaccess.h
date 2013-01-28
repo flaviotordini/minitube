@@ -14,22 +14,24 @@ class NetworkReply : public QObject {
 
 public:
     NetworkReply(QNetworkReply* networkReply);
-
-public slots:
-    void finished();
-    void requestError(QNetworkReply::NetworkError);
-    void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
-    void readTimeout();
+    QNetworkReply* getNetworkReply() { return networkReply; }
 
 signals:
     void data(QByteArray);
     void error(QNetworkReply*);
     void finished(QNetworkReply*);
 
+private slots:
+    void finished();
+    void requestError(QNetworkReply::NetworkError);
+    void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
+    void readTimeout();
+
 private:
     void setupReply();
     QNetworkReply *networkReply;
     QTimer *readTimeoutTimer;
+    int retryCount;
 
 };
 

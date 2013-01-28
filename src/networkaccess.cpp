@@ -14,8 +14,11 @@ const QString USER_AGENT = QString(Constants::NAME)
 
 const QString USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11";
 
-NetworkReply::NetworkReply(QNetworkReply *networkReply) : QObject(networkReply) {
-    this->networkReply = networkReply;
+NetworkReply::NetworkReply(QNetworkReply *networkReply) :
+    QObject(networkReply),
+    networkReply(networkReply),
+    retryCount(0) {
+
     setupReply();
 
     readTimeoutTimer = new QTimer(this);
@@ -48,7 +51,7 @@ void NetworkReply::finished() {
             setupReply();
             readTimeoutTimer->start();
             return;
-        } else qWarning("Redirection not supported");
+        } else qWarning() << "Redirection not supported" << networkReply->url().toEncoded();
     }
 
     if (receivers(SIGNAL(data(QByteArray))) > 0)
@@ -92,10 +95,16 @@ void NetworkReply::readTimeout() {
         return;
     }
 
+    if (retryCount > 3) {
+        emit error(networkReply);
+        return;
+    }
     QNetworkReply *retryReply = The::http()->request(networkReply->url(), networkReply->operation());
     setParent(retryReply);
     networkReply = retryReply;
     setupReply();
+    retryCount++;
+    readTimeoutTimer->start();
 }
 
 /* --- NetworkAccess --- */
