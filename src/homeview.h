@@ -17,6 +17,11 @@ public:
     HomeView(QWidget *parent = 0);
     void appear();
     void disappear();
+    QHash<QString, QVariant> metadata() {
+        QHash<QString, QVariant> metadata;
+        metadata.insert("description", tr("Make yourself comfortable"));
+        return metadata;
+    }
     void showWidget(QWidget *widget);
     SearchView* getSearchView() { return searchView; }
     StandardFeedsView* getStandardFeedsView() { return standardFeedsView; }
