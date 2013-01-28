@@ -17,11 +17,6 @@ public:
     SearchView(QWidget *parent = 0);
     void updateRecentKeywords();
     void updateRecentChannels();
-    QHash<QString, QVariant> metadata() {
-        QHash<QString, QVariant> metadata;
-        metadata.insert("description", tr("Make yourself comfortable"));
-        return metadata;
-    }
 
 public slots:
     void appear();
