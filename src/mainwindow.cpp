@@ -849,6 +849,7 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
         The::globalActions()->value("download")->setEnabled(false);
         The::globalActions()->value("stopafterthis")->setEnabled(false);
         The::globalActions()->value("related-videos")->setEnabled(false);
+        The::globalActions()->value("refine-search")->setEnabled(false);
     }
 
     The::globalActions()->value("twitter")->setEnabled(isMediaView);
