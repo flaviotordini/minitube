@@ -58,6 +58,7 @@ void Video::loadThumbnail() {
 
 void Video::setThumbnail(QByteArray bytes) {
     m_thumbnail.loadFromData(bytes);
+    m_thumbnail = m_thumbnail.scaled(160, 90);
     emit gotThumbnail();
 }
 

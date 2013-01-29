@@ -97,7 +97,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
     const Video *video = videoPointer.data();
 
     // thumb
-    painter->drawPixmap(0, 0, THUMB_WIDTH, THUMB_HEIGHT, video->thumbnail());
+    painter->drawPixmap(0, 0, video->thumbnail());
 
     // play icon overlayed on the thumb
     if (isActive)
