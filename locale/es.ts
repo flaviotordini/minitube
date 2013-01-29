@@ -570,7 +570,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="478"/>
         <source>&amp;Stop After This Video</source>
-        <translation>&amp;Parar después de este vídeo</translation>
+        <translation>&amp;Detener tras este vídeo</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="485"/>
