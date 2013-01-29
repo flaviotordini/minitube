@@ -36,7 +36,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     setAttribute(Qt::WA_OpaquePaintEvent);
 #endif
 
-    QBoxLayout *mainLayout = new QVBoxLayout();
+    QBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setMargin(PADDING);
     mainLayout->setSpacing(0);
 
@@ -46,7 +46,6 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     mainLayout->addWidget(message);
 
     mainLayout->addStretch();
-    mainLayout->addSpacing(PADDING);
 
     QBoxLayout *hLayout = new QHBoxLayout();
     hLayout->setAlignment(Qt::AlignCenter);
@@ -154,16 +153,12 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
     layout->addLayout(otherLayout);
 
-    mainLayout->addSpacing(PADDING);
     mainLayout->addStretch();
 
 #ifdef APP_ACTIVATION
     if (!Activation::instance().isActivated())
         mainLayout->addWidget(Extra::buyButton(tr("Get the full version")), 0, Qt::AlignRight);
 #endif
-
-    setLayout(mainLayout);
-
 }
 
 void SearchView::appear() {
