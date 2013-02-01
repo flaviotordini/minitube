@@ -91,7 +91,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     layout->addWidget(splitter);
 
     splitter->setStretchFactor(0, 1);
-    splitter->setStretchFactor(1, 6);
+    splitter->setStretchFactor(1, 5);
 
     // restore splitter state
     QSettings settings;
