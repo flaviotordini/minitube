@@ -49,6 +49,8 @@ public slots:
     void buy();
     void hideBuyAction();
 #endif
+    bool isReallyFullScreen();
+    bool isCompact() { return m_compact; }
 
 protected:
     void changeEvent(QEvent *);
@@ -179,6 +181,8 @@ private:
     bool m_fullscreen;
     bool m_maximized;
     QTimer *mouseTimer;
+    bool m_compact;
+
 };
 
 #endif

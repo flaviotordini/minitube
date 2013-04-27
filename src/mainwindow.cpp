@@ -60,7 +60,8 @@ MainWindow::MainWindow() :
     regionsView(0),
     mediaObject(0),
     audioOutput(0),
-    m_fullscreen(false) {
+    m_fullscreen(false),
+    m_compact(false) {
 
     singleton = this;
 
@@ -1139,7 +1140,18 @@ void MainWindow::updateUIForFullscreen() {
     }
 }
 
+bool MainWindow::isReallyFullScreen() {
+#ifdef Q_WS_MAC
+    WId handle = winId();
+    if (mac::CanGoFullScreen(handle)) return mac::IsFullScreen(handle);
+    else return isFullScreen();
+#else
+    return isFullScreen();
+#endif
+}
+
 void MainWindow::compactView(bool enable) {
+    m_compact = enable;
 
     static QList<QKeySequence> compactShortcuts;
     static QList<QKeySequence> stopShortcuts;
@@ -1152,7 +1164,7 @@ void MainWindow::compactView(bool enable) {
 #endif
 
     if (enable) {
-        setMinimumSize(160, 120);
+        setMinimumSize(320, 180);
 #ifdef Q_WS_MAC
         mac::RemoveFullScreenWindow(winId());
 #endif
@@ -1161,7 +1173,7 @@ void MainWindow::compactView(bool enable) {
         if (settings.contains(key))
             restoreGeometry(settings.value(key).toByteArray());
         else
-            resize(320, 240);
+            resize(320, 180);
 
         mainToolBar->setVisible(!enable);
         mediaView->setPlaylistVisible(!enable);
@@ -1197,6 +1209,10 @@ void MainWindow::compactView(bool enable) {
 
     // auto float on top
     floatOnTop(enable);
+
+#ifdef Q_WS_MAC
+    mac::compactMode(winId(), enable);
+#endif
 }
 
 void MainWindow::searchFocus() {
