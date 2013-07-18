@@ -1,8 +1,29 @@
+/* $BEGIN_LICENSE
+
+This file is part of Minitube.
+Copyright 2009, Flavio Tordini <flavio.tordini@gmail.com>
+
+Minitube is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Minitube is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
+
+$END_LICENSE */
+
 #include "sidebarheader.h"
 #include "utils.h"
 #include "mediaview.h"
 #include "videosource.h"
 #include "fontutils.h"
+#include "utils.h"
 
 SidebarHeader::SidebarHeader(QWidget *parent) : QToolBar(parent) { }
 
@@ -10,6 +31,8 @@ void SidebarHeader::setup() {
     static bool isSetup = false;
     if (isSetup) return;
     isSetup = true;
+
+    setIconSize(QSize(16, 16));
 
     backAction = new QAction(
                 Utils::icon("go-previous"),
@@ -27,19 +50,16 @@ void SidebarHeader::setup() {
 
     foreach (QAction* action, actions()) {
         window()->addAction(action);
-        action->setAutoRepeat(false);
+        Utils::setupAction(action);
     }
 
-    /*
     QWidget *spacerWidget = new QWidget(this);
     spacerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-    spacerWidget->setVisible(true);
     addWidget(spacerWidget);
-    */
 }
 
 QSize SidebarHeader::minimumSizeHint (void) const {
-    return(QSize(1, QFontMetrics(font()).height() * 1.9));
+    return(QSize(160, QFontMetrics(font()).height() * 1.9));
 }
 
 void SidebarHeader::updateInfo() {
@@ -87,6 +107,14 @@ void SidebarHeader::updateTitle(QString title) {
 void SidebarHeader::setTitle(QString title) {
     this->title = title;
     update();
+
+    QList<VideoSource*> history = MediaView::instance()->getHistory();
+    int currentIndex = MediaView::instance()->getHistoryIndex();
+    VideoSource *currentVideoSource = history.at(currentIndex);
+    foreach (QAction* action, videoSourceActions)
+        removeAction(action);
+    videoSourceActions = currentVideoSource->getActions();
+    addActions(videoSourceActions);
 }
 
 void SidebarHeader::paintEvent(QPaintEvent *event) {
@@ -101,12 +129,13 @@ void SidebarHeader::paintEvent(QPaintEvent *event) {
     QString t = title;
     QRect textBox = p.boundingRect(r, Qt::AlignCenter, t);
     int i = 1;
-    static const int margin = 100;
-    while (textBox.width() > r.width() - margin) {
-        t = t.left(t.length() - i) + "...";
+    static const int margin = 50;
+    while (textBox.width() > r.width() - margin*2 && t.length() > 3) {
+        t = t.left(t.length() - i).trimmed() + QLatin1String("...");
         textBox = p.boundingRect(r, Qt::AlignCenter, t);
         i++;
     }
-
     p.drawText(r, Qt::AlignCenter, t);
+
+
 }

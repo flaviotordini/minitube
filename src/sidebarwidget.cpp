@@ -1,8 +1,28 @@
+/* $BEGIN_LICENSE
+
+This file is part of Minitube.
+Copyright 2009, Flavio Tordini <flavio.tordini@gmail.com>
+
+Minitube is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Minitube is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
+
+$END_LICENSE */
+
 #include "sidebarwidget.h"
 #include "refinesearchbutton.h"
 #include "refinesearchwidget.h"
 #include "sidebarheader.h"
-#ifndef Q_WS_X11
+#ifdef APP_EXTRA
 #include "extra.h"
 #endif
 
@@ -44,10 +64,6 @@ SidebarWidget::SidebarWidget(QWidget *parent) :
 }
 
 void SidebarWidget::setup() {
-    static bool isSetup = false;
-    if (isSetup) return;
-    isSetup = true;
-
     refineSearchButton = new RefineSearchButton(this);
     refineSearchButton->setStatusTip(tr("Refine Search")
                                      + " (" + QKeySequence(Qt::CTRL + Qt::Key_R).toString(QKeySequence::NativeText) + ")");
@@ -72,7 +88,6 @@ void SidebarWidget::setPlaylist(QListView *playlist) {
 }
 
 void SidebarWidget::showPlaylist() {
-    setup();
     stackedWidget->setCurrentWidget(playlist);
     The::globalActions()->value("refine-search")->setChecked(false);
 }
@@ -81,8 +96,8 @@ void SidebarWidget::showRefineSearchWidget() {
     if (!refineSearchWidget->isEnabled()) return;
     refineSearchWidget->setDirty(false);
     stackedWidget->setCurrentWidget(refineSearchWidget);
-    refineSearchWidget->setFocus();
-#ifndef Q_WS_X11
+    // refineSearchWidget->setFocus();
+#ifdef APP_EXTRA
     Extra::fadeInWidget(playlist, refineSearchWidget);
 #endif
     refineSearchButton->hide();
@@ -92,7 +107,7 @@ void SidebarWidget::showRefineSearchWidget() {
 void SidebarWidget::hideRefineSearchWidget() {
     stackedWidget->setCurrentWidget(playlist);
     playlist->setFocus();
-#ifndef Q_WS_X11
+#ifdef APP_EXTRA
     Extra::fadeInWidget(refineSearchWidget, playlist);
 #endif
     The::globalActions()->value("refine-search")->setChecked(false);

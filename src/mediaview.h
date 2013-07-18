@@ -1,3 +1,23 @@
+/* $BEGIN_LICENSE
+
+This file is part of Minitube.
+Copyright 2009, Flavio Tordini <flavio.tordini@gmail.com>
+
+Minitube is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Minitube is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
+
+$END_LICENSE */
+
 #ifndef __MEDIAVIEW_H__
 #define __MEDIAVIEW_H__
 
@@ -37,7 +57,9 @@ public:
     const QList<VideoSource*> & getHistory() { return history; }
     int getHistoryIndex();
     PlaylistModel* getPlaylistModel() { return playlistModel; }
-    Video* getCurrentVideo();
+    const QString &getCurrentVideoId();
+    void updateSubscriptionAction(Video *video, bool subscribed);
+    VideoAreaWidget* getVideoArea() { return videoAreaWidget; }
 
 public slots:
     void search(SearchParams *searchParams);
@@ -61,7 +83,7 @@ public slots:
     void setPlaylistVisible(bool visible=true);
     void saveSplitterState();
     void downloadVideo();
-    void snapshot();
+    // void snapshot();
     void fullscreen();
     void findVideoParts();
     void relatedVideos();
@@ -69,6 +91,7 @@ public slots:
     void goBack();
     bool canGoForward();
     void goForward();
+    void toggleSubscription();
 
 private slots:
     // list/model
@@ -80,7 +103,6 @@ private slots:
     void handleError(QString message);
     // phonon
     void stateChanged(Phonon::State newState, Phonon::State oldState);
-    void currentSourceChanged(const Phonon::MediaSource source);
     void aboutToFinish();
 #ifdef APP_ACTIVATION
     void demoMessage();
@@ -102,6 +124,7 @@ private slots:
 private:
     MediaView(QWidget *parent = 0);
     SearchParams* getSearchParams();
+
     static QRegExp wordRE(QString s);
 
     QSplitter *splitter;
@@ -115,9 +138,10 @@ private:
     Phonon::MediaObject *mediaObject;
     Phonon::VideoWidget *videoWidget;
 
-    bool reallyStopped;
+    bool stopped;
     QTimer *errorTimer;
     Video *skippedVideo;
+    QString currentVideoId;
 
 #ifdef APP_ACTIVATION
     QTimer *demoTimer;
@@ -125,6 +149,7 @@ private:
 
     DownloadItem *downloadItem;
     QList<VideoSource*> history;
+    QList<QAction*> currentVideoActions;
 };
 
 #endif // __MEDIAVIEW_H__

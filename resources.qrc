@@ -55,5 +55,13 @@
         <file>flags/ye.png</file>
         <file>style.css</file>
         <file>images/worldwide.png</file>
+        <file>images/show-updated.png</file>
+        <file>images/sort.png</file>
+        <file>images/mark-watched.png</file>
+        <file>images/channels.png</file>
+        <file>images/unwatched.png</file>
+        <file>images/badge.png</file>
+        <file>images/badge3.png</file>
+        <file>images/badge4.png</file>
     </qresource>
 </RCC>

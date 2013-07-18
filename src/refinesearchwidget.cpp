@@ -1,7 +1,27 @@
+/* $BEGIN_LICENSE
+
+This file is part of Minitube.
+Copyright 2009, Flavio Tordini <flavio.tordini@gmail.com>
+
+Minitube is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Minitube is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
+
+$END_LICENSE */
+
 #include "refinesearchwidget.h"
 #include "fontutils.h"
 #include "searchparams.h"
-#ifndef Q_WS_X11
+#ifdef APP_EXTRA
 #include "extra.h"
 #endif
 
@@ -119,8 +139,10 @@ void RefineSearchWidget::setup() {
     }
 
     layout->addSpacing(spacing);
-    QPushButton *doneButton = new QPushButton(tr("Done"), this);
+    doneButton = new QPushButton(tr("Done"), this);
     doneButton->setDefault(true);
+    doneButton->setAutoDefault(true);
+    doneButton->setFocusPolicy(Qt::StrongFocus);
     doneButton->setFont(FontUtils::medium());
     doneButton->setProperty("custom", true);
     doneButton->setProperty("important", true);
@@ -138,7 +160,7 @@ void RefineSearchWidget::setupLabel(QString text, QBoxLayout *layout, QString pa
     QLabel *icon = new QLabel(this);
     icon->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     QString resource = paramName;
-#ifndef Q_WS_X11
+#ifdef APP_EXTRA
     resource = Extra::resourceName(resource);
 #endif
     QPixmap pixmap = QPixmap(":/images/search-" + resource + ".png");
@@ -207,8 +229,6 @@ void RefineSearchWidget::actionTriggered(QAction *action) {
 void RefineSearchWidget::setSearchParams(SearchParams *params) {
     setup();
 
-    qDebug() << (params != 0);
-
     The::globalActions()->value("refine-search")->setEnabled(params);
     setEnabled(params);
 
@@ -239,6 +259,8 @@ void RefineSearchWidget::setSearchParams(SearchParams *params) {
             Qt::UniqueConnection);
 
     dirty = false;
+
+    doneButton->setFocus();
 }
 
 void RefineSearchWidget::doneClicked() {

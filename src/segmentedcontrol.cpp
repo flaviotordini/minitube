@@ -1,6 +1,27 @@
+/* $BEGIN_LICENSE
+
+This file is part of Minitube.
+Copyright 2009, Flavio Tordini <flavio.tordini@gmail.com>
+
+Minitube is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Minitube is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
+
+$END_LICENSE */
+
 #include "segmentedcontrol.h"
 #include "fontutils.h"
 #include "mainwindow.h"
+#include "painterutils.h"
 
 static const QColor borderColor = QColor(0x26, 0x26, 0x26);
 
@@ -233,13 +254,22 @@ void SegmentedControl::paintButton(QPainter *painter, const QRect& rect, const Q
 
     painter->setFont(FontUtils::smallBold());
 
+    const QString text = action->text();
+
     // text shadow
     painter->setPen(QColor(0, 0, 0, 128));
-    painter->drawText(0, -1, width, height, Qt::AlignCenter, action->text());
+    painter->drawText(0, -1, width, height, Qt::AlignCenter, text);
 
     painter->setPen(QPen(Qt::white, 1));
-    painter->drawText(0, 0, width, height, Qt::AlignCenter, action->text());
+    painter->drawText(0, 0, width, height, Qt::AlignCenter, text);
+
+    if (action->property("notifyCount").isValid()) {
+        QRect textBox = painter->boundingRect(rect,
+                                              Qt::AlignCenter,
+                                              text);
+        painter->translate((width + textBox.width()) / 2 + 10, (height - 20) / 2);
+        PainterUtils::paintBadge(painter, action->property("notifyCount").toString());
+    }
 
     painter->restore();
 }
-

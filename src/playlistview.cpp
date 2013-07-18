@@ -1,12 +1,35 @@
+/* $BEGIN_LICENSE
+
+This file is part of Minitube.
+Copyright 2009, Flavio Tordini <flavio.tordini@gmail.com>
+
+Minitube is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Minitube is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
+
+$END_LICENSE */
+
 #include "playlistview.h"
 #include "playlistmodel.h"
 #include "playlistitemdelegate.h"
+#include "painterutils.h"
 
-PlaylistView::PlaylistView(QWidget *parent) : QListView(parent) {
-    clickableAuthors = true;
-
+PlaylistView::PlaylistView(QWidget *parent) : QListView(parent),
+    clickableAuthors(true) {
     setItemDelegate(new PlaylistItemDelegate(this));
     setSelectionMode(QAbstractItemView::ExtendedSelection);
+
+    setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Expanding);
+    setMinimumWidth(175);
 
     // dragndrop
     setDragEnabled(true);
@@ -18,7 +41,7 @@ PlaylistView::PlaylistView(QWidget *parent) : QListView(parent) {
     setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     setFrameShape(QFrame::NoFrame);
     setAttribute(Qt::WA_MacShowFocusRect, false);
-    // setMinimumSize(120, 240);
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setUniformItemSizes(true);
 
     connect(this, SIGNAL(entered(const QModelIndex &)),
@@ -38,7 +61,6 @@ void PlaylistView::leaveEvent(QEvent * /* event */) {
 
 void PlaylistView::mouseMoveEvent(QMouseEvent *event) {
     QListView::mouseMoveEvent(event);
-    // QWidget::mouseMoveEvent(event);
 
     if (isHoveringThumbnail(event)) {
         setCursor(Qt::PointingHandCursor);
@@ -115,4 +137,9 @@ bool PlaylistView::isHoveringThumbnail(QMouseEvent *event) {
 bool PlaylistView::isShowMoreItem(const QModelIndex &index) {
     return model()->rowCount() > 1 &&
             model()->rowCount() == index.row() + 1;
+}
+
+void PlaylistView::paintEvent(QPaintEvent *event) {
+    QListView::paintEvent(event);
+    PainterUtils::topShadow(viewport());
 }

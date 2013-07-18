@@ -1,3 +1,23 @@
+/* $BEGIN_LICENSE
+
+This file is part of Minitube.
+Copyright 2009, Flavio Tordini <flavio.tordini@gmail.com>
+
+Minitube is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Minitube is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
+
+$END_LICENSE */
+
 #include "searchview.h"
 #include "constants.h"
 #include "fontutils.h"
@@ -9,13 +29,14 @@
 #else
 #include "searchlineedit.h"
 #endif
-#ifndef Q_WS_X11
+#ifdef APP_EXTRA
 #include "extra.h"
 #endif
 #ifdef APP_ACTIVATION
 #include "activation.h"
 #endif
 #include "mainwindow.h"
+#include "painterutils.h"
 
 namespace The {
 QHash<QString, QAction*>* globalActions();
@@ -35,6 +56,8 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     // by ourselves anyway in paintEvent()
     setAttribute(Qt::WA_OpaquePaintEvent);
 #endif
+
+    setAutoFillBackground(true);
 
     QBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setMargin(PADDING);
@@ -68,6 +91,12 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
                        .arg(Constants::WEBSITE, Constants::NAME)
                        + "</h1>", this);
     welcomeLabel->setOpenExternalLinks(true);
+#ifdef APP_WIN
+    QFont f = welcomeLabel->font();
+    f.setHintingPreference(QFont::PreferNoHinting);
+    f.setFamily("Segoe UI Light");
+    welcomeLabel->setFont(f);
+#endif
     layout->addWidget(welcomeLabel);
 
     layout->addSpacing(PADDING / 2);
@@ -280,7 +309,7 @@ void SearchView::watch(QString query) {
         searchParams->setKeywords(query);
     else {
         // remove spaces from channel name
-        query = query.replace(" ", "");
+        query = query.simplified();
         searchParams->setAuthor(query);
         searchParams->setSortBy(SearchParams::SortByNewest);
     }
@@ -332,9 +361,8 @@ void SearchView::watchKeywords(QString query) {
     emit search(searchParams);
 }
 
-void SearchView::paintEvent(QPaintEvent * /*event*/) {
-    QPainter painter(this);
-
+void SearchView::paintEvent(QPaintEvent *event) {
+    QWidget::paintEvent(event);
 #if defined(APP_MAC) | defined(APP_WIN)
     QBrush brush;
     if (window()->isActiveWindow()) {
@@ -342,21 +370,17 @@ void SearchView::paintEvent(QPaintEvent * /*event*/) {
     } else {
         brush = palette().window();
     }
+    QPainter painter(this);
     painter.fillRect(0, 0, width(), height(), brush);
+    painter.end();
 #endif
-
-    static QLinearGradient shadow;
-    static const int shadowHeight = 10;
-    if (shadow.stops().count() == 2) {
-        shadow.setFinalStop(0, shadowHeight);
-        const qreal initialOpacity = 96;
-        for (qreal i = 0; i <= 1; i += 1.0/shadowHeight) {
-            qreal opacity = qPow(initialOpacity, (1.0 - i)) - 1;
-            shadow.setColorAt(i, QColor(0x00, 0x00, 0x00, opacity));
-        }
-    }
-    QRect r = rect();
-    painter.fillRect(r.x(), r.y(), r.width(), shadowHeight, QBrush(shadow));
+#ifdef APP_UBUNTU
+    QStyleOption o;
+    o.initFrom(this);
+    QPainter p(this);
+    style()->drawPrimitive(QStyle::PE_Widget, &o, &p, this);
+#endif
+    // PainterUtils::topShadow(this);
 }
 
 void SearchView::searchTypeChanged(int index) {

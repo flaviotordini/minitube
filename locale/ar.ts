@@ -15,7 +15,7 @@
     <message>
         <location filename="src/aboutview.cpp" line="38"/>
         <source>Licensed to: %1</source>
-        <translation type="unfinished"/>
+        <translation>مرخّص لـ: %1</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="42"/>
@@ -88,7 +88,7 @@
     <message>
         <location filename="local/src/activationdialog.cpp" line="35"/>
         <source>&amp;Code:</source>
-        <translation type="unfinished"/>
+        <translation>الرقم ال&amp;خاصّ:</translation>
     </message>
 </context>
 <context>
@@ -132,6 +132,95 @@
         <location filename="local/src/activationview.cpp" line="85"/>
         <source>Buy License</source>
         <translation>قم بشراء رخصة</translation>
+    </message>
+</context>
+<context>
+    <name>ChannelAggregator</name>
+    <message>
+        <location filename="src/channelaggregator.cpp" line="110"/>
+        <source>By %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message numerus="yes">
+        <location filename="src/channelaggregator.cpp" line="112"/>
+        <source>You have %n new video(s)</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+    </message>
+</context>
+<context>
+    <name>ChannelItemDelegate</name>
+    <message>
+        <location filename="src/channelitemdelegate.cpp" line="46"/>
+        <source>All Videos</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/channelitemdelegate.cpp" line="63"/>
+        <source>Unwatched Videos</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ChannelView</name>
+    <message>
+        <location filename="src/channelview.cpp" line="75"/>
+        <source>Mark all as watched</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="83"/>
+        <source>Show Updated</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="95"/>
+        <source>Name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="102"/>
+        <source>Last Updated</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="109"/>
+        <source>Last Added</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="116"/>
+        <source>Last Watched</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="123"/>
+        <source>Most Watched</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="131"/>
+        <source>Sort by</source>
+        <translation>ترتيب بـ</translation>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="190"/>
+        <source>All Videos</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="194"/>
+        <source>Unwatched Videos</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="206"/>
+        <source>There are no updated subscriptions at this time.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="208"/>
+        <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -339,24 +428,34 @@
 <context>
     <name>HomeView</name>
     <message>
-        <location filename="src/homeview.cpp" line="33"/>
+        <location filename="src/homeview.cpp" line="38"/>
         <source>Search</source>
         <translation>بحث</translation>
     </message>
     <message>
-        <location filename="src/homeview.cpp" line="35"/>
+        <location filename="src/homeview.cpp" line="40"/>
         <source>Find videos and channels by keyword</source>
-        <translation type="unfinished"/>
+        <translation>جِد مقاطع فيديو وقنواتٍ بحسب الكلمة الرئيسة</translation>
     </message>
     <message>
-        <location filename="src/homeview.cpp" line="40"/>
+        <location filename="src/homeview.cpp" line="45"/>
         <source>Browse</source>
         <translation>أستعراض</translation>
     </message>
     <message>
-        <location filename="src/homeview.cpp" line="42"/>
+        <location filename="src/homeview.cpp" line="47"/>
         <source>Browse videos by category</source>
         <translation>تصفح الفيديوهات حسب الفئة</translation>
+    </message>
+    <message>
+        <location filename="src/homeview.cpp" line="51"/>
+        <source>Subscriptions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/homeview.cpp" line="53"/>
+        <source>Channel subscriptions</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="src/homeview.h" line="22"/>
@@ -367,7 +466,7 @@
 <context>
     <name>LoadingWidget</name>
     <message>
-        <location filename="src/loadingwidget.cpp" line="90"/>
+        <location filename="src/loadingwidget.cpp" line="88"/>
         <source>Error</source>
         <translation>خطأ</translation>
     </message>
@@ -375,426 +474,431 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="src/mainwindow.cpp" line="213"/>
+        <location filename="src/mainwindow.cpp" line="237"/>
         <source>&amp;Stop</source>
         <translation>&amp;قف</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="214"/>
+        <location filename="src/mainwindow.cpp" line="238"/>
         <source>Stop playback and go back to the search view</source>
         <translation>وقف التشغيل و العودة لوضع البحث</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="232"/>
+        <location filename="src/mainwindow.cpp" line="253"/>
         <source>S&amp;kip</source>
         <translation>&amp;القفز</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="233"/>
+        <location filename="src/mainwindow.cpp" line="254"/>
         <source>Skip to the next video</source>
         <translation>القفز للفيديو التالي</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="239"/>
-        <location filename="src/mainwindow.cpp" line="989"/>
+        <location filename="src/mainwindow.cpp" line="260"/>
+        <location filename="src/mainwindow.cpp" line="1012"/>
         <source>&amp;Pause</source>
         <translation>&amp;ايقاف مؤقت</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="240"/>
-        <location filename="src/mainwindow.cpp" line="990"/>
+        <location filename="src/mainwindow.cpp" line="261"/>
+        <location filename="src/mainwindow.cpp" line="1013"/>
         <source>Pause playback</source>
         <translation>ايقاف التشغيل</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="246"/>
+        <location filename="src/mainwindow.cpp" line="267"/>
         <source>&amp;Full Screen</source>
         <translation>&amp;شاشة كاملة</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="247"/>
+        <location filename="src/mainwindow.cpp" line="268"/>
         <source>Go full screen</source>
         <translation>تشغيل شاشة كاملة</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="263"/>
+        <location filename="src/mainwindow.cpp" line="282"/>
         <source>Hide the playlist and the toolbar</source>
         <translation>اخفاء القائمة و شريط المهام</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="276"/>
+        <location filename="src/mainwindow.cpp" line="295"/>
         <source>Go to the YouTube video page and pause playback</source>
         <translation>اذهب الى صفحة فيديو YouTube و وقف التشغيل</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="283"/>
+        <location filename="src/mainwindow.cpp" line="302"/>
         <source>Copy the current video YouTube link to the clipboard</source>
         <translation>نسخ رابط YouTube الى clipboard</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="290"/>
+        <location filename="src/mainwindow.cpp" line="309"/>
         <source>Copy the current video stream URL to the clipboard</source>
         <translation>نسخ رابط الفيديو الى clipboard</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="297"/>
+        <location filename="src/mainwindow.cpp" line="316"/>
         <source>Find other video parts hopefully in the right order</source>
         <translation>اوجد أجزاء الفيديو الأخرى املا أن تكون في الترتيب الصحيح</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="303"/>
+        <location filename="src/mainwindow.cpp" line="322"/>
         <source>&amp;Remove</source>
         <translation>&amp;إزالة</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="304"/>
+        <location filename="src/mainwindow.cpp" line="323"/>
         <source>Remove the selected videos from the playlist</source>
         <translation>إزالة الفيديو من القائمة</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="310"/>
+        <location filename="src/mainwindow.cpp" line="329"/>
         <source>Move &amp;Up</source>
         <translation>الرفع الى &amp;اعلى</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="311"/>
+        <location filename="src/mainwindow.cpp" line="330"/>
         <source>Move up the selected videos in the playlist</source>
         <translation>رفع المقاطع المختارة الى فوق في القائمة</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="317"/>
+        <location filename="src/mainwindow.cpp" line="336"/>
         <source>Move &amp;Down</source>
         <translation>الانزال الى &amp;تحت</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="318"/>
+        <location filename="src/mainwindow.cpp" line="337"/>
         <source>Move down the selected videos in the playlist</source>
         <translation>انزال المقاطع المختارة الى تحت في القائمة</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="329"/>
+        <location filename="src/mainwindow.cpp" line="348"/>
         <source>Clear the search history. Cannot be undone.</source>
         <translation>مسح تاريخ البحث. لا يمكن استعادته.</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="334"/>
+        <location filename="src/mainwindow.cpp" line="353"/>
         <source>&amp;Quit</source>
         <translation>&amp;الانتهاء</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="337"/>
+        <location filename="src/mainwindow.cpp" line="356"/>
         <source>Bye</source>
         <translation>مع السلامة</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="341"/>
+        <location filename="src/mainwindow.cpp" line="360"/>
         <source>&amp;Website</source>
         <translation>&amp;الموقع</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="343"/>
+        <location filename="src/mainwindow.cpp" line="362"/>
         <source>%1 on the Web</source>
         <translation>%1 على الشبكة</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="349"/>
+        <location filename="src/mainwindow.cpp" line="368"/>
         <source>Please support the continued development of %1</source>
         <translation>‎الرجاء التبرع لمتابعة تطوير  %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="354"/>
+        <location filename="src/mainwindow.cpp" line="373"/>
         <source>&amp;About</source>
         <translation>&amp;عن البرنامج</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="356"/>
+        <location filename="src/mainwindow.cpp" line="375"/>
         <source>Info about %1</source>
         <translation>معلومات عن %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="364"/>
+        <location filename="src/mainwindow.cpp" line="383"/>
         <source>Search</source>
         <translation>البحث</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="383"/>
+        <location filename="src/mainwindow.cpp" line="402"/>
         <source>Mute volume</source>
         <translation>كتم الصوت</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="412"/>
-        <location filename="src/mainwindow.cpp" line="1365"/>
+        <location filename="src/mainwindow.cpp" line="431"/>
+        <location filename="src/mainwindow.cpp" line="1406"/>
         <source>&amp;Downloads</source>
         <translation>&amp;التحميلات</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="413"/>
+        <location filename="src/mainwindow.cpp" line="432"/>
         <source>Show details about video downloads</source>
         <translation>عرض تفاصيل عن تحميلات الفيديو</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="421"/>
+        <location filename="src/mainwindow.cpp" line="440"/>
         <source>&amp;Download</source>
         <translation>&amp;التحميلات</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="422"/>
+        <location filename="src/mainwindow.cpp" line="441"/>
         <source>Download the current video</source>
         <translation>تحميل الفيديو الحالي</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="441"/>
+        <location filename="src/mainwindow.cpp" line="458"/>
+        <source>&amp;Subscribe to Channel</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="465"/>
         <source>Share the current video using %1</source>
         <translation>شارك الفيديو الحالي باستخدام %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="458"/>
+        <location filename="src/mainwindow.cpp" line="482"/>
         <source>&amp;Email</source>
         <translation>&amp;البريد الإلكتروني</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="459"/>
+        <location filename="src/mainwindow.cpp" line="483"/>
         <source>Email</source>
         <translation>البريد الإلكتروني</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="463"/>
+        <location filename="src/mainwindow.cpp" line="487"/>
         <source>&amp;Close</source>
         <translation>&amp;اقفل</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="473"/>
+        <location filename="src/mainwindow.cpp" line="497"/>
         <source>&amp;Float on Top</source>
         <translation>&amp;اطفو علي القمة</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="478"/>
+        <location filename="src/mainwindow.cpp" line="502"/>
         <source>&amp;Stop After This Video</source>
         <translation>&amp;أوقف العرض التلقائي بعد الفيديو الحالي </translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="485"/>
+        <location filename="src/mainwindow.cpp" line="509"/>
         <source>&amp;Report an Issue...</source>
         <translation>&amp;أبلغ عن مشكلة</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="489"/>
+        <location filename="src/mainwindow.cpp" line="513"/>
         <source>&amp;Refine Search...</source>
         <translation>&amp;خيارات البحث...</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="501"/>
+        <location filename="src/mainwindow.cpp" line="525"/>
         <source>More...</source>
         <translation>المزيد...</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="504"/>
+        <location filename="src/mainwindow.cpp" line="528"/>
         <source>&amp;Related Videos</source>
-        <translation type="unfinished"/>
+        <translation>مقاطع ذات &amp;صلة</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="506"/>
+        <location filename="src/mainwindow.cpp" line="530"/>
         <source>Watch videos related to the current one</source>
-        <translation type="unfinished"/>
+        <translation>شاهد مقاطع فيديو ذات صلة بهذا</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="544"/>
+        <location filename="src/mainwindow.cpp" line="553"/>
         <source>&amp;Application</source>
         <translation>&amp;البرنامج</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="515"/>
+        <location filename="src/mainwindow.cpp" line="537"/>
         <source>Buy %1...</source>
         <translation>اشتري %1...</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="558"/>
+        <location filename="src/mainwindow.cpp" line="567"/>
         <source>&amp;Playback</source>
         <translation>&amp;قراءة</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="572"/>
+        <location filename="src/mainwindow.cpp" line="581"/>
         <source>&amp;Playlist</source>
         <translation>&amp;القائمة</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="581"/>
+        <location filename="src/mainwindow.cpp" line="590"/>
         <source>&amp;Video</source>
         <translation>&amp;الفيديو</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="594"/>
+        <location filename="src/mainwindow.cpp" line="605"/>
         <source>&amp;View</source>
         <translation>&amp;مشاهدة</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="601"/>
+        <location filename="src/mainwindow.cpp" line="612"/>
         <source>&amp;Share</source>
         <translation>&amp;شارك</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="615"/>
+        <location filename="src/mainwindow.cpp" line="626"/>
         <source>&amp;Help</source>
         <translation>&amp;المساعدة</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="690"/>
+        <location filename="src/mainwindow.cpp" line="701"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
         <translation>اضغط %1 لرفع الصوت و %2 لخفضه</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="889"/>
-        <location filename="src/mainwindow.cpp" line="895"/>
+        <location filename="src/mainwindow.cpp" line="910"/>
+        <location filename="src/mainwindow.cpp" line="916"/>
         <source>Opening %1</source>
         <translation>جاري فتح %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="936"/>
+        <location filename="src/mainwindow.cpp" line="959"/>
         <source>Do you want to exit %1 with a download in progress?</source>
         <translation>هل تريد الخروج %1  رغم وجود تحميل?</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="937"/>
+        <location filename="src/mainwindow.cpp" line="960"/>
         <source>If you close %1 now, this download will be cancelled.</source>
         <translation>عند اغلاق %1 التحميل سيلغى.</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="942"/>
+        <location filename="src/mainwindow.cpp" line="965"/>
         <source>Close and cancel download</source>
         <translation>الاغلاق و الغاء التحميل</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="943"/>
+        <location filename="src/mainwindow.cpp" line="966"/>
         <source>Wait for download to finish</source>
         <translation>انتظار انتهاء التحميل</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1102"/>
+        <location filename="src/mainwindow.cpp" line="1125"/>
         <source>Leave &amp;Full Screen</source>
         <translation>غادر &amp;الشاشة الكاملة</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1475"/>
+        <location filename="src/mainwindow.cpp" line="1515"/>
         <source>%1 version %2 is now available.</source>
         <translation>%1 الإصدار %2 متوفر الآن.</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1479"/>
+        <location filename="src/mainwindow.cpp" line="1519"/>
         <source>Remind me later</source>
         <translation>ذكرني لاحقا</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1480"/>
+        <location filename="src/mainwindow.cpp" line="1520"/>
         <source>Update</source>
         <translation>تحديث</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="982"/>
+        <location filename="src/mainwindow.cpp" line="1005"/>
         <source>Error: %1</source>
         <translation>خطأ: %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="222"/>
+        <location filename="src/mainwindow.cpp" line="246"/>
         <source>P&amp;revious</source>
         <translation>ال&amp;سابق</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="223"/>
+        <location filename="src/mainwindow.cpp" line="247"/>
         <source>Go back to the previous track</source>
         <translation>العودة إلى المجاز السابق</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="262"/>
+        <location filename="src/mainwindow.cpp" line="281"/>
         <source>&amp;Compact Mode</source>
         <translation>&amp;الواجهة الخفيفة</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="275"/>
+        <location filename="src/mainwindow.cpp" line="294"/>
         <source>Open the &amp;YouTube Page</source>
         <translation>أفتح صفحة الفيديو على &amp;YouTube</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="282"/>
+        <location filename="src/mainwindow.cpp" line="301"/>
         <source>Copy the YouTube &amp;Link</source>
         <translation>انسخ رابط الفيديو &amp;Link</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="289"/>
+        <location filename="src/mainwindow.cpp" line="308"/>
         <source>Copy the Video Stream &amp;URL</source>
         <translation>انسخ الفيديو وعنوانه</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="296"/>
+        <location filename="src/mainwindow.cpp" line="315"/>
         <source>Find Video &amp;Parts</source>
         <translation>أبحث عن &amp;أجزاء الفيديو الأُخرى</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="324"/>
+        <location filename="src/mainwindow.cpp" line="343"/>
         <source>&amp;Clear Recent Searches</source>
         <translation>&amp;مسح تاريخ البحث </translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="348"/>
+        <location filename="src/mainwindow.cpp" line="367"/>
         <source>Make a &amp;Donation</source>
         <translation>القيام بتبرع</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="405"/>
+        <location filename="src/mainwindow.cpp" line="424"/>
         <source>&amp;Manually Start Playing</source>
         <translation>&amp;تشغيل الفيديوهات يدويا</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="406"/>
+        <location filename="src/mainwindow.cpp" line="425"/>
         <source>Manually start playing videos</source>
         <translation>بدء تشغيل الفيديو يدويا</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="728"/>
+        <location filename="src/mainwindow.cpp" line="739"/>
         <source>Choose your content location</source>
-        <translation type="unfinished"/>
+        <translation>اختر موقع محتوياتك</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1002"/>
+        <location filename="src/mainwindow.cpp" line="1025"/>
         <source>&amp;Play</source>
         <translation>&amp;التشغيل</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1003"/>
+        <location filename="src/mainwindow.cpp" line="1026"/>
         <source>Resume playback</source>
         <translation>اكمال التشغيل</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1236"/>
+        <location filename="src/mainwindow.cpp" line="1277"/>
         <source>Remaining time: %1</source>
         <translation>الوقت المتبقي: %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1294"/>
+        <location filename="src/mainwindow.cpp" line="1335"/>
         <source>Volume at %1%</source>
         <translation>%1%الصوت عند </translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1300"/>
+        <location filename="src/mainwindow.cpp" line="1341"/>
         <source>Volume is muted</source>
         <translation>الصوت مكتوم</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1303"/>
+        <location filename="src/mainwindow.cpp" line="1344"/>
         <source>Volume is unmuted</source>
         <translation>الصوت غير مكتوم</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1310"/>
+        <location filename="src/mainwindow.cpp" line="1351"/>
         <source>Maximum video definition set to %1</source>
         <translation>الوضوح الاقصى %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1351"/>
+        <location filename="src/mainwindow.cpp" line="1392"/>
         <source>Your privacy is now safe</source>
         <translation>خصوصيتك امنة</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1366"/>
+        <location filename="src/mainwindow.cpp" line="1407"/>
         <source>Downloads complete</source>
         <translation>التحميل انتهى</translation>
     </message>
@@ -802,65 +906,75 @@
 <context>
     <name>MediaView</name>
     <message>
-        <location filename="src/mediaview.cpp" line="553"/>
+        <location filename="src/mediaview.cpp" line="563"/>
         <source>You can now paste the YouTube link into another application</source>
         <translation>يمكنك لصق رابط YouTube في برنامج اخر</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="561"/>
+        <location filename="src/mediaview.cpp" line="571"/>
         <source>You can now paste the video stream URL into another application</source>
         <translation>يمكنك لصق رابط الفيديو في برنامج اخر</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="562"/>
+        <location filename="src/mediaview.cpp" line="572"/>
         <source>The link will be valid only for a limited time.</source>
         <translation>الرابط سيكون صالحا لمدة محدودة.</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="636"/>
+        <location filename="src/mediaview.cpp" line="650"/>
         <source>This is just the demo version of %1.</source>
         <translation>هذه ليست سوى النسخة التجريبية من %1.</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="637"/>
+        <location filename="src/mediaview.cpp" line="651"/>
         <source>It allows you to test the application and see if it works for you.</source>
         <translation>انها تتيح لك تجربة البرنامج.</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="667"/>
+        <location filename="src/mediaview.cpp" line="681"/>
         <source>Continue</source>
         <translation>متابعة</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="756"/>
+        <location filename="src/mediaview.cpp" line="772"/>
         <source>of</source>
         <comment>Used in video parts, as in '2 of 3'</comment>
         <translation>من</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="768"/>
+        <location filename="src/mediaview.cpp" line="785"/>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
         <translation>جزء</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="770"/>
+        <location filename="src/mediaview.cpp" line="787"/>
         <source>episode</source>
         <comment>This is for video parts, as in 'Cool series - episode 1'</comment>
         <translation>حلقة</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="847"/>
+        <location filename="src/mediaview.cpp" line="868"/>
         <source>Sent from %1</source>
         <translation>أرسلت من %1</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="644"/>
+        <location filename="src/mediaview.cpp" line="899"/>
+        <source>Unsubscribe from %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/mediaview.cpp" line="903"/>
+        <source>Subscribe to %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/mediaview.cpp" line="658"/>
         <source>Get the full version</source>
         <translation>احصل على النسخة الكاملة</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="681"/>
+        <location filename="src/mediaview.cpp" line="695"/>
         <source>Downloading %1</source>
         <translation>جاري تحميل %1</translation>
     </message>
@@ -870,22 +984,22 @@
     <message>
         <location filename="local/src/updatedialog.cpp" line="21"/>
         <source>A new version of %1 is available!</source>
-        <translation type="unfinished"/>
+        <translation>يتوقّر إصدار جديد من %1!</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="28"/>
         <source>%1 %2 is now available. You have %3.</source>
-        <translation type="unfinished"/>
+        <translation>1% %2 متوفر الآن. لديك 3%.</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="33"/>
         <source>Would you like to download it now?</source>
-        <translation type="unfinished"/>
+        <translation>أتريد تنزيله الآن؟</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="39"/>
         <source>Skip This Version</source>
-        <translation type="unfinished"/>
+        <translation>تجاوز هذا الإصدار</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="43"/>
@@ -909,52 +1023,52 @@
 <context>
     <name>PlaylistItemDelegate</name>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="159"/>
+        <location filename="src/playlistitemdelegate.cpp" line="177"/>
         <source>%1 views</source>
         <translation>%1 مشاهدة</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="285"/>
+        <location filename="src/playlistitemdelegate.cpp" line="292"/>
         <source>%1 of %2 (%3) — %4</source>
-        <translation type="unfinished"/>
+        <translation>1% من 2% (3%) — 4%</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="292"/>
+        <location filename="src/playlistitemdelegate.cpp" line="299"/>
         <source>Preparing</source>
         <translation>تهيئة</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="294"/>
+        <location filename="src/playlistitemdelegate.cpp" line="301"/>
         <source>Failed</source>
         <translation>فشل</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="296"/>
+        <location filename="src/playlistitemdelegate.cpp" line="303"/>
         <source>Completed</source>
         <translation>تم</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="298"/>
+        <location filename="src/playlistitemdelegate.cpp" line="305"/>
         <source>Stopped</source>
         <translation>متوقف</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="334"/>
+        <location filename="src/playlistitemdelegate.cpp" line="341"/>
         <source>Stop downloading</source>
         <translation>ايقاف التحميل</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="344"/>
+        <location filename="src/playlistitemdelegate.cpp" line="351"/>
         <source>Show in %1</source>
         <translation>اظهار في %1</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="346"/>
+        <location filename="src/playlistitemdelegate.cpp" line="353"/>
         <source>Open parent folder</source>
         <translation>فتح المجلد الرئيسي</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="355"/>
+        <location filename="src/playlistitemdelegate.cpp" line="362"/>
         <source>Restart downloading</source>
         <translation>اعادة التحميل</translation>
     </message>
@@ -1097,7 +1211,7 @@
     <message>
         <location filename="src/regionsview.cpp" line="19"/>
         <source>Done</source>
-        <translation type="unfinished"/>
+        <translation>تمّ</translation>
     </message>
 </context>
 <context>
@@ -1111,48 +1225,48 @@
 <context>
     <name>SearchView</name>
     <message>
-        <location filename="src/searchview.cpp" line="71"/>
+        <location filename="src/searchview.cpp" line="66"/>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
         <translation>مرحبا بك في &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="50"/>
+        <location filename="src/searchview.cpp" line="161"/>
         <source>Get the full version</source>
         <translation>الحصول على النسخة الكاملة</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="85"/>
+        <location filename="src/searchview.cpp" line="80"/>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole phrase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
         <translation>أدخل</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="90"/>
+        <location filename="src/searchview.cpp" line="85"/>
         <source>a keyword</source>
         <translation> كلمة مفتاح</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="91"/>
+        <location filename="src/searchview.cpp" line="86"/>
         <source>a channel</source>
         <translation>قناة</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="96"/>
+        <location filename="src/searchview.cpp" line="91"/>
         <source>to start watching videos.</source>
         <translation>لبدء مشاهدة أشرطة الفيديو</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="120"/>
+        <location filename="src/searchview.cpp" line="115"/>
         <source>Watch</source>
         <translation>شاهد</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="138"/>
+        <location filename="src/searchview.cpp" line="133"/>
         <source>Recent keywords</source>
         <translation>كلمات بحث سابقة</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="151"/>
+        <location filename="src/searchview.cpp" line="146"/>
         <source>Recent channels</source>
         <translation>القنوات الأخيرة</translation>
     </message>
@@ -1160,20 +1274,20 @@
 <context>
     <name>SidebarHeader</name>
     <message>
-        <location filename="src/sidebarheader.cpp" line="16"/>
-        <location filename="src/sidebarheader.cpp" line="23"/>
+        <location filename="src/sidebarheader.cpp" line="19"/>
+        <location filename="src/sidebarheader.cpp" line="26"/>
         <source>&amp;Back</source>
         <translation>&amp;عودة</translation>
     </message>
     <message>
         <location filename="src/sidebarheader.cpp" line="57"/>
         <source>Forward to %1</source>
-        <translation type="unfinished"/>
+        <translation>تقدّم إلى %1</translation>
     </message>
     <message>
         <location filename="src/sidebarheader.cpp" line="70"/>
         <source>Back to %1</source>
-        <translation type="unfinished"/>
+        <translation>عُد إلى %1</translation>
     </message>
 </context>
 <context>
@@ -1197,11 +1311,6 @@
         <translation>الأكثر شهرة</translation>
     </message>
     <message>
-        <location filename="src/standardfeedsview.cpp" line="86"/>
-        <source>Featured</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="src/standardfeedsview.cpp" line="87"/>
         <source>Most Shared</source>
         <translation>الأكثر مشاركة</translation>
@@ -1209,23 +1318,28 @@
     <message>
         <location filename="src/standardfeedsview.cpp" line="88"/>
         <source>Most Discussed</source>
-        <translation type="unfinished"/>
+        <translation>الأكثر نقاشًا</translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="89"/>
         <source>Top Rated</source>
         <translation>الأعلى تقييما</translation>
     </message>
+    <message>
+        <location filename="src/standardfeedsview.cpp" line="90"/>
+        <source>All Time Popular</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Video</name>
     <message>
-        <location filename="src/video.cpp" line="213"/>
+        <location filename="src/video.cpp" line="215"/>
         <source>Cannot get video stream for %1</source>
         <translation>لا يمكن الحصول على دفق الفيديو %1</translation>
     </message>
     <message>
-        <location filename="src/video.cpp" line="231"/>
+        <location filename="src/video.cpp" line="233"/>
         <source>Network error: %1 for %2</source>
         <translation>خطأ شبكة:%1 الى %2</translation>
     </message>

@@ -1,17 +1,38 @@
+/* $BEGIN_LICENSE
+
+This file is part of Minitube.
+Copyright 2009, Flavio Tordini <flavio.tordini@gmail.com>
+
+Minitube is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Minitube is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
+
+$END_LICENSE */
+
 #include "video.h"
 #include "networkaccess.h"
 #include <QtNetwork>
 #include "videodefinition.h"
+#include "jsfunctions.h"
 
 namespace The {
-    NetworkAccess* http();
+NetworkAccess* http();
 }
 
 Video::Video() : m_duration(0),
-m_viewCount(-1),
-definitionCode(0),
-elIndex(0),
-loadingStreamUrl(false)
+    m_viewCount(-1),
+    definitionCode(0),
+    elIndex(0),
+    loadingStreamUrl(false)
 { }
 
 Video* Video::clone() {
@@ -19,7 +40,7 @@ Video* Video::clone() {
     cloneVideo->m_title = m_title;
     cloneVideo->m_description = m_description;
     cloneVideo->m_author = m_author;
-    cloneVideo->m_authorUri = m_authorUri;
+    cloneVideo->m_userId = m_userId;
     cloneVideo->m_webpage = m_webpage;
     cloneVideo->m_streamUrl = m_streamUrl;
     cloneVideo->m_thumbnail = m_thumbnail;
@@ -58,7 +79,8 @@ void Video::loadThumbnail() {
 
 void Video::setThumbnail(QByteArray bytes) {
     m_thumbnail.loadFromData(bytes);
-    m_thumbnail = m_thumbnail.scaled(160, 90);
+    if (m_thumbnail.width() > 160)
+        m_thumbnail = m_thumbnail.scaledToWidth(160, Qt::SmoothTransformation);
     emit gotThumbnail();
 }
 
@@ -74,15 +96,26 @@ void Video::loadStreamUrl() {
         return;
     }
     loadingStreamUrl = true;
+    elIndex = 0;
 
-    // https://develop.participatoryculture.org/trac/democracy/browser/trunk/tv/portable/flashscraper.py
     getVideoInfo();
 }
 
 void  Video::getVideoInfo() {
-    static const QStringList elTypes = QStringList() << "&el=embedded" << "&el=vevo" << "&el=detailpage" << "";
+    static const QStringList elTypes = QStringList() << "&el=embedded" << "&el=detailpage" << "&el=vevo" << "";
 
-    if (elIndex > elTypes.size() - 1) {
+    QUrl videoInfoUrl;
+
+    if (elIndex == elTypes.size()) {
+        videoInfoUrl = QUrl("http://www.youtube.com/get_video_info");
+        videoInfoUrl.addQueryItem("video_id", videoId);
+        videoInfoUrl.addQueryItem("el", "embedded");
+        videoInfoUrl.addQueryItem("gl", "US");
+        videoInfoUrl.addQueryItem("hl", "en");
+        videoInfoUrl.addQueryItem("eurl", "https://youtube.googleapis.com/v/" + videoId);
+        videoInfoUrl.addQueryItem("asv", "3");
+        videoInfoUrl.addQueryItem("sts", "1588");
+    } else if (elIndex > elTypes.size() - 1) {
         loadingStreamUrl = false;
         emit errorStreamUrl("Cannot get video info");
         /*
@@ -95,24 +128,21 @@ void  Video::getVideoInfo() {
         // see you in scrapWebPage(QByteArray)
         */
         return;
+    } else {
+        videoInfoUrl = QUrl(QString(
+                                "http://www.youtube.com/get_video_info?video_id=%1%2&ps=default&eurl=&gl=US&hl=en"
+                                ).arg(videoId, elTypes.at(elIndex)));
     }
-
-    // Get Video Token
-    QUrl videoInfoUrl = QUrl(QString(
-            "http://www.youtube.com/get_video_info?video_id=%1%2&ps=default&eurl=&gl=US&hl=en"
-            ).arg(videoId, elTypes.at(elIndex)));
 
     QObject *reply = The::http()->get(videoInfoUrl);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(gotVideoInfo(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
 
     // see you in gotVideoInfo...
-
 }
 
 void  Video::gotVideoInfo(QByteArray data) {
     QString videoInfo = QString::fromUtf8(data);
-
     // qDebug() << "videoInfo" << videoInfo;
 
     // get video token
@@ -125,6 +155,7 @@ void  Video::gotVideoInfo(QByteArray data) {
         getVideoInfo();
         return;
     }
+
     QString videoToken = re.cap(1);
     while (videoToken.contains('%'))
         videoToken = QByteArray::fromPercentEncoding(videoToken.toAscii());
@@ -144,23 +175,27 @@ void  Video::gotVideoInfo(QByteArray data) {
 
     QString fmtUrlMap = re.cap(1);
     fmtUrlMap = QByteArray::fromPercentEncoding(fmtUrlMap.toUtf8());
+    parseFmtUrlMap(fmtUrlMap);
+}
 
+void Video::parseFmtUrlMap(QString fmtUrlMap, bool fromWebPage) {
     QSettings settings;
-    QString definitionName = settings.value("definition").toString();
+    QString definitionName = settings.value("definition", "360p").toString();
     int definitionCode = VideoDefinition::getDefinitionCode(definitionName);
 
     // qDebug() << "fmtUrlMap" << fmtUrlMap;
-    QStringList formatUrls = fmtUrlMap.split(",", QString::SkipEmptyParts);
+    QStringList formatUrls = fmtUrlMap.split(',', QString::SkipEmptyParts);
     QHash<int, QString> urlMap;
     foreach(QString formatUrl, formatUrls) {
         // qDebug() << "formatUrl" << formatUrl;
-        QStringList urlParams = formatUrl.split("&", QString::SkipEmptyParts);
+        QStringList urlParams = formatUrl.split('&', QString::SkipEmptyParts);
         // qDebug() << "urlParams" << urlParams;
 
         int format = -1;
         QString url;
         QString sig;
         foreach(QString urlParam, urlParams) {
+            // qDebug() << urlParam;
             if (urlParam.startsWith("itag=")) {
                 int separator = urlParam.indexOf("=");
                 format = urlParam.mid(separator + 1).toInt();
@@ -172,14 +207,30 @@ void  Video::gotVideoInfo(QByteArray data) {
                 int separator = urlParam.indexOf("=");
                 sig = urlParam.mid(separator + 1);
                 sig = QByteArray::fromPercentEncoding(sig.toUtf8());
+            } else if (urlParam.startsWith("s=")) {
+                if (fromWebPage || elIndex == 4) {
+                    int separator = urlParam.indexOf("=");
+                    sig = urlParam.mid(separator + 1);
+                    sig = QByteArray::fromPercentEncoding(sig.toUtf8());
+                    sig = JsFunctions::instance()->decryptSignature(sig);
+                } else {
+                    QObject *reply = The::http()->get(m_webpage);
+                    connect(reply, SIGNAL(data(QByteArray)), SLOT(scrapeWebPage(QByteArray)));
+                    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
+                    // see you in scrapWebPage(QByteArray)
+                    return;
+                }
             }
         }
         if (format == -1 || url.isNull()) continue;
 
         url += "&signature=" + sig;
 
+        if (!url.contains("ratebypass"))
+            url += "&ratebypass=yes";
+
         if (format == definitionCode) {
-            qDebug() << "Found format" << definitionCode;
+            // qDebug() << "Found format" << definitionCode;
             QUrl videoUrl = QUrl::fromEncoded(url.toUtf8(), QUrl::StrictMode);
             m_streamUrl = videoUrl;
             this->definitionCode = definitionCode;
@@ -199,7 +250,7 @@ void  Video::gotVideoInfo(QByteArray data) {
         if (previousIndex < 0) previousIndex = 0;
         int definitionCode = definitionCodes.at(previousIndex);
         if (urlMap.contains(definitionCode)) {
-            qDebug() << "Found format" << definitionCode;
+            // qDebug() << "Found format" << definitionCode;
             QString url = urlMap.value(definitionCode);
             QUrl videoUrl = QUrl::fromEncoded(url.toUtf8(), QUrl::StrictMode);
             m_streamUrl = videoUrl;
@@ -212,15 +263,14 @@ void  Video::gotVideoInfo(QByteArray data) {
     }
 
     emit errorStreamUrl(tr("Cannot get video stream for %1").arg(m_webpage.toString()));
-
 }
 
 void Video::foundVideoUrl(QString videoToken, int definitionCode) {
     // qDebug() << "foundVideoUrl" << videoToken << definitionCode;
 
     QUrl videoUrl = QUrl(QString(
-            "http://www.youtube.com/get_video?video_id=%1&t=%2&eurl=&el=&ps=&asv=&fmt=%3"
-            ).arg(videoId, videoToken, QString::number(definitionCode)));
+                             "http://www.youtube.com/get_video?video_id=%1&t=%2&eurl=&el=&ps=&asv=&fmt=%3"
+                             ).arg(videoId, videoToken, QString::number(definitionCode)));
 
     m_streamUrl = videoUrl;
     loadingStreamUrl = false;
@@ -233,37 +283,23 @@ void Video::errorVideoInfo(QNetworkReply *reply) {
 }
 
 void Video::scrapeWebPage(QByteArray data) {
-
-    QString videoHTML = QString::fromUtf8(data);
-    QRegExp re(".*, \"t\": \"([^\"]+)\".*");
-    bool match = re.exactMatch(videoHTML);
+    QString html = QString::fromUtf8(data);
+    QRegExp re(".*\"url_encoded_fmt_stream_map\": \"([^\"]+)\".*");
+    bool match = re.exactMatch(html);
 
     // on regexp failure, stop and report error
     if (!match || re.numCaptures() < 1) {
-        emit errorStreamUrl("Error parsing video page");
-        loadingStreamUrl = false;
+        qWarning() << "Error parsing video page";
+        // emit errorStreamUrl("Error parsing video page");
+        // loadingStreamUrl = false;
+        elIndex++;
+        getVideoInfo();
         return;
     }
 
-    QString videoToken = re.cap(1);
-    // FIXME proper decode
-    videoToken = videoToken.replace("%3D", "=");
-
-    // we'll need this in gotHeadHeaders()
-    this->videoToken = videoToken;
-
-    // qDebug() << "token" << videoToken;
-
-    QSettings settings;
-    QString definitionName = settings.value("definition").toString();
-    int definitionCode = VideoDefinition::getDefinitionCode(definitionName);
-    if (definitionCode == 18) {
-        // This is assumed always available
-        foundVideoUrl(videoToken, 18);
-    } else {
-        findVideoUrl(definitionCode);
-    }
-
+    QString fmtUrlMap = re.cap(1);
+    fmtUrlMap.replace("\\u0026", "&");
+    parseFmtUrlMap(fmtUrlMap, true);
 }
 
 void Video::gotHeadHeaders(QNetworkReply* reply) {
@@ -313,8 +349,8 @@ void Video::findVideoUrl(int definitionCode) {
     this->definitionCode = definitionCode;
 
     QUrl videoUrl = QUrl(QString(
-            "http://www.youtube.com/get_video?video_id=%1&t=%2&eurl=&el=&ps=&asv=&fmt=%3"
-            ).arg(videoId, videoToken, QString::number(definitionCode)));
+                             "http://www.youtube.com/get_video?video_id=%1&t=%2&eurl=&el=&ps=&asv=&fmt=%3"
+                             ).arg(videoId, videoToken, QString::number(definitionCode)));
 
     QObject *reply = The::http()->head(videoUrl);
     connect(reply, SIGNAL(finished(QNetworkReply*)), SLOT(gotHeadHeaders(QNetworkReply*)));
@@ -323,7 +359,6 @@ void Video::findVideoUrl(int definitionCode) {
     // see you in gotHeadHeaders()
 
 }
-
 
 QString Video::formattedDuration() const {
     QString format = m_duration > 3600 ? "h:mm:ss" : "m:ss";

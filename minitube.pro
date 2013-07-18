@@ -1,6 +1,6 @@
 CONFIG += release
 TEMPLATE = app
-VERSION = 2.0
+VERSION = 2.1.1
 DEFINES += APP_VERSION="$$VERSION"
 
 APP_NAME = Minitube
@@ -9,12 +9,12 @@ DEFINES += APP_NAME="$$APP_NAME"
 APP_UNIX_NAME = minitube
 DEFINES += APP_UNIX_NAME="$$APP_UNIX_NAME"
 
-DEFINES += QT_USE_FAST_CONCATENATION
-DEFINES += QT_USE_FAST_OPERATOR_PLUS
+DEFINES *= QT_NO_DEBUG_OUTPUT
+DEFINES *= QT_USE_QSTRINGBUILDER
 DEFINES += QT_STRICT_ITERATORS
 
 TARGET = minitube
-QT += network xml phonon
+QT += network xml phonon sql script
 include(src/qtsingleapplication/qtsingleapplication.pri)
 HEADERS += \
     src/video.h \
@@ -56,7 +56,6 @@ HEADERS += \
     src/mediaview.h \
     src/searchview.h \
     src/view.h \
-    src/userview.h \
     src/playlistmodel.h \
     src/videosource.h \
     src/ytsearch.h \
@@ -71,7 +70,17 @@ HEADERS += \
     src/ytsinglevideosource.h \
     src/sidebarheader.h \
     src/utils.h \
-    src/diskcache.h
+    src/diskcache.h \
+    src/gridwidget.h \
+    src/painterutils.h \
+    src/database.h \
+    src/ytuser.h \
+    src/channelaggregator.h \
+    src/channelmodel.h \
+    src/aggregatevideosource.h \
+    src/channelview.h \
+    src/channelitemdelegate.h \
+    src/jsfunctions.h
 SOURCES += src/main.cpp \
     src/searchlineedit.cpp \
     src/urllineedit.cpp \
@@ -108,7 +117,6 @@ SOURCES += src/main.cpp \
     src/mediaview.cpp \
     src/aboutview.cpp \
     src/searchview.cpp \
-    src/userview.cpp \
     src/playlistitemdelegate.cpp \
     src/playlistmodel.cpp \
     src/videosource.cpp \
@@ -124,7 +132,17 @@ SOURCES += src/main.cpp \
     src/ytsinglevideosource.cpp \
     src/sidebarheader.cpp \
     src/utils.cpp \
-    src/diskcache.cpp
+    src/diskcache.cpp \
+    src/gridwidget.cpp \
+    src/painterutils.cpp \
+    src/database.cpp \
+    src/ytuser.cpp \
+    src/channelaggregator.cpp \
+    src/channelmodel.cpp \
+    src/aggregatevideosource.cpp \
+    src/channelview.cpp \
+    src/channelitemdelegate.cpp \
+    src/jsfunctions.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/
@@ -185,4 +203,4 @@ unix:!mac {
     icon512.path = $$DATADIR/icons/hicolor/512x512/apps
     icon512.files += data/512x512/minitube.png
 }
-mac|win32:include(local/local.pri)
+mac|win32|contains(DEFINES, APP_UBUNTU):include(local/local.pri)

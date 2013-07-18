@@ -1,3 +1,23 @@
+/* $BEGIN_LICENSE
+
+This file is part of Minitube.
+Copyright 2009, Flavio Tordini <flavio.tordini@gmail.com>
+
+Minitube is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Minitube is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
+
+$END_LICENSE */
+
 #include "playlistmodel.h"
 #include "videomimedata.h"
 #include "videosource.h"
@@ -48,7 +68,6 @@ QVariant PlaylistModel::data(const QModelIndex &index, int role) const {
         case ItemTypeRole:
             return ItemTypeShowMore;
         case Qt::DisplayRole:
-        case Qt::StatusTipRole:
             if (!errorMessage.isEmpty()) return errorMessage;
             if (searching) return tr("Searching...");
             if (canSearchMore) return tr("Show %1 More").arg(maxItems);
@@ -92,6 +111,8 @@ QVariant PlaylistModel::data(const QModelIndex &index, int role) const {
         return authorHovered;
     case AuthorPressedRole:
         return authorPressed;
+    case Qt::StatusTipRole:
+        return video->description();
     }
     
     return QVariant();
@@ -187,8 +208,11 @@ void PlaylistModel::abortSearch() {
     while (!videos.isEmpty())
         delete videos.takeFirst();
     reset();
-    videoSource->abort();
+    // if (videoSource) videoSource->abort();
     searching = false;
+    m_activeRow = -1;
+    m_activeVideo = 0;
+    skip = 1;
 }
 
 void PlaylistModel::searchFinished(int total) {
@@ -213,25 +237,19 @@ void PlaylistModel::searchError(QString message) {
 
 void PlaylistModel::addVideos(QList<Video*> newVideos) {
     if (newVideos.isEmpty()) return;
-
-    bool isFirstVideo = videos.isEmpty();
-
-    beginInsertRows(QModelIndex(), videos.size(), videos.size() + newVideos.size() - 1);
+    beginInsertRows(QModelIndex(), videos.size(), videos.size() + newVideos.size() - 2);
     videos.append(newVideos);
     endInsertRows();
-
     foreach (Video* video, newVideos) {
         connect(video, SIGNAL(gotThumbnail()),
                 SLOT(updateThumbnail()), Qt::UniqueConnection);
         video->loadThumbnail();
     }
-
-    // if (isFirstVideo) handleFirstVideo(newVideos.first());
 }
 
 void PlaylistModel::handleFirstVideo(Video *video) {
 
-    int currentVideoRow = rowForCloneVideo(MediaView::instance()->getCurrentVideo());
+    int currentVideoRow = rowForCloneVideo(MediaView::instance()->getCurrentVideoId());
     if (currentVideoRow != -1) setActiveRow(currentVideoRow, false);
     else {
         QSettings settings;
@@ -241,7 +259,7 @@ void PlaylistModel::handleFirstVideo(Video *video) {
 
     QSettings settings;
     if (!settings.value("manualplay", false).toBool()) {
-        int newActiveRow = rowForCloneVideo(MediaView::instance()->getCurrentVideo());
+        int newActiveRow = rowForCloneVideo(MediaView::instance()->getCurrentVideoId());
         if (newActiveRow != -1) setActiveRow(newActiveRow, false);
         else setActiveRow(0);
     }
@@ -272,8 +290,8 @@ void PlaylistModel::handleFirstVideo(Video *video) {
         QString channel = searchParams->author();
         if (!channel.isEmpty() && !searchParams->isTransient()) {
             QString value;
-            if (!video->authorUri().isEmpty() && video->authorUri() != video->author())
-                value = video->authorUri() + "|" + video->author();
+            if (!video->userId().isEmpty() && video->userId() != video->author())
+                value = video->userId() + "|" + video->author();
             else value = video->author();
             QStringList channels = settings.value(recentChannelsKey).toStringList();
             channels.removeAll(value);
@@ -419,11 +437,10 @@ bool PlaylistModel::dropMimeData(const QMimeData *data,
 
 }
 
-int PlaylistModel::rowForCloneVideo(Video *video) const {
-    if (!video) return -1;
+int PlaylistModel::rowForCloneVideo(const QString &videoId) const {
     for (int i = 0; i < videos.size(); ++i) {
         Video *v = videos.at(i);
-        if (v->id() == video->id()) return i;
+        if (v->id() == videoId) return i;
     }
     return -1;
 }

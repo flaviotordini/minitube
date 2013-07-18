@@ -1,21 +1,39 @@
+/* $BEGIN_LICENSE
+
+This file is part of Minitube.
+Copyright 2009, Flavio Tordini <flavio.tordini@gmail.com>
+
+Minitube is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Minitube is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
+
+$END_LICENSE */
+
 #include "videosourcewidget.h"
 #include "videosource.h"
 #include "video.h"
 #include "fontutils.h"
 
 VideoSourceWidget::VideoSourceWidget(VideoSource *videoSource, QWidget *parent)
-    : QWidget(parent),
-      videoSource(videoSource),
-      hovered(false),
-      pressed(false) {
+    : GridWidget(parent),
+      videoSource(videoSource) {
 
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    setCursor(Qt::PointingHandCursor);
-    setFocusPolicy(Qt::StrongFocus);
 
     connect(videoSource, SIGNAL(gotVideos(QList<Video*>)),
             SLOT(previewVideo(QList<Video*>)), Qt::UniqueConnection);
     videoSource->loadVideos(1, 1);
+
+    connect(this, SIGNAL(activated()), SLOT(activate()));
 }
 
 void VideoSourceWidget::activate() {
@@ -63,7 +81,8 @@ QPixmap VideoSourceWidget::playPixmap() {
     return playIcon;
 }
 
-void VideoSourceWidget::paintEvent(QPaintEvent *) {
+void VideoSourceWidget::paintEvent(QPaintEvent *event) {
+    GridWidget::paintEvent(event);
     if (pixmap.isNull()) return;
 
     QPainter p(this);
@@ -133,40 +152,4 @@ void VideoSourceWidget::paintEvent(QPaintEvent *) {
         p.drawRect(rect());
         p.restore();
     }
-}
-
-void VideoSourceWidget::mouseMoveEvent (QMouseEvent *event) {
-    QWidget::mouseMoveEvent(event);
-    hovered = rect().contains(event->pos());
-}
-
-void VideoSourceWidget::mousePressEvent(QMouseEvent *event) {
-    QWidget::mousePressEvent(event);
-    if (event->button() != Qt::LeftButton) return;
-    pressed = true;
-    update();
-}
-
-void VideoSourceWidget::mouseReleaseEvent(QMouseEvent *event) {
-    QWidget::mouseReleaseEvent(event);
-    if (event->button() != Qt::LeftButton) return;
-    pressed = false;
-    if (hovered) emit activated(videoSource);
-}
-
-void VideoSourceWidget::leaveEvent(QEvent *event) {
-    QWidget::leaveEvent(event);
-    hovered = false;
-    update();
-}
-
-void VideoSourceWidget::enterEvent(QEvent *event) {
-    QWidget::enterEvent(event);
-    hovered = true;
-    update();
-}
-
-void VideoSourceWidget::keyReleaseEvent(QKeyEvent *event) {
-    if (event->key() == Qt::Key_Return)
-        emit activated(videoSource);
 }

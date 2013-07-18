@@ -1,61 +1,34 @@
+/* $BEGIN_LICENSE
+
+This file is part of Minitube.
+Copyright 2009, Flavio Tordini <flavio.tordini@gmail.com>
+
+Minitube is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Minitube is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
+
+$END_LICENSE */
+
 #include <QtGui>
 #include <qtsingleapplication.h>
 #include "constants.h"
 #include "mainwindow.h"
 #include "searchparams.h"
 #include "utils.h"
-#ifndef Q_WS_X11
+#ifdef APP_EXTRA
 #include "extra.h"
 #endif
 #ifdef Q_WS_MAC
 #include "mac_startup.h"
-#endif
-
-#ifdef Q_WS_X11
-QString getThemeName() {
-    QString themeName;
-
-    QProcess process;
-    process.start("dconf",
-                  QStringList() << "read" << "/org/gnome/desktop/interface/gtk-theme");
-    if (process.waitForFinished()) {
-        themeName = process.readAllStandardOutput();
-        themeName = themeName.trimmed();
-        themeName.remove('\'');
-        if (!themeName.isEmpty()) return themeName;
-    }
-
-    QString rcPaths = QString::fromLocal8Bit(qgetenv("GTK2_RC_FILES"));
-    if (!rcPaths.isEmpty()) {
-        QStringList paths = rcPaths.split(QLatin1String(":"));
-        foreach (const QString &rcPath, paths) {
-            if (!rcPath.isEmpty()) {
-                QFile rcFile(rcPath);
-                if (rcFile.exists() && rcFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-                    QTextStream in(&rcFile);
-                    while(!in.atEnd()) {
-                        QString line = in.readLine();
-                        if (line.contains(QLatin1String("gtk-theme-name"))) {
-                            line = line.right(line.length() - line.indexOf(QLatin1Char('=')) - 1);
-                            line.remove(QLatin1Char('\"'));
-                            line = line.trimmed();
-                            themeName = line;
-                            break;
-                        }
-                    }
-                }
-            }
-            if (!themeName.isEmpty())
-                break;
-        }
-    }
-
-    // Fall back to gconf
-    if (themeName.isEmpty())
-        themeName = QGtkStyle::getGConfString(QLatin1String("/desktop/gnome/interface/gtk_theme"));
-
-    return themeName;
-}
 #endif
 
 int main(int argc, char **argv) {
@@ -76,18 +49,14 @@ int main(int argc, char **argv) {
     app.setApplicationName(QLatin1String(Constants::NAME));
     app.setOrganizationName(QLatin1String(Constants::ORG_NAME));
     app.setOrganizationDomain(QLatin1String(Constants::ORG_DOMAIN));
+#ifndef APP_WIN
     app.setWheelScrollLines(1);
+#endif
     app.setAttribute(Qt::AA_DontShowIconsInMenus);
 
-#ifndef Q_WS_X11
+#ifdef APP_EXTRA
     Extra::appSetup(&app);
 #else
-    bool isGtk = app.style()->metaObject()->className() == QLatin1String("QGtkStyle");
-    if (isGtk) {
-        app.setProperty("gtk", isGtk);
-        QString themeName = getThemeName();
-        app.setProperty("style", themeName);
-    }
     QFile cssFile(":/style.css");
     cssFile.open(QFile::ReadOnly);
     QString styleSheet = QLatin1String(cssFile.readAll());
@@ -117,15 +86,9 @@ int main(int argc, char **argv) {
     QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
 
     MainWindow mainWin;
-    mainWin.setWindowTitle(Constants::NAME);
+    mainWin.show();
 
-#ifndef Q_WS_X11
-    Extra::windowSetup(&mainWin);
-#else
-    mainWin.setProperty("style", app.property("style"));
-#endif
-
-// no window icon on Mac
+    // no window icon on Mac
 #ifndef APP_MAC
     QIcon appIcon;
     if (QDir(dataDir).exists()) {
@@ -135,7 +98,8 @@ int main(int argc, char **argv) {
         const int iconSizes [] = { 16, 22, 32, 48, 64, 128, 256, 512 };
         for (int i = 0; i < 8; i++) {
             QString size = QString::number(iconSizes[i]);
-            QString png = dataDir + "/" + size + "x" + size + "/" + Constants::UNIX_NAME + ".png";
+            QString png = dataDir + "/" + size + "x" + size + "/" +
+                    Constants::UNIX_NAME + ".png";
             appIcon.addFile(png, QSize(iconSizes[i], iconSizes[i]));
         }
     }
@@ -145,25 +109,12 @@ int main(int argc, char **argv) {
     mainWin.setWindowIcon(appIcon);
 #endif
 
-    mainWin.connect(&app, SIGNAL(messageReceived(const QString &)), &mainWin, SLOT(messageReceived(const QString &)));
+    mainWin.connect(&app, SIGNAL(messageReceived(const QString &)),
+                    &mainWin, SLOT(messageReceived(const QString &)));
     app.setActivationWindow(&mainWin, true);
 
     // all string literals are UTF-8
     // QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
-
-    if (app.arguments().size() > 1) {
-        QString query = app.arguments().at(1);
-        if (query.startsWith(QLatin1String("--"))) {
-            mainWin.messageReceived(query);
-            return 0;
-        } else {
-            SearchParams *searchParams = new SearchParams();
-            searchParams->setKeywords(query);
-            mainWin.showMedia(searchParams);
-        }
-    }
-
-    mainWin.show();
 
     // Seed random number generator
     qsrand(QDateTime::currentDateTime().toTime_t());

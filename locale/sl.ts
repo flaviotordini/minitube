@@ -83,7 +83,7 @@
     <message>
         <location filename="local/src/activationdialog.cpp" line="29"/>
         <source>&amp;Email:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;E-pošta</translation>
     </message>
     <message>
         <location filename="local/src/activationdialog.cpp" line="35"/>
@@ -106,12 +106,12 @@
     <message>
         <location filename="local/src/activationview.cpp" line="53"/>
         <source>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</source>
-        <translation type="unfinished"/>
+        <translation>Polna različica omogoča prenos posnetkov daljših od %1 minut in njihovo gledanje brez prekinitev.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="55"/>
         <source>Without a license, the application will expire in %1 days.</source>
-        <translation type="unfinished"/>
+        <translation>Brez licence bo uporabnost aplikacije potekla čez %1 dni.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="57"/>
@@ -126,11 +126,100 @@
     <message>
         <location filename="local/src/activationview.cpp" line="77"/>
         <source>Enter License</source>
-        <translation type="unfinished"/>
+        <translation>Vpis licence</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="85"/>
         <source>Buy License</source>
+        <translation>Kupi licenco</translation>
+    </message>
+</context>
+<context>
+    <name>ChannelAggregator</name>
+    <message>
+        <location filename="src/channelaggregator.cpp" line="110"/>
+        <source>By %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message numerus="yes">
+        <location filename="src/channelaggregator.cpp" line="112"/>
+        <source>You have %n new video(s)</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+    </message>
+</context>
+<context>
+    <name>ChannelItemDelegate</name>
+    <message>
+        <location filename="src/channelitemdelegate.cpp" line="46"/>
+        <source>All Videos</source>
+        <translation>Vsi videoposnetki</translation>
+    </message>
+    <message>
+        <location filename="src/channelitemdelegate.cpp" line="63"/>
+        <source>Unwatched Videos</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ChannelView</name>
+    <message>
+        <location filename="src/channelview.cpp" line="75"/>
+        <source>Mark all as watched</source>
+        <translation>Označi vse za pregledane</translation>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="83"/>
+        <source>Show Updated</source>
+        <translation>Pokaži posodobitve</translation>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="95"/>
+        <source>Name</source>
+        <translation>Naziv</translation>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="102"/>
+        <source>Last Updated</source>
+        <translation>Nazadnje posodobljeno</translation>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="109"/>
+        <source>Last Added</source>
+        <translation>Nazadnje dodano</translation>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="116"/>
+        <source>Last Watched</source>
+        <translation>Nazadnje gledano</translation>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="123"/>
+        <source>Most Watched</source>
+        <translation>Največkrat gledano</translation>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="131"/>
+        <source>Sort by</source>
+        <translation>Razvrsti glede na</translation>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="190"/>
+        <source>All Videos</source>
+        <translation>Vsi videoposnetki</translation>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="194"/>
+        <source>Unwatched Videos</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="206"/>
+        <source>There are no updated subscriptions at this time.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="208"/>
+        <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -270,7 +359,7 @@
     <message>
         <location filename="local/src/updatedialog.cpp" line="60"/>
         <source>Downloading update...</source>
-        <translation type="unfinished"/>
+        <translation>Prenos posodobitve...</translation>
     </message>
 </context>
 <context>
@@ -339,23 +428,33 @@
 <context>
     <name>HomeView</name>
     <message>
-        <location filename="src/homeview.cpp" line="33"/>
+        <location filename="src/homeview.cpp" line="38"/>
         <source>Search</source>
         <translation>Išči</translation>
     </message>
     <message>
-        <location filename="src/homeview.cpp" line="35"/>
+        <location filename="src/homeview.cpp" line="40"/>
         <source>Find videos and channels by keyword</source>
-        <translation type="unfinished"/>
+        <translation>Išči posnetke in kanale po ključnih besedah</translation>
     </message>
     <message>
-        <location filename="src/homeview.cpp" line="40"/>
+        <location filename="src/homeview.cpp" line="45"/>
         <source>Browse</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/homeview.cpp" line="42"/>
+        <location filename="src/homeview.cpp" line="47"/>
         <source>Browse videos by category</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/homeview.cpp" line="51"/>
+        <source>Subscriptions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/homeview.cpp" line="53"/>
+        <source>Channel subscriptions</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -367,7 +466,7 @@
 <context>
     <name>LoadingWidget</name>
     <message>
-        <location filename="src/loadingwidget.cpp" line="90"/>
+        <location filename="src/loadingwidget.cpp" line="88"/>
         <source>Error</source>
         <translation>Napaka</translation>
     </message>
@@ -375,426 +474,431 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="src/mainwindow.cpp" line="213"/>
+        <location filename="src/mainwindow.cpp" line="237"/>
         <source>&amp;Stop</source>
         <translation>U&amp;stavi</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="214"/>
+        <location filename="src/mainwindow.cpp" line="238"/>
         <source>Stop playback and go back to the search view</source>
         <translation>Ustavi predvajanje in se vrne v iskalni pogled</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="232"/>
+        <location filename="src/mainwindow.cpp" line="253"/>
         <source>S&amp;kip</source>
         <translation>Pres&amp;koči</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="233"/>
+        <location filename="src/mainwindow.cpp" line="254"/>
         <source>Skip to the next video</source>
         <translation>Skoči na naslednji video</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="239"/>
-        <location filename="src/mainwindow.cpp" line="989"/>
+        <location filename="src/mainwindow.cpp" line="260"/>
+        <location filename="src/mainwindow.cpp" line="1012"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pavza</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="240"/>
-        <location filename="src/mainwindow.cpp" line="990"/>
+        <location filename="src/mainwindow.cpp" line="261"/>
+        <location filename="src/mainwindow.cpp" line="1013"/>
         <source>Pause playback</source>
         <translation>Premor v predvajanju</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="246"/>
+        <location filename="src/mainwindow.cpp" line="267"/>
         <source>&amp;Full Screen</source>
         <translation>&amp;Celozaslonski način</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="247"/>
+        <location filename="src/mainwindow.cpp" line="268"/>
         <source>Go full screen</source>
         <translation>Gre v celozaslonski način</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="263"/>
+        <location filename="src/mainwindow.cpp" line="282"/>
         <source>Hide the playlist and the toolbar</source>
         <translation>Skrije predvajalni seznam in orodno vrstico</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="276"/>
+        <location filename="src/mainwindow.cpp" line="295"/>
         <source>Go to the YouTube video page and pause playback</source>
         <translation>Gre na stran posnetka na YouTube in ustavi predvajanje</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="283"/>
+        <location filename="src/mainwindow.cpp" line="302"/>
         <source>Copy the current video YouTube link to the clipboard</source>
         <translation>Kopira povezavo YouTube trenutnega posnetka v odložišče</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="290"/>
+        <location filename="src/mainwindow.cpp" line="309"/>
         <source>Copy the current video stream URL to the clipboard</source>
         <translation>Kopira URL trenutnega video pretoka v odložišče</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="297"/>
+        <location filename="src/mainwindow.cpp" line="316"/>
         <source>Find other video parts hopefully in the right order</source>
         <translation>Poišče ostale dele posnetka, predvidoma v pravem zaporedju</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="303"/>
+        <location filename="src/mainwindow.cpp" line="322"/>
         <source>&amp;Remove</source>
         <translation>Odst&amp;rani</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="304"/>
+        <location filename="src/mainwindow.cpp" line="323"/>
         <source>Remove the selected videos from the playlist</source>
         <translation>Odstrani izbrani video iz predvajalnega seznama</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="310"/>
+        <location filename="src/mainwindow.cpp" line="329"/>
         <source>Move &amp;Up</source>
         <translation>Premakni &amp;gor</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="311"/>
+        <location filename="src/mainwindow.cpp" line="330"/>
         <source>Move up the selected videos in the playlist</source>
         <translation>Izbrani video premakne mesto više v predvajalnem seznamu</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="317"/>
+        <location filename="src/mainwindow.cpp" line="336"/>
         <source>Move &amp;Down</source>
         <translation>Premakni &amp;dol</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="318"/>
+        <location filename="src/mainwindow.cpp" line="337"/>
         <source>Move down the selected videos in the playlist</source>
         <translation>Izbrani video premakne mesto niže v predvajalnem seznamu</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="329"/>
+        <location filename="src/mainwindow.cpp" line="348"/>
         <source>Clear the search history. Cannot be undone.</source>
         <translation>Izbriše zgodovino iskanje. Tega dejanja ni mogoče razveljaviti.</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="334"/>
+        <location filename="src/mainwindow.cpp" line="353"/>
         <source>&amp;Quit</source>
         <translation>&amp;Zapri</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="337"/>
+        <location filename="src/mainwindow.cpp" line="356"/>
         <source>Bye</source>
         <translation>Nasvidenje</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="341"/>
+        <location filename="src/mainwindow.cpp" line="360"/>
         <source>&amp;Website</source>
         <translation>&amp;Spletno mesto</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="343"/>
+        <location filename="src/mainwindow.cpp" line="362"/>
         <source>%1 on the Web</source>
         <translation>%1 na spletu</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="349"/>
+        <location filename="src/mainwindow.cpp" line="368"/>
         <source>Please support the continued development of %1</source>
         <translation>Podprite prosim nadaljni razvoj programa %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="354"/>
+        <location filename="src/mainwindow.cpp" line="373"/>
         <source>&amp;About</source>
         <translation>&amp;O programu</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="356"/>
+        <location filename="src/mainwindow.cpp" line="375"/>
         <source>Info about %1</source>
         <translation>Informacije o %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="364"/>
+        <location filename="src/mainwindow.cpp" line="383"/>
         <source>Search</source>
         <translation>Išči</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="383"/>
+        <location filename="src/mainwindow.cpp" line="402"/>
         <source>Mute volume</source>
         <translation>Nemo</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="412"/>
-        <location filename="src/mainwindow.cpp" line="1365"/>
+        <location filename="src/mainwindow.cpp" line="431"/>
+        <location filename="src/mainwindow.cpp" line="1406"/>
         <source>&amp;Downloads</source>
         <translation>Pre&amp;nosi</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="413"/>
+        <location filename="src/mainwindow.cpp" line="432"/>
         <source>Show details about video downloads</source>
         <translation>Pokaže podrobnosti o prenosih posnetkov</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="421"/>
+        <location filename="src/mainwindow.cpp" line="440"/>
         <source>&amp;Download</source>
         <translation>Pre&amp;nesi</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="422"/>
+        <location filename="src/mainwindow.cpp" line="441"/>
         <source>Download the current video</source>
         <translation>Prenese trenutni posnetek</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="441"/>
+        <location filename="src/mainwindow.cpp" line="458"/>
+        <source>&amp;Subscribe to Channel</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="465"/>
         <source>Share the current video using %1</source>
         <translation>Deli trenutni posnetek preko %1 </translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="458"/>
+        <location filename="src/mainwindow.cpp" line="482"/>
         <source>&amp;Email</source>
         <translation>&amp;E-pošta</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="459"/>
+        <location filename="src/mainwindow.cpp" line="483"/>
         <source>Email</source>
         <translation>E-pošte</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="463"/>
+        <location filename="src/mainwindow.cpp" line="487"/>
         <source>&amp;Close</source>
         <translation>&amp;Zapri</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="473"/>
+        <location filename="src/mainwindow.cpp" line="497"/>
         <source>&amp;Float on Top</source>
         <translation>Lebdeče na vrhu</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="478"/>
+        <location filename="src/mainwindow.cpp" line="502"/>
         <source>&amp;Stop After This Video</source>
         <translation>U&amp;stavi za tem posnetkom</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="485"/>
+        <location filename="src/mainwindow.cpp" line="509"/>
         <source>&amp;Report an Issue...</source>
         <translation>P&amp;rijavi napako ...</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="489"/>
+        <location filename="src/mainwindow.cpp" line="513"/>
         <source>&amp;Refine Search...</source>
         <translation>&amp;Izboljšaj iskanje ...</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="501"/>
+        <location filename="src/mainwindow.cpp" line="525"/>
         <source>More...</source>
-        <translation type="unfinished"/>
+        <translation>Več...</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="504"/>
+        <location filename="src/mainwindow.cpp" line="528"/>
         <source>&amp;Related Videos</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="506"/>
+        <location filename="src/mainwindow.cpp" line="530"/>
         <source>Watch videos related to the current one</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="544"/>
+        <location filename="src/mainwindow.cpp" line="553"/>
         <source>&amp;Application</source>
         <translation>&amp;Aplikacija</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="515"/>
+        <location filename="src/mainwindow.cpp" line="537"/>
         <source>Buy %1...</source>
         <translation>Kupi %1 ...</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="558"/>
+        <location filename="src/mainwindow.cpp" line="567"/>
         <source>&amp;Playback</source>
         <translation>&amp;Predvajanje</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="572"/>
+        <location filename="src/mainwindow.cpp" line="581"/>
         <source>&amp;Playlist</source>
         <translation>&amp;Predvajalni seznam</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="581"/>
+        <location filename="src/mainwindow.cpp" line="590"/>
         <source>&amp;Video</source>
         <translation>&amp;Video</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="594"/>
+        <location filename="src/mainwindow.cpp" line="605"/>
         <source>&amp;View</source>
         <translation>&amp;Pogled</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="601"/>
+        <location filename="src/mainwindow.cpp" line="612"/>
         <source>&amp;Share</source>
         <translation>&amp;Deli</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="615"/>
+        <location filename="src/mainwindow.cpp" line="626"/>
         <source>&amp;Help</source>
         <translation>P&amp;omoč</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="690"/>
+        <location filename="src/mainwindow.cpp" line="701"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
         <translation>Pritisnite %1, da povišate glasnost in %2, da jo nižate</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="889"/>
-        <location filename="src/mainwindow.cpp" line="895"/>
+        <location filename="src/mainwindow.cpp" line="910"/>
+        <location filename="src/mainwindow.cpp" line="916"/>
         <source>Opening %1</source>
         <translation>Odpiranje %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="936"/>
+        <location filename="src/mainwindow.cpp" line="959"/>
         <source>Do you want to exit %1 with a download in progress?</source>
         <translation>Ali res želite zapustiti %1 medtem, ko je aktiven prenos?</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="937"/>
+        <location filename="src/mainwindow.cpp" line="960"/>
         <source>If you close %1 now, this download will be cancelled.</source>
         <translation>V primeru, da zdaj zaprete %1 bo ta prenos prekinjen.</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="942"/>
+        <location filename="src/mainwindow.cpp" line="965"/>
         <source>Close and cancel download</source>
         <translation>Zapri in prekliči prenos</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="943"/>
+        <location filename="src/mainwindow.cpp" line="966"/>
         <source>Wait for download to finish</source>
         <translation>Počakaj, da konča prenos.</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1102"/>
+        <location filename="src/mainwindow.cpp" line="1125"/>
         <source>Leave &amp;Full Screen</source>
         <translation>Zapusti celozaslonski način</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1475"/>
+        <location filename="src/mainwindow.cpp" line="1515"/>
         <source>%1 version %2 is now available.</source>
         <translation>Na voljo je %1 različica %2.</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1479"/>
+        <location filename="src/mainwindow.cpp" line="1519"/>
         <source>Remind me later</source>
         <translation>Opozori me kasneje</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1480"/>
+        <location filename="src/mainwindow.cpp" line="1520"/>
         <source>Update</source>
         <translation>Posodobitev</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="982"/>
+        <location filename="src/mainwindow.cpp" line="1005"/>
         <source>Error: %1</source>
         <translation>Napaka: %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="222"/>
+        <location filename="src/mainwindow.cpp" line="246"/>
         <source>P&amp;revious</source>
         <translation>P&amp;redhodna</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="223"/>
+        <location filename="src/mainwindow.cpp" line="247"/>
         <source>Go back to the previous track</source>
         <translation>Predhodna sled</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="262"/>
+        <location filename="src/mainwindow.cpp" line="281"/>
         <source>&amp;Compact Mode</source>
         <translation>Strnjen način</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="275"/>
+        <location filename="src/mainwindow.cpp" line="294"/>
         <source>Open the &amp;YouTube Page</source>
         <translation>Odpri stran &amp;Youtube</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="282"/>
+        <location filename="src/mainwindow.cpp" line="301"/>
         <source>Copy the YouTube &amp;Link</source>
         <translation>Kopiraj povezavo Youtube</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="289"/>
+        <location filename="src/mainwindow.cpp" line="308"/>
         <source>Copy the Video Stream &amp;URL</source>
         <translation>Kopiraj &amp;URL toka video</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="296"/>
+        <location filename="src/mainwindow.cpp" line="315"/>
         <source>Find Video &amp;Parts</source>
         <translation>&amp;Poišči ostale dele posnetka</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="324"/>
+        <location filename="src/mainwindow.cpp" line="343"/>
         <source>&amp;Clear Recent Searches</source>
         <translation>Počisti nedavna iskanja</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="348"/>
+        <location filename="src/mainwindow.cpp" line="367"/>
         <source>Make a &amp;Donation</source>
         <translation>Pošlji &amp;donacijo</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="405"/>
+        <location filename="src/mainwindow.cpp" line="424"/>
         <source>&amp;Manually Start Playing</source>
         <translation>Ročno začni predvajanje</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="406"/>
+        <location filename="src/mainwindow.cpp" line="425"/>
         <source>Manually start playing videos</source>
         <translation>Prični z ročnim predvajanjem posnetkov</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="728"/>
+        <location filename="src/mainwindow.cpp" line="739"/>
         <source>Choose your content location</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1002"/>
+        <location filename="src/mainwindow.cpp" line="1025"/>
         <source>&amp;Play</source>
         <translation>&amp;Predvajaj</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1003"/>
+        <location filename="src/mainwindow.cpp" line="1026"/>
         <source>Resume playback</source>
         <translation>Nadaljuj s predvajanjem</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1236"/>
+        <location filename="src/mainwindow.cpp" line="1277"/>
         <source>Remaining time: %1</source>
         <translation>Preostali čas: %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1294"/>
+        <location filename="src/mainwindow.cpp" line="1335"/>
         <source>Volume at %1%</source>
         <translation>Glasnost %1%</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1300"/>
+        <location filename="src/mainwindow.cpp" line="1341"/>
         <source>Volume is muted</source>
         <translation>Glasnost je utišana</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1303"/>
+        <location filename="src/mainwindow.cpp" line="1344"/>
         <source>Volume is unmuted</source>
         <translation>Glasnost je povrnjena</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1310"/>
+        <location filename="src/mainwindow.cpp" line="1351"/>
         <source>Maximum video definition set to %1</source>
         <translation>Najvišja ločljivost posnetkov je nastavljena na %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1351"/>
+        <location filename="src/mainwindow.cpp" line="1392"/>
         <source>Your privacy is now safe</source>
         <translation>Vaša zasebnost je zdaj varna</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1366"/>
+        <location filename="src/mainwindow.cpp" line="1407"/>
         <source>Downloads complete</source>
         <translation>Prenosi so končani</translation>
     </message>
@@ -802,65 +906,75 @@
 <context>
     <name>MediaView</name>
     <message>
-        <location filename="src/mediaview.cpp" line="553"/>
+        <location filename="src/mediaview.cpp" line="563"/>
         <source>You can now paste the YouTube link into another application</source>
         <translation>Zdaj lahko prilepite povezavo na YouTube v drugo aplikacijo</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="561"/>
+        <location filename="src/mediaview.cpp" line="571"/>
         <source>You can now paste the video stream URL into another application</source>
         <translation>Zdaj lahko prilepite URL video pretoka v drugo aplikacijo</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="562"/>
+        <location filename="src/mediaview.cpp" line="572"/>
         <source>The link will be valid only for a limited time.</source>
         <translation>Povezava bo delovala le za omejen čas.</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="636"/>
+        <location filename="src/mediaview.cpp" line="650"/>
         <source>This is just the demo version of %1.</source>
         <translation>To je samo demo različica programa %1.</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="637"/>
+        <location filename="src/mediaview.cpp" line="651"/>
         <source>It allows you to test the application and see if it works for you.</source>
         <translation>Dovoli vam testiranje aplikacije in preverjanje delovanja,</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="667"/>
+        <location filename="src/mediaview.cpp" line="681"/>
         <source>Continue</source>
         <translation>Nadaljuj</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="756"/>
+        <location filename="src/mediaview.cpp" line="772"/>
         <source>of</source>
         <comment>Used in video parts, as in '2 of 3'</comment>
         <translation>od</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="768"/>
+        <location filename="src/mediaview.cpp" line="785"/>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
         <translation>del</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="770"/>
+        <location filename="src/mediaview.cpp" line="787"/>
         <source>episode</source>
         <comment>This is for video parts, as in 'Cool series - episode 1'</comment>
         <translation>nadaljevanje</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="847"/>
+        <location filename="src/mediaview.cpp" line="868"/>
         <source>Sent from %1</source>
         <translation>Poslano iz %1</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="644"/>
+        <location filename="src/mediaview.cpp" line="899"/>
+        <source>Unsubscribe from %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/mediaview.cpp" line="903"/>
+        <source>Subscribe to %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/mediaview.cpp" line="658"/>
         <source>Get the full version</source>
         <translation>Pridobi celotno različico</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="681"/>
+        <location filename="src/mediaview.cpp" line="695"/>
         <source>Downloading %1</source>
         <translation>Prenašanje %1</translation>
     </message>
@@ -909,52 +1023,52 @@
 <context>
     <name>PlaylistItemDelegate</name>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="159"/>
+        <location filename="src/playlistitemdelegate.cpp" line="177"/>
         <source>%1 views</source>
         <translation>%1 predvajanj</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="285"/>
+        <location filename="src/playlistitemdelegate.cpp" line="292"/>
         <source>%1 of %2 (%3) — %4</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="292"/>
+        <location filename="src/playlistitemdelegate.cpp" line="299"/>
         <source>Preparing</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="294"/>
+        <location filename="src/playlistitemdelegate.cpp" line="301"/>
         <source>Failed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="296"/>
+        <location filename="src/playlistitemdelegate.cpp" line="303"/>
         <source>Completed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="298"/>
+        <location filename="src/playlistitemdelegate.cpp" line="305"/>
         <source>Stopped</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="334"/>
+        <location filename="src/playlistitemdelegate.cpp" line="341"/>
         <source>Stop downloading</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="344"/>
+        <location filename="src/playlistitemdelegate.cpp" line="351"/>
         <source>Show in %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="346"/>
+        <location filename="src/playlistitemdelegate.cpp" line="353"/>
         <source>Open parent folder</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="355"/>
+        <location filename="src/playlistitemdelegate.cpp" line="362"/>
         <source>Restart downloading</source>
         <translation type="unfinished"/>
     </message>
@@ -1111,48 +1225,48 @@
 <context>
     <name>SearchView</name>
     <message>
-        <location filename="src/searchview.cpp" line="71"/>
+        <location filename="src/searchview.cpp" line="66"/>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
         <translation>Pozdravljeni v &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="50"/>
+        <location filename="src/searchview.cpp" line="161"/>
         <source>Get the full version</source>
         <translation>Pridobi celotno različico</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="85"/>
+        <location filename="src/searchview.cpp" line="80"/>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole phrase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
         <translation>Vnesite</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="90"/>
+        <location filename="src/searchview.cpp" line="85"/>
         <source>a keyword</source>
         <translation>ključno besedo</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="91"/>
+        <location filename="src/searchview.cpp" line="86"/>
         <source>a channel</source>
         <translation>kanal</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="96"/>
+        <location filename="src/searchview.cpp" line="91"/>
         <source>to start watching videos.</source>
         <translation>in začnite gledati posnetke.</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="120"/>
+        <location filename="src/searchview.cpp" line="115"/>
         <source>Watch</source>
         <translation>Glejte</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="138"/>
+        <location filename="src/searchview.cpp" line="133"/>
         <source>Recent keywords</source>
         <translation>Nedavne ključne besede</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="151"/>
+        <location filename="src/searchview.cpp" line="146"/>
         <source>Recent channels</source>
         <translation>Nedavni kanali</translation>
     </message>
@@ -1160,8 +1274,8 @@
 <context>
     <name>SidebarHeader</name>
     <message>
-        <location filename="src/sidebarheader.cpp" line="16"/>
-        <location filename="src/sidebarheader.cpp" line="23"/>
+        <location filename="src/sidebarheader.cpp" line="19"/>
+        <location filename="src/sidebarheader.cpp" line="26"/>
         <source>&amp;Back</source>
         <translation type="unfinished"/>
     </message>
@@ -1197,11 +1311,6 @@
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/standardfeedsview.cpp" line="86"/>
-        <source>Featured</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="src/standardfeedsview.cpp" line="87"/>
         <source>Most Shared</source>
         <translation type="unfinished"/>
@@ -1216,16 +1325,21 @@
         <source>Top Rated</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <location filename="src/standardfeedsview.cpp" line="90"/>
+        <source>All Time Popular</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>Video</name>
     <message>
-        <location filename="src/video.cpp" line="213"/>
+        <location filename="src/video.cpp" line="215"/>
         <source>Cannot get video stream for %1</source>
         <translation>Za %1 ni mogoče pridobiti video pretoka</translation>
     </message>
     <message>
-        <location filename="src/video.cpp" line="231"/>
+        <location filename="src/video.cpp" line="233"/>
         <source>Network error: %1 for %2</source>
         <translation>Napaka omrežja: %1 od %2</translation>
     </message>
@@ -1235,177 +1349,177 @@
     <message>
         <location filename="src/ytregions.cpp" line="8"/>
         <source>Algeria</source>
-        <translation type="unfinished"/>
+        <translation>Alžirija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="9"/>
         <source>Argentina</source>
-        <translation type="unfinished"/>
+        <translation>Argentina</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="10"/>
         <source>Australia</source>
-        <translation type="unfinished"/>
+        <translation>Avstralija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="11"/>
         <source>Belgium</source>
-        <translation type="unfinished"/>
+        <translation>Belgija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="12"/>
         <source>Brazil</source>
-        <translation type="unfinished"/>
+        <translation>Brazilija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="13"/>
         <source>Canada</source>
-        <translation type="unfinished"/>
+        <translation>Kanada</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="14"/>
         <source>Chile</source>
-        <translation type="unfinished"/>
+        <translation>Čile</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="15"/>
         <source>Colombia</source>
-        <translation type="unfinished"/>
+        <translation>Kolumbija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="16"/>
         <source>Czech Republic</source>
-        <translation type="unfinished"/>
+        <translation>Češka republika</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="17"/>
         <source>Egypt</source>
-        <translation type="unfinished"/>
+        <translation>Egipt</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="18"/>
         <source>France</source>
-        <translation type="unfinished"/>
+        <translation>Francija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="19"/>
         <source>Germany</source>
-        <translation type="unfinished"/>
+        <translation>Nemčija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="20"/>
         <source>Ghana</source>
-        <translation type="unfinished"/>
+        <translation>Gana</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="21"/>
         <source>Greece</source>
-        <translation type="unfinished"/>
+        <translation>Grčija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="22"/>
         <source>Hong Kong</source>
-        <translation type="unfinished"/>
+        <translation>Hong Kong</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="23"/>
         <source>Hungary</source>
-        <translation type="unfinished"/>
+        <translation>Madžarska</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="24"/>
         <source>India</source>
-        <translation type="unfinished"/>
+        <translation>Indija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="25"/>
         <source>Indonesia</source>
-        <translation type="unfinished"/>
+        <translation>Indonezija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="26"/>
         <source>Ireland</source>
-        <translation type="unfinished"/>
+        <translation>Irska</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="27"/>
         <source>Israel</source>
-        <translation type="unfinished"/>
+        <translation>Izrael</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="28"/>
         <source>Italy</source>
-        <translation type="unfinished"/>
+        <translation>Italija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="29"/>
         <source>Japan</source>
-        <translation type="unfinished"/>
+        <translation>Japonska</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="30"/>
         <source>Jordan</source>
-        <translation type="unfinished"/>
+        <translation>Jordanija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="31"/>
         <source>Kenya</source>
-        <translation type="unfinished"/>
+        <translation>Kenija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="32"/>
         <source>Malaysia</source>
-        <translation type="unfinished"/>
+        <translation>Malezija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="33"/>
         <source>Mexico</source>
-        <translation type="unfinished"/>
+        <translation>Mehika</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="34"/>
         <source>Morocco</source>
-        <translation type="unfinished"/>
+        <translation>Maroko</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="35"/>
         <source>Netherlands</source>
-        <translation type="unfinished"/>
+        <translation>Nizozemska</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="36"/>
         <source>New Zealand</source>
-        <translation type="unfinished"/>
+        <translation>Nova Zelandija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="37"/>
         <source>Nigeria</source>
-        <translation type="unfinished"/>
+        <translation>Nigerija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="38"/>
         <source>Peru</source>
-        <translation type="unfinished"/>
+        <translation>Peru</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="39"/>
         <source>Philippines</source>
-        <translation type="unfinished"/>
+        <translation>Filipini</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="40"/>
         <source>Poland</source>
-        <translation type="unfinished"/>
+        <translation>Poljska</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="41"/>
         <source>Russia</source>
-        <translation type="unfinished"/>
+        <translation>Rusija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="42"/>
         <source>Saudi Arabia</source>
-        <translation type="unfinished"/>
+        <translation>Savdska Arabija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="43"/>
@@ -1415,62 +1529,62 @@
     <message>
         <location filename="src/ytregions.cpp" line="44"/>
         <source>South Africa</source>
-        <translation type="unfinished"/>
+        <translation>Južna Afrika</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="45"/>
         <source>South Korea</source>
-        <translation type="unfinished"/>
+        <translation>Južna Koreja</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="46"/>
         <source>Spain</source>
-        <translation type="unfinished"/>
+        <translation>Španija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="47"/>
         <source>Sweden</source>
-        <translation type="unfinished"/>
+        <translation>Švedska</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="48"/>
         <source>Taiwan</source>
-        <translation type="unfinished"/>
+        <translation>Tajvan</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="49"/>
         <source>Tunisia</source>
-        <translation type="unfinished"/>
+        <translation>Tunizija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="50"/>
         <source>Turkey</source>
-        <translation type="unfinished"/>
+        <translation>Turčija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="51"/>
         <source>Uganda</source>
-        <translation type="unfinished"/>
+        <translation>Uganda</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="52"/>
         <source>United Arab Emirates</source>
-        <translation type="unfinished"/>
+        <translation>Združeni arabski emirati</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="53"/>
         <source>United Kingdom</source>
-        <translation type="unfinished"/>
+        <translation>Velika Britanija</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="54"/>
         <source>Yemen</source>
-        <translation type="unfinished"/>
+        <translation>Jemen</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="128"/>
         <source>Worldwide</source>
-        <translation type="unfinished"/>
+        <translation>Svetovno</translation>
     </message>
 </context>
 </TS>

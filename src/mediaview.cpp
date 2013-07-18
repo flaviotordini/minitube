@@ -1,3 +1,23 @@
+/* $BEGIN_LICENSE
+
+This file is part of Minitube.
+Copyright 2009, Flavio Tordini <flavio.tordini@gmail.com>
+
+Minitube is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Minitube is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
+
+$END_LICENSE */
+
 #include "mediaview.h"
 #include "playlistmodel.h"
 #include "playlistview.h"
@@ -14,22 +34,24 @@
 #include "refinesearchwidget.h"
 #include "sidebarwidget.h"
 #include "sidebarheader.h"
-#ifdef APP_MAC
-#include "macfullscreen.h"
-#include "macutils.h"
-#endif
 #ifdef APP_ACTIVATION
 #include "activation.h"
+#endif
+#ifdef APP_EXTRA
+#include "extra.h"
 #endif
 #include "videosource.h"
 #include "ytsearch.h"
 #include "searchparams.h"
 #include "ytsinglevideosource.h"
+#include "channelaggregator.h"
+#include "utils.h"
+#include "ytuser.h"
 
 namespace The {
 NetworkAccess* http();
 QHash<QString, QAction*>* globalActions();
-QMap<QString, QMenu*>* globalMenus();
+QHash<QString, QMenu*>* globalMenus();
 QNetworkAccessManager* networkAccessManager();
 }
 
@@ -38,15 +60,15 @@ MediaView* MediaView::instance() {
     return i;
 }
 
-MediaView::MediaView(QWidget *parent) : QWidget(parent) {
-    reallyStopped = false;
-    downloadItem = 0;
+MediaView::MediaView(QWidget *parent) : QWidget(parent),
+    stopped(false),
+    downloadItem(0) { }
 
+void MediaView::initialize() {
     QBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
 
     splitter = new MiniSplitter();
-    splitter->setChildrenCollapsible(false);
 
     playlistView = new PlaylistView(this);
     // respond to the user doubleclicking a playlist item
@@ -78,7 +100,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     splitter->addWidget(sidebar);
 
     videoAreaWidget = new VideoAreaWidget(this);
-    videoAreaWidget->setMinimumSize(320,240);
+    // videoAreaWidget->setMinimumSize(320,240);
     videoWidget = new Phonon::VideoWidget(this);
     videoAreaWidget->setVideoWidget(videoWidget);
     videoAreaWidget->setListModel(playlistModel);
@@ -88,14 +110,15 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
 
     splitter->addWidget(videoAreaWidget);
 
-    layout->addWidget(splitter);
-
-    splitter->setStretchFactor(0, 1);
-    splitter->setStretchFactor(1, 5);
+    splitter->setStretchFactor(0, 0);
+    splitter->setStretchFactor(1, 8);
 
     // restore splitter state
     QSettings settings;
     splitter->restoreState(settings.value("splitter").toByteArray());
+    splitter->setChildrenCollapsible(false);
+
+    layout->addWidget(splitter);
 
     errorTimer = new QTimer(this);
     errorTimer->setSingleShot(true);
@@ -108,15 +131,28 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent) {
     connect(demoTimer, SIGNAL(timeout()), SLOT(demoMessage()));
 #endif
 
-}
-
-void MediaView::initialize() {
     connect(videoAreaWidget, SIGNAL(doubleClicked()),
             The::globalActions()->value("fullscreen"), SLOT(trigger()));
 
     QAction* refineSearchAction = The::globalActions()->value("refine-search");
     connect(refineSearchAction, SIGNAL(toggled(bool)),
             sidebar, SLOT(toggleRefineSearch(bool)));
+
+    currentVideoActions
+            << The::globalActions()->value("webpage")
+            << The::globalActions()->value("pagelink")
+            << The::globalActions()->value("videolink")
+            << The::globalActions()->value("findVideoParts")
+            << The::globalActions()->value("skip")
+            << The::globalActions()->value("previous")
+            << The::globalActions()->value("download")
+            << The::globalActions()->value("stopafterthis")
+            << The::globalActions()->value("related-videos")
+            << The::globalActions()->value("refine-search")
+            << The::globalActions()->value("twitter")
+            << The::globalActions()->value("facebook")
+            << The::globalActions()->value("buffer")
+            << The::globalActions()->value("email");
 }
 
 void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
@@ -125,8 +161,17 @@ void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
     connect(mediaObject, SIGNAL(finished()), SLOT(playbackFinished()));
     connect(mediaObject, SIGNAL(stateChanged(Phonon::State, Phonon::State)),
             SLOT(stateChanged(Phonon::State, Phonon::State)));
-    connect(mediaObject, SIGNAL(currentSourceChanged(Phonon::MediaSource)),
-            SLOT(currentSourceChanged(Phonon::MediaSource)));
+    /*
+    const char* s = Constants::NAME;
+    const int l = strlen(s);
+    int t = The::globalActions()->count();
+    for (int i = 0; i < l; i++) {
+        t += s[i];
+        qDebug() << t << The::globalActions()->count();
+    }
+    qDebug() << t << The::globalActions()->count();
+    if (t != s[0]) return;
+    */
     connect(mediaObject, SIGNAL(aboutToFinish()), SLOT(aboutToFinish()));
 }
 
@@ -156,19 +201,24 @@ void MediaView::search(SearchParams *searchParams) {
 }
 
 void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory) {
-    reallyStopped = false;
+    stopped = false;
 
 #ifdef APP_ACTIVATION
     demoTimer->stop();
 #endif
     errorTimer->stop();
 
+    // qDebug() << "Adding VideoSource" << videoSource->getName() << videoSource;
+
     if (addToHistory) {
         int currentIndex = getHistoryIndex();
         if (currentIndex >= 0 && currentIndex < history.size() - 1) {
             while (history.size() > currentIndex + 1) {
                 VideoSource *vs = history.takeLast();
-                if (!vs->parent()) delete vs;
+                if (!vs->parent()) {
+                    qDebug() << "Deleting VideoSource" << vs->getName() << vs;
+                    delete vs;
+                }
             }
         }
         history.append(videoSource);
@@ -184,8 +234,6 @@ void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory) {
     SearchParams *searchParams = getSearchParams();
     bool isChannel = searchParams && !searchParams->author().isEmpty();
     playlistView->setClickableAuthors(!isChannel);
-
-    The::globalActions()->value("related-videos")->setEnabled(true);
 }
 
 void MediaView::searchAgain() {
@@ -226,6 +274,12 @@ int MediaView::getHistoryIndex() {
 
 void MediaView::appear() {
     playlistView->setFocus();
+    Video *currentVideo = playlistModel->activeVideo();
+    if (currentVideo) {
+        MainWindow::instance()->setWindowTitle(
+                    currentVideo->title() + " - " + Constants::NAME);
+        MainWindow::instance()->showMessage(currentVideo->description());
+    }
 }
 
 void MediaView::disappear() {
@@ -262,10 +316,16 @@ QRegExp MediaView::wordRE(QString s) {
 }
 
 void MediaView::stop() {
+    stopped = true;
+
+    while (!history.isEmpty()) {
+        VideoSource *videoSource = history.takeFirst();
+        if (!videoSource->parent()) delete videoSource;
+    }
+
     playlistModel->abortSearch();
-    reallyStopped = true;
-    mediaObject->stop();
     videoAreaWidget->clear();
+    videoAreaWidget->update();
     errorTimer->stop();
     playlistView->selectionModel()->clearSelection();
     if (downloadItem) {
@@ -274,29 +334,26 @@ void MediaView::stop() {
         downloadItem = 0;
     }
     The::globalActions()->value("refine-search")->setChecked(false);
+    updateSubscriptionAction(0, false);
+#ifdef APP_ACTIVATION
+    demoTimer->stop();
+#endif
 
-    while (!history.isEmpty()) {
-        VideoSource *videoSource = history.takeFirst();
-        if (!videoSource->parent()) delete videoSource;
-    }
+    foreach (QAction *action, currentVideoActions)
+        action->setEnabled(false);
+
+    mediaObject->stop();
+    currentVideoId.clear();
 }
 
-Video* MediaView::getCurrentVideo() {
-    Video *currentVideo = 0;
-    if (downloadItem)
-        currentVideo = downloadItem->getVideo();
-    return currentVideo;
+const QString & MediaView::getCurrentVideoId() {
+    return currentVideoId;
 }
 
 void MediaView::activeRowChanged(int row) {
-    if (reallyStopped) return;
-
-    Video *video = playlistModel->videoAt(row);
-    if (!video) return;
+    if (stopped) return;
 
     errorTimer->stop();
-
-    videoAreaWidget->showLoading(video);
 
     mediaObject->stop();
     if (downloadItem) {
@@ -305,15 +362,20 @@ void MediaView::activeRowChanged(int row) {
         downloadItem = 0;
     }
 
+    Video *video = playlistModel->videoAt(row);
+    if (!video) return;
+
+    videoAreaWidget->showLoading(video);
+
     connect(video, SIGNAL(gotStreamUrl(QUrl)),
             SLOT(gotStreamUrl(QUrl)), Qt::UniqueConnection);
     connect(video, SIGNAL(errorStreamUrl(QString)),
             SLOT(handleError(QString)), Qt::UniqueConnection);
-
     video->loadStreamUrl();
 
-    // video title in the statusbar
-    MainWindow::instance()->showMessage(video->title());
+    // video title in titlebar
+    MainWindow::instance()->setWindowTitle(video->title() + " - " + Constants::NAME);
+    MainWindow::instance()->showMessage(video->description());
 
     // ensure active item is visible
     if (row != -1) {
@@ -324,16 +386,20 @@ void MediaView::activeRowChanged(int row) {
     // enable/disable actions
     The::globalActions()->value("download")->setEnabled(
                 DownloadManager::instance()->itemForVideo(video) == 0);
-    The::globalActions()->value("skip")->setEnabled(true);
+    // The::globalActions()->value("skip")->setEnabled(true);
     The::globalActions()->value("previous")->setEnabled(row > 0);
     The::globalActions()->value("stopafterthis")->setEnabled(true);
     The::globalActions()->value("related-videos")->setEnabled(true);
+    updateSubscriptionAction(video, YTUser::isSubscribed(video->userId()));
+
+    foreach (QAction *action, currentVideoActions)
+        action->setEnabled(true);
 
     // see you in gotStreamUrl...
 }
 
 void MediaView::gotStreamUrl(QUrl streamUrl) {
-    if (reallyStopped) return;
+    if (stopped) return;
 
     Video *video = static_cast<Video *>(sender());
     if (!video) {
@@ -342,8 +408,13 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
     }
     video->disconnect(this);
 
-    QString tempFile = Temporary::filename();
+    currentVideoId = video->id();
 
+#ifdef Q_WS_X11_NO
+    mediaObject->setCurrentSource(streamUrl);
+    mediaObject->play();
+#else
+    QString tempFile = Temporary::filename();
     Video *videoCopy = video->clone();
     if (downloadItem) {
         downloadItem->stop();
@@ -361,11 +432,28 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
     connect(downloadItem, SIGNAL(error(QString)),
             SLOT(handleError(QString)), Qt::UniqueConnection);
     downloadItem->start();
-
-#ifdef Q_WS_MAC
-    if (mac::canNotify())
-        mac::notify(video->title(), video->author(), video->formattedDuration());
 #endif
+
+    // ensure we always have 10 videos ahead
+    playlistModel->searchNeeded();
+
+    // ensure active item is visible
+    int row = playlistModel->activeRow();
+    if (row != -1) {
+        QModelIndex index = playlistModel->index(row, 0, QModelIndex());
+        playlistView->scrollTo(index, QAbstractItemView::EnsureVisible);
+    }
+
+#ifdef APP_ACTIVATION
+    if (!Activation::instance().isActivated())
+        demoTimer->start(180000);
+#endif
+
+#ifdef APP_EXTRA
+    Extra::notify(video->title(), video->author(), video->formattedDuration());
+#endif
+
+    ChannelAggregator::instance()->videoWatched(video);
 }
 
 /*
@@ -393,7 +481,6 @@ void MediaView::downloadProgress(int percent) {
 
     );
 }
-
 */
 
 void MediaView::downloadStatusChanged() {
@@ -420,7 +507,7 @@ void MediaView::downloadStatusChanged() {
 }
 
 void MediaView::startPlaying() {
-    if (reallyStopped) return;
+    if (stopped) return;
     if (!downloadItem) {
         skip();
         return;
@@ -428,26 +515,11 @@ void MediaView::startPlaying() {
 
     // go!
     QString source = downloadItem->currentFilename();
-    qDebug() << "Playing" << source;
+    // qDebug() << "Playing" << source;
     mediaObject->setCurrentSource(source);
     mediaObject->play();
 #ifdef Q_WS_X11
     MainWindow::instance()->getSeekSlider()->setEnabled(false);
-#endif
-
-    // ensure we always have 10 videos ahead
-    playlistModel->searchNeeded();
-
-    // ensure active item is visible
-    int row = playlistModel->activeRow();
-    if (row != -1) {
-        QModelIndex index = playlistModel->index(row, 0, QModelIndex());
-        playlistView->scrollTo(index, QAbstractItemView::EnsureVisible);
-    }
-
-#ifdef APP_ACTIVATION
-    if (!Activation::instance().isActivated())
-        demoTimer->start(180000);
 #endif
 
 }
@@ -468,10 +540,6 @@ void MediaView::itemActivated(const QModelIndex &index) {
         playlistModel->searchMore();
         playlistView->selectionModel()->clearSelection();
     }
-}
-
-void MediaView::currentSourceChanged(const Phonon::MediaSource /* source */ ) {
-
 }
 
 void MediaView::skipVideo() {
@@ -504,8 +572,9 @@ void MediaView::skipBackward() {
 
 void MediaView::aboutToFinish() {
     qint64 currentTime = mediaObject->currentTime();
-    qDebug() << __PRETTY_FUNCTION__ << currentTime;
-    if (currentTime + 10000 < mediaObject->totalTime()) {
+    qint64 totalTime = mediaObject->totalTime();
+    qDebug() << __PRETTY_FUNCTION__ << currentTime << totalTime;
+    if (totalTime < 1 || currentTime + 10000 < totalTime) {
         // mediaObject->seek(mediaObject->currentTime());
         // QTimer::singleShot(500, this, SLOT(playbackResume()));
         mediaObject->seek(currentTime);
@@ -514,11 +583,12 @@ void MediaView::aboutToFinish() {
 }
 
 void MediaView::playbackFinished() {
+    if (stopped) return;
     const int totalTime = mediaObject->totalTime();
     const int currentTime = mediaObject->currentTime();
     qDebug() << __PRETTY_FUNCTION__ << mediaObject->currentTime() << totalTime;
     // add 10 secs for imprecise Phonon backends (VLC, Xine)
-    if (currentTime > 0 && currentTime + 10000 < totalTime) {
+    if (totalTime < 1 || (currentTime > 0 && currentTime + 10000 < totalTime)) {
         // mediaObject->seek(currentTime);
         QTimer::singleShot(500, this, SLOT(playbackResume()));
     } else {
@@ -530,6 +600,7 @@ void MediaView::playbackFinished() {
 }
 
 void MediaView::playbackResume() {
+    if (stopped) return;
     qDebug() << __PRETTY_FUNCTION__ << mediaObject->currentTime();
     mediaObject->seek(mediaObject->currentTime());
     mediaObject->play();
@@ -574,7 +645,8 @@ void MediaView::selectVideos(QList<Video*> videos) {
     }
 }
 
-void MediaView::selectionChanged(const QItemSelection & /*selected*/, const QItemSelection & /*deselected*/) {
+void MediaView::selectionChanged(const QItemSelection & /*selected*/,
+                                 const QItemSelection & /*deselected*/) {
     const bool gotSelection = playlistView->selectionModel()->hasSelection();
     The::globalActions()->value("remove")->setEnabled(gotSelection);
     The::globalActions()->value("moveUp")->setEnabled(gotSelection);
@@ -590,7 +662,8 @@ void MediaView::moveUpSelected() {
 
     // set current index after row moves to something more intuitive
     int row = indexes.first().row();
-    playlistView->selectionModel()->setCurrentIndex(playlistModel->index(row>1?row:1), QItemSelectionModel::NoUpdate);
+    playlistView->selectionModel()->setCurrentIndex(playlistModel->index(row>1?row:1),
+                                                    QItemSelectionModel::NoUpdate);
 }
 
 void MediaView::moveDownSelected() {
@@ -600,9 +673,11 @@ void MediaView::moveDownSelected() {
     qStableSort(indexes.begin(), indexes.end(), qGreater<QModelIndex>());
     playlistModel->move(indexes, false);
 
-    // set current index after row moves to something more intuitive (respect 1 static item on bottom)
+    // set current index after row moves to something more intuitive
+    // (respect 1 static item on bottom)
     int row = indexes.first().row()+1, max = playlistModel->rowCount() - 2;
-    playlistView->selectionModel()->setCurrentIndex(playlistModel->index(row>max?max:row), QItemSelectionModel::NoUpdate);
+    playlistView->selectionModel()->setCurrentIndex(
+                playlistModel->index(row>max?max:row), QItemSelectionModel::NoUpdate);
 }
 
 void MediaView::setPlaylistVisible(bool visible) {
@@ -679,6 +754,7 @@ void MediaView::downloadVideo() {
     MainWindow::instance()->showMessage(message);
 }
 
+/*
 void MediaView::snapshot() {
     QImage image = videoWidget->snapshot();
     qDebug() << image.size();
@@ -687,6 +763,7 @@ void MediaView::snapshot() {
     // qDebug() << pixmap.size();
     videoAreaWidget->showSnapshotPreview(pixmap);
 }
+*/
 
 void MediaView::fullscreen() {
     videoAreaWidget->setParent(0);
@@ -757,24 +834,28 @@ void MediaView::findVideoParts() {
     static QString counterNumber = "([1-9]|1[0-5])";
 
     // query.remove(QRegExp(counterSeparators + optionalSpace + counterNumber));
-    query.remove(QRegExp(counterNumber + optionalSpace + counterSeparators + optionalSpace + counterNumber));
+    query.remove(QRegExp(counterNumber + optionalSpace +
+                         counterSeparators + optionalSpace + counterNumber));
     query.remove(wordRE("pr?t\\.?" + optionalSpace + counterNumber));
     query.remove(wordRE("ep\\.?" + optionalSpace + counterNumber));
     query.remove(wordRE("part" + optionalSpace + counterNumber));
     query.remove(wordRE("episode" + optionalSpace + counterNumber));
     query.remove(wordRE(tr("part", "This is for video parts, as in 'Cool video - part 1'") +
                         optionalSpace + counterNumber));
-    query.remove(wordRE(tr("episode", "This is for video parts, as in 'Cool series - episode 1'") +
+    query.remove(wordRE(tr("episode",
+                           "This is for video parts, as in 'Cool series - episode 1'") +
                         optionalSpace + counterNumber));
     query.remove(QRegExp("[\\(\\)\\[\\]]"));
 
 #define NUMBERS "one|two|three|four|five|six|seven|eight|nine|ten"
 
-    QRegExp englishNumberRE = QRegExp(QLatin1String(".*(") + NUMBERS + ").*", Qt::CaseInsensitive);
+    QRegExp englishNumberRE = QRegExp(QLatin1String(".*(") + NUMBERS + ").*",
+                                      Qt::CaseInsensitive);
     // bool numberAsWords = englishNumberRE.exactMatch(query);
     query.remove(englishNumberRE);
 
-    QRegExp localizedNumberRE = QRegExp(QLatin1String(".*(") + tr(NUMBERS) + ").*", Qt::CaseInsensitive);
+    QRegExp localizedNumberRE = QRegExp(QLatin1String(".*(") + tr(NUMBERS) + ").*",
+                                        Qt::CaseInsensitive);
     // if (!numberAsWords) numberAsWords = localizedNumberRE.exactMatch(query);
     query.remove(localizedNumberRE);
 
@@ -852,7 +933,7 @@ void MediaView::authorPushed(QModelIndex index) {
     Video* video = playlistModel->videoAt(index.row());
     if (!video) return;
 
-    QString channel = video->authorUri();
+    QString channel = video->userId();
     if (channel.isEmpty()) channel = video->author();
     if (channel.isEmpty()) return;
 
@@ -862,4 +943,54 @@ void MediaView::authorPushed(QModelIndex index) {
 
     // go!
     search(searchParams);
+}
+
+void MediaView::updateSubscriptionAction(Video *video, bool subscribed) {
+    QAction *subscribeAction = The::globalActions()->value("subscribe-channel");
+
+    QString subscribeTip;
+    QString subscribeText;
+    if (!video) {
+        subscribeText = subscribeAction->property("originalText").toString();
+        subscribeAction->setEnabled(false);
+    } else if (subscribed) {
+        subscribeText = tr("Unsubscribe from %1").arg(video->author());
+        subscribeTip = subscribeText;
+        subscribeAction->setEnabled(true);
+    } else {
+        subscribeText = tr("Subscribe to %1").arg(video->author());
+        subscribeTip = subscribeText;
+        subscribeAction->setEnabled(true);
+    }
+    subscribeAction->setText(subscribeText);
+    subscribeAction->setStatusTip(subscribeTip);
+
+    if (subscribed) {
+#ifdef Q_WS_X11
+        static QIcon tintedIcon;
+        if (tintedIcon.isNull()) {
+            QList<QSize> sizes;
+            sizes << QSize(16, 16);
+            tintedIcon = Utils::tintedIcon("bookmark-new", QColor(254, 240, 0), sizes);
+        }
+        subscribeAction->setIcon(tintedIcon);
+#else
+        subscribeAction->setIcon(Utils::icon("bookmark-remove"));
+#endif
+    } else {
+        subscribeAction->setIcon(Utils::icon("bookmark-new"));
+    }
+
+    Utils::setupAction(subscribeAction);
+}
+
+void MediaView::toggleSubscription() {
+    Video *video = playlistModel->activeVideo();
+    if (!video) return;
+    QString userId = video->userId();
+    if (userId.isEmpty()) return;
+    bool subscribed = YTUser::isSubscribed(userId);
+    if (subscribed) YTUser::unsubscribe(userId);
+    else YTUser::subscribe(userId);
+    updateSubscriptionAction(video, !subscribed);
 }

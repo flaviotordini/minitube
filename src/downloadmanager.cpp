@@ -1,3 +1,23 @@
+/* $BEGIN_LICENSE
+
+This file is part of Minitube.
+Copyright 2009, Flavio Tordini <flavio.tordini@gmail.com>
+
+Minitube is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Minitube is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
+
+$END_LICENSE */
+
 #include "downloadmanager.h"
 #include "downloaditem.h"
 #include "downloadmodel.h"
@@ -7,8 +27,8 @@
 #ifdef APP_ACTIVATION
 #include "activation.h"
 #endif
-#ifdef Q_WS_MAC
-#include "macutils.h"
+#ifdef APP_EXTRA
+#include "extra.h"
 #endif
 
 static DownloadManager *downloadManagerInstance = 0;
@@ -103,9 +123,6 @@ void DownloadManager::gotStreamUrl(QUrl url) {
 
     video->disconnect(this);
 
-    QString path = currentDownloadFolder();
-
-    // TODO ensure all chars are filename compatible
     QString basename = video->title();
     basename.replace('(', '[');
     basename.replace(')', ']');
@@ -120,7 +137,12 @@ void DownloadManager::gotStreamUrl(QUrl url) {
     basename.replace('*', ' ');
     basename = basename.simplified();
 
-    QString filename = path + "/" + basename + ".mp4";
+    if (!basename.isEmpty() && basename.at(0) == '.')
+        basename = basename.mid(1).trimmed();
+
+    if (basename.isEmpty()) basename = video->id();
+
+    QString filename = currentDownloadFolder() + "/" + basename + ".mp4";
 
     Video *videoCopy = video->clone();
     DownloadItem *item = new DownloadItem(videoCopy, url, filename, this);
@@ -138,8 +160,7 @@ void DownloadManager::gotStreamUrl(QUrl url) {
 
 void DownloadManager::itemFinished() {
     if (activeItems() == 0) emit finished();
-#ifdef Q_WS_MAC
-    if (mac::canNotify()) {
+#ifdef APP_EXTRA
         DownloadItem *item = static_cast<DownloadItem*>(sender());
         if (!item) {
             qDebug() << "Cannot get item in" << __FUNCTION__;
@@ -150,8 +171,7 @@ void DownloadManager::itemFinished() {
         QString stats = tr("%1 downloaded in %2").arg(
                     DownloadItem::formattedFilesize(item->bytesTotal()),
                     DownloadItem::formattedTime(item->totalTime(), false));
-        mac::notify(tr("Download finished"), video->title(), stats);
-    }
+        Extra::notify(tr("Download finished"), video->title(), stats);
 #endif
 }
 

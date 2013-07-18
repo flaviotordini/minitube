@@ -1,3 +1,23 @@
+/* $BEGIN_LICENSE
+
+This file is part of Minitube.
+Copyright 2009, Flavio Tordini <flavio.tordini@gmail.com>
+
+Minitube is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Minitube is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
+
+$END_LICENSE */
+
 #include "networkaccess.h"
 #include "constants.h"
 #include <QtGui>
@@ -12,7 +32,7 @@ const QString USER_AGENT = QString(Constants::NAME)
                            + " (" + Constants::WEBSITE + ")";
 */
 
-const QString USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11";
+const QString USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31";
 
 NetworkReply::NetworkReply(QNetworkReply *networkReply) :
     QObject(networkReply),
@@ -22,7 +42,7 @@ NetworkReply::NetworkReply(QNetworkReply *networkReply) :
     setupReply();
 
     readTimeoutTimer = new QTimer(this);
-    readTimeoutTimer->setInterval(10000);
+    readTimeoutTimer->setInterval(25000);
     readTimeoutTimer->setSingleShot(true);
     connect(readTimeoutTimer, SIGNAL(timeout()), SLOT(readTimeout()), Qt::UniqueConnection);
     readTimeoutTimer->start();
@@ -70,7 +90,7 @@ void NetworkReply::finished() {
 }
 
 void NetworkReply::requestError(QNetworkReply::NetworkError code) {
-    qDebug() << networkReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt()
+    qWarning() << networkReply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt()
              << networkReply->errorString() << code;
     emit error(networkReply);
 }

@@ -1,16 +1,39 @@
-2.0 - January ?? 2013
+2.1.1
+- Fixed VEVO videos playback
+- Fixed Ubuntu skin not being used
+
+2.1
+- Channel subscriptions
+- Move window by dragging from inside the video area
+- Faster startup
+- Optimizations and tweaks to the playlist
+- Float on top icon was missing on Mac & Windows
+- Compact mode window fixed aspect ratio on Mac
+- Ubuntu notifications
+- Fixed skipping to the next video
+- Fixed compact mode video cropped with very small window
+- Fixed long words or URLs in the video description causing a window resize
+- Fixed crash when resizing the playlist to a very small width
+
+2.0 - February 1 2013
 - YouTube categories and "standard feeds": "Most Popular", "Featured", etc
 - Country selection for YouTube categories and feeds
 - Autoupdate on Mac and Windows
-- Related videos are now appended to the video when pasting a YouTube link
+- Related videos
+- Related videos are now appended when pasting a YouTube link
+- Bigger and nicer 16:9 thumbnails
 - "Show 10 More" with a single click
 - Play video in the playlist with a single click on its thumbnail
-- OS X Mountain Lion notifications on video start
+- Disk cache for video thumbnails
+- OS X Notification Center notifications on video start
+- Ubuntu Ambiance theme integration
 - Fixed some YouTube links not working when pasted in the searchbox
 - Fixed playlist drag'n'drop
 - Fixed system language settings detection
 - Fixed clicking on channel names not working in some cases
 - Fixed incorrect number of downloads in status bar
+- Fixed looping video with Phonon VLC backend on Linux
+- New and updated translations
 
 1.9 - September 27, 2012
 - Adapted to YouTube changes

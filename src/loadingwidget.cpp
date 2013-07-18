@@ -1,3 +1,23 @@
+/* $BEGIN_LICENSE
+
+This file is part of Minitube.
+Copyright 2009, Flavio Tordini <flavio.tordini@gmail.com>
+
+Minitube is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Minitube is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
+
+$END_LICENSE */
+
 #include "loadingwidget.h"
 
 LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
@@ -9,7 +29,7 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
 
     setAutoFillBackground(true);
 
-    QBoxLayout *layout = new QVBoxLayout();
+    QBoxLayout *layout = new QVBoxLayout(this);
 
     titleLabel = new QLabel(this);
     titleLabel->setAlignment(Qt::AlignHCenter | Qt::AlignBottom);
@@ -19,15 +39,12 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
     titleLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     layout->addWidget(titleLabel);
 
-    QFont biggerFont;
-    biggerFont.setPointSize(biggerFont.pointSize()*2);
-
     descriptionLabel = new QLabel(this);
     descriptionLabel->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
     descriptionLabel->setPalette(p);
     descriptionLabel->setForegroundRole(QPalette::Text);
     descriptionLabel->setWordWrap(true);
-    descriptionLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    descriptionLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Expanding);
     layout->addWidget(descriptionLabel);
 
     progressBar = new QProgressBar(this);
@@ -40,15 +57,20 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
     layout->addWidget(progressBar);
 
     setMouseTracking(true);
-
-    setLayout(layout);
 }
 
 void LoadingWidget::setVideo(Video *video) {
 
     QFont titleFont;
+#ifdef APP_MAC
+    titleFont.setFamily("Helvetica");
+#endif
+#ifdef APP_WIN
+    titleFont.setFamily("Segoe UI Light");
+#endif
     int smallerDimension = qMin(height(), width());
     titleFont.setPixelSize(smallerDimension / 12);
+    titleFont.setHintingPreference(QFont::PreferNoHinting);
     QFontMetrics fm(titleFont);
     int textHeightInPixels = fm.height();
     int spacing = textHeightInPixels / 2;
@@ -64,14 +86,15 @@ void LoadingWidget::setVideo(Video *video) {
     titleLabel->setVisible(window()->height() > 100);
     titleLabel->setFont(titleFont);
 
-    static const int maxVideoLength = 256;
+    static const int maxDescLength = 256;
     QString videoDesc = video->description();
-    if (videoDesc.length() > maxVideoLength) {
-        videoDesc.truncate(maxVideoLength-1);
+    if (videoDesc.length() > maxDescLength) {
+        videoDesc.truncate(maxDescLength-1);
         videoDesc.append("...");
     }
     QFont descFont(titleFont);
     descFont.setPixelSize(descFont.pixelSize() / 2);
+    descFont.setHintingPreference(QFont::PreferNoHinting);
     descriptionLabel->setFont(descFont);
     descriptionLabel->setText(videoDesc);
     bool hiddenDesc = height() < 400;

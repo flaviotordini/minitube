@@ -1,6 +1,26 @@
+/* $BEGIN_LICENSE
+
+This file is part of Minitube.
+Copyright 2009, Flavio Tordini <flavio.tordini@gmail.com>
+
+Minitube is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Minitube is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
+
+$END_LICENSE */
+
 #include "aboutview.h"
 #include "constants.h"
-#ifndef Q_WS_X11
+#ifdef APP_EXTRA
 #include "extra.h"
 #endif
 #ifdef APP_ACTIVATION
@@ -38,7 +58,7 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
         info += "<p>" + tr("Licensed to: %1").arg("<b>" + Activation::instance().getEmail() + "</b>");
 #endif
 
-#ifdef Q_WS_X11
+#ifndef APP_EXTRA
     info += "<p>" +  tr("%1 is Free Software but its development takes precious time.").arg(Constants::NAME) + "<br/>"
             + tr("Please <a href='%1'>donate</a> to support the continued development of %2.")
             .arg(QString(Constants::WEBSITE).append("#donate"), Constants::NAME) + "</p>";
@@ -65,7 +85,7 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
             + tr("Icon designed by %1.").arg("<a href='http://www.kolorguild.com/'>David Nel</a>")
             + "</p>"
 
-        #ifdef Q_WS_X11
+        #ifndef APP_EXTRA
             "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")
             .arg("http://www.gnu.org/licenses/gpl.html") + "</p>"
         #endif
@@ -81,10 +101,9 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
     buttonLayout->setSpacing(0);
     buttonLayout->setAlignment(Qt::AlignLeft);
 
-    QPushButton *closeButton = new QPushButton(tr("&Close"), this);
+    closeButton = new QPushButton(tr("&Close"));
     closeButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
     closeButton->setDefault(true);
-    closeButton->setFocus(Qt::OtherFocusReason);
     connect(closeButton, SIGNAL(clicked()), parent, SLOT(goBack()));
     buttonLayout->addWidget(closeButton);
 
@@ -111,4 +130,5 @@ void AboutView::appear() {
     mac::CheckForUpdates();
 #endif
 #endif
+    closeButton->setFocus();
 }

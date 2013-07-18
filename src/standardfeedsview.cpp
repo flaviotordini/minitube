@@ -1,15 +1,34 @@
+/* $BEGIN_LICENSE
+
+This file is part of Minitube.
+Copyright 2009, Flavio Tordini <flavio.tordini@gmail.com>
+
+Minitube is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Minitube is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
+
+$END_LICENSE */
+
 #include "standardfeedsview.h"
 #include "videosourcewidget.h"
 #include "ytcategories.h"
 #include "ytstandardfeed.h"
 #include "ytregions.h"
 #include "mainwindow.h"
+#include "painterutils.h"
 
 namespace The {
 QHash<QString, QAction*>* globalActions();
 }
-
-static const int cols = 5;
 
 StandardFeedsView::StandardFeedsView(QWidget *parent) : QWidget(parent),
     layout(0) {
@@ -76,6 +95,7 @@ void StandardFeedsView::addVideoSourceWidget(VideoSource *videoSource) {
     connect(w, SIGNAL(activated(VideoSource*)),
             SIGNAL(activated(VideoSource*)));
     int i = layout->count();
+    static const int cols = 5;
     layout->addWidget(w, i / cols, i % cols);
 }
 
@@ -83,18 +103,21 @@ QList<YTStandardFeed*> StandardFeedsView::getMainFeeds() {
     QList<YTStandardFeed*> feeds;
 
     feeds << buildStardardFeed("most_popular", tr("Most Popular"))
-          << buildStardardFeed("recently_featured", tr("Featured"))
+          // << buildStardardFeed("recently_featured", tr("Featured"))
           << buildStardardFeed("most_shared", tr("Most Shared"))
           << buildStardardFeed("most_discussed", tr("Most Discussed"))
-          << buildStardardFeed("top_rated", tr("Top Rated"));
+          << buildStardardFeed("top_rated", tr("Top Rated"))
+          << buildStardardFeed("most_popular", tr("All Time Popular"), "all_time");
 
     return feeds;
 }
 
-YTStandardFeed* StandardFeedsView::buildStardardFeed(QString feedId, QString label) {
+YTStandardFeed* StandardFeedsView::buildStardardFeed(
+        QString feedId, QString label, QString time) {
     YTStandardFeed *feed = new YTStandardFeed(this);
     feed->setFeedId(feedId);
     feed->setLabel(label);
+    if (!time.isEmpty()) feed->setTime(time);
     feed->setRegionId(YTRegions::currentRegionId());
     return feed;
 }
@@ -121,4 +144,8 @@ void StandardFeedsView::selectLocalRegion() {
     load();
 }
 
+void StandardFeedsView::paintEvent(QPaintEvent *event) {
+    QWidget::paintEvent(event);
+    PainterUtils::topShadow(this);
+}
 

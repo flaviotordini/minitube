@@ -1,12 +1,35 @@
+/* $BEGIN_LICENSE
+
+This file is part of Minitube.
+Copyright 2009, Flavio Tordini <flavio.tordini@gmail.com>
+
+Minitube is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Minitube is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
+
+$END_LICENSE */
+
 #include "ytsearch.h"
 #include "ytfeedreader.h"
 #include "constants.h"
 #include "networkaccess.h"
 #include "searchparams.h"
 #include "video.h"
+#include "utils.h"
+#include "ytuser.h"
 
 namespace The {
-    NetworkAccess* http();
+NetworkAccess* http();
+QHash<QString, QAction*>* globalActions();
 }
 
 YTSearch::YTSearch(SearchParams *searchParams, QObject *parent) :
@@ -104,7 +127,11 @@ void YTSearch::parseResults(QByteArray data) {
 
     if (name.isEmpty() && !searchParams->author().isEmpty()) {
         if (videos.isEmpty()) name = searchParams->author();
-        else name = videos.first()->author();
+        else {
+            name = videos.first()->author();
+            // also grab the userId
+            userId = videos.first()->userId();
+        }
         emit nameChanged(name);
     }
 
@@ -122,4 +149,12 @@ QString YTSearch::videoIdFromUrl(QString url) {
     re = QRegExp("^.*://.*/([^&#\\?]+).*$");
     if (re.exactMatch(url)) return re.cap(1);
     return QString();
+}
+
+QList<QAction*> YTSearch::getActions() {
+    QList<QAction*> channelActions;
+    if (searchParams->author().isEmpty())
+        return channelActions;
+    channelActions << The::globalActions()->value("subscribe-channel");
+    return channelActions;
 }

@@ -1,3 +1,23 @@
+/* $BEGIN_LICENSE
+
+This file is part of Minitube.
+Copyright 2009, Flavio Tordini <flavio.tordini@gmail.com>
+
+Minitube is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Minitube is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
+
+$END_LICENSE */
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -31,6 +51,7 @@ public:
     MediaView* getMediaView() { return mediaView; }
     QToolButton* getRegionButton() { return regionButton; }
     QAction* getRegionAction() { return regionAction; }
+    void showActionInStatusBar(QAction*, bool show);
 
 public slots:
     void showHome(bool transition = true);
@@ -61,6 +82,7 @@ protected:
     void resizeEvent(QResizeEvent *);
 
 private slots:
+    void lazyInit();
     void checkForUpdate();
     void gotNewVersion(QString version);
     void visitSite();
@@ -96,7 +118,6 @@ private slots:
     void toggleDownloads(bool show);
 
     void floatOnTop(bool);
-    void showActionInStatusBar(QAction*, bool show);
     void showStopAfterThisInStatusBar(bool show);
 
     void hideMouse();
@@ -117,6 +138,7 @@ private:
     // view mechanism
     QStackedWidget *views;
     QStack<QWidget*> *history;
+    QList<QAction*> viewActions;
 
     // view widgets
     HomeView *homeView;
