@@ -152,12 +152,12 @@
     <message>
         <location filename="src/channelitemdelegate.cpp" line="46"/>
         <source>All Videos</source>
-        <translation type="unfinished"/>
+        <translation>جميع الفيديوهات</translation>
     </message>
     <message>
         <location filename="src/channelitemdelegate.cpp" line="63"/>
         <source>Unwatched Videos</source>
-        <translation type="unfinished"/>
+        <translation>فيديوهات لم تتم مشاهدتها</translation>
     </message>
 </context>
 <context>
@@ -195,7 +195,7 @@
     <message>
         <location filename="src/channelview.cpp" line="123"/>
         <source>Most Watched</source>
-        <translation type="unfinished"/>
+        <translation>الأكثر مشاهدة</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="131"/>
@@ -205,12 +205,12 @@
     <message>
         <location filename="src/channelview.cpp" line="190"/>
         <source>All Videos</source>
-        <translation type="unfinished"/>
+        <translation>جميع الفيديوهات</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="194"/>
         <source>Unwatched Videos</source>
-        <translation type="unfinished"/>
+        <translation>فيديوهات لم تتم مشاهدتها</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="206"/>
@@ -220,7 +220,7 @@
     <message>
         <location filename="src/channelview.cpp" line="208"/>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation type="unfinished"/>
+        <translation>لا يوجد لديك اشتراكات. استخدم رمز النجمة للإشتراك في القنوات.</translation>
     </message>
 </context>
 <context>
@@ -450,7 +450,7 @@
     <message>
         <location filename="src/homeview.cpp" line="51"/>
         <source>Subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>الإشتراكات</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="53"/>
@@ -644,7 +644,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="458"/>
         <source>&amp;Subscribe to Channel</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Subscribe to Channel</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="465"/>
@@ -966,7 +966,7 @@
     <message>
         <location filename="src/mediaview.cpp" line="903"/>
         <source>Subscribe to %1</source>
-        <translation type="unfinished"/>
+        <translation>اشترك في %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="658"/>

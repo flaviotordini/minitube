@@ -140,7 +140,7 @@
     <message>
         <location filename="src/channelaggregator.cpp" line="110"/>
         <source>By %1</source>
-        <translation type="unfinished"/>
+        <translation>От %1</translation>
     </message>
     <message numerus="yes">
         <location filename="src/channelaggregator.cpp" line="112"/>
@@ -153,12 +153,12 @@
     <message>
         <location filename="src/channelitemdelegate.cpp" line="46"/>
         <source>All Videos</source>
-        <translation type="unfinished"/>
+        <translation>Все видео</translation>
     </message>
     <message>
         <location filename="src/channelitemdelegate.cpp" line="63"/>
         <source>Unwatched Videos</source>
-        <translation type="unfinished"/>
+        <translation>Не просмотренное видео</translation>
     </message>
 </context>
 <context>
@@ -645,7 +645,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="458"/>
         <source>&amp;Subscribe to Channel</source>
-        <translation type="unfinished"/>
+        <translation>Подписаться на канал</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="465"/>
@@ -962,12 +962,12 @@
     <message>
         <location filename="src/mediaview.cpp" line="899"/>
         <source>Unsubscribe from %1</source>
-        <translation type="unfinished"/>
+        <translation>Отписаться от %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="903"/>
         <source>Subscribe to %1</source>
-        <translation type="unfinished"/>
+        <translation>Подписаться на %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="658"/>
