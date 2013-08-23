@@ -106,6 +106,12 @@ void YTFeedReader::readEntry() {
                             // qDebug() << "Duration: " << duration;
                             video->setDuration(duration.toInt());
                         }
+                        else if (name() == QLatin1String("license")) {
+                            QString license = readElementText();
+                            // qDebug() << "License: " << license;
+                            if (license == QLatin1String("cc"))
+                                video->setLicense(Video::LicenseCC);
+                        }
                     }
                 }
             }

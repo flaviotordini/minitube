@@ -32,6 +32,7 @@ class JsFunctions : public QObject {
 public:
     static JsFunctions* instance();
     QString decryptSignature(const QString &s);
+    QString decryptAgeSignature(const QString &s);
 
 private slots:
     void gotJs(QByteArray bytes);

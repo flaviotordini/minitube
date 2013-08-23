@@ -145,7 +145,7 @@ void MediaView::initialize() {
             << The::globalActions()->value("findVideoParts")
             << The::globalActions()->value("skip")
             << The::globalActions()->value("previous")
-            << The::globalActions()->value("download")
+            // << The::globalActions()->value("download")
             << The::globalActions()->value("stopafterthis")
             << The::globalActions()->value("related-videos")
             << The::globalActions()->value("refine-search")
@@ -342,6 +342,10 @@ void MediaView::stop() {
     foreach (QAction *action, currentVideoActions)
         action->setEnabled(false);
 
+    QAction *a = The::globalActions()->value("download");
+    a->setEnabled(false);
+    a->setVisible(false);
+
     mediaObject->stop();
     currentVideoId.clear();
 }
@@ -390,6 +394,20 @@ void MediaView::activeRowChanged(int row) {
     The::globalActions()->value("previous")->setEnabled(row > 0);
     The::globalActions()->value("stopafterthis")->setEnabled(true);
     The::globalActions()->value("related-videos")->setEnabled(true);
+
+#ifndef APP_NO_DOWNLOADS
+    bool enableDownload = video->license() == Video::LicenseCC;
+#ifdef APP_ACTIVATION
+    enableDownload = enableDownload || Activation::instance().isLegacy();
+#endif
+#ifdef APP_DOWNLOADS
+    enableDownload = true;
+#endif
+    QAction *a = The::globalActions()->value("download");
+    a->setEnabled(enableDownload);
+    a->setVisible(enableDownload);
+#endif
+
     updateSubscriptionAction(video, YTUser::isSubscribed(video->userId()));
 
     foreach (QAction *action, currentVideoActions)
@@ -400,6 +418,10 @@ void MediaView::activeRowChanged(int row) {
 
 void MediaView::gotStreamUrl(QUrl streamUrl) {
     if (stopped) return;
+    if (!streamUrl.isValid()) {
+        skip();
+        return;
+    }
 
     Video *video = static_cast<Video *>(sender());
     if (!video) {

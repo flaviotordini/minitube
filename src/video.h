@@ -32,6 +32,11 @@ public:
     Video();
     Video* clone();
 
+    enum License {
+        LicenseYouTube = 1,
+        LicenseCC
+    };
+
     const QString & title() const { return m_title; }
     void setTitle( QString title ) { m_title = title; }
 
@@ -75,6 +80,9 @@ public:
     void setId(QString id) { videoId = id; }
     const QString & id() const { return videoId; }
 
+    void setLicense(License license) { m_license = license; }
+    License license() const { return m_license; }
+
 signals:
     void gotThumbnail();
     void gotMediumThumbnail(QByteArray bytes);
@@ -106,7 +114,7 @@ private:
     int m_duration;
     QDateTime m_published;
     int m_viewCount;
-
+    License m_license;
     QString videoId;
     QString videoToken;
     int definitionCode;
@@ -114,8 +122,10 @@ private:
     // current index for the elTypes list
     // needed to iterate on elTypes
     int elIndex;
+    bool ageGate;
     
     bool loadingStreamUrl;
+    bool loadingThumbnail;
 };
 
 // This is required in order to use QPointer<Video> as a QVariant

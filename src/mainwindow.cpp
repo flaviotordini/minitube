@@ -467,11 +467,10 @@ void MainWindow::createActions() {
 
     action = new QAction(tr("&Download"), this);
     action->setStatusTip(tr("Download the current video"));
-#ifndef APP_NO_DOWNLOADS
     action->setShortcut(QKeySequence::Save);
-#endif
     action->setIcon(Utils::icon("document-save"));
     action->setEnabled(false);
+    action->setVisible(false);
     action->setPriority(QAction::LowPriority);
     connect(action, SIGNAL(triggered()), mediaView, SLOT(downloadVideo()));
     actions->insert("download", action);
@@ -628,11 +627,9 @@ void MainWindow::createMenus() {
     videoMenu->addAction(webPageAct);
     videoMenu->addSeparator();
     videoMenu->addAction(The::globalActions()->value("subscribe-channel"));
-#ifndef APP_NO_DOWNLOADS
     videoMenu->addSeparator();
     videoMenu->addAction(The::globalActions()->value("download"));
-    // videoMenu->addAction(copyLinkAct);
-#endif
+    videoMenu->addAction(copyLinkAct);
     // videoMenu->addAction(The::globalActions()->value("snapshot"));
 
     QMenu* viewMenu = menuBar()->addMenu(tr("&View"));
@@ -683,9 +680,7 @@ void MainWindow::createToolBars() {
     mainToolBar->addAction(skipAct);
 
     mainToolBar->addAction(The::globalActions()->value("related-videos"));
-#ifndef APP_NO_DOWNLOADS
     mainToolBar->addAction(The::globalActions()->value("download"));
-#endif
 
     bool addFullScreenAct = true;
 #ifdef Q_WS_MAC

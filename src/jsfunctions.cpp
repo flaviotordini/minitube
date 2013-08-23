@@ -40,7 +40,7 @@ JsFunctions::JsFunctions(QObject *parent) : QObject(parent), engine(0) {
         else
             qWarning() << file.errorString() << file.fileName();
         QFileInfo info(file);
-        if (info.lastModified().toTime_t() < QDateTime::currentDateTime().toTime_t() - 86400)
+        if (info.lastModified().toTime_t() < QDateTime::currentDateTime().toTime_t() - 3600)
             loadJs();
     } else {
         QFile resFile(QLatin1String(":/") + jsFilename());
@@ -95,9 +95,16 @@ QString JsFunctions::evaluateFunction(const QString &function) {
     QScriptValue value = engine->evaluate(function);
     if (value.isUndefined())
         qWarning() << "Undefined result for" << function;
+    if (value.isError())
+        qWarning() << "Error in" << function << value.toString();
+
     return value.toString();
 }
 
 QString JsFunctions::decryptSignature(const QString &s) {
     return evaluateFunction("decryptSignature('" + s + "')");
+}
+
+QString JsFunctions::decryptAgeSignature(const QString &s) {
+    return evaluateFunction("decryptAgeSignature('" + s + "')");
 }

@@ -1,3 +1,7 @@
+2.1.2
+- Downloads only enabled on Creative Commons licensed videos
+- Fixed playback of some videos
+
 2.1.1
 - Fixed VEVO videos playback
 - Fixed Ubuntu skin not being used

@@ -1,6 +1,6 @@
 CONFIG += release
 TEMPLATE = app
-VERSION = 2.1.1
+VERSION = 2.1.2
 DEFINES += APP_VERSION="$$VERSION"
 
 APP_NAME = Minitube
