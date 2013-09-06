@@ -72,6 +72,7 @@ public slots:
     void openWebPage();
     void copyWebPage();
     void copyVideoLink();
+    void openInBrowser();
     void shareViaTwitter();
     void shareViaFacebook();
     void shareViaBuffer();
@@ -114,12 +115,9 @@ private slots:
     void playbackResume();
     void authorPushed(QModelIndex);
     void searchAgain();
-
-    /*
-    void downloadProgress(int percent);
     void sliderMoved(int value);
-    void seekTo(int value);
-    */
+    qint64 offsetToTime(qint64 offset);
+    void startDownloading();
 
 private:
     MediaView(QWidget *parent = 0);
@@ -150,6 +148,8 @@ private:
     DownloadItem *downloadItem;
     QList<VideoSource*> history;
     QList<QAction*> currentVideoActions;
+
+    qint64 currentVideoSize;
 };
 
 #endif // __MEDIAVIEW_H__

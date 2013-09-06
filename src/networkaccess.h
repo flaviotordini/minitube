@@ -63,7 +63,7 @@ public:
     NetworkAccess(QObject* parent = 0);
     QNetworkReply* request(QUrl url,
                              int operation = QNetworkAccessManager::GetOperation,
-                             const QByteArray &body = QByteArray());
+                             const QByteArray &body = QByteArray(), uint offset = 0);
     NetworkReply* get(QUrl url);
     NetworkReply* head(QUrl url);
     NetworkReply* post(QUrl url, const QMap<QString, QString>& params);

@@ -1,6 +1,6 @@
 CONFIG += release
 TEMPLATE = app
-VERSION = 2.1.2
+VERSION = 2.1.3
 DEFINES += APP_VERSION="$$VERSION"
 
 APP_NAME = Minitube
@@ -80,7 +80,8 @@ HEADERS += \
     src/aggregatevideosource.h \
     src/channelview.h \
     src/channelitemdelegate.h \
-    src/jsfunctions.h
+    src/jsfunctions.h \
+    src/seekslider.h
 SOURCES += src/main.cpp \
     src/searchlineedit.cpp \
     src/urllineedit.cpp \
@@ -142,7 +143,8 @@ SOURCES += src/main.cpp \
     src/aggregatevideosource.cpp \
     src/channelview.cpp \
     src/channelitemdelegate.cpp \
-    src/jsfunctions.cpp
+    src/jsfunctions.cpp \
+    src/seekslider.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/

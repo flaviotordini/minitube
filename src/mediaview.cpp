@@ -142,10 +142,10 @@ void MediaView::initialize() {
             << The::globalActions()->value("webpage")
             << The::globalActions()->value("pagelink")
             << The::globalActions()->value("videolink")
+            << The::globalActions()->value("open-in-browser")
             << The::globalActions()->value("findVideoParts")
             << The::globalActions()->value("skip")
             << The::globalActions()->value("previous")
-            // << The::globalActions()->value("download")
             << The::globalActions()->value("stopafterthis")
             << The::globalActions()->value("related-videos")
             << The::globalActions()->value("refine-search")
@@ -153,6 +153,9 @@ void MediaView::initialize() {
             << The::globalActions()->value("facebook")
             << The::globalActions()->value("buffer")
             << The::globalActions()->value("email");
+
+    QSlider *slider = MainWindow::instance()->getSlider();
+    connect(slider, SIGNAL(valueChanged(int)), SLOT(sliderMoved(int)));
 }
 
 void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
@@ -161,17 +164,6 @@ void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
     connect(mediaObject, SIGNAL(finished()), SLOT(playbackFinished()));
     connect(mediaObject, SIGNAL(stateChanged(Phonon::State, Phonon::State)),
             SLOT(stateChanged(Phonon::State, Phonon::State)));
-    /*
-    const char* s = Constants::NAME;
-    const int l = strlen(s);
-    int t = The::globalActions()->count();
-    for (int i = 0; i < l; i++) {
-        t += s[i];
-        qDebug() << t << The::globalActions()->count();
-    }
-    qDebug() << t << The::globalActions()->count();
-    if (t != s[0]) return;
-    */
     connect(mediaObject, SIGNAL(aboutToFinish()), SLOT(aboutToFinish()));
 }
 
@@ -332,6 +324,7 @@ void MediaView::stop() {
         downloadItem->stop();
         delete downloadItem;
         downloadItem = 0;
+        currentVideoSize = 0;
     }
     The::globalActions()->value("refine-search")->setChecked(false);
     updateSubscriptionAction(0, false);
@@ -348,6 +341,10 @@ void MediaView::stop() {
 
     mediaObject->stop();
     currentVideoId.clear();
+
+    QSlider *slider = MainWindow::instance()->getSlider();
+    slider->setEnabled(false);
+    slider->setValue(0);
 }
 
 const QString & MediaView::getCurrentVideoId() {
@@ -364,6 +361,7 @@ void MediaView::activeRowChanged(int row) {
         downloadItem->stop();
         delete downloadItem;
         downloadItem = 0;
+        currentVideoSize = 0;
     }
 
     Video *video = playlistModel->videoAt(row);
@@ -390,7 +388,6 @@ void MediaView::activeRowChanged(int row) {
     // enable/disable actions
     The::globalActions()->value("download")->setEnabled(
                 DownloadManager::instance()->itemForVideo(video) == 0);
-    // The::globalActions()->value("skip")->setEnabled(true);
     The::globalActions()->value("previous")->setEnabled(row > 0);
     The::globalActions()->value("stopafterthis")->setEnabled(true);
     The::globalActions()->value("related-videos")->setEnabled(true);
@@ -412,6 +409,10 @@ void MediaView::activeRowChanged(int row) {
 
     foreach (QAction *action, currentVideoActions)
         action->setEnabled(true);
+
+    QSlider *slider = MainWindow::instance()->getSlider();
+    slider->setEnabled(false);
+    slider->setValue(0);
 
     // see you in gotStreamUrl...
 }
@@ -436,24 +437,7 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
     mediaObject->setCurrentSource(streamUrl);
     mediaObject->play();
 #else
-    QString tempFile = Temporary::filename();
-    Video *videoCopy = video->clone();
-    if (downloadItem) {
-        downloadItem->stop();
-        delete downloadItem;
-    }
-    downloadItem = new DownloadItem(videoCopy, streamUrl, tempFile, this);
-    connect(downloadItem, SIGNAL(statusChanged()),
-            SLOT(downloadStatusChanged()), Qt::UniqueConnection);
-    // connect(downloadItem, SIGNAL(progress(int)), SLOT(downloadProgress(int)));
-    connect(downloadItem, SIGNAL(bufferProgress(int)),
-            loadingWidget, SLOT(bufferStatus(int)), Qt::UniqueConnection);
-    // connect(downloadItem, SIGNAL(finished()), SLOT(itemFinished()));
-    connect(video, SIGNAL(errorStreamUrl(QString)),
-            SLOT(handleError(QString)), Qt::UniqueConnection);
-    connect(downloadItem, SIGNAL(error(QString)),
-            SLOT(handleError(QString)), Qt::UniqueConnection);
-    downloadItem->start();
+    startDownloading();
 #endif
 
     // ensure we always have 10 videos ahead
@@ -478,50 +462,31 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
     ChannelAggregator::instance()->videoWatched(video);
 }
 
-/*
-void MediaView::downloadProgress(int percent) {
-    MainWindow* mainWindow = dynamic_cast<MainWindow*>(window());
-
-    mainWindow->getSeekSlider()->setStyleSheet(" QSlider::groove:horizontal {"
-        "border: 1px solid #999999;"
-        // "border-left: 50px solid rgba(255, 0, 0, 128);"
-        "height: 8px;"
-        "background: qlineargradient(x1:0, y1:0, x2:.5, y2:0, stop:0 rgba(255, 0, 0, 92), stop:"
-        + QString::number(percent/100.0) +
-
-        " rgba(255, 0, 0, 92), stop:" + QString::number((percent+1)/100.0) + " transparent, stop:1 transparent);"
-        "margin: 2px 0;"
-    "}"
-    "QSlider::handle:horizontal {"
-        "background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #b4b4b4, stop:1 #8f8f8f);"
-        "border: 1px solid #5c5c5c;"
-        "width: 16px;"
-        "height: 16px;"
-        "margin: -2px 0;"
-        "border-radius: 8px;"
-    "}"
-
-    );
-}
-*/
-
 void MediaView::downloadStatusChanged() {
+    // qDebug() << __PRETTY_FUNCTION__;
     switch(downloadItem->status()) {
     case Downloading:
-        startPlaying();
+        // qDebug() << "Downloading";
+        if (downloadItem->offset() == 0) startPlaying();
+        else {
+            // qDebug() << "Seeking to" << downloadItem->offset();
+            mediaObject->seek(offsetToTime(downloadItem->offset()));
+            mediaObject->play();
+        }
         break;
     case Starting:
         // qDebug() << "Starting";
         break;
     case Finished:
         // qDebug() << "Finished" << mediaObject->state();
-        // if (mediaObject->state() == Phonon::StoppedState) startPlaying();
 #ifdef Q_WS_X11
-        MainWindow::instance()->getSeekSlider()->setEnabled(mediaObject->isSeekable());
+        // MainWindow::instance()->getSeekSlider()->setEnabled(mediaObject->isSeekable());
 #endif
         break;
     case Failed:
         // qDebug() << "Failed";
+        skip();
+        break;
     case Idle:
         // qDebug() << "Idle";
         break;
@@ -529,21 +494,29 @@ void MediaView::downloadStatusChanged() {
 }
 
 void MediaView::startPlaying() {
+    // qDebug() << __PRETTY_FUNCTION__;
     if (stopped) return;
     if (!downloadItem) {
         skip();
         return;
     }
 
+    if (downloadItem->offset() == 0) {
+        currentVideoSize = downloadItem->bytesTotal();
+        // qDebug() << "currentVideoSize" << currentVideoSize;
+    }
+
     // go!
     QString source = downloadItem->currentFilename();
-    // qDebug() << "Playing" << source;
+    qDebug() << "Playing" << source << QFile::exists(source);
     mediaObject->setCurrentSource(source);
     mediaObject->play();
 #ifdef Q_WS_X11
-    MainWindow::instance()->getSeekSlider()->setEnabled(false);
+    // MainWindow::instance()->getSeekSlider()->setEnabled(false);
 #endif
 
+    QSlider *slider = MainWindow::instance()->getSlider();
+    slider->setEnabled(true);
 }
 
 void MediaView::itemActivated(const QModelIndex &index) {
@@ -553,7 +526,8 @@ void MediaView::itemActivated(const QModelIndex &index) {
         Video *activeVideo = playlistModel->activeVideo();
         Video *video = playlistModel->videoAt(index.row());
         if (activeVideo && video && activeVideo == video) {
-            mediaObject->seek(0);
+            // mediaObject->seek(0);
+            sliderMoved(0);
             mediaObject->play();
         } else playlistModel->setActiveRow(index.row());
 
@@ -597,7 +571,6 @@ void MediaView::aboutToFinish() {
     qint64 totalTime = mediaObject->totalTime();
     qDebug() << __PRETTY_FUNCTION__ << currentTime << totalTime;
     if (totalTime < 1 || currentTime + 10000 < totalTime) {
-        // mediaObject->seek(mediaObject->currentTime());
         // QTimer::singleShot(500, this, SLOT(playbackResume()));
         mediaObject->seek(currentTime);
         mediaObject->play();
@@ -606,8 +579,8 @@ void MediaView::aboutToFinish() {
 
 void MediaView::playbackFinished() {
     if (stopped) return;
-    const int totalTime = mediaObject->totalTime();
-    const int currentTime = mediaObject->currentTime();
+    const qint64 totalTime = mediaObject->totalTime();
+    const qint64 currentTime = mediaObject->currentTime();
     qDebug() << __PRETTY_FUNCTION__ << mediaObject->currentTime() << totalTime;
     // add 10 secs for imprecise Phonon backends (VLC, Xine)
     if (totalTime < 1 || (currentTime > 0 && currentTime + 10000 < totalTime)) {
@@ -623,8 +596,10 @@ void MediaView::playbackFinished() {
 
 void MediaView::playbackResume() {
     if (stopped) return;
-    qDebug() << __PRETTY_FUNCTION__ << mediaObject->currentTime();
-    mediaObject->seek(mediaObject->currentTime());
+    const qint64 currentTime = mediaObject->currentTime();
+    qDebug() << __PRETTY_FUNCTION__ << currentTime;
+    if (currentTime > 0)
+        mediaObject->seek(currentTime);
     mediaObject->play();
 }
 
@@ -651,6 +626,13 @@ void MediaView::copyVideoLink() {
     QString message = tr("You can now paste the video stream URL into another application")
             + ". " + tr("The link will be valid only for a limited time.");
     MainWindow::instance()->showMessage(message);
+}
+
+void MediaView::openInBrowser() {
+    Video* video = playlistModel->activeVideo();
+    if (!video) return;
+    mediaObject->pause();
+    QDesktopServices::openUrl(video->getStreamUrl());
 }
 
 void MediaView::removeSelected() {
@@ -792,51 +774,58 @@ void MediaView::fullscreen() {
     videoAreaWidget->showFullScreen();
 }
 
-/*
-void MediaView::setSlider(QSlider *slider) {
-    this->slider = slider;
-    // slider->setEnabled(false);
-    slider->setTracking(false);
-    // connect(slider, SIGNAL(valueChanged(int)), SLOT(sliderMoved(int)));
+void MediaView::startDownloading() {
+    Video *video = playlistModel->activeVideo();
+    if (!video) return;
+    Video *videoCopy = video->clone();
+    if (downloadItem) {
+        downloadItem->stop();
+        delete downloadItem;
+    }
+    QString tempFile = Temporary::filename();
+    downloadItem = new DownloadItem(videoCopy, video->getStreamUrl(), tempFile, this);
+    connect(downloadItem, SIGNAL(statusChanged()),
+            SLOT(downloadStatusChanged()), Qt::UniqueConnection);
+    connect(downloadItem, SIGNAL(bufferProgress(int)),
+            loadingWidget, SLOT(bufferStatus(int)), Qt::UniqueConnection);
+    // connect(downloadItem, SIGNAL(finished()), SLOT(itemFinished()));
+    connect(video, SIGNAL(errorStreamUrl(QString)),
+            SLOT(handleError(QString)), Qt::UniqueConnection);
+    connect(downloadItem, SIGNAL(error(QString)),
+            SLOT(handleError(QString)), Qt::UniqueConnection);
+    downloadItem->start();
 }
 
 void MediaView::sliderMoved(int value) {
-    qDebug() << __func__;
-    int sliderPercent = (value * 100) / (slider->maximum() - slider->minimum());
-    qDebug() << slider->minimum() << value << slider->maximum();
-    if (sliderPercent <= downloadItem->currentPercent()) {
-        qDebug() << sliderPercent << downloadItem->currentPercent();
-        mediaObject->seek(value);
+    if (currentVideoSize <= 0 || !downloadItem || !mediaObject->isSeekable())
+        return;
+
+    QSlider *slider = MainWindow::instance()->getSlider();
+    if (slider->isSliderDown()) return;
+
+    qint64 offset = (currentVideoSize * value) / slider->maximum();
+
+    bool needsDownload = downloadItem->needsDownload(offset);
+    if (needsDownload) {
+        if (downloadItem->isBuffered(offset)) {
+            qint64 realOffset = downloadItem->blankAtOffset(offset);
+            if (offset < currentVideoSize)
+                downloadItem->seekTo(realOffset, false);
+            mediaObject->seek(offsetToTime(offset));
+        } else {
+            mediaObject->pause();
+            downloadItem->seekTo(offset);
+        }
     } else {
-        seekTo(value);
+        // qDebug() << "simple seek";
+        mediaObject->seek(offsetToTime(offset));
     }
 }
 
-void MediaView::seekTo(int value) {
-    qDebug() << __func__;
-    mediaObject->pause();
-    errorTimer->stop();
-    // mediaObject->clear();
-
-    QString tempDir = QDesktopServices::storageLocation(QDesktopServices::TempLocation);
-    QString tempFile = tempDir + "/minitube" + QString::number(value) + ".mp4";
-    if (!QFile::remove(tempFile)) {
-        qDebug() << "Cannot remove temp file";
-    }
-    Video *videoCopy = downloadItem->getVideo()->clone();
-    QUrl streamUrl = videoCopy->getStreamUrl();
-    streamUrl.addQueryItem("begin", QString::number(value));
-    if (downloadItem) delete downloadItem;
-    downloadItem = new DownloadItem(videoCopy, streamUrl, tempFile, this);
-    connect(downloadItem, SIGNAL(statusChanged()), SLOT(downloadStatusChanged()));
-    // connect(downloadItem, SIGNAL(finished()), SLOT(itemFinished()));
-    downloadItem->start();
-
-    // slider->setMinimum(value);
-
+qint64 MediaView::offsetToTime(qint64 offset) {
+    const qint64 totalTime = mediaObject->totalTime();
+    return ((offset * totalTime) / currentVideoSize);
 }
-
-*/
 
 void MediaView::findVideoParts() {
 

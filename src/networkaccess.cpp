@@ -32,7 +32,7 @@ const QString USER_AGENT = QString(Constants::NAME)
                            + " (" + Constants::WEBSITE + ")";
 */
 
-const QString USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36";
+const QString USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.65 Safari/537.36";
 
 NetworkReply::NetworkReply(QNetworkReply *networkReply) :
     QObject(networkReply),
@@ -141,10 +141,13 @@ QNetworkRequest NetworkAccess::buildRequest(QUrl url) {
     return request;
 }
 
-QNetworkReply* NetworkAccess::request(QUrl url, int operation, const QByteArray& body) {
+QNetworkReply* NetworkAccess::request(QUrl url, int operation, const QByteArray& body, uint offset) {
     QNetworkAccessManager *manager = The::networkAccessManager();
 
     QNetworkRequest request = buildRequest(url);
+
+    if (offset > 0)
+        request.setRawHeader("Range", QString("bytes=%1-").arg(offset).toUtf8());
 
     QNetworkReply *networkReply;
     switch (operation) {

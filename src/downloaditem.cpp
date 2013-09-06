@@ -39,6 +39,8 @@ DownloadItem::DownloadItem(Video *video, QUrl url, QString filename, QObject *pa
     , m_startedSaving(false)
     , m_finishedDownloading(false)
     , m_url(url)
+    , m_offset(0)
+    , sendStatusChanges(true)
     , m_file(filename)
     , m_reply(0)
     , video(video)
@@ -48,6 +50,9 @@ DownloadItem::DownloadItem(Video *video, QUrl url, QString filename, QObject *pa
     speedCheckTimer->setInterval(2000);
     speedCheckTimer->setSingleShot(true);
     connect(speedCheckTimer, SIGNAL(timeout()), SLOT(speedCheck()));
+
+    if (m_file.exists())
+        m_file.remove();
 }
 
 DownloadItem::~DownloadItem() {
@@ -61,8 +66,70 @@ DownloadItem::~DownloadItem() {
     }
 }
 
+bool DownloadItem::needsDownload(qint64 offset) {
+    return offset < m_offset || offset > m_offset + m_bytesReceived;
+}
+
+bool DownloadItem::isBuffered(qint64 offset) {
+    QMap<qint64, qint64>::iterator i;
+    for (i = buffers.begin(); i != buffers.end(); ++i) {
+        if (offset >= i.key() && offset <= i.value()) {
+            // qDebug() << "Buffered! " << i.key() << ":" << i.value();
+            return true;
+        }
+    }
+    // qDebug() << offset << "is not buffered";
+    return false;
+}
+
+qint64 DownloadItem::blankAtOffset(qint64 offset) {
+    // qDebug() << buffers;
+    QMap<qint64, qint64>::iterator i;
+    for (i = buffers.begin(); i != buffers.end(); ++i) {
+        if (offset >= i.key() && offset <= i.value()) {
+            // qDebug() << "Offset was" << offset << "now" << i.value();
+            return i.value() + 1;
+        }
+    }
+    return offset;
+}
+
+void DownloadItem::seekTo(qint64 offset, bool sendStatusChanges) {
+    // qDebug() << __PRETTY_FUNCTION__ << offset << sendStatusChanges;
+    stop();
+    if (m_bytesReceived > 0) {
+        bool bufferModified = false;
+        QMap<qint64, qint64>::iterator i;
+        for (i = buffers.begin(); i != buffers.end(); ++i) {
+            if (m_offset - 1 <= i.value()) {
+                /*
+                qDebug() << "Extending existing buffer "
+                         << i.key() << i.value() << "now" << m_offset + m_bytesReceived;
+                */
+                bufferModified = true;
+                i.value() = m_offset + m_bytesReceived;
+                break;
+            }
+        }
+        if (!bufferModified)
+            buffers.insert(m_offset, m_offset + m_bytesReceived);
+    }
+    m_offset = offset;
+    this->sendStatusChanges = sendStatusChanges;
+    bool seekSuccess = m_file.seek(offset);
+    if (!seekSuccess) {
+        qWarning() << "Cannot seek to offset" << offset << "in file" << m_file.fileName();
+        return;
+    }
+    start();
+}
+
 void DownloadItem::start() {
-    m_reply = The::http()->request(m_url);
+    // qDebug() << "Starting download at" << m_offset;
+    if (m_offset > 0)
+        m_reply = The::http()->request(m_url, QNetworkAccessManager::GetOperation, QByteArray(), m_offset);
+    else
+        m_reply = The::http()->request(m_url);
     init();
 }
 
@@ -70,11 +137,8 @@ void DownloadItem::init() {
     if (!m_reply)
         return;
 
-    if (m_file.exists())
-        m_file.remove();
-
     m_status = Starting;
-
+    m_bytesReceived = 0;
     m_startedSaving = false;
     m_finishedDownloading = false;
 
@@ -147,6 +211,7 @@ void DownloadItem::downloadReadyRead() {
         emit statusChanged();
     }
 
+    // qWarning() << __PRETTY_FUNCTION__ << m_file.pos();
     if (-1 == m_file.write(m_reply->readAll())) {
         qWarning() << "Error saving." << m_file.errorString();
     } else {
@@ -183,10 +248,7 @@ void DownloadItem::metaDataChanged() {
         tryAgain();
         return;
     }
-
-#ifdef DOWNLOADMANAGER_DEBUG
-    qDebug() << "DownloadItem::" << __FUNCTION__ << "not handled.";
-#endif
+    // qDebug() << m_reply->rawHeaderList();
 }
 
 int DownloadItem::initialBufferSize() {
@@ -204,12 +266,14 @@ int DownloadItem::initialBufferSize() {
 
 void DownloadItem::downloadProgress(qint64 bytesReceived, qint64 bytesTotal) {
 
-    // qDebug() << bytesReceived << bytesTotal << m_downloadTime.elapsed();
+    // qDebug() << __PRETTY_FUNCTION__ << bytesReceived << bytesTotal << m_downloadTime.elapsed();
+
+    m_bytesReceived = bytesReceived;
+
+    if (!sendStatusChanges) return;
 
     if (m_lastProgressTime.elapsed() < 150) return;
     m_lastProgressTime.start();
-
-    m_bytesReceived = bytesReceived;
 
     if (m_status != Downloading) {
 
@@ -327,7 +391,7 @@ void DownloadItem::requestFinished() {
         m_status = Downloading;
         emit statusChanged();
     }
-    m_file.close();
+    if (m_offset == 0) m_file.close();
     m_status = Finished;
     m_totalTime = m_downloadTime.elapsed() / 1000.0;
     emit statusChanged();

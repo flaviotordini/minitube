@@ -44,7 +44,10 @@ public:
     static MainWindow* instance();
     MainWindow();
     ~MainWindow();
+#ifdef APP_PHONON_SEEK
     Phonon::SeekSlider* getSeekSlider() { return seekSlider; }
+#endif
+    QSlider* getSlider() { return slider; }
     void readSettings();
     void writeSettings();
     static void printHelp();
@@ -192,7 +195,10 @@ private:
     QAction *regionAction;
 
     // phonon
+    QSlider *slider;
+#ifdef APP_PHONON_SEEK
     Phonon::SeekSlider *seekSlider;
+#endif
     Phonon::VolumeSlider *volumeSlider;
     Phonon::MediaObject *mediaObject;
     Phonon::AudioOutput *audioOutput;

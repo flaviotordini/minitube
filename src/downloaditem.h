@@ -61,6 +61,11 @@ public:
     static QString formattedSpeed(double speed);
     static QString formattedTime(double time, bool remaining = true);
     QString errorMessage() const;
+    qint64 offset() const { return m_offset; }
+    bool needsDownload(qint64 offset);
+    bool isBuffered(qint64 offset);
+    qint64 blankAtOffset(qint64 offset);
+    void seekTo(qint64 offset, bool sendStatusChanges = true);
 
 public slots:
     void start();
@@ -92,6 +97,9 @@ private:
 
     QUrl m_url;
 
+    qint64 m_offset;
+    bool sendStatusChanges;
+
     QFile m_file;
     QNetworkReply *m_reply;
     Video *video;
@@ -101,6 +109,7 @@ private:
 
     QTimer *speedCheckTimer;
 
+    QMap<qint64, qint64> buffers;
 };
 
 // This is required in order to use QPointer<DownloadItem> as a QVariant

@@ -69,6 +69,7 @@ $END_LICENSE */
 #include "database.h"
 #include "videoareawidget.h"
 #include "jsfunctions.h"
+#include "seekslider.h"
 
 static MainWindow *singleton = 0;
 
@@ -565,6 +566,11 @@ void MainWindow::createActions() {
     connect(action, SIGNAL(triggered()), mediaView, SLOT(relatedVideos()));
     actions->insert("related-videos", action);
 
+    action = new QAction(tr("Open in &Browser..."), this);
+    action->setEnabled(false);
+    actions->insert("open-in-browser", action);
+    connect(action, SIGNAL(triggered()), mediaView, SLOT(openInBrowser()));
+
 #ifdef APP_ACTIVATION
     Extra::createActivationAction(tr("Buy %1...").arg(Constants::NAME));
 #endif
@@ -630,6 +636,7 @@ void MainWindow::createMenus() {
     videoMenu->addSeparator();
     videoMenu->addAction(The::globalActions()->value("download"));
     videoMenu->addAction(copyLinkAct);
+    videoMenu->addAction(The::globalActions()->value("open-in-browser"));
     // videoMenu->addAction(The::globalActions()->value("snapshot"));
 
     QMenu* viewMenu = menuBar()->addMenu(tr("&View"));
@@ -695,20 +702,23 @@ void MainWindow::createToolBars() {
     currentTime->setFont(smallerFont);
     mainToolBar->addWidget(currentTime);
 
+#ifdef APP_PHONON_SEEK
     mainToolBar->addWidget(new Spacer());
-
     seekSlider = new Phonon::SeekSlider(this);
+    seekSlider->setVisible(false);
     seekSlider->setIconVisible(false);
     seekSlider->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
     mainToolBar->addWidget(seekSlider);
+#endif
 
-    /*
     mainToolBar->addWidget(new Spacer());
-    slider = new QSlider(this);
+    slider = new SeekSlider(this);
+    slider->setEnabled(false);
+    slider->setTracking(false);
+    slider->setMaximum(1000);
     slider->setOrientation(Qt::Horizontal);
     slider->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
     mainToolBar->addWidget(slider);
-*/
 
     mainToolBar->addWidget(new Spacer());
 
@@ -1266,7 +1276,9 @@ void MainWindow::initPhonon() {
             this, SLOT(stateChanged(Phonon::State, Phonon::State)));
     connect(mediaObject, SIGNAL(tick(qint64)), this, SLOT(tick(qint64)));
     connect(mediaObject, SIGNAL(totalTimeChanged(qint64)), this, SLOT(totalTimeChanged(qint64)));
+#ifdef APP_PHONON_SEEK
     seekSlider->setMediaObject(mediaObject);
+#endif
     audioOutput = new Phonon::AudioOutput(Phonon::VideoCategory, this);
     connect(audioOutput, SIGNAL(volumeChanged(qreal)), this, SLOT(volumeChanged(qreal)));
     connect(audioOutput, SIGNAL(mutedChanged(bool)), this, SLOT(volumeMutedChanged(bool)));
@@ -1291,11 +1303,12 @@ void MainWindow::tick(qint64 time) {
     const qint64 remainingTime = mediaObject->remainingTime();
     currentTime->setStatusTip(tr("Remaining time: %1").arg(formatTime(remainingTime)));
 
-    /*
     slider->blockSignals(true);
-    slider->setValue(time/1000);
+    const qint64 totalTime = mediaObject->totalTime();
+    // qWarning() << totalTime << time << time * 100 / totalTime;
+    if (totalTime > 0 && time > 0 && !slider->isSliderDown() && mediaObject->state() == Phonon::PlayingState)
+        slider->setValue(time * slider->maximum() / totalTime);
     slider->blockSignals(false);
-    */
 }
 
 void MainWindow::totalTimeChanged(qint64 time) {
