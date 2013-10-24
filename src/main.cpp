@@ -35,6 +35,8 @@ int main(int argc, char **argv) {
 
 #ifdef Q_WS_MAC
     mac::MacMain();
+    // https://bugreports.qt-project.org/browse/QTBUG-32789
+    QFont::insertSubstitution(".Lucida Grande UI", "Lucida Grande");
 #endif
 
     QtSingleApplication app(argc, argv);
