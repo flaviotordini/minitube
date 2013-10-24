@@ -77,7 +77,11 @@ int main(int argc, char **argv) {
 #else
     QString dataDir = "";
 #endif
+#ifdef APP_MAC
+    QString localeDir = qApp->applicationDirPath() + "/../Resources/locale";
+#else
     QString localeDir = qApp->applicationDirPath() + "/locale";
+#endif
     if (!QDir(localeDir).exists()) {
         localeDir = dataDir + "/locale";
     }
