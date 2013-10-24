@@ -200,7 +200,7 @@
     <message>
         <location filename="src/channelview.cpp" line="155"/>
         <source>Sort by</source>
-        <translation type="unfinished"/>
+        <translation>Sorter etter</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="214"/>

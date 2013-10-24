@@ -107,7 +107,8 @@
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="53"/>
-        <source>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</source>
+        <source>The full version allows you to watch videos without interruptions.</source>
+        <oldsource>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -501,13 +502,13 @@
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="284"/>
-        <location filename="src/mainwindow.cpp" line="1034"/>
+        <location filename="src/mainwindow.cpp" line="1035"/>
         <source>&amp;Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="285"/>
-        <location filename="src/mainwindow.cpp" line="1035"/>
+        <location filename="src/mainwindow.cpp" line="1036"/>
         <source>Pause playback</source>
         <translation type="unfinished"></translation>
     </message>
@@ -628,7 +629,7 @@
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="460"/>
-        <location filename="src/mainwindow.cpp" line="1431"/>
+        <location filename="src/mainwindow.cpp" line="1434"/>
         <source>&amp;Downloads</source>
         <translation type="unfinished"></translation>
     </message>
@@ -753,58 +754,58 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="738"/>
+        <location filename="src/mainwindow.cpp" line="739"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="930"/>
-        <location filename="src/mainwindow.cpp" line="936"/>
+        <location filename="src/mainwindow.cpp" line="931"/>
+        <location filename="src/mainwindow.cpp" line="937"/>
         <source>Opening %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="981"/>
+        <location filename="src/mainwindow.cpp" line="982"/>
         <source>Do you want to exit %1 with a download in progress?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="982"/>
+        <location filename="src/mainwindow.cpp" line="983"/>
         <source>If you close %1 now, this download will be cancelled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="987"/>
+        <location filename="src/mainwindow.cpp" line="988"/>
         <source>Close and cancel download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="988"/>
+        <location filename="src/mainwindow.cpp" line="989"/>
         <source>Wait for download to finish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1147"/>
+        <location filename="src/mainwindow.cpp" line="1148"/>
         <source>Leave &amp;Full Screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1540"/>
+        <location filename="src/mainwindow.cpp" line="1543"/>
         <source>%1 version %2 is now available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1544"/>
+        <location filename="src/mainwindow.cpp" line="1547"/>
         <source>Remind me later</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1545"/>
+        <location filename="src/mainwindow.cpp" line="1548"/>
         <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1027"/>
+        <location filename="src/mainwindow.cpp" line="1028"/>
         <source>Error: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -864,52 +865,52 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="776"/>
+        <location filename="src/mainwindow.cpp" line="777"/>
         <source>Choose your content location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1047"/>
+        <location filename="src/mainwindow.cpp" line="1048"/>
         <source>&amp;Play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1048"/>
+        <location filename="src/mainwindow.cpp" line="1049"/>
         <source>Resume playback</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1301"/>
+        <location filename="src/mainwindow.cpp" line="1304"/>
         <source>Remaining time: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1360"/>
+        <location filename="src/mainwindow.cpp" line="1363"/>
         <source>Volume at %1%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1366"/>
+        <location filename="src/mainwindow.cpp" line="1369"/>
         <source>Volume is muted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1369"/>
+        <location filename="src/mainwindow.cpp" line="1372"/>
         <source>Volume is unmuted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1376"/>
+        <location filename="src/mainwindow.cpp" line="1379"/>
         <source>Maximum video definition set to %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1417"/>
+        <location filename="src/mainwindow.cpp" line="1420"/>
         <source>Your privacy is now safe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1432"/>
+        <location filename="src/mainwindow.cpp" line="1435"/>
         <source>Downloads complete</source>
         <translation type="unfinished"></translation>
     </message>

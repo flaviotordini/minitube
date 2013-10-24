@@ -139,7 +139,7 @@
     <message>
         <location filename="src/channelaggregator.cpp" line="131"/>
         <source>By %1</source>
-        <translation type="unfinished"/>
+        <translation>بواسطة %1</translation>
     </message>
     <message numerus="yes">
         <location filename="src/channelaggregator.cpp" line="133"/>
@@ -165,32 +165,32 @@
     <message>
         <location filename="src/channelview.cpp" line="99"/>
         <source>Mark all as watched</source>
-        <translation type="unfinished"/>
+        <translation>علّمها كمُشاهدة</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="107"/>
         <source>Show Updated</source>
-        <translation type="unfinished"/>
+        <translation>أظهر التّحديثات</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="119"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>الاسم</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="126"/>
         <source>Last Updated</source>
-        <translation type="unfinished"/>
+        <translation>آخر تحديث</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="133"/>
         <source>Last Added</source>
-        <translation type="unfinished"/>
+        <translation>آخر إضافة</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="140"/>
         <source>Last Watched</source>
-        <translation type="unfinished"/>
+        <translation>آخر عرض</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="147"/>
@@ -215,7 +215,7 @@
     <message>
         <location filename="src/channelview.cpp" line="230"/>
         <source>There are no updated subscriptions at this time.</source>
-        <translation type="unfinished"/>
+        <translation>لا يوجد تحديثات لقوائم اشتراكاتك حاليًا</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="232"/>
@@ -455,7 +455,7 @@
     <message>
         <location filename="src/homeview.cpp" line="73"/>
         <source>Channel subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>اشتراكات القنوات</translation>
     </message>
     <message>
         <location filename="src/homeview.h" line="42"/>
@@ -704,7 +704,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="569"/>
         <source>Open in &amp;Browser...</source>
-        <translation type="unfinished"/>
+        <translation>افتح &amp;ضمن المُستعرض...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="591"/>
@@ -966,7 +966,7 @@
     <message>
         <location filename="src/mediaview.cpp" line="968"/>
         <source>Unsubscribe from %1</source>
-        <translation type="unfinished"/>
+        <translation>إلغاء الاشتراك من %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="972"/>
@@ -1333,7 +1333,7 @@
     <message>
         <location filename="src/standardfeedsview.cpp" line="110"/>
         <source>All Time Popular</source>
-        <translation type="unfinished"/>
+        <translation>مشهورة دومًا</translation>
     </message>
 </context>
 <context>

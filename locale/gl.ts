@@ -705,7 +705,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="569"/>
         <source>Open in &amp;Browser...</source>
-        <translation type="unfinished"/>
+        <translation>Abrir no &amp;navegador</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="591"/>

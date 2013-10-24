@@ -705,7 +705,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="569"/>
         <source>Open in &amp;Browser...</source>
-        <translation type="unfinished"/>
+        <translation>Открыть в &amp;браузере...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="591"/>
@@ -1319,7 +1319,7 @@
     <message>
         <location filename="src/standardfeedsview.cpp" line="107"/>
         <source>Most Shared</source>
-        <translation type="unfinished"/>
+        <translation>Чаще делились</translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="108"/>

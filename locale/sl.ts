@@ -88,7 +88,7 @@
     <message>
         <location filename="local/src/activationdialog.cpp" line="35"/>
         <source>&amp;Code:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Koda:</translation>
     </message>
 </context>
 <context>
@@ -131,7 +131,7 @@
     <message>
         <location filename="local/src/activationview.cpp" line="85"/>
         <source>Buy License</source>
-        <translation>Kupi licenco</translation>
+        <translation>Kupite licenco</translation>
     </message>
 </context>
 <context>
@@ -359,7 +359,7 @@
     <message>
         <location filename="local/src/updatedialog.cpp" line="60"/>
         <source>Downloading update...</source>
-        <translation>Prenos posodobitve...</translation>
+        <translation>Prenos posodobitve ...</translation>
     </message>
 </context>
 <context>
@@ -440,7 +440,7 @@
     <message>
         <location filename="src/homeview.cpp" line="65"/>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>Brskaj</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="67"/>
@@ -450,17 +450,17 @@
     <message>
         <location filename="src/homeview.cpp" line="71"/>
         <source>Subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>Naročnine</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="73"/>
         <source>Channel subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>Naročanje kanalov</translation>
     </message>
     <message>
         <location filename="src/homeview.h" line="42"/>
         <source>Make yourself comfortable</source>
-        <translation type="unfinished"/>
+        <translation>Udobno se namestite</translation>
     </message>
 </context>
 <context>
@@ -689,7 +689,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="558"/>
         <source>More...</source>
-        <translation>Več...</translation>
+        <translation>Več ...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="561"/>
@@ -704,7 +704,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="569"/>
         <source>Open in &amp;Browser...</source>
-        <translation type="unfinished"/>
+        <translation>Odpri v &amp;Brskalniku...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="591"/>
@@ -971,7 +971,7 @@
     <message>
         <location filename="src/mediaview.cpp" line="972"/>
         <source>Subscribe to %1</source>
-        <translation type="unfinished"/>
+        <translation>Naroči se na %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="720"/>
@@ -1014,7 +1014,7 @@
     <message>
         <location filename="local/src/updatedialog.cpp" line="47"/>
         <source>Install Update</source>
-        <translation type="unfinished"/>
+        <translation>Namesti posodobitev</translation>
     </message>
 </context>
 <context>
@@ -1022,7 +1022,7 @@
     <message>
         <location filename="local/src/pastelineedit.cpp" line="6"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Prilepi</translation>
     </message>
 </context>
 <context>
@@ -1035,12 +1035,12 @@
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="311"/>
         <source>%1 of %2 (%3) — %4</source>
-        <translation type="unfinished"/>
+        <translation>%1 od %2 (%3) — %4</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="318"/>
         <source>Preparing</source>
-        <translation type="unfinished"/>
+        <translation>V pripravi</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="320"/>
@@ -1282,7 +1282,7 @@
         <location filename="src/sidebarheader.cpp" line="39"/>
         <location filename="src/sidebarheader.cpp" line="46"/>
         <source>&amp;Back</source>
-        <translation type="unfinished"/>
+        <translation>Na&amp;zaj</translation>
     </message>
     <message>
         <location filename="src/sidebarheader.cpp" line="77"/>
@@ -1313,12 +1313,12 @@
     <message>
         <location filename="src/standardfeedsview.cpp" line="105"/>
         <source>Most Popular</source>
-        <translation type="unfinished"/>
+        <translation>Najbolj popularno</translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="107"/>
         <source>Most Shared</source>
-        <translation type="unfinished"/>
+        <translation>Najbolj deljeno</translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="108"/>
@@ -1328,7 +1328,7 @@
     <message>
         <location filename="src/standardfeedsview.cpp" line="109"/>
         <source>Top Rated</source>
-        <translation type="unfinished"/>
+        <translation>Najbolje ocenjeno</translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="110"/>
@@ -1529,7 +1529,7 @@
     <message>
         <location filename="src/ytregions.cpp" line="63"/>
         <source>Singapore</source>
-        <translation type="unfinished"/>
+        <translation>Singapur</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="64"/>
@@ -1579,7 +1579,7 @@
     <message>
         <location filename="src/ytregions.cpp" line="73"/>
         <source>United Kingdom</source>
-        <translation>Velika Britanija</translation>
+        <translation>Združeno kraljestvo</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="74"/>

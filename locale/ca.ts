@@ -106,7 +106,7 @@
     <message>
         <location filename="local/src/activationview.cpp" line="53"/>
         <source>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</source>
-        <translation type="unfinished"/>
+        <translation>La versió completa permet descarregar vídeos de més de %1 minuts i veure els vídeos sense interrupcions.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="55"/>
@@ -139,7 +139,7 @@
     <message>
         <location filename="src/channelaggregator.cpp" line="131"/>
         <source>By %1</source>
-        <translation type="unfinished"/>
+        <translation>Per %1</translation>
     </message>
     <message numerus="yes">
         <location filename="src/channelaggregator.cpp" line="133"/>
@@ -152,12 +152,12 @@
     <message>
         <location filename="src/channelitemdelegate.cpp" line="66"/>
         <source>All Videos</source>
-        <translation type="unfinished"/>
+        <translation>Tots els vídeos</translation>
     </message>
     <message>
         <location filename="src/channelitemdelegate.cpp" line="83"/>
         <source>Unwatched Videos</source>
-        <translation type="unfinished"/>
+        <translation>Vídeos no vists</translation>
     </message>
 </context>
 <context>
@@ -165,37 +165,37 @@
     <message>
         <location filename="src/channelview.cpp" line="99"/>
         <source>Mark all as watched</source>
-        <translation type="unfinished"/>
+        <translation>Marca-ho tot vist</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="107"/>
         <source>Show Updated</source>
-        <translation type="unfinished"/>
+        <translation>Mostra actualitzats</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="119"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Nom</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="126"/>
         <source>Last Updated</source>
-        <translation type="unfinished"/>
+        <translation>Últim actualitzat</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="133"/>
         <source>Last Added</source>
-        <translation type="unfinished"/>
+        <translation>Últim afegit</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="140"/>
         <source>Last Watched</source>
-        <translation type="unfinished"/>
+        <translation>Últim vist</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="147"/>
         <source>Most Watched</source>
-        <translation type="unfinished"/>
+        <translation>Més vistos</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="155"/>
@@ -205,22 +205,22 @@
     <message>
         <location filename="src/channelview.cpp" line="214"/>
         <source>All Videos</source>
-        <translation type="unfinished"/>
+        <translation>Tots els vídeos</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="218"/>
         <source>Unwatched Videos</source>
-        <translation type="unfinished"/>
+        <translation>Vídeos no vistos</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="230"/>
         <source>There are no updated subscriptions at this time.</source>
-        <translation type="unfinished"/>
+        <translation>No hi han subscripcions actualitzades.</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="232"/>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation type="unfinished"/>
+        <translation>No teniu subscripcions. Feu servir el símbol de l&apos;estrella per subscríure-us als canals.</translation>
     </message>
 </context>
 <context>
@@ -435,32 +435,32 @@
     <message>
         <location filename="src/homeview.cpp" line="60"/>
         <source>Find videos and channels by keyword</source>
-        <translation type="unfinished"/>
+        <translation>Troba vídeos i canals per paraula clau</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="65"/>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>Explora</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="67"/>
         <source>Browse videos by category</source>
-        <translation type="unfinished"/>
+        <translation>Explora vídeos per categoria</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="71"/>
         <source>Subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>Subscripcions</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="73"/>
         <source>Channel subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>Subscripcions de canal</translation>
     </message>
     <message>
         <location filename="src/homeview.h" line="42"/>
         <source>Make yourself comfortable</source>
-        <translation type="unfinished"/>
+        <translation>Poseu-vos còmodes</translation>
     </message>
 </context>
 <context>
@@ -644,7 +644,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="486"/>
         <source>&amp;Subscribe to Channel</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Subscriu al canal</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="494"/>
@@ -689,22 +689,22 @@
     <message>
         <location filename="src/mainwindow.cpp" line="558"/>
         <source>More...</source>
-        <translation type="unfinished"/>
+        <translation>Més...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="561"/>
         <source>&amp;Related Videos</source>
-        <translation type="unfinished"/>
+        <translation>Vídeos &amp;Relacionats</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="563"/>
         <source>Watch videos related to the current one</source>
-        <translation type="unfinished"/>
+        <translation>Visualitza vídeos relacionats amb l&apos;actual</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="569"/>
         <source>Open in &amp;Browser...</source>
-        <translation type="unfinished"/>
+        <translation>Obre al &amp;Navegador...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="591"/>
@@ -860,7 +860,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="776"/>
         <source>Choose your content location</source>
-        <translation type="unfinished"/>
+        <translation>Esculliu la ubicació del vostre contingut</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1047"/>
@@ -966,12 +966,12 @@
     <message>
         <location filename="src/mediaview.cpp" line="968"/>
         <source>Unsubscribe from %1</source>
-        <translation type="unfinished"/>
+        <translation>Cancel·la la subscripció a %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="972"/>
         <source>Subscribe to %1</source>
-        <translation type="unfinished"/>
+        <translation>Subscriu-me a %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="720"/>
@@ -994,7 +994,7 @@
     <message>
         <location filename="local/src/updatedialog.cpp" line="28"/>
         <source>%1 %2 is now available. You have %3.</source>
-        <translation>%1 %2 estan disponibles. Tu tens %3.</translation>
+        <translation>%1 %2 està disponible. Tu tens %3.</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="33"/>
@@ -1014,7 +1014,7 @@
     <message>
         <location filename="local/src/updatedialog.cpp" line="47"/>
         <source>Install Update</source>
-        <translation>Instal·la Actualització</translation>
+        <translation>Instal·la l&apos;actualització</translation>
     </message>
 </context>
 <context>
@@ -1022,7 +1022,7 @@
     <message>
         <location filename="local/src/pastelineedit.cpp" line="6"/>
         <source>Paste</source>
-        <translation>Enganxar</translation>
+        <translation>Enganxa</translation>
     </message>
 </context>
 <context>
@@ -1035,47 +1035,47 @@
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="311"/>
         <source>%1 of %2 (%3) — %4</source>
-        <translation type="unfinished"/>
+        <translation>%1 de %2 (%3) — %4</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="318"/>
         <source>Preparing</source>
-        <translation type="unfinished"/>
+        <translation>Preparant</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="320"/>
         <source>Failed</source>
-        <translation type="unfinished"/>
+        <translation>Fallit</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="322"/>
         <source>Completed</source>
-        <translation type="unfinished"/>
+        <translation>Completat</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="324"/>
         <source>Stopped</source>
-        <translation type="unfinished"/>
+        <translation>Aturat</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="360"/>
         <source>Stop downloading</source>
-        <translation type="unfinished"/>
+        <translation>Atura la baixada</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="370"/>
         <source>Show in %1</source>
-        <translation type="unfinished"/>
+        <translation>Mostra en %1</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="372"/>
         <source>Open parent folder</source>
-        <translation type="unfinished"/>
+        <translation>Obre el directori superior</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="381"/>
         <source>Restart downloading</source>
-        <translation type="unfinished"/>
+        <translation>Recomença la baixada</translation>
     </message>
 </context>
 <context>
@@ -1083,12 +1083,12 @@
     <message>
         <location filename="src/playlistmodel.cpp" line="72"/>
         <source>Searching...</source>
-        <translation>Buscant...</translation>
+        <translation>Cercant...</translation>
     </message>
     <message>
         <location filename="src/playlistmodel.cpp" line="73"/>
         <source>Show %1 More</source>
-        <translation type="unfinished"/>
+        <translation>Mostra %1 Més</translation>
     </message>
     <message>
         <location filename="src/playlistmodel.cpp" line="74"/>
@@ -1216,7 +1216,7 @@
     <message>
         <location filename="src/regionsview.cpp" line="39"/>
         <source>Done</source>
-        <translation type="unfinished"/>
+        <translation>Fet</translation>
     </message>
 </context>
 <context>
@@ -1287,12 +1287,12 @@
     <message>
         <location filename="src/sidebarheader.cpp" line="77"/>
         <source>Forward to %1</source>
-        <translation type="unfinished"/>
+        <translation>Avança a %1</translation>
     </message>
     <message>
         <location filename="src/sidebarheader.cpp" line="90"/>
         <source>Back to %1</source>
-        <translation type="unfinished"/>
+        <translation>Retrocedeix a %1</translation>
     </message>
 </context>
 <context>
@@ -1313,27 +1313,27 @@
     <message>
         <location filename="src/standardfeedsview.cpp" line="105"/>
         <source>Most Popular</source>
-        <translation type="unfinished"/>
+        <translation>Més popular</translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="107"/>
         <source>Most Shared</source>
-        <translation type="unfinished"/>
+        <translation>Més compartit</translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="108"/>
         <source>Most Discussed</source>
-        <translation type="unfinished"/>
+        <translation>Més comentat</translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="109"/>
         <source>Top Rated</source>
-        <translation type="unfinished"/>
+        <translation>Millor valorats</translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="110"/>
         <source>All Time Popular</source>
-        <translation type="unfinished"/>
+        <translation>Populars de sempre</translation>
     </message>
 </context>
 <context>
@@ -1354,242 +1354,242 @@
     <message>
         <location filename="src/ytregions.cpp" line="28"/>
         <source>Algeria</source>
-        <translation type="unfinished"/>
+        <translation>Algèria</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="29"/>
         <source>Argentina</source>
-        <translation type="unfinished"/>
+        <translation>Argentina</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="30"/>
         <source>Australia</source>
-        <translation type="unfinished"/>
+        <translation>Austràlia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="31"/>
         <source>Belgium</source>
-        <translation type="unfinished"/>
+        <translation>Bèlgica</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="32"/>
         <source>Brazil</source>
-        <translation type="unfinished"/>
+        <translation>Brazil</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="33"/>
         <source>Canada</source>
-        <translation type="unfinished"/>
+        <translation>Canadà</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="34"/>
         <source>Chile</source>
-        <translation type="unfinished"/>
+        <translation>Xile</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="35"/>
         <source>Colombia</source>
-        <translation type="unfinished"/>
+        <translation>Colòmbia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="36"/>
         <source>Czech Republic</source>
-        <translation type="unfinished"/>
+        <translation>República Txeca</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="37"/>
         <source>Egypt</source>
-        <translation type="unfinished"/>
+        <translation>Egipte</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="38"/>
         <source>France</source>
-        <translation type="unfinished"/>
+        <translation>França</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="39"/>
         <source>Germany</source>
-        <translation type="unfinished"/>
+        <translation>Alemanya</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="40"/>
         <source>Ghana</source>
-        <translation type="unfinished"/>
+        <translation>Ghana</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="41"/>
         <source>Greece</source>
-        <translation type="unfinished"/>
+        <translation>Grècia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="42"/>
         <source>Hong Kong</source>
-        <translation type="unfinished"/>
+        <translation>Hong Kong</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="43"/>
         <source>Hungary</source>
-        <translation type="unfinished"/>
+        <translation>Hongria</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="44"/>
         <source>India</source>
-        <translation type="unfinished"/>
+        <translation>Índia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="45"/>
         <source>Indonesia</source>
-        <translation type="unfinished"/>
+        <translation>Indonèsia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="46"/>
         <source>Ireland</source>
-        <translation type="unfinished"/>
+        <translation>Irlanda</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="47"/>
         <source>Israel</source>
-        <translation type="unfinished"/>
+        <translation>Israel</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="48"/>
         <source>Italy</source>
-        <translation type="unfinished"/>
+        <translation>Itàlia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="49"/>
         <source>Japan</source>
-        <translation type="unfinished"/>
+        <translation>Japó</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="50"/>
         <source>Jordan</source>
-        <translation type="unfinished"/>
+        <translation>Jordània</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="51"/>
         <source>Kenya</source>
-        <translation type="unfinished"/>
+        <translation>Kenya</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="52"/>
         <source>Malaysia</source>
-        <translation type="unfinished"/>
+        <translation>Malàisia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="53"/>
         <source>Mexico</source>
-        <translation type="unfinished"/>
+        <translation>Mèxic</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="54"/>
         <source>Morocco</source>
-        <translation type="unfinished"/>
+        <translation>Marroc</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="55"/>
         <source>Netherlands</source>
-        <translation type="unfinished"/>
+        <translation>Holanda</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="56"/>
         <source>New Zealand</source>
-        <translation type="unfinished"/>
+        <translation>Nova Zelanda</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="57"/>
         <source>Nigeria</source>
-        <translation type="unfinished"/>
+        <translation>Nigèria</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="58"/>
         <source>Peru</source>
-        <translation type="unfinished"/>
+        <translation>Perú</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="59"/>
         <source>Philippines</source>
-        <translation type="unfinished"/>
+        <translation>Filipines</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="60"/>
         <source>Poland</source>
-        <translation type="unfinished"/>
+        <translation>Polònia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="61"/>
         <source>Russia</source>
-        <translation type="unfinished"/>
+        <translation>Rússia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="62"/>
         <source>Saudi Arabia</source>
-        <translation type="unfinished"/>
+        <translation>Aràbia Saudita</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="63"/>
         <source>Singapore</source>
-        <translation type="unfinished"/>
+        <translation>Singapur</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="64"/>
         <source>South Africa</source>
-        <translation type="unfinished"/>
+        <translation>Sud-àfrica</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="65"/>
         <source>South Korea</source>
-        <translation type="unfinished"/>
+        <translation>Corea del Sud</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="66"/>
         <source>Spain</source>
-        <translation type="unfinished"/>
+        <translation>Espanya</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="67"/>
         <source>Sweden</source>
-        <translation type="unfinished"/>
+        <translation>Suècia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="68"/>
         <source>Taiwan</source>
-        <translation type="unfinished"/>
+        <translation>Taiwan</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="69"/>
         <source>Tunisia</source>
-        <translation type="unfinished"/>
+        <translation>Tunísia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="70"/>
         <source>Turkey</source>
-        <translation type="unfinished"/>
+        <translation>Turquia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="71"/>
         <source>Uganda</source>
-        <translation type="unfinished"/>
+        <translation>Uganda</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="72"/>
         <source>United Arab Emirates</source>
-        <translation type="unfinished"/>
+        <translation>Emirats Àrabs Units</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="73"/>
         <source>United Kingdom</source>
-        <translation type="unfinished"/>
+        <translation>Regne Unit</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="74"/>
         <source>Yemen</source>
-        <translation type="unfinished"/>
+        <translation>Yemen</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="148"/>
         <source>Worldwide</source>
-        <translation type="unfinished"/>
+        <translation>Global</translation>
     </message>
 </context>
 </TS>

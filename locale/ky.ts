@@ -704,7 +704,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="569"/>
         <source>Open in &amp;Browser...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Браузерден ачуу...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="591"/>
@@ -971,7 +971,7 @@
     <message>
         <location filename="src/mediaview.cpp" line="972"/>
         <source>Subscribe to %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 каналына жазылуу</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="720"/>

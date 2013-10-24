@@ -70,7 +70,7 @@
     <message>
         <location filename="src/aboutview.h" line="39"/>
         <source>What you always wanted to know about %1 and never dared to ask</source>
-        <translation>Lo que siempre quiso saber acerca de %1 y nunca se atrevió a preguntar</translation>
+        <translation>Lo que siempre quisiste saber acerca de %1 y nunca te atreviste a preguntar</translation>
     </message>
 </context>
 <context>
@@ -251,17 +251,17 @@
     <message>
         <location filename="src/downloaditem.cpp" line="421"/>
         <source>bytes/sec</source>
-        <translation>bytes/s</translation>
+        <translation>bytes/seg</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="424"/>
         <source>KB/sec</source>
-        <translation>KB/s</translation>
+        <translation>KB/seg</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="427"/>
         <source>MB/sec</source>
-        <translation>MB/s</translation>
+        <translation>MB/seg</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="433"/>
@@ -276,7 +276,7 @@
     <message>
         <location filename="src/downloaditem.cpp" line="439"/>
         <source>%4 %5 remaining</source>
-        <translation>Quedan %4 %5</translation>
+        <translation>%4 %5 restantes</translation>
     </message>
 </context>
 <context>
@@ -377,7 +377,7 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="38"/>
         <source>Play/Pause</source>
-        <translation>Reproducir/pausar</translation>
+        <translation>Reproducir/Pausar</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="39"/>
@@ -508,7 +508,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="291"/>
         <source>&amp;Full Screen</source>
-        <translation>Pantalla &amp;completa</translation>
+        <translation>&amp;Pantalla Completa</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="292"/>
@@ -528,7 +528,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="326"/>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation>Copiar el enlace a YouTube del vídeo actual en el portapapeles</translation>
+        <translation>Copiar el enlace de YouTube del vídeo actual en el portapapeles</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="333"/>
@@ -588,7 +588,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="384"/>
         <source>&amp;Website</source>
-        <translation>Sitio &amp;web</translation>
+        <translation>&amp;Sitio web</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="386"/>
@@ -598,7 +598,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="392"/>
         <source>Please support the continued development of %1</source>
-        <translation>Apoye el desarrollo continuo de %1</translation>
+        <translation>Porfavor apoye el desarrollo continuo de %1</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="397"/>
@@ -618,7 +618,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="426"/>
         <source>Mute volume</source>
-        <translation>Silenciar</translation>
+        <translation>Silenciar volumen</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="460"/>
@@ -704,7 +704,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="569"/>
         <source>Open in &amp;Browser...</source>
-        <translation type="unfinished"/>
+        <translation>Abrir en &amp;Navegador...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="591"/>
@@ -744,7 +744,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="663"/>
         <source>&amp;Help</source>
-        <translation>Ay&amp;uda</translation>
+        <translation>&amp;Ayuda</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="738"/>
