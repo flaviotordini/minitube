@@ -151,7 +151,6 @@ private:
     QWidget *regionsView;
 
     // actions
-    QAction *addGadgetAct;
     QAction *backAct;
     QAction *quitAct;
     QAction *siteAct;
