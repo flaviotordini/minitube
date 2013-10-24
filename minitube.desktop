@@ -16,8 +16,8 @@ Exec=minitube
 Terminal=false
 Type=Application
 Icon=minitube
-Categories=Qt;AudioVideo;Video;Player;
-StartupNotify=true
+Categories=AudioVideo;Player;Qt;
+StartupNotify=false
 Actions=TogglePlaying;Next;Previous;
 
 [Desktop Action TogglePlaying]
