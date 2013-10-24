@@ -1,3 +1,12 @@
+2.1.4
+- Fixed fonts in Mac OS X Mavericks
+- Fixed "busy" mouse cursor at launch on Ubuntu
+- Updated translations
+
+2.1.3
+- Fixed video seeking
+- New and updated translations
+
 2.1.2
 - Downloads only enabled on Creative Commons licensed videos
 - Fixed playback of some videos
