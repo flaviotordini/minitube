@@ -183,7 +183,7 @@ void  Video::gotVideoInfo(QByteArray data) {
     parseFmtUrlMap(fmtUrlMap);
 }
 
-void Video::parseFmtUrlMap(QString fmtUrlMap, bool fromWebPage) {
+void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
     QSettings settings;
     QString definitionName = settings.value("definition", "360p").toString();
     int definitionCode = VideoDefinition::getDefinitionCode(definitionName);
@@ -200,10 +200,12 @@ void Video::parseFmtUrlMap(QString fmtUrlMap, bool fromWebPage) {
         QString url;
         QString sig;
         foreach(QString urlParam, urlParams) {
-            // qDebug() << urlParam;
+            // qWarning() << urlParam;
             if (urlParam.startsWith("itag=")) {
                 int separator = urlParam.indexOf("=");
                 format = urlParam.mid(separator + 1).toInt();
+                qWarning() << "itag" << format;
+
             } else if (urlParam.startsWith("url=")) {
                 int separator = urlParam.indexOf("=");
                 url = urlParam.mid(separator + 1);
@@ -219,8 +221,11 @@ void Video::parseFmtUrlMap(QString fmtUrlMap, bool fromWebPage) {
                     sig = QByteArray::fromPercentEncoding(sig.toUtf8());
                     if (ageGate)
                         sig = JsFunctions::instance()->decryptAgeSignature(sig);
-                    else
-                        sig = JsFunctions::instance()->decryptSignature(sig);
+                    else {
+                        sig = decryptSignature(sig);
+                        if (sig.isEmpty())
+                            sig = JsFunctions::instance()->decryptSignature(sig);
+                    }
                 } else {
                     // qDebug() << "Loading webpage";
                     QUrl url("http://www.youtube.com/watch");
@@ -246,7 +251,7 @@ void Video::parseFmtUrlMap(QString fmtUrlMap, bool fromWebPage) {
         // qWarning() << url;
 
         if (format == definitionCode) {
-            // qDebug() << "Found format" << definitionCode;
+            qDebug() << "Found format" << definitionCode;
             QUrl videoUrl = QUrl::fromEncoded(url.toUtf8(), QUrl::StrictMode);
             m_streamUrl = videoUrl;
             this->definitionCode = definitionCode;
@@ -266,7 +271,7 @@ void Video::parseFmtUrlMap(QString fmtUrlMap, bool fromWebPage) {
         if (previousIndex < 0) previousIndex = 0;
         int definitionCode = definitionCodes.at(previousIndex);
         if (urlMap.contains(definitionCode)) {
-            // qDebug() << "Found format" << definitionCode;
+            qDebug() << "Found format" << definitionCode;
             QString url = urlMap.value(definitionCode);
             QUrl videoUrl = QUrl::fromEncoded(url.toUtf8(), QUrl::StrictMode);
             m_streamUrl = videoUrl;
@@ -321,9 +326,25 @@ void Video::scrapeWebPage(QByteArray data) {
         getVideoInfo();
         return;
     }
-    QString fmtUrlMap = re.cap(1);
+    fmtUrlMap = re.cap(1);
     fmtUrlMap.replace("\\u0026", "&");
-    parseFmtUrlMap(fmtUrlMap, true);
+    // parseFmtUrlMap(fmtUrlMap, true);
+
+    QRegExp jsPlayerRe("\"assets\":.+\"js\":\\s*\"([^\"]+)\"");
+    if (jsPlayerRe.indexIn(html) != -1) {
+        QString jsPlayerUrl = jsPlayerRe.cap(1);
+        jsPlayerUrl.remove('\\');
+        jsPlayerUrl = "http:" + jsPlayerUrl;
+        qWarning() << "jsPlayerUrl" << jsPlayerUrl;
+        /*
+        QRegExp jsPlayerIdRe("-(.+)\\.js");
+        jsPlayerIdRe.indexIn(jsPlayerUrl);
+        QString jsPlayerId = jsPlayerRe.cap(1);
+        */
+        QObject *reply = The::http()->get(jsPlayerUrl);
+        connect(reply, SIGNAL(data(QByteArray)), SLOT(parseJsPlayer(QByteArray)));
+        connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
+    }
 }
 
 void Video::gotHeadHeaders(QNetworkReply* reply) {
@@ -369,6 +390,60 @@ void Video::gotHeadHeaders(QNetworkReply* reply) {
     }
 }
 
+void Video::parseJsPlayer(QByteArray bytes) {
+    QString js = QString::fromUtf8(bytes);
+
+    QRegExp funcNameRe("signature=([a-zA-Z0-9]+)");
+    if (funcNameRe.indexIn(js) == -1) {
+        qWarning() << "Cannot capture signature function name";
+        return;
+    }
+    sigFuncName = funcNameRe.cap(1);
+    captureFunction(sigFuncName, js);
+    qWarning() << sigFunctions;
+    parseFmtUrlMap(fmtUrlMap, true);
+}
+
+void Video::captureFunction(const QString &name, const QString &js) {
+    QRegExp funcRe("function\\s+" + name + "\\s*\\([a-zA-Z0-9,\\s]*\\)\\s*\\{[^\\}]+\\}");
+    if (funcRe.indexIn(js) == -1) {
+        qWarning() << "Cannot capture function" << name;
+        return;
+    }
+    QString func = funcRe.cap(0);
+    sigFunctions.insert(name, func);
+
+    // capture inner functions
+    QRegExp invokedFuncRe("[\\s=;\\(]([a-zA-Z0-9]+)\\s*\\([a-zA-Z0-9, ]+\\)");
+    int pos = name.length() + 9;
+    while ((pos = invokedFuncRe.indexIn(func, pos)) != -1) {
+        QString funcName = invokedFuncRe.cap(1);
+        if (!sigFunctions.contains(funcName))
+            captureFunction(funcName, js);
+        pos += invokedFuncRe.matchedLength();
+    }
+}
+
+QString Video::decryptSignature(const QString &s) {
+    QScriptEngine engine;
+    foreach (QString f, sigFunctions.values()) {
+        QScriptValue value = engine.evaluate(f);
+        if (value.isError())
+            qWarning() << "Error in" << f << value.toString();
+    }
+    QString js = sigFuncName + "('" + s + "');";
+    QScriptValue value = engine.evaluate(js);
+    if (value.isUndefined()) {
+        qWarning() << "Undefined result for" << js;
+        return QString();
+    }
+    if (value.isError()) {
+        qWarning() << "Error in" << js << value.toString();
+        return QString();
+    }
+    return value.toString();
+}
+
 void Video::findVideoUrl(int definitionCode) {
     this->definitionCode = definitionCode;
 
@@ -381,7 +456,6 @@ void Video::findVideoUrl(int definitionCode) {
     // connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
 
     // see you in gotHeadHeaders()
-
 }
 
 QString Video::formattedDuration() const {

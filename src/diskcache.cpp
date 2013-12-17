@@ -33,7 +33,8 @@ QIODevice* DiskCache::prepare(const QNetworkCacheMetaData &metaData) {
         }
     }
 
-    if (mime.startsWith(QLatin1String("image/")))
+    if (mime.startsWith(QLatin1String("image/")) ||
+                        mime.endsWith(QLatin1String("/javascript")))
         return QNetworkDiskCache::prepare(metaData);
 
     return 0;

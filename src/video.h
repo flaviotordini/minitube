@@ -95,12 +95,15 @@ private slots:
     void errorVideoInfo(QNetworkReply*);
     void scrapeWebPage(QByteArray);
     void gotHeadHeaders(QNetworkReply*);
+    void parseJsPlayer(QByteArray);
 
 private:
     void getVideoInfo();
     void findVideoUrl(int definitionCode);
     void foundVideoUrl(QString videoToken, int definitionCode);
-    void parseFmtUrlMap(QString fmtUrlMap, bool fromWebPage = false);
+    void parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage = false);
+    void captureFunction(const QString &name, const QString &js);
+    QString decryptSignature(const QString &s);
 
     QString m_title;
     QString m_description;
@@ -126,6 +129,10 @@ private:
     
     bool loadingStreamUrl;
     bool loadingThumbnail;
+
+    QHash<QString, QString> sigFunctions;
+    QString sigFuncName;
+    QString fmtUrlMap;
 };
 
 // This is required in order to use QPointer<Video> as a QVariant
