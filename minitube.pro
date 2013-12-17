@@ -1,6 +1,6 @@
 CONFIG += release
 TEMPLATE = app
-VERSION = 2.1.4
+VERSION = 2.1.5
 DEFINES += APP_VERSION="$$VERSION"
 
 APP_NAME = Minitube
@@ -14,8 +14,11 @@ DEFINES *= QT_USE_QSTRINGBUILDER
 DEFINES += QT_STRICT_ITERATORS
 
 TARGET = $${APP_UNIX_NAME}
+
 QT += network xml phonon sql script
+
 include(src/qtsingleapplication/qtsingleapplication.pri)
+
 HEADERS += \
     src/video.h \
     src/searchlineedit.h \

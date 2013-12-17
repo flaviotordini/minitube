@@ -1,3 +1,8 @@
+2.1.5
+- Fix some videos not playing
+- Show video title on hover when playlist is in minimode (thumbs only)
+- Lighter font for video title and description on Mac & Ubuntu
+
 2.1.4
 - Fixed fonts in Mac OS X Mavericks
 - Fixed "busy" mouse cursor at launch on Ubuntu
