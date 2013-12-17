@@ -84,10 +84,16 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     hLayout->addLayout(layout);
 
     QLabel *welcomeLabel =
-            new QLabel("<h1 style='font-weight:normal'>" +
+            new QLabel("<h1 style='font-weight:100'>" +
                        tr("Welcome to <a href='%1'>%2</a>,")
                        // .replace("<a ", "<a style='color:palette(text)'")
-                       .replace("<a href", "<a style='text-decoration:none; color:palette(text); font-weight:bold' href")
+                       .replace("<a ", "<a style='text-decoration:none; color:palette(text);font-weight:"
+                            #if defined(APP_UBUNTU) || defined(APP_WIN)
+                                "normal"
+                            #else
+                                "bold"
+                            #endif
+                                "' ")
                        .arg(Constants::WEBSITE, Constants::NAME)
                        + "</h1>", this);
     welcomeLabel->setOpenExternalLinks(true);

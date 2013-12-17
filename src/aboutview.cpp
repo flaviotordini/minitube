@@ -48,7 +48,7 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
     hLayout->addLayout(layout);
 
     QString info = "<html><style>a { color: palette(text); text-decoration: none; font-weight: bold }</style><body>"
-            "<h1>" + QString(Constants::NAME) + "</h1>"
+            "<h1 style='font-weight:normal'>" + QString(Constants::NAME) + "</h1>"
             "<p>" + tr("There's life outside the browser!") + "</p>"
             "<p>" + tr("Version %1").arg(Constants::VERSION) + "</p>"
             + QString("<p><a href=\"%1/\">%1</a></p>").arg(Constants::WEBSITE);
@@ -89,7 +89,7 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
             "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")
             .arg("http://www.gnu.org/licenses/gpl.html") + "</p>"
         #endif
-            "<p>&copy; 2009-2013 " + Constants::ORG_NAME + "</p>"
+            "<p>&copy; 2009-2014 " + Constants::ORG_NAME + "</p>"
             "</body></html>";
     QLabel *infoLabel = new QLabel(info, this);
     infoLabel->setOpenExternalLinks(true);

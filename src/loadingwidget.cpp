@@ -62,8 +62,9 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
 void LoadingWidget::setVideo(Video *video) {
 
     QFont titleFont;
+    titleFont.setStyleName("Light");
 #ifdef APP_MAC
-    titleFont.setFamily("Helvetica");
+    titleFont.setFamily("Helvetica Neue");
 #endif
 #ifdef APP_WIN
     titleFont.setFamily("Segoe UI Light");
