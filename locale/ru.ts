@@ -221,7 +221,7 @@
     <message>
         <location filename="src/channelview.cpp" line="232"/>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation>У вас нед подписок. Используйте символ звездочки чтобы подпываться на каналы.</translation>
+        <translation>У вас нет подписок. Используйте символ звездочки чтобы подписаться на каналы.</translation>
     </message>
 </context>
 <context>

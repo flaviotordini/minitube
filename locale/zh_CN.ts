@@ -175,7 +175,7 @@
     <message>
         <location filename="src/channelview.cpp" line="119"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>姓名</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="126"/>

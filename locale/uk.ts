@@ -310,7 +310,7 @@
     <message>
         <location filename="src/downloadmanager.cpp" line="174"/>
         <source>Download finished</source>
-        <translation>Завантаження завершене</translation>
+        <translation>Завантаження завершено</translation>
     </message>
     <message numerus="yes">
         <location filename="src/downloadmanager.cpp" line="179"/>
@@ -338,7 +338,7 @@
     <message>
         <location filename="src/downloadsettings.cpp" line="81"/>
         <source>Current downloads will still go in the previous location.</source>
-        <translation>Поточні завантаження досі буде збережено в попередньому місці.</translation>
+        <translation>Поточні завантаження буде як і раніше збережено у попередньому місці.</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="92"/>
@@ -393,12 +393,12 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="41"/>
         <source>Next track</source>
-        <translation>Наступний</translation>
+        <translation>Наступний трек</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="42"/>
         <source>Previous track</source>
-        <translation>Попередній</translation>
+        <translation>Попередній трек</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="43"/>
@@ -509,12 +509,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="291"/>
         <source>&amp;Full Screen</source>
-        <translation>&amp;На весь екран</translation>
+        <translation>&amp;На увесь екран</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="292"/>
         <source>Go full screen</source>
-        <translation>Перейти в повноекранний режим</translation>
+        <translation>Перейти у повноекранний режим</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="306"/>
@@ -670,7 +670,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="530"/>
         <source>&amp;Float on Top</source>
-        <translation>&amp;Згори всіх вікон</translation>
+        <translation>&amp;Згори усіх вікон</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="535"/>
@@ -811,7 +811,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="271"/>
         <source>Go back to the previous track</source>
-        <translation>Повернутися до попереднього</translation>
+        <translation>Повернутися до попереднього треку</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="305"/>
@@ -906,7 +906,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="1432"/>
         <source>Downloads complete</source>
-        <translation>Завантаження завершене</translation>
+        <translation>Завантаження завершено</translation>
     </message>
 </context>
 <context>
