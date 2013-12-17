@@ -224,6 +224,27 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
 
         }
 
+    } else {
+
+        bool isHovered = option.state & QStyle::State_MouseOver;
+        if (!isActive && isHovered) {
+            painter->setFont(smallerFont);
+            painter->setPen(Qt::white);
+            QString videoTitle = video->title();
+            QString v = videoTitle;
+            const int flags = Qt::AlignTop | Qt::TextWordWrap;
+            QRect textBox(PADDING, PADDING, THUMB_WIDTH - PADDING*2, THUMB_HEIGHT - PADDING*2);
+            textBox = painter->boundingRect(textBox, flags, v);
+            while (textBox.height() > THUMB_HEIGHT && v.length() > 10) {
+                videoTitle.truncate(videoTitle.length() - 1);
+                v = videoTitle;
+                v = v.trimmed().append("...");
+                textBox = painter->boundingRect(textBox, flags, v);
+            }
+            painter->fillRect(QRect(0, 0, THUMB_WIDTH, textBox.height() + PADDING*2), QColor(0, 0, 0, 128));
+            painter->drawText(textBox, flags, v);
+        }
+
     }
 
     painter->restore();
