@@ -204,8 +204,6 @@ void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
             if (urlParam.startsWith("itag=")) {
                 int separator = urlParam.indexOf("=");
                 format = urlParam.mid(separator + 1).toInt();
-                qWarning() << "itag" << format;
-
             } else if (urlParam.startsWith("url=")) {
                 int separator = urlParam.indexOf("=");
                 url = urlParam.mid(separator + 1);
@@ -392,15 +390,14 @@ void Video::gotHeadHeaders(QNetworkReply* reply) {
 
 void Video::parseJsPlayer(QByteArray bytes) {
     QString js = QString::fromUtf8(bytes);
-
     QRegExp funcNameRe("signature=([a-zA-Z0-9]+)");
     if (funcNameRe.indexIn(js) == -1) {
         qWarning() << "Cannot capture signature function name";
-        return;
+    } else {
+        sigFuncName = funcNameRe.cap(1);
+        captureFunction(sigFuncName, js);
+        // qDebug() << sigFunctions;
     }
-    sigFuncName = funcNameRe.cap(1);
-    captureFunction(sigFuncName, js);
-    qWarning() << sigFunctions;
     parseFmtUrlMap(fmtUrlMap, true);
 }
 
@@ -425,6 +422,7 @@ void Video::captureFunction(const QString &name, const QString &js) {
 }
 
 QString Video::decryptSignature(const QString &s) {
+    if (sigFuncName.isEmpty()) return QString();
     QScriptEngine engine;
     foreach (QString f, sigFunctions.values()) {
         QScriptValue value = engine.evaluate(f);
