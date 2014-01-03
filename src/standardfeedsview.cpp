@@ -95,19 +95,19 @@ void StandardFeedsView::addVideoSourceWidget(VideoSource *videoSource) {
     connect(w, SIGNAL(activated(VideoSource*)),
             SIGNAL(activated(VideoSource*)));
     int i = layout->count();
-    static const int cols = 5;
+    static const int cols = 4;
     layout->addWidget(w, i / cols, i % cols);
 }
 
 QList<YTStandardFeed*> StandardFeedsView::getMainFeeds() {
     QList<YTStandardFeed*> feeds;
 
-    feeds << buildStardardFeed("most_popular", tr("Most Popular"))
+    feeds << buildStardardFeed("most_popular", tr("Most Popular"));
           // << buildStardardFeed("recently_featured", tr("Featured"))
-          << buildStardardFeed("most_shared", tr("Most Shared"))
-          << buildStardardFeed("most_discussed", tr("Most Discussed"))
-          << buildStardardFeed("top_rated", tr("Top Rated"))
-          << buildStardardFeed("most_popular", tr("All Time Popular"), "all_time");
+          // << buildStardardFeed("most_shared", tr("Most Shared"))
+          // << buildStardardFeed("most_discussed", tr("Most Discussed"))
+          // << buildStardardFeed("top_rated", tr("Top Rated"))
+          // << buildStardardFeed("most_popular", tr("All Time Popular"), "all_time");
 
     return feeds;
 }
