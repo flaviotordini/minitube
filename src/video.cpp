@@ -28,6 +28,10 @@ namespace The {
 NetworkAccess* http();
 }
 
+namespace {
+    static const QString jsNameChars = "a-zA-Z0-9\$_";
+}
+
 Video::Video() : m_duration(0),
     m_viewCount(-1),
     definitionCode(0),
@@ -390,19 +394,20 @@ void Video::gotHeadHeaders(QNetworkReply* reply) {
 
 void Video::parseJsPlayer(QByteArray bytes) {
     QString js = QString::fromUtf8(bytes);
-    QRegExp funcNameRe("signature=([a-zA-Z0-9]+)");
+    // qWarning() << "jsPlayer" << js;
+    QRegExp funcNameRe("signature=([" + jsNameChars + "]+)");
     if (funcNameRe.indexIn(js) == -1) {
         qWarning() << "Cannot capture signature function name";
     } else {
         sigFuncName = funcNameRe.cap(1);
         captureFunction(sigFuncName, js);
-        // qDebug() << sigFunctions;
+        // qWarning() << sigFunctions;
     }
     parseFmtUrlMap(fmtUrlMap, true);
 }
 
 void Video::captureFunction(const QString &name, const QString &js) {
-    QRegExp funcRe("function\\s+" + name + "\\s*\\([a-zA-Z0-9,\\s]*\\)\\s*\\{[^\\}]+\\}");
+    QRegExp funcRe("function\\s+" + QRegExp::escape(name) + "\\s*\\([" + jsNameChars + ",\\s]*\\)\\s*\\{[^\\}]+\\}");
     if (funcRe.indexIn(js) == -1) {
         qWarning() << "Cannot capture function" << name;
         return;
@@ -411,7 +416,7 @@ void Video::captureFunction(const QString &name, const QString &js) {
     sigFunctions.insert(name, func);
 
     // capture inner functions
-    QRegExp invokedFuncRe("[\\s=;\\(]([a-zA-Z0-9]+)\\s*\\([a-zA-Z0-9, ]+\\)");
+    QRegExp invokedFuncRe("[\\s=;\\(]([" + jsNameChars + "]+)\\s*\\([" + jsNameChars + ",\\s]+\\)");
     int pos = name.length() + 9;
     while ((pos = invokedFuncRe.indexIn(func, pos)) != -1) {
         QString funcName = invokedFuncRe.cap(1);
