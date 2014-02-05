@@ -29,7 +29,7 @@ NetworkAccess* http();
 }
 
 namespace {
-    static const QString jsNameChars = "a-zA-Z0-9\$_";
+    static const QString jsNameChars = "a-zA-Z0-9\\$_";
 }
 
 Video::Video() : m_duration(0),
@@ -337,7 +337,7 @@ void Video::scrapeWebPage(QByteArray data) {
         QString jsPlayerUrl = jsPlayerRe.cap(1);
         jsPlayerUrl.remove('\\');
         jsPlayerUrl = "http:" + jsPlayerUrl;
-        qWarning() << "jsPlayerUrl" << jsPlayerUrl;
+        // qDebug() << "jsPlayerUrl" << jsPlayerUrl;
         /*
         QRegExp jsPlayerIdRe("-(.+)\\.js");
         jsPlayerIdRe.indexIn(jsPlayerUrl);
