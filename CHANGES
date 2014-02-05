@@ -1,3 +1,7 @@
+2.1.6
+- Fix some videos not playing
+- Remove obsolete categories in the Browse tab
+
 2.1.5
 - Fix some videos not playing
 - Show video title on hover when playlist is in minimode (thumbs only)
