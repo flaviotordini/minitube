@@ -144,7 +144,7 @@
     <message numerus="yes">
         <location filename="src/channelaggregator.cpp" line="133"/>
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Ten %n novo vídeo</numerusform><numerusform>Ten %n novos vídeos</numerusform></translation>
     </message>
 </context>
 <context>

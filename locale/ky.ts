@@ -70,7 +70,7 @@
     <message>
         <location filename="src/aboutview.h" line="39"/>
         <source>What you always wanted to know about %1 and never dared to ask</source>
-        <translation>%1 жөнүндө дайыма билгиңиз келген нерселер бирок сураганга мүмкүнчүлүгүңүз жок болгон</translation>
+        <translation>Дайыма билгиниңиз келген жана эч качан сурабай жүргөн %1 жөнүндөгү маалыматтар</translation>
     </message>
 </context>
 <context>
@@ -215,7 +215,7 @@
     <message>
         <location filename="src/channelview.cpp" line="230"/>
         <source>There are no updated subscriptions at this time.</source>
-        <translation type="unfinished"/>
+        <translation>Учурда жаңыланган жазылуулар жок.</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="232"/>

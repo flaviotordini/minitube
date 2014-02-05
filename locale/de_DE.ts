@@ -20,7 +20,7 @@
     <message>
         <location filename="src/aboutview.cpp" line="62"/>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 ist freie Software, aber die Entwicklung kostet wertvolle Zeit.</translation>
+        <translation>%1 ist Freie Software, aber die Entwicklung kostet wertvolle Zeit.</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="63"/>
@@ -70,7 +70,7 @@
     <message>
         <location filename="src/aboutview.h" line="39"/>
         <source>What you always wanted to know about %1 and never dared to ask</source>
-        <translation>Was Du schon immer über %1 wissen wolltest, aber nie zu fragen wagtest</translation>
+        <translation>Was Du schon immer über %1 wissen wolltest, Dich aber nie getraut hast zu fragen</translation>
     </message>
 </context>
 <context>
@@ -933,7 +933,7 @@
     <message>
         <location filename="src/mediaview.cpp" line="713"/>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation>Sie erlaubt es Ihnen die Anwendung zu testen und zu schauen, ob sie bei Ihnen läuft.</translation>
+        <translation>Sie erlaubt es Ihnen, die Anwendung zu testen und zu schauen, ob sie bei Ihnen läuft.</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="743"/>

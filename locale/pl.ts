@@ -152,12 +152,12 @@
     <message>
         <location filename="src/channelitemdelegate.cpp" line="66"/>
         <source>All Videos</source>
-        <translation type="unfinished"/>
+        <translation>Wszystkie filmy </translation>
     </message>
     <message>
         <location filename="src/channelitemdelegate.cpp" line="83"/>
         <source>Unwatched Videos</source>
-        <translation type="unfinished"/>
+        <translation>Nieobejrzane filmy </translation>
     </message>
 </context>
 <context>
@@ -185,17 +185,17 @@
     <message>
         <location filename="src/channelview.cpp" line="133"/>
         <source>Last Added</source>
-        <translation type="unfinished"/>
+        <translation>Ostatnio dodane </translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="140"/>
         <source>Last Watched</source>
-        <translation type="unfinished"/>
+        <translation>Ostatnio oglądane </translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="147"/>
         <source>Most Watched</source>
-        <translation type="unfinished"/>
+        <translation>Najczęściej oglądane </translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="155"/>
@@ -205,22 +205,22 @@
     <message>
         <location filename="src/channelview.cpp" line="214"/>
         <source>All Videos</source>
-        <translation type="unfinished"/>
+        <translation>Wszystkie filmy </translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="218"/>
         <source>Unwatched Videos</source>
-        <translation type="unfinished"/>
+        <translation>Nieobejrzane filmy  </translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="230"/>
         <source>There are no updated subscriptions at this time.</source>
-        <translation type="unfinished"/>
+        <translation>Nie ma aktualizacji subskrypcji, w obecnym  czasie.</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="232"/>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation type="unfinished"/>
+        <translation>Nie masz żadnych subskrypcji. Użyj symbolu gwiazdy do subskrybowania kanałów. </translation>
     </message>
 </context>
 <context>
@@ -435,7 +435,7 @@
     <message>
         <location filename="src/homeview.cpp" line="60"/>
         <source>Find videos and channels by keyword</source>
-        <translation type="unfinished"/>
+        <translation>Znajdź filmy i kanały według słów kluczowych </translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="65"/>
@@ -450,12 +450,12 @@
     <message>
         <location filename="src/homeview.cpp" line="71"/>
         <source>Subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>Subskrypcje </translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="73"/>
         <source>Channel subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>Subskrypcje kanału</translation>
     </message>
     <message>
         <location filename="src/homeview.h" line="42"/>
@@ -538,7 +538,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="340"/>
         <source>Find other video parts hopefully in the right order</source>
-        <translation type="unfinished"/>
+        <translation>Znajdź inne części wideo, mam nadzieję, że w odpowiedniej kolejności</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="346"/>
@@ -644,7 +644,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="486"/>
         <source>&amp;Subscribe to Channel</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Subskrybuj kanał</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="494"/>
@@ -669,12 +669,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="530"/>
         <source>&amp;Float on Top</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Zawsze na wierzchu </translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="535"/>
         <source>&amp;Stop After This Video</source>
-        <translation type="unfinished"/>
+        <translation>Zatrzymaj odtwarzanie, po obejrzeniu tego filmu  </translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="542"/>
@@ -684,7 +684,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="546"/>
         <source>&amp;Refine Search...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Więcej opcji ...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="558"/>
@@ -694,7 +694,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="561"/>
         <source>&amp;Related Videos</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Podobne filmy</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="563"/>
@@ -704,7 +704,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="569"/>
         <source>Open in &amp;Browser...</source>
-        <translation type="unfinished"/>
+        <translation>Otwórz w &amp;przeglądarce ...  </translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="591"/>
@@ -815,7 +815,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="305"/>
         <source>&amp;Compact Mode</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Tryb kompaktowy </translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="318"/>
@@ -825,7 +825,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="325"/>
         <source>Copy the YouTube &amp;Link</source>
-        <translation type="unfinished"/>
+        <translation>Kopiuj &amp;link, do filmu na You Tube</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="332"/>
@@ -850,17 +850,17 @@
     <message>
         <location filename="src/mainwindow.cpp" line="453"/>
         <source>&amp;Manually Start Playing</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ręczne uruchamianie odtwarzania </translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="454"/>
         <source>Manually start playing videos</source>
-        <translation type="unfinished"/>
+        <translation>Ręcznie uruchamia odtwarzanie filmów</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="776"/>
         <source>Choose your content location</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz lokalizację treści </translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1047"/>
@@ -966,12 +966,12 @@
     <message>
         <location filename="src/mediaview.cpp" line="968"/>
         <source>Unsubscribe from %1</source>
-        <translation type="unfinished"/>
+        <translation>Anuluj subskrypcje %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="972"/>
         <source>Subscribe to %1</source>
-        <translation type="unfinished"/>
+        <translation>Subskrybuj %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="720"/>
@@ -1070,7 +1070,7 @@
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="372"/>
         <source>Open parent folder</source>
-        <translation type="unfinished"/>
+        <translation>Otwórz folder nadrzędny </translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="381"/>
@@ -1083,7 +1083,7 @@
     <message>
         <location filename="src/playlistmodel.cpp" line="72"/>
         <source>Searching...</source>
-        <translation>Szukanie...</translation>
+        <translation>Wyszukiwanie ...</translation>
     </message>
     <message>
         <location filename="src/playlistmodel.cpp" line="73"/>
@@ -1122,12 +1122,12 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="57"/>
         <source>View Count</source>
-        <translation type="unfinished"/>
+        <translation>Ilość wyświetleń </translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="58"/>
         <source>Rating</source>
-        <translation type="unfinished"/>
+        <translation>Oceny </translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="76"/>
@@ -1152,7 +1152,7 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="93"/>
         <source>Duration</source>
-        <translation type="unfinished"/>
+        <translation>Czas trwania </translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="97"/>
@@ -1198,12 +1198,12 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="125"/>
         <source>High Definition</source>
-        <translation type="unfinished"/>
+        <translation>Wysoka rozdzielczość </translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="128"/>
         <source>720p or higher</source>
-        <translation type="unfinished"/>
+        <translation>720p lub wyższej </translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="142"/>
@@ -1300,7 +1300,7 @@
     <message>
         <location filename="src/sidebarwidget.cpp" line="68"/>
         <source>Refine Search</source>
-        <translation type="unfinished"/>
+        <translation>Opcje wyszukiwania  </translation>
     </message>
     <message>
         <location filename="src/sidebarwidget.cpp" line="163"/>
@@ -1313,27 +1313,27 @@
     <message>
         <location filename="src/standardfeedsview.cpp" line="105"/>
         <source>Most Popular</source>
-        <translation type="unfinished"/>
+        <translation>Najpopularniejsze </translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="107"/>
         <source>Most Shared</source>
-        <translation type="unfinished"/>
+        <translation>Najczęściej wyszukiwane </translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="108"/>
         <source>Most Discussed</source>
-        <translation type="unfinished"/>
+        <translation>Najczęściej komentowane </translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="109"/>
         <source>Top Rated</source>
-        <translation type="unfinished"/>
+        <translation>Najwyżej oceniane </translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="110"/>
         <source>All Time Popular</source>
-        <translation type="unfinished"/>
+        <translation>Najbardziej popularne </translation>
     </message>
 </context>
 <context>
@@ -1414,7 +1414,7 @@
     <message>
         <location filename="src/ytregions.cpp" line="40"/>
         <source>Ghana</source>
-        <translation type="unfinished"/>
+        <translation>Ghana </translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="41"/>
@@ -1464,7 +1464,7 @@
     <message>
         <location filename="src/ytregions.cpp" line="50"/>
         <source>Jordan</source>
-        <translation type="unfinished"/>
+        <translation>Jordania </translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="51"/>
@@ -1574,17 +1574,17 @@
     <message>
         <location filename="src/ytregions.cpp" line="72"/>
         <source>United Arab Emirates</source>
-        <translation type="unfinished"/>
+        <translation>Emiraty Arabskie </translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="73"/>
         <source>United Kingdom</source>
-        <translation type="unfinished"/>
+        <translation>Wielka Brytania </translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="74"/>
         <source>Yemen</source>
-        <translation type="unfinished"/>
+        <translation>Jemen</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="148"/>

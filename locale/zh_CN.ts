@@ -139,7 +139,7 @@
     <message>
         <location filename="src/channelaggregator.cpp" line="131"/>
         <source>By %1</source>
-        <translation type="unfinished"/>
+        <translation>由 %1</translation>
     </message>
     <message numerus="yes">
         <location filename="src/channelaggregator.cpp" line="133"/>
@@ -152,12 +152,12 @@
     <message>
         <location filename="src/channelitemdelegate.cpp" line="66"/>
         <source>All Videos</source>
-        <translation type="unfinished"/>
+        <translation>所有视频</translation>
     </message>
     <message>
         <location filename="src/channelitemdelegate.cpp" line="83"/>
         <source>Unwatched Videos</source>
-        <translation type="unfinished"/>
+        <translation>未观看视频</translation>
     </message>
 </context>
 <context>
@@ -165,12 +165,12 @@
     <message>
         <location filename="src/channelview.cpp" line="99"/>
         <source>Mark all as watched</source>
-        <translation type="unfinished"/>
+        <translation>将所有标记为已观看</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="107"/>
         <source>Show Updated</source>
-        <translation type="unfinished"/>
+        <translation>显示更新</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="119"/>
@@ -180,22 +180,22 @@
     <message>
         <location filename="src/channelview.cpp" line="126"/>
         <source>Last Updated</source>
-        <translation type="unfinished"/>
+        <translation>最后更新</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="133"/>
         <source>Last Added</source>
-        <translation type="unfinished"/>
+        <translation>最后添加</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="140"/>
         <source>Last Watched</source>
-        <translation type="unfinished"/>
+        <translation>最后观看</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="147"/>
         <source>Most Watched</source>
-        <translation type="unfinished"/>
+        <translation>最多观看</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="155"/>
@@ -205,22 +205,22 @@
     <message>
         <location filename="src/channelview.cpp" line="214"/>
         <source>All Videos</source>
-        <translation type="unfinished"/>
+        <translation>所有视频</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="218"/>
         <source>Unwatched Videos</source>
-        <translation type="unfinished"/>
+        <translation>未观看视频</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="230"/>
         <source>There are no updated subscriptions at this time.</source>
-        <translation type="unfinished"/>
+        <translation>当前没有订阅更新</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="232"/>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation type="unfinished"/>
+        <translation>你没有任何订阅，使用星形符号订阅频道</translation>
     </message>
 </context>
 <context>
@@ -450,12 +450,12 @@
     <message>
         <location filename="src/homeview.cpp" line="71"/>
         <source>Subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>订阅</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="73"/>
         <source>Channel subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>频道订阅</translation>
     </message>
     <message>
         <location filename="src/homeview.h" line="42"/>
@@ -644,7 +644,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="486"/>
         <source>&amp;Subscribe to Channel</source>
-        <translation type="unfinished"/>
+        <translation>订阅频道(&amp;S)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="494"/>
@@ -704,7 +704,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="569"/>
         <source>Open in &amp;Browser...</source>
-        <translation type="unfinished"/>
+        <translation>在浏览器中打开(&amp;B)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="591"/>
@@ -966,12 +966,12 @@
     <message>
         <location filename="src/mediaview.cpp" line="968"/>
         <source>Unsubscribe from %1</source>
-        <translation type="unfinished"/>
+        <translation>取消订阅 %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="972"/>
         <source>Subscribe to %1</source>
-        <translation type="unfinished"/>
+        <translation>订阅 %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="720"/>
@@ -1333,7 +1333,7 @@
     <message>
         <location filename="src/standardfeedsview.cpp" line="110"/>
         <source>All Time Popular</source>
-        <translation type="unfinished"/>
+        <translation>最流行的</translation>
     </message>
 </context>
 <context>

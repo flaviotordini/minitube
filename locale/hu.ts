@@ -126,7 +126,7 @@
     <message>
         <location filename="local/src/activationview.cpp" line="77"/>
         <source>Enter License</source>
-        <translation type="unfinished"/>
+        <translation>Liszensz begépelése</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="85"/>
@@ -152,7 +152,7 @@
     <message>
         <location filename="src/channelitemdelegate.cpp" line="66"/>
         <source>All Videos</source>
-        <translation type="unfinished"/>
+        <translation>Összes videó</translation>
     </message>
     <message>
         <location filename="src/channelitemdelegate.cpp" line="83"/>
@@ -175,7 +175,7 @@
     <message>
         <location filename="src/channelview.cpp" line="119"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Név</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="126"/>
@@ -205,7 +205,7 @@
     <message>
         <location filename="src/channelview.cpp" line="214"/>
         <source>All Videos</source>
-        <translation type="unfinished"/>
+        <translation>Összes videó</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="218"/>
@@ -220,7 +220,7 @@
     <message>
         <location filename="src/channelview.cpp" line="232"/>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation type="unfinished"/>
+        <translation>Nincsenek feliratkozások. A csillag szimbólumot kell használni a csatornákra való feliratkozáshoz.</translation>
     </message>
 </context>
 <context>
@@ -450,12 +450,12 @@
     <message>
         <location filename="src/homeview.cpp" line="71"/>
         <source>Subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>Feliratkozások</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="73"/>
         <source>Channel subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>Csatorna-feliratkozások</translation>
     </message>
     <message>
         <location filename="src/homeview.h" line="42"/>
@@ -694,7 +694,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="561"/>
         <source>&amp;Related Videos</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Kapcsolódó videók</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="563"/>
