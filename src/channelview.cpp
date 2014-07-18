@@ -72,10 +72,6 @@ ChannelView::ChannelView(QWidget *parent) : QListView(parent),
 
     setMouseTracking(true);
 
-    setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
-            SLOT(showContextMenu(const QPoint &)));
-
     connect(this, SIGNAL(clicked(const QModelIndex &)),
             SLOT(itemActivated(const QModelIndex &)));
     connect(this, SIGNAL(entered(const QModelIndex &)),
@@ -184,6 +180,13 @@ void ChannelView::appear() {
 void ChannelView::disappear() {
     foreach (QAction* action, statusActions)
         MainWindow::instance()->showActionInStatusBar(action, false);
+}
+
+void ChannelView::mousePressEvent(QMouseEvent *event) {
+    if (event->button() == Qt::RightButton)
+        showContextMenu(event->pos());
+    else
+        QListView::mousePressEvent(event);
 }
 
 void ChannelView::mouseMoveEvent(QMouseEvent *event) {
