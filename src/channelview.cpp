@@ -239,11 +239,12 @@ void ChannelView::showContextMenu(const QPoint &point) {
 
     QMenu menu;
 
-    QAction *markAsWatchedAction = menu.addAction(tr("Mark as Watched"), user, SLOT(updateWatched()));
-    connect(markAsWatchedAction, SIGNAL(triggered()),
-            ChannelAggregator::instance(), SLOT(updateUnwatchedCount()));
-
-    menu.addSeparator();
+    if (user->getNotifyCount() > 0) {
+        QAction *markAsWatchedAction = menu.addAction(tr("Mark as Watched"), user, SLOT(updateWatched()));
+        connect(markAsWatchedAction, SIGNAL(triggered()),
+                ChannelAggregator::instance(), SLOT(updateUnwatchedCount()));
+        menu.addSeparator();
+    }
 
     /*
     // TODO
