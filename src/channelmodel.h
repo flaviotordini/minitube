@@ -59,6 +59,7 @@ public slots:
     void updateSender();
     void updateChannel(YTUser *user);
     void updateUnwatched();
+    void removeChannel(QObject *obj);
 
 private:
     QList<YTUser*> channels;

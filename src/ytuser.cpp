@@ -142,6 +142,10 @@ QString YTUser::getThumbnailLocation() {
     return getThumbnailDir() + userId;
 }
 
+void YTUser::unsubscribe() {
+    YTUser::unsubscribe(userId);
+}
+
 void YTUser::storeThumbnail(QByteArray bytes) {
     thumbnail.loadFromData(bytes);
     static const int maxWidth = 88;
@@ -265,6 +269,7 @@ void YTUser::updateWatched() {
     uint now = QDateTime::currentDateTime().toTime_t();
     watched = now;
     notifyCount = 0;
+    emit notifyCountChanged();
 
     QSqlDatabase db = Database::instance().getConnection();
     QSqlQuery query(db);
@@ -276,6 +281,8 @@ void YTUser::updateWatched() {
 }
 
 void YTUser::storeNotifyCount(int count) {
+    if (notifyCount != count)
+        emit notifyCountChanged();
     notifyCount = count;
 
     QSqlDatabase db = Database::instance().getConnection();

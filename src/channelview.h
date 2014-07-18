@@ -58,6 +58,7 @@ private:
 private slots:
     void itemEntered(const QModelIndex &index);
     void itemActivated(const QModelIndex &index);
+    void showContextMenu(const QPoint &point);
     void toggleShowUpdated(bool enable);
     void setSortBy(SortBy sortBy);
     void setSortByName() { setSortBy(SortByName); }
@@ -67,9 +68,9 @@ private slots:
     void setSortByMostWatched() { setSortBy(SortByMostWatched); }
     void markAllAsWatched();
     void unwatchedCountChanged(int count);
+    void updateQuery(bool transition = false);
 
 private:
-    void updateQuery(bool transition = false);
     void setupActions();
 
     ChannelModel *channelsModel;

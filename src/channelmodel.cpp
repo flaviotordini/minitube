@@ -56,6 +56,8 @@ QVariant ChannelModel::data(const QModelIndex &index, int role) const {
 }
 
 YTUser* ChannelModel::userForIndex(const QModelIndex &index) const {
+    const int row = index.row();
+    if (row < channelOffset) return 0;
     return channels.at(index.row() - channelOffset);
 }
 
@@ -84,6 +86,8 @@ void ChannelModel::setQuery(const QString &query, const QSqlDatabase &db) {
     while (q.next()) {
         YTUser *user = YTUser::forId(q.value(0).toString());
         connect(user, SIGNAL(thumbnailLoaded()), SLOT(updateSender()), Qt::UniqueConnection);
+        connect(user, SIGNAL(notifyCountChanged()), SLOT(updateSender()), Qt::UniqueConnection);
+        connect(user, SIGNAL(destroyed(QObject *)), SLOT(removeChannel(QObject *)), Qt::UniqueConnection);
         channels << user;
     }
 
@@ -114,6 +118,20 @@ void ChannelModel::updateChannel(YTUser *user) {
 void ChannelModel::updateUnwatched() {
     QModelIndex i = createIndex(1, 0);
     emit dataChanged(i, i);
+}
+
+void ChannelModel::removeChannel(QObject *obj) {
+    YTUser *user = static_cast<YTUser*>(obj);
+    qWarning() << "user is" << user << obj << obj->metaObject()->className();
+    if (!user) return;
+
+    int row = channels.indexOf(user);
+    if (row == -1) return;
+
+    int position = row + channelOffset;
+    beginRemoveRows(QModelIndex(), position, position+1);
+    channels.removeAt(row);
+    endRemoveRows();
 }
 
 void ChannelModel::setHoveredRow(int row) {

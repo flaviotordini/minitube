@@ -42,7 +42,6 @@ public:
 
     uint getWatched() const { return watched; }
     void setWatched(uint watched) { this->watched = watched; }
-    void updateWatched();
 
     int getNotifyCount() const { return notifyCount; }
     void setNotifyCount(int count) { notifyCount = count; }
@@ -62,10 +61,15 @@ public:
 
     static QList<YTUser*> getCachedUsers() { return cache.values(); }
 
+public slots:
+    void updateWatched();
+    void unsubscribe();
+
 signals:
     void infoLoaded();
     void thumbnailLoaded();
     void error(QString message);
+    void notifyCountChanged();
 
 private slots:
     void parseResponse(QByteArray bytes);

@@ -41,6 +41,7 @@ public slots:
     void start();
     void stop();
     void run();
+    void updateUnwatchedCount();
 
 signals:
     void channelChanged(YTUser*);
@@ -54,7 +55,6 @@ private:
     YTUser* getChannelToCheck();
     void processNextChannel();
     void addVideo(Video* video);
-    void updateUnwatchedCount();
     void finish();
 
     uint checkInterval;

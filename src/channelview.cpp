@@ -72,6 +72,10 @@ ChannelView::ChannelView(QWidget *parent) : QListView(parent),
 
     setMouseTracking(true);
 
+    setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
+            SLOT(showContextMenu(const QPoint &)));
+
     connect(this, SIGNAL(clicked(const QModelIndex &)),
             SLOT(itemActivated(const QModelIndex &)));
     connect(this, SIGNAL(entered(const QModelIndex &)),
@@ -94,22 +98,6 @@ ChannelView::ChannelView(QWidget *parent) : QListView(parent),
 
 void ChannelView::setupActions() {
     QSettings settings;
-
-    markAsWatchedAction = new QAction(
-                Utils::icon("mark-watched"), tr("Mark all as watched"), this);
-    markAsWatchedAction->setEnabled(false);
-    markAsWatchedAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_W));
-    connect(markAsWatchedAction, SIGNAL(triggered()), SLOT(markAllAsWatched()));
-    statusActions << markAsWatchedAction;
-
-    showUpdated = settings.value(showUpdatedKey, false).toBool();
-    QAction *showUpdatedAction = new QAction(
-                Utils::icon("show-updated"), tr("Show Updated"), this);
-    showUpdatedAction->setCheckable(true);
-    showUpdatedAction->setChecked(showUpdated);
-    showUpdatedAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_U));
-    connect(showUpdatedAction, SIGNAL(toggled(bool)), SLOT(toggleShowUpdated(bool)));
-    statusActions << showUpdatedAction;
 
     SortBy sortBy = static_cast<SortBy>(settings.value(sortByKey, SortByName).toInt());
 
@@ -162,6 +150,22 @@ void ChannelView::setupActions() {
     widgetAction->setDefaultWidget(sortButton);
     widgetAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_O));
     statusActions << widgetAction;
+
+    markAsWatchedAction = new QAction(
+                Utils::icon("mark-watched"), tr("Mark all as watched"), this);
+    markAsWatchedAction->setEnabled(false);
+    markAsWatchedAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_W));
+    connect(markAsWatchedAction, SIGNAL(triggered()), SLOT(markAllAsWatched()));
+    statusActions << markAsWatchedAction;
+
+    showUpdated = settings.value(showUpdatedKey, false).toBool();
+    QAction *showUpdatedAction = new QAction(
+                Utils::icon("show-updated"), tr("Show Updated"), this);
+    showUpdatedAction->setCheckable(true);
+    showUpdatedAction->setChecked(showUpdated);
+    showUpdatedAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_U));
+    connect(showUpdatedAction, SIGNAL(toggled(bool)), SLOT(toggleShowUpdated(bool)));
+    statusActions << showUpdatedAction;
 
     foreach (QAction *action, statusActions) {
         window()->addAction(action);
@@ -219,6 +223,37 @@ void ChannelView::itemActivated(const QModelIndex &index) {
         videoSource->setUnwatched(true);
         emit activated(videoSource);
     }
+}
+
+void ChannelView::showContextMenu(const QPoint &point) {
+    const QModelIndex index = indexAt(point);
+    if (!index.isValid()) return;
+
+    YTUser *user = channelsModel->userForIndex(index);
+    if (!user) return;
+
+    unsetCursor();
+
+    QMenu menu;
+
+    QAction *markAsWatchedAction = menu.addAction(tr("Mark as Watched"), user, SLOT(updateWatched()));
+    connect(markAsWatchedAction, SIGNAL(triggered()),
+            ChannelAggregator::instance(), SLOT(updateUnwatchedCount()));
+
+    menu.addSeparator();
+
+    /*
+    // TODO
+    QAction *notificationsAction = menu.addAction(tr("Receive Notifications"), user, SLOT(unsubscribe()));
+    notificationsAction->setCheckable(true);
+    notificationsAction->setChecked(true);
+    */
+
+    QAction *unsubscribeAction = menu.addAction(tr("Unsubscribe"), user, SLOT(unsubscribe()));
+    connect(unsubscribeAction, SIGNAL(triggered()),
+            ChannelAggregator::instance(), SLOT(updateUnwatchedCount()));
+
+    menu.exec(mapToGlobal(point));
 }
 
 void ChannelView::paintEvent(QPaintEvent *event) {
