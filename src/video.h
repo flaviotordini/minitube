@@ -103,6 +103,7 @@ private:
     void foundVideoUrl(QString videoToken, int definitionCode);
     void parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage = false);
     void captureFunction(const QString &name, const QString &js);
+    void captureObject(const QString &name, const QString &js);
     QString decryptSignature(const QString &s);
 
     QString m_title;
@@ -130,9 +131,10 @@ private:
     bool loadingStreamUrl;
     bool loadingThumbnail;
 
-    QHash<QString, QString> sigFunctions;
-    QString sigFuncName;
     QString fmtUrlMap;
+    QString sigFuncName;
+    QHash<QString, QString> sigFunctions;
+    QHash<QString, QString> sigObjects;
 };
 
 // This is required in order to use QPointer<Video> as a QVariant

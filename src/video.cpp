@@ -424,11 +424,37 @@ void Video::captureFunction(const QString &name, const QString &js) {
             captureFunction(funcName, js);
         pos += invokedFuncRe.matchedLength();
     }
+
+    // capture referenced objects
+    QRegExp objRe("[\\s=;\\(]([" + jsNameChars + "]+)\\.[" + jsNameChars + "]+");
+    pos = name.length() + 9;
+    while ((pos = objRe.indexIn(func, pos)) != -1) {
+        QString objName = objRe.cap(1);
+        if (!sigObjects.contains(objName))
+            captureObject(objName, js);
+        pos += objRe.matchedLength();
+    }
+}
+
+void Video::captureObject(const QString &name, const QString &js) {
+    QRegExp re("var\\s+" + QRegExp::escape(name) + "\\s*=\\s*\\{.+\\}\\s*;");
+    re.setMinimal(true);
+    if (re.indexIn(js) == -1) {
+        qWarning() << "Cannot capture object" << name;
+        return;
+    }
+    QString obj = re.cap(0);
+    sigObjects.insert(name, obj);
 }
 
 QString Video::decryptSignature(const QString &s) {
     if (sigFuncName.isEmpty()) return QString();
     QScriptEngine engine;
+    foreach (QString f, sigObjects.values()) {
+        QScriptValue value = engine.evaluate(f);
+        if (value.isError())
+            qWarning() << "Error in" << f << value.toString();
+    }
     foreach (QString f, sigFunctions.values()) {
         QScriptValue value = engine.evaluate(f);
         if (value.isError())
