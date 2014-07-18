@@ -644,7 +644,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="486"/>
         <source>&amp;Subscribe to Channel</source>
-        <translation>%Prenumerera på Kanalen</translation>
+        <translation>&amp;Prenumerera på Kanalen</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="494"/>
@@ -1198,7 +1198,7 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="125"/>
         <source>High Definition</source>
-        <translation>High Definition</translation>
+        <translation>Hög Upplösning</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="128"/>

@@ -106,7 +106,7 @@
     <message>
         <location filename="local/src/activationview.cpp" line="53"/>
         <source>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</source>
-        <translation type="unfinished"/>
+        <translation>Versiunea integrală permite descărcarea videoclipurilor mai lungi de %1 minute și vizualizarea neîntreruptă a acestora.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="55"/>
@@ -435,7 +435,7 @@
     <message>
         <location filename="src/homeview.cpp" line="60"/>
         <source>Find videos and channels by keyword</source>
-        <translation type="unfinished"/>
+        <translation>Videoclipuri complete şi canale după cuvinte cheie</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="65"/>

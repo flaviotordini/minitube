@@ -60,7 +60,7 @@
     <message>
         <location filename="src/aboutview.cpp" line="104"/>
         <source>&amp;Close</source>
-        <translation>S&amp;chließen</translation>
+        <translation>&amp;Schließen</translation>
     </message>
     <message>
         <location filename="src/aboutview.h" line="37"/>
@@ -476,7 +476,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="261"/>
         <source>&amp;Stop</source>
-        <translation>&amp;Halt</translation>
+        <translation>&amp;Stop</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="262"/>

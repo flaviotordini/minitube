@@ -153,12 +153,12 @@
     <message>
         <location filename="src/channelitemdelegate.cpp" line="66"/>
         <source>All Videos</source>
-        <translation>Усі видивами</translation>
+        <translation>Усі видива</translation>
     </message>
     <message>
         <location filename="src/channelitemdelegate.cpp" line="83"/>
         <source>Unwatched Videos</source>
-        <translation>Непереглянуті видива</translation>
+        <translation>Не переглянуті видива</translation>
     </message>
 </context>
 <context>
@@ -206,12 +206,12 @@
     <message>
         <location filename="src/channelview.cpp" line="214"/>
         <source>All Videos</source>
-        <translation>Усіма видивами</translation>
+        <translation>Усі видива</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="218"/>
         <source>Unwatched Videos</source>
-        <translation>Не переглянутими видивами</translation>
+        <translation>Не переглянуті видива</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="230"/>
@@ -436,7 +436,7 @@
     <message>
         <location filename="src/homeview.cpp" line="60"/>
         <source>Find videos and channels by keyword</source>
-        <translation>Знайти видва та канали за ключовими словами</translation>
+        <translation>Знайти видива та канали за ключовими словами</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="65"/>
@@ -524,12 +524,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="319"/>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation>Відкрити сторінку YouTube та призупинити відтворення відео</translation>
+        <translation>Відкрити сторінку YouTube та призупинити відтворення видива</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="326"/>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation>Скопіювати YouTube посилання поточного відео до буферу</translation>
+        <translation>Скопіювати YouTube посилання поточного видива до буферу</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="333"/>
@@ -630,7 +630,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="461"/>
         <source>Show details about video downloads</source>
-        <translation>Показати деталі про завантажувані видива</translation>
+        <translation>Показати деталі про видива, що завантажуються</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="469"/>
@@ -650,7 +650,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="494"/>
         <source>Share the current video using %1</source>
-        <translation>Поділитися поточним відео за допомогою %1</translation>
+        <translation>Поділитися поточним видивом за допомогою %1</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="514"/>

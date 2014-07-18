@@ -1,76 +1,76 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.0">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="nn" version="2.0">
 <defaultcodec>UTF-8</defaultcodec>
 <context>
     <name>AboutView</name>
     <message>
         <location filename="src/aboutview.cpp" line="52"/>
         <source>There&apos;s life outside the browser!</source>
-        <translation>Il y a une vie après le navigateur !</translation>
+        <translation>Det finst eit liv utanfor nettlesaren!</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="53"/>
         <source>Version %1</source>
-        <translation>Version %1</translation>
+        <translation>Versjon %1</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="58"/>
         <source>Licensed to: %1</source>
-        <translation>Licence accordée à : %1</translation>
+        <translation>Lisensiert til: %1</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="62"/>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 est un Logiciel Libre, mais son développement prend un temps précieux.</translation>
+        <translation>%1 er fri programvare, men utviklinga tek dyrebar tid.</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="63"/>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>Merci &lt;a href=&apos;%1&apos;&gt;d&apos;envoyer vos dons&lt;/a&gt; pour aider à poursuivre le développement de %2.</translation>
+        <translation>Ver venleg og &lt;a href=&apos;%1&apos;&gt;doner&lt;/a&gt; for å støtta vidare utvikling av %2.</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="67"/>
         <source>You may want to try my other apps as well:</source>
-        <translation>Vous serrez sûrement intéressé par mes autres applications :</translation>
+        <translation>Du er kanskje interessert i å prøva dei andre programma mine:</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="70"/>
         <source>%1, a YouTube music player</source>
-        <translation>%1, un lecteur de musique basé sur YouTube</translation>
+        <translation>%1, ein musikkspelar for YouTube</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="74"/>
         <source>%1, a music player</source>
-        <translation>%1, un lecteur de musique</translation>
+        <translation>%1, ein musikkspelar</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="80"/>
         <source>Translate %1 to your native language using %2</source>
-        <translation>Traduisez %1 dans votre langue native en utilisant %2</translation>
+        <translation>Omset %1 til morsmålet ditt med %2</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="85"/>
         <source>Icon designed by %1.</source>
-        <translation>Icône dessinée par %1.</translation>
+        <translation>Ikonet er utforma av %1.</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="89"/>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
-        <translation>Proposé sous licence &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</translation>
+        <translation>Utgjeve under &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="104"/>
         <source>&amp;Close</source>
-        <translation>&amp;Fermer</translation>
+        <translation>&amp;Lukk</translation>
     </message>
     <message>
         <location filename="src/aboutview.h" line="37"/>
         <source>About</source>
-        <translation>À propos</translation>
+        <translation>Om</translation>
     </message>
     <message>
         <location filename="src/aboutview.h" line="39"/>
         <source>What you always wanted to know about %1 and never dared to ask</source>
-        <translation>Ce que vous avez toujours voulu savoir à propos de %1 et que vous n&apos;avez jamais osé demander</translation>
+        <translation>Alt du alltid har ynskt å vita om %1, men aldri tort spørja om</translation>
     </message>
 </context>
 <context>
@@ -78,17 +78,17 @@
     <message>
         <location filename="local/src/activationdialog.cpp" line="17"/>
         <source>Enter your License Details</source>
-        <translation>Entrez les details de votre licence</translation>
+        <translation>Skriv inn lisensinformasjonen din</translation>
     </message>
     <message>
         <location filename="local/src/activationdialog.cpp" line="29"/>
         <source>&amp;Email:</source>
-        <translation>&amp;Email :</translation>
+        <translation>&amp;E-post:</translation>
     </message>
     <message>
         <location filename="local/src/activationdialog.cpp" line="35"/>
         <source>&amp;Code:</source>
-        <translation>&amp;Code :</translation>
+        <translation>&amp;Kode:</translation>
     </message>
 </context>
 <context>
@@ -96,42 +96,42 @@
     <message>
         <location filename="local/src/activationview.cpp" line="47"/>
         <source>Please license %1</source>
-        <translation>Veuillez obtenir une licence pour %1</translation>
+        <translation>Ver venleg og lisensier %1</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="51"/>
         <source>This demo has expired.</source>
-        <translation>Cette version de démo a expiré.</translation>
+        <translation>Demoen har laupt ut.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="53"/>
         <source>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</source>
-        <translation>La version complète vous permet de télécharger des vidéos de plus de %1 minutes et de regarder des vidéos sans interruptions.</translation>
+        <translation>Fullversjonen lar deg lasta ned videoar lenger enn %1 minutt og lar deg sjå videoar utan avbrot.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="55"/>
         <source>Without a license, the application will expire in %1 days.</source>
-        <translation>En l&apos;absence de licence, l&apos;application expirera dans %1 jours.</translation>
+        <translation>Utan ein lisens vil programmet gå ut på dato om %1 dagar.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="57"/>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
-        <translation>En achetant la version complète, vous supporterai aussi le grand travail que j&apos;ai investi dans la création de %1.</translation>
+        <translation>Ved å kjøpa den fullstendige utgåva, støttar du arbeidet lagt inn i å skapa %1.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="70"/>
         <source>Use Demo</source>
-        <translation>Utilisez la version de démo</translation>
+        <translation>Bruk demoen</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="77"/>
         <source>Enter License</source>
-        <translation>Entrer une licence</translation>
+        <translation>Skriv inn lisens</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="85"/>
         <source>Buy License</source>
-        <translation>Acheter une licence</translation>
+        <translation>Kjøp lisens</translation>
     </message>
 </context>
 <context>
@@ -139,7 +139,7 @@
     <message>
         <location filename="src/channelaggregator.cpp" line="131"/>
         <source>By %1</source>
-        <translation>Par %1</translation>
+        <translation>Etter %1</translation>
     </message>
     <message numerus="yes">
         <location filename="src/channelaggregator.cpp" line="133"/>
@@ -152,12 +152,12 @@
     <message>
         <location filename="src/channelitemdelegate.cpp" line="66"/>
         <source>All Videos</source>
-        <translation>Toutes les vidéos</translation>
+        <translation>Alle videoar</translation>
     </message>
     <message>
         <location filename="src/channelitemdelegate.cpp" line="83"/>
         <source>Unwatched Videos</source>
-        <translation>Vidéos non vues</translation>
+        <translation>Usette videoar</translation>
     </message>
 </context>
 <context>
@@ -165,62 +165,62 @@
     <message>
         <location filename="src/channelview.cpp" line="99"/>
         <source>Mark all as watched</source>
-        <translation>Tout marquer comme vu</translation>
+        <translation>Merk alle som sett</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="107"/>
         <source>Show Updated</source>
-        <translation>Afficher les mises à jour</translation>
+        <translation>Vis oppdaterte</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="119"/>
         <source>Name</source>
-        <translation>Nom</translation>
+        <translation>Namn</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="126"/>
         <source>Last Updated</source>
-        <translation>Dernièrement mis à jour</translation>
+        <translation>Sist oppdatert</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="133"/>
         <source>Last Added</source>
-        <translation>Dernièrement ajoutées</translation>
+        <translation>Sist lagt til</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="140"/>
         <source>Last Watched</source>
-        <translation>Dernièrement vues</translation>
+        <translation>Sist sett</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="147"/>
         <source>Most Watched</source>
-        <translation>Les plus vues</translation>
+        <translation>Mest sett</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="155"/>
         <source>Sort by</source>
-        <translation>Trier par</translation>
+        <translation>Sorter etter</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="214"/>
         <source>All Videos</source>
-        <translation>Toutes les vidéos</translation>
+        <translation>Alle videoar</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="218"/>
         <source>Unwatched Videos</source>
-        <translation>Vidéos non vues</translation>
+        <translation>Usette videoar</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="230"/>
         <source>There are no updated subscriptions at this time.</source>
-        <translation>Il n&apos;y a pas d&apos;abonnements mis à jour en ce moment.</translation>
+        <translation>Ingen oppdaterte tingingar enno.</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="232"/>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation>Vous n&apos;avez pas d&apos;abonnements. Utilisez le symbole de l&apos;étoile pour vous abonner à des chaines,</translation>
+        <translation>Du har ingen tingingar. Bruk stjernesymbolet for å tinga kanalar.</translation>
     </message>
 </context>
 <context>
@@ -228,7 +228,7 @@
     <message>
         <location filename="src/searchlineedit.cpp" line="56"/>
         <source>Clear</source>
-        <translation>Effacer</translation>
+        <translation>Nullstill</translation>
     </message>
 </context>
 <context>
@@ -236,47 +236,47 @@
     <message>
         <location filename="src/downloaditem.cpp" line="406"/>
         <source>bytes</source>
-        <translation>octets</translation>
+        <translation>byte</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="409"/>
         <source>KB</source>
-        <translation>Kio</translation>
+        <translation>KB</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="412"/>
         <source>MB</source>
-        <translation>Mio</translation>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="421"/>
         <source>bytes/sec</source>
-        <translation>octets/sec</translation>
+        <translation>byte/sek</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="424"/>
         <source>KB/sec</source>
-        <translation>Kio/sec</translation>
+        <translation>KB/sek</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="427"/>
         <source>MB/sec</source>
-        <translation>Mio/sec</translation>
+        <translation>MB/sek</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="433"/>
         <source>seconds</source>
-        <translation>secondes</translation>
+        <translation>sekund</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="436"/>
         <source>minutes</source>
-        <translation>minutes</translation>
+        <translation>minutt</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="439"/>
         <source>%4 %5 remaining</source>
-        <translation>%4 %5 restant</translation>
+        <translation>%4 %5 gjenstår</translation>
     </message>
 </context>
 <context>
@@ -284,37 +284,37 @@
     <message>
         <location filename="src/downloadmanager.cpp" line="75"/>
         <source>This is just the demo version of %1.</source>
-        <translation>Il s&apos;agit seulement de la version démo de %1.</translation>
+        <translation>Dette er berre demoutgåva av %1.</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="77"/>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation>Vous ne pouvez télécharger que des vidéos plus courtes que %1 minutes de sorte que vous pouvez tester la fonctionnalité de téléchargement.</translation>
+        <translation>Han kan berre lasta ned videoar på under %1 minutt, for at du skal kunna prøva ut nedlastingsfunksjonen.</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="83"/>
         <source>Continue</source>
-        <translation>Continuer</translation>
+        <translation>Hald fram</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="84"/>
         <source>Get the full version</source>
-        <translation>Obtenir la version complète</translation>
+        <translation>Kjøp fullversjonen</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="171"/>
         <source>%1 downloaded in %2</source>
-        <translation>%1 téléchargé sur %2</translation>
+        <translation>%1 lasta ned på %2</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="174"/>
         <source>Download finished</source>
-        <translation>Téléchargement terminé</translation>
+        <translation>Nedlasting ferdig</translation>
     </message>
     <message numerus="yes">
         <location filename="src/downloadmanager.cpp" line="179"/>
         <source>%n Download(s)</source>
-        <translation><numerusform>%n Téléchargement</numerusform><numerusform>%n Téléchargements</numerusform></translation>
+        <translation><numerusform>%n nedlasting</numerusform><numerusform>%n nedlastingar</numerusform></translation>
     </message>
 </context>
 <context>
@@ -322,27 +322,27 @@
     <message>
         <location filename="src/downloadsettings.cpp" line="35"/>
         <source>Change location...</source>
-        <translation>Changer d&apos;emplacement...</translation>
+        <translation>Endra stad …</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="67"/>
         <source>Choose the download location</source>
-        <translation>Choisissez l&apos;emplacement de téléchargement</translation>
+        <translation>Vel nedlastingsmappe</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="79"/>
         <source>Download location changed.</source>
-        <translation>Emplacement de téléchargement changé.</translation>
+        <translation>Nedlastingsmappe endra.</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="81"/>
         <source>Current downloads will still go in the previous location.</source>
-        <translation>Les téléchargements en cours iront à l&apos;emplacement précédent.</translation>
+        <translation>Nedlastingar som er i gong vil likevel lagrast i den førre mappa.</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="92"/>
         <source>Downloading to: %1</source>
-        <translation>Téléchargement de : %1</translation>
+        <translation>Lastar ned til: %1</translation>
     </message>
 </context>
 <context>
@@ -351,7 +351,7 @@
         <location filename="src/downloadview.cpp" line="38"/>
         <location filename="src/downloadview.h" line="42"/>
         <source>Downloads</source>
-        <translation>Téléchargements</translation>
+        <translation>Nedlastingar</translation>
     </message>
 </context>
 <context>
@@ -359,7 +359,7 @@
     <message>
         <location filename="local/src/updatedialog.cpp" line="60"/>
         <source>Downloading update...</source>
-        <translation>Téléchargement de la mise à jour...</translation>
+        <translation>Lastar ned oppdatering …</translation>
     </message>
 </context>
 <context>
@@ -367,7 +367,7 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="36"/>
         <source>Play</source>
-        <translation>Lancer</translation>
+        <translation>Spel av</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="37"/>
@@ -377,52 +377,52 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="38"/>
         <source>Play/Pause</source>
-        <translation>Lance/Pause</translation>
+        <translation>Spel av/pause</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="39"/>
         <source>Stop</source>
-        <translation>Arrêter</translation>
+        <translation>Stopp</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="40"/>
         <source>Stop playing after current track</source>
-        <translation>Arrêtez après le morceau en cours</translation>
+        <translation>Stopp avspelinga etter denne videoen</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="41"/>
         <source>Next track</source>
-        <translation>Morceau suivant</translation>
+        <translation>Neste video</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="42"/>
         <source>Previous track</source>
-        <translation>Monceau précédent</translation>
+        <translation>Førre video</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="43"/>
         <source>Increase volume</source>
-        <translation>Augmenter le volume</translation>
+        <translation>Auk lydvolumet</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="44"/>
         <source>Decrease volume</source>
-        <translation>Diminuer le volume</translation>
+        <translation>Senk lydvolumet</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="45"/>
         <source>Mute</source>
-        <translation>Muet</translation>
+        <translation>Lydlaus</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="46"/>
         <source>Seek forward</source>
-        <translation>Avancer</translation>
+        <translation>Søk framover</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="47"/>
         <source>Seek backward</source>
-        <translation>Retour</translation>
+        <translation>Søk bakover</translation>
     </message>
 </context>
 <context>
@@ -430,37 +430,37 @@
     <message>
         <location filename="src/homeview.cpp" line="58"/>
         <source>Search</source>
-        <translation>Chercher</translation>
+        <translation>Søk</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="60"/>
         <source>Find videos and channels by keyword</source>
-        <translation>Trouver des vidéos et des chaînes par mot-clé</translation>
+        <translation>Finn videoar og kanalar med nøkkelord</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="65"/>
         <source>Browse</source>
-        <translation>Parcourir</translation>
+        <translation>Bla gjennom</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="67"/>
         <source>Browse videos by category</source>
-        <translation>Parcourir les vidéos par catégories</translation>
+        <translation>Bla gjennom videoar etter kategory</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="71"/>
         <source>Subscriptions</source>
-        <translation>Abonnements</translation>
+        <translation>Tingingar</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="73"/>
         <source>Channel subscriptions</source>
-        <translation>Abonnements aux chaines</translation>
+        <translation>Kanaltingingar</translation>
     </message>
     <message>
         <location filename="src/homeview.h" line="42"/>
         <source>Make yourself comfortable</source>
-        <translation>Installez-vous confortablement</translation>
+        <translation>Gjer deg sjølv komfortabel</translation>
     </message>
 </context>
 <context>
@@ -468,7 +468,7 @@
     <message>
         <location filename="src/loadingwidget.cpp" line="113"/>
         <source>Error</source>
-        <translation>Erreur</translation>
+        <translation>Feil</translation>
     </message>
 </context>
 <context>
@@ -476,22 +476,22 @@
     <message>
         <location filename="src/mainwindow.cpp" line="261"/>
         <source>&amp;Stop</source>
-        <translation>&amp;Arrêter</translation>
+        <translation>&amp;Stopp</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="262"/>
         <source>Stop playback and go back to the search view</source>
-        <translation>Arrêter et aller à la page de recherche</translation>
+        <translation>Stoppar avspeling og går tilbake til søkjevisinga</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="277"/>
         <source>S&amp;kip</source>
-        <translation>&amp;Passer</translation>
+        <translation>&amp;Hopp over</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="278"/>
         <source>Skip to the next video</source>
-        <translation>Passer à la vidéo suivante</translation>
+        <translation>Hopp til neste video</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="284"/>
@@ -503,409 +503,409 @@
         <location filename="src/mainwindow.cpp" line="285"/>
         <location filename="src/mainwindow.cpp" line="1035"/>
         <source>Pause playback</source>
-        <translation>Mettre en pause</translation>
+        <translation>Set avspeling på pause</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="291"/>
         <source>&amp;Full Screen</source>
-        <translation>&amp;Plein écran</translation>
+        <translation>&amp;Fullskjerm</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="292"/>
         <source>Go full screen</source>
-        <translation>Mettre en plein écran</translation>
+        <translation>Fullskjermvising</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="306"/>
         <source>Hide the playlist and the toolbar</source>
-        <translation>Cacher la liste de lecture et la barre d&apos;outils</translation>
+        <translation>Gøym spelelista og verktøylinja</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="319"/>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation>Aller à la page de la vidéo Youtube et mettre en pause</translation>
+        <translation>Gå til video-sida på YouTube og set avspelinga på pause</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="326"/>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation>Copier l&apos;adresse de la vidéo YouTube courante dans le presse-papier</translation>
+        <translation>Kopier denne YouTube video-lenkja til utklippstavla</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="333"/>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation>Copier l&apos;adresse du flux vidéo courant dans le presse-papier</translation>
+        <translation>Kopier denne videostraumlenkja til utklippstavla</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="340"/>
         <source>Find other video parts hopefully in the right order</source>
-        <translation>Trouver les autres parties de la vidéo en espérant qu&apos;elles soient dans le bon ordre</translation>
+        <translation>Finn andre deler av videoen, vonleg i rett følgje</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="346"/>
         <source>&amp;Remove</source>
-        <translation>&amp;Supprimer</translation>
+        <translation>&amp;Fjern</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="347"/>
         <source>Remove the selected videos from the playlist</source>
-        <translation>Supprimer la vidéo sélectionnée de la liste de lecture</translation>
+        <translation>Fjern valde videoar frå spelelista</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="353"/>
         <source>Move &amp;Up</source>
-        <translation>Déplacer vers les &amp;haut</translation>
+        <translation>Flytt &amp;opp</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="354"/>
         <source>Move up the selected videos in the playlist</source>
-        <translation>Déplacer la vidéo sélectionnée vers le haut dans la liste de lecture</translation>
+        <translation>Flytt opp valde videoar i spelelista</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="360"/>
         <source>Move &amp;Down</source>
-        <translation>Déplacer vers les &amp;bas</translation>
+        <translation>Flytt &amp;ned</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="361"/>
         <source>Move down the selected videos in the playlist</source>
-        <translation>Déplacer la vidéo sélectionnée vers le bas dans la liste de lecture</translation>
+        <translation>Flytt ned valde videoar i spelelista</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="372"/>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation>Effacer l&apos;historique de recherche. Opération irréversible.</translation>
+        <translation>Fjern all søkjehistorie. Kan ikkje angrast.</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="377"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Quitter</translation>
+        <translation>&amp;Avslutt</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="380"/>
         <source>Bye</source>
-        <translation>Au revoir</translation>
+        <translation>Farvel</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="384"/>
         <source>&amp;Website</source>
-        <translation>Site &amp;Web</translation>
+        <translation>&amp;Nettstad</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="386"/>
         <source>%1 on the Web</source>
-        <translation>%1 sur le Web</translation>
+        <translation>%1 på internett</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="392"/>
         <source>Please support the continued development of %1</source>
-        <translation>Merci d&apos;aider à poursuivre le développement de %1</translation>
+        <translation>Vi håpar du kan bidra til vidare utvikling av %1</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="397"/>
         <source>&amp;About</source>
-        <translation>&amp;À propos</translation>
+        <translation>&amp;Om</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="399"/>
         <source>Info about %1</source>
-        <translation>À propos de %1</translation>
+        <translation>Informasjon om %1</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="407"/>
         <source>Search</source>
-        <translation>Chercher</translation>
+        <translation>Søk</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="426"/>
         <source>Mute volume</source>
-        <translation>Couper le son</translation>
+        <translation>Lydlaus</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="460"/>
         <location filename="src/mainwindow.cpp" line="1431"/>
         <source>&amp;Downloads</source>
-        <translation>&amp;Téléchargements</translation>
+        <translation>&amp;Nedlastingar</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="461"/>
         <source>Show details about video downloads</source>
-        <translation>Voir les détails à propos des téléchargements de la vidéo</translation>
+        <translation>Vis detaljar om videonedlasting</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="469"/>
         <source>&amp;Download</source>
-        <translation>&amp;Téléchargement</translation>
+        <translation>&amp;Nedlasting</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="470"/>
         <source>Download the current video</source>
-        <translation>Télécharger la vidéo en cours</translation>
+        <translation>Last ned denne videoen</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="486"/>
         <source>&amp;Subscribe to Channel</source>
-        <translation>&amp;S&apos;abonner à la chaine</translation>
+        <translation>&amp;Ting kanal</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="494"/>
         <source>Share the current video using %1</source>
-        <translation>Partager cette vidéo avec %1</translation>
+        <translation>Del denne videoen med %1</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="514"/>
         <source>&amp;Email</source>
-        <translation>&amp;Email</translation>
+        <translation>&amp;Epost</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="515"/>
         <source>Email</source>
-        <translation>Email</translation>
+        <translation>Epost</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="520"/>
         <source>&amp;Close</source>
-        <translation>&amp;Fermer</translation>
+        <translation>&amp;Steng</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="530"/>
         <source>&amp;Float on Top</source>
-        <translation>&amp;Laisser au dessus</translation>
+        <translation>&amp;Vis over andre</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="535"/>
         <source>&amp;Stop After This Video</source>
-        <translation>&amp;Arrêter après cette vidéo</translation>
+        <translation>&amp;Stopp etter denne videoen</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="542"/>
         <source>&amp;Report an Issue...</source>
-        <translation>&amp;Signaler un problème...</translation>
+        <translation>&amp;Meld frå om feil …</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="546"/>
         <source>&amp;Refine Search...</source>
-        <translation>&amp;Affiner la recherche...</translation>
+        <translation>&amp;Raffiner søk …</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="558"/>
         <source>More...</source>
-        <translation>Plus…</translation>
+        <translation>Meir …</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="561"/>
         <source>&amp;Related Videos</source>
-        <translation>Vidéos &amp;Relatives</translation>
+        <translation>&amp;Liknande videoar</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="563"/>
         <source>Watch videos related to the current one</source>
-        <translation>Regarder des vidéos relatives à la vidéo courante</translation>
+        <translation>Sjå videoar som liknar på denne</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="569"/>
         <source>Open in &amp;Browser...</source>
-        <translation>Ouvrir dans le &amp;navigateur ...</translation>
+        <translation>Opna i &amp;nettlesaren …</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="591"/>
         <source>&amp;Application</source>
-        <translation>&amp;Application</translation>
+        <translation>&amp;Program</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="575"/>
         <source>Buy %1...</source>
-        <translation>Acheter %1 …</translation>
+        <translation>Kjøp %1 …</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="605"/>
         <source>&amp;Playback</source>
-        <translation>&amp;Lecture</translation>
+        <translation>&amp;Avspeling</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="619"/>
         <source>&amp;Playlist</source>
-        <translation>&amp;Liste de lecture</translation>
+        <translation>&amp;Speleliste</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="628"/>
         <source>&amp;Video</source>
-        <translation>&amp;Vidéo</translation>
+        <translation>&amp;Video</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="642"/>
         <source>&amp;View</source>
-        <translation>&amp;Vue</translation>
+        <translation>&amp;Vising</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="649"/>
         <source>&amp;Share</source>
-        <translation>&amp;Partager</translation>
+        <translation>&amp;Del</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="663"/>
         <source>&amp;Help</source>
-        <translation>&amp;Aide</translation>
+        <translation>&amp;Hjelp</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="738"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation>Appuyer sur %1 pour augmenter le volume, sur %2 pour le baisser</translation>
+        <translation>Trykk på %1 for å auka lydvolumet, %2 for å senka</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="930"/>
         <location filename="src/mainwindow.cpp" line="936"/>
         <source>Opening %1</source>
-        <translation>Ouverture de %1</translation>
+        <translation>Opnar %1</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="981"/>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation>Voulez-vous vraiment quitter %1 avec un téléchargement en cours ?</translation>
+        <translation>Vil du avslutta %1 medan ei nedlasting er i gang?</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="982"/>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation>Si vous fermez %1 maintenant, ce téléchargement sera annulé.</translation>
+        <translation>Vis du stenger %1 no, vil nedlastinga avbrytast</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="987"/>
         <source>Close and cancel download</source>
-        <translation>Fermer et annuler le téléchargement</translation>
+        <translation>Steng og avbryt nedlastinga</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="988"/>
         <source>Wait for download to finish</source>
-        <translation>Attendez la fin du téléchargement</translation>
+        <translation>Vent medan nedlastinga vert fullførd</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1147"/>
         <source>Leave &amp;Full Screen</source>
-        <translation>Quitter le &amp;mode plein écran</translation>
+        <translation>Forlat &amp;fullskjerm</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1540"/>
         <source>%1 version %2 is now available.</source>
-        <translation>%1 version %2 est maintenant disponible</translation>
+        <translation>Versjon %2 av %1 er no tilgjengeleg.</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1544"/>
         <source>Remind me later</source>
-        <translation>Me rappeler plus tard</translation>
+        <translation>Minn meg på det seinare</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1545"/>
         <source>Update</source>
-        <translation>Mettre à jour</translation>
+        <translation>Oppdater</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1027"/>
         <source>Error: %1</source>
-        <translation>Erreur : %1</translation>
+        <translation>Feil: %1</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="270"/>
         <source>P&amp;revious</source>
-        <translation>P&amp;récédent</translation>
+        <translation>&amp;Førre</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="271"/>
         <source>Go back to the previous track</source>
-        <translation>Aller à la piste précédente</translation>
+        <translation>Gå til førre spor</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="305"/>
         <source>&amp;Compact Mode</source>
-        <translation>&amp;Mode compact</translation>
+        <translation>&amp;Kompakt modus</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="318"/>
         <source>Open the &amp;YouTube Page</source>
-        <translation>Ouvrir la page &amp;Youtube</translation>
+        <translation>Opna &amp;YouTube-sida</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="325"/>
         <source>Copy the YouTube &amp;Link</source>
-        <translation>Copier le &amp;lien Youtube</translation>
+        <translation>Kopier YouTube-&amp;lenkja</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="332"/>
         <source>Copy the Video Stream &amp;URL</source>
-        <translation>Copier l&apos;&amp;URL du flux vidéo </translation>
+        <translation>Kopier &amp;URL-en til videostraumen</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="339"/>
         <source>Find Video &amp;Parts</source>
-        <translation>Trouver les &amp;parties de la vidéo</translation>
+        <translation>Finn &amp;delane av videoen</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="367"/>
         <source>&amp;Clear Recent Searches</source>
-        <translation>&amp;Effacer les recherches récentes </translation>
+        <translation>&amp;Tøm siste søk</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="391"/>
         <source>Make a &amp;Donation</source>
-        <translation>Faire un &amp;Don</translation>
+        <translation>&amp;Doner</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="453"/>
         <source>&amp;Manually Start Playing</source>
-        <translation>&amp;</translation>
+        <translation>Start avspelinga &amp;manuelt</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="454"/>
         <source>Manually start playing videos</source>
-        <translation>Démarrer manuellement la lecture de vidéos</translation>
+        <translation>Spel av videoar manuelt</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="776"/>
         <source>Choose your content location</source>
-        <translation>Choisissez l&apos;emplacement de votre contenu</translation>
+        <translation>Vel stad for innhald</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1047"/>
         <source>&amp;Play</source>
-        <translation>&amp;Jouer</translation>
+        <translation>&amp;Spel av</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1048"/>
         <source>Resume playback</source>
-        <translation>Relancer la lecture</translation>
+        <translation>Gjenoppta avspeling</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1301"/>
         <source>Remaining time: %1</source>
-        <translation>Temps restant : %1</translation>
+        <translation>Tid igjen: %1</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1360"/>
         <source>Volume at %1%</source>
-        <translation>Volume à %1</translation>
+        <translation>Volum %1%</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1366"/>
         <source>Volume is muted</source>
-        <translation>Volume actif</translation>
+        <translation>Lydlaust er på</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1369"/>
         <source>Volume is unmuted</source>
-        <translation>Volume inactif</translation>
+        <translation>Lydlaust er av</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1376"/>
         <source>Maximum video definition set to %1</source>
-        <translation>Résolution vidéo maximale fixée à %1</translation>
+        <translation>Maksimum videodefinisjon sett til %1</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1417"/>
         <source>Your privacy is now safe</source>
-        <translation>Votre confidentialité est maintenant respectée</translation>
+        <translation>Privatlivet ditt er no sikkert</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1432"/>
         <source>Downloads complete</source>
-        <translation>Téléchargements terminés</translation>
+        <translation>Nedlastingar fullførde</translation>
     </message>
 </context>
 <context>
@@ -913,75 +913,75 @@
     <message>
         <location filename="src/mediaview.cpp" line="618"/>
         <source>You can now paste the YouTube link into another application</source>
-        <translation>Vous pouvez maintenant copier l&apos;adresse Youtube dans une autre application</translation>
+        <translation>Du kan no lima inn YouTube-lenkja i eit anna program</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="626"/>
         <source>You can now paste the video stream URL into another application</source>
-        <translation>Vous pouvez maintenant coller l&apos;adresse du flux vidéo dans une autre application</translation>
+        <translation>Du kan no lima inn videostraumlenkja i eit anna program</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="627"/>
         <source>The link will be valid only for a limited time.</source>
-        <translation>Le lien ne sera valide que pour un temps limité.</translation>
+        <translation>Denne lenkja vil berre vera gyldig i ei avgrensa tid.</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="712"/>
         <source>This is just the demo version of %1.</source>
-        <translation>C&apos;est juste la version démo de %1.</translation>
+        <translation>Dette er berre demoutgåva av %1.</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="713"/>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation>Cela vous permet de tester l&apos;application et voir si cela fonctionne pour vous.</translation>
+        <translation>Dette lèt prøva ut programmet og sjå om det er noko for deg.</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="743"/>
         <source>Continue</source>
-        <translation>Continuer</translation>
+        <translation>Hald fram</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="841"/>
         <source>of</source>
         <comment>Used in video parts, as in '2 of 3'</comment>
-        <translation>de</translation>
+        <translation>av</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="854"/>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
-        <translation>partie</translation>
+        <translation>del</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="856"/>
         <source>episode</source>
         <comment>This is for video parts, as in 'Cool series - episode 1'</comment>
-        <translation>épisode</translation>
+        <translation>episode</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="937"/>
         <source>Sent from %1</source>
-        <translation>Envoyé par %1</translation>
+        <translation>Send frå %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="968"/>
         <source>Unsubscribe from %1</source>
-        <translation>Se désabonner de %1</translation>
+        <translation>Slutt å tinga %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="972"/>
         <source>Subscribe to %1</source>
-        <translation>S&apos;abonner à %1</translation>
+        <translation>Ting %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="720"/>
         <source>Get the full version</source>
-        <translation>Obtenir la version complète</translation>
+        <translation>Kjøp fullversjonen</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="757"/>
         <source>Downloading %1</source>
-        <translation>%1 Téléchargement</translation>
+        <translation>Lastar ned %1</translation>
     </message>
 </context>
 <context>
@@ -989,32 +989,32 @@
     <message>
         <location filename="local/src/updatedialog.cpp" line="21"/>
         <source>A new version of %1 is available!</source>
-        <translation>Une nouvelle version de %1 est disponible !</translation>
+        <translation>Ny utgåve av %1 tilgjengeleg!</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="28"/>
         <source>%1 %2 is now available. You have %3.</source>
-        <translation>%1 %2 est maintenant disponible. Vous avez %3.</translation>
+        <translation>%1 %2 er no tilgjengeleg. Du har %3.</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="33"/>
         <source>Would you like to download it now?</source>
-        <translation>Voulez-vous la télécharger maintenant ?</translation>
+        <translation>Vil du lasta ned no?</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="39"/>
         <source>Skip This Version</source>
-        <translation>Sauter cette version</translation>
+        <translation>Hopp over denne utgåva</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="43"/>
         <source>Remind Me Later</source>
-        <translation>Me le rappeler plus tard</translation>
+        <translation>Minn på meg seinare</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="47"/>
         <source>Install Update</source>
-        <translation>Installer la mise à jour</translation>
+        <translation>Installer oppdatering</translation>
     </message>
 </context>
 <context>
@@ -1022,7 +1022,7 @@
     <message>
         <location filename="local/src/pastelineedit.cpp" line="6"/>
         <source>Paste</source>
-        <translation>Coller</translation>
+        <translation>Lim inn</translation>
     </message>
 </context>
 <context>
@@ -1030,52 +1030,52 @@
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="208"/>
         <source>%1 views</source>
-        <translation>%1 vues</translation>
+        <translation>%1 visingar</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="311"/>
         <source>%1 of %2 (%3) — %4</source>
-        <translation>%1 de %2 (%3) — %4</translation>
+        <translation>%1 av %2 (%3) — %4</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="318"/>
         <source>Preparing</source>
-        <translation>Préparation</translation>
+        <translation>Gjer klar</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="320"/>
         <source>Failed</source>
-        <translation>Échec</translation>
+        <translation>Feil</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="322"/>
         <source>Completed</source>
-        <translation>Terminé</translation>
+        <translation>Ferdig</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="324"/>
         <source>Stopped</source>
-        <translation>Arrêté</translation>
+        <translation>Stoppa</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="360"/>
         <source>Stop downloading</source>
-        <translation>Arrêter le téléchargement</translation>
+        <translation>Avbryt nedlasting</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="370"/>
         <source>Show in %1</source>
-        <translation>Montrer dans %1</translation>
+        <translation>Vis i %1</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="372"/>
         <source>Open parent folder</source>
-        <translation>Ouvrir le dossier parent</translation>
+        <translation>Opna foreldermappe</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="381"/>
         <source>Restart downloading</source>
-        <translation>Redémarrer le téléchargement</translation>
+        <translation>Start nedlasting på nytt</translation>
     </message>
 </context>
 <context>
@@ -1083,22 +1083,22 @@
     <message>
         <location filename="src/playlistmodel.cpp" line="72"/>
         <source>Searching...</source>
-        <translation>Recherche en cours…</translation>
+        <translation>Søkjer …</translation>
     </message>
     <message>
         <location filename="src/playlistmodel.cpp" line="73"/>
         <source>Show %1 More</source>
-        <translation>Afficher %1 de plus</translation>
+        <translation>Vis %1 til</translation>
     </message>
     <message>
         <location filename="src/playlistmodel.cpp" line="74"/>
         <source>No videos</source>
-        <translation>Pas de vidéos</translation>
+        <translation>Ingen videoar</translation>
     </message>
     <message>
         <location filename="src/playlistmodel.cpp" line="75"/>
         <source>No more videos</source>
-        <translation>Il n&apos;y a plus de vidéos</translation>
+        <translation>Ingen fleire videoar</translation>
     </message>
 </context>
 <context>
@@ -1106,109 +1106,109 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="51"/>
         <source>Sort by</source>
-        <translation>Trier par</translation>
+        <translation>Sorter etter</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="55"/>
         <source>Relevance</source>
-        <translation>Pertinence</translation>
+        <translation>Relevans</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="56"/>
         <location filename="src/refinesearchwidget.cpp" line="72"/>
         <source>Date</source>
-        <translation>Date</translation>
+        <translation>Dato</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="57"/>
         <source>View Count</source>
-        <translation>Nombre de vues</translation>
+        <translation>Vis kor mange</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="58"/>
         <source>Rating</source>
-        <translation>Note</translation>
+        <translation>Rangering</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="76"/>
         <source>Anytime</source>
-        <translation>N&apos;importe quand</translation>
+        <translation>Når som helst</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="77"/>
         <source>Today</source>
-        <translation>Aujourd&apos;hui</translation>
+        <translation>I dag</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="78"/>
         <source>7 Days</source>
-        <translation>7 jours</translation>
+        <translation>7 dagar</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="79"/>
         <source>30 Days</source>
-        <translation>30 jours</translation>
+        <translation>30 dagar</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="93"/>
         <source>Duration</source>
-        <translation>Durée</translation>
+        <translation>Varigskap</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="97"/>
         <location filename="src/refinesearchwidget.cpp" line="124"/>
         <source>All</source>
-        <translation>Tous</translation>
+        <translation>Alle</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="98"/>
         <source>Short</source>
-        <translation>Court</translation>
+        <translation>Kort</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="99"/>
         <source>Medium</source>
-        <translation>Moyen</translation>
+        <translation>Middels</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="100"/>
         <source>Long</source>
-        <translation>Long</translation>
+        <translation>Lang</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="103"/>
         <source>Less than 4 minutes</source>
-        <translation>Inférieur à 4 minutes</translation>
+        <translation>Mindre enn 4 minutt</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="104"/>
         <source>Between 4 and 20 minutes</source>
-        <translation>Entre 4 et 20 minutes</translation>
+        <translation>Mellom 4 og 20 minutt</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="105"/>
         <source>Longer than 20 minutes</source>
-        <translation>Plus long que 20 minutes</translation>
+        <translation>Meir enn 20 minutt</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="120"/>
         <source>Quality</source>
-        <translation>Qualité</translation>
+        <translation>Kvalitet</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="125"/>
         <source>High Definition</source>
-        <translation>Haute définition</translation>
+        <translation>Høy oppløysing</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="128"/>
         <source>720p or higher</source>
-        <translation>720p ou plus</translation>
+        <translation>720p eller høgare</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="142"/>
         <source>Done</source>
-        <translation>Terminer</translation>
+        <translation>Ferdig</translation>
     </message>
 </context>
 <context>
@@ -1216,7 +1216,7 @@
     <message>
         <location filename="src/regionsview.cpp" line="39"/>
         <source>Done</source>
-        <translation>Terminé</translation>
+        <translation>Ferdig</translation>
     </message>
 </context>
 <context>
@@ -1224,7 +1224,7 @@
     <message>
         <location filename="src/searchlineedit.cpp" line="177"/>
         <source>Search</source>
-        <translation>Chercher</translation>
+        <translation>Søk</translation>
     </message>
 </context>
 <context>
@@ -1232,48 +1232,48 @@
     <message>
         <location filename="src/searchview.cpp" line="88"/>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
-        <translation>Bienvenue sur  &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
+        <translation>Velkomen til &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
     </message>
     <message>
         <location filename="src/searchview.cpp" line="189"/>
         <source>Get the full version</source>
-        <translation>Obtenir la version complète</translation>
+        <translation>Kjøpfullversjonen</translation>
     </message>
     <message>
         <location filename="src/searchview.cpp" line="108"/>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole phrase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation>Entrer</translation>
+        <translation>Skriv</translation>
     </message>
     <message>
         <location filename="src/searchview.cpp" line="113"/>
         <source>a keyword</source>
-        <translation>un mot-clé</translation>
+        <translation>eit nøkkelord</translation>
     </message>
     <message>
         <location filename="src/searchview.cpp" line="114"/>
         <source>a channel</source>
-        <translation>une chaîne</translation>
+        <translation>ein kanal</translation>
     </message>
     <message>
         <location filename="src/searchview.cpp" line="119"/>
         <source>to start watching videos.</source>
-        <translation>pour commencer à regarder des vidéos.</translation>
+        <translation>for å å sjå videoar.</translation>
     </message>
     <message>
         <location filename="src/searchview.cpp" line="143"/>
         <source>Watch</source>
-        <translation>Regarder</translation>
+        <translation>Snurr film</translation>
     </message>
     <message>
         <location filename="src/searchview.cpp" line="161"/>
         <source>Recent keywords</source>
-        <translation>Derniers mots-clés</translation>
+        <translation>Siste søkjeord</translation>
     </message>
     <message>
         <location filename="src/searchview.cpp" line="174"/>
         <source>Recent channels</source>
-        <translation>Chaînes récentes</translation>
+        <translation>Siste kanalar</translation>
     </message>
 </context>
 <context>
@@ -1282,17 +1282,17 @@
         <location filename="src/sidebarheader.cpp" line="39"/>
         <location filename="src/sidebarheader.cpp" line="46"/>
         <source>&amp;Back</source>
-        <translation>&amp;Retour</translation>
+        <translation>&amp;Tilbake</translation>
     </message>
     <message>
         <location filename="src/sidebarheader.cpp" line="77"/>
         <source>Forward to %1</source>
-        <translation>Continuer à %1</translation>
+        <translation>Fram til %1</translation>
     </message>
     <message>
         <location filename="src/sidebarheader.cpp" line="90"/>
         <source>Back to %1</source>
-        <translation>Revenir à %1</translation>
+        <translation>Tilbake til %1</translation>
     </message>
 </context>
 <context>
@@ -1300,12 +1300,12 @@
     <message>
         <location filename="src/sidebarwidget.cpp" line="68"/>
         <source>Refine Search</source>
-        <translation>Affiner la recherche</translation>
+        <translation>Forbetra søket</translation>
     </message>
     <message>
         <location filename="src/sidebarwidget.cpp" line="163"/>
         <source>Did you mean: %1</source>
-        <translation>Vouliez-vous dire : %1</translation>
+        <translation>Meinte du: %1</translation>
     </message>
 </context>
 <context>
@@ -1313,27 +1313,27 @@
     <message>
         <location filename="src/standardfeedsview.cpp" line="105"/>
         <source>Most Popular</source>
-        <translation>Les plus populaires</translation>
+        <translation>Mest populære</translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="107"/>
         <source>Most Shared</source>
-        <translation>Les plus partagées</translation>
+        <translation>Mest delte</translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="108"/>
         <source>Most Discussed</source>
-        <translation>Les plus commentées</translation>
+        <translation>Mest diskuterte</translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="109"/>
         <source>Top Rated</source>
-        <translation>Les mieux notées</translation>
+        <translation>Høgast rangerte</translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="110"/>
         <source>All Time Popular</source>
-        <translation>Les plus populaires de tous les temps</translation>
+        <translation>Tidenes mest populære</translation>
     </message>
 </context>
 <context>
@@ -1341,12 +1341,12 @@
     <message>
         <location filename="src/video.cpp" line="281"/>
         <source>Cannot get video stream for %1</source>
-        <translation>Impossible d&apos;obtenir le flux vidéo de %1</translation>
+        <translation>Kan ikkje henta videostraumen til %1</translation>
     </message>
     <message>
         <location filename="src/video.cpp" line="298"/>
         <source>Network error: %1 for %2</source>
-        <translation>Erreur réseau : %1 pour %2</translation>
+        <translation>Feil på nettverket: %1 for %2</translation>
     </message>
 </context>
 <context>
@@ -1354,62 +1354,62 @@
     <message>
         <location filename="src/ytregions.cpp" line="28"/>
         <source>Algeria</source>
-        <translation>Algérie</translation>
+        <translation>Algerie</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="29"/>
         <source>Argentina</source>
-        <translation>Argentine</translation>
+        <translation>Argentina</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="30"/>
         <source>Australia</source>
-        <translation>Australie</translation>
+        <translation>Australia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="31"/>
         <source>Belgium</source>
-        <translation>Belgique</translation>
+        <translation>Belgia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="32"/>
         <source>Brazil</source>
-        <translation>Brésil</translation>
+        <translation>Brasil</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="33"/>
         <source>Canada</source>
-        <translation>Canada</translation>
+        <translation>Kanada</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="34"/>
         <source>Chile</source>
-        <translation>Chili</translation>
+        <translation>Chile</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="35"/>
         <source>Colombia</source>
-        <translation>Colombie</translation>
+        <translation>Kolombia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="36"/>
         <source>Czech Republic</source>
-        <translation>République Tchèque</translation>
+        <translation>Tsjekkia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="37"/>
         <source>Egypt</source>
-        <translation>Égypte</translation>
+        <translation>Egypt</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="38"/>
         <source>France</source>
-        <translation>France</translation>
+        <translation>Frankrike</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="39"/>
         <source>Germany</source>
-        <translation>Allemagne</translation>
+        <translation>Tyskland</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="40"/>
@@ -1419,7 +1419,7 @@
     <message>
         <location filename="src/ytregions.cpp" line="41"/>
         <source>Greece</source>
-        <translation>Grèce</translation>
+        <translation>Hellas</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="42"/>
@@ -1429,42 +1429,42 @@
     <message>
         <location filename="src/ytregions.cpp" line="43"/>
         <source>Hungary</source>
-        <translation>Hongrie</translation>
+        <translation>Ungarn</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="44"/>
         <source>India</source>
-        <translation>Inde</translation>
+        <translation>India</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="45"/>
         <source>Indonesia</source>
-        <translation>Indonésie</translation>
+        <translation>Indonesia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="46"/>
         <source>Ireland</source>
-        <translation>Irelande</translation>
+        <translation>Irland</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="47"/>
         <source>Israel</source>
-        <translation>Israël</translation>
+        <translation>Israel</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="48"/>
         <source>Italy</source>
-        <translation>Italie</translation>
+        <translation>Italia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="49"/>
         <source>Japan</source>
-        <translation>Japon</translation>
+        <translation>Japan</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="50"/>
         <source>Jordan</source>
-        <translation>Jordanie</translation>
+        <translation>Jordan</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="51"/>
@@ -1474,27 +1474,27 @@
     <message>
         <location filename="src/ytregions.cpp" line="52"/>
         <source>Malaysia</source>
-        <translation>Malaisie</translation>
+        <translation>Malaysia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="53"/>
         <source>Mexico</source>
-        <translation>Mexique</translation>
+        <translation>Mexico</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="54"/>
         <source>Morocco</source>
-        <translation>Maroc</translation>
+        <translation>Marocco</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="55"/>
         <source>Netherlands</source>
-        <translation>Pays-Bas</translation>
+        <translation>Nederland</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="56"/>
         <source>New Zealand</source>
-        <translation>Nouvelle Zélande</translation>
+        <translation>Ny-Zealand</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="57"/>
@@ -1504,92 +1504,92 @@
     <message>
         <location filename="src/ytregions.cpp" line="58"/>
         <source>Peru</source>
-        <translation>Pérou</translation>
+        <translation>Peru</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="59"/>
         <source>Philippines</source>
-        <translation>Philippines</translation>
+        <translation>Filippinane</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="60"/>
         <source>Poland</source>
-        <translation>Pologne</translation>
+        <translation>Polen</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="61"/>
         <source>Russia</source>
-        <translation>Russie</translation>
+        <translation>Russland</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="62"/>
         <source>Saudi Arabia</source>
-        <translation>Arabie Saoudite</translation>
+        <translation>Saudi-Arabia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="63"/>
         <source>Singapore</source>
-        <translation>Singapour</translation>
+        <translation>Singapore</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="64"/>
         <source>South Africa</source>
-        <translation>Afrique du Sud</translation>
+        <translation>Sør-Afrika</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="65"/>
         <source>South Korea</source>
-        <translation>Corée du Sud</translation>
+        <translation>Sør-Korea</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="66"/>
         <source>Spain</source>
-        <translation>Espagne</translation>
+        <translation>Spania</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="67"/>
         <source>Sweden</source>
-        <translation>Suède</translation>
+        <translation>Sverige</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="68"/>
         <source>Taiwan</source>
-        <translation>Taïwan</translation>
+        <translation>Taiwan</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="69"/>
         <source>Tunisia</source>
-        <translation>Tunisie</translation>
+        <translation>Tunisia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="70"/>
         <source>Turkey</source>
-        <translation>Turquie</translation>
+        <translation>Tyrkia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="71"/>
         <source>Uganda</source>
-        <translation>Ouganda</translation>
+        <translation>Uganda</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="72"/>
         <source>United Arab Emirates</source>
-        <translation>Émirats Arabes Unis</translation>
+        <translation>Sameinte Arabiske Emiratar</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="73"/>
         <source>United Kingdom</source>
-        <translation>Royaume Uni</translation>
+        <translation>Storbritannia</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="74"/>
         <source>Yemen</source>
-        <translation>Yémen</translation>
+        <translation>Jemen</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="148"/>
         <source>Worldwide</source>
-        <translation>Monde entier</translation>
+        <translation>Heile verda</translation>
     </message>
 </context>
 </TS>

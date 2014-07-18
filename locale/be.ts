@@ -45,7 +45,7 @@
     <message>
         <location filename="src/aboutview.cpp" line="80"/>
         <source>Translate %1 to your native language using %2</source>
-        <translation>Перакладайце %1 на родную мову цераз %2</translation>
+        <translation>Перакладайце %1 на родную мову праз %2</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="85"/>
@@ -387,17 +387,17 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="40"/>
         <source>Stop playing after current track</source>
-        <translation>Спыніцца пасля бягучай дарожкі</translation>
+        <translation>Спыніцца пасля бягучага трэка</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="41"/>
         <source>Next track</source>
-        <translation>Наступная дарожка</translation>
+        <translation>Наступны трэк</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="42"/>
         <source>Previous track</source>
-        <translation>Папярэдняя дарожка</translation>
+        <translation>Папярэдні трэк</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="43"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="262"/>
         <source>Stop playback and go back to the search view</source>
-        <translation>Спыніць гранне і вярнуцца да пошуку</translation>
+        <translation>Спыніць прайграванне і вярнуцца да пошуку</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="277"/>
@@ -528,12 +528,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="326"/>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation>Скапіраваць YouTube-спасылку бягучага відэа ў буфер</translation>
+        <translation>Скапіяваць YouTube-спасылку бягучага відэа ў буфер</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="333"/>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation>Скапіраваць спасылку на бягучы відаэпаток у буфер</translation>
+        <translation>Скапіяваць спасылку на бягучы відаэпаток у буфер</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="340"/>
@@ -608,7 +608,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="399"/>
         <source>Info about %1</source>
-        <translation>Інфармацыя пра %1</translation>
+        <translation>Звесткі пра %1</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="407"/>
@@ -649,7 +649,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="494"/>
         <source>Share the current video using %1</source>
-        <translation>Распаўсюдзіць відэа цераз %1</translation>
+        <translation>Распаўсюдзіць відэа праз %1</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="514"/>
@@ -679,7 +679,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="542"/>
         <source>&amp;Report an Issue...</source>
-        <translation>&amp;Паведаміць пра памылку...</translation>
+        <translation>&amp;Паведаміць пра хібу...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="546"/>
@@ -810,7 +810,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="271"/>
         <source>Go back to the previous track</source>
-        <translation>Вярнуцца на папярэднюю дарожку</translation>
+        <translation>Вярнуцца да папярэдняга трэка</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="305"/>
@@ -825,12 +825,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="325"/>
         <source>Copy the YouTube &amp;Link</source>
-        <translation>Скапіраваць &amp;спасылку на YouTube</translation>
+        <translation>Скапіяваць YouTube-&amp;спасылку</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="332"/>
         <source>Copy the Video Stream &amp;URL</source>
-        <translation>Скапіраваць спасылку на відэа&amp;паток</translation>
+        <translation>Скапіяваць спасылку на відэа&amp;паток</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="339"/>
@@ -913,7 +913,7 @@
     <message>
         <location filename="src/mediaview.cpp" line="618"/>
         <source>You can now paste the YouTube link into another application</source>
-        <translation>Цяпер можна ўстаўляць спасылкі на YouTube у іншых праграмах</translation>
+        <translation>Цяпер можна ўставіць YouTube-спасылку ў іншую праграму</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="626"/>

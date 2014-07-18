@@ -139,7 +139,7 @@
     <message>
         <location filename="src/channelaggregator.cpp" line="131"/>
         <source>By %1</source>
-        <translation type="unfinished"/>
+        <translation>Przez %1</translation>
     </message>
     <message numerus="yes">
         <location filename="src/channelaggregator.cpp" line="133"/>
@@ -165,12 +165,12 @@
     <message>
         <location filename="src/channelview.cpp" line="99"/>
         <source>Mark all as watched</source>
-        <translation type="unfinished"/>
+        <translation>Oznacz wszystkie jako obejrzane</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="107"/>
         <source>Show Updated</source>
-        <translation type="unfinished"/>
+        <translation>Pokaż nowości</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="119"/>
@@ -180,7 +180,7 @@
     <message>
         <location filename="src/channelview.cpp" line="126"/>
         <source>Last Updated</source>
-        <translation type="unfinished"/>
+        <translation>Ostatnio Dodane</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="133"/>
@@ -699,7 +699,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="563"/>
         <source>Watch videos related to the current one</source>
-        <translation type="unfinished"/>
+        <translation>Oglądaj filmy podobne do tego</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="569"/>
@@ -835,7 +835,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="339"/>
         <source>Find Video &amp;Parts</source>
-        <translation type="unfinished"/>
+        <translation>Znajdź film &amp;Parts</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="367"/>
@@ -1111,7 +1111,7 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="55"/>
         <source>Relevance</source>
-        <translation type="unfinished"/>
+        <translation>Związane</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="56"/>

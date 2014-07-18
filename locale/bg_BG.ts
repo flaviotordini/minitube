@@ -30,22 +30,22 @@
     <message>
         <location filename="src/aboutview.cpp" line="67"/>
         <source>You may want to try my other apps as well:</source>
-        <translation type="unfinished"/>
+        <translation>Може също да искате да пробвате и другите ми програми:</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="70"/>
         <source>%1, a YouTube music player</source>
-        <translation type="unfinished"/>
+        <translation>&amp;1, YouTube музикалн плеър</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="74"/>
         <source>%1, a music player</source>
-        <translation type="unfinished"/>
+        <translation>&amp;1, музикален плеър</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="80"/>
         <source>Translate %1 to your native language using %2</source>
-        <translation type="unfinished"/>
+        <translation>Преведи &amp;1 на твоя роден език използвайки &amp;2</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="85"/>
@@ -78,7 +78,7 @@
     <message>
         <location filename="local/src/activationdialog.cpp" line="17"/>
         <source>Enter your License Details</source>
-        <translation type="unfinished"/>
+        <translation>Въведете вашите лицензионни данни</translation>
     </message>
     <message>
         <location filename="local/src/activationdialog.cpp" line="29"/>
@@ -101,22 +101,22 @@
     <message>
         <location filename="local/src/activationview.cpp" line="51"/>
         <source>This demo has expired.</source>
-        <translation type="unfinished"/>
+        <translation>Това демо изтече</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="53"/>
         <source>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</source>
-        <translation type="unfinished"/>
+        <translation>Пълната версия позволява изтеглянето на видео клипове по-дълги от &amp;1 минута/и и гледането на видео клипове без прекъсвания.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="55"/>
         <source>Without a license, the application will expire in %1 days.</source>
-        <translation type="unfinished"/>
+        <translation>Без лиценз срока за ползване ще изтече за &amp;1 ден/дни.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="57"/>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
-        <translation type="unfinished"/>
+        <translation>Закупувайки пълната версия, също така подкрепяте труда, който съм вложил в създаването &amp;1.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="70"/>
@@ -126,7 +126,7 @@
     <message>
         <location filename="local/src/activationview.cpp" line="77"/>
         <source>Enter License</source>
-        <translation type="unfinished"/>
+        <translation>Въведи лиценз</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="85"/>
@@ -139,7 +139,7 @@
     <message>
         <location filename="src/channelaggregator.cpp" line="131"/>
         <source>By %1</source>
-        <translation type="unfinished"/>
+        <translation>От %1</translation>
     </message>
     <message numerus="yes">
         <location filename="src/channelaggregator.cpp" line="133"/>
@@ -152,12 +152,12 @@
     <message>
         <location filename="src/channelitemdelegate.cpp" line="66"/>
         <source>All Videos</source>
-        <translation type="unfinished"/>
+        <translation>Всички видео клипове</translation>
     </message>
     <message>
         <location filename="src/channelitemdelegate.cpp" line="83"/>
         <source>Unwatched Videos</source>
-        <translation type="unfinished"/>
+        <translation>Неизгледани видео клипове</translation>
     </message>
 </context>
 <context>
@@ -289,7 +289,7 @@
     <message>
         <location filename="src/downloadmanager.cpp" line="77"/>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation type="unfinished"/>
+        <translation>Може да изтегляте видео клипове по-къси от &amp;1 минута, за да изпробвате функцията за изтегляне.</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="83"/>
@@ -322,22 +322,22 @@
     <message>
         <location filename="src/downloadsettings.cpp" line="35"/>
         <source>Change location...</source>
-        <translation type="unfinished"/>
+        <translation>Промени мястото...</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="67"/>
         <source>Choose the download location</source>
-        <translation type="unfinished"/>
+        <translation>Избери мястo за изтегляне</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="79"/>
         <source>Download location changed.</source>
-        <translation type="unfinished"/>
+        <translation>Мястото за запис на изтеглянията е сменено.</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="81"/>
         <source>Current downloads will still go in the previous location.</source>
-        <translation type="unfinished"/>
+        <translation>Текущите изтегляния ще продължат да се запазват на предишното място.</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="92"/>
@@ -359,7 +359,7 @@
     <message>
         <location filename="local/src/updatedialog.cpp" line="60"/>
         <source>Downloading update...</source>
-        <translation type="unfinished"/>
+        <translation>Изтегляне на обновяване...</translation>
     </message>
 </context>
 <context>
@@ -440,12 +440,12 @@
     <message>
         <location filename="src/homeview.cpp" line="65"/>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>Търси</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="67"/>
         <source>Browse videos by category</source>
-        <translation type="unfinished"/>
+        <translation>Търси видеа по категория</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="71"/>
@@ -629,22 +629,22 @@
     <message>
         <location filename="src/mainwindow.cpp" line="461"/>
         <source>Show details about video downloads</source>
-        <translation type="unfinished"/>
+        <translation>Покажи подробности относно видео изтеглянията</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="469"/>
         <source>&amp;Download</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Изтегляния</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="470"/>
         <source>Download the current video</source>
-        <translation type="unfinished"/>
+        <translation>Изтегли текущото видео</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="486"/>
         <source>&amp;Subscribe to Channel</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Абонирай се за Канала</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="494"/>
@@ -679,12 +679,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="542"/>
         <source>&amp;Report an Issue...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Докладвай проблем...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="546"/>
         <source>&amp;Refine Search...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Стесняване на търсенето...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="558"/>
@@ -694,17 +694,17 @@
     <message>
         <location filename="src/mainwindow.cpp" line="561"/>
         <source>&amp;Related Videos</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Сродни Видео клипове</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="563"/>
         <source>Watch videos related to the current one</source>
-        <translation type="unfinished"/>
+        <translation>Гледай видео клиповете свързани с това</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="569"/>
         <source>Open in &amp;Browser...</source>
-        <translation type="unfinished"/>
+        <translation>Отвори в &amp;Браузъра...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="591"/>
@@ -760,17 +760,17 @@
     <message>
         <location filename="src/mainwindow.cpp" line="981"/>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation type="unfinished"/>
+        <translation>Искате ли да излезете &amp;1 с незавършено изтегляне?</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="982"/>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation type="unfinished"/>
+        <translation>Ако затворите &amp;1 сега, изтеглянето ще бъде прекъснато.</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="987"/>
         <source>Close and cancel download</source>
-        <translation type="unfinished"/>
+        <translation>Затвори и прекъсни изтеглянето</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="988"/>
@@ -835,12 +835,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="339"/>
         <source>Find Video &amp;Parts</source>
-        <translation type="unfinished"/>
+        <translation>Намери Видео &amp;Части</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="367"/>
         <source>&amp;Clear Recent Searches</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Изчисти Последните Търсения</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="391"/>
@@ -905,7 +905,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="1432"/>
         <source>Downloads complete</source>
-        <translation type="unfinished"/>
+        <translation>Изтеглянето е завършено</translation>
     </message>
 </context>
 <context>
@@ -933,7 +933,7 @@
     <message>
         <location filename="src/mediaview.cpp" line="713"/>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation type="unfinished"/>
+        <translation>Позволява ви да изпробвате програмата, за да проверите дали работи добре при вас.</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="743"/>
@@ -966,12 +966,12 @@
     <message>
         <location filename="src/mediaview.cpp" line="968"/>
         <source>Unsubscribe from %1</source>
-        <translation type="unfinished"/>
+        <translation>Отписване от %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="972"/>
         <source>Subscribe to %1</source>
-        <translation type="unfinished"/>
+        <translation>Абонирай се за %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="720"/>
@@ -999,12 +999,12 @@
     <message>
         <location filename="local/src/updatedialog.cpp" line="33"/>
         <source>Would you like to download it now?</source>
-        <translation type="unfinished"/>
+        <translation>Бихте ли искали да го изтеглите сега?</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="39"/>
         <source>Skip This Version</source>
-        <translation type="unfinished"/>
+        <translation>Пропусни тази версия</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="43"/>
@@ -1022,7 +1022,7 @@
     <message>
         <location filename="local/src/pastelineedit.cpp" line="6"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Постави</translation>
     </message>
 </context>
 <context>
@@ -1070,7 +1070,7 @@
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="372"/>
         <source>Open parent folder</source>
-        <translation type="unfinished"/>
+        <translation>Отвори родителската папка</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="381"/>
@@ -1111,7 +1111,7 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="55"/>
         <source>Relevance</source>
-        <translation type="unfinished"/>
+        <translation>Уместност</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="56"/>
@@ -1132,7 +1132,7 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="76"/>
         <source>Anytime</source>
-        <translation type="unfinished"/>
+        <translation>По всяко време</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="77"/>
@@ -1208,7 +1208,7 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="142"/>
         <source>Done</source>
-        <translation type="unfinished"/>
+        <translation>Готово</translation>
     </message>
 </context>
 <context>
@@ -1216,7 +1216,7 @@
     <message>
         <location filename="src/regionsview.cpp" line="39"/>
         <source>Done</source>
-        <translation type="unfinished"/>
+        <translation>Завършено</translation>
     </message>
 </context>
 <context>
@@ -1300,7 +1300,7 @@
     <message>
         <location filename="src/sidebarwidget.cpp" line="68"/>
         <source>Refine Search</source>
-        <translation type="unfinished"/>
+        <translation>Стесни търсенето</translation>
     </message>
     <message>
         <location filename="src/sidebarwidget.cpp" line="163"/>

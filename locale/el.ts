@@ -25,12 +25,12 @@
     <message>
         <location filename="src/aboutview.cpp" line="63"/>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>Παρακαλούμε &lt;a href=&apos;%1%&apos;&gt;δωρίστε&lt;/a&gt; για να υποστηρίξετε την συνεχόμενη ανάπτυξη του %2.</translation>
+        <translation>Παρακαλούμε &lt;a href=&apos;%1%&apos;&gt;κάνετε δωρεά&lt;/a&gt; για να υποστηρίξετε την συνεχόμενη ανάπτυξη του %2.</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="67"/>
         <source>You may want to try my other apps as well:</source>
-        <translation>Μπορεί να θέλετε να δοκιμάσετε και τις άλλες μου εφαρμογές:</translation>
+        <translation>Μπορείτε να θέλετε να δοκιμάσετε και τις άλλες μου εφαρμογές:</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="70"/>
@@ -45,7 +45,7 @@
     <message>
         <location filename="src/aboutview.cpp" line="80"/>
         <source>Translate %1 to your native language using %2</source>
-        <translation>Μεταφράστε το %1 στη γλώσσα σας χρησιμοποιώντας το %2</translation>
+        <translation>Μεταφράστε το %1 στη γλώσσα σας με χρήση του %2</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="85"/>
@@ -78,7 +78,7 @@
     <message>
         <location filename="local/src/activationdialog.cpp" line="17"/>
         <source>Enter your License Details</source>
-        <translation>Εισάγετε τις λεπτομέρειες της άδειας χρήσης</translation>
+        <translation>Εισάγετε τις Λεπτομέρειες της Άδειας Χρήσης</translation>
     </message>
     <message>
         <location filename="local/src/activationdialog.cpp" line="29"/>
@@ -111,7 +111,7 @@
     <message>
         <location filename="local/src/activationview.cpp" line="55"/>
         <source>Without a license, the application will expire in %1 days.</source>
-        <translation>Χωρίς την άδεια χρήσης, η εφαρμογή θα λήξη σε %1 μέρες</translation>
+        <translation>Χωρίς την άδεια χρήσης, η εφαρμογή θα λήξη σε %1 ημέρες.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="57"/>
@@ -121,17 +121,17 @@
     <message>
         <location filename="local/src/activationview.cpp" line="70"/>
         <source>Use Demo</source>
-        <translation>Χρήση της δοκιμαστικής έκδοσης</translation>
+        <translation>Χρήση της Δοκιμαστικής Έκδοσης</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="77"/>
         <source>Enter License</source>
-        <translation>Εισαγωγή άδειας χρήσης</translation>
+        <translation>Εισαγωγή Άδειας Χρήσης</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="85"/>
         <source>Buy License</source>
-        <translation>Αγορά άδειας χρήσης</translation>
+        <translation>Αγορά Άδειας Χρήσης</translation>
     </message>
 </context>
 <context>
@@ -152,12 +152,12 @@
     <message>
         <location filename="src/channelitemdelegate.cpp" line="66"/>
         <source>All Videos</source>
-        <translation>Όλα τα βίντεο</translation>
+        <translation>Όλα τα Βίντεο</translation>
     </message>
     <message>
         <location filename="src/channelitemdelegate.cpp" line="83"/>
         <source>Unwatched Videos</source>
-        <translation>Σχετικά βίντεο</translation>
+        <translation>Μη Παρακολουθημένα Βίντεο</translation>
     </message>
 </context>
 <context>
@@ -170,57 +170,57 @@
     <message>
         <location filename="src/channelview.cpp" line="107"/>
         <source>Show Updated</source>
-        <translation>Εμφάνιση ενημέρωσεων</translation>
+        <translation>Εμφάνιση Ενημερωμένων</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="119"/>
         <source>Name</source>
-        <translation>όνομα</translation>
+        <translation>Όνομα</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="126"/>
         <source>Last Updated</source>
-        <translation>Τελευταία Ενημέρωση</translation>
+        <translation>Τελευταία Ενημερωμένα</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="133"/>
         <source>Last Added</source>
-        <translation>Τελευταία προστέθηκε</translation>
+        <translation>Τελευταία Προστηθέντα</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="140"/>
         <source>Last Watched</source>
-        <translation>τελευταίο Προβληθέντα</translation>
+        <translation>Τελευταίο Προβληθέντα</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="147"/>
         <source>Most Watched</source>
-        <translation>Πιο δημοφιλή</translation>
+        <translation>Πιο Παρακολουθημένα</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="155"/>
         <source>Sort by</source>
-        <translation>Ταξινόμηση κατά ...</translation>
+        <translation>Ταξινόμηση κατά</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="214"/>
         <source>All Videos</source>
-        <translation>Όλα τα βίντεο</translation>
+        <translation>Όλα τα Βίντεο</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="218"/>
         <source>Unwatched Videos</source>
-        <translation>Σχετικά βίντεο</translation>
+        <translation>Μη Παρακολουθημένα Βίντεο</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="230"/>
         <source>There are no updated subscriptions at this time.</source>
-        <translation>Δεν υπάρχουν συνδρομές ενημέρωσης αυτή τη στιγμή.</translation>
+        <translation>Δεν υπάρχουν ενημερωμένες συνδρομές αυτήν την στιγμή.</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="232"/>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation>Δεν έχετε εγγραφές. Χρησιμοποιήστε το αστέρι για να εγγραφείτε συνδρομητής σε κανάλια.</translation>
+        <translation>Δεν έχετε συνδρομές. Χρησιμοποιήστε το αστέρι για να κάνετε συνδρομή σε κανάλια.</translation>
     </message>
 </context>
 <context>
@@ -228,7 +228,7 @@
     <message>
         <location filename="src/searchlineedit.cpp" line="56"/>
         <source>Clear</source>
-        <translation>Καθαρισμός</translation>
+        <translation>Εκκαθάριση</translation>
     </message>
 </context>
 <context>
@@ -299,7 +299,7 @@
     <message>
         <location filename="src/downloadmanager.cpp" line="84"/>
         <source>Get the full version</source>
-        <translation>Αποκτήστε την πλήρη έκδοση</translation>
+        <translation>Αποκτήστε τη πλήρη έκδοση</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="171"/>
@@ -359,7 +359,7 @@
     <message>
         <location filename="local/src/updatedialog.cpp" line="60"/>
         <source>Downloading update...</source>
-        <translation>Μεταφόρτωση ενημερώσεων...</translation>
+        <translation>Λήψη ενημερώσεων...</translation>
     </message>
 </context>
 <context>
@@ -435,17 +435,17 @@
     <message>
         <location filename="src/homeview.cpp" line="60"/>
         <source>Find videos and channels by keyword</source>
-        <translation>Ευρεση βίντεο και κανάλιων μεσω λέξεις-κλειδία </translation>
+        <translation>Εύρεση βίντεο και καναλιών μέσω λέξεις-κλειδιά </translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="65"/>
         <source>Browse</source>
-        <translation>Περιηγηση</translation>
+        <translation>Περίηγηση</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="67"/>
         <source>Browse videos by category</source>
-        <translation>Περιηγηση βιντεο ανα κατηγορια</translation>
+        <translation>Περιήγηση βίντεο ανά κατηγορία</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="71"/>
@@ -455,7 +455,7 @@
     <message>
         <location filename="src/homeview.cpp" line="73"/>
         <source>Channel subscriptions</source>
-        <translation>Συνδρομές καναλιού</translation>
+        <translation>Συνδρομές σε κανάλια</translation>
     </message>
     <message>
         <location filename="src/homeview.h" line="42"/>
@@ -481,7 +481,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="262"/>
         <source>Stop playback and go back to the search view</source>
-        <translation>Διακοπή αναπαραγωγής και επιστροφή στην προβολή αναζήτησης</translation>
+        <translation>Διακοπή αναπαραγωγής και επιστροφή στη προβολή αναζήτησης</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="277"/>
@@ -508,7 +508,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="291"/>
         <source>&amp;Full Screen</source>
-        <translation>&amp;Πλήρης οθόνη</translation>
+        <translation>&amp;Πλήρης Οθόνη</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="292"/>
@@ -528,12 +528,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="326"/>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation>Αντιγραφή του δεσμού του τρέχοντος YouTube βίντεο στη μνήμη</translation>
+        <translation>Αντιγραφή του συνδεσμού του τρέχοντος βίντεο YouTube στο πρόχειρο</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="333"/>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation>Αντιγραφή του URL της τρέχουσας ροής βίντεο στη μνήμη</translation>
+        <translation>Αντιγραφή του συνδέσμου της τρέχουσας ροής βίντεο στη μνήμη</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="340"/>
@@ -553,7 +553,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="353"/>
         <source>Move &amp;Up</source>
-        <translation>Μετακίνηση προς τα &amp;πάνω</translation>
+        <translation>Μετακίνηση προς τα &amp;Πάνω</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="354"/>
@@ -563,7 +563,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="360"/>
         <source>Move &amp;Down</source>
-        <translation>Μετακίνηση προς τα &amp;κάτω</translation>
+        <translation>Μετακίνηση προς τα &amp;Κάτω</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="361"/>
@@ -573,7 +573,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="372"/>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation>Καθαρισμός του ιστορικού αναζήτησης. Δεν μπορεί να γίνει επαναφορά.</translation>
+        <translation>Εκκαθάριση του ιστορικού αναζήτησης. Αυτή η ενέργεια δε μπορεί να αναιρεθεί.</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="377"/>
@@ -583,7 +583,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="380"/>
         <source>Bye</source>
-        <translation>Γεια</translation>
+        <translation>Αντίο</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="384"/>
@@ -608,7 +608,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="399"/>
         <source>Info about %1</source>
-        <translation>Πληροφορίες για %1</translation>
+        <translation>Πληροφορίες για το %1</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="407"/>
@@ -618,7 +618,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="426"/>
         <source>Mute volume</source>
-        <translation>Σίγαση</translation>
+        <translation>Σίγαση ήχου</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="460"/>
@@ -644,22 +644,22 @@
     <message>
         <location filename="src/mainwindow.cpp" line="486"/>
         <source>&amp;Subscribe to Channel</source>
-        <translation>Εγγραφή στο κανάλι</translation>
+        <translation>&amp;Συδρομή στο Κανάλι</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="494"/>
         <source>Share the current video using %1</source>
-        <translation>Κοινή χρήση του τρέχοντος βίντεο με το %1</translation>
+        <translation>Κοινοποίηση του τρέχοντος βίντεο μέσω %1</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="514"/>
         <source>&amp;Email</source>
-        <translation>&amp;Ηλ. αλληλογραφία</translation>
+        <translation>&amp;Email</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="515"/>
         <source>Email</source>
-        <translation>Ηλ. αλληλογραφία</translation>
+        <translation>Email</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="520"/>
@@ -669,32 +669,32 @@
     <message>
         <location filename="src/mainwindow.cpp" line="530"/>
         <source>&amp;Float on Top</source>
-        <translation>&amp;Διατήρηση στην κορυφή</translation>
+        <translation>&amp;Διατήρηση στην Κορυφή</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="535"/>
         <source>&amp;Stop After This Video</source>
-        <translation>&amp;Διακοπή μετά από αυτό το βίντεο</translation>
+        <translation>&amp;Διακοπή Μετά Από Αυτό το Βίντεο</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="542"/>
         <source>&amp;Report an Issue...</source>
-        <translation>&amp;Αναφέρετε κάποιο σφάλμα...</translation>
+        <translation>&amp;Αναφέρετε Σφάλμα...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="546"/>
         <source>&amp;Refine Search...</source>
-        <translation>&amp;Σύνθετη αναζήτηση...</translation>
+        <translation>&amp;Σύνθετη Αναζήτηση...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="558"/>
         <source>More...</source>
-        <translation>Περισσοτερα...</translation>
+        <translation>Περισσότερα...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="561"/>
         <source>&amp;Related Videos</source>
-        <translation>Σχετικα βιντεο</translation>
+        <translation>&amp;Σχετικά βίντεο</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="563"/>
@@ -704,7 +704,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="569"/>
         <source>Open in &amp;Browser...</source>
-        <translation type="unfinished"/>
+        <translation>Άνοιγμα σε &amp;Περιηγητή...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="591"/>
@@ -739,7 +739,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="649"/>
         <source>&amp;Share</source>
-        <translation>&amp;Κοινή χρήση</translation>
+        <translation>&amp;Κοινοποίηση</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="663"/>
@@ -780,12 +780,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="1147"/>
         <source>Leave &amp;Full Screen</source>
-        <translation>Έξοδος από &amp;πλήρη οθόνη</translation>
+        <translation>Έξοδος από &amp;Πλήρη Οθόνη</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1540"/>
         <source>%1 version %2 is now available.</source>
-        <translation>Η έκδοση %2 του %1 είναι διαθέσιμη.</translation>
+        <translation>Η έκδοση %2 του %1 έχει γίνει διαθέσιμη.</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1544"/>
@@ -820,37 +820,37 @@
     <message>
         <location filename="src/mainwindow.cpp" line="318"/>
         <source>Open the &amp;YouTube Page</source>
-        <translation>Άνοιγμα στην ιστοσελίδα του &amp;YouTube</translation>
+        <translation>Άνοιγμα στην Ιστοσελίδα του &amp;YouTube</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="325"/>
         <source>Copy the YouTube &amp;Link</source>
-        <translation>Αντιγραφή του &amp;δεσμού YouTube</translation>
+        <translation>Αντιγραφή του &amp;Συνδεσμού YouTube</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="332"/>
         <source>Copy the Video Stream &amp;URL</source>
-        <translation>Αντιγραφή του &amp;URL της ροής βίντεο</translation>
+        <translation>Αντιγραφή του &amp;Συνδέσμου της Ροής Βίντεο</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="339"/>
         <source>Find Video &amp;Parts</source>
-        <translation>Αναζήτηση των &amp;επισοδείων του βίντεο</translation>
+        <translation>Αναζήτηση των &amp;Επεισοδίων του Βίντεο</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="367"/>
         <source>&amp;Clear Recent Searches</source>
-        <translation>&amp;Καθαρισμός πρόσφατων αναζητήσεων</translation>
+        <translation>&amp;Εκκαθάριση Πρόσφατων Αναζητήσεων</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="391"/>
         <source>Make a &amp;Donation</source>
-        <translation>Κάντε μια &amp;δωρεά</translation>
+        <translation>Κάντε μια &amp;Δωρεά</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="453"/>
         <source>&amp;Manually Start Playing</source>
-        <translation>Εκκίνηση της αναπαραγωγής &amp;χειροκίνητα</translation>
+        <translation>Εκκίνηση της Αναπαραγωγής &amp;Χειροκίνητα</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="454"/>
@@ -860,7 +860,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="776"/>
         <source>Choose your content location</source>
-        <translation>Επιλογή της τοποθεσίας του περιεχομένου σας </translation>
+        <translation>Επιλέξτε την τοποθεσία για το περιεχόμενό σας </translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1047"/>
@@ -913,17 +913,17 @@
     <message>
         <location filename="src/mediaview.cpp" line="618"/>
         <source>You can now paste the YouTube link into another application</source>
-        <translation>Τώρα μπορείτε να επικολλήσετε το δεσμό του YouTube σε κάποια άλλη εφαρμογή</translation>
+        <translation>Τώρα μπορείτε να επικολλήσετε τον συνδεσμό του YouTube σε κάποια άλλη εφαρμογή</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="626"/>
         <source>You can now paste the video stream URL into another application</source>
-        <translation>Τώρα μπορείτε να επικολλήσετε το URL της ροής βίντεο σε κάποια άλλη εφαρμογή</translation>
+        <translation>Τώρα μπορείτε να επικολλήσετε τον σύνδεσμο της ροής βίντεο σε κάποια άλλη εφαρμογή</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="627"/>
         <source>The link will be valid only for a limited time.</source>
-        <translation>Ο σύνδεμος θα είναι έγκυρος μόνο για περιορισμένο χρονικό διάστημα.</translation>
+        <translation>Ο σύνδεσμος θα είναι έγκυρος για περιορισμένο χρονικό διάστημα.</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="712"/>
@@ -956,7 +956,7 @@
         <location filename="src/mediaview.cpp" line="856"/>
         <source>episode</source>
         <comment>This is for video parts, as in 'Cool series - episode 1'</comment>
-        <translation>επισόδειο</translation>
+        <translation>επεισόδιο</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="937"/>
@@ -966,17 +966,17 @@
     <message>
         <location filename="src/mediaview.cpp" line="968"/>
         <source>Unsubscribe from %1</source>
-        <translation>Διαγραφή από το %1</translation>
+        <translation>Κατάργηση συνδρομής στο %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="972"/>
         <source>Subscribe to %1</source>
-        <translation>Εγγραφή στο %1</translation>
+        <translation>Συνδρομή στο %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="720"/>
         <source>Get the full version</source>
-        <translation>Αποκτήστε την πλήρη έκδοση</translation>
+        <translation>Αποκτήστε τη πλήρη έκδοση</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="757"/>
@@ -994,7 +994,7 @@
     <message>
         <location filename="local/src/updatedialog.cpp" line="28"/>
         <source>%1 %2 is now available. You have %3.</source>
-        <translation>Η %1 %2 είναι διαθέσιμη. Έχετε την %3</translation>
+        <translation>Η %1 %2 είναι διαθέσιμη. Έχετε την %3.</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="33"/>
@@ -1004,17 +1004,17 @@
     <message>
         <location filename="local/src/updatedialog.cpp" line="39"/>
         <source>Skip This Version</source>
-        <translation>Παράλειψη αυτής της έκδοσης</translation>
+        <translation>Παράλειψη Αυτής της Έκδοσης</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="43"/>
         <source>Remind Me Later</source>
-        <translation>Υπενθύμισε το μου αργότερα</translation>
+        <translation>Υπενθύμισε το μου Αργότερα</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="47"/>
         <source>Install Update</source>
-        <translation>Εγκατάσταση Ενημερώσεων</translation>
+        <translation>Εγκατάσταση Ενημέρωσης</translation>
     </message>
 </context>
 <context>
@@ -1030,7 +1030,7 @@
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="208"/>
         <source>%1 views</source>
-        <translation>Προβολές %1</translation>
+        <translation>%1 προβολές</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="311"/>
@@ -1122,7 +1122,7 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="57"/>
         <source>View Count</source>
-        <translation>Αριθμό προβολών</translation>
+        <translation>Αριθμό Προβολών</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="58"/>
@@ -1163,32 +1163,32 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="98"/>
         <source>Short</source>
-        <translation>Μικρό</translation>
+        <translation>Μικρή</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="99"/>
         <source>Medium</source>
-        <translation>Μέτριο</translation>
+        <translation>Μέτρια</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="100"/>
         <source>Long</source>
-        <translation>Μεγάλο</translation>
+        <translation>Μεγάλη</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="103"/>
         <source>Less than 4 minutes</source>
-        <translation>Λιγότερο από 4 λεπτά</translation>
+        <translation>Λιγότερη από 4 λεπτά</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="104"/>
         <source>Between 4 and 20 minutes</source>
-        <translation>Μεταξύ 4 και 20 λεπτών</translation>
+        <translation>Μεταξύ 4 και 20 λεπτά</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="105"/>
         <source>Longer than 20 minutes</source>
-        <translation>Μεγαλύτερο από 20 λεπτά</translation>
+        <translation>Μεγαλύτερη από 20 λεπτά</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="120"/>
@@ -1198,12 +1198,12 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="125"/>
         <source>High Definition</source>
-        <translation>Υψηλή ανάλυση</translation>
+        <translation>Υψηλή Ανάλυση</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="128"/>
         <source>720p or higher</source>
-        <translation>720p είτε ψηλότερα</translation>
+        <translation>720p και μεγαλύτερη</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="142"/>
@@ -1237,13 +1237,13 @@
     <message>
         <location filename="src/searchview.cpp" line="189"/>
         <source>Get the full version</source>
-        <translation>Αποκτήστε την πλήρη έκδοση</translation>
+        <translation>Αποκτήστε τη πλήρη έκδοση</translation>
     </message>
     <message>
         <location filename="src/searchview.cpp" line="108"/>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole phrase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation>Πληκτρολογήστε</translation>
+        <translation>Εισάγετε</translation>
     </message>
     <message>
         <location filename="src/searchview.cpp" line="113"/>
@@ -1263,7 +1263,7 @@
     <message>
         <location filename="src/searchview.cpp" line="143"/>
         <source>Watch</source>
-        <translation>Δείτε</translation>
+        <translation>Παρακολουθήστε</translation>
     </message>
     <message>
         <location filename="src/searchview.cpp" line="161"/>
@@ -1282,7 +1282,7 @@
         <location filename="src/sidebarheader.cpp" line="39"/>
         <location filename="src/sidebarheader.cpp" line="46"/>
         <source>&amp;Back</source>
-        <translation>&amp;Πίσω</translation>
+        <translation>&amp;Επιστροφή</translation>
     </message>
     <message>
         <location filename="src/sidebarheader.cpp" line="77"/>
@@ -1292,7 +1292,7 @@
     <message>
         <location filename="src/sidebarheader.cpp" line="90"/>
         <source>Back to %1</source>
-        <translation>Πισω στο %1</translation>
+        <translation>Επιστροφή στο %1</translation>
     </message>
 </context>
 <context>
@@ -1300,7 +1300,7 @@
     <message>
         <location filename="src/sidebarwidget.cpp" line="68"/>
         <source>Refine Search</source>
-        <translation>Σύνθετη αναζήτηση</translation>
+        <translation>Σύνθετη Αναζήτηση</translation>
     </message>
     <message>
         <location filename="src/sidebarwidget.cpp" line="163"/>
@@ -1313,27 +1313,27 @@
     <message>
         <location filename="src/standardfeedsview.cpp" line="105"/>
         <source>Most Popular</source>
-        <translation>Τα πιο δημοφιλή</translation>
+        <translation>Πιο Δημοφιλή</translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="107"/>
         <source>Most Shared</source>
-        <translation>Πιο πρόσφατα</translation>
+        <translation>Πιο Πρόσφατα</translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="108"/>
         <source>Most Discussed</source>
-        <translation>Πιο συζυτημενα</translation>
+        <translation>Πιο Συζυτημένα</translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="109"/>
         <source>Top Rated</source>
-        <translation>Καλυτερα βαθμολογημενα</translation>
+        <translation>Καλύτερα Βαθμολογημένα</translation>
     </message>
     <message>
         <location filename="src/standardfeedsview.cpp" line="110"/>
         <source>All Time Popular</source>
-        <translation>Σε όλα τα χρονικά δημοφιλή</translation>
+        <translation>Σε Όλα τα Χρονικά Δημοφιλή</translation>
     </message>
 </context>
 <context>
@@ -1341,7 +1341,7 @@
     <message>
         <location filename="src/video.cpp" line="281"/>
         <source>Cannot get video stream for %1</source>
-        <translation>Αδυναμία λήψης της ροής βίντεο για %1</translation>
+        <translation>Αδυναμία λήψης της ροής βίντεο για το %1</translation>
     </message>
     <message>
         <location filename="src/video.cpp" line="298"/>
@@ -1354,72 +1354,72 @@
     <message>
         <location filename="src/ytregions.cpp" line="28"/>
         <source>Algeria</source>
-        <translation>Αλγερια</translation>
+        <translation>Αλγερία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="29"/>
         <source>Argentina</source>
-        <translation>Αργεντινη</translation>
+        <translation>Αργεντινή</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="30"/>
         <source>Australia</source>
-        <translation>Αυστραλια</translation>
+        <translation>Αυστραλία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="31"/>
         <source>Belgium</source>
-        <translation>Βελγιο</translation>
+        <translation>Βέλγιο</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="32"/>
         <source>Brazil</source>
-        <translation>Βραζιλια</translation>
+        <translation>Βραζιλία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="33"/>
         <source>Canada</source>
-        <translation>Καναδας</translation>
+        <translation>Καναδάς</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="34"/>
         <source>Chile</source>
-        <translation>Χιλη</translation>
+        <translation>Χιλή</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="35"/>
         <source>Colombia</source>
-        <translation>Κολομβια</translation>
+        <translation>Κολομβία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="36"/>
         <source>Czech Republic</source>
-        <translation>Τσεχια</translation>
+        <translation>Τσεχία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="37"/>
         <source>Egypt</source>
-        <translation>Αιγυπτος</translation>
+        <translation>Αίγυπτος</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="38"/>
         <source>France</source>
-        <translation>Γαλλια</translation>
+        <translation>Γαλλία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="39"/>
         <source>Germany</source>
-        <translation>Γερμανια</translation>
+        <translation>Γερμανία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="40"/>
         <source>Ghana</source>
-        <translation>Γκανα</translation>
+        <translation>Γκάνα</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="41"/>
         <source>Greece</source>
-        <translation>Ελλαδα</translation>
+        <translation>Ελλάδα</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="42"/>
@@ -1429,167 +1429,167 @@
     <message>
         <location filename="src/ytregions.cpp" line="43"/>
         <source>Hungary</source>
-        <translation>Ουγγαρια</translation>
+        <translation>Ουγγαρία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="44"/>
         <source>India</source>
-        <translation>Ινδια</translation>
+        <translation>Ινδία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="45"/>
         <source>Indonesia</source>
-        <translation>Ινδονησια</translation>
+        <translation>Ινδονησία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="46"/>
         <source>Ireland</source>
-        <translation>Ιρλανδια</translation>
+        <translation>Ιρλανδία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="47"/>
         <source>Israel</source>
-        <translation>Ισραηλ</translation>
+        <translation>Ισραήλ</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="48"/>
         <source>Italy</source>
-        <translation>Ιταλια</translation>
+        <translation>Ιταλία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="49"/>
         <source>Japan</source>
-        <translation>Ιαπωνια</translation>
+        <translation>Ιαπωνία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="50"/>
         <source>Jordan</source>
-        <translation>Ιορδανια</translation>
+        <translation>Ιορδανία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="51"/>
         <source>Kenya</source>
-        <translation>Κενια</translation>
+        <translation>Κένυα</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="52"/>
         <source>Malaysia</source>
-        <translation>Μαλαισια</translation>
+        <translation>Μαλαισία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="53"/>
         <source>Mexico</source>
-        <translation>Μεξικο</translation>
+        <translation>Μεξικό</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="54"/>
         <source>Morocco</source>
-        <translation>Μαροκκο</translation>
+        <translation>Μαρόκο</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="55"/>
         <source>Netherlands</source>
-        <translation>Ολλανδια</translation>
+        <translation>Κάτω Χώρες</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="56"/>
         <source>New Zealand</source>
-        <translation>Νεα Ζηλανδια</translation>
+        <translation>Νέα Ζηλανδία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="57"/>
         <source>Nigeria</source>
-        <translation>Νιγηρια</translation>
+        <translation>Νιγηρία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="58"/>
         <source>Peru</source>
-        <translation>Περου</translation>
+        <translation>Περού</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="59"/>
         <source>Philippines</source>
-        <translation>Φιλλιπινες</translation>
+        <translation>Φιλιππίνες</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="60"/>
         <source>Poland</source>
-        <translation>Πολωνια</translation>
+        <translation>Πολωνία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="61"/>
         <source>Russia</source>
-        <translation>Ρωσια</translation>
+        <translation>Ρωσία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="62"/>
         <source>Saudi Arabia</source>
-        <translation>Σαουδικη Αραβια</translation>
+        <translation>Σαουδική Αραβία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="63"/>
         <source>Singapore</source>
-        <translation>Σινγκαπουρη</translation>
+        <translation>Σινγκαπούρη</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="64"/>
         <source>South Africa</source>
-        <translation>Νοτια Αφρικη</translation>
+        <translation>Νότια Αφρική</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="65"/>
         <source>South Korea</source>
-        <translation>Νοτια Κορεα</translation>
+        <translation>Νότια Κορέα</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="66"/>
         <source>Spain</source>
-        <translation>Ισπανια</translation>
+        <translation>Ισπανία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="67"/>
         <source>Sweden</source>
-        <translation>Σουηδια</translation>
+        <translation>Σουηδία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="68"/>
         <source>Taiwan</source>
-        <translation>Ταιβαν</translation>
+        <translation>Ταϊβάν</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="69"/>
         <source>Tunisia</source>
-        <translation>Τυνισια</translation>
+        <translation>Τυνησία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="70"/>
         <source>Turkey</source>
-        <translation>Τουρκια</translation>
+        <translation>Τουρκία</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="71"/>
         <source>Uganda</source>
-        <translation>Ουγκαντα</translation>
+        <translation>Ουγκάντα</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="72"/>
         <source>United Arab Emirates</source>
-        <translation>Ηνωμενα Αραβικα Εμιρατα</translation>
+        <translation>Ηνωμένα Αραβικά Εμιράτα</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="73"/>
         <source>United Kingdom</source>
-        <translation>Ηνωμενο Βασιλειο</translation>
+        <translation>Ηνωμένο Βασίλειο</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="74"/>
         <source>Yemen</source>
-        <translation>Ιεμενη</translation>
+        <translation>Υεμένη</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="148"/>
         <source>Worldwide</source>
-        <translation>Παγκοσμιως</translation>
+        <translation>Παγκοσμίως</translation>
     </message>
 </context>
 </TS>

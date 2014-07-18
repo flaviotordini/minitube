@@ -10,7 +10,7 @@
     <message>
         <location filename="src/aboutview.cpp" line="53"/>
         <source>Version %1</source>
-        <translation>Версия %1</translation>
+        <translation>Жоромол %1</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="58"/>
@@ -35,7 +35,7 @@
     <message>
         <location filename="src/aboutview.cpp" line="70"/>
         <source>%1, a YouTube music player</source>
-        <translation>%1, YouTube музыка ойноткучу</translation>
+        <translation>%1, YouTube&apos;дун музыка ойноткучу</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="74"/>
@@ -70,7 +70,7 @@
     <message>
         <location filename="src/aboutview.h" line="39"/>
         <source>What you always wanted to know about %1 and never dared to ask</source>
-        <translation>Дайыма билгиниңиз келген жана эч качан сурабай жүргөн %1 жөнүндөгү маалыматтар</translation>
+        <translation>%1 тууралуу дайыма билгиңиз келген маалымат</translation>
     </message>
 </context>
 <context>
@@ -83,12 +83,12 @@
     <message>
         <location filename="local/src/activationdialog.cpp" line="29"/>
         <source>&amp;Email:</source>
-        <translation>&amp;E-mail:</translation>
+        <translation>&amp;Эл. почта:</translation>
     </message>
     <message>
         <location filename="local/src/activationdialog.cpp" line="35"/>
         <source>&amp;Code:</source>
-        <translation>&amp;Коду:</translation>
+        <translation>&amp;Код:</translation>
     </message>
 </context>
 <context>
@@ -139,7 +139,7 @@
     <message>
         <location filename="src/channelaggregator.cpp" line="131"/>
         <source>By %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 тарабынан</translation>
     </message>
     <message numerus="yes">
         <location filename="src/channelaggregator.cpp" line="133"/>
@@ -220,7 +220,7 @@
     <message>
         <location filename="src/channelview.cpp" line="232"/>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation type="unfinished"/>
+        <translation>Сизде жазылуулар жок. Каналдарга жазылуу үчүн жылдызча символун колдонуңуз.</translation>
     </message>
 </context>
 <context>
@@ -299,7 +299,7 @@
     <message>
         <location filename="src/downloadmanager.cpp" line="84"/>
         <source>Get the full version</source>
-        <translation>Толук версиясын алуу</translation>
+        <translation>Толук жоромолун алуу</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="171"/>
@@ -402,17 +402,17 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="43"/>
         <source>Increase volume</source>
-        <translation>Катуураак</translation>
+        <translation>Көлөмүн чоңойтуу</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="44"/>
         <source>Decrease volume</source>
-        <translation>Акырыныраак</translation>
+        <translation>Көлөмүн азайтуу</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="45"/>
         <source>Mute</source>
-        <translation>Басаңдатуу</translation>
+        <translation>Үнүн өчүрүү</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="46"/>
@@ -654,12 +654,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="514"/>
         <source>&amp;Email</source>
-        <translation>&amp;E-mail</translation>
+        <translation>&amp;Эл. почта</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="515"/>
         <source>Email</source>
-        <translation>E-mail</translation>
+        <translation>Эл. почта</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="520"/>
@@ -905,7 +905,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="1432"/>
         <source>Downloads complete</source>
-        <translation>Жүктөп алуу аякталды</translation>
+        <translation>Жүктөлөр аякталды</translation>
     </message>
 </context>
 <context>
@@ -966,7 +966,7 @@
     <message>
         <location filename="src/mediaview.cpp" line="968"/>
         <source>Unsubscribe from %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 каналындагы жазылуудан чыгуу</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="972"/>
@@ -1009,12 +1009,12 @@
     <message>
         <location filename="local/src/updatedialog.cpp" line="43"/>
         <source>Remind Me Later</source>
-        <translation>Кечирээк эске салуу</translation>
+        <translation>Кечирээк эске салдыруу</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="47"/>
         <source>Install Update</source>
-        <translation>Жаңылоолорду орнотуу</translation>
+        <translation>Жаңылоону орнотуу</translation>
     </message>
 </context>
 <context>
@@ -1040,7 +1040,7 @@
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="318"/>
         <source>Preparing</source>
-        <translation>Даярдоо</translation>
+        <translation>Даярдалууда</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="320"/>
@@ -1083,7 +1083,7 @@
     <message>
         <location filename="src/playlistmodel.cpp" line="72"/>
         <source>Searching...</source>
-        <translation>Издөө...</translation>
+        <translation>Изделүүдө...</translation>
     </message>
     <message>
         <location filename="src/playlistmodel.cpp" line="73"/>
@@ -1188,7 +1188,7 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="105"/>
         <source>Longer than 20 minutes</source>
-        <translation>20 минутадан көбүрөөк</translation>
+        <translation>20 минутадан узагыраак</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="120"/>
@@ -1203,7 +1203,7 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="128"/>
         <source>720p or higher</source>
-        <translation>720p же чоңураак</translation>
+        <translation>720p же жогорураак</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="142"/>
@@ -1305,7 +1305,7 @@
     <message>
         <location filename="src/sidebarwidget.cpp" line="163"/>
         <source>Did you mean: %1</source>
-        <translation>Муну болжогон жоксузбу: %1</translation>
+        <translation>Бул эмеспи: %1</translation>
     </message>
 </context>
 <context>
@@ -1333,7 +1333,7 @@
     <message>
         <location filename="src/standardfeedsview.cpp" line="110"/>
         <source>All Time Popular</source>
-        <translation type="unfinished"/>
+        <translation>Ар дайым популярдуу</translation>
     </message>
 </context>
 <context>
