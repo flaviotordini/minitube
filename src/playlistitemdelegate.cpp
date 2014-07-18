@@ -146,9 +146,9 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
 
         // text color
         if (isSelected)
-            painter->setPen(QPen(option.palette.brush(QPalette::HighlightedText), 0));
+            painter->setPen(QPen(option.palette.highlightedText(), 0));
         else
-            painter->setPen(QPen(option.palette.brush(QPalette::Text), 0));
+            painter->setPen(QPen(option.palette.text(), 0));
 
         // title
         QString videoTitle = video->title();
@@ -190,7 +190,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
                 if (authorHovered)
                     painter->setPen(QPen(option.palette.brush(QPalette::Highlight), 0));
                 else
-                    painter->setPen(QPen(option.palette.brush(QPalette::Mid), 0));
+                    painter->setOpacity(.5);
             }
             QString authorString = video->author();
             textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
