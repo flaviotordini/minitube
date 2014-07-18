@@ -1484,6 +1484,8 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *event) {
 }
 
 void MainWindow::dropEvent(QDropEvent *event) {
+    if (!toolbarSearch->isEnabled()) return;
+
     QList<QUrl> urls = event->mimeData()->urls();
     if (urls.isEmpty())
         return;
@@ -1582,6 +1584,8 @@ void MainWindow::messageReceived(const QString &message) {
         if (skipAct->isEnabled()) skipAct->trigger();
     } else if (message == QLatin1String("--previous")) {
         if (skipBackwardAct->isEnabled()) skipBackwardAct->trigger();
+    } else if (message == QLatin1String("--stop-after-this")) {
+        The::globalActions()->value("stopafterthis")->toggle();
     }  else if (message.startsWith("--")) {
         MainWindow::printHelp();
     } else if (!message.isEmpty()) {
