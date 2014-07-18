@@ -386,7 +386,7 @@ void SearchView::paintEvent(QPaintEvent *event) {
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &o, &p, this);
 #endif
-    // PainterUtils::topShadow(this);
+    PainterUtils::topShadow(this);
 }
 
 void SearchView::searchTypeChanged(int index) {
