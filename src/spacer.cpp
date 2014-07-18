@@ -20,7 +20,10 @@ $END_LICENSE */
 
 #include "spacer.h"
 
-Spacer::Spacer(QWidget *parent) : QWidget(parent) { }
+Spacer::Spacer(QWidget *parent) : QWidget(parent) {
+    setAttribute(Qt::WA_TransparentForMouseEvents);
+    setEnabled(false);
+}
 
 QSize Spacer::sizeHint() const {
     return QSize(10, 1);
