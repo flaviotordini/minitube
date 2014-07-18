@@ -60,8 +60,6 @@ void PlaylistView::leaveEvent(QEvent * /* event */) {
 }
 
 void PlaylistView::mouseMoveEvent(QMouseEvent *event) {
-    QListView::mouseMoveEvent(event);
-
     if (isHoveringThumbnail(event)) {
         setCursor(Qt::PointingHandCursor);
     } else if (isShowMoreItem(indexAt(event->pos()))) {
@@ -73,17 +71,16 @@ void PlaylistView::mouseMoveEvent(QMouseEvent *event) {
         QMetaObject::invokeMethod(model(), "exitAuthorHover");
         unsetCursor();
     }
+    QListView::mouseMoveEvent(event);
 }
 
 void PlaylistView::mousePressEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
-        if (isHoveringThumbnail(event)) {
-            event->accept();
-        } else if (isHoveringAuthor(event)) {
+        if (isHoveringAuthor(event)) {
             QMetaObject::invokeMethod(model(), "enterAuthorPressed");
-            event->ignore();
-        } else QListView::mousePressEvent(event);
-    } else QListView::mousePressEvent(event);
+        }
+    }
+    QListView::mousePressEvent(event);
 }
 
 void PlaylistView::mouseReleaseEvent(QMouseEvent *event) {
@@ -100,10 +97,8 @@ void PlaylistView::mouseReleaseEvent(QMouseEvent *event) {
             listModel->searchMore();
             unsetCursor();
         }
-
-    } else {
-        QListView::mousePressEvent(event);
     }
+    QListView::mouseReleaseEvent(event);
 }
 
 bool PlaylistView::isHoveringAuthor(QMouseEvent *event) {
@@ -141,5 +136,7 @@ bool PlaylistView::isShowMoreItem(const QModelIndex &index) {
 
 void PlaylistView::paintEvent(QPaintEvent *event) {
     QListView::paintEvent(event);
+#ifndef Q_WS_X11
     PainterUtils::topShadow(viewport());
+#endif
 }
