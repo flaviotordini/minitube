@@ -1,3 +1,11 @@
+2.2
+- Subscriptions context menu: Unsubscribe, Mark as Watched
+- Added --stop-after-this command line switch
+- Added Stop After This Video Unity & Gnome 3 action
+- Fixed bug with dragging playlist items from the thumbnail
+- Fixed some videos not playing
+- Updated translations
+
 2.1.6
 - Fix some videos not playing
 - Remove obsolete categories in the Browse tab
