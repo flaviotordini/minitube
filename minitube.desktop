@@ -18,7 +18,7 @@ Type=Application
 Icon=minitube
 Categories=AudioVideo;Player;Qt;
 StartupNotify=false
-Actions=TogglePlaying;Next;Previous;
+Actions=TogglePlaying;Next;Previous;StopAfterThis
 
 [Desktop Action TogglePlaying]
 Name=Play/Pause
@@ -31,3 +31,7 @@ Exec=minitube --next
 [Desktop Action Previous]
 Name=Previous
 Exec=minitube --previous
+
+[Desktop Action StopAfterThis]
+Name=Stop After This Video
+Exec=minitube --stop-after-this
