@@ -1613,6 +1613,8 @@ void MainWindow::printHelp() {
     msg += "Skip to the next video.\n";
     msg += "  --previous\t\t";
     msg += "Go back to the previous video.\n";
+    msg += "  --stop-after-this\t";
+    msg += "Stop playback at the end of the video.\n";
     std::cout << msg.toLocal8Bit().data();
 }
 
