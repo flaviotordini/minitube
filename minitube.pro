@@ -1,6 +1,6 @@
 CONFIG += release
 TEMPLATE = app
-VERSION = 2.2
+VERSION = 2.3
 DEFINES += APP_VERSION="$$VERSION"
 
 APP_NAME = Minitube
@@ -15,7 +15,13 @@ DEFINES += QT_STRICT_ITERATORS
 
 TARGET = $${APP_UNIX_NAME}
 
-QT += network xml phonon sql script
+QT += network xml sql script
+
+qt:greaterThan(QT_MAJOR_VERSION, 4) {
+    contains(QT, gui): QT *= widgets
+} else {
+    QT += phonon
+}
 
 include(src/qtsingleapplication/qtsingleapplication.pri)
 

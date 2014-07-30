@@ -22,6 +22,9 @@ $END_LICENSE */
 #define YTUSER_H
 
 #include <QtGui>
+#if QT_VERSION >= 0x050000
+#include <QtWidgets>
+#endif
 #include <QtNetwork>
 
 class YTUser : public QObject {
