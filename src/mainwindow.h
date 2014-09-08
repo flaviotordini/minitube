@@ -25,10 +25,12 @@ $END_LICENSE */
 #if QT_VERSION >= 0x050000
 #include <QtWidgets>
 #endif
+#ifdef APP_PHONON
 #include <phonon/audiooutput.h>
 #include <phonon/volumeslider.h>
 #include <phonon/mediaobject.h>
 #include <phonon/seekslider.h>
+#endif
 #include "view.h"
 
 class HomeView;
@@ -99,7 +101,9 @@ private slots:
     void updateUIForFullscreen();
     void compactView(bool enable);
     void stop();
+#ifdef APP_PHONON
     void stateChanged(Phonon::State newState, Phonon::State oldState);
+#endif
     void searchFocus();
     void tick(qint64 time);
     void totalTimeChanged(qint64 time);
@@ -128,8 +132,14 @@ private slots:
 
     void hideMouse();
 
+#ifdef APP_MAC_STORE
+    void rateOnAppStore();
+#endif
+
 private:
+#ifdef APP_PHONON
     void initPhonon();
+#endif
     void createActions();
     void createMenus();
     void createToolBars();
@@ -198,12 +208,14 @@ private:
 
     // phonon
     QSlider *slider;
+#ifdef APP_PHONON
 #ifdef APP_PHONON_SEEK
     Phonon::SeekSlider *seekSlider;
 #endif
     Phonon::VolumeSlider *volumeSlider;
     Phonon::MediaObject *mediaObject;
     Phonon::AudioOutput *audioOutput;
+#endif
     QLabel *currentTime;
     QLabel *totalTime;
 

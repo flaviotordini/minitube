@@ -27,8 +27,12 @@ static const QString dbName = QLatin1String(Constants::UNIX_NAME) + ".db";
 static Database *databaseInstance = 0;
 
 Database::Database() {
-
+#if QT_VERSION >= 0x050000
+    QString dataLocation = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+#else
     QString dataLocation = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+#endif
+
     QDir().mkpath(dataLocation);
     dbLocation = dataLocation + "/" + dbName;
 
@@ -94,8 +98,11 @@ void Database::createDatabase() {
 }
 
 QString Database::getDbLocation() {
-    static QString dataLocation = QDesktopServices::storageLocation(
-                QDesktopServices::DataLocation);
+#if QT_VERSION >= 0x050000
+    static const QString dataLocation = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+#else
+    static const QString dataLocation = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+#endif
     return dataLocation + "/" + dbName;
 }
 

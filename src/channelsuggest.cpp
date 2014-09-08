@@ -31,8 +31,17 @@ ChannelSuggest::ChannelSuggest(QObject *parent) : Suggester(parent) {
 
 void ChannelSuggest::suggest(QString query) {
     QUrl url("http://www.youtube.com/results");
+#if QT_VERSION >= 0x050000
+        {
+            QUrl &u = url;
+            QUrlQuery url;
+#endif
     url.addQueryItem("search_type", "search_users");
     url.addQueryItem("search_query", query);
+#if QT_VERSION >= 0x050000
+            u.setQuery(url);
+        }
+#endif
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(handleNetworkData(QByteArray)));
 }

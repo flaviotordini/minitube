@@ -34,10 +34,10 @@ $END_LICENSE */
 #include "searchparams.h"
 #include "videosource.h"
 #include "ytsearch.h"
-#ifdef Q_WS_X11
+#ifdef Q_OS_LINUX
 #include "gnomeglobalshortcutbackend.h"
 #endif
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 #include "mac_startup.h"
 #include "macfullscreen.h"
 #include "macsupport.h"
@@ -83,8 +83,10 @@ MainWindow::MainWindow() :
     aboutView(0),
     downloadView(0),
     regionsView(0),
+    #ifdef APP_PHONON
     mediaObject(0),
     audioOutput(0),
+    #endif
     m_fullscreen(false),
     m_compact(false) {
 
@@ -150,9 +152,13 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::lazyInit() {
+#ifdef APP_PHONON
     initPhonon();
+#endif
     mediaView->initialize();
+#ifdef APP_PHONON
     mediaView->setMediaObject(mediaObject);
+#endif
     qApp->processEvents();
 
     // CLI
@@ -170,11 +176,11 @@ void MainWindow::lazyInit() {
 
     // Global shortcuts
     GlobalShortcuts &shortcuts = GlobalShortcuts::instance();
-#ifdef Q_WS_X11
+#ifdef Q_OS_LINUX
     if (GnomeGlobalShortcutBackend::IsGsdAvailable())
         shortcuts.setBackend(new GnomeGlobalShortcutBackend(&shortcuts));
 #endif
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     mac::MacSetup();
 #endif
     connect(&shortcuts, SIGNAL(PlayPause()), pauseAct, SLOT(trigger()));
@@ -430,7 +436,7 @@ void MainWindow::createActions() {
     addAction(volumeMuteAct);
 
     QAction *definitionAct = new QAction(this);
-#ifdef Q_WS_X11
+#ifdef Q_OS_LINUX
     definitionAct->setIcon(Utils::tintedIcon("video-display", QColor(0, 0, 0),
                                              QList<QSize>() << QSize(16, 16)));
 #else
@@ -571,6 +577,12 @@ void MainWindow::createActions() {
     actions->insert("open-in-browser", action);
     connect(action, SIGNAL(triggered()), mediaView, SLOT(openInBrowser()));
 
+#ifdef APP_MAC_STORE
+    action = new QAction(tr("&Love %1? Rate it!").arg(Constants::NAME), this);
+    actions->insert("app-store", action);
+    connect(action, SIGNAL(triggered()), SLOT(rateOnAppStore()));
+#endif
+
 #ifdef APP_ACTIVATION
     Extra::createActivationAction(tr("Buy %1...").arg(Constants::NAME));
 #endif
@@ -667,6 +679,11 @@ void MainWindow::createMenus() {
 #endif
     helpMenu->addAction(The::globalActions()->value("report-issue"));
     helpMenu->addAction(aboutAct);
+
+#ifdef APP_MAC_STORE
+    helpMenu->addSeparator();
+    helpMenu->addAction(The::globalActions()->value("app-store"));
+#endif
 }
 
 void MainWindow::createToolBars() {
@@ -690,7 +707,7 @@ void MainWindow::createToolBars() {
     mainToolBar->addAction(The::globalActions()->value("download"));
 
     bool addFullScreenAct = true;
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     addFullScreenAct = !mac::CanGoFullScreen(winId());
 #endif
     if (addFullScreenAct) mainToolBar->addAction(fullscreenAct);
@@ -730,6 +747,7 @@ void MainWindow::createToolBars() {
 
     mainToolBar->addAction(volumeMuteAct);
 
+#ifdef APP_PHONON
     volumeSlider = new Phonon::VolumeSlider(this);
     volumeSlider->setMuteVisible(false);
     // qDebug() << volumeSlider->children();
@@ -741,6 +759,7 @@ void MainWindow::createToolBars() {
     // this makes the volume slider smaller
     volumeSlider->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     mainToolBar->addWidget(volumeSlider);
+#endif
 
     mainToolBar->addWidget(new Spacer());
 
@@ -759,9 +778,7 @@ void MainWindow::createToolBars() {
     mainToolBar->addWidget(searchWrapper);
 #else
     mainToolBar->addWidget(toolbarSearch);
-    Spacer* spacer = new Spacer();
-    // spacer->setWidth(4);
-    mainToolBar->addWidget(spacer);
+    mainToolBar->addWidget(new Spacer());
 #endif
 
     addToolBar(mainToolBar);
@@ -842,8 +859,12 @@ void MainWindow::writeSettings() {
     settings.setValue("geometry", saveGeometry());
     mediaView->saveSplitterState();
 
-    settings.setValue("volume", audioOutput->volume());
-    settings.setValue("volumeMute", audioOutput->isMuted());
+#ifdef APP_PHONON
+    if (audioOutput->volume() > 0.1)
+        settings.setValue("volume", audioOutput->volume());
+    // settings.setValue("volumeMute", audioOutput->isMuted());
+#endif
+
     settings.setValue("manualplay", The::globalActions()->value("manualplay")->isChecked());
 }
 
@@ -1013,6 +1034,7 @@ void MainWindow::showMedia(VideoSource *videoSource) {
     mediaView->setVideoSource(videoSource);
 }
 
+#ifdef APP_PHONON
 void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState */) {
 
     // qDebug() << "Phonon state: " << newState;
@@ -1062,6 +1084,7 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
         ;
     }
 }
+#endif
 
 void MainWindow::stop() {
     mediaView->stop();
@@ -1069,7 +1092,7 @@ void MainWindow::stop() {
 }
 
 void MainWindow::resizeEvent(QResizeEvent*) {
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     if (mac::CanGoFullScreen(winId())) {
         bool isFullscreen = mac::IsFullScreen(winId());
         if (isFullscreen != m_fullscreen) {
@@ -1089,7 +1112,7 @@ void MainWindow::fullscreen() {
     if (compactViewAct->isChecked())
         compactViewAct->toggle();
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     WId handle = winId();
     if (mac::CanGoFullScreen(handle)) {
         mainToolBar->setVisible(true);
@@ -1109,7 +1132,7 @@ void MainWindow::fullscreen() {
         // geometry won't be saved
         writeSettings();
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
         MacSupport::enterFullScreen(this, views);
 #else
         mainToolBar->hide();
@@ -1119,7 +1142,7 @@ void MainWindow::fullscreen() {
     } else {
         // Exit full screen
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
         MacSupport::exitFullScreen(this, views);
 #else
         mainToolBar->show();
@@ -1171,7 +1194,7 @@ void MainWindow::updateUIForFullscreen() {
         stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
     }
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     MacSupport::fullScreenActions(The::globalActions()->values(), m_fullscreen);
 #endif
 
@@ -1187,7 +1210,7 @@ void MainWindow::updateUIForFullscreen() {
 }
 
 bool MainWindow::isReallyFullScreen() {
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     WId handle = winId();
     if (mac::CanGoFullScreen(handle)) return mac::IsFullScreen(handle);
     else return isFullScreen();
@@ -1211,7 +1234,7 @@ void MainWindow::compactView(bool enable) {
 
     if (enable) {
         setMinimumSize(320, 180);
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
         mac::RemoveFullScreenWindow(winId());
 #endif
         writeSettings();
@@ -1240,7 +1263,7 @@ void MainWindow::compactView(bool enable) {
     } else {
         // unset minimum size
         setMinimumSize(0, 0);
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
         mac::SetupFullScreenWindow(winId());
 #endif
         settings.setValue(key, saveGeometry());
@@ -1256,7 +1279,7 @@ void MainWindow::compactView(bool enable) {
     // auto float on top
     floatOnTop(enable);
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     mac::compactMode(winId(), enable);
 #endif
 }
@@ -1266,6 +1289,7 @@ void MainWindow::searchFocus() {
     toolbarSearch->setFocus();
 }
 
+#ifdef APP_PHONON
 void MainWindow::initPhonon() {
     // Phonon initialization
     if (mediaObject) delete mediaObject;
@@ -1288,6 +1312,7 @@ void MainWindow::initPhonon() {
     audioOutput->setVolume(settings.value("volume", 1).toDouble());
     // audioOutput->setMuted(settings.value("volumeMute").toBool());
 }
+#endif
 
 void MainWindow::tick(qint64 time) {
     if (time <= 0) {
@@ -1300,6 +1325,7 @@ void MainWindow::tick(qint64 time) {
     currentTime->setText(formatTime(time));
 
     // remaining time
+#ifdef APP_PHONON
     const qint64 remainingTime = mediaObject->remainingTime();
     currentTime->setStatusTip(tr("Remaining time: %1").arg(formatTime(remainingTime)));
 
@@ -1309,6 +1335,7 @@ void MainWindow::tick(qint64 time) {
     if (totalTime > 0 && time > 0 && !slider->isSliderDown() && mediaObject->state() == Phonon::PlayingState)
         slider->setValue(time * slider->maximum() / totalTime);
     slider->blockSignals(false);
+#endif
 }
 
 void MainWindow::totalTimeChanged(qint64 time) {
@@ -1339,27 +1366,35 @@ QString MainWindow::formatTime(qint64 time) {
 }
 
 void MainWindow::volumeUp() {
+#ifdef APP_PHONON
     qreal newVolume = volumeSlider->audioOutput()->volume() + .1;
     if (newVolume > volumeSlider->maximumVolume())
         newVolume = volumeSlider->maximumVolume();
     volumeSlider->audioOutput()->setVolume(newVolume);
+#endif
 }
 
 void MainWindow::volumeDown() {
+#ifdef APP_PHONON
     qreal newVolume = volumeSlider->audioOutput()->volume() - .1;
     if (newVolume < 0)
         newVolume = 0;
     volumeSlider->audioOutput()->setVolume(newVolume);
+#endif
 }
 
 void MainWindow::volumeMute() {
+#ifdef APP_PHONON
     volumeSlider->audioOutput()->setMuted(!volumeSlider->audioOutput()->isMuted());
+#endif
 }
 
 void MainWindow::volumeChanged(qreal newVolume) {
+#ifdef APP_PHONON
     // automatically unmute when volume changes
     if (volumeSlider->audioOutput()->isMuted())
         volumeSlider->audioOutput()->setMuted(false);
+#endif
     statusBar()->showMessage(tr("Volume at %1%").arg((int)(newVolume*100)));
 }
 
@@ -1602,6 +1637,14 @@ void MainWindow::hideMouse() {
     mainToolBar->setVisible(false);
 #endif
 }
+
+#ifdef APP_MAC_STORE
+void MainWindow::rateOnAppStore() {
+    QDesktopServices::openUrl(QUrl("macappstore://userpub.itunes.apple.com"
+                                   "/WebObjects/MZUserPublishing.woa/wa/addUserReview"
+                                   "?id=422006190&type=Purple+Software"));
+}
+#endif
 
 void MainWindow::printHelp() {
     QString msg = QString("%1 %2\n\n").arg(Constants::NAME, Constants::VERSION);

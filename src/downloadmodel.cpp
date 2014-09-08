@@ -65,7 +65,8 @@ QVariant DownloadModel::data(const QModelIndex &index, int role) const {
 }
 
 void DownloadModel::sendReset() {
-    reset();
+    beginResetModel();
+    endResetModel();
 }
 
 void DownloadModel::setHoveredRow(int row) {

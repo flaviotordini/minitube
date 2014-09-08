@@ -42,8 +42,13 @@ void YTSearch::loadVideos(int max, int skip) {
     aborted = false;
 
     QUrl url("http://gdata.youtube.com/feeds/api/videos/");
-    url.addQueryItem("v", "2");
+#if QT_VERSION >= 0x050000
+{
+    QUrl &u = url;
+    QUrlQuery url;
+#endif
 
+    url.addQueryItem("v", "2");
     url.addQueryItem("max-results", QString::number(max));
     url.addQueryItem("start-index", QString::number(skip));
 
@@ -99,6 +104,10 @@ void YTSearch::loadVideos(int max, int skip) {
         break;
     }
 
+#if QT_VERSION >= 0x050000
+        u.setQuery(url);
+    }
+#endif
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResults(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));

@@ -24,7 +24,6 @@ $END_LICENSE */
 #include "loadingwidget.h"
 #include "videoareawidget.h"
 #include "networkaccess.h"
-#include "videowidget.h"
 #include "minisplitter.h"
 #include "constants.h"
 #include "downloadmanager.h"
@@ -101,8 +100,11 @@ void MediaView::initialize() {
 
     videoAreaWidget = new VideoAreaWidget(this);
     // videoAreaWidget->setMinimumSize(320,240);
+
+#ifdef APP_PHONON
     videoWidget = new Phonon::VideoWidget(this);
     videoAreaWidget->setVideoWidget(videoWidget);
+#endif
     videoAreaWidget->setListModel(playlistModel);
 
     loadingWidget = new LoadingWidget(this);
@@ -158,6 +160,7 @@ void MediaView::initialize() {
     connect(slider, SIGNAL(valueChanged(int)), SLOT(sliderMoved(int)));
 }
 
+#ifdef APP_PHONON
 void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
     this->mediaObject = mediaObject;
     Phonon::createPath(mediaObject, videoWidget);
@@ -166,6 +169,7 @@ void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
             SLOT(stateChanged(Phonon::State, Phonon::State)));
     connect(mediaObject, SIGNAL(aboutToFinish()), SLOT(aboutToFinish()));
 }
+#endif
 
 SearchParams* MediaView::getSearchParams() {
     VideoSource *videoSource = playlistModel->getVideoSource();
@@ -282,6 +286,7 @@ void MediaView::handleError(QString /* message */) {
     QTimer::singleShot(500, this, SLOT(startPlaying()));
 }
 
+#ifdef APP_PHONON
 void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/) {
     if (newState == Phonon::PlayingState)
         videoAreaWidget->showVideo();
@@ -291,8 +296,10 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
             handleError(mediaObject->errorString());
     }
 }
+#endif
 
 void MediaView::pause() {
+#ifdef APP_PHONON
     switch( mediaObject->state() ) {
     case Phonon::PlayingState:
         mediaObject->pause();
@@ -301,6 +308,7 @@ void MediaView::pause() {
         mediaObject->play();
         break;
     }
+#endif
 }
 
 QRegExp MediaView::wordRE(QString s) {
@@ -339,7 +347,9 @@ void MediaView::stop() {
     a->setEnabled(false);
     a->setVisible(false);
 
+#ifdef APP_PHONON
     mediaObject->stop();
+#endif
     currentVideoId.clear();
 
     QSlider *slider = MainWindow::instance()->getSlider();
@@ -356,7 +366,9 @@ void MediaView::activeRowChanged(int row) {
 
     errorTimer->stop();
 
+#ifdef APP_PHONON
     mediaObject->stop();
+#endif
     if (downloadItem) {
         downloadItem->stop();
         delete downloadItem;
@@ -433,7 +445,7 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
 
     currentVideoId = video->id();
 
-#ifdef Q_WS_X11_NO
+#ifdef Q_OS_LINUX_NO
     mediaObject->setCurrentSource(streamUrl);
     mediaObject->play();
 #else
@@ -469,9 +481,11 @@ void MediaView::downloadStatusChanged() {
         // qDebug() << "Downloading";
         if (downloadItem->offset() == 0) startPlaying();
         else {
+#ifdef APP_PHONON
             // qDebug() << "Seeking to" << downloadItem->offset();
             mediaObject->seek(offsetToTime(downloadItem->offset()));
             mediaObject->play();
+#endif
         }
         break;
     case Starting:
@@ -479,7 +493,7 @@ void MediaView::downloadStatusChanged() {
         break;
     case Finished:
         // qDebug() << "Finished" << mediaObject->state();
-#ifdef Q_WS_X11
+#ifdef Q_OS_LINUX
         // MainWindow::instance()->getSeekSlider()->setEnabled(mediaObject->isSeekable());
 #endif
         break;
@@ -509,9 +523,11 @@ void MediaView::startPlaying() {
     // go!
     QString source = downloadItem->currentFilename();
     qDebug() << "Playing" << source << QFile::exists(source);
+#ifdef APP_PHONON
     mediaObject->setCurrentSource(source);
     mediaObject->play();
-#ifdef Q_WS_X11
+#endif
+#ifdef Q_OS_LINUX
     // MainWindow::instance()->getSeekSlider()->setEnabled(false);
 #endif
 
@@ -528,7 +544,9 @@ void MediaView::itemActivated(const QModelIndex &index) {
         if (activeVideo && video && activeVideo == video) {
             // mediaObject->seek(0);
             sliderMoved(0);
+#ifdef APP_PHONON
             mediaObject->play();
+#endif
         } else playlistModel->setActiveRow(index.row());
 
         // the user doubleclicked on the "Search More" item
@@ -567,6 +585,7 @@ void MediaView::skipBackward() {
 }
 
 void MediaView::aboutToFinish() {
+#ifdef APP_PHONON
     qint64 currentTime = mediaObject->currentTime();
     qint64 totalTime = mediaObject->totalTime();
     qDebug() << __PRETTY_FUNCTION__ << currentTime << totalTime;
@@ -575,10 +594,13 @@ void MediaView::aboutToFinish() {
         mediaObject->seek(currentTime);
         mediaObject->play();
     }
+#endif
 }
 
 void MediaView::playbackFinished() {
     if (stopped) return;
+
+#ifdef APP_PHONON
     const qint64 totalTime = mediaObject->totalTime();
     const qint64 currentTime = mediaObject->currentTime();
     qDebug() << __PRETTY_FUNCTION__ << mediaObject->currentTime() << totalTime;
@@ -592,21 +614,26 @@ void MediaView::playbackFinished() {
             stopAfterThisAction->setChecked(false);
         } else skip();
     }
+#endif
 }
 
 void MediaView::playbackResume() {
     if (stopped) return;
+#ifdef APP_PHONON
     const qint64 currentTime = mediaObject->currentTime();
     qDebug() << __PRETTY_FUNCTION__ << currentTime;
     if (currentTime > 0)
         mediaObject->seek(currentTime);
     mediaObject->play();
+#endif
 }
 
 void MediaView::openWebPage() {
     Video* video = playlistModel->activeVideo();
     if (!video) return;
+#ifdef APP_PHONON
     mediaObject->pause();
+#endif
     QDesktopServices::openUrl(video->webpage());
 }
 
@@ -631,7 +658,9 @@ void MediaView::copyVideoLink() {
 void MediaView::openInBrowser() {
     Video* video = playlistModel->activeVideo();
     if (!video) return;
+#ifdef APP_PHONON
     mediaObject->pause();
+#endif
     QDesktopServices::openUrl(video->getStreamUrl());
 }
 
@@ -704,8 +733,10 @@ void MediaView::saveSplitterState() {
 static QPushButton *continueButton;
 
 void MediaView::demoMessage() {
+#ifdef APP_PHONON
     if (mediaObject->state() != Phonon::PlayingState) return;
     mediaObject->pause();
+#endif
 
     QMessageBox msgBox(this);
     msgBox.setIconPixmap(QPixmap(":/images/app.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -730,7 +761,9 @@ void MediaView::demoMessage() {
     if (msgBox.clickedButton() == buyButton) {
         MainWindow::instance()->showActivationView();
     } else {
+#ifdef APP_PHONON
         mediaObject->play();
+#endif
         demoTimer->start(600000);
     }
 
@@ -797,6 +830,7 @@ void MediaView::startDownloading() {
 }
 
 void MediaView::sliderMoved(int value) {
+#ifdef APP_PHONON
     if (currentVideoSize <= 0 || !downloadItem || !mediaObject->isSeekable())
         return;
 
@@ -820,11 +854,14 @@ void MediaView::sliderMoved(int value) {
         // qDebug() << "simple seek";
         mediaObject->seek(offsetToTime(offset));
     }
+#endif
 }
 
 qint64 MediaView::offsetToTime(qint64 offset) {
+#ifdef APP_PHONON
     const qint64 totalTime = mediaObject->totalTime();
     return ((offset * totalTime) / currentVideoSize);
+#endif
 }
 
 void MediaView::findVideoParts() {
@@ -901,9 +938,18 @@ void MediaView::shareViaTwitter() {
     Video* video = playlistModel->activeVideo();
     if (!video) return;
     QUrl url("https://twitter.com/intent/tweet");
-    url.addQueryItem("via", "minitubeapp");
-    url.addQueryItem("text", video->title());
-    url.addQueryItem("url", video->webpage().toString());
+#if QT_VERSION >= 0x050000
+    {
+        QUrl &u = url;
+        QUrlQuery url;
+#endif
+        url.addQueryItem("via", "minitubeapp");
+        url.addQueryItem("text", video->title());
+        url.addQueryItem("url", video->webpage().toString());
+#if QT_VERSION >= 0x050000
+        u.setQuery(url);
+    }
+#endif
     QDesktopServices::openUrl(url);
 }
 
@@ -911,8 +957,17 @@ void MediaView::shareViaFacebook() {
     Video* video = playlistModel->activeVideo();
     if (!video) return;
     QUrl url("https://www.facebook.com/sharer.php");
-    url.addQueryItem("t", video->title());
-    url.addQueryItem("u", video->webpage().toString());
+#if QT_VERSION >= 0x050000
+    {
+        QUrl &u = url;
+        QUrlQuery url;
+#endif
+        url.addQueryItem("t", video->title());
+        url.addQueryItem("u", video->webpage().toString());
+#if QT_VERSION >= 0x050000
+        u.setQuery(url);
+    }
+#endif
     QDesktopServices::openUrl(url);
 }
 
@@ -920,10 +975,19 @@ void MediaView::shareViaBuffer() {
     Video* video = playlistModel->activeVideo();
     if (!video) return;
     QUrl url("http://bufferapp.com/add");
-    url.addQueryItem("via", "minitubeapp");
-    url.addQueryItem("text", video->title());
-    url.addQueryItem("url", video->webpage().toString());
-    url.addQueryItem("picture", video->thumbnailUrl());
+#if QT_VERSION >= 0x050000
+    {
+        QUrl &u = url;
+        QUrlQuery url;
+#endif
+        url.addQueryItem("via", "minitubeapp");
+        url.addQueryItem("text", video->title());
+        url.addQueryItem("url", video->webpage().toString());
+        url.addQueryItem("picture", video->thumbnailUrl());
+#if QT_VERSION >= 0x050000
+        u.setQuery(url);
+    }
+#endif
     QDesktopServices::openUrl(url);
 }
 
@@ -931,12 +995,21 @@ void MediaView::shareViaEmail() {
     Video* video = playlistModel->activeVideo();
     if (!video) return;
     QUrl url("mailto:");
-    url.addQueryItem("subject", video->title());
-    QString body = video->title() + "\n" +
-            video->webpage().toString() + "\n\n" +
-            tr("Sent from %1").arg(Constants::NAME) + "\n" +
-            Constants::WEBSITE;
-    url.addQueryItem("body", body);
+#if QT_VERSION >= 0x050000
+    {
+        QUrl &u = url;
+        QUrlQuery url;
+#endif
+        url.addQueryItem("subject", video->title());
+        QString body = video->title() + "\n" +
+                video->webpage().toString() + "\n\n" +
+                tr("Sent from %1").arg(Constants::NAME) + "\n" +
+                Constants::WEBSITE;
+        url.addQueryItem("body", body);
+#if QT_VERSION >= 0x050000
+        u.setQuery(url);
+    }
+#endif
     QDesktopServices::openUrl(url);
 }
 
@@ -977,7 +1050,7 @@ void MediaView::updateSubscriptionAction(Video *video, bool subscribed) {
     subscribeAction->setStatusTip(subscribeTip);
 
     if (subscribed) {
-#ifdef Q_WS_X11
+#ifdef Q_OS_LINUX
         static QIcon tintedIcon;
         if (tintedIcon.isNull()) {
             QList<QSize> sizes;

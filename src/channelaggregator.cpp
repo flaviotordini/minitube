@@ -119,7 +119,7 @@ void ChannelAggregator::finish() {
     if (t != s[0]) return;
     */
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     if (newVideoCount > 0 && unwatchedCount > 0 && mac::canNotify()) {
         QString channelNames;
         const int total = updatedChannels.size();

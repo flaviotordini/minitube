@@ -42,6 +42,11 @@ void YTSingleVideoSource::loadVideos(int max, int skip) {
     if (skip == 1) s = "http://gdata.youtube.com/feeds/api/videos/" + videoId;
     else s = QString("http://gdata.youtube.com/feeds/api/videos/%1/related").arg(videoId);
     QUrl url(s);
+#if QT_VERSION >= 0x050000
+{
+    QUrl &u = url;
+    QUrlQuery url;
+#endif
     url.addQueryItem("v", "2");
 
     if (skip != 1) {
@@ -49,6 +54,10 @@ void YTSingleVideoSource::loadVideos(int max, int skip) {
         url.addQueryItem("start-index", QString::number(skip-1));
     }
 
+#if QT_VERSION >= 0x050000
+        u.setQuery(url);
+    }
+#endif
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parse(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));

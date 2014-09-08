@@ -26,7 +26,7 @@ $END_LICENSE */
 #endif
 
 namespace The {
-    NetworkAccess* http();
+NetworkAccess* http();
 }
 
 UpdateChecker::UpdateChecker() {
@@ -34,35 +34,47 @@ UpdateChecker::UpdateChecker() {
 }
 
 void UpdateChecker::checkForUpdate() {
-    QUrl updateUrl(QLatin1String(Constants::WEBSITE) + "-ws/release.xml");
-    updateUrl.addQueryItem("v", Constants::VERSION);
+    QUrl url(QLatin1String(Constants::WEBSITE) + "-ws/release.xml");
+
+#if QT_VERSION >= 0x050000
+    {
+        QUrl &u = url;
+        QUrlQuery url;
+#endif
+
+        url.addQueryItem("v", Constants::VERSION);
 
 #ifdef APP_MAC
-    updateUrl.addQueryItem("os", "mac");
+        url.addQueryItem("os", "mac");
 #endif
 #ifdef APP_WIN
-    updateUrl.addQueryItem("os", "win");
+        url.addQueryItem("os", "win");
 #endif
 #ifdef APP_ACTIVATION
-    QString t = "demo";
-    if (Activation::instance().isActivated()) t = "active";
-    updateUrl.addQueryItem("t", t);
+        QString t = "demo";
+        if (Activation::instance().isActivated()) t = "active";
+        url.addQueryItem("t", t);
 #endif
 #ifdef APP_MAC_STORE
-    updateUrl.addQueryItem("store", "mac");
+        url.addQueryItem("store", "mac");
 #endif
 
-    QObject *reply = The::http()->get(updateUrl);
+#if QT_VERSION >= 0x050000
+        u.setQuery(url);
+    }
+#endif
+
+    QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(requestFinished(QByteArray)));
 
 }
 
 void UpdateChecker::requestFinished(QByteArray data) {
-        UpdateCheckerStreamReader reader;
-        reader.read(data);
-        m_needUpdate = reader.needUpdate();
-        m_remoteVersion = reader.remoteVersion();
-        if (m_needUpdate && !m_remoteVersion.isEmpty()) emit newVersion(m_remoteVersion);
+    UpdateCheckerStreamReader reader;
+    reader.read(data);
+    m_needUpdate = reader.needUpdate();
+    m_remoteVersion = reader.remoteVersion();
+    if (m_needUpdate && !m_remoteVersion.isEmpty()) emit newVersion(m_remoteVersion);
 }
 
 QString UpdateChecker::remoteVersion() {

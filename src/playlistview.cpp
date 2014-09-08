@@ -136,7 +136,7 @@ bool PlaylistView::isShowMoreItem(const QModelIndex &index) {
 
 void PlaylistView::paintEvent(QPaintEvent *event) {
     QListView::paintEvent(event);
-#ifndef Q_WS_X11
+#ifndef Q_OS_LINUX
     PainterUtils::topShadow(viewport());
 #endif
 }

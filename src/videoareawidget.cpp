@@ -24,11 +24,11 @@ $END_LICENSE */
 #ifdef APP_EXTRA
 #include "extra.h"
 #endif
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 #include "macutils.h"
 #endif
 
-VideoAreaWidget::VideoAreaWidget(QWidget *parent) : QWidget(parent) {
+VideoAreaWidget::VideoAreaWidget(QWidget *parent) : QWidget(parent), videoWidget(0) {
     QBoxLayout *vLayout = new QVBoxLayout(this);
     vLayout->setMargin(0);
     vLayout->setSpacing(0);
@@ -73,7 +73,8 @@ void VideoAreaWidget::setLoadingWidget(LoadingWidget *loadingWidget) {
 }
 
 void VideoAreaWidget::showVideo() {
-    stackedLayout->setCurrentWidget(videoWidget);
+    if (videoWidget)
+        stackedLayout->setCurrentWidget(videoWidget);
     loadingWidget->clear();
 }
 
@@ -140,7 +141,7 @@ void VideoAreaWidget::mouseMoveEvent(QMouseEvent *event) {
             !MainWindow::instance()->isReallyFullScreen();
     if (event->buttons() & Qt::LeftButton && isNormalWindow) {
         QPoint p = event->globalPos() - dragPosition;
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
         mac::moveWindowTo(window()->winId(), p.x(), p.y());
 #else
         window()->move(p);

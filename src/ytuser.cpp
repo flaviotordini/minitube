@@ -83,7 +83,16 @@ void YTUser::maybeLoadfromAPI() {
     loading = true;
 
     QUrl url("http://gdata.youtube.com/feeds/api/users/" + userId);
-    url.addQueryItem("v", "2");
+#if QT_VERSION >= 0x050000
+    {
+        QUrl &u = url;
+        QUrlQuery url;
+#endif
+        url.addQueryItem("v", "2");
+#if QT_VERSION >= 0x050000
+        u.setQuery(url);
+    }
+#endif
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResponse(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
@@ -122,7 +131,7 @@ void YTUser::loadThumbnail() {
     if (thumbnailUrl.isEmpty()) return;
     loadingThumbnail = true;
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     thumbnailUrl.replace(QLatin1String("https://"), QLatin1String("http://"));
 #endif
 
@@ -133,8 +142,13 @@ void YTUser::loadThumbnail() {
 }
 
 const QString & YTUser::getThumbnailDir() {
-    static const QString thumbDir = QDesktopServices::storageLocation(
-                QDesktopServices::DataLocation) + "/channels/";
+    static const QString thumbDir =
+        #if QT_VERSION >= 0x050000
+            QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+#else
+            QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+#endif
+    + "/channels/";
     return thumbDir;
 }
 

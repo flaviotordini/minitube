@@ -148,8 +148,11 @@ namespace The {
             maybeSetSystemProxy();
             nam = new QNetworkAccessManager();
             QNetworkDiskCache *cache = new DiskCache();
-            QString cacheLocation = QDesktopServices::storageLocation(
-                        QDesktopServices::DataLocation);
+#if QT_VERSION >= 0x050000
+            QString cacheLocation = QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/qt5";
+#else
+            QString cacheLocation = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+#endif
             cache->setCacheDirectory(cacheLocation);
             nam->setCache(cache);
         }

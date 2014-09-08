@@ -41,6 +41,11 @@ void YTStandardFeed::loadVideos(int max, int skip) {
     if (!category.isEmpty()) s += "_" + category;
 
     QUrl url(s);
+#if QT_VERSION >= 0x050000
+{
+    QUrl &u = url;
+    QUrlQuery url;
+#endif
     url.addQueryItem("v", "2");
 
     if (feedId != "most_shared" && feedId != "on_the_web") {
@@ -52,6 +57,10 @@ void YTStandardFeed::loadVideos(int max, int skip) {
     url.addQueryItem("max-results", QString::number(max));
     url.addQueryItem("start-index", QString::number(skip));
 
+#if QT_VERSION >= 0x050000
+        u.setQuery(url);
+    }
+#endif
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parse(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));

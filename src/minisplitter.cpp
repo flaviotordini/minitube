@@ -29,9 +29,9 @@
 
 #include "minisplitter.h"
 
-#include <QtGui/QPaintEvent>
-#include <QtGui/QPainter>
-#include <QtGui/QSplitterHandle>
+#include <QPaintEvent>
+#include <QPainter>
+#include <QSplitterHandle>
 
 class MiniSplitterHandle : public QSplitterHandle
 {

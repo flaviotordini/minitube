@@ -22,19 +22,22 @@ $END_LICENSE */
 #include "constants.h"
 
 static QList<QString> paths;
-#ifdef Q_WS_X11
+#ifdef Q_OS_LINUX
 static QString userName;
 #endif
 
 Temporary::Temporary() { }
 
 QString Temporary::filename() {
-
+#if QT_VERSION >= 0x050000
+    static const QString tempDir = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
+#else
     static const QString tempDir = QDesktopServices::storageLocation(QDesktopServices::TempLocation);
+#endif
 
     QString tempFile = tempDir + "/" + Constants::UNIX_NAME + "-" + QString::number(qrand());
 
-#ifdef Q_WS_X11
+#ifdef Q_OS_LINUX
     if (userName.isNull()) {
         userName = QString(getenv("USERNAME"));
         if (userName.isEmpty())

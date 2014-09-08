@@ -161,17 +161,17 @@ void DownloadManager::gotStreamUrl(QUrl url) {
 void DownloadManager::itemFinished() {
     if (activeItems() == 0) emit finished();
 #ifdef APP_EXTRA
-        DownloadItem *item = static_cast<DownloadItem*>(sender());
-        if (!item) {
-            qDebug() << "Cannot get item in" << __FUNCTION__;
-            return;
-        }
-        Video *video = item->getVideo();
-        if (!video) return;
-        QString stats = tr("%1 downloaded in %2").arg(
-                    DownloadItem::formattedFilesize(item->bytesTotal()),
-                    DownloadItem::formattedTime(item->totalTime(), false));
-        Extra::notify(tr("Download finished"), video->title(), stats);
+    DownloadItem *item = static_cast<DownloadItem*>(sender());
+    if (!item) {
+        qDebug() << "Cannot get item in" << __FUNCTION__;
+        return;
+    }
+    Video *video = item->getVideo();
+    if (!video) return;
+    QString stats = tr("%1 downloaded in %2").arg(
+                DownloadItem::formattedFilesize(item->bytesTotal()),
+                DownloadItem::formattedTime(item->totalTime(), false));
+    Extra::notify(tr("Download finished"), video->title(), stats);
 #endif
 }
 
@@ -182,16 +182,29 @@ void DownloadManager::updateStatusMessage() {
 
 QString DownloadManager::defaultDownloadFolder() {
     // download in the Movies system folder
+#if QT_VERSION >= 0x050000
+    QString path = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation);
+#else
     QString path = QDesktopServices::storageLocation(QDesktopServices::MoviesLocation);
+#endif
+
     QDir moviesDir(path);
     if (!moviesDir.exists()) {
         // fallback to Desktop
+#if QT_VERSION >= 0x050000
+        path = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+#else
         path = QDesktopServices::storageLocation(QDesktopServices::DesktopLocation);
+#endif
 
         QDir desktopDir(path);
         if (!desktopDir.exists()) {
             // fallback to Home
+#if QT_VERSION >= 0x050000
+            path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+#else
             path = QDesktopServices::storageLocation(QDesktopServices::HomeLocation);
+#endif
         }
     }
     return path;

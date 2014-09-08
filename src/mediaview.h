@@ -26,9 +26,11 @@ $END_LICENSE */
 #include <QtWidgets>
 #endif
 #include <QtNetwork>
+#ifdef APP_PHONON
 #include <phonon/mediaobject.h>
 #include <phonon/videowidget.h>
 #include <phonon/seekslider.h>
+#endif
 #include "view.h"
 
 class Video;
@@ -42,7 +44,7 @@ class SidebarWidget;
 class VideoSource;
 
 namespace The {
-    QHash<QString, QAction*>* globalActions();
+QHash<QString, QAction*>* globalActions();
 }
 
 class MediaView : public QWidget, public View {
@@ -56,7 +58,9 @@ public:
     void appear();
     void disappear();
 
+#ifdef APP_PHONON
     void setMediaObject(Phonon::MediaObject *mediaObject);
+#endif
     const QList<VideoSource*> & getHistory() { return history; }
     int getHistoryIndex();
     PlaylistModel* getPlaylistModel() { return playlistModel; }
@@ -106,7 +110,9 @@ private slots:
     void gotStreamUrl(QUrl streamUrl);
     void handleError(QString message);
     // phonon
+#ifdef APP_PHONON
     void stateChanged(Phonon::State newState, Phonon::State oldState);
+#endif
     void aboutToFinish();
 #ifdef APP_ACTIVATION
     void demoMessage();
@@ -135,9 +141,10 @@ private:
     VideoAreaWidget *videoAreaWidget;
     LoadingWidget *loadingWidget;
 
-    // phonon
+#ifdef APP_PHONON
     Phonon::MediaObject *mediaObject;
     Phonon::VideoWidget *videoWidget;
+#endif
 
     bool stopped;
     QTimer *errorTimer;

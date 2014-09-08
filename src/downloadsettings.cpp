@@ -61,12 +61,18 @@ void DownloadSettings::changeFolder() {
     QFileDialog* dialog = new QFileDialog(this);
     dialog->setFileMode(QFileDialog::Directory);
     dialog->setOptions(QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::ReadOnly);
-    dialog->setDirectory(QDesktopServices::storageLocation(QDesktopServices::HomeLocation));
+    QString path;
+#if QT_VERSION >= 0x050000
+    path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+#else
+    path = QDesktopServices::storageLocation(QDesktopServices::HomeLocation);
+#endif
+    dialog->setDirectory(path);
     dialog->open(this, SLOT(folderChosen(const QString &)));
 #else
     QString folder = QFileDialog::getExistingDirectory(window(), tr("Choose the download location"),
-                                                    QDesktopServices::storageLocation(QDesktopServices::HomeLocation),
-                                                    QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::ReadOnly);
+                                                       QDesktopServices::storageLocation(QDesktopServices::HomeLocation),
+                                                       QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::ReadOnly);
     folderChosen(folder);
 #endif
 }
@@ -85,11 +91,15 @@ void DownloadSettings::folderChosen(const QString &dir) {
 
 void DownloadSettings::updateMessage() {
     QString path = DownloadManager::instance()->currentDownloadFolder();
-    QString home = QDesktopServices::storageLocation(QDesktopServices::HomeLocation) + "/";
+#if QT_VERSION >= 0x050000
+    QString home = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+#else
+    QString home = QDesktopServices::storageLocation(QDesktopServices::HomeLocation);
+#endif
     QString displayPath = path;
-    displayPath = displayPath.remove(home);
+    displayPath = displayPath.remove(home + "/");
     message->setText(
-            tr("Downloading to: %1")
-            .arg("<a href='file://%1' style='text-decoration:none; color:palette(text); font-weight:bold'>%2</a>")
-            .arg(path, displayPath));
+                tr("Downloading to: %1")
+                .arg("<a href='file://%1' style='text-decoration:none; color:palette(text); font-weight:bold'>%2</a>")
+                .arg(path, displayPath));
 }

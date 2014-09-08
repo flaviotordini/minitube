@@ -30,13 +30,13 @@ $END_LICENSE */
 #ifdef APP_EXTRA
 #include "extra.h"
 #endif
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 #include "mac_startup.h"
 #endif
 
 int main(int argc, char **argv) {
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     mac::MacMain();
     // https://bugreports.qt-project.org/browse/QTBUG-32789
     QFont::insertSubstitution(".Lucida Grande UI", "Lucida Grande");
@@ -92,7 +92,9 @@ int main(int argc, char **argv) {
     QTranslator translator;
     translator.load(QLocale::system(), QString(), QString(), localeDir);
     app.installTranslator(&translator);
+#if QT_VERSION < 0x050000
     QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
+#endif
 
     MainWindow mainWin;
     mainWin.show();

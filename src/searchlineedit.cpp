@@ -41,11 +41,11 @@
 
 #include "searchlineedit.h"
 
-#include <QtGui/QPainter>
-#include <QtGui/QMouseEvent>
-#include <QtGui/QMenu>
-#include <QtGui/QStyle>
-#include <QtGui/QStyleOptionFrameV2>
+#include <QPainter>
+#include <QMouseEvent>
+#include <QMenu>
+#include <QStyle>
+#include <QStyleOptionFrameV2>
 
 #include "autocomplete.h"
 

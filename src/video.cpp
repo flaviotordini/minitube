@@ -29,7 +29,7 @@ NetworkAccess* http();
 }
 
 namespace {
-    static const QString jsNameChars = "a-zA-Z0-9\\$_";
+static const QString jsNameChars = "a-zA-Z0-9\\$_";
 }
 
 Video::Video() : m_duration(0),
@@ -70,7 +70,7 @@ void Video::setWebpage(QUrl webpage) {
     // QRegExp re("^((?:http://)?(?:\\w+\\.)?youtube\\.com/(?:(?:v/)|(?:(?:watch(?:\\.php)?)?\\?(?:.+&)?v=)))?([0-9A-Za-z_-]+)(?(1).+)?$");
     QRegExp re("^https?://www\\.youtube\\.com/watch\\?v=([0-9A-Za-z_-]+).*");
     bool match = re.exactMatch(m_webpage.toString());
-    if (!match || re.numCaptures() < 1) {
+    if (!match) {
         qWarning() << QString("Cannot get video id for %1").arg(m_webpage.toString());
         // emit errorStreamUrl(QString("Cannot get video id for %1").arg(m_webpage.toString()));
         // loadingStreamUrl = false;
@@ -115,18 +115,29 @@ void Video::loadStreamUrl() {
 void  Video::getVideoInfo() {
     static const QStringList elTypes = QStringList() << "&el=embedded" << "&el=detailpage" << "&el=vevo" << "";
 
-    QUrl videoInfoUrl;
+    QUrl url;
 
     if (elIndex == elTypes.size()) {
         // qDebug() << "Trying special embedded el param";
-        videoInfoUrl = QUrl("http://www.youtube.com/get_video_info");
-        videoInfoUrl.addQueryItem("video_id", videoId);
-        videoInfoUrl.addQueryItem("el", "embedded");
-        videoInfoUrl.addQueryItem("gl", "US");
-        videoInfoUrl.addQueryItem("hl", "en");
-        videoInfoUrl.addQueryItem("eurl", "https://youtube.googleapis.com/v/" + videoId);
-        videoInfoUrl.addQueryItem("asv", "3");
-        videoInfoUrl.addQueryItem("sts", "1588");
+        url = QUrl("http://www.youtube.com/get_video_info");
+
+#if QT_VERSION >= 0x050000
+        {
+            QUrl &u = url;
+            QUrlQuery url;
+#endif
+            url.addQueryItem("video_id", videoId);
+            url.addQueryItem("el", "embedded");
+            url.addQueryItem("gl", "US");
+            url.addQueryItem("hl", "en");
+            url.addQueryItem("eurl", "https://youtube.googleapis.com/v/" + videoId);
+            url.addQueryItem("asv", "3");
+            url.addQueryItem("sts", "1588");
+#if QT_VERSION >= 0x050000
+            u.setQuery(url);
+        }
+#endif
+
     } else if (elIndex > elTypes.size() - 1) {
         qWarning() << "Cannot get video info";
         loadingStreamUrl = false;
@@ -134,12 +145,12 @@ void  Video::getVideoInfo() {
         return;
     } else {
         // qDebug() << "Trying el param:" << elTypes.at(elIndex) << elIndex;
-        videoInfoUrl = QUrl(QString(
-                                "http://www.youtube.com/get_video_info?video_id=%1%2&ps=default&eurl=&gl=US&hl=en"
-                                ).arg(videoId, elTypes.at(elIndex)));
+        url = QUrl(QString(
+                       "http://www.youtube.com/get_video_info?video_id=%1%2&ps=default&eurl=&gl=US&hl=en"
+                       ).arg(videoId, elTypes.at(elIndex)));
     }
 
-    QObject *reply = The::http()->get(videoInfoUrl);
+    QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(gotVideoInfo(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
 
@@ -154,7 +165,7 @@ void  Video::gotVideoInfo(QByteArray data) {
     QRegExp re = QRegExp("^.*&token=([^&]+).*$");
     bool match = re.exactMatch(videoInfo);
     // handle regexp failure
-    if (!match || re.numCaptures() < 1) {
+    if (!match) {
         // qDebug() << "Cannot get token. Trying next el param";
         // Don't panic! We're gonna try another magic "el" param
         elIndex++;
@@ -164,7 +175,7 @@ void  Video::gotVideoInfo(QByteArray data) {
 
     QString videoToken = re.cap(1);
     while (videoToken.contains('%'))
-        videoToken = QByteArray::fromPercentEncoding(videoToken.toAscii());
+        videoToken = QByteArray::fromPercentEncoding(videoToken.toLatin1());
     // qDebug() << "videoToken" << videoToken;
     this->videoToken = videoToken;
 
@@ -172,7 +183,7 @@ void  Video::gotVideoInfo(QByteArray data) {
     re = QRegExp("^.*&url_encoded_fmt_stream_map=([^&]+).*$");
     match = re.exactMatch(videoInfo);
     // handle regexp failure
-    if (!match || re.numCaptures() < 1) {
+    if (!match) {
         // qDebug() << "Cannot get urlMap. Trying next el param";
         // Don't panic! We're gonna try another magic "el" param
         elIndex++;
@@ -231,10 +242,20 @@ void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
                 } else {
                     // qDebug() << "Loading webpage";
                     QUrl url("http://www.youtube.com/watch");
-                    url.addQueryItem("v", videoId);
-                    url.addQueryItem("gl", "US");
-                    url.addQueryItem("hl", "en");
-                    url.addQueryItem("has_verified", "1");
+
+#if QT_VERSION >= 0x050000
+                    {
+                        QUrl &u = url;
+                        QUrlQuery url;
+#endif
+                        url.addQueryItem("v", videoId);
+                        url.addQueryItem("gl", "US");
+                        url.addQueryItem("hl", "en");
+                        url.addQueryItem("has_verified", "1");
+#if QT_VERSION >= 0x050000
+                        u.setQuery(url);
+                    }
+#endif
                     QObject *reply = The::http()->get(url);
                     connect(reply, SIGNAL(data(QByteArray)), SLOT(scrapeWebPage(QByteArray)));
                     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
@@ -320,7 +341,7 @@ void Video::scrapeWebPage(QByteArray data) {
     QRegExp re(".*\"url_encoded_fmt_stream_map\":\\s+\"([^\"]+)\".*");
     bool match = re.exactMatch(html);
     // on regexp failure, stop and report error
-    if (!match || re.numCaptures() < 1) {
+    if (!match) {
         qWarning() << "Error parsing video page";
         // emit errorStreamUrl("Error parsing video page");
         // loadingStreamUrl = false;

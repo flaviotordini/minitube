@@ -73,6 +73,7 @@ ChannelModel::ItemTypes ChannelModel::typeForIndex(const QModelIndex &index) con
 }
 
 void ChannelModel::setQuery(const QString &query, const QSqlDatabase &db) {
+    beginResetModel();
     channels.clear();
     sqlError = QSqlError();
 
@@ -90,8 +91,7 @@ void ChannelModel::setQuery(const QString &query, const QSqlDatabase &db) {
         connect(user, SIGNAL(destroyed(QObject *)), SLOT(removeChannel(QObject *)), Qt::UniqueConnection);
         channels << user;
     }
-
-    reset();
+    endResetModel();
 }
 
 QSqlError ChannelModel::lastError() const {

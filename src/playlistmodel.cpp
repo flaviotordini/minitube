@@ -164,13 +164,13 @@ Video* PlaylistModel::activeVideo() const {
 }
 
 void PlaylistModel::setVideoSource(VideoSource *videoSource) {
+    beginResetModel();
     while (!videos.isEmpty())
         delete videos.takeFirst();
-
     m_activeVideo = 0;
     m_activeRow = -1;
     skip = 1;
-    reset();
+    endResetModel();
 
     this->videoSource = videoSource;
     connect(videoSource, SIGNAL(gotVideos(QList<Video*>)),
@@ -205,14 +205,15 @@ void PlaylistModel::searchNeeded() {
 }
 
 void PlaylistModel::abortSearch() {
+    beginResetModel();
     while (!videos.isEmpty())
         delete videos.takeFirst();
-    reset();
     // if (videoSource) videoSource->abort();
     searching = false;
     m_activeRow = -1;
     m_activeVideo = 0;
     skip = 1;
+    endResetModel();
 }
 
 void PlaylistModel::searchFinished(int total) {

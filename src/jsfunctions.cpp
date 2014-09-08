@@ -64,7 +64,11 @@ const QLatin1String & JsFunctions::jsFilename() {
 
 const QString & JsFunctions::jsPath() {
     static const QString path(
+            #if QT_VERSION >= 0x050000
+                QStandardPaths::writableLocation(QStandardPaths::DataLocation)
+            #else
                 QDesktopServices::storageLocation(QDesktopServices::DataLocation)
+            #endif
                 + "/" + jsFilename());
     return path;
 }
