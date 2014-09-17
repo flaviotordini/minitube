@@ -63,12 +63,12 @@
         <translation>&amp;Đóng lại</translation>
     </message>
     <message>
-        <location filename="src/aboutview.h" line="37"/>
+        <location filename="src/aboutview.h" line="40"/>
         <source>About</source>
         <translation>Dịch bởi Phan Anh</translation>
     </message>
     <message>
-        <location filename="src/aboutview.h" line="39"/>
+        <location filename="src/aboutview.h" line="42"/>
         <source>What you always wanted to know about %1 and never dared to ask</source>
         <translation>Những gì bạn luôn luôn muốn biết về %1 và ngại nêu ra thắc mắc</translation>
     </message>
@@ -105,8 +105,9 @@
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="53"/>
-        <source>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</source>
-        <translation>Phiên bản đầy đủ cho phép bạn tải video dài hơn %1 phút và xem video mà không bị gián đoạn.</translation>
+        <source>The full version allows you to watch videos without interruptions.</source>
+        <oldsource>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</oldsource>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="55"/>
@@ -163,62 +164,72 @@
 <context>
     <name>ChannelView</name>
     <message>
-        <location filename="src/channelview.cpp" line="99"/>
+        <location filename="src/channelview.cpp" line="151"/>
         <source>Mark all as watched</source>
         <translation>Đánh dấu là đã xem</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="107"/>
+        <location filename="src/channelview.cpp" line="159"/>
         <source>Show Updated</source>
         <translation>Hiển thị Cập Nhật</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="119"/>
+        <location filename="src/channelview.cpp" line="103"/>
         <source>Name</source>
         <translation>Tên</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="126"/>
+        <location filename="src/channelview.cpp" line="110"/>
         <source>Last Updated</source>
         <translation>Lần cập nhật cuối</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="133"/>
+        <location filename="src/channelview.cpp" line="117"/>
         <source>Last Added</source>
         <translation>Được thêm vào mới đây</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="140"/>
+        <location filename="src/channelview.cpp" line="124"/>
         <source>Last Watched</source>
         <translation>Mới vừa được xem</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="147"/>
+        <location filename="src/channelview.cpp" line="131"/>
         <source>Most Watched</source>
         <translation>Được xem nhiều nhất</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="155"/>
+        <location filename="src/channelview.cpp" line="139"/>
         <source>Sort by</source>
         <translation>Sắp xếp theo</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="214"/>
+        <location filename="src/channelview.cpp" line="221"/>
         <source>All Videos</source>
         <translation>Tất cả các video</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="218"/>
+        <location filename="src/channelview.cpp" line="225"/>
         <source>Unwatched Videos</source>
         <translation>Các video chưa xem</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="230"/>
+        <location filename="src/channelview.cpp" line="243"/>
+        <source>Mark as Watched</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="256"/>
+        <source>Unsubscribe</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/channelview.cpp" line="269"/>
         <source>There are no updated subscriptions at this time.</source>
         <translation>Hiện không có phần theo dõi đăng ký nào được cập nhật vào thời điểm này.</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="232"/>
+        <location filename="src/channelview.cpp" line="271"/>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
         <translation>Bạn không có phần đăng ký theo dõi nào. Sử dụng biểu tượng ngôi sao để đăng ký theo dõi một kênh nào đó.</translation>
     </message>
@@ -325,22 +336,22 @@
         <translation>Thay đổi vị trí...</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="67"/>
+        <location filename="src/downloadsettings.cpp" line="73"/>
         <source>Choose the download location</source>
         <translation>Chọn vị trí tải về</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="79"/>
+        <location filename="src/downloadsettings.cpp" line="85"/>
         <source>Download location changed.</source>
         <translation>Vị trí tải về đã thay đổi.</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="81"/>
+        <location filename="src/downloadsettings.cpp" line="87"/>
         <source>Current downloads will still go in the previous location.</source>
         <translation>Phần tải về hiện tại sẽ vẫn được lưu vào vị trí trước đó.</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="92"/>
+        <location filename="src/downloadsettings.cpp" line="102"/>
         <source>Downloading to: %1</source>
         <translation>Đang tải về: %1</translation>
     </message>
@@ -349,7 +360,7 @@
     <name>DownloadView</name>
     <message>
         <location filename="src/downloadview.cpp" line="38"/>
-        <location filename="src/downloadview.h" line="42"/>
+        <location filename="src/downloadview.h" line="45"/>
         <source>Downloads</source>
         <translation>Tải về</translation>
     </message>
@@ -458,7 +469,7 @@
         <translation>Đăng ký theo dõi kênh</translation>
     </message>
     <message>
-        <location filename="src/homeview.h" line="42"/>
+        <location filename="src/homeview.h" line="45"/>
         <source>Make yourself comfortable</source>
         <translation>Tạo sự thoải mái cho chính bạn</translation>
     </message>
@@ -466,7 +477,7 @@
 <context>
     <name>LoadingWidget</name>
     <message>
-        <location filename="src/loadingwidget.cpp" line="113"/>
+        <location filename="src/loadingwidget.cpp" line="114"/>
         <source>Error</source>
         <translation>Lỗi</translation>
     </message>
@@ -474,436 +485,446 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="src/mainwindow.cpp" line="261"/>
+        <location filename="src/mainwindow.cpp" line="267"/>
         <source>&amp;Stop</source>
         <translation>&amp;Dừng lại</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="262"/>
+        <location filename="src/mainwindow.cpp" line="268"/>
         <source>Stop playback and go back to the search view</source>
         <translation>Dừng phát lại và đi đến phần hiển thị tìm kiếm</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="277"/>
+        <location filename="src/mainwindow.cpp" line="283"/>
         <source>S&amp;kip</source>
         <translation>B&amp;ỏ qua</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="278"/>
+        <location filename="src/mainwindow.cpp" line="284"/>
         <source>Skip to the next video</source>
         <translation>Bỏ qua và truy cập video tiếp theo</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="284"/>
-        <location filename="src/mainwindow.cpp" line="1034"/>
+        <location filename="src/mainwindow.cpp" line="290"/>
+        <location filename="src/mainwindow.cpp" line="1060"/>
         <source>&amp;Pause</source>
         <translation>&amp;Tạm dừng</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="285"/>
-        <location filename="src/mainwindow.cpp" line="1035"/>
+        <location filename="src/mainwindow.cpp" line="291"/>
+        <location filename="src/mainwindow.cpp" line="1061"/>
         <source>Pause playback</source>
         <translation>Tạm dừng phát lại</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="291"/>
+        <location filename="src/mainwindow.cpp" line="297"/>
         <source>&amp;Full Screen</source>
         <translation>&amp;Toàn màn hình</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="292"/>
+        <location filename="src/mainwindow.cpp" line="298"/>
         <source>Go full screen</source>
         <translation>Chuyển sang toàn màn hình</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="306"/>
+        <location filename="src/mainwindow.cpp" line="312"/>
         <source>Hide the playlist and the toolbar</source>
         <translation>Ân danh sách phát và thanh công cụ</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="319"/>
+        <location filename="src/mainwindow.cpp" line="325"/>
         <source>Go to the YouTube video page and pause playback</source>
         <translation>Truy cập trang video của YouTube và dừng chế độ phát lại</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="326"/>
+        <location filename="src/mainwindow.cpp" line="332"/>
         <source>Copy the current video YouTube link to the clipboard</source>
         <translation>Sao chép đường dẫn đến video hiện tại trên YouTube vào bộ nhớ ảo</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="333"/>
+        <location filename="src/mainwindow.cpp" line="339"/>
         <source>Copy the current video stream URL to the clipboard</source>
         <translation>Sao chép đường dẫn luồng video hiện tại vào bộ nhớ ảo</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="340"/>
+        <location filename="src/mainwindow.cpp" line="346"/>
         <source>Find other video parts hopefully in the right order</source>
         <translation>Tìm các phần video khác theo đúng trật tự</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="346"/>
+        <location filename="src/mainwindow.cpp" line="352"/>
         <source>&amp;Remove</source>
         <translation>&amp;Loại bỏ</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="347"/>
+        <location filename="src/mainwindow.cpp" line="353"/>
         <source>Remove the selected videos from the playlist</source>
         <translation>Loại bỏ các video được chọn khỏi danh sách phát</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="353"/>
+        <location filename="src/mainwindow.cpp" line="359"/>
         <source>Move &amp;Up</source>
         <translation>Chuyển &amp;lên</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="354"/>
+        <location filename="src/mainwindow.cpp" line="360"/>
         <source>Move up the selected videos in the playlist</source>
         <translation>Di chuyển các video được chọn trong danh sách phát lên trên</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="360"/>
+        <location filename="src/mainwindow.cpp" line="366"/>
         <source>Move &amp;Down</source>
         <translation>Chuyển &amp;xuống</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="361"/>
+        <location filename="src/mainwindow.cpp" line="367"/>
         <source>Move down the selected videos in the playlist</source>
         <translation>Di chuyển các video được chọn trong danh sách phát xuống dưới</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="372"/>
+        <location filename="src/mainwindow.cpp" line="378"/>
         <source>Clear the search history. Cannot be undone.</source>
         <translation>Xóa phần lịch sử tìm kiếm. Phần này không thể hoàn tác.</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="377"/>
+        <location filename="src/mainwindow.cpp" line="383"/>
         <source>&amp;Quit</source>
         <translation>&amp;Thoát</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="380"/>
+        <location filename="src/mainwindow.cpp" line="386"/>
         <source>Bye</source>
         <translation>Tạm biệt bạn nhé</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="384"/>
+        <location filename="src/mainwindow.cpp" line="390"/>
         <source>&amp;Website</source>
         <translation>&amp;Website</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="386"/>
+        <location filename="src/mainwindow.cpp" line="392"/>
         <source>%1 on the Web</source>
         <translation>%1 trên Web</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="392"/>
+        <location filename="src/mainwindow.cpp" line="398"/>
         <source>Please support the continued development of %1</source>
         <translation>Xin vui lòng hỗ trợ việc phát triển của %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="397"/>
+        <location filename="src/mainwindow.cpp" line="403"/>
         <source>&amp;About</source>
         <translation>&amp;Dịch bởi Phan Anh</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="399"/>
+        <location filename="src/mainwindow.cpp" line="405"/>
         <source>Info about %1</source>
         <translation>Xem thông tin về %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="407"/>
+        <location filename="src/mainwindow.cpp" line="413"/>
         <source>Search</source>
         <translation>Tìm kiếm</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="426"/>
+        <location filename="src/mainwindow.cpp" line="432"/>
         <source>Mute volume</source>
         <translation>Tắt tiếng</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="460"/>
-        <location filename="src/mainwindow.cpp" line="1431"/>
+        <location filename="src/mainwindow.cpp" line="466"/>
+        <location filename="src/mainwindow.cpp" line="1490"/>
         <source>&amp;Downloads</source>
         <translation>&amp;Tải về</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="461"/>
+        <location filename="src/mainwindow.cpp" line="467"/>
         <source>Show details about video downloads</source>
         <translation>Hiển thị thông tin chi tiết về video được tải về</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="469"/>
+        <location filename="src/mainwindow.cpp" line="475"/>
         <source>&amp;Download</source>
         <translation>&amp;Tải về</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="470"/>
+        <location filename="src/mainwindow.cpp" line="476"/>
         <source>Download the current video</source>
         <translation>Tải về video hiện tại</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="486"/>
+        <source>Take &amp;Snapshot</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="493"/>
         <source>&amp;Subscribe to Channel</source>
         <translation>&amp; Đăng ký theo dõi kênh</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="494"/>
+        <location filename="src/mainwindow.cpp" line="501"/>
         <source>Share the current video using %1</source>
         <translation>Chia sẻ video hiện tại bằng cách sử dụng %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="514"/>
+        <location filename="src/mainwindow.cpp" line="521"/>
         <source>&amp;Email</source>
         <translation>&amp;Email:</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="515"/>
+        <location filename="src/mainwindow.cpp" line="522"/>
         <source>Email</source>
         <translation>Email</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="520"/>
+        <location filename="src/mainwindow.cpp" line="527"/>
         <source>&amp;Close</source>
         <translation>&amp;Đóng lại</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="530"/>
+        <location filename="src/mainwindow.cpp" line="537"/>
         <source>&amp;Float on Top</source>
         <translation>&amp;Nổi lên trên cùng</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="535"/>
+        <location filename="src/mainwindow.cpp" line="542"/>
         <source>&amp;Stop After This Video</source>
         <translation>&amp;Dừng phát sau video này</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="542"/>
+        <location filename="src/mainwindow.cpp" line="549"/>
         <source>&amp;Report an Issue...</source>
         <translation>&amp;Báo cáo một vấn đề...</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="546"/>
+        <location filename="src/mainwindow.cpp" line="553"/>
         <source>&amp;Refine Search...</source>
         <translation>&amp;Lọc tìm kiếm...</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="558"/>
+        <location filename="src/mainwindow.cpp" line="565"/>
         <source>More...</source>
         <translation>Nhiều hơn...</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="561"/>
+        <location filename="src/mainwindow.cpp" line="568"/>
         <source>&amp;Related Videos</source>
         <translation>&amp;Video có liên quan</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="563"/>
+        <location filename="src/mainwindow.cpp" line="570"/>
         <source>Watch videos related to the current one</source>
         <translation>Xem video liên quan đến video này</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="569"/>
+        <location filename="src/mainwindow.cpp" line="576"/>
         <source>Open in &amp;Browser...</source>
         <translation>Mở trong &amp;trình duyệt...</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="591"/>
+        <location filename="src/mainwindow.cpp" line="583"/>
+        <source>&amp;Love %1? Rate it!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="605"/>
         <source>&amp;Application</source>
         <translation>&amp;Ứng dụng</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="575"/>
+        <location filename="src/mainwindow.cpp" line="589"/>
         <source>Buy %1...</source>
         <translation>Mua %1...</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="605"/>
+        <location filename="src/mainwindow.cpp" line="619"/>
         <source>&amp;Playback</source>
         <translation>&amp;Chế độ phát lại</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="619"/>
+        <location filename="src/mainwindow.cpp" line="633"/>
         <source>&amp;Playlist</source>
         <translation>&amp;Danh sách phát</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="628"/>
+        <location filename="src/mainwindow.cpp" line="642"/>
         <source>&amp;Video</source>
         <translation>&amp;Video</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="642"/>
+        <location filename="src/mainwindow.cpp" line="658"/>
         <source>&amp;View</source>
         <translation>&amp;Chế độ hiển thị</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="649"/>
+        <location filename="src/mainwindow.cpp" line="665"/>
         <source>&amp;Share</source>
         <translation>&amp;Chia sẻ</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="663"/>
+        <location filename="src/mainwindow.cpp" line="679"/>
         <source>&amp;Help</source>
         <translation>&amp;Giúp đỡ</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="738"/>
+        <location filename="src/mainwindow.cpp" line="760"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
         <translation>Click vào %1 để tăng âm lượng, %2 để giảm âm lượng xuống</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="930"/>
-        <location filename="src/mainwindow.cpp" line="936"/>
+        <location filename="src/mainwindow.cpp" line="955"/>
+        <location filename="src/mainwindow.cpp" line="961"/>
         <source>Opening %1</source>
         <translation>Đang mở %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="981"/>
+        <location filename="src/mainwindow.cpp" line="1006"/>
         <source>Do you want to exit %1 with a download in progress?</source>
         <translation>Bạn có muốn thoát khỏi %1 trong khi vẫn còn một phần tải về còn đang dang dở hay không?</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="982"/>
+        <location filename="src/mainwindow.cpp" line="1007"/>
         <source>If you close %1 now, this download will be cancelled.</source>
         <translation>Nếu bạn đóng lại %1 ngay lúc này, thì các phần tải về còn đang dang dở sẽ bị xóa mất.</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="987"/>
+        <location filename="src/mainwindow.cpp" line="1012"/>
         <source>Close and cancel download</source>
         <translation>Đóng lại và huỷ bỏ việc tải về</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="988"/>
+        <location filename="src/mainwindow.cpp" line="1013"/>
         <source>Wait for download to finish</source>
         <translation>Chờ cho đến khi phần tải về được hoàn tất</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1147"/>
+        <location filename="src/mainwindow.cpp" line="1174"/>
         <source>Leave &amp;Full Screen</source>
         <translation>Thoát khỏi &amp;chế độ toàn màn hình</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1540"/>
+        <location filename="src/mainwindow.cpp" line="1601"/>
         <source>%1 version %2 is now available.</source>
         <translation>%1 phiên bản %2 hiện vừa mới được phát hành.</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1544"/>
+        <location filename="src/mainwindow.cpp" line="1605"/>
         <source>Remind me later</source>
         <translation>Thông báo cho tôi sau</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1545"/>
+        <location filename="src/mainwindow.cpp" line="1606"/>
         <source>Update</source>
         <translation>Cập nhật</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1027"/>
+        <location filename="src/mainwindow.cpp" line="1053"/>
         <source>Error: %1</source>
         <translation>Lỗi: %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="270"/>
+        <location filename="src/mainwindow.cpp" line="276"/>
         <source>P&amp;revious</source>
         <translation>&amp;Trước đó</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="271"/>
+        <location filename="src/mainwindow.cpp" line="277"/>
         <source>Go back to the previous track</source>
         <translation>Quay lại track trước đó</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="305"/>
+        <location filename="src/mainwindow.cpp" line="311"/>
         <source>&amp;Compact Mode</source>
         <translation>&amp;Chế độ thu gọn</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="318"/>
+        <location filename="src/mainwindow.cpp" line="324"/>
         <source>Open the &amp;YouTube Page</source>
         <translation>Mở &amp;trang YouTube</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="325"/>
+        <location filename="src/mainwindow.cpp" line="331"/>
         <source>Copy the YouTube &amp;Link</source>
         <translation>Sao chép liên kết &amp;trên YouTube</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="332"/>
+        <location filename="src/mainwindow.cpp" line="338"/>
         <source>Copy the Video Stream &amp;URL</source>
         <translation>Sao chép luồng dữ liệu &amp;video</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="339"/>
+        <location filename="src/mainwindow.cpp" line="345"/>
         <source>Find Video &amp;Parts</source>
         <translation>Tìm các phần &amp;thuộc video</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="367"/>
+        <location filename="src/mainwindow.cpp" line="373"/>
         <source>&amp;Clear Recent Searches</source>
         <translation>&amp;Xóa các phần tìm kiếm gần đây</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="391"/>
+        <location filename="src/mainwindow.cpp" line="397"/>
         <source>Make a &amp;Donation</source>
         <translation>Ủng &amp;hộ tài chính</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="453"/>
+        <location filename="src/mainwindow.cpp" line="459"/>
         <source>&amp;Manually Start Playing</source>
         <translation>&amp;Phát theo lệnh của người dùng</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="454"/>
+        <location filename="src/mainwindow.cpp" line="460"/>
         <source>Manually start playing videos</source>
         <translation>Phát theo lệnh của người dùng</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="776"/>
+        <location filename="src/mainwindow.cpp" line="797"/>
         <source>Choose your content location</source>
         <translation>Chọn vị trí nội dung của bạn</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1047"/>
+        <location filename="src/mainwindow.cpp" line="1073"/>
         <source>&amp;Play</source>
         <translation>&amp;Phát</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1048"/>
+        <location filename="src/mainwindow.cpp" line="1074"/>
         <source>Resume playback</source>
         <translation>Khôi phục chế độ phát lại</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1301"/>
+        <location filename="src/mainwindow.cpp" line="1333"/>
         <source>Remaining time: %1</source>
         <translation>Thời gian còn lại: %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1360"/>
+        <location filename="src/mainwindow.cpp" line="1419"/>
         <source>Volume at %1%</source>
         <translation>Âm lượng ở mức %1%</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1366"/>
+        <location filename="src/mainwindow.cpp" line="1425"/>
         <source>Volume is muted</source>
         <translation>Đã tắt âm lượng</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1369"/>
+        <location filename="src/mainwindow.cpp" line="1428"/>
         <source>Volume is unmuted</source>
         <translation>Đã mở lại âm lượng</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1376"/>
+        <location filename="src/mainwindow.cpp" line="1435"/>
         <source>Maximum video definition set to %1</source>
         <translation>Độ phân giải video được chỉnh thành %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1417"/>
+        <location filename="src/mainwindow.cpp" line="1476"/>
         <source>Your privacy is now safe</source>
         <translation>Chế độ riêng tư của bạn hiện đã an toàn</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1432"/>
+        <location filename="src/mainwindow.cpp" line="1491"/>
         <source>Downloads complete</source>
         <translation>Tiến Trình Tải Về Đã Hoàn Tất</translation>
     </message>
@@ -911,75 +932,75 @@
 <context>
     <name>MediaView</name>
     <message>
-        <location filename="src/mediaview.cpp" line="618"/>
+        <location filename="src/mediaview.cpp" line="677"/>
         <source>You can now paste the YouTube link into another application</source>
         <translation>Bạn có thể dán vào đường liên kết trên YouTube vào một ứng dụng khác</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="626"/>
+        <location filename="src/mediaview.cpp" line="685"/>
         <source>You can now paste the video stream URL into another application</source>
         <translation>Bạn có thể dán một đường liên kết của luồng video vào một ứng dụng khác</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="627"/>
+        <location filename="src/mediaview.cpp" line="686"/>
         <source>The link will be valid only for a limited time.</source>
         <translation>Liên kết này chỉ hợp lệ trong một khoảng thời gian hạn định.</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="712"/>
+        <location filename="src/mediaview.cpp" line="775"/>
         <source>This is just the demo version of %1.</source>
         <translation>Đây chỉ là phần dùng thử của phiên bản %1.</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="713"/>
+        <location filename="src/mediaview.cpp" line="776"/>
         <source>It allows you to test the application and see if it works for you.</source>
         <translation>Cho phép bạn thử nghiệm ứng dụng và xét độ hiệu quả của ứng dụng đối với bạn.</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="743"/>
+        <location filename="src/mediaview.cpp" line="808"/>
         <source>Continue</source>
         <translation>Tiếp tục</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="841"/>
+        <location filename="src/mediaview.cpp" line="936"/>
         <source>of</source>
         <comment>Used in video parts, as in '2 of 3'</comment>
         <translation>của</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="854"/>
+        <location filename="src/mediaview.cpp" line="949"/>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
         <translation>phần</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="856"/>
+        <location filename="src/mediaview.cpp" line="951"/>
         <source>episode</source>
         <comment>This is for video parts, as in 'Cool series - episode 1'</comment>
         <translation>tập</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="937"/>
+        <location filename="src/mediaview.cpp" line="1064"/>
         <source>Sent from %1</source>
         <translation>Được gửi từ %1</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="968"/>
+        <location filename="src/mediaview.cpp" line="1099"/>
         <source>Unsubscribe from %1</source>
         <translation>Bỏ theo dõi đăng ký từ %1</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="972"/>
+        <location filename="src/mediaview.cpp" line="1103"/>
         <source>Subscribe to %1</source>
         <translation>Đăng ký theo dõi đối với %1</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="720"/>
+        <location filename="src/mediaview.cpp" line="783"/>
         <source>Get the full version</source>
         <translation>Nhận phiên bản đầy đủ</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="757"/>
+        <location filename="src/mediaview.cpp" line="822"/>
         <source>Downloading %1</source>
         <translation>Đang tải về %1</translation>
     </message>
@@ -1033,47 +1054,47 @@
         <translation>%1 lượt xem</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="311"/>
+        <location filename="src/playlistitemdelegate.cpp" line="332"/>
         <source>%1 of %2 (%3) — %4</source>
         <translation>%1 của %2 (%3) — %4</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="318"/>
+        <location filename="src/playlistitemdelegate.cpp" line="339"/>
         <source>Preparing</source>
         <translation>Đang chuẩn bị</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="320"/>
+        <location filename="src/playlistitemdelegate.cpp" line="341"/>
         <source>Failed</source>
         <translation>Bị lỗi</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="322"/>
+        <location filename="src/playlistitemdelegate.cpp" line="343"/>
         <source>Completed</source>
         <translation>Đã hoàn tất</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="324"/>
+        <location filename="src/playlistitemdelegate.cpp" line="345"/>
         <source>Stopped</source>
         <translation>Đã dừng lại</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="360"/>
+        <location filename="src/playlistitemdelegate.cpp" line="381"/>
         <source>Stop downloading</source>
         <translation>Dừng tiến trình tải xuống</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="370"/>
+        <location filename="src/playlistitemdelegate.cpp" line="391"/>
         <source>Show in %1</source>
         <translation>Hiển thị trong %1</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="372"/>
+        <location filename="src/playlistitemdelegate.cpp" line="393"/>
         <source>Open parent folder</source>
         <translation>Mở thư mục gốc</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="381"/>
+        <location filename="src/playlistitemdelegate.cpp" line="402"/>
         <source>Restart downloading</source>
         <translation>Bắt đầu lại phần tải về</translation>
     </message>
@@ -1235,43 +1256,43 @@
         <translation>Chào mừng đến với &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="189"/>
+        <location filename="src/searchview.cpp" line="195"/>
         <source>Get the full version</source>
         <translation>Nhận phiên bản đầy đủ</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="108"/>
+        <location filename="src/searchview.cpp" line="114"/>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole phrase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
         <translation>Nhập vào</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="113"/>
+        <location filename="src/searchview.cpp" line="119"/>
         <source>a keyword</source>
         <translation>một từ khóa</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="114"/>
+        <location filename="src/searchview.cpp" line="120"/>
         <source>a channel</source>
         <translation>một kênh</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="119"/>
+        <location filename="src/searchview.cpp" line="125"/>
         <source>to start watching videos.</source>
         <translation>để bắt đầu xem các đoạn video.</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="143"/>
+        <location filename="src/searchview.cpp" line="149"/>
         <source>Watch</source>
         <translation>Xem</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="161"/>
+        <location filename="src/searchview.cpp" line="167"/>
         <source>Recent keywords</source>
         <translation>Các từ khóa gần đây</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="174"/>
+        <location filename="src/searchview.cpp" line="180"/>
         <source>Recent channels</source>
         <translation>Các kênh gần đây</translation>
     </message>
@@ -1309,42 +1330,40 @@
     </message>
 </context>
 <context>
+    <name>SnapshotSettings</name>
+    <message>
+        <location filename="src/snapshotsettings.cpp" line="25"/>
+        <source>Change location...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/snapshotsettings.cpp" line="42"/>
+        <source>Snapshot saved to %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/snapshotsettings.cpp" line="102"/>
+        <source>Snapshots location changed.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>StandardFeedsView</name>
     <message>
         <location filename="src/standardfeedsview.cpp" line="105"/>
         <source>Most Popular</source>
         <translation>Phổ biến nhất</translation>
     </message>
-    <message>
-        <location filename="src/standardfeedsview.cpp" line="107"/>
-        <source>Most Shared</source>
-        <translation>Được chia sẻ nhiều nhất</translation>
-    </message>
-    <message>
-        <location filename="src/standardfeedsview.cpp" line="108"/>
-        <source>Most Discussed</source>
-        <translation>Được thảo luận nhiều nhất</translation>
-    </message>
-    <message>
-        <location filename="src/standardfeedsview.cpp" line="109"/>
-        <source>Top Rated</source>
-        <translation>Được xếp hạng cao nhất</translation>
-    </message>
-    <message>
-        <location filename="src/standardfeedsview.cpp" line="110"/>
-        <source>All Time Popular</source>
-        <translation>Phổ biến nhất mọi thời gian</translation>
-    </message>
 </context>
 <context>
     <name>Video</name>
     <message>
-        <location filename="src/video.cpp" line="281"/>
+        <location filename="src/video.cpp" line="309"/>
         <source>Cannot get video stream for %1</source>
         <translation>Không thể tiếp nhận luồng video từ %1</translation>
     </message>
     <message>
-        <location filename="src/video.cpp" line="298"/>
+        <location filename="src/video.cpp" line="326"/>
         <source>Network error: %1 for %2</source>
         <translation>Lỗi mạng: %1 cho %2</translation>
     </message>
