@@ -56,12 +56,11 @@ void DownloadSettings::paintEvent(QPaintEvent * /*event*/) {
 }
 
 void DownloadSettings::changeFolder() {
-
+    QString path;
 #ifdef APP_MAC
     QFileDialog* dialog = new QFileDialog(this);
     dialog->setFileMode(QFileDialog::Directory);
     dialog->setOptions(QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::ReadOnly);
-    QString path;
 #if QT_VERSION >= 0x050000
     path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
 #else
@@ -70,8 +69,14 @@ void DownloadSettings::changeFolder() {
     dialog->setDirectory(path);
     dialog->open(this, SLOT(folderChosen(const QString &)));
 #else
+
+#if QT_VERSION >= 0x050000
+    path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+#else
+    path = QDesktopServices::storageLocation(QDesktopServices::HomeLocation);
+#endif
     QString folder = QFileDialog::getExistingDirectory(window(), tr("Choose the download location"),
-                                                       QDesktopServices::storageLocation(QDesktopServices::HomeLocation),
+                                                       path,
                                                        QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::ReadOnly);
     folderChosen(folder);
 #endif

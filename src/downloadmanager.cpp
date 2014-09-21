@@ -30,6 +30,7 @@ $END_LICENSE */
 #ifdef APP_EXTRA
 #include "extra.h"
 #endif
+#include "datautils.h"
 
 static DownloadManager *downloadManagerInstance = 0;
 
@@ -123,23 +124,7 @@ void DownloadManager::gotStreamUrl(QUrl url) {
 
     video->disconnect(this);
 
-    QString basename = video->title();
-    basename.replace('(', '[');
-    basename.replace(')', ']');
-    basename.replace('/', ' ');
-    basename.replace('\\', ' ');
-    basename.replace('<', ' ');
-    basename.replace('>', ' ');
-    basename.replace(':', ' ');
-    basename.replace('"', ' ');
-    basename.replace('|', ' ');
-    basename.replace('?', ' ');
-    basename.replace('*', ' ');
-    basename = basename.simplified();
-
-    if (!basename.isEmpty() && basename.at(0) == '.')
-        basename = basename.mid(1).trimmed();
-
+    QString basename = DataUtils::stringToFilename(video->title());
     if (basename.isEmpty()) basename = video->id();
 
     QString filename = currentDownloadFolder() + "/" + basename + ".mp4";
