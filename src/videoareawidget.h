@@ -21,10 +21,15 @@ $END_LICENSE */
 #ifndef VIDEOAREAWIDGET_H
 #define VIDEOAREAWIDGET_H
 
-#include <QWidget>
-#include "video.h"
-#include "loadingwidget.h"
-#include "playlistmodel.h"
+#include <QtGui>
+#if QT_VERSION >= 0x050000
+#include <QtWidgets>
+#endif
+
+class Video;
+class LoadingWidget;
+class PlaylistModel;
+class SnapshotPreview;
 
 class VideoAreaWidget : public QWidget {
 
@@ -41,7 +46,9 @@ public:
     void setListModel(PlaylistModel *listModel) {
         this->listModel = listModel;
     }
-    // void showSnapshotPreview(QPixmap pixmap);
+#ifdef APP_SNAPSHOT
+    void showSnapshotPreview(const QPixmap &pixmap);
+#endif
     bool isVideoShown() { return stackedLayout->currentWidget() == videoWidget; }
 
 signals:
@@ -56,17 +63,23 @@ protected:
     void dropEvent(QDropEvent *event);
 
 private slots:
-    // void hideSnapshotPreview();
+#ifdef APP_SNAPSHOT
+    void hideSnapshotPreview();
+#endif
 
 private:
     QStackedLayout *stackedLayout;
     QWidget *videoWidget;
     LoadingWidget *loadingWidget;
+
+#ifdef APP_SNAPSHOT
+    SnapshotPreview *snapshotPreview;
+#endif
+
     PlaylistModel *listModel;
     QLabel *messageLabel;
-    // QLabel *snapshotPreview;
-    QPoint dragPosition;
 
+    QPoint dragPosition;
 };
 
 #endif // VIDEOAREAWIDGET_H

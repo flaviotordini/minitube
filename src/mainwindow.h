@@ -51,8 +51,12 @@ public:
     ~MainWindow();
 #ifdef APP_PHONON_SEEK
     Phonon::SeekSlider* getSeekSlider() { return seekSlider; }
-#endif
+#else
     QSlider* getSlider() { return slider; }
+#endif
+#ifdef APP_PHONON
+    Phonon::AudioOutput* getAudioOutput() { return audioOutput; }
+#endif
     void readSettings();
     void writeSettings();
     static void printHelp();
@@ -207,17 +211,18 @@ private:
     QAction *regionAction;
 
     // phonon
-    QSlider *slider;
 #ifdef APP_PHONON
 #ifdef APP_PHONON_SEEK
     Phonon::SeekSlider *seekSlider;
+#else
+    QSlider *slider;
 #endif
     Phonon::VolumeSlider *volumeSlider;
     Phonon::MediaObject *mediaObject;
     Phonon::AudioOutput *audioOutput;
 #endif
     QLabel *currentTime;
-    QLabel *totalTime;
+    // QLabel *totalTime;
 
     // fullscreen
     bool m_fullscreen;

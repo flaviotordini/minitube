@@ -63,5 +63,6 @@
         <file>images/badge.png</file>
         <file>images/badge3.png</file>
         <file>images/badge4.png</file>
+        <file>sounds/snapshot.wav</file>
     </qresource>
 </RCC>

@@ -9,18 +9,19 @@ DEFINES += APP_NAME="$$APP_NAME"
 APP_UNIX_NAME = minitube
 DEFINES += APP_UNIX_NAME="$$APP_UNIX_NAME"
 
-DEFINES *= QT_NO_DEBUG_OUTPUT
+DEFINES += APP_PHONON
+DEFINES += APP_PHONON_SEEK
+DEFINES += APP_SNAPSHOT
+
+#DEFINES *= QT_NO_DEBUG_OUTPUT
 DEFINES *= QT_USE_QSTRINGBUILDER
-DEFINES += QT_STRICT_ITERATORS
+DEFINES *= QT_STRICT_ITERATORS
 
 TARGET = $${APP_UNIX_NAME}
 
 QT += network xml sql script
-
 qt:greaterThan(QT_MAJOR_VERSION, 4) {
     contains(QT, gui): QT *= widgets
-} else {
-    QT += phonon
 }
 
 include(src/qtsingleapplication/qtsingleapplication.pri)
@@ -90,7 +91,10 @@ HEADERS += \
     src/channelview.h \
     src/channelitemdelegate.h \
     src/jsfunctions.h \
-    src/seekslider.h
+    src/seekslider.h \
+    src/snapshotsettings.h \
+    src/snapshotpreview.h \
+    src/datautils.h
 SOURCES += src/main.cpp \
     src/searchlineedit.cpp \
     src/urllineedit.cpp \
@@ -153,7 +157,10 @@ SOURCES += src/main.cpp \
     src/channelview.cpp \
     src/channelitemdelegate.cpp \
     src/jsfunctions.cpp \
-    src/seekslider.cpp
+    src/seekslider.cpp \
+    src/snapshotsettings.cpp \
+    src/snapshotpreview.cpp \
+    src/datautils.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/
@@ -168,7 +175,14 @@ include(locale/locale.pri)
 # deploy
 DISTFILES += CHANGES COPYING
 unix:!mac {
-    INCLUDEPATH += /usr/include/phonon
+
+    qt:greaterThan(QT_MAJOR_VERSION, 4) {
+        LIBS += -lphonon4qt5
+        INCLUDEPATH += /usr/include/phonon4qt5
+    } else {
+        QT += phonon
+        INCLUDEPATH += /usr/include/phonon
+    }
     QT += dbus
     HEADERS += src/gnomeglobalshortcutbackend.h
     SOURCES += src/gnomeglobalshortcutbackend.cpp
@@ -215,3 +229,6 @@ unix:!mac {
     icon512.files += data/512x512/minitube.png
 }
 mac|win32|contains(DEFINES, APP_UBUNTU):include(local/local.pri)
+
+OTHER_FILES += \
+    sounds/snapshot.wav

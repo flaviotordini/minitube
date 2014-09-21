@@ -19,24 +19,20 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "videoareawidget.h"
+#include "video.h"
+#include "loadingwidget.h"
+#include "playlistmodel.h"
 #include "videomimedata.h"
 #include "mainwindow.h"
-#ifdef APP_EXTRA
-#include "extra.h"
-#endif
 #ifdef Q_OS_MAC
 #include "macutils.h"
 #endif
+#include "snapshotpreview.h"
 
 VideoAreaWidget::VideoAreaWidget(QWidget *parent) : QWidget(parent), videoWidget(0) {
     QBoxLayout *vLayout = new QVBoxLayout(this);
     vLayout->setMargin(0);
     vLayout->setSpacing(0);
-
-    QPalette p = palette();
-    p.setBrush(QPalette::Window, Qt::black);
-    setPalette(p);
-    setAutoFillBackground(true);
 
     // hidden message widget
     messageLabel = new QLabel(this);
@@ -52,9 +48,11 @@ VideoAreaWidget::VideoAreaWidget(QWidget *parent) : QWidget(parent), videoWidget
     stackedLayout = new QStackedLayout();
     vLayout->addLayout(stackedLayout);
 
-    // snapshotPreview = new QLabel(this);
-    // stackedLayout->addWidget(snapshotPreview);
-    
+#ifdef APP_SNAPSHOT
+    snapshotPreview = new SnapshotPreview();
+    connect(stackedLayout, SIGNAL(currentChanged(int)), snapshotPreview, SLOT(hide()));
+#endif
+
     setAcceptDrops(true);
     setMouseTracking(true);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -92,26 +90,24 @@ void VideoAreaWidget::showLoading(Video *video) {
     loadingWidget->setVideo(video);
 }
 
-/*
-void VideoAreaWidget::showSnapshotPreview(QPixmap pixmap) {
-    snapshotPreview->setPixmap(pixmap);
-    stackedLayout->setCurrentWidget(snapshotPreview);
-#ifdef APP_EXTRA
-    Extra::flashInWidget(snapshotPreview);
+#ifdef APP_SNAPSHOT
+void VideoAreaWidget::showSnapshotPreview(const QPixmap &pixmap) {
+    bool soundOnly = false;
+#ifdef APP_MAC
+    soundOnly = MainWindow::instance()->isReallyFullScreen();
 #endif
-    QTimer::singleShot(1500, this, SLOT(hideSnapshotPreview()));
+    snapshotPreview->start(videoWidget, pixmap, soundOnly);
 }
 
 void VideoAreaWidget::hideSnapshotPreview() {
-    stackedLayout->setCurrentWidget(videoWidget);
+
 }
-*/
+#endif
 
 void VideoAreaWidget::clear() {
     loadingWidget->clear();
     messageLabel->hide();
     messageLabel->clear();
-    // snapshotPreview->clear();
     stackedLayout->setCurrentWidget(loadingWidget);
 }
 

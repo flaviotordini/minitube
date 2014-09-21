@@ -42,6 +42,9 @@ class DownloadItem;
 class PlaylistView;
 class SidebarWidget;
 class VideoSource;
+#ifdef APP_SNAPSHOT
+class SnapshotSettings;
+#endif
 
 namespace The {
 QHash<QString, QAction*>* globalActions();
@@ -70,7 +73,7 @@ public:
 
 public slots:
     void search(SearchParams *searchParams);
-    void setVideoSource(VideoSource *videoSource, bool addToHistory = true);
+    void setVideoSource(VideoSource *videoSource, bool addToHistory = true, bool back = false);
     void pause();
     void stop();
     void skip();
@@ -91,7 +94,9 @@ public slots:
     void setPlaylistVisible(bool visible=true);
     void saveSplitterState();
     void downloadVideo();
-    // void snapshot();
+#ifdef APP_SNAPSHOT
+    void snapshot();
+#endif
     void fullscreen();
     void findVideoParts();
     void relatedVideos();
@@ -160,6 +165,10 @@ private:
     QList<QAction*> currentVideoActions;
 
     qint64 currentVideoSize;
+
+#ifdef APP_SNAPSHOT
+    SnapshotSettings *snapshotSettings;
+#endif
 };
 
 #endif // __MEDIAVIEW_H__

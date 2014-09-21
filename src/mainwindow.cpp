@@ -269,7 +269,7 @@ void MainWindow::createActions() {
     stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
     stopAct->setEnabled(false);
     actions->insert("stop", stopAct);
-    connect(stopAct, SIGNAL(triggered()), this, SLOT(stop()));
+    connect(stopAct, SIGNAL(triggered()), SLOT(stop()));
 
     skipBackwardAct = new QAction(
                 Utils::icon("media-skip-backward"),
@@ -458,7 +458,7 @@ void MainWindow::createActions() {
 
     action = new QAction(Utils::icon("media-playback-start"), tr("&Manually Start Playing"), this);
     action->setStatusTip(tr("Manually start playing videos"));
-    action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_B));
+    action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_T));
     action->setCheckable(true);
     connect(action, SIGNAL(toggled(bool)), SLOT(setManualPlay(bool)));
     actions->insert("manualplay", action);
@@ -482,12 +482,13 @@ void MainWindow::createActions() {
     connect(action, SIGNAL(triggered()), mediaView, SLOT(downloadVideo()));
     actions->insert("download", action);
 
-    /*
-    action = new QAction(tr("&Snapshot"), this);
-    action->setShortcut(QKeySequence(Qt::CTRL + Qt::ALT + Qt::Key_S));
+#ifdef APP_SNAPSHOT
+    action = new QAction(tr("Take &Snapshot"), this);
+    action->setShortcut(QKeySequence(Qt::Key_F9));
+    action->setEnabled(false);
     actions->insert("snapshot", action);
     connect(action, SIGNAL(triggered()), mediaView, SLOT(snapshot()));
-    */
+#endif
 
     action = new QAction(tr("&Subscribe to Channel"), this);
     action->setProperty("originalText", action->text());
@@ -573,6 +574,7 @@ void MainWindow::createActions() {
     actions->insert("related-videos", action);
 
     action = new QAction(tr("Open in &Browser..."), this);
+    action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_B));
     action->setEnabled(false);
     actions->insert("open-in-browser", action);
     connect(action, SIGNAL(triggered()), mediaView, SLOT(openInBrowser()));
@@ -642,14 +644,16 @@ void MainWindow::createMenus() {
     videoMenu->addAction(The::globalActions()->value("related-videos"));
     videoMenu->addAction(findVideoPartsAct);
     videoMenu->addSeparator();
-    videoMenu->addAction(webPageAct);
-    videoMenu->addSeparator();
     videoMenu->addAction(The::globalActions()->value("subscribe-channel"));
+#ifdef APP_SNAPSHOT
     videoMenu->addSeparator();
-    videoMenu->addAction(The::globalActions()->value("download"));
+    videoMenu->addAction(The::globalActions()->value("snapshot"));
+#endif
+    videoMenu->addSeparator();
+    videoMenu->addAction(webPageAct);
     videoMenu->addAction(copyLinkAct);
     videoMenu->addAction(The::globalActions()->value("open-in-browser"));
-    // videoMenu->addAction(The::globalActions()->value("snapshot"));
+    videoMenu->addAction(The::globalActions()->value("download"));
 
     QMenu* viewMenu = menuBar()->addMenu(tr("&View"));
     menus->insert("view", viewMenu);
@@ -719,16 +723,14 @@ void MainWindow::createToolBars() {
     currentTime->setFont(smallerFont);
     mainToolBar->addWidget(currentTime);
 
-#ifdef APP_PHONON_SEEK
     mainToolBar->addWidget(new Spacer());
+
+#ifdef APP_PHONON_SEEK
     seekSlider = new Phonon::SeekSlider(this);
-    seekSlider->setVisible(false);
     seekSlider->setIconVisible(false);
     seekSlider->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
     mainToolBar->addWidget(seekSlider);
-#endif
-
-    mainToolBar->addWidget(new Spacer());
+#else
     slider = new SeekSlider(this);
     slider->setEnabled(false);
     slider->setTracking(false);
@@ -736,15 +738,16 @@ void MainWindow::createToolBars() {
     slider->setOrientation(Qt::Horizontal);
     slider->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
     mainToolBar->addWidget(slider);
+#endif
 
+    /*
     mainToolBar->addWidget(new Spacer());
-
     totalTime = new QLabel(mainToolBar);
     totalTime->setFont(smallerFont);
     mainToolBar->addWidget(totalTime);
+    */
 
     mainToolBar->addWidget(new Spacer());
-
     mainToolBar->addAction(volumeMuteAct);
 
 #ifdef APP_PHONON
@@ -931,8 +934,8 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
     setUpdatesEnabled(true);
 
 #ifdef APP_EXTRA
-    if (transition && (oldWidget != mediaView ||
-                       !mediaView->getVideoArea()->isVideoShown()))
+    // if (transition && (oldWidget != mediaView || !mediaView->getVideoArea()->isVideoShown()))
+    if (transition)
         Extra::fadeInWidget(oldWidget, widget);
 #endif
 
@@ -1021,7 +1024,7 @@ bool MainWindow::confirmQuit() {
 void MainWindow::showHome(bool transition) {
     showWidget(homeView, transition);
     currentTime->clear();
-    totalTime->clear();
+    // totalTime->clear();
 }
 
 void MainWindow::showMedia(SearchParams *searchParams) {
@@ -1076,7 +1079,7 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
     case Phonon::LoadingState:
         pauseAct->setEnabled(false);
         currentTime->clear();
-        totalTime->clear();
+        // totalTime->clear();
         // stopAct->setEnabled(true);
         break;
 
@@ -1087,8 +1090,8 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
 #endif
 
 void MainWindow::stop() {
-    mediaView->stop();
     showHome();
+    mediaView->stop();
 }
 
 void MainWindow::resizeEvent(QResizeEvent*) {
@@ -1329,21 +1332,24 @@ void MainWindow::tick(qint64 time) {
     const qint64 remainingTime = mediaObject->remainingTime();
     currentTime->setStatusTip(tr("Remaining time: %1").arg(formatTime(remainingTime)));
 
-    slider->blockSignals(true);
+#ifndef APP_PHONON_SEEK
     const qint64 totalTime = mediaObject->totalTime();
+    slider->blockSignals(true);
     // qWarning() << totalTime << time << time * 100 / totalTime;
     if (totalTime > 0 && time > 0 && !slider->isSliderDown() && mediaObject->state() == Phonon::PlayingState)
         slider->setValue(time * slider->maximum() / totalTime);
     slider->blockSignals(false);
 #endif
+
+#endif
 }
 
 void MainWindow::totalTimeChanged(qint64 time) {
     if (time <= 0) {
-        totalTime->clear();
+        // totalTime->clear();
         return;
     }
-    totalTime->setText(formatTime(time));
+    // totalTime->setText(formatTime(time));
 
     /*
     slider->blockSignals(true);
@@ -1377,8 +1383,8 @@ void MainWindow::volumeUp() {
 void MainWindow::volumeDown() {
 #ifdef APP_PHONON
     qreal newVolume = volumeSlider->audioOutput()->volume() - .1;
-    if (newVolume < 0)
-        newVolume = 0;
+    if (newVolume < 0.)
+        newVolume = 0.;
     volumeSlider->audioOutput()->setVolume(newVolume);
 #endif
 }
@@ -1394,6 +1400,21 @@ void MainWindow::volumeChanged(qreal newVolume) {
     // automatically unmute when volume changes
     if (volumeSlider->audioOutput()->isMuted())
         volumeSlider->audioOutput()->setMuted(false);
+
+    bool isZero = volumeSlider->property("zero").toBool();
+    bool styleChanged = false;
+    if (newVolume == 0. && !isZero) {
+        volumeSlider->setProperty("zero", true);
+        styleChanged = true;
+    } else if (newVolume > 0. && isZero) {
+        volumeSlider->setProperty("zero", false);
+        styleChanged = true;
+    }
+    if (styleChanged) {
+        QSlider* volumeQSlider = volumeSlider->findChild<QSlider*>();
+        style()->unpolish(volumeQSlider);
+        style()->polish(volumeQSlider);
+    }
 #endif
     statusBar()->showMessage(tr("Volume at %1%").arg((int)(newVolume*100)));
 }

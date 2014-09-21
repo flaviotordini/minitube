@@ -62,13 +62,13 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
 void LoadingWidget::setVideo(Video *video) {
 
     QFont titleFont;
-    titleFont.setStyleName("Light");
 #ifdef APP_MAC
     titleFont.setFamily("Helvetica Neue");
 #endif
 #ifdef APP_WIN
     titleFont.setFamily("Segoe UI Light");
 #endif
+    titleFont.setStyleName("Light");
     int smallerDimension = qMin(height(), width());
     titleFont.setPixelSize(smallerDimension / 12);
     titleFont.setHintingPreference(QFont::PreferNoHinting);

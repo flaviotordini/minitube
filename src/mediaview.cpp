@@ -46,6 +46,10 @@ $END_LICENSE */
 #include "channelaggregator.h"
 #include "utils.h"
 #include "ytuser.h"
+#ifdef APP_SNAPSHOT
+#include "snapshotsettings.h"
+#endif
+#include "datautils.h"
 
 namespace The {
 NetworkAccess* http();
@@ -61,6 +65,9 @@ MediaView* MediaView::instance() {
 
 MediaView::MediaView(QWidget *parent) : QWidget(parent),
     stopped(false),
+    #ifdef APP_SNAPSHOT
+    snapshotSettings(0),
+    #endif
     downloadItem(0) { }
 
 void MediaView::initialize() {
@@ -145,6 +152,9 @@ void MediaView::initialize() {
             << The::globalActions()->value("pagelink")
             << The::globalActions()->value("videolink")
             << The::globalActions()->value("open-in-browser")
+           #ifdef APP_SNAPSHOT
+            << The::globalActions()->value("snapshot")
+           #endif
             << The::globalActions()->value("findVideoParts")
             << The::globalActions()->value("skip")
             << The::globalActions()->value("previous")
@@ -156,8 +166,10 @@ void MediaView::initialize() {
             << The::globalActions()->value("buffer")
             << The::globalActions()->value("email");
 
+#ifndef APP_PHONON_SEEK
     QSlider *slider = MainWindow::instance()->getSlider();
     connect(slider, SIGNAL(valueChanged(int)), SLOT(sliderMoved(int)));
+#endif
 }
 
 #ifdef APP_PHONON
@@ -196,7 +208,7 @@ void MediaView::search(SearchParams *searchParams) {
     setVideoSource(new YTSearch(searchParams, this));
 }
 
-void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory) {
+void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory, bool back) {
     stopped = false;
 
 #ifdef APP_ACTIVATION
@@ -220,6 +232,11 @@ void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory) {
         history.append(videoSource);
     }
 
+#ifdef APP_EXTRA
+    if (history.size() > 1)
+        Extra::slideTransition(playlistView->viewport(), playlistView->viewport(), back);
+#endif
+
     playlistModel->setVideoSource(videoSource);
 
     sidebar->showPlaylist();
@@ -230,6 +247,8 @@ void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory) {
     SearchParams *searchParams = getSearchParams();
     bool isChannel = searchParams && !searchParams->author().isEmpty();
     playlistView->setClickableAuthors(!isChannel);
+
+
 }
 
 void MediaView::searchAgain() {
@@ -246,7 +265,7 @@ void MediaView::goBack() {
         int currentIndex = getHistoryIndex();
         if (currentIndex > 0) {
             VideoSource *previousVideoSource = history.at(currentIndex - 1);
-            setVideoSource(previousVideoSource, false);
+            setVideoSource(previousVideoSource, false, true);
         }
     }
 }
@@ -283,7 +302,11 @@ void MediaView::disappear() {
 }
 
 void MediaView::handleError(QString /* message */) {
+#ifdef APP_PHONON_SEEK
+    mediaObject->play();
+#else
     QTimer::singleShot(500, this, SLOT(startPlaying()));
+#endif
 }
 
 #ifdef APP_PHONON
@@ -352,9 +375,16 @@ void MediaView::stop() {
 #endif
     currentVideoId.clear();
 
+#ifndef APP_PHONON_SEEK
     QSlider *slider = MainWindow::instance()->getSlider();
     slider->setEnabled(false);
     slider->setValue(0);
+#endif
+
+    if (snapshotSettings) {
+        delete snapshotSettings;
+        snapshotSettings = 0;
+    }
 }
 
 const QString & MediaView::getCurrentVideoId() {
@@ -384,7 +414,7 @@ void MediaView::activeRowChanged(int row) {
     connect(video, SIGNAL(gotStreamUrl(QUrl)),
             SLOT(gotStreamUrl(QUrl)), Qt::UniqueConnection);
     connect(video, SIGNAL(errorStreamUrl(QString)),
-            SLOT(handleError(QString)), Qt::UniqueConnection);
+            SLOT(skip()), Qt::UniqueConnection);
     video->loadStreamUrl();
 
     // video title in titlebar
@@ -422,9 +452,16 @@ void MediaView::activeRowChanged(int row) {
     foreach (QAction *action, currentVideoActions)
         action->setEnabled(true);
 
+#ifndef APP_PHONON_SEEK
     QSlider *slider = MainWindow::instance()->getSlider();
     slider->setEnabled(false);
     slider->setValue(0);
+#endif
+
+    if (snapshotSettings) {
+        delete snapshotSettings;
+        snapshotSettings = 0;
+    }
 
     // see you in gotStreamUrl...
 }
@@ -445,7 +482,7 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
 
     currentVideoId = video->id();
 
-#ifdef Q_OS_LINUX_NO
+#ifdef APP_PHONON_SEEK
     mediaObject->setCurrentSource(streamUrl);
     mediaObject->play();
 #else
@@ -493,8 +530,8 @@ void MediaView::downloadStatusChanged() {
         break;
     case Finished:
         // qDebug() << "Finished" << mediaObject->state();
-#ifdef Q_OS_LINUX
-        // MainWindow::instance()->getSeekSlider()->setEnabled(mediaObject->isSeekable());
+#ifdef APP_PHONON_SEEK
+        MainWindow::instance()->getSeekSlider()->setEnabled(mediaObject->isSeekable());
 #endif
         break;
     case Failed:
@@ -524,15 +561,15 @@ void MediaView::startPlaying() {
     QString source = downloadItem->currentFilename();
     qDebug() << "Playing" << source << QFile::exists(source);
 #ifdef APP_PHONON
-    mediaObject->setCurrentSource(source);
+    mediaObject->setCurrentSource(QUrl::fromLocalFile(source));
     mediaObject->play();
 #endif
-#ifdef Q_OS_LINUX
-    // MainWindow::instance()->getSeekSlider()->setEnabled(false);
-#endif
-
+#ifdef APP_PHONON_SEEK
+    MainWindow::instance()->getSeekSlider()->setEnabled(false);
+#else
     QSlider *slider = MainWindow::instance()->getSlider();
     slider->setEnabled(true);
+#endif
 }
 
 void MediaView::itemActivated(const QModelIndex &index) {
@@ -791,16 +828,44 @@ void MediaView::downloadVideo() {
     MainWindow::instance()->showMessage(message);
 }
 
-/*
+#ifdef APP_SNAPSHOT
 void MediaView::snapshot() {
-    QImage image = videoWidget->snapshot();
-    qDebug() << image.size();
+    qint64 currentTime = mediaObject->currentTime() / 1000;
 
-    const QPixmap& pixmap = QPixmap::grabWindow(videoWidget->winId());
-    // qDebug() << pixmap.size();
+    QImage image = videoWidget->snapshot();
+    if (image.isNull()) {
+        qWarning() << "Null snapshot";
+        return;
+    }
+
+    // QPixmap pixmap = QPixmap::grabWindow(videoWidget->winId());
+    QPixmap pixmap = QPixmap::fromImage(image.scaled(videoWidget->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
     videoAreaWidget->showSnapshotPreview(pixmap);
+
+    Video* video = playlistModel->activeVideo();
+    if (!video) return;
+
+    QString location = SnapshotSettings::getCurrentLocation();
+    QString basename = video->title();
+    QString format = video->duration() > 3600 ? "h_mm_ss" : "m_ss";
+    basename += " (" + QTime().addSecs(currentTime).toString(format) + ")";
+    basename = DataUtils::stringToFilename(basename);
+    QString filename = location + "/" + basename + ".png";
+    qDebug() << filename;
+    image.save(filename, "PNG");
+
+    if (snapshotSettings) delete snapshotSettings;
+    snapshotSettings = new SnapshotSettings(videoWidget);
+    snapshotSettings->setSnapshot(pixmap, filename);
+    QStatusBar *statusBar = MainWindow::instance()->statusBar();
+#ifdef APP_EXTRA
+    Extra::fadeInWidget(statusBar, statusBar);
+#endif
+    statusBar->clearMessage();
+    statusBar->insertPermanentWidget(0, snapshotSettings);
+    snapshotSettings->show();
 }
-*/
+#endif
 
 void MediaView::fullscreen() {
     videoAreaWidget->setParent(0);
@@ -831,6 +896,8 @@ void MediaView::startDownloading() {
 
 void MediaView::sliderMoved(int value) {
 #ifdef APP_PHONON
+#ifndef APP_PHONON_SEEK
+
     if (currentVideoSize <= 0 || !downloadItem || !mediaObject->isSeekable())
         return;
 
@@ -854,6 +921,7 @@ void MediaView::sliderMoved(int value) {
         // qDebug() << "simple seek";
         mediaObject->seek(offsetToTime(offset));
     }
+#endif
 #endif
 }
 
