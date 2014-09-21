@@ -82,7 +82,7 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
             + "</p>"
 
             "<p>"
-            + tr("Icon designed by %1.").arg("<a href='http://www.kolorguild.com/'>David Nel</a>")
+            + tr("Icon designed by %1.").arg("<a href='http://www.kolorguild.co.za/'>David Nel</a>")
             + "</p>"
 
         #ifndef APP_EXTRA
