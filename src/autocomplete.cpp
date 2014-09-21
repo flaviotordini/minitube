@@ -41,6 +41,10 @@ AutoComplete::AutoComplete(SearchLineEdit *parent, QLineEdit *editor):
     popup->setFocusPolicy(Qt::NoFocus);
     popup->setFocusProxy(buddy);
 
+    popup->setFrameShape(QFrame::NoFrame);
+    popup->setAttribute(Qt::WA_TranslucentBackground);
+    popup->viewport()->setStyleSheet("border:0; border-radius:5px; background:palette(base)");
+
     connect(popup, SIGNAL(itemClicked(QListWidgetItem*)), SLOT(doneCompletion()));
 
     // connect(popup, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
@@ -149,6 +153,8 @@ void AutoComplete::showCompletion(const QStringList &choices) {
 
     popup->move(buddy->mapToGlobal(QPoint(0, buddy->height())));
 
+    popup->setFrameShape(QFrame::NoFrame);
+
     popup->setFocus();
     popup->show();
 }
@@ -169,6 +175,7 @@ void AutoComplete::preventSuggest() {
     timer->stop();
     enabled = false;
     popup->hide();
+    popup->setFrameShape(QFrame::NoFrame);
 }
 
 void AutoComplete::enableSuggest() {
