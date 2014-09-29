@@ -23,6 +23,7 @@ $END_LICENSE */
 #include <QtNetwork>
 #include "videodefinition.h"
 #include "jsfunctions.h"
+#include "temporary.h"
 
 namespace The {
 NetworkAccess* http();
@@ -353,6 +354,19 @@ void Video::scrapeWebPage(QByteArray data) {
     fmtUrlMap.replace("\\u0026", "&");
     // parseFmtUrlMap(fmtUrlMap, true);
 
+#ifdef APP_DASH
+    QSettings settings;
+    QString definitionName = settings.value("definition", "360p").toString();
+    if (definitionName == "1080p") {
+        QRegExp dashManifestRe("\"dashmpd\":\\s*\"([^\"]+)\"");
+        if (dashManifestRe.indexIn(html) != -1) {
+            dashManifestUrl = dashManifestRe.cap(1);
+            dashManifestUrl.remove('\\');
+            qDebug() << "dashManifestUrl" << dashManifestUrl;
+        }
+    }
+#endif
+
     QRegExp jsPlayerRe("\"assets\":.+\"js\":\\s*\"([^\"]+)\"");
     if (jsPlayerRe.indexIn(html) != -1) {
         QString jsPlayerUrl = jsPlayerRe.cap(1);
@@ -424,7 +438,47 @@ void Video::parseJsPlayer(QByteArray bytes) {
         captureFunction(sigFuncName, js);
         // qWarning() << sigFunctions;
     }
+
+#ifdef APP_DASH
+    if (!dashManifestUrl.isEmpty()) {
+        QRegExp sigRe("/s/([\\w\\.]+)");
+        if (sigRe.indexIn(dashManifestUrl) != -1) {
+            qDebug() << "Decrypting signature for dash manifest";
+            QString sig = sigRe.cap(1);
+            sig = decryptSignature(sig);
+            dashManifestUrl.replace(sigRe, "/signature/" + sig);
+            qDebug() << dashManifestUrl;
+
+            m_streamUrl = dashManifestUrl;
+            this->definitionCode = 37;
+            emit gotStreamUrl(m_streamUrl);
+            loadingStreamUrl = false;
+
+            /*
+            QObject *reply = The::http()->get(QUrl::fromEncoded(dashManifestUrl.toUtf8()));
+            connect(reply, SIGNAL(data(QByteArray)), SLOT(parseDashManifest(QByteArray)));
+            connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
+            */
+
+            return;
+        }
+    }
+#endif
+
     parseFmtUrlMap(fmtUrlMap, true);
+}
+
+void Video::parseDashManifest(QByteArray bytes) {
+    QFile file(Temporary::filename());
+    if (!file.open(QIODevice::WriteOnly))
+        qWarning() << file.errorString() << file.fileName();
+    QDataStream stream(&file);
+    stream.writeRawData(bytes.constData(), bytes.size());
+
+    m_streamUrl = "file://" + file.fileName();
+    this->definitionCode = 37;
+    emit gotStreamUrl(m_streamUrl);
+    loadingStreamUrl = false;
 }
 
 void Video::captureFunction(const QString &name, const QString &js) {

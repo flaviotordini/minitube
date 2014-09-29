@@ -98,7 +98,8 @@ private slots:
     void errorVideoInfo(QNetworkReply*);
     void scrapeWebPage(QByteArray);
     void gotHeadHeaders(QNetworkReply*);
-    void parseJsPlayer(QByteArray);
+    void parseJsPlayer(QByteArray bytes);
+    void parseDashManifest(QByteArray bytes);
 
 private:
     void getVideoInfo();
@@ -138,6 +139,8 @@ private:
     QString sigFuncName;
     QHash<QString, QString> sigFunctions;
     QHash<QString, QString> sigObjects;
+
+    QString dashManifestUrl;
 };
 
 // This is required in order to use QPointer<Video> as a QVariant
