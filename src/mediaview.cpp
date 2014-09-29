@@ -434,7 +434,6 @@ void MediaView::activeRowChanged(int row) {
     The::globalActions()->value("stopafterthis")->setEnabled(true);
     The::globalActions()->value("related-videos")->setEnabled(true);
 
-#ifndef APP_NO_DOWNLOADS
     bool enableDownload = video->license() == Video::LicenseCC;
 #ifdef APP_ACTIVATION
     enableDownload = enableDownload || Activation::instance().isLegacy();
@@ -445,7 +444,6 @@ void MediaView::activeRowChanged(int row) {
     QAction *a = The::globalActions()->value("download");
     a->setEnabled(enableDownload);
     a->setVisible(enableDownload);
-#endif
 
     updateSubscriptionAction(video, YTUser::isSubscribed(video->userId()));
 
