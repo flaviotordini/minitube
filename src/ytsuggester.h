@@ -30,10 +30,10 @@ class YTSuggester : public Suggester {
 
 public:
     YTSuggester(QObject *parent = 0);
-    void suggest(QString query);
+    void suggest(const QString &query);
 
 signals:
-    void ready(QStringList);
+    void ready(const QList<Suggestion*> &suggestions);
 
 private slots:
     void handleNetworkData(QByteArray response);

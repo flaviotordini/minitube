@@ -17,49 +17,50 @@ You should have received a copy of the GNU General Public License
 along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 
 $END_LICENSE */
-
-#ifndef SUGGESTCOMPLETION_H
-#define SUGGESTCOMPLETION_H
+#ifndef AUTOCOMPLETE_H
+#define AUTOCOMPLETE_H
 
 #include <QtGui>
-#if QT_VERSION >= 0x050000
-#include <QtWidgets>
-#endif
 
 class Suggester;
+class Suggestion;
 class SearchLineEdit;
 
 class AutoComplete : public QObject {
+
     Q_OBJECT
 
 public:
-    AutoComplete(SearchLineEdit *parent, QLineEdit *editor);
+    AutoComplete(SearchLineEdit *buddy, QLineEdit *lineEdit);
     ~AutoComplete();
     bool eventFilter(QObject *obj, QEvent *ev);
-    void showCompletion(const QStringList &choices);
+    void showCompletion(const QList<Suggestion*> &suggestions);
     void setSuggester(Suggester* suggester);
     QListWidget* getPopup() { return popup; }
 
 public slots:
-    void doneCompletion();
+    void acceptSuggestion();
     void preventSuggest();
     void enableSuggest();
-    void autoSuggest();
-    void currentItemChanged(QListWidgetItem *current);
-    void suggestionsReady(QStringList suggestions);
+    void suggest();
+    void itemEntered(QListWidgetItem *item);
+    void currentItemChanged(QListWidgetItem *item);
+    void suggestionsReady(const QList<Suggestion*> &suggestions);
 
 signals:
-    void suggestionAccepted(const QString &suggestion);
+    void suggestionAccepted(Suggestion *suggestion);
+    void suggestionAccepted(const QString &value);
 
 private:
     SearchLineEdit *buddy;
-    QLineEdit *editor;
+    QLineEdit *lineEdit;
     QString originalText;
     QListWidget *popup;
     QTimer *timer;
     bool enabled;
-    Suggester* suggester;
+    Suggester *suggester;
+    QList<Suggestion*> suggestions;
 
 };
 
-#endif // SUGGESTCOMPLETION_H
+#endif // AUTOCOMPLETE_H

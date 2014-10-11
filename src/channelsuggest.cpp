@@ -29,7 +29,7 @@ ChannelSuggest::ChannelSuggest(QObject *parent) : Suggester(parent) {
 
 }
 
-void ChannelSuggest::suggest(QString query) {
+void ChannelSuggest::suggest(const QString &query) {
     QUrl url("http://www.youtube.com/results");
 #if QT_VERSION >= 0x050000
         {
@@ -48,6 +48,8 @@ void ChannelSuggest::suggest(QString query) {
 
 void ChannelSuggest::handleNetworkData(QByteArray data) {
     QStringList choices;
+    QList<Suggestion*> suggestions;
+
     QString html = QString::fromUtf8(data);
     QRegExp re("/user/([a-zA-Z0-9]+)");
 
@@ -56,11 +58,12 @@ void ChannelSuggest::handleNetworkData(QByteArray data) {
         // qDebug() << re.cap(0) << re.cap(1);
         QString choice = re.cap(1);
         if (!choices.contains(choice, Qt::CaseInsensitive)) {
+            suggestions << new Suggestion(choice);
             choices << choice;
             if (choices.size() == 10) break;
         }
         pos += re.matchedLength();
     }
 
-    emit ready(choices);
+    emit ready(suggestions);
 }

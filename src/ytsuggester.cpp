@@ -32,7 +32,7 @@ YTSuggester::YTSuggester(QObject *parent) : Suggester(parent) {
 
 }
 
-void YTSuggester::suggest(QString query) {
+void YTSuggester::suggest(const QString &query) {
     if (query.startsWith("http")) return;
 
 #if QT_VERSION >= 0x040800
@@ -53,17 +53,17 @@ void YTSuggester::suggest(QString query) {
 }
 
 void YTSuggester::handleNetworkData(QByteArray response) {
-    QStringList choices;
-
+    QList<Suggestion*> suggestions;
     QXmlStreamReader xml(response);
     while (!xml.atEnd()) {
         xml.readNext();
         if (xml.tokenType() == QXmlStreamReader::StartElement) {
             if (xml.name() == QLatin1String("suggestion")) {
                 QStringRef str = xml.attributes().value("data");
-                choices << str.toString();
+                QString value = str.toString();
+                suggestions << new Suggestion(value);
             }
         }
     }
-    emit ready(choices);
+    emit ready(suggestions);
 }
