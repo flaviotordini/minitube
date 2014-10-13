@@ -357,7 +357,7 @@ void Video::scrapeWebPage(QByteArray data) {
 #ifdef APP_DASH
     QSettings settings;
     QString definitionName = settings.value("definition", "360p").toString();
-    if (definitionName == "1080p") {
+    if (definitionName == QLatin1String("1080p") {
         QRegExp dashManifestRe("\"dashmpd\":\\s*\"([^\"]+)\"");
         if (dashManifestRe.indexIn(html) != -1) {
             dashManifestUrl = dashManifestRe.cap(1);

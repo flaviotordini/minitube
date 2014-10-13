@@ -180,7 +180,7 @@ void Database::drop() {
 
         while (query.next()) {
             QString tableName = query.value(0).toString();
-            if (tableName.startsWith("sqlite_") || tableName == "attributes") continue;
+            if (tableName.startsWith("sqlite_") || tableName == QLatin1String("attributes")) continue;
             QString dropSQL = "delete from " + tableName;
             QSqlQuery query2(db);
             if (!query2.exec(dropSQL))
