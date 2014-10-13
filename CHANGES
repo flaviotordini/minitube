@@ -1,3 +1,16 @@
+2.3
+- Take video snapshots at full resolution
+- Faster and more reliable seeking
+- Faster video start with longer videos
+- Slide transition in playlist navigation
+- Make the volume handle red when volume is zero
+- Enhancements to the search suggestions
+- Restored compatibility with Mac OS X Snow Leopard
+- The Mac version is now 64bit and uses the VLC engine to play videos
+- The Windows version has been updated to the latest VLC
+- The Ubuntu version is now shipped as a .deb  on the site. Goodbye Ubuntu Software Center!
+- New and updated translations
+
 2.2
 - Subscriptions context menu: Unsubscribe, Mark as Watched
 - Added --stop-after-this command line switch
