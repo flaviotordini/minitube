@@ -13,7 +13,7 @@ DEFINES += APP_PHONON
 DEFINES += APP_PHONON_SEEK
 DEFINES += APP_SNAPSHOT
 
-#DEFINES *= QT_NO_DEBUG_OUTPUT
+DEFINES *= QT_NO_DEBUG_OUTPUT
 DEFINES *= QT_USE_QSTRINGBUILDER
 DEFINES *= QT_STRICT_ITERATORS
 
@@ -26,8 +26,7 @@ qt:greaterThan(QT_MAJOR_VERSION, 4) {
 
 include(src/qtsingleapplication/qtsingleapplication.pri)
 
-HEADERS += \
-    src/video.h \
+HEADERS += src/video.h \
     src/searchlineedit.h \
     src/urllineedit.h \
     src/spacer.h \
@@ -175,7 +174,6 @@ include(locale/locale.pri)
 # deploy
 DISTFILES += CHANGES COPYING
 unix:!mac {
-
     qt:greaterThan(QT_MAJOR_VERSION, 4) {
         LIBS += -lphonon4qt5
         INCLUDEPATH += /usr/include/phonon4qt5
