@@ -102,7 +102,7 @@ void MediaView::initialize() {
     connect(playlistModel, SIGNAL(haveSuggestions(const QStringList &)),
             sidebar, SLOT(showSuggestions(const QStringList &)));
     connect(sidebar, SIGNAL(suggestionAccepted(QString)),
-            MainWindow::instance(), SLOT(startToolbarSearch(QString)));
+            MainWindow::instance(), SLOT(search(QString)));
     splitter->addWidget(sidebar);
 
     videoAreaWidget = new VideoAreaWidget(this);
@@ -301,7 +301,8 @@ void MediaView::disappear() {
 
 }
 
-void MediaView::handleError(QString /* message */) {
+void MediaView::handleError(QString message) {
+    qWarning() << __PRETTY_FUNCTION__ << message;
 #ifdef APP_PHONON_SEEK
     mediaObject->play();
 #else

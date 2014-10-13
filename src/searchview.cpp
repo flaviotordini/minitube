@@ -134,10 +134,9 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
     queryEdit = new SearchLineEdit(this);
     queryEdit->setFont(biggerFont);
-    queryEdit->setMinimumWidth(queryEdit->fontInfo().pixelSize()*15);
     connect(queryEdit, SIGNAL(search(const QString&)), SLOT(watch(const QString&)));
-    connect(queryEdit, SIGNAL(textChanged(const QString &)), SLOT(textChanged(const QString &)));
-    connect(queryEdit, SIGNAL(suggestionAccepted(const QString&)), SLOT(watch(const QString&)));
+    connect(queryEdit, SIGNAL(textEdited(const QString &)), SLOT(textChanged(const QString &)));
+    connect(queryEdit, SIGNAL(suggestionAccepted(Suggestion*)), SLOT(suggestionAccepted(Suggestion*)));
 
     youtubeSuggest = new YTSuggester(this);
     channelSuggest = new ChannelSuggest(this);
@@ -397,4 +396,8 @@ void SearchView::searchTypeChanged(int index) {
     }
     queryEdit->selectAll();
     queryEdit->setFocus();
+}
+
+void SearchView::suggestionAccepted(Suggestion *suggestion) {
+    watch(suggestion->value);
 }

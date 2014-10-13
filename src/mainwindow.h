@@ -31,7 +31,6 @@ $END_LICENSE */
 #include <phonon/mediaobject.h>
 #include <phonon/seekslider.h>
 #endif
-#include "view.h"
 
 class HomeView;
 class MediaView;
@@ -40,6 +39,7 @@ class SearchLineEdit;
 class UpdateChecker;
 class SearchParams;
 class VideoSource;
+class Suggestion;
 
 class MainWindow : public QMainWindow {
 
@@ -73,7 +73,8 @@ public slots:
     void restore();
     void messageReceived(const QString &message);
     void quit();
-    void startToolbarSearch(QString query);
+    void suggestionAccepted(Suggestion *suggestion);
+    void search(const QString &query);
     void goBack();
     void showMessage(QString message);
 #ifdef APP_ACTIVATION

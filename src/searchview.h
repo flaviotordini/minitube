@@ -31,6 +31,7 @@ class SearchLineEdit;
 class SearchParams;
 class YTSuggester;
 class ChannelSuggest;
+class Suggestion;
 
 class SearchView : public QWidget, public View {
 
@@ -58,6 +59,7 @@ private slots:
     void watch();
     void textChanged(const QString &text);
     void searchTypeChanged(int index);
+    void suggestionAccepted(Suggestion *suggestion);
 
 private:
     YTSuggester *youtubeSuggest;

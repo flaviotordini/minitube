@@ -37,21 +37,24 @@ public:
     void showCompletion(const QList<Suggestion*> &suggestions);
     void setSuggester(Suggester* suggester);
     QListWidget* getPopup() { return popup; }
-
-public slots:
-    void acceptSuggestion();
     void preventSuggest();
     void enableSuggest();
-    void suggest();
-    void itemEntered(QListWidgetItem *item);
-    void currentItemChanged(QListWidgetItem *item);
-    void suggestionsReady(const QList<Suggestion*> &suggestions);
 
 signals:
     void suggestionAccepted(Suggestion *suggestion);
     void suggestionAccepted(const QString &value);
 
+private slots:
+    void acceptSuggestion();
+    void suggest();
+    void itemEntered(QListWidgetItem *item);
+    void currentItemChanged(QListWidgetItem *item);
+    void suggestionsReady(const QList<Suggestion*> &suggestions);
+    void adjustPosition();
+
 private:
+    void hideSuggestions();
+
     SearchLineEdit *buddy;
     QLineEdit *lineEdit;
     QString originalText;

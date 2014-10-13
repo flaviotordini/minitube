@@ -21,14 +21,13 @@ $END_LICENSE */
 #include "suggester.h"
 #ifdef APP_MAC
 #include "searchlineedit_mac.h"
+#include "macutils.h"
 #else
 #include "searchlineedit.h"
 #endif
 
 AutoComplete::AutoComplete(SearchLineEdit *buddy, QLineEdit *lineEdit):
-    QObject(buddy), buddy(buddy), lineEdit(lineEdit), suggester(0) {
-
-    enabled = true;
+    QObject(buddy), buddy(buddy), lineEdit(lineEdit), enabled(true), suggester(0) {
 
     popup = new QListWidget();
     popup->setMouseTracking(true);
@@ -37,18 +36,17 @@ AutoComplete::AutoComplete(SearchLineEdit *buddy, QLineEdit *lineEdit):
     popup->setFocusPolicy(Qt::NoFocus);
     popup->setFocusProxy(buddy);
     popup->installEventFilter(this);
+    buddy->window()->installEventFilter(this);
 
+    // style
     popup->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     popup->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     popup->setWindowOpacity(.9);
     popup->setProperty("suggest", true);
-    popup->setFrameShape(QFrame::NoFrame);
-    popup->setAttribute(Qt::WA_TranslucentBackground);
-    popup->viewport()->setStyleSheet("border:0; border-radius:5px; background:palette(base)");
 
     connect(popup, SIGNAL(itemClicked(QListWidgetItem*)), SLOT(acceptSuggestion()));
     connect(popup, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)),
-        SLOT(currentItemChanged(QListWidgetItem*)));
+            SLOT(currentItemChanged(QListWidgetItem*)));
     connect(popup, SIGNAL(itemEntered(QListWidgetItem*)), SLOT(itemEntered(QListWidgetItem *)));
 
     timer = new QTimer(this);
@@ -63,7 +61,17 @@ AutoComplete::~AutoComplete() {
 }
 
 bool AutoComplete::eventFilter(QObject *obj, QEvent *ev) {
-    if (obj != popup) return false;
+    if (obj != popup) {
+        switch (ev->type()) {
+        case QEvent::Move:
+        case QEvent::Resize:
+            adjustPosition();
+            break;
+        default:
+            break;
+        }
+        return false;
+    }
 
     if (ev->type() == QEvent::Leave) {
         popup->setCurrentItem(0);
@@ -72,10 +80,8 @@ bool AutoComplete::eventFilter(QObject *obj, QEvent *ev) {
         return true;
     }
 
-    if (ev->type() == QEvent::FocusOut) {
-        popup->hide();
-        buddy->setText(originalText);
-        buddy->setFocus();
+    if (ev->type() == QEvent::FocusOut || ev->type() == QEvent::MouseButtonPress) {
+        hideSuggestions();
         return true;
     }
 
@@ -90,17 +96,13 @@ bool AutoComplete::eventFilter(QObject *obj, QEvent *ev) {
                 acceptSuggestion();
                 consumed = true;
             } else {
-                buddy->setFocus();
                 lineEdit->event(ev);
-                popup->hide();
+                hideSuggestions();
             }
             break;
 
         case Qt::Key_Escape:
-            popup->hide();
-            popup->clear();
-            buddy->setText(originalText);
-            buddy->setFocus();
+            hideSuggestions();
             consumed = true;
             break;
 
@@ -137,15 +139,13 @@ bool AutoComplete::eventFilter(QObject *obj, QEvent *ev) {
 
 void AutoComplete::showCompletion(const QList<Suggestion *> &suggestions) {
     if (suggestions.isEmpty()) {
-        popup->clear();
-        popup->hide();
+        hideSuggestions();
         return;
     }
     popup->setUpdatesEnabled(false);
     popup->clear();
     for (int i = 0; i < suggestions.count(); ++i) {
-        QListWidgetItem * item;
-        item = new QListWidgetItem(popup);
+        QListWidgetItem *item = new QListWidgetItem(popup);
         Suggestion *s = suggestions[i];
         item->setText(s->value);
         if (!s->type.isEmpty())
@@ -156,25 +156,24 @@ void AutoComplete::showCompletion(const QList<Suggestion *> &suggestions) {
     for (int i = 0; i < suggestions.count(); ++i)
         h += popup->sizeHintForRow(i);
     popup->resize(buddy->width(), h);
-    popup->move(buddy->mapToGlobal(QPoint(0, buddy->height())));
-    popup->setFocus();
-
-    if (popup->isHidden()) popup->show();
+    adjustPosition();
     popup->setUpdatesEnabled(true);
+
+    if (popup->isHidden()) {
+        popup->show();
+        popup->setFocus();
+    }
 }
 
 void AutoComplete::acceptSuggestion() {
-    timer->stop();
-    originalText.clear();
-    popup->hide();
-    buddy->setFocus();
     int index = popup->currentIndex().row();
     if (index >= 0 && index < suggestions.size()) {
         Suggestion* suggestion = suggestions.at(index);
         buddy->setText(suggestion->value);
         emit suggestionAccepted(suggestion);
         emit suggestionAccepted(suggestion->value);
-        popup->clear();
+        originalText.clear();
+        hideSuggestions();
     } else qWarning() << "No suggestion for index" << index;
 }
 
@@ -182,7 +181,6 @@ void AutoComplete::preventSuggest() {
     timer->stop();
     enabled = false;
     popup->hide();
-    popup->setFrameShape(QFrame::NoFrame);
 }
 
 void AutoComplete::enableSuggest() {
@@ -197,15 +195,13 @@ void AutoComplete::setSuggester(Suggester* suggester) {
 
 void AutoComplete::suggest() {
     if (!enabled) return;
-    if (!buddy->hasFocus()) return;
 
     popup->setCurrentItem(0);
     popup->clearSelection();
 
     originalText = buddy->text();
     if (originalText.isEmpty()) {
-        popup->hide();
-        buddy->setFocus();
+        hideSuggestions();
         return;
     }
 
@@ -218,6 +214,25 @@ void AutoComplete::suggestionsReady(const QList<Suggestion *> &suggestions) {
     if (!enabled) return;
     if (!buddy->hasFocus()) return;
     showCompletion(suggestions);
+}
+
+void AutoComplete::adjustPosition() {
+    popup->move(buddy->mapToGlobal(QPoint(0, buddy->height())));
+}
+
+void AutoComplete::hideSuggestions() {
+#ifdef APP_MAC
+    mac::fadeOutWindow(popup);
+#else
+    popup->hide();
+    popup->clear();
+#endif
+    if (!originalText.isEmpty()) {
+        buddy->setText(originalText);
+        originalText.clear();
+    }
+    buddy->setFocus();
+    timer->stop();
 }
 
 void AutoComplete::itemEntered(QListWidgetItem *item) {

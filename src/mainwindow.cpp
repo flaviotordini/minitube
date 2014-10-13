@@ -727,6 +727,7 @@ void MainWindow::createToolBars() {
 
 #ifdef APP_PHONON_SEEK
     seekSlider = new Phonon::SeekSlider(this);
+    seekSlider->setTracking(true);
     seekSlider->setIconVisible(false);
     seekSlider->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
     mainToolBar->addWidget(seekSlider);
@@ -774,8 +775,8 @@ void MainWindow::createToolBars() {
 #endif
     toolbarSearch->setMinimumWidth(toolbarSearch->fontInfo().pixelSize()*15);
     toolbarSearch->setSuggester(new YTSuggester(this));
-    connect(toolbarSearch, SIGNAL(search(const QString&)), this, SLOT(startToolbarSearch(const QString&)));
-    connect(toolbarSearch, SIGNAL(suggestionAccepted(const QString&)), SLOT(startToolbarSearch(const QString&)));
+    connect(toolbarSearch, SIGNAL(search(const QString&)), SLOT(search(const QString&)));
+    connect(toolbarSearch, SIGNAL(suggestionAccepted(Suggestion*)), SLOT(suggestionAccepted(Suggestion*)));
     toolbarSearch->setStatusTip(searchFocusAct->statusTip());
 #ifdef APP_MAC
     mainToolBar->addWidget(searchWrapper);
@@ -1512,29 +1513,25 @@ void MainWindow::toggleDownloads(bool show) {
     else goBack();
 }
 
-void MainWindow::startToolbarSearch(QString query) {
-    query = query.trimmed();
+void MainWindow::suggestionAccepted(Suggestion *suggestion) {
+    search(suggestion->value);
+}
 
-    // check for empty query
-    if (query.length() == 0) {
-        return;
-    }
-
+void MainWindow::search(const QString &query) {
+    QString q = query.trimmed();
+    if (q.length() == 0) return;
     SearchParams *searchParams = new SearchParams();
-    searchParams->setKeywords(query);
-
-    // go!
+    searchParams->setKeywords(q);
     showMedia(searchParams);
 }
 
 void MainWindow::dragEnterEvent(QDragEnterEvent *event) {
     if (event->mimeData()->hasFormat("text/uri-list")) {
         QList<QUrl> urls = event->mimeData()->urls();
-        if (urls.isEmpty())
-            return;
+        if (urls.isEmpty()) return;
         QUrl url = urls.first();
         QString videoId = YTSearch::videoIdFromUrl(url.toString());
-        if (!videoId.isNull())
+        if (!videoId.isEmpty())
             event->acceptProposedAction();
     }
 }
@@ -1547,7 +1544,7 @@ void MainWindow::dropEvent(QDropEvent *event) {
         return;
     QUrl url = urls.first();
     QString videoId = YTSearch::videoIdFromUrl(url.toString());
-    if (!videoId.isNull()) {
+    if (!videoId.isEmpty()) {
         setWindowTitle(url.toString());
         SearchParams *searchParams = new SearchParams();
         searchParams->setKeywords(videoId);
