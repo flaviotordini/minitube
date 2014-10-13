@@ -293,37 +293,37 @@
 <context>
     <name>DownloadManager</name>
     <message>
-        <location filename="src/downloadmanager.cpp" line="75"/>
+        <location filename="src/downloadmanager.cpp" line="76"/>
         <source>This is just the demo version of %1.</source>
         <translation>Aceasta este doar o versiune demo a %1.</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="77"/>
+        <location filename="src/downloadmanager.cpp" line="78"/>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
         <translation>Poate să descarce doar videoclipurile mai mici de %1 minute astfel încât să puteți testa funcționalitatea de descărcare.</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="83"/>
+        <location filename="src/downloadmanager.cpp" line="84"/>
         <source>Continue</source>
         <translation>Continuă</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="84"/>
+        <location filename="src/downloadmanager.cpp" line="85"/>
         <source>Get the full version</source>
         <translation>ObțineIa versiunea integrală</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="171"/>
+        <location filename="src/downloadmanager.cpp" line="156"/>
         <source>%1 downloaded in %2</source>
         <translation>%1 descărcat în %2</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="174"/>
+        <location filename="src/downloadmanager.cpp" line="159"/>
         <source>Download finished</source>
         <translation>Descărcare terminată</translation>
     </message>
     <message numerus="yes">
-        <location filename="src/downloadmanager.cpp" line="179"/>
+        <location filename="src/downloadmanager.cpp" line="164"/>
         <source>%n Download(s)</source>
         <translation><numerusform>%n Descărcare</numerusform><numerusform>%n Descărcări</numerusform><numerusform>%n Descărcări</numerusform></translation>
     </message>
@@ -336,22 +336,22 @@
         <translation>Schimbă locația...</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="73"/>
+        <location filename="src/downloadsettings.cpp" line="78"/>
         <source>Choose the download location</source>
         <translation>Alege locația de descărcare</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="85"/>
+        <location filename="src/downloadsettings.cpp" line="90"/>
         <source>Download location changed.</source>
         <translation>Locația de descărcare a fost schimbată.</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="87"/>
+        <location filename="src/downloadsettings.cpp" line="92"/>
         <source>Current downloads will still go in the previous location.</source>
         <translation>Fişierele în curs de descărcare vor fi salvate în locația anterioară.</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="102"/>
+        <location filename="src/downloadsettings.cpp" line="107"/>
         <source>Downloading to: %1</source>
         <translation>Descărcare în: %1</translation>
     </message>
@@ -932,75 +932,75 @@
 <context>
     <name>MediaView</name>
     <message>
-        <location filename="src/mediaview.cpp" line="677"/>
+        <location filename="src/mediaview.cpp" line="682"/>
         <source>You can now paste the YouTube link into another application</source>
         <translation>Acum poți adăuga adresa YouTube într-o altă aplicație</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="685"/>
+        <location filename="src/mediaview.cpp" line="690"/>
         <source>You can now paste the video stream URL into another application</source>
         <translation>Acum poți adăuga adresa fluxului video într-o altă aplicație</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="686"/>
+        <location filename="src/mediaview.cpp" line="691"/>
         <source>The link will be valid only for a limited time.</source>
         <translation>Adresa va fi validă doar pentru o perioadă limitată de timp.</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="775"/>
+        <location filename="src/mediaview.cpp" line="780"/>
         <source>This is just the demo version of %1.</source>
         <translation>Aceasta este doar o versiune demo a %1.</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="776"/>
+        <location filename="src/mediaview.cpp" line="781"/>
         <source>It allows you to test the application and see if it works for you.</source>
         <translation>Vă permite să testați aplicația și să vedeți dacă funcționează.</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="808"/>
+        <location filename="src/mediaview.cpp" line="813"/>
         <source>Continue</source>
         <translation>Continuă</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="936"/>
+        <location filename="src/mediaview.cpp" line="946"/>
         <source>of</source>
         <comment>Used in video parts, as in '2 of 3'</comment>
         <translation>din</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="949"/>
+        <location filename="src/mediaview.cpp" line="959"/>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
         <translation>partea</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="951"/>
+        <location filename="src/mediaview.cpp" line="961"/>
         <source>episode</source>
         <comment>This is for video parts, as in 'Cool series - episode 1'</comment>
         <translation>episodul</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="1064"/>
+        <location filename="src/mediaview.cpp" line="1074"/>
         <source>Sent from %1</source>
         <translation>Trimis din %1</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="1099"/>
+        <location filename="src/mediaview.cpp" line="1109"/>
         <source>Unsubscribe from %1</source>
         <translation>Dezaboneaza-te de la %1</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="1103"/>
+        <location filename="src/mediaview.cpp" line="1113"/>
         <source>Subscribe to %1</source>
         <translation>Aboneaza-te de la %1</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="783"/>
+        <location filename="src/mediaview.cpp" line="788"/>
         <source>Get the full version</source>
         <translation>Obține versiunea integrală</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="822"/>
+        <location filename="src/mediaview.cpp" line="827"/>
         <source>Downloading %1</source>
         <translation>Descărcare %1</translation>
     </message>
@@ -1332,17 +1332,17 @@
 <context>
     <name>SnapshotSettings</name>
     <message>
-        <location filename="src/snapshotsettings.cpp" line="25"/>
+        <location filename="src/snapshotsettings.cpp" line="45"/>
         <source>Change location...</source>
-        <translation type="unfinished"/>
+        <translation>Schimbă locația...</translation>
     </message>
     <message>
-        <location filename="src/snapshotsettings.cpp" line="42"/>
+        <location filename="src/snapshotsettings.cpp" line="62"/>
         <source>Snapshot saved to %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="src/snapshotsettings.cpp" line="102"/>
+        <location filename="src/snapshotsettings.cpp" line="127"/>
         <source>Snapshots location changed.</source>
         <translation type="unfinished"/>
     </message>

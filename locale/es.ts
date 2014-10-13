@@ -107,7 +107,7 @@
         <location filename="local/src/activationview.cpp" line="53"/>
         <source>The full version allows you to watch videos without interruptions.</source>
         <oldsource>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</oldsource>
-        <translation type="unfinished"/>
+        <translation>La versión completa le permite ver vídeos sin interrupciones.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="55"/>
@@ -191,7 +191,7 @@
     <message>
         <location filename="src/channelview.cpp" line="124"/>
         <source>Last Watched</source>
-        <translation>Visto por última vez</translation>
+        <translation>Vistos por última vez</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="131"/>
@@ -216,12 +216,12 @@
     <message>
         <location filename="src/channelview.cpp" line="243"/>
         <source>Mark as Watched</source>
-        <translation type="unfinished"/>
+        <translation>Marcar como visto</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="256"/>
         <source>Unsubscribe</source>
-        <translation type="unfinished"/>
+        <translation>Cancelar suscripción</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="269"/>
@@ -231,7 +231,7 @@
     <message>
         <location filename="src/channelview.cpp" line="271"/>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation>No se ha suscrito a ningún canal. Use el símbolo de la estrella a los canales.</translation>
+        <translation>No se ha suscrito a ningún canal. Use el símbolo de la estrella para suscribirse a los canales.</translation>
     </message>
 </context>
 <context>
@@ -239,7 +239,7 @@
     <message>
         <location filename="src/searchlineedit.cpp" line="56"/>
         <source>Clear</source>
-        <translation>Limpiar</translation>
+        <translation>Vaciar</translation>
     </message>
 </context>
 <context>
@@ -262,17 +262,17 @@
     <message>
         <location filename="src/downloaditem.cpp" line="421"/>
         <source>bytes/sec</source>
-        <translation>bytes/seg</translation>
+        <translation>bytes/s</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="424"/>
         <source>KB/sec</source>
-        <translation>KB/seg</translation>
+        <translation>KB/s</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="427"/>
         <source>MB/sec</source>
-        <translation>MB/seg</translation>
+        <translation>MB/s</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="433"/>
@@ -293,37 +293,37 @@
 <context>
     <name>DownloadManager</name>
     <message>
-        <location filename="src/downloadmanager.cpp" line="75"/>
+        <location filename="src/downloadmanager.cpp" line="76"/>
         <source>This is just the demo version of %1.</source>
         <translation>Esta es solo la versión de prueba de %1.</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="77"/>
+        <location filename="src/downloadmanager.cpp" line="78"/>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
         <translation>Solo puede descargar vídeos de duración menor que %1 minutos para que pueda probar la función de descarga.</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="83"/>
+        <location filename="src/downloadmanager.cpp" line="84"/>
         <source>Continue</source>
         <translation>Continuar</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="84"/>
+        <location filename="src/downloadmanager.cpp" line="85"/>
         <source>Get the full version</source>
         <translation>Obtener la versión completa</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="171"/>
+        <location filename="src/downloadmanager.cpp" line="156"/>
         <source>%1 downloaded in %2</source>
         <translation>%1 descargados en %2</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="174"/>
+        <location filename="src/downloadmanager.cpp" line="159"/>
         <source>Download finished</source>
         <translation>Descarga finalizada</translation>
     </message>
     <message numerus="yes">
-        <location filename="src/downloadmanager.cpp" line="179"/>
+        <location filename="src/downloadmanager.cpp" line="164"/>
         <source>%n Download(s)</source>
         <translation><numerusform>%n Descarga</numerusform><numerusform>%n Descargas</numerusform></translation>
     </message>
@@ -336,22 +336,22 @@
         <translation>Cambiar ubicación…</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="73"/>
+        <location filename="src/downloadsettings.cpp" line="78"/>
         <source>Choose the download location</source>
         <translation>Elija la ubicación de las descargas</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="85"/>
+        <location filename="src/downloadsettings.cpp" line="90"/>
         <source>Download location changed.</source>
         <translation>Ubicación para descargas modificada.</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="87"/>
+        <location filename="src/downloadsettings.cpp" line="92"/>
         <source>Current downloads will still go in the previous location.</source>
         <translation>Las descargas en curso irán a la ubicación anterior.</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="102"/>
+        <location filename="src/downloadsettings.cpp" line="107"/>
         <source>Downloading to: %1</source>
         <translation>Descargando a: %1</translation>
     </message>
@@ -388,7 +388,7 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="38"/>
         <source>Play/Pause</source>
-        <translation>Reproducir/Pausar</translation>
+        <translation>Reproducir/pausar</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="39"/>
@@ -519,7 +519,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="297"/>
         <source>&amp;Full Screen</source>
-        <translation>&amp;Pantalla Completa</translation>
+        <translation>&amp;Pantalla completa</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="298"/>
@@ -655,7 +655,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="486"/>
         <source>Take &amp;Snapshot</source>
-        <translation type="unfinished"/>
+        <translation>Tomar &amp;captura</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="493"/>
@@ -670,12 +670,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="521"/>
         <source>&amp;Email</source>
-        <translation>&amp;Correo-e</translation>
+        <translation>&amp;Correo electrónico</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="522"/>
         <source>Email</source>
-        <translation>Correo-e</translation>
+        <translation>Correo electrónico</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="527"/>
@@ -725,7 +725,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="583"/>
         <source>&amp;Love %1? Rate it!</source>
-        <translation type="unfinished"/>
+        <translation>¿&amp;Le gusta %1? ¡Valórelo!</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="605"/>
@@ -933,75 +933,75 @@
 <context>
     <name>MediaView</name>
     <message>
-        <location filename="src/mediaview.cpp" line="677"/>
+        <location filename="src/mediaview.cpp" line="682"/>
         <source>You can now paste the YouTube link into another application</source>
         <translation>Ahora puede pegar el enlace de YouTube en otra aplicación</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="685"/>
+        <location filename="src/mediaview.cpp" line="690"/>
         <source>You can now paste the video stream URL into another application</source>
         <translation>Ahora puede pegar la URL del flujo de vídeo en otra aplicación</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="686"/>
+        <location filename="src/mediaview.cpp" line="691"/>
         <source>The link will be valid only for a limited time.</source>
         <translation>El enlace es válido solo por un tiempo limitado.</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="775"/>
+        <location filename="src/mediaview.cpp" line="780"/>
         <source>This is just the demo version of %1.</source>
         <translation>Esto es solo la versión de prueba de %1.</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="776"/>
+        <location filename="src/mediaview.cpp" line="781"/>
         <source>It allows you to test the application and see if it works for you.</source>
         <translation>Le permite probar la aplicación y ver si le funciona.</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="808"/>
+        <location filename="src/mediaview.cpp" line="813"/>
         <source>Continue</source>
         <translation>Continuar</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="936"/>
+        <location filename="src/mediaview.cpp" line="946"/>
         <source>of</source>
         <comment>Used in video parts, as in '2 of 3'</comment>
         <translation>de</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="949"/>
+        <location filename="src/mediaview.cpp" line="959"/>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
         <translation>parte</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="951"/>
+        <location filename="src/mediaview.cpp" line="961"/>
         <source>episode</source>
         <comment>This is for video parts, as in 'Cool series - episode 1'</comment>
         <translation>episodio</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="1064"/>
+        <location filename="src/mediaview.cpp" line="1074"/>
         <source>Sent from %1</source>
         <translation>Enviado desde %1</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="1099"/>
+        <location filename="src/mediaview.cpp" line="1109"/>
         <source>Unsubscribe from %1</source>
         <translation>Cancelar suscripción a %1</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="1103"/>
+        <location filename="src/mediaview.cpp" line="1113"/>
         <source>Subscribe to %1</source>
         <translation>Suscribirse a %1</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="783"/>
+        <location filename="src/mediaview.cpp" line="788"/>
         <source>Get the full version</source>
         <translation>Obtener la versión completa</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="822"/>
+        <location filename="src/mediaview.cpp" line="827"/>
         <source>Downloading %1</source>
         <translation>Descargando %1</translation>
     </message>
@@ -1333,19 +1333,19 @@
 <context>
     <name>SnapshotSettings</name>
     <message>
-        <location filename="src/snapshotsettings.cpp" line="25"/>
+        <location filename="src/snapshotsettings.cpp" line="45"/>
         <source>Change location...</source>
-        <translation type="unfinished"/>
+        <translation>Cambiar ubicación…</translation>
     </message>
     <message>
-        <location filename="src/snapshotsettings.cpp" line="42"/>
+        <location filename="src/snapshotsettings.cpp" line="62"/>
         <source>Snapshot saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>Se guardó la captura en %1</translation>
     </message>
     <message>
-        <location filename="src/snapshotsettings.cpp" line="102"/>
+        <location filename="src/snapshotsettings.cpp" line="127"/>
         <source>Snapshots location changed.</source>
-        <translation type="unfinished"/>
+        <translation>Se modificó la ubicación de las capturas.</translation>
     </message>
 </context>
 <context>
