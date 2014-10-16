@@ -26,17 +26,34 @@ $END_LICENSE */
 #include "searchlineedit.h"
 #endif
 
+#ifndef QT_NO_DEBUG_OUTPUT
+/// Gives human-readable event type information.
+QDebug operator<<(QDebug str, const QEvent * ev) {
+    static int eventEnumIndex = QEvent::staticMetaObject.indexOfEnumerator("Type");
+    str << "QEvent";
+    if (ev) {
+        QString name = QEvent::staticMetaObject.enumerator(eventEnumIndex).valueToKey(ev->type());
+        if (!name.isEmpty()) str << name; else str << ev->type();
+    } else {
+        str << (void*)ev;
+    }
+    return str.maybeSpace();
+}
+#endif
+
 AutoComplete::AutoComplete(SearchLineEdit *buddy, QLineEdit *lineEdit):
     QObject(buddy), buddy(buddy), lineEdit(lineEdit), enabled(true), suggester(0) {
 
     popup = new QListWidget();
-    popup->setMouseTracking(true);
     popup->setWindowFlags(Qt::Popup);
-    popup->setAttribute(Qt::WA_ShowWithoutActivating);
-    popup->setFocusPolicy(Qt::NoFocus);
     popup->setFocusProxy(buddy);
     popup->installEventFilter(this);
     buddy->window()->installEventFilter(this);
+#if defined(APP_MAC) || defined(APP_WIN)
+    // #FIXME on Linux, mouse tracking triggers an "Enter" event when popup is shown
+    // this triggers item entering and replaces text while writing
+    popup->setMouseTracking(true);
+#endif
 
     // style
     popup->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -61,6 +78,7 @@ AutoComplete::~AutoComplete() {
 }
 
 bool AutoComplete::eventFilter(QObject *obj, QEvent *ev) {
+
     if (obj != popup) {
         switch (ev->type()) {
         case QEvent::Move:
@@ -72,6 +90,8 @@ bool AutoComplete::eventFilter(QObject *obj, QEvent *ev) {
         }
         return false;
     }
+
+    // qDebug() << ev;
 
     if (ev->type() == QEvent::Leave) {
         popup->setCurrentItem(0);
@@ -137,7 +157,7 @@ bool AutoComplete::eventFilter(QObject *obj, QEvent *ev) {
     return false;
 }
 
-void AutoComplete::showCompletion(const QList<Suggestion *> &suggestions) {
+void AutoComplete::showSuggestions(const QList<Suggestion *> &suggestions) {
     if (suggestions.isEmpty()) {
         hideSuggestions();
         return;
@@ -152,16 +172,16 @@ void AutoComplete::showCompletion(const QList<Suggestion *> &suggestions) {
             item->setIcon(QIcon(":/images/" + s->type + ".png"));
     }
     popup->setCurrentItem(0);
-    int h = 0;
+    int h = popup->frameWidth() * 2;
     for (int i = 0; i < suggestions.count(); ++i)
         h += popup->sizeHintForRow(i);
+
     popup->resize(buddy->width(), h);
     adjustPosition();
     popup->setUpdatesEnabled(true);
 
     if (popup->isHidden()) {
         popup->show();
-        popup->setFocus();
     }
 }
 
@@ -213,7 +233,7 @@ void AutoComplete::suggestionsReady(const QList<Suggestion *> &suggestions) {
     this->suggestions = suggestions;
     if (!enabled) return;
     if (!buddy->hasFocus()) return;
-    showCompletion(suggestions);
+    showSuggestions(suggestions);
 }
 
 void AutoComplete::adjustPosition() {
@@ -244,5 +264,5 @@ void AutoComplete::itemEntered(QListWidgetItem *item) {
 void AutoComplete::currentItemChanged(QListWidgetItem *item) {
     if (!item) return;
     buddy->setText(item->text());
-    // lineEdit->setSelection(originalText.length(), editor->text().length());
+    // lineEdit->setSelection(originalText.length(), lineEdit->text().length());
 }

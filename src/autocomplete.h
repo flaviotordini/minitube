@@ -33,8 +33,6 @@ class AutoComplete : public QObject {
 public:
     AutoComplete(SearchLineEdit *buddy, QLineEdit *lineEdit);
     ~AutoComplete();
-    bool eventFilter(QObject *obj, QEvent *ev);
-    void showCompletion(const QList<Suggestion*> &suggestions);
     void setSuggester(Suggester* suggester);
     QListWidget* getPopup() { return popup; }
     void preventSuggest();
@@ -43,6 +41,9 @@ public:
 signals:
     void suggestionAccepted(Suggestion *suggestion);
     void suggestionAccepted(const QString &value);
+
+protected:
+    bool eventFilter(QObject *obj, QEvent *ev);
 
 private slots:
     void acceptSuggestion();
@@ -53,6 +54,7 @@ private slots:
     void adjustPosition();
 
 private:
+    void showSuggestions(const QList<Suggestion*> &suggestions);
     void hideSuggestions();
 
     SearchLineEdit *buddy;
