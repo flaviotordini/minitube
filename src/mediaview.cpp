@@ -44,7 +44,7 @@ $END_LICENSE */
 #include "searchparams.h"
 #include "ytsinglevideosource.h"
 #include "channelaggregator.h"
-#include "utils.h"
+#include "iconutils.h"
 #include "ytuser.h"
 #ifdef APP_SNAPSHOT
 #include "snapshotsettings.h"
@@ -1122,17 +1122,17 @@ void MediaView::updateSubscriptionAction(Video *video, bool subscribed) {
         if (tintedIcon.isNull()) {
             QList<QSize> sizes;
             sizes << QSize(16, 16);
-            tintedIcon = Utils::tintedIcon("bookmark-new", QColor(254, 240, 0), sizes);
+            tintedIcon = IconUtils::tintedIcon("bookmark-new", QColor(254, 240, 0), sizes);
         }
         subscribeAction->setIcon(tintedIcon);
 #else
-        subscribeAction->setIcon(Utils::icon("bookmark-remove"));
+        subscribeAction->setIcon(IconUtils::icon("bookmark-remove"));
 #endif
     } else {
-        subscribeAction->setIcon(Utils::icon("bookmark-new"));
+        subscribeAction->setIcon(IconUtils::icon("bookmark-new"));
     }
 
-    Utils::setupAction(subscribeAction);
+    IconUtils::setupAction(subscribeAction);
 }
 
 void MediaView::toggleSubscription() {

@@ -26,7 +26,7 @@ $END_LICENSE */
 #include "downloadview.h"
 #include "spacer.h"
 #include "constants.h"
-#include "utils.h"
+#include "iconutils.h"
 #include "global.h"
 #include "videodefinition.h"
 #include "fontutils.h"
@@ -264,7 +264,7 @@ void MainWindow::createActions() {
 
     QHash<QString, QAction*> *actions = The::globalActions();
 
-    stopAct = new QAction(Utils::icon("media-playback-stop"), tr("&Stop"), this);
+    stopAct = new QAction(IconUtils::icon("media-playback-stop"), tr("&Stop"), this);
     stopAct->setStatusTip(tr("Stop playback and go back to the search view"));
     stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
     stopAct->setEnabled(false);
@@ -272,7 +272,7 @@ void MainWindow::createActions() {
     connect(stopAct, SIGNAL(triggered()), SLOT(stop()));
 
     skipBackwardAct = new QAction(
-                Utils::icon("media-skip-backward"),
+                IconUtils::icon("media-skip-backward"),
                 tr("P&revious"), this);
     skipBackwardAct->setStatusTip(tr("Go back to the previous track"));
     skipBackwardAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Left));
@@ -280,21 +280,21 @@ void MainWindow::createActions() {
     actions->insert("previous", skipBackwardAct);
     connect(skipBackwardAct, SIGNAL(triggered()), mediaView, SLOT(skipBackward()));
 
-    skipAct = new QAction(Utils::icon("media-skip-forward"), tr("S&kip"), this);
+    skipAct = new QAction(IconUtils::icon("media-skip-forward"), tr("S&kip"), this);
     skipAct->setStatusTip(tr("Skip to the next video"));
     skipAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_Right) << QKeySequence(Qt::Key_MediaNext));
     skipAct->setEnabled(false);
     actions->insert("skip", skipAct);
     connect(skipAct, SIGNAL(triggered()), mediaView, SLOT(skip()));
 
-    pauseAct = new QAction(Utils::icon("media-playback-pause"), tr("&Pause"), this);
+    pauseAct = new QAction(IconUtils::icon("media-playback-pause"), tr("&Pause"), this);
     pauseAct->setStatusTip(tr("Pause playback"));
     pauseAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Space) << QKeySequence(Qt::Key_MediaPlay));
     pauseAct->setEnabled(false);
     actions->insert("pause", pauseAct);
     connect(pauseAct, SIGNAL(triggered()), mediaView, SLOT(pause()));
 
-    fullscreenAct = new QAction(Utils::icon("view-fullscreen"), tr("&Full Screen"), this);
+    fullscreenAct = new QAction(IconUtils::icon("view-fullscreen"), tr("&Full Screen"), this);
     fullscreenAct->setStatusTip(tr("Go full screen"));
     QList<QKeySequence> fsShortcuts;
 #ifdef APP_MAC
@@ -428,7 +428,7 @@ void MainWindow::createActions() {
     addAction(volumeDownAct);
 
     volumeMuteAct = new QAction(this);
-    volumeMuteAct->setIcon(Utils::icon("audio-volume-high"));
+    volumeMuteAct->setIcon(IconUtils::icon("audio-volume-high"));
     volumeMuteAct->setStatusTip(tr("Mute volume"));
     volumeMuteAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_K));
     actions->insert("volume-mute", volumeMuteAct);
@@ -437,10 +437,10 @@ void MainWindow::createActions() {
 
     QAction *definitionAct = new QAction(this);
 #ifdef Q_OS_LINUX
-    definitionAct->setIcon(Utils::tintedIcon("video-display", QColor(0, 0, 0),
+    definitionAct->setIcon(IconUtils::tintedIcon("video-display", QColor(0, 0, 0),
                                              QList<QSize>() << QSize(16, 16)));
 #else
-    definitionAct->setIcon(Utils::icon("video-display"));
+    definitionAct->setIcon(IconUtils::icon("video-display"));
 #endif
     definitionAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_D));
     /*
@@ -456,7 +456,7 @@ void MainWindow::createActions() {
 
     QAction *action;
 
-    action = new QAction(Utils::icon("media-playback-start"), tr("&Manually Start Playing"), this);
+    action = new QAction(IconUtils::icon("media-playback-start"), tr("&Manually Start Playing"), this);
     action->setStatusTip(tr("Manually start playing videos"));
     action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_T));
     action->setCheckable(true);
@@ -467,7 +467,7 @@ void MainWindow::createActions() {
     action->setStatusTip(tr("Show details about video downloads"));
     action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_J));
     action->setCheckable(true);
-    action->setIcon(Utils::icon("document-save"));
+    action->setIcon(IconUtils::icon("document-save"));
     action->setVisible(false);
     connect(action, SIGNAL(toggled(bool)), SLOT(toggleDownloads(bool)));
     actions->insert("downloads", action);
@@ -475,7 +475,7 @@ void MainWindow::createActions() {
     action = new QAction(tr("&Download"), this);
     action->setStatusTip(tr("Download the current video"));
     action->setShortcut(QKeySequence::Save);
-    action->setIcon(Utils::icon("document-save"));
+    action->setIcon(IconUtils::icon("document-save"));
     action->setEnabled(false);
     action->setVisible(false);
     action->setPriority(QAction::LowPriority);
@@ -534,12 +534,12 @@ void MainWindow::createActions() {
     actions->insert("restore", action);
     connect(action, SIGNAL(triggered()), SLOT(restore()));
 
-    action = new QAction(Utils::icon("go-top"), tr("&Float on Top"), this);
+    action = new QAction(IconUtils::icon("go-top"), tr("&Float on Top"), this);
     action->setCheckable(true);
     actions->insert("ontop", action);
     connect(action, SIGNAL(toggled(bool)), SLOT(floatOnTop(bool)));
 
-    action = new QAction(Utils::icon("media-playback-stop"), tr("&Stop After This Video"), this);
+    action = new QAction(IconUtils::icon("media-playback-stop"), tr("&Stop After This Video"), this);
     action->setShortcut(QKeySequence(Qt::SHIFT + Qt::Key_Escape));
     action->setCheckable(true);
     action->setEnabled(false);
@@ -565,7 +565,7 @@ void MainWindow::createActions() {
     action = new QAction(tr("More..."), this);
     actions->insert("more-region", action);
 
-    action = new QAction(Utils::icon(QStringList() << "view-list-symbolic" << "view-list" << "format-justify-fill"), tr("&Related Videos"), this);
+    action = new QAction(IconUtils::icon("view-list"), tr("&Related Videos"), this);
     action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_R));
     action->setStatusTip(tr("Watch videos related to the current one"));
     action->setEnabled(false);
@@ -594,7 +594,7 @@ void MainWindow::createActions() {
         // add actions to the MainWindow so that they work
         // when the menu is hidden
         addAction(action);
-        Utils::setupAction(action);
+        IconUtils::setupAction(action);
     }
 }
 
@@ -1057,7 +1057,7 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
 
     case Phonon::PlayingState:
         pauseAct->setEnabled(true);
-        pauseAct->setIcon(Utils::icon("media-playback-pause"));
+        pauseAct->setIcon(IconUtils::icon("media-playback-pause"));
         pauseAct->setText(tr("&Pause"));
         pauseAct->setStatusTip(tr("Pause playback") + " (" +  pauseAct->shortcut().toString(QKeySequence::NativeText) + ")");
         // stopAct->setEnabled(true);
@@ -1070,7 +1070,7 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
 
     case Phonon::PausedState:
         pauseAct->setEnabled(true);
-        pauseAct->setIcon(Utils::icon("media-playback-start"));
+        pauseAct->setIcon(IconUtils::icon("media-playback-start"));
         pauseAct->setText(tr("&Play"));
         pauseAct->setStatusTip(tr("Resume playback") + " (" +  pauseAct->shortcut().toString(QKeySequence::NativeText) + ")");
         // stopAct->setEnabled(true);
@@ -1173,11 +1173,11 @@ void MainWindow::updateUIForFullscreen() {
         fullscreenAct->setShortcuts(QList<QKeySequence>(fsShortcuts)
                                     << QKeySequence(Qt::Key_Escape));
         fullscreenAct->setText(tr("Leave &Full Screen"));
-        fullscreenAct->setIcon(Utils::icon("view-restore"));
+        fullscreenAct->setIcon(IconUtils::icon("view-restore"));
     } else {
         fullscreenAct->setShortcuts(fsShortcuts);
         fullscreenAct->setText(fsText);
-        fullscreenAct->setIcon(Utils::icon("view-fullscreen"));
+        fullscreenAct->setIcon(IconUtils::icon("view-fullscreen"));
     }
 
     // No compact view action when in full screen
@@ -1422,10 +1422,10 @@ void MainWindow::volumeChanged(qreal newVolume) {
 
 void MainWindow::volumeMutedChanged(bool muted) {
     if (muted) {
-        volumeMuteAct->setIcon(Utils::icon("audio-volume-muted"));
+        volumeMuteAct->setIcon(IconUtils::icon("audio-volume-muted"));
         statusBar()->showMessage(tr("Volume is muted"));
     } else {
-        volumeMuteAct->setIcon(Utils::icon("audio-volume-high"));
+        volumeMuteAct->setIcon(IconUtils::icon("audio-volume-high"));
         statusBar()->showMessage(tr("Volume is unmuted"));
     }
 }

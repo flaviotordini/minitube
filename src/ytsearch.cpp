@@ -24,7 +24,6 @@ $END_LICENSE */
 #include "networkaccess.h"
 #include "searchparams.h"
 #include "video.h"
-#include "utils.h"
 #include "ytuser.h"
 
 namespace The {

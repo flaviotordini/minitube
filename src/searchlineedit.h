@@ -17,25 +17,33 @@ class Suggester;
 /*
     Clear button on the right hand side of the search widget.
     Hidden by default
-    "A circle with an X in it"
  */
-class ClearButton : public QAbstractButton
-{
+class ClearButton : public QAbstractButton {
+
     Q_OBJECT
 
 public:
     ClearButton(QWidget *parent = 0);
-    void paintEvent(QPaintEvent *event);
+    void paintEvent(QPaintEvent *e);
 
 public slots:
     void textChanged(const QString &text);
+
+protected:
+    void enterEvent(QEvent *e);
+    void leaveEvent(QEvent *e);
+
+    void mousePressEvent(QEvent *e);
+    void mouseReleaseEvent(QEvent *e);
+
+private:
+    bool hovered;
+    bool mousePressed;
 };
 
+class SearchLineEdit : public ExLineEdit {
 
-class SearchLineEdit : public ExLineEdit
-{
     Q_OBJECT
-    Q_PROPERTY(QString inactiveText READ inactiveText WRITE setInactiveText)
 
 signals:
     void textChanged(const QString &text);
@@ -46,7 +54,6 @@ signals:
 public:
     SearchLineEdit(QWidget *parent = 0);
 
-    QString inactiveText() const;
     void setInactiveText(const QString &text);
 
     QMenu *menu() const;
@@ -55,7 +62,7 @@ public:
     void enableSuggest();
     void preventSuggest();
     void selectAll() { lineEdit()->selectAll(); }
-    void setSuggester(Suggester *suggester) { completion->setSuggester(suggester); }
+    void setSuggester(Suggester *suggester) { autoComplete->setSuggester(suggester); }
     void setText(const QString &text) { lineEdit()->setText(text); }
 
 protected:
@@ -67,9 +74,9 @@ private slots:
     void returnPressed();
 
 private:
-    SearchButton *m_searchButton;
-    QString m_inactiveText;
-    AutoComplete *completion;
+    SearchButton *searchButton;
+    QString inactiveText;
+    AutoComplete *autoComplete;
 };
 
 #endif // SEARCHLINEEDIT_H

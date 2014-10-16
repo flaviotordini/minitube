@@ -26,7 +26,7 @@ $END_LICENSE */
 #include "constants.h"
 #include "mainwindow.h"
 #include "searchparams.h"
-#include "utils.h"
+#include "iconutils.h"
 #ifdef APP_EXTRA
 #include "extra.h"
 #endif
@@ -103,7 +103,7 @@ int main(int argc, char **argv) {
 #ifndef APP_MAC
     QIcon appIcon;
     if (QDir(dataDir).exists()) {
-        appIcon = Utils::icon(Constants::UNIX_NAME);
+        appIcon = IconUtils::icon(Constants::UNIX_NAME);
     } else {
         dataDir = qApp->applicationDirPath() + "/data";
         const int iconSizes [] = { 16, 22, 32, 48, 64, 128, 256, 512 };

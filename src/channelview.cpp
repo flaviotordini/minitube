@@ -30,7 +30,7 @@ $END_LICENSE */
 #include "aggregatevideosource.h"
 #include "painterutils.h"
 #include "mainwindow.h"
-#include "utils.h"
+#include "iconutils.h"
 #ifdef APP_EXTRA
 #include "extra.h"
 #endif
@@ -137,7 +137,7 @@ void ChannelView::setupActions() {
 
     QToolButton *sortButton = new QToolButton(this);
     sortButton->setText(tr("Sort by"));
-    sortButton->setIcon(Utils::icon("sort"));
+    sortButton->setIcon(IconUtils::icon("sort"));
     sortButton->setIconSize(QSize(16, 16));
     sortButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     sortButton->setPopupMode(QToolButton::InstantPopup);
@@ -148,7 +148,7 @@ void ChannelView::setupActions() {
     statusActions << widgetAction;
 
     markAsWatchedAction = new QAction(
-                Utils::icon("mark-watched"), tr("Mark all as watched"), this);
+                IconUtils::icon("mark-watched"), tr("Mark all as watched"), this);
     markAsWatchedAction->setEnabled(false);
     markAsWatchedAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_W));
     connect(markAsWatchedAction, SIGNAL(triggered()), SLOT(markAllAsWatched()));
@@ -156,7 +156,7 @@ void ChannelView::setupActions() {
 
     showUpdated = settings.value(showUpdatedKey, false).toBool();
     QAction *showUpdatedAction = new QAction(
-                Utils::icon("show-updated"), tr("Show Updated"), this);
+                IconUtils::icon("show-updated"), tr("Show Updated"), this);
     showUpdatedAction->setCheckable(true);
     showUpdatedAction->setChecked(showUpdated);
     showUpdatedAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_U));
@@ -165,7 +165,7 @@ void ChannelView::setupActions() {
 
     foreach (QAction *action, statusActions) {
         window()->addAction(action);
-        Utils::setupAction(action);
+        IconUtils::setupAction(action);
     }
 }
 

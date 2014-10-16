@@ -26,7 +26,7 @@ $END_LICENSE */
 #include "mainwindow.h"
 #include "mediaview.h"
 #include "ytstandardfeed.h"
-#include "utils.h"
+#include "iconutils.h"
 #include "channelaggregator.h"
 #ifdef APP_MAC
 #include "macutils.h"
@@ -78,7 +78,7 @@ void HomeView::setupBar() {
 
     foreach (QAction* action, bar->actions()) {
         addAction(action);
-        Utils::setupAction(action);
+        IconUtils::setupAction(action);
     }
 }
 

@@ -22,7 +22,7 @@ $END_LICENSE */
 #include "playlistmodel.h"
 #include "fontutils.h"
 #include "downloaditem.h"
-#include "utils.h"
+#include "iconutils.h"
 #include "videodefinition.h"
 #include "video.h"
 
@@ -380,7 +380,7 @@ void PlaylistItemDelegate::paintDownloadInfo( QPainter* painter,
     if (status != Finished && status != Failed && status != Idle) {
         if (downloadButtonHovered) message = tr("Stop downloading");
         painter->save();
-        QIcon closeIcon = Utils::icon("window-close");
+        QIcon closeIcon = IconUtils::icon("window-close");
         painter->drawPixmap(downloadButtonRect(line), closeIcon.pixmap(16, 16, iconMode));
         painter->restore();
     }
@@ -393,7 +393,7 @@ void PlaylistItemDelegate::paintDownloadInfo( QPainter* painter,
             message = tr("Open parent folder");
 #endif
         painter->save();
-        QIcon searchIcon = Utils::icon("system-search");
+        QIcon searchIcon = IconUtils::icon("system-search");
         painter->drawPixmap(downloadButtonRect(line), searchIcon.pixmap(16, 16, iconMode));
         painter->restore();
     }
@@ -401,7 +401,7 @@ void PlaylistItemDelegate::paintDownloadInfo( QPainter* painter,
     else if (status == Failed || status == Idle) {
         if (downloadButtonHovered) message = tr("Restart downloading");
         painter->save();
-        QIcon searchIcon = Utils::icon("view-refresh");
+        QIcon searchIcon = IconUtils::icon("view-refresh");
         painter->drawPixmap(downloadButtonRect(line), searchIcon.pixmap(16, 16, iconMode));
         painter->restore();
     }

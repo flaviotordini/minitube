@@ -19,11 +19,11 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "sidebarheader.h"
-#include "utils.h"
+#include "iconutils.h"
 #include "mediaview.h"
 #include "videosource.h"
 #include "fontutils.h"
-#include "utils.h"
+#include "iconutils.h"
 
 SidebarHeader::SidebarHeader(QWidget *parent) : QToolBar(parent) { }
 
@@ -35,14 +35,14 @@ void SidebarHeader::setup() {
     setIconSize(QSize(16, 16));
 
     backAction = new QAction(
-                Utils::icon("go-previous"),
+                IconUtils::icon("go-previous"),
                 tr("&Back"), this);
     backAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Left));
     connect(backAction, SIGNAL(triggered()), MediaView::instance(), SLOT(goBack()));
     addAction(backAction);
 
     forwardAction = new QAction(
-                Utils::icon("go-next"),
+                IconUtils::icon("go-next"),
                 tr("&Back"), this);
     forwardAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Right));
     connect(forwardAction, SIGNAL(triggered()), MediaView::instance(), SLOT(goForward()));
@@ -50,7 +50,7 @@ void SidebarHeader::setup() {
 
     foreach (QAction* action, actions()) {
         window()->addAction(action);
-        Utils::setupAction(action);
+        IconUtils::setupAction(action);
     }
 
     QWidget *spacerWidget = new QWidget(this);

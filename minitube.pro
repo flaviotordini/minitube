@@ -78,7 +78,7 @@ HEADERS += src/video.h \
     src/regionsview.h \
     src/ytsinglevideosource.h \
     src/sidebarheader.h \
-    src/utils.h \
+    src/iconutils.h \
     src/diskcache.h \
     src/gridwidget.h \
     src/painterutils.h \
@@ -144,7 +144,7 @@ SOURCES += src/main.cpp \
     src/regionsview.cpp \
     src/ytsinglevideosource.cpp \
     src/sidebarheader.cpp \
-    src/utils.cpp \
+    src/iconutils.cpp \
     src/diskcache.cpp \
     src/gridwidget.cpp \
     src/painterutils.cpp \
