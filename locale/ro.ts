@@ -15,7 +15,7 @@
     <message>
         <location filename="src/aboutview.cpp" line="58"/>
         <source>Licensed to: %1</source>
-        <translation>Licență pentru %1</translation>
+        <translation>Licențiat la %1</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="62"/>
@@ -30,17 +30,17 @@
     <message>
         <location filename="src/aboutview.cpp" line="67"/>
         <source>You may want to try my other apps as well:</source>
-        <translation>Puteți încerca și celelalte aplicații ale mele:</translation>
+        <translation>Poate doriți să încercați și celelalte aplicații ale mele:</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="70"/>
         <source>%1, a YouTube music player</source>
-        <translation>%1, un player pentru colecția muzicală de pe YouTube</translation>
+        <translation>%1, un player muzical pentru YouTube</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="74"/>
         <source>%1, a music player</source>
-        <translation>%1, un player pentru colecția muzicală proprie</translation>
+        <translation>%1, un player muzical</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="80"/>
@@ -96,18 +96,18 @@
     <message>
         <location filename="local/src/activationview.cpp" line="47"/>
         <source>Please license %1</source>
-        <translation>Licențiază %1</translation>
+        <translation>Licențiați %1</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="51"/>
         <source>This demo has expired.</source>
-        <translation>Versiunea demo a expirat.</translation>
+        <translation>Această versiune demo a expirat.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="53"/>
         <source>The full version allows you to watch videos without interruptions.</source>
         <oldsource>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</oldsource>
-        <translation type="unfinished"/>
+        <translation>Versiunea nerestricționată vă permite să urmăriți clipurile video fără întreruperi.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="55"/>
@@ -216,12 +216,12 @@
     <message>
         <location filename="src/channelview.cpp" line="243"/>
         <source>Mark as Watched</source>
-        <translation type="unfinished"/>
+        <translation>Marcat ca vizualizat</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="256"/>
         <source>Unsubscribe</source>
-        <translation type="unfinished"/>
+        <translation>Dezabonează</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="269"/>
@@ -725,7 +725,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="583"/>
         <source>&amp;Love %1? Rate it!</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Vă place %1? Evaluați-l!</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="605"/>

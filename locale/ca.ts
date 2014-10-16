@@ -725,7 +725,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="583"/>
         <source>&amp;Love %1? Rate it!</source>
-        <translation type="unfinished"/>
+        <translation>T&apos;&amp;Agrada %1? Puntua&apos;l!</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="605"/>
