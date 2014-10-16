@@ -95,7 +95,7 @@ void SearchButton::paintEvent(QPaintEvent *event) {
     const int h = height();
     int iconSize = 16;
     if (h > 30) iconSize = 22;
-    QPixmap p = IconUtils::fromTheme("edit-find-symbolic").pixmap(iconSize, iconSize);
+    QPixmap p = IconUtils::icon("edit-find").pixmap(iconSize, iconSize);
     int x = (width() - p.width()) / 2;
     int y = (h - p.height()) / 2;
     painter.drawPixmap(x, y, p);
