@@ -287,8 +287,8 @@ void MainWindow::createActions() {
     actions->insert("skip", skipAct);
     connect(skipAct, SIGNAL(triggered()), mediaView, SLOT(skip()));
 
-    pauseAct = new QAction(IconUtils::icon("media-playback-pause"), tr("&Pause"), this);
-    pauseAct->setStatusTip(tr("Pause playback"));
+    pauseAct = new QAction(IconUtils::icon("media-playback-start"), tr("&Play"), this);
+    pauseAct->setStatusTip(tr("Resume playback"));
     pauseAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Space) << QKeySequence(Qt::Key_MediaPlay));
     pauseAct->setEnabled(false);
     actions->insert("pause", pauseAct);
@@ -1065,6 +1065,9 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
 
     case Phonon::StoppedState:
         pauseAct->setEnabled(false);
+        pauseAct->setIcon(IconUtils::icon("media-playback-start"));
+        pauseAct->setText(tr("&Play"));
+        pauseAct->setStatusTip(tr("Resume playback") + " (" +  pauseAct->shortcut().toString(QKeySequence::NativeText) + ")");
         // stopAct->setEnabled(false);
         break;
 
@@ -1077,6 +1080,12 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
         break;
 
     case Phonon::BufferingState:
+        pauseAct->setEnabled(false);
+        pauseAct->setIcon(IconUtils::icon("content-loading"));
+        pauseAct->setText(tr("&Loading..."));
+        pauseAct->setStatusTip(QString());
+        break;
+
     case Phonon::LoadingState:
         pauseAct->setEnabled(false);
         currentTime->clear();
