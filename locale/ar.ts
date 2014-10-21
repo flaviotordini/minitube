@@ -145,7 +145,7 @@
     <message numerus="yes">
         <location filename="src/channelaggregator.cpp" line="133"/>
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>لا يوجد ملفات فيديو جديدة</numerusform><numerusform>لديك ملف فيديو جديد</numerusform><numerusform>لديك ملفي فيديو جديدين</numerusform><numerusform>لديك %n فيديو جديد</numerusform><numerusform>لديك %n فيديو جديد</numerusform><numerusform>لديك %n فيديو جديد</numerusform></translation>
     </message>
 </context>
 <context>
@@ -247,42 +247,42 @@
     <message>
         <location filename="src/downloaditem.cpp" line="406"/>
         <source>bytes</source>
-        <translation>bytes</translation>
+        <translation>بايت</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="409"/>
         <source>KB</source>
-        <translation>KB</translation>
+        <translation>كب</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="412"/>
         <source>MB</source>
-        <translation>MB</translation>
+        <translation>مب</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="421"/>
         <source>bytes/sec</source>
-        <translation>bytes/sec</translation>
+        <translation>بايت/ثا</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="424"/>
         <source>KB/sec</source>
-        <translation>KB/sec</translation>
+        <translation>كب/ثا</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="427"/>
         <source>MB/sec</source>
-        <translation>MB/sec</translation>
+        <translation>مب/ثا</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="433"/>
         <source>seconds</source>
-        <translation>seconds</translation>
+        <translation>ثانية</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="436"/>
         <source>minutes</source>
-        <translation>minutes</translation>
+        <translation>دقيقة</translation>
     </message>
     <message>
         <location filename="src/downloaditem.cpp" line="439"/>
@@ -383,12 +383,12 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="37"/>
         <source>Pause</source>
-        <translation>Pause</translation>
+        <translation>ألبث</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="38"/>
         <source>Play/Pause</source>
-        <translation>Play/Pause</translation>
+        <translation>شغّل/ألبث</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="39"/>
@@ -660,7 +660,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="493"/>
         <source>&amp;Subscribe to Channel</source>
-        <translation>&amp;Subscribe to Channel</translation>
+        <translation>ا&amp;شترك بالقناة</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="501"/>
@@ -735,7 +735,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="589"/>
         <source>Buy %1...</source>
-        <translation>اشتري %1...</translation>
+        <translation>اشترِ %1...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="619"/>
@@ -1468,7 +1468,7 @@
     <message>
         <location filename="src/ytregions.cpp" line="47"/>
         <source>Israel</source>
-        <translation>Israel</translation>
+        <translation>إسرائيل</translation>
     </message>
     <message>
         <location filename="src/ytregions.cpp" line="48"/>
