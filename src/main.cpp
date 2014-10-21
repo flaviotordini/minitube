@@ -38,8 +38,7 @@ int main(int argc, char **argv) {
 
 #ifdef Q_OS_MAC
     mac::MacMain();
-    // https://bugreports.qt-project.org/browse/QTBUG-32789
-    QFont::insertSubstitution(".Lucida Grande UI", "Lucida Grande");
+    QFont::insertSubstitution(".Helvetica Neue DeskInterface", "Helvetica Neue");
 #endif
 
     QtSingleApplication app(argc, argv);
@@ -54,9 +53,6 @@ int main(int argc, char **argv) {
     app.setApplicationName(QLatin1String(Constants::NAME));
     app.setOrganizationName(QLatin1String(Constants::ORG_NAME));
     app.setOrganizationDomain(QLatin1String(Constants::ORG_DOMAIN));
-#ifndef APP_WIN
-    app.setWheelScrollLines(1);
-#endif
     app.setAttribute(Qt::AA_DontShowIconsInMenus);
 
 #ifdef APP_EXTRA

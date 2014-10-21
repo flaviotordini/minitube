@@ -5,10 +5,11 @@
 - Slide transition in playlist navigation
 - Make the volume handle red when volume is zero
 - Enhancements to the search suggestions
-- Restored compatibility with Mac OS X Snow Leopard
 - The Mac version is now 64bit and uses the VLC engine to play videos
+- Fixed minor style issues with Mac OS X Yosemite 10.10
+- Restored compatibility with Mac OS X Snow Leopard 10.6
 - The Windows version has been updated to the latest VLC
-- The Ubuntu version is now shipped as a .deb  on the site. Goodbye Ubuntu Software Center!
+- The Ubuntu & Debian version is now shipped as a .deb on the site. Goodbye Ubuntu Software Center!
 - New and updated translations
 
 2.2

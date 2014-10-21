@@ -133,7 +133,9 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     searchLayout->setAlignment(Qt::AlignVCenter);
 
     queryEdit = new SearchLineEdit(this);
+#ifndef APP_MAC
     queryEdit->setFont(biggerFont);
+#endif
     connect(queryEdit, SIGNAL(search(const QString&)), SLOT(watch(const QString&)));
     connect(queryEdit, SIGNAL(textEdited(const QString &)), SLOT(textChanged(const QString &)));
     connect(queryEdit, SIGNAL(suggestionAccepted(Suggestion*)), SLOT(suggestionAccepted(Suggestion*)));
@@ -200,7 +202,8 @@ void SearchView::appear() {
     updateRecentChannels();
     queryEdit->selectAll();
     queryEdit->enableSuggest();
-    QTimer::singleShot(0, queryEdit, SLOT(setFocus()));
+    if (!queryEdit->hasFocus())
+        QTimer::singleShot(10, queryEdit, SLOT(setFocus()));
 }
 
 void SearchView::updateRecentKeywords() {
