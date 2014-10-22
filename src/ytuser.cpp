@@ -144,11 +144,11 @@ void YTUser::loadThumbnail() {
 const QString & YTUser::getThumbnailDir() {
     static const QString thumbDir =
         #if QT_VERSION >= 0x050000
-            QStandardPaths::writableLocation(QStandardPaths::DataLocation);
-#else
-            QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-#endif
-    + "/channels/";
+            QStandardPaths::writableLocation(QStandardPaths::DataLocation)
+        #else
+            QDesktopServices::storageLocation(QDesktopServices::DataLocation)
+        #endif
+            + "/channels/";
     return thumbDir;
 }
 
