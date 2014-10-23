@@ -32,7 +32,6 @@ class AutoComplete : public QObject {
 
 public:
     AutoComplete(SearchLineEdit *buddy, QLineEdit *lineEdit);
-    ~AutoComplete();
     void setSuggester(Suggester* suggester);
     QListWidget* getPopup() { return popup; }
     void preventSuggest();
@@ -52,6 +51,7 @@ private slots:
     void currentItemChanged(QListWidgetItem *item);
     void suggestionsReady(const QList<Suggestion*> &suggestions);
     void adjustPosition();
+    void enableItemHovering();
 
 private:
     void showSuggestions(const QList<Suggestion*> &suggestions);
@@ -65,7 +65,7 @@ private:
     bool enabled;
     Suggester *suggester;
     QList<Suggestion*> suggestions;
-
+    bool itemHovering;
 };
 
 #endif // AUTOCOMPLETE_H

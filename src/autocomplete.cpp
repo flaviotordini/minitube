@@ -42,18 +42,14 @@ QDebug operator<<(QDebug str, const QEvent * ev) {
 #endif
 
 AutoComplete::AutoComplete(SearchLineEdit *buddy, QLineEdit *lineEdit):
-    QObject(buddy), buddy(buddy), lineEdit(lineEdit), enabled(true), suggester(0) {
+    QObject(buddy), buddy(buddy), lineEdit(lineEdit), enabled(true), suggester(0), itemHovering(false) {
 
     popup = new QListWidget();
     popup->setWindowFlags(Qt::Popup);
     popup->setFocusProxy(buddy);
     popup->installEventFilter(this);
     buddy->window()->installEventFilter(this);
-#if defined(APP_MAC) || defined(APP_WIN)
-    // #FIXME on Linux, mouse tracking triggers an "Enter" event when popup is shown
-    // this triggers item entering and replaces text while writing
     popup->setMouseTracking(true);
-#endif
 
     // style
     popup->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -71,10 +67,6 @@ AutoComplete::AutoComplete(SearchLineEdit *buddy, QLineEdit *lineEdit):
     timer->setInterval(500);
     connect(timer, SIGNAL(timeout()), SLOT(suggest()));
     connect(buddy, SIGNAL(textEdited(QString)), timer, SLOT(start()));
-}
-
-AutoComplete::~AutoComplete() {
-    delete popup;
 }
 
 bool AutoComplete::eventFilter(QObject *obj, QEvent *ev) {
@@ -181,7 +173,9 @@ void AutoComplete::showSuggestions(const QList<Suggestion *> &suggestions) {
     popup->setUpdatesEnabled(true);
 
     if (popup->isHidden()) {
+        itemHovering = false;
         popup->show();
+        QTimer::singleShot(100, this, SLOT(enableItemHovering()));
     }
 }
 
@@ -240,7 +234,12 @@ void AutoComplete::adjustPosition() {
     popup->move(buddy->mapToGlobal(QPoint(0, buddy->height())));
 }
 
+void AutoComplete::enableItemHovering() {
+    itemHovering = true;
+}
+
 void AutoComplete::hideSuggestions() {
+    itemHovering = false;
 #ifdef APP_MAC
     mac::fadeOutWindow(popup);
 #else
@@ -256,6 +255,7 @@ void AutoComplete::hideSuggestions() {
 }
 
 void AutoComplete::itemEntered(QListWidgetItem *item) {
+    if (!itemHovering) return;
     if (!item) return;
     item->setSelected(true);
     popup->setCurrentItem(item);
