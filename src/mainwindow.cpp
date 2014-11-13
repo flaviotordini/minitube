@@ -1322,7 +1322,7 @@ void MainWindow::initPhonon() {
     volumeSlider->setAudioOutput(audioOutput);
     Phonon::createPath(mediaObject, audioOutput);
     QSettings settings;
-    audioOutput->setVolume(settings.value("volume", 1).toDouble());
+    audioOutput->setVolume(settings.value("volume", 1).toReal());
     // audioOutput->setMuted(settings.value("volumeMute").toBool());
 }
 #endif
@@ -1593,7 +1593,7 @@ void MainWindow::gotNewVersion(QString version) {
 
 #ifdef APP_SIMPLEUPDATE
     simpleUpdateDialog(version);
-#elif defined(APP_ACTIVATION) && !defined(APP_MAC)
+#elif !defined(APP_MAC)
     UpdateDialog *dialog = new UpdateDialog(version, this);
     dialog->show();
 #endif
