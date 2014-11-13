@@ -84,6 +84,10 @@ QString SnapshotSettings::getCurrentLocation() {
 }
 
 QString SnapshotSettings::displayPath(const QString &path) {
+#ifdef APP_MAC
+    return QDir(path).dirName();
+#endif
+
 #if QT_VERSION >= 0x050000
     QString home = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
 #else
