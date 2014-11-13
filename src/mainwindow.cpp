@@ -1591,11 +1591,13 @@ void MainWindow::gotNewVersion(QString version) {
     QString checkedVersion = settings.value("checkedVersion").toString();
     if (checkedVersion == version) return;
 
-#ifdef APP_SIMPLEUPDATE
-    simpleUpdateDialog(version);
-#elif !defined(APP_MAC)
+#ifdef APP_EXTRA
+#ifndef APP_MAC
     UpdateDialog *dialog = new UpdateDialog(version, this);
     dialog->show();
+#endif
+#else
+    simpleUpdateDialog(version);
 #endif
 }
 
