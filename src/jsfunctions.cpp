@@ -40,7 +40,7 @@ JsFunctions::JsFunctions(QObject *parent) : QObject(parent), engine(0) {
         else
             qWarning() << file.errorString() << file.fileName();
         QFileInfo info(file);
-        if (info.lastModified().toTime_t() < QDateTime::currentDateTime().toTime_t() - 3600)
+        if (info.lastModified().toTime_t() < QDateTime::currentDateTime().toTime_t() - 1800)
             loadJs();
     } else {
         QFile resFile(QLatin1String(":/") + jsFilename());
@@ -75,6 +75,7 @@ const QString & JsFunctions::jsPath() {
 
 void JsFunctions::loadJs() {
     QUrl url(QLatin1String(Constants::WEBSITE) + "-ws/" + jsFilename());
+    url.addQueryItem("v", Constants::VERSION);
     NetworkReply* reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(gotJs(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorJs(QNetworkReply*)));
