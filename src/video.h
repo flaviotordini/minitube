@@ -102,7 +102,6 @@ private slots:
 
 private:
     void getVideoInfo();
-    void foundVideoUrl(QString videoToken, int definitionCode);
     void parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage = false);
     void captureFunction(const QString &name, const QString &js);
     void captureObject(const QString &name, const QString &js);

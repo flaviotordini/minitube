@@ -94,13 +94,13 @@ void JsFunctions::errorJs(QNetworkReply *reply) {
                   << reply->url().toString() << reply->errorString();
 }
 
-QString JsFunctions::evaluate(const QString &function) {
+QString JsFunctions::evaluate(const QString &js) {
     if (!engine) return QString();
-    QScriptValue value = engine->evaluate(function);
+    QScriptValue value = engine->evaluate(js);
     if (value.isUndefined())
-        qWarning() << "Undefined result for" << function;
+        qWarning() << "Undefined result for" << js;
     if (value.isError())
-        qWarning() << "Error in" << function << value.toString();
+        qWarning() << "Error in" << js << value.toString();
 
     return value.toString();
 }
@@ -127,6 +127,10 @@ QString JsFunctions::videoInfoFmtMapRE() {
 
 QString JsFunctions::webPageFmtMapRE() {
     return evaluate("webPageFmtMapRE()");
+}
+
+QString JsFunctions::ageGateRE() {
+    return evaluate("ageGateRE()");
 }
 
 QString JsFunctions::jsPlayerRE() {

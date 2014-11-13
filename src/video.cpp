@@ -162,7 +162,7 @@ void  Video::gotVideoInfo(QByteArray data) {
     // get video token
     QRegExp videoTokeRE(JsFunctions::instance()->videoTokenRE());
     if (videoTokeRE.indexIn(videoInfo) == -1) {
-        qWarning() << "Cannot get token. Trying next el param" << videoInfo << videoTokeRE.pattern();
+        // qWarning() << "Cannot get token. Trying next el param" << videoInfo << videoTokeRE.pattern();
         // Don't panic! We're gonna try another magic "el" param
         elIndex++;
         getVideoInfo();
@@ -179,7 +179,7 @@ void  Video::gotVideoInfo(QByteArray data) {
     // get fmt_url_map
     QRegExp fmtMapRE(JsFunctions::instance()->videoInfoFmtMapRE());
     if (fmtMapRE.indexIn(videoInfo) == -1) {
-        qWarning() << "Cannot get urlMap. Trying next el param";
+        // qWarning() << "Cannot get urlMap. Trying next el param";
         // Don't panic! We're gonna try another magic "el" param
         elIndex++;
         getVideoInfo();
@@ -305,18 +305,6 @@ void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
     emit errorStreamUrl(tr("Cannot get video stream for %1").arg(m_webpage.toString()));
 }
 
-void Video::foundVideoUrl(QString videoToken, int definitionCode) {
-    // qDebug() << "foundVideoUrl" << videoToken << definitionCode;
-
-    QUrl videoUrl = QUrl(QString(
-                             "http://www.youtube.com/get_video?video_id=%1&t=%2&eurl=&el=&ps=&asv=&fmt=%3"
-                             ).arg(videoId, videoToken, QString::number(definitionCode)));
-
-    m_streamUrl = videoUrl;
-    loadingStreamUrl = false;
-    emit gotStreamUrl(videoUrl);
-}
-
 void Video::errorVideoInfo(QNetworkReply *reply) {
     loadingStreamUrl = false;
     emit errorStreamUrl(tr("Network error: %1 for %2").arg(reply->errorString(), reply->url().toString()));
@@ -326,7 +314,8 @@ void Video::scrapeWebPage(QByteArray data) {
     QString html = QString::fromUtf8(data);
     // qWarning() << html;
 
-    if (html.contains("player-age-gate-content\"")) {
+    QRegExp ageGateRE(JsFunctions::instance()->ageGateRE());
+    if (ageGateRE.indexIn(html) != -1) {
         // qDebug() << "Found ageGate";
         ageGate = true;
         elIndex = 4;

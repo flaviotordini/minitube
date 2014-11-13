@@ -40,11 +40,12 @@ public:
     QString videoTokenRE();
     QString videoInfoFmtMapRE();
     QString webPageFmtMapRE();
+    QString ageGateRE();
     QString jsPlayerRE();
     QString signatureFunctionNameRE();
 
 protected:
-    QString evaluate(const QString &function);
+    QString evaluate(const QString &js);
 
 private slots:
     void gotJs(QByteArray bytes);
