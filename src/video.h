@@ -97,13 +97,11 @@ private slots:
     void gotVideoInfo(QByteArray);
     void errorVideoInfo(QNetworkReply*);
     void scrapeWebPage(QByteArray);
-    void gotHeadHeaders(QNetworkReply*);
     void parseJsPlayer(QByteArray bytes);
     void parseDashManifest(QByteArray bytes);
 
 private:
     void getVideoInfo();
-    void findVideoUrl(int definitionCode);
     void foundVideoUrl(QString videoToken, int definitionCode);
     void parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage = false);
     void captureFunction(const QString &name, const QString &js);

@@ -94,7 +94,7 @@ void JsFunctions::errorJs(QNetworkReply *reply) {
                   << reply->url().toString() << reply->errorString();
 }
 
-QString JsFunctions::evaluateFunction(const QString &function) {
+QString JsFunctions::evaluate(const QString &function) {
     if (!engine) return QString();
     QScriptValue value = engine->evaluate(function);
     if (value.isUndefined())
@@ -106,9 +106,33 @@ QString JsFunctions::evaluateFunction(const QString &function) {
 }
 
 QString JsFunctions::decryptSignature(const QString &s) {
-    return evaluateFunction("decryptSignature('" + s + "')");
+    return evaluate("decryptSignature('" + s + "')");
 }
 
 QString JsFunctions::decryptAgeSignature(const QString &s) {
-    return evaluateFunction("decryptAgeSignature('" + s + "')");
+    return evaluate("decryptAgeSignature('" + s + "')");
+}
+
+QString JsFunctions::videoIdRE() {
+    return evaluate("videoIdRE()");
+}
+
+QString JsFunctions::videoTokenRE() {
+    return evaluate("videoTokenRE()");
+}
+
+QString JsFunctions::videoInfoFmtMapRE() {
+    return evaluate("videoInfoFmtMapRE()");
+}
+
+QString JsFunctions::webPageFmtMapRE() {
+    return evaluate("webPageFmtMapRE()");
+}
+
+QString JsFunctions::jsPlayerRE() {
+    return evaluate("jsPlayerRE()");
+}
+
+QString JsFunctions::signatureFunctionNameRE() {
+    return evaluate("signatureFunctionNameRE()");
 }
