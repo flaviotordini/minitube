@@ -138,7 +138,7 @@ void VideoAreaWidget::mouseMoveEvent(QMouseEvent *event) {
     if (event->buttons() & Qt::LeftButton && isNormalWindow) {
         QPoint p = event->globalPos() - dragPosition;
 #ifdef Q_OS_MAC
-        mac::moveWindowTo(window()->winId(), p.x(), p.y());
+        // FIXME mac::moveWindowTo(window()->winId(), p.x(), p.y());
 #else
         window()->move(p);
 #endif
