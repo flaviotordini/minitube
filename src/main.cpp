@@ -50,10 +50,14 @@ int main(int argc, char **argv) {
     if (app.sendMessage(message))
         return 0;
 
-    app.setApplicationName(QLatin1String(Constants::NAME));
-    app.setOrganizationName(QLatin1String(Constants::ORG_NAME));
-    app.setOrganizationDomain(QLatin1String(Constants::ORG_DOMAIN));
+    app.setApplicationName(Constants::NAME);
+    app.setOrganizationName(Constants::ORG_NAME);
+    app.setOrganizationDomain(Constants::ORG_DOMAIN);
+    app.setApplicationVersion(Constants::VERSION);
     app.setAttribute(Qt::AA_DontShowIconsInMenus);
+#ifndef APP_WIN
+    app.setWheelScrollLines(1);
+#endif
 
 #ifdef APP_EXTRA
     Extra::appSetup(&app);
