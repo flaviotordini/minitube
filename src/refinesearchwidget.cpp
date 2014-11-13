@@ -160,9 +160,6 @@ void RefineSearchWidget::setupLabel(QString text, QBoxLayout *layout, QString pa
     QLabel *icon = new QLabel(this);
     icon->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     QString resource = paramName;
-#ifdef APP_EXTRA
-    resource = Extra::resourceName(resource);
-#endif
     QPixmap pixmap = QPixmap(":/images/search-" + resource + ".png");
     QPixmap translucentPixmap(pixmap.size());
     translucentPixmap.fill(Qt::transparent);
