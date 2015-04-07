@@ -32,7 +32,8 @@ class VideoSource : public QObject {
 
 public:
     VideoSource(QObject *parent = 0) : QObject(parent) { }
-    virtual void loadVideos(int max, int skip) = 0;
+    virtual void loadVideos(int max, int startIndex) = 0;
+    virtual bool hasMoreVideos() { return true; }
     virtual void abort() = 0;
     virtual const QStringList & getSuggestions() = 0;
     virtual QString getName() = 0;

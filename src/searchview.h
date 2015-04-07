@@ -46,7 +46,7 @@ public slots:
     void appear();
     void disappear() { }
     void watch(QString query);
-    void watchChannel(QString channel);
+    void watchChannel(const QString &channelId);
     void watchKeywords(QString query);
 
 signals:

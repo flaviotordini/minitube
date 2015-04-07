@@ -22,29 +22,31 @@ $END_LICENSE */
 #define YTSINGLEVIDEOSOURCE_H
 
 #include <QtNetwork>
-#include "videosource.h"
+#include "paginatedvideosource.h"
 
-class YTSingleVideoSource : public VideoSource {
+class YTSingleVideoSource : public PaginatedVideoSource {
 
     Q_OBJECT
 
 public:
     YTSingleVideoSource(QObject *parent = 0);
-    void loadVideos(int max, int skip);
+    void loadVideos(int max, int startIndex);
     void abort();
     const QStringList & getSuggestions();
     QString getName();
 
     void setVideoId(QString videoId) { this->videoId = videoId; }
+    void setVideo(Video *video);
 
 private slots:
-    void parse(QByteArray data);
+    void parseResults(QByteArray data);
     void requestError(QNetworkReply *reply);
 
 private:
+    Video *video;
     QString videoId;
     bool aborted;
-    int skip;
+    int startIndex;
     int max;
     QString name;
 };

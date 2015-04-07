@@ -91,15 +91,17 @@ public slots:
     void addVideos(QList<Video*> newVideos);
     void searchFinished(int total);
     void searchError(QString message);
-    void updateThumbnail();
+    void updateVideoSender();
+    void emitDataChanged();
 
     void setHoveredRow(int row);
     void clearHover();
+    void updateHoveredRow();
+
     void enterAuthorHover();
     void exitAuthorHover();
     void enterAuthorPressed();
     void exitAuthorPressed();
-    void updateAuthor();
 
 signals:
     void activeRowChanged(int);
@@ -116,7 +118,7 @@ private:
     bool firstSearch;
 
     QList<Video*> videos;
-    int skip;
+    int startIndex;
     int max;
 
     int m_activeRow;
@@ -127,6 +129,8 @@ private:
     int hoveredRow;
     bool authorHovered;
     bool authorPressed;
+
+    QMutex mutex;
 };
 
 #endif

@@ -74,7 +74,7 @@ void NetworkReply::finished() {
             setupReply();
             readTimeoutTimer->start();
             return;
-        } else qWarning() << "Redirection not supported" << networkReply->url().toEncoded();
+        } else qDebug() << "Redirection not supported" << networkReply->url().toEncoded();
     }
 
     if (receivers(SIGNAL(data(QByteArray))) > 0)

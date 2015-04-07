@@ -62,10 +62,10 @@ public:
     SearchParams(QObject *parent = 0);
 
     const QString keywords() const { return m_keywords; }
-    void setKeywords( QString keywords ) { m_keywords = keywords; }
+    void setKeywords(const QString &keywords) { m_keywords = keywords; }
 
-    const QString author() const { return m_author; }
-    void setAuthor( QString author ) { m_author = author; }
+    const QString channelId() const { return m_channelId; }
+    void setChannelId(const QString &value) { m_channelId = value; }
 
     int sortBy() const { return m_sortBy; }
     void setSortBy( int sortBy ) { m_sortBy = sortBy; }
@@ -82,9 +82,12 @@ public:
     int time() const { return m_time; }
     void setTime( int time ) { m_time = time; }
 
+    uint publishedAfter() const { return m_publishedAfter; }
+    void setPublishedAfter(uint value) { m_publishedAfter = value; }
+
     bool operator==(const SearchParams &other) const {
         return m_keywords == other.keywords() &&
-                m_author == other.author();
+                m_channelId == other.channelId();
     }
 
 public slots:
@@ -92,12 +95,13 @@ public slots:
 
 private:
     QString m_keywords;
-    QString m_author;
+    QString m_channelId;
     bool m_transient;
     int m_sortBy;
     int m_duration;
     int m_quality;
     int m_time;
+    uint m_publishedAfter;
 
 };
 

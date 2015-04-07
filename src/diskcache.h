@@ -29,6 +29,7 @@ class DiskCache : public QNetworkDiskCache
 public:
     explicit DiskCache(QObject *parent = 0);
     QIODevice* prepare(const QNetworkCacheMetaData &metaData);
+    QNetworkCacheMetaData metaData(const QUrl &url);
 
 signals:
 

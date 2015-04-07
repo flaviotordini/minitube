@@ -22,9 +22,9 @@ $END_LICENSE */
 #define YTSTANDARDFEED_H
 
 #include <QtNetwork>
-#include "videosource.h"
+#include "paginatedvideosource.h"
 
-class YTStandardFeed : public VideoSource {
+class YTStandardFeed : public PaginatedVideoSource {
 
     Q_OBJECT
 
@@ -46,13 +46,13 @@ public:
     QString getTime() { return time; }
     void setTime(QString time) { this->time = time; }
 
-    void loadVideos(int max, int skip);
+    void loadVideos(int max, int startIndex);
     void abort();
     const QStringList & getSuggestions();
     QString getName() { return label; }
 
 private slots:
-    void parse(QByteArray data);
+    void parseResults(QByteArray data);
     void requestError(QNetworkReply *reply);
 
 private:

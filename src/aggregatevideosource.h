@@ -30,7 +30,8 @@ class AggregateVideoSource : public VideoSource {
 
 public:
     AggregateVideoSource(QObject *parent = 0);
-    void loadVideos(int max, int skip);
+    void loadVideos(int max, int startIndex);
+    bool hasMoreVideos();
     virtual void abort();
     virtual const QStringList & getSuggestions();
     QString getName() { return name; }
@@ -40,6 +41,7 @@ public:
 private:
     QString name;
     bool unwatched;
+    bool hasMore;
 
 };
 

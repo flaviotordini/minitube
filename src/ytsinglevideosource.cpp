@@ -19,40 +19,128 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "ytsinglevideosource.h"
-#include <QtXml>
 #include "networkaccess.h"
 #include "video.h"
+
+#ifdef APP_YT3
+#include "yt3.h"
+#include "yt3listparser.h"
+#else
 #include "ytfeedreader.h"
+#endif
 
 namespace The {
 NetworkAccess* http();
 }
 
-YTSingleVideoSource::YTSingleVideoSource(QObject *parent) : VideoSource(parent) {
-    skip = 0;
-    max = 0;
+YTSingleVideoSource::YTSingleVideoSource(QObject *parent) : PaginatedVideoSource(parent),
+    video(0),
+    startIndex(0),
+    max(0) { }
+
+#ifdef APP_YT3
+
+void YTSingleVideoSource::loadVideos(int max, int startIndex) {
+    aborted = false;
+    this->startIndex = startIndex;
+    this->max = max;
+
+    QUrl url;
+
+    if (startIndex == 1) {
+
+        if (video) {
+            QList<Video*> videos;
+            videos << video->clone();
+            if (name.isEmpty()) {
+                name = videos.first()->title();
+                qDebug() << "Emitting name changed" << name;
+                emit nameChanged(name);
+            }
+            emit gotVideos(videos);
+            loadVideos(max - 1, 2);
+            return;
+        }
+
+        url = YT3::instance().method("videos");
+#if QT_VERSION >= 0x050000
+        {
+            QUrl &u = url;
+            QUrlQuery url;
+#endif
+            url.addQueryItem("part", "snippet");
+            url.addQueryItem("id", videoId);
+#if QT_VERSION >= 0x050000
+            u.setQuery(url);
+        }
+#endif
+    } else {
+        url = YT3::instance().method("search");
+#if QT_VERSION >= 0x050000
+        {
+            QUrl &u = url;
+            QUrlQuery url;
+#endif
+            url.addQueryItem("part", "snippet");
+            url.addQueryItem("type", "video");
+            url.addQueryItem("relatedToVideoId", videoId);
+            url.addQueryItem("maxResults", QString::number(max));
+            if (startIndex > 2) {
+                if (maybeReloadToken(max, startIndex)) return;
+                url.addQueryItem("pageToken", nextPageToken);
+            }
+#if QT_VERSION >= 0x050000
+            u.setQuery(url);
+        }
+#endif
+    }
+
+    lastUrl = url;
+
+    QObject *reply = The::http()->get(url);
+    connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResults(QByteArray)));
+    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
 }
 
-void YTSingleVideoSource::loadVideos(int max, int skip) {
+void YTSingleVideoSource::parseResults(QByteArray data) {
+    if (aborted) return;
+
+    YT3ListParser parser(data);
+    QList<Video*> videos = parser.getVideos();
+
+    bool tryingWithNewToken = setPageToken(parser.getNextPageToken());
+    if (tryingWithNewToken) return;
+
+    if (asyncDetails) {
+        emit gotVideos(videos);
+        if (startIndex == 2) emit finished(videos.size() + 1);
+        else emit finished(videos.size());
+    }
+    loadVideoDetails(videos);
+}
+
+#else
+
+void YTSingleVideoSource::loadVideos(int max, int startIndex) {
     aborted = false;
-    this->skip = skip;
+    this->startIndex = startIndex;
     this->max = max;
 
     QString s;
-    if (skip == 1) s = "http://gdata.youtube.com/feeds/api/videos/" + videoId;
+    if (startIndex == 1) s = "http://gdata.youtube.com/feeds/api/videos/" + videoId;
     else s = QString("http://gdata.youtube.com/feeds/api/videos/%1/related").arg(videoId);
     QUrl url(s);
 #if QT_VERSION >= 0x050000
-{
-    QUrl &u = url;
-    QUrlQuery url;
+    {
+        QUrl &u = url;
+        QUrlQuery url;
 #endif
-    url.addQueryItem("v", "2");
+        url.addQueryItem("v", "2");
 
-    if (skip != 1) {
-        url.addQueryItem("max-results", QString::number(max));
-        url.addQueryItem("start-index", QString::number(skip-1));
-    }
+        if (startIndex != 1) {
+            url.addQueryItem("max-results", QString::number(max));
+            url.addQueryItem("start-index", QString::number(startIndex-1));
+        }
 
 #if QT_VERSION >= 0x050000
         u.setQuery(url);
@@ -63,12 +151,32 @@ void YTSingleVideoSource::loadVideos(int max, int skip) {
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
 }
 
+void YTSingleVideoSource::parse(QByteArray data) {
+    if (aborted) return;
+
+    YTFeedReader reader(data);
+    QList<Video*> videos = reader.getVideos();
+
+    if (name.isEmpty() && !videos.isEmpty() && startIndex == 1) {
+        name = videos.first()->title();
+        emit nameChanged(name);
+    }
+
+    emit gotVideos(videos);
+
+    if (startIndex == 1) loadVideos(max - 1, 2);
+    else if (startIndex == 2) emit finished(videos.size() + 1);
+    else emit finished(videos.size());
+}
+
+#endif
+
 void YTSingleVideoSource::abort() {
     aborted = true;
 }
 
 const QStringList & YTSingleVideoSource::getSuggestions() {
-    QStringList *l = new QStringList();
+    static const QStringList *l = new QStringList();
     return *l;
 }
 
@@ -76,22 +184,9 @@ QString YTSingleVideoSource::getName() {
     return name;
 }
 
-void YTSingleVideoSource::parse(QByteArray data) {
-    if (aborted) return;
-
-    YTFeedReader reader(data);
-    QList<Video*> videos = reader.getVideos();
-
-    if (name.isEmpty() && !videos.isEmpty() && skip == 1) {
-        name = videos.first()->title();
-        emit nameChanged(name);
-    }
-
-    emit gotVideos(videos);
-
-    if (skip == 1) loadVideos(max - 1, 2);
-    else if (skip == 2) emit finished(videos.size() + 1);
-    else emit finished(videos.size());
+void YTSingleVideoSource::setVideo(Video *video) {
+    this->video = video;
+    videoId = video->id();
 }
 
 void YTSingleVideoSource::requestError(QNetworkReply *reply) {

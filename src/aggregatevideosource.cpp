@@ -25,9 +25,9 @@ $END_LICENSE */
 
 AggregateVideoSource::AggregateVideoSource(QObject *parent) :
     VideoSource(parent),
-    unwatched(false) { }
+    unwatched(false), hasMore(true) { }
 
-void AggregateVideoSource::loadVideos(int max, int skip) {
+void AggregateVideoSource::loadVideos(int max, int startIndex) {
     QSqlDatabase db = Database::instance().getConnection();
     QSqlQuery query(db);
     QString sql = "select v.video_id,"
@@ -48,7 +48,7 @@ void AggregateVideoSource::loadVideos(int max, int skip) {
         sql += " from subscriptions_videos v order by published desc ";
     sql += "limit ?,?";
     query.prepare(sql);
-    query.bindValue(0, skip - 1);
+    query.bindValue(0, startIndex - 1);
     query.bindValue(1, max);
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
@@ -58,8 +58,8 @@ void AggregateVideoSource::loadVideos(int max, int skip) {
         video->setId(query.value(0).toString());
         video->setPublished(QDateTime::fromTime_t(query.value(1).toUInt()));
         video->setTitle(query.value(2).toString());
-        video->setAuthor(query.value(3).toString());
-        video->setUserId(query.value(4).toString());
+        video->setChannelTitle(query.value(3).toString());
+        video->setChannelId(query.value(4).toString());
         video->setDescription(query.value(5).toString());
         video->setWebpage(query.value(6).toString());
         video->setThumbnailUrl(query.value(7).toString());
@@ -67,8 +67,15 @@ void AggregateVideoSource::loadVideos(int max, int skip) {
         video->setDuration(query.value(9).toInt());
         videos << video;
     }
+
+    hasMore = videos.size() >= max;
+
     emit gotVideos(videos);
     emit finished(videos.size());
+}
+
+bool AggregateVideoSource::hasMoreVideos() {
+    return hasMore;
 }
 
 const QStringList & AggregateVideoSource::getSuggestions() {

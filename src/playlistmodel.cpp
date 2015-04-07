@@ -26,7 +26,7 @@ $END_LICENSE */
 #include "searchparams.h"
 #include "mediaview.h"
 
-static const int maxItems = 10;
+static const int maxItems = 50;
 static const QString recentKeywordsKey = "recentKeywords";
 static const QString recentChannelsKey = "recentChannels";
 
@@ -37,7 +37,7 @@ PlaylistModel::PlaylistModel(QWidget *parent) : QAbstractListModel(parent) {
     firstSearch = false;
     m_activeVideo = 0;
     m_activeRow = -1;
-    skip = 1;
+    startIndex = 1;
     max = 0;
     hoveredRow = -1;
     authorHovered = false;
@@ -70,7 +70,7 @@ QVariant PlaylistModel::data(const QModelIndex &index, int role) const {
         case Qt::DisplayRole:
             if (!errorMessage.isEmpty()) return errorMessage;
             if (searching) return tr("Searching...");
-            if (canSearchMore) return tr("Show %1 More").arg(maxItems);
+            if (canSearchMore) return tr("Show %1 More").arg("").simplified();
             if (videos.isEmpty()) return tr("No videos");
             else return tr("No more videos");
         case Qt::TextAlignmentRole:
@@ -165,11 +165,11 @@ Video* PlaylistModel::activeVideo() const {
 
 void PlaylistModel::setVideoSource(VideoSource *videoSource) {
     beginResetModel();
-    while (!videos.isEmpty())
-        delete videos.takeFirst();
+    while (!videos.isEmpty()) delete videos.takeFirst();
+    videos.clear();
     m_activeVideo = 0;
     m_activeRow = -1;
-    skip = 1;
+    startIndex = 1;
     endResetModel();
 
     this->videoSource = videoSource;
@@ -186,11 +186,11 @@ void PlaylistModel::setVideoSource(VideoSource *videoSource) {
 void PlaylistModel::searchMore(int max) {
     if (searching) return;
     searching = true;
-    firstSearch = skip == 1;
+    firstSearch = startIndex == 1;
     this->max = max;
     errorMessage.clear();
-    videoSource->loadVideos(max, skip);
-    skip += max;
+    videoSource->loadVideos(max, startIndex);
+    startIndex += max;
 }
 
 void PlaylistModel::searchMore() {
@@ -198,27 +198,29 @@ void PlaylistModel::searchMore() {
 }
 
 void PlaylistModel::searchNeeded() {
+    const int desiredRowsAhead = 10;
     int remainingRows = videos.size() - m_activeRow;
-    int rowsNeeded = maxItems - remainingRows;
-    if (rowsNeeded > 0)
-        searchMore(rowsNeeded);
+    if (remainingRows < desiredRowsAhead)
+        searchMore(maxItems);
 }
 
 void PlaylistModel::abortSearch() {
+    QMutexLocker locker(&mutex);
     beginResetModel();
-    while (!videos.isEmpty())
-        delete videos.takeFirst();
+    // while (!videos.isEmpty()) delete videos.takeFirst();
     // if (videoSource) videoSource->abort();
+    videos.clear();
     searching = false;
     m_activeRow = -1;
     m_activeVideo = 0;
-    skip = 1;
+    startIndex = 1;
     endResetModel();
 }
 
 void PlaylistModel::searchFinished(int total) {
+    qDebug() << __PRETTY_FUNCTION__ << total;
     searching = false;
-    canSearchMore = total >= max;
+    canSearchMore = videoSource->hasMoreVideos();
 
     // update the message item
     emit dataChanged( createIndex( maxItems, 0 ), createIndex( maxItems, columnCount() - 1 ) );
@@ -243,8 +245,9 @@ void PlaylistModel::addVideos(QList<Video*> newVideos) {
     endInsertRows();
     foreach (Video* video, newVideos) {
         connect(video, SIGNAL(gotThumbnail()),
-                SLOT(updateThumbnail()), Qt::UniqueConnection);
+                SLOT(updateVideoSender()), Qt::UniqueConnection);
         video->loadThumbnail();
+        qApp->processEvents();
     }
 }
 
@@ -288,15 +291,15 @@ void PlaylistModel::handleFirstVideo(Video *video) {
         }
 
         // save channel
-        QString channel = searchParams->author();
-        if (!channel.isEmpty() && !searchParams->isTransient()) {
+        QString channelId = searchParams->channelId();
+        if (!channelId.isEmpty() && !searchParams->isTransient()) {
             QString value;
-            if (!video->userId().isEmpty() && video->userId() != video->author())
-                value = video->userId() + "|" + video->author();
-            else value = video->author();
+            if (!video->channelId().isEmpty() && video->channelId() != video->channelTitle())
+                value = video->channelId() + "|" + video->channelTitle();
+            else value = video->channelTitle();
             QStringList channels = settings.value(recentChannelsKey).toStringList();
             channels.removeAll(value);
-            channels.removeAll(channel);
+            channels.removeAll(channelId);
             channels.prepend(value);
             while (channels.size() > maxRecentElements)
                 channels.removeLast();
@@ -305,17 +308,19 @@ void PlaylistModel::handleFirstVideo(Video *video) {
     }
 }
 
-void PlaylistModel::updateThumbnail() {
-
+void PlaylistModel::updateVideoSender() {
     Video *video = static_cast<Video *>(sender());
     if (!video) {
         qDebug() << "Cannot get sender";
         return;
     }
-
     int row = rowForVideo(video);
     emit dataChanged( createIndex( row, 0 ), createIndex( row, columnCount() - 1 ) );
+}
 
+void PlaylistModel::emitDataChanged() {
+    QModelIndex index = createIndex(rowCount()-1, 0);
+    emit dataChanged(index, index);
 }
 
 // --- item removal
@@ -366,7 +371,7 @@ Qt::DropActions PlaylistModel::supportedDragActions() const {
 Qt::ItemFlags PlaylistModel::flags(const QModelIndex &index) const {
     if (index.isValid()) {
         if (index.row() == videos.size()) {
-            // don't drag the "show 10 more" item
+            // don't drag the "show more" item
             return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
         } else return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsDragEnabled);
     }
@@ -439,8 +444,10 @@ bool PlaylistModel::dropMimeData(const QMimeData *data,
 }
 
 int PlaylistModel::rowForCloneVideo(const QString &videoId) const {
+    if (videoId.isEmpty()) return -1;
     for (int i = 0; i < videos.size(); ++i) {
         Video *v = videos.at(i);
+        // qDebug() << "Comparing" << v->id() << videoId;
         if (v->id() == videoId) return i;
     }
     return -1;
@@ -496,8 +503,13 @@ void PlaylistModel::setHoveredRow(int row) {
 }
 
 void PlaylistModel::clearHover() {
-    emit dataChanged( createIndex( hoveredRow, 0 ), createIndex( hoveredRow, columnCount() - 1 ) );
+    int oldRow = hoveredRow;
     hoveredRow = -1;
+    emit dataChanged( createIndex( oldRow, 0 ), createIndex( oldRow, columnCount() - 1) );
+}
+
+void PlaylistModel::updateHoveredRow() {
+    emit dataChanged( createIndex( hoveredRow, 0 ), createIndex( hoveredRow, columnCount() - 1 ) );
 }
 
 /* clickable author */
@@ -505,28 +517,24 @@ void PlaylistModel::clearHover() {
 void PlaylistModel::enterAuthorHover() {
     if (authorHovered) return;
     authorHovered = true;
-    updateAuthor();
+    updateHoveredRow();
 }
 
 void PlaylistModel::exitAuthorHover() {
     if (!authorHovered) return;
     authorHovered = false;
-    updateAuthor();
+    updateHoveredRow();
     setHoveredRow(hoveredRow);
 }
 
 void PlaylistModel::enterAuthorPressed() {
     if (authorPressed) return;
     authorPressed = true;
-    updateAuthor();
+    updateHoveredRow();
 }
 
 void PlaylistModel::exitAuthorPressed() {
     if (!authorPressed) return;
     authorPressed = false;
-    updateAuthor();
-}
-
-void PlaylistModel::updateAuthor() {
-    emit dataChanged( createIndex( hoveredRow, 0 ), createIndex( hoveredRow, columnCount() - 1 ) );
+    updateHoveredRow();
 }

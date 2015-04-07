@@ -41,29 +41,29 @@ public:
     };
 
     const QString & title() const { return m_title; }
-    void setTitle( QString title ) { m_title = title; }
+    void setTitle(const QString &title) { m_title = title; }
 
     const QString & description() const { return m_description; }
-    void setDescription( QString description ) { m_description = description; }
+    void setDescription(const QString &description) { m_description = description; }
 
-    const QString & author() const { return m_author; }
-    void setAuthor( QString author ) { m_author = author; }
+    const QString & channelTitle() const { return m_channelTitle; }
+    void setChannelTitle(const QString &value) { m_channelTitle = value; }
 
-    const QString & userId() const { return m_userId; }
-    void setUserId( QString userId ) { m_userId = userId; }
+    const QString & channelId() const { return m_channelId; }
+    void setChannelId(const QString &value ) { m_channelId = value; }
 
-    const QUrl & webpage() const { return m_webpage; }
-    void setWebpage(QUrl webpage);
+    const QString & webpage();
+    void setWebpage(const QString &value);
 
     void loadThumbnail();
     const QPixmap & thumbnail() const { return m_thumbnail; }
 
     const QString & thumbnailUrl() { return m_thumbnailUrl; }
-    void setThumbnailUrl(QString url) { m_thumbnailUrl = url; }
+    void setThumbnailUrl(const QString &url) { m_thumbnailUrl = url; }
 
     void loadMediumThumbnail();
     const QString & mediumThumbnailUrl() { return m_mediumThumbnailUrl; }
-    void setMediumThumbnailUrl(QString url) { m_mediumThumbnailUrl = url; }
+    void setMediumThumbnailUrl(const QString &url) { m_mediumThumbnailUrl = url; }
 
     int duration() const { return m_duration; }
     void setDuration( int duration ) { m_duration = duration; }
@@ -73,7 +73,7 @@ public:
     void setViewCount( int viewCount ) { m_viewCount = viewCount; }
 
     const QDateTime & published() const { return m_published; }
-    void setPublished( QDateTime published ) { m_published = published; }
+    void setPublished(const QDateTime &published ) { m_published = published; }
 
     int getDefinitionCode() const { return definitionCode; }
 
@@ -109,9 +109,9 @@ private:
 
     QString m_title;
     QString m_description;
-    QString m_author;
-    QString m_userId;
-    QUrl m_webpage;
+    QString m_channelTitle;
+    QString m_channelId;
+    QString m_webpage;
     QUrl m_streamUrl;
     QPixmap m_thumbnail;
     QString m_thumbnailUrl;

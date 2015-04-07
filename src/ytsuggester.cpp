@@ -19,13 +19,10 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "ytsuggester.h"
-#include <QtXml>
 #include "networkaccess.h"
 
-#define GSUGGEST_URL "http://suggestqueries.google.com/complete/search?ds=yt&output=toolbar&hl=%1&q=%2"
-
 namespace The {
-    NetworkAccess* http();
+NetworkAccess* http();
 }
 
 YTSuggester::YTSuggester(QObject *parent) : Suggester(parent) {
@@ -46,7 +43,9 @@ void YTSuggester::suggest(const QString &query) {
         locale = "en-US";
     }
 
-    QString url = QString(GSUGGEST_URL).arg(locale, query);
+    QString url =
+            QString("https://suggestqueries.google.com/complete/search?ds=yt&output=toolbar&hl=%1&q=%2")
+            .arg(locale, query);
 
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(handleNetworkData(QByteArray)));

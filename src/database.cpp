@@ -38,11 +38,15 @@ Database::Database() {
 
     QMutexLocker locker(&lock);
 
-    if(QFile::exists(dbLocation)) {
+    if (QFile::exists(dbLocation)) {
         // check db version
         int databaseVersion = getAttribute("version").toInt();
-        if (databaseVersion != DATABASE_VERSION)
+        if (databaseVersion > DATABASE_VERSION)
             qWarning("Wrong database version: %d", databaseVersion);
+
+        if (!getAttribute("channelIdFix").toBool())
+            fixChannelIds();
+
     } else createDatabase();
 }
 
@@ -58,9 +62,9 @@ void Database::createDatabase() {
 
     QSqlQuery("create table subscriptions ("
               "id integer primary key autoincrement,"
-              "user_id varchar,"
-              "user_name varchar,"
-              "name varchar,"
+              "user_id varchar," // this is really channel_id
+              "user_name varchar," // obsolete yt2 username
+              "name varchar," // this is really channel_title
               "description varchar,"
               "thumb_url varchar,"
               "country varchar,"
@@ -77,13 +81,13 @@ void Database::createDatabase() {
     QSqlQuery("create table subscriptions_videos ("
               "id integer primary key autoincrement,"
               "video_id varchar,"
-              "channel_id integer,"
+              "channel_id integer," // this is really subscription_id
               "published integer,"
               "added integer,"
               "watched integer,"
               "title varchar,"
-              "author varchar,"
-              "user_id varchar,"
+              "author varchar," // this is really channel_title
+              "user_id varchar," // this is really channel_id
               "description varchar,"
               "url varchar,"
               "thumb_url varchar,"
@@ -156,11 +160,31 @@ QVariant Database::getAttribute(QString name) {
 
 void Database::setAttribute(QString name, QVariant value) {
     QSqlQuery query(getConnection());
-    query.prepare("update attributes set value=? where name=?");
-    query.bindValue(0, value);
-    query.bindValue(1, name);
+    query.prepare("insert or replace into attributes (name, value) values (?,?)");
+    query.bindValue(0, name);
+    query.bindValue(1, value);
     bool success = query.exec();
-    if (!success) qDebug() << query.lastError().text();
+    if (!success) qWarning() << query.lastError().text();
+}
+
+void Database::fixChannelIds() {
+    if (!getConnection().transaction())
+        qWarning() << "Transaction failed" << __PRETTY_FUNCTION__;
+
+    qWarning() << "Fixing channel ids";
+
+    QSqlQuery query(getConnection());
+    bool success = query.exec("update subscriptions set user_id='UC' || user_id where user_id not like 'UC%'");
+    if (!success) qWarning() << query.lastError().text();
+
+    query = QSqlQuery(getConnection());
+    success = query.exec("update subscriptions_videos set user_id='UC' || user_id where user_id not like 'UC%'");
+    if (!success) qWarning() << query.lastError().text();
+
+    setAttribute("channelIdFix", 1);
+
+    if (!getConnection().commit())
+        qWarning() << "Commit failed" << __PRETTY_FUNCTION__;
 }
 
 /**

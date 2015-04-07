@@ -18,18 +18,23 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 
 $END_LICENSE */
 
-#include "ytuser.h"
+#include "ytchannel.h"
 #include "networkaccess.h"
 #include "database.h"
 #include <QtSql>
+
+#ifdef APP_YT3
+#include "yt3.h"
+#include <QtScript>
+#endif
 
 namespace The {
 NetworkAccess* http();
 }
 
-YTUser::YTUser(QString userId, QObject *parent) : QObject(parent),
+YTChannel::YTChannel(const QString &channelId, QObject *parent) : QObject(parent),
     id(0),
-    userId(userId),
+    channelId(channelId),
     loadingThumbnail(false),
     notifyCount(0),
     checked(0),
@@ -37,44 +42,46 @@ YTUser::YTUser(QString userId, QObject *parent) : QObject(parent),
     loaded(0),
     loading(false) { }
 
-QHash<QString, YTUser*> YTUser::cache;
+QHash<QString, YTChannel*> YTChannel::cache;
 
-YTUser* YTUser::forId(QString userId) {
-    if (userId.isEmpty()) return 0;
+YTChannel* YTChannel::forId(const QString &channelId) {
+    if (channelId.isEmpty()) return 0;
 
-    if (cache.contains(userId))
-        return cache.value(userId);
+    if (cache.contains(channelId))
+        return cache.value(channelId);
 
     QSqlDatabase db = Database::instance().getConnection();
     QSqlQuery query(db);
     query.prepare("select id,name,description,thumb_url,notify_count,watched,checked,loaded "
                   "from subscriptions where user_id=?");
-    query.bindValue(0, userId);
+    query.bindValue(0, channelId);
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
 
-    YTUser* user = 0;
+    YTChannel* channel = 0;
     if (query.next()) {
-        user = new YTUser(userId);
-        user->id = query.value(0).toInt();
-        user->displayName = query.value(1).toString();
-        user->description = query.value(2).toString();
-        user->thumbnailUrl = query.value(3).toString();
-        user->notifyCount = query.value(4).toInt();
-        user->watched = query.value(5).toUInt();
-        user->checked = query.value(6).toUInt();
-        user->loaded = query.value(7).toUInt();
-        user->thumbnail = QPixmap(user->getThumbnailLocation());
-        user->maybeLoadfromAPI();
-        cache.insert(userId, user);
+        // Change userId to ChannelId
+
+        channel = new YTChannel(channelId);
+        channel->id = query.value(0).toInt();
+        channel->displayName = query.value(1).toString();
+        channel->description = query.value(2).toString();
+        channel->thumbnailUrl = query.value(3).toString();
+        channel->notifyCount = query.value(4).toInt();
+        channel->watched = query.value(5).toUInt();
+        channel->checked = query.value(6).toUInt();
+        channel->loaded = query.value(7).toUInt();
+        channel->thumbnail = QPixmap(channel->getThumbnailLocation());
+        channel->maybeLoadfromAPI();
+        cache.insert(channelId, channel);
     }
 
-    return user;
+    return channel;
 }
 
-void YTUser::maybeLoadfromAPI() {
+void YTChannel::maybeLoadfromAPI() {
     if (loading) return;
-    if (userId.isEmpty()) return;
+    if (channelId.isEmpty()) return;
 
     uint now = QDateTime::currentDateTime().toTime_t();
     static const int refreshInterval = 60 * 60 * 24 * 10;
@@ -82,7 +89,24 @@ void YTUser::maybeLoadfromAPI() {
 
     loading = true;
 
-    QUrl url("http://gdata.youtube.com/feeds/api/users/" + userId);
+#ifdef APP_YT3
+
+    QUrl url = YT3::instance().method("channels");
+#if QT_VERSION >= 0x050000
+    {
+        QUrl &u = url;
+        QUrlQuery url;
+#endif
+        url.addQueryItem("id", channelId);
+        url.addQueryItem("part", "snippet");
+#if QT_VERSION >= 0x050000
+        u.setQuery(url);
+    }
+#endif
+
+#else
+
+    QUrl url("http://gdata.youtube.com/feeds/api/users/" + channelId);
 #if QT_VERSION >= 0x050000
     {
         QUrl &u = url;
@@ -93,12 +117,45 @@ void YTUser::maybeLoadfromAPI() {
         u.setQuery(url);
     }
 #endif
+
+#endif
+
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResponse(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
 }
 
-void YTUser::parseResponse(QByteArray bytes) {
+#ifdef APP_YT3
+
+void YTChannel::parseResponse(const QByteArray &bytes) {
+    QScriptEngine engine;
+    QScriptValue json = engine.evaluate("(" + QString::fromUtf8(bytes) + ")");
+    QScriptValue items = json.property("items");
+    if (items.isArray()) {
+        QScriptValueIterator it(items);
+        while (it.hasNext()) {
+            it.next();
+            QScriptValue item = it.value();
+            // For some reason the array has an additional element containing its size.
+            if (item.isObject()) {
+                QScriptValue snippet = item.property("snippet");
+                displayName = snippet.property("title").toString();
+                description = snippet.property("description").toString();
+                QScriptValue thumbnails = snippet.property("thumbnails");
+                thumbnailUrl = thumbnails.property("default").property("url").toString();
+                qDebug() << displayName << description << thumbnailUrl;
+            }
+        }
+    }
+
+    emit infoLoaded();
+    storeInfo();
+    loading = false;
+}
+
+#else
+
+void YTChannel::parseResponse(const QByteArray &bytes) {
     QXmlStreamReader xml(bytes);
     xml.readNextStartElement();
     if (xml.name() == QLatin1String("entry"))
@@ -126,7 +183,9 @@ void YTUser::parseResponse(QByteArray bytes) {
     loading = false;
 }
 
-void YTUser::loadThumbnail() {
+#endif
+
+void YTChannel::loadThumbnail() {
     if (loadingThumbnail) return;
     if (thumbnailUrl.isEmpty()) return;
     loadingThumbnail = true;
@@ -141,7 +200,7 @@ void YTUser::loadThumbnail() {
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
 }
 
-const QString & YTUser::getThumbnailDir() {
+const QString & YTChannel::getThumbnailDir() {
     static const QString thumbDir =
         #if QT_VERSION >= 0x050000
             QStandardPaths::writableLocation(QStandardPaths::DataLocation)
@@ -152,15 +211,15 @@ const QString & YTUser::getThumbnailDir() {
     return thumbDir;
 }
 
-QString YTUser::getThumbnailLocation() {
-    return getThumbnailDir() + userId;
+QString YTChannel::getThumbnailLocation() {
+    return getThumbnailDir() + channelId;
 }
 
-void YTUser::unsubscribe() {
-    YTUser::unsubscribe(userId);
+void YTChannel::unsubscribe() {
+    YTChannel::unsubscribe(channelId);
 }
 
-void YTUser::storeThumbnail(QByteArray bytes) {
+void YTChannel::storeThumbnail(const QByteArray &bytes) {
     thumbnail.loadFromData(bytes);
     static const int maxWidth = 88;
 
@@ -182,15 +241,15 @@ void YTUser::storeThumbnail(QByteArray bytes) {
     loadingThumbnail = false;
 }
 
-void YTUser::requestError(QNetworkReply *reply) {
+void YTChannel::requestError(QNetworkReply *reply) {
     emit error(reply->errorString());
     qWarning() << reply->errorString();
     loading = false;
     loadingThumbnail = false;
 }
 
-void YTUser::storeInfo() {
-    if (userId.isEmpty()) return;
+void YTChannel::storeInfo() {
+    if (channelId.isEmpty()) return;
     QSqlDatabase db = Database::instance().getConnection();
     QSqlQuery query(db);
     query.prepare("update subscriptions set "
@@ -202,15 +261,15 @@ void YTUser::storeInfo() {
     query.bindValue(2, description);
     query.bindValue(3, thumbnailUrl);
     query.bindValue(4, QDateTime::currentDateTime().toTime_t());
-    query.bindValue(5, userId);
+    query.bindValue(5, channelId);
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
 
     loadThumbnail();
 }
 
-void YTUser::subscribe(QString userId) {
-    if (userId.isEmpty()) return;
+void YTChannel::subscribe(const QString &channelId) {
+    if (channelId.isEmpty()) return;
 
     uint now = QDateTime::currentDateTime().toTime_t();
 
@@ -219,42 +278,42 @@ void YTUser::subscribe(QString userId) {
     query.prepare("insert into subscriptions "
                   "(user_id,added,watched,checked,views,notify_count)"
                   " values (?,?,?,0,0,0)");
-    query.bindValue(0, userId);
+    query.bindValue(0, channelId);
     query.bindValue(1, now);
     query.bindValue(2, now);
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
 
     // This will call maybeLoadFromApi
-    YTUser::forId(userId);
+    YTChannel::forId(channelId);
 }
 
-void YTUser::unsubscribe(QString userId) {
-    if (userId.isEmpty()) return;
+void YTChannel::unsubscribe(const QString &channelId) {
+    if (channelId.isEmpty()) return;
     QSqlDatabase db = Database::instance().getConnection();
     QSqlQuery query(db);
     query.prepare("delete from subscriptions where user_id=?");
-    query.bindValue(0, userId);
+    query.bindValue(0, channelId);
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
 
     query = QSqlQuery(db);
     query.prepare("delete from subscriptions_videos where user_id=?");
-    query.bindValue(0, userId);
+    query.bindValue(0, channelId);
     success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
 
-    YTUser *user = cache.take(userId);
+    YTChannel *user = cache.take(channelId);
     if (user) user->deleteLater();
 }
 
-bool YTUser::isSubscribed(QString userId) {
+bool YTChannel::isSubscribed(const QString &channelId) {
     if (!Database::exists()) return false;
-    if (userId.isEmpty()) return false;
+    if (channelId.isEmpty()) return false;
     QSqlDatabase db = Database::instance().getConnection();
     QSqlQuery query(db);
     query.prepare("select count(*) from subscriptions where user_id=?");
-    query.bindValue(0, userId);
+    query.bindValue(0, channelId);
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
     if (query.next())
@@ -262,8 +321,8 @@ bool YTUser::isSubscribed(QString userId) {
     return false;
 }
 
-void YTUser::updateChecked() {
-    if (userId.isEmpty()) return;
+void YTChannel::updateChecked() {
+    if (channelId.isEmpty()) return;
 
     uint now = QDateTime::currentDateTime().toTime_t();
     checked = now;
@@ -271,14 +330,14 @@ void YTUser::updateChecked() {
     QSqlDatabase db = Database::instance().getConnection();
     QSqlQuery query(db);
     query.prepare("update subscriptions set checked=? where user_id=?");
-    query.bindValue(0, QDateTime::currentDateTime().toTime_t());
-    query.bindValue(1, userId);
+    query.bindValue(0, now);
+    query.bindValue(1, channelId);
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
 }
 
-void YTUser::updateWatched() {
-    if (userId.isEmpty()) return;
+void YTChannel::updateWatched() {
+    if (channelId.isEmpty()) return;
 
     uint now = QDateTime::currentDateTime().toTime_t();
     watched = now;
@@ -289,12 +348,12 @@ void YTUser::updateWatched() {
     QSqlQuery query(db);
     query.prepare("update subscriptions set watched=?, notify_count=0, views=views+1 where user_id=?");
     query.bindValue(0, now);
-    query.bindValue(1, userId);
+    query.bindValue(1, channelId);
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
 }
 
-void YTUser::storeNotifyCount(int count) {
+void YTChannel::storeNotifyCount(int count) {
     if (notifyCount != count)
         emit notifyCountChanged();
     notifyCount = count;
@@ -303,12 +362,12 @@ void YTUser::storeNotifyCount(int count) {
     QSqlQuery query(db);
     query.prepare("update subscriptions set notify_count=? where user_id=?");
     query.bindValue(0, count);
-    query.bindValue(1, userId);
+    query.bindValue(1, channelId);
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
 }
 
-bool YTUser::updateNotifyCount() {
+bool YTChannel::updateNotifyCount() {
     QSqlDatabase db = Database::instance().getConnection();
     QSqlQuery query(db);
     query.prepare("select count(*) from subscriptions_videos "

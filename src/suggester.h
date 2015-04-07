@@ -27,10 +27,12 @@ class Suggestion {
 
 public:
     Suggestion(QString value = QString(),
-               QString type = QString()) :
-        value(value), type(type) { }
+               QString type = QString(),
+               QString userData = QString()) :
+        value(value), type(type), userData(userData) { }
     QString value;
     QString type;
+    QString userData;
 
     bool operator==(const Suggestion &other) const {
         return (value == other.value) && (type == other.type);

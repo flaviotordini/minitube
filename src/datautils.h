@@ -7,6 +7,9 @@ class DataUtils {
 
 public:
     static QString stringToFilename(const QString &s);
+    static QString regioneCode(const QLocale &locale);
+    static QString systemRegioneCode();
+    static uint parseIsoPeriod(const QString &isoPeriod);
 
 private:
     DataUtils() { }

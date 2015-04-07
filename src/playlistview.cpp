@@ -54,7 +54,8 @@ void PlaylistView::itemEntered(const QModelIndex &index) {
     if (listModel) listModel->setHoveredRow(index.row());
 }
 
-void PlaylistView::leaveEvent(QEvent * /* event */) {
+void PlaylistView::leaveEvent(QEvent *event) {
+    QListView::leaveEvent(event);
     PlaylistModel *listModel = dynamic_cast<PlaylistModel *>(model());
     if (listModel) listModel->clearHover();
 }

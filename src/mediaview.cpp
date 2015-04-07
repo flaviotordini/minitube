@@ -45,7 +45,7 @@ $END_LICENSE */
 #include "ytsinglevideosource.h"
 #include "channelaggregator.h"
 #include "iconutils.h"
-#include "ytuser.h"
+#include "ytchannel.h"
 #ifdef APP_SNAPSHOT
 #include "snapshotsettings.h"
 #endif
@@ -205,7 +205,10 @@ void MediaView::search(SearchParams *searchParams) {
             }
         }
     }
-    setVideoSource(new YTSearch(searchParams, this));
+    YTSearch *ytSearch = new YTSearch(searchParams, this);
+    ytSearch->setAsyncDetails(true);
+    connect(ytSearch, SIGNAL(gotDetails()), playlistModel, SLOT(emitDataChanged()));
+    setVideoSource(ytSearch);
 }
 
 void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory, bool back) {
@@ -245,7 +248,7 @@ void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory, bool
     sidebar->getHeader()->updateInfo();
 
     SearchParams *searchParams = getSearchParams();
-    bool isChannel = searchParams && !searchParams->author().isEmpty();
+    bool isChannel = searchParams && !searchParams->channelId().isEmpty();
     playlistView->setClickableAuthors(!isChannel);
 
 
@@ -315,7 +318,7 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
     if (newState == Phonon::PlayingState)
         videoAreaWidget->showVideo();
     else if (newState == Phonon::ErrorState) {
-        qDebug() << "Phonon error:" << mediaObject->errorString() << mediaObject->errorType();
+        qWarning() << "Phonon error:" << mediaObject->errorString() << mediaObject->errorType();
         if (mediaObject->errorType() == Phonon::FatalError)
             handleError(mediaObject->errorString());
     }
@@ -446,7 +449,7 @@ void MediaView::activeRowChanged(int row) {
     a->setEnabled(enableDownload);
     a->setVisible(enableDownload);
 
-    updateSubscriptionAction(video, YTUser::isSubscribed(video->userId()));
+    updateSubscriptionAction(video, YTChannel::isSubscribed(video->channelId()));
 
     foreach (QAction *action, currentVideoActions)
         action->setEnabled(true);
@@ -488,7 +491,7 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
     startDownloading();
 #endif
 
-    // ensure we always have 10 videos ahead
+    // ensure we always have videos ahead
     playlistModel->searchNeeded();
 
     // ensure active item is visible
@@ -504,7 +507,7 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
 #endif
 
 #ifdef APP_EXTRA
-    Extra::notify(video->title(), video->author(), video->formattedDuration());
+    Extra::notify(video->title(), video->channelTitle(), video->formattedDuration());
 #endif
 
     ChannelAggregator::instance()->videoWatched(video);
@@ -676,7 +679,7 @@ void MediaView::openWebPage() {
 void MediaView::copyWebPage() {
     Video* video = playlistModel->activeVideo();
     if (!video) return;
-    QString address = video->webpage().toString();
+    QString address = video->webpage();
     QApplication::clipboard()->setText(address);
     QString message = tr("You can now paste the YouTube link into another application");
     MainWindow::instance()->showMessage(message);
@@ -845,6 +848,8 @@ void MediaView::snapshot() {
     if (!video) return;
 
     QString location = SnapshotSettings::getCurrentLocation();
+    QDir dir(location);
+    if (!dir.exists()) dir.mkpath(location);
     QString basename = video->title();
     QString format = video->duration() > 3600 ? "h_mm_ss" : "m_ss";
     basename += " (" + QTime().addSecs(currentTime).toString(format) + ")";
@@ -977,7 +982,7 @@ void MediaView::findVideoParts() {
     SearchParams *searchParams = new SearchParams();
     searchParams->setTransient(true);
     searchParams->setKeywords(query);
-    searchParams->setAuthor(video->author());
+    searchParams->setChannelId(video->channelId());
 
     /*
     if (!numberAsWords) {
@@ -996,7 +1001,8 @@ void MediaView::relatedVideos() {
     Video* video = playlistModel->activeVideo();
     if (!video) return;
     YTSingleVideoSource *singleVideoSource = new YTSingleVideoSource();
-    singleVideoSource->setVideoId(video->id());
+    singleVideoSource->setVideo(video->clone());
+    singleVideoSource->setAsyncDetails(true);
     setVideoSource(singleVideoSource);
     The::globalActions()->value("related-videos")->setEnabled(false);
 }
@@ -1012,7 +1018,7 @@ void MediaView::shareViaTwitter() {
 #endif
         url.addQueryItem("via", "minitubeapp");
         url.addQueryItem("text", video->title());
-        url.addQueryItem("url", video->webpage().toString());
+        url.addQueryItem("url", video->webpage());
 #if QT_VERSION >= 0x050000
         u.setQuery(url);
     }
@@ -1030,7 +1036,7 @@ void MediaView::shareViaFacebook() {
         QUrlQuery url;
 #endif
         url.addQueryItem("t", video->title());
-        url.addQueryItem("u", video->webpage().toString());
+        url.addQueryItem("u", video->webpage());
 #if QT_VERSION >= 0x050000
         u.setQuery(url);
     }
@@ -1049,7 +1055,7 @@ void MediaView::shareViaBuffer() {
 #endif
         url.addQueryItem("via", "minitubeapp");
         url.addQueryItem("text", video->title());
-        url.addQueryItem("url", video->webpage().toString());
+        url.addQueryItem("url", video->webpage());
         url.addQueryItem("picture", video->thumbnailUrl());
 #if QT_VERSION >= 0x050000
         u.setQuery(url);
@@ -1069,7 +1075,7 @@ void MediaView::shareViaEmail() {
 #endif
         url.addQueryItem("subject", video->title());
         QString body = video->title() + "\n" +
-                video->webpage().toString() + "\n\n" +
+                video->webpage() + "\n\n" +
                 tr("Sent from %1").arg(Constants::NAME) + "\n" +
                 Constants::WEBSITE;
         url.addQueryItem("body", body);
@@ -1084,12 +1090,12 @@ void MediaView::authorPushed(QModelIndex index) {
     Video* video = playlistModel->videoAt(index.row());
     if (!video) return;
 
-    QString channel = video->userId();
-    if (channel.isEmpty()) channel = video->author();
-    if (channel.isEmpty()) return;
+    QString channelId = video->channelId();
+    // if (channelId.isEmpty()) channelId = video->channelTitle();
+    if (channelId.isEmpty()) return;
 
     SearchParams *searchParams = new SearchParams();
-    searchParams->setAuthor(channel);
+    searchParams->setChannelId(channelId);
     searchParams->setSortBy(SearchParams::SortByNewest);
 
     // go!
@@ -1105,11 +1111,11 @@ void MediaView::updateSubscriptionAction(Video *video, bool subscribed) {
         subscribeText = subscribeAction->property("originalText").toString();
         subscribeAction->setEnabled(false);
     } else if (subscribed) {
-        subscribeText = tr("Unsubscribe from %1").arg(video->author());
+        subscribeText = tr("Unsubscribe from %1").arg(video->channelTitle());
         subscribeTip = subscribeText;
         subscribeAction->setEnabled(true);
     } else {
-        subscribeText = tr("Subscribe to %1").arg(video->author());
+        subscribeText = tr("Subscribe to %1").arg(video->channelTitle());
         subscribeTip = subscribeText;
         subscribeAction->setEnabled(true);
     }
@@ -1138,10 +1144,10 @@ void MediaView::updateSubscriptionAction(Video *video, bool subscribed) {
 void MediaView::toggleSubscription() {
     Video *video = playlistModel->activeVideo();
     if (!video) return;
-    QString userId = video->userId();
+    QString userId = video->channelId();
     if (userId.isEmpty()) return;
-    bool subscribed = YTUser::isSubscribed(userId);
-    if (subscribed) YTUser::unsubscribe(userId);
-    else YTUser::subscribe(userId);
+    bool subscribed = YTChannel::isSubscribed(userId);
+    if (subscribed) YTChannel::unsubscribe(userId);
+    else YTChannel::subscribe(userId);
     updateSubscriptionAction(video, !subscribed);
 }

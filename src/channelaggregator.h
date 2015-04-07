@@ -23,7 +23,7 @@ $END_LICENSE */
 
 #include <QtCore>
 
-class YTUser;
+class YTChannel;
 class Video;
 
 class ChannelAggregator : public QObject {
@@ -44,16 +44,16 @@ public slots:
     void updateUnwatchedCount();
 
 signals:
-    void channelChanged(YTUser*);
+    void channelChanged(YTChannel*);
     void unwatchedCountChanged(int count);
 
 private slots:
-    void videosLoaded(QList<Video*> videos);
+    void videosLoaded(const QList<Video*> &videos);
+    void processNextChannel();
 
 private:
     ChannelAggregator(QObject *parent = 0);
-    YTUser* getChannelToCheck();
-    void processNextChannel();
+    YTChannel* getChannelToCheck();
     void addVideo(Video* video);
     void finish();
 
@@ -62,7 +62,7 @@ private:
     bool running;
 
     int newVideoCount;
-    QList<YTUser*> updatedChannels;
+    QList<YTChannel*> updatedChannels;
 
     QTimer *timer;
     bool stopped;

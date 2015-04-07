@@ -24,7 +24,7 @@ $END_LICENSE */
 #include <QtCore>
 #include <QtSql>
 
-class YTUser;
+class YTChannel;
 
 class ChannelModel : public QAbstractListModel {
 
@@ -48,7 +48,7 @@ public:
     void setQuery(const QString &query, const QSqlDatabase &db);
     QSqlError lastError() const;
     ItemTypes typeForIndex(const QModelIndex &index) const;
-    YTUser* userForIndex(const QModelIndex &index) const;
+    YTChannel* channelForIndex(const QModelIndex &index) const;
     void setHoveredRow(int row);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
@@ -57,12 +57,12 @@ public:
 public slots:
     void clearHover();
     void updateSender();
-    void updateChannel(YTUser *user);
+    void updateChannel(YTChannel *channel);
     void updateUnwatched();
     void removeChannel(QObject *obj);
 
 private:
-    QList<YTUser*> channels;
+    QList<YTChannel*> channels;
     int hoveredRow;
     QSqlError sqlError;
 

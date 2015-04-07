@@ -26,6 +26,7 @@ SearchParams::SearchParams(QObject *parent) : QObject(parent) {
     m_duration = DurationAny;
     m_quality = QualityAny;
     m_time = TimeAny;
+    m_publishedAfter = 0;
 }
 
 void SearchParams::setParam(QString name, QVariant value) {

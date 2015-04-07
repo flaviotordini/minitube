@@ -40,15 +40,15 @@ Video::Video() : m_duration(0),
     elIndex(0),
     ageGate(false),
     loadingStreamUrl(false),
-    loadingThumbnail(false)
-{ }
+    loadingThumbnail(false) {
+}
 
 Video* Video::clone() {
     Video* cloneVideo = new Video();
     cloneVideo->m_title = m_title;
     cloneVideo->m_description = m_description;
-    cloneVideo->m_author = m_author;
-    cloneVideo->m_userId = m_userId;
+    cloneVideo->m_channelTitle = m_channelTitle;
+    cloneVideo->m_channelId = m_channelId;
     cloneVideo->m_webpage = m_webpage;
     cloneVideo->m_streamUrl = m_streamUrl;
     cloneVideo->m_thumbnail = m_thumbnail;
@@ -63,18 +63,26 @@ Video* Video::clone() {
     return cloneVideo;
 }
 
-void Video::setWebpage(QUrl webpage) {
-    m_webpage = webpage;
+const QString &Video::webpage() {
+    if (m_webpage.isEmpty() && !videoId.isEmpty())
+        m_webpage.append("https://www.youtube.com/watch?v=").append(videoId);
+    return m_webpage;
+}
+
+void Video::setWebpage(const QString &value) {
+    m_webpage = value;
 
     // Get Video ID
-    QRegExp re(JsFunctions::instance()->videoIdRE());
-    if (re.indexIn(m_webpage.toString()) == -1) {
-        qWarning() << QString("Cannot get video id for %1").arg(m_webpage.toString());
-        // emit errorStreamUrl(QString("Cannot get video id for %1").arg(m_webpage.toString()));
-        // loadingStreamUrl = false;
-        return;
+    if (videoId.isEmpty()) {
+        QRegExp re(JsFunctions::instance()->videoIdRE());
+        if (re.indexIn(m_webpage) == -1) {
+            qWarning() << QString("Cannot get video id for %1").arg(m_webpage);
+            // emit errorStreamUrl(QString("Cannot get video id for %1").arg(m_webpage.toString()));
+            // loadingStreamUrl = false;
+            return;
+        }
+        videoId = re.cap(1);
     }
-    videoId = re.cap(1);
 }
 
 void Video::loadThumbnail() {
@@ -86,6 +94,7 @@ void Video::loadThumbnail() {
 
 void Video::setThumbnail(QByteArray bytes) {
     loadingThumbnail = false;
+    m_thumbnail = QPixmap();
     m_thumbnail.loadFromData(bytes);
     if (m_thumbnail.width() > 160)
         m_thumbnail = m_thumbnail.scaledToWidth(160, Qt::SmoothTransformation);
@@ -117,7 +126,7 @@ void  Video::getVideoInfo() {
 
     if (elIndex == elTypes.size()) {
         // qDebug() << "Trying special embedded el param";
-        url = QUrl("http://www.youtube.com/get_video_info");
+        url = QUrl("https://www.youtube.com/get_video_info");
 
 #if QT_VERSION >= 0x050000
         {
@@ -144,7 +153,7 @@ void  Video::getVideoInfo() {
     } else {
         // qDebug() << "Trying el param:" << elTypes.at(elIndex) << elIndex;
         url = QUrl(QString(
-                       "http://www.youtube.com/get_video_info?video_id=%1%2&ps=default&eurl=&gl=US&hl=en"
+                       "https://www.youtube.com/get_video_info?video_id=%1%2&ps=default&eurl=&gl=US&hl=en"
                        ).arg(videoId, elTypes.at(elIndex)));
     }
 
@@ -162,7 +171,7 @@ void  Video::gotVideoInfo(QByteArray data) {
     // get video token
     QRegExp videoTokeRE(JsFunctions::instance()->videoTokenRE());
     if (videoTokeRE.indexIn(videoInfo) == -1) {
-        // qWarning() << "Cannot get token. Trying next el param" << videoInfo << videoTokeRE.pattern();
+        qDebug() << "Cannot get token. Trying next el param" << videoInfo << videoTokeRE.pattern();
         // Don't panic! We're gonna try another magic "el" param
         elIndex++;
         getVideoInfo();
@@ -170,7 +179,7 @@ void  Video::gotVideoInfo(QByteArray data) {
     }
 
     QString videoToken = videoTokeRE.cap(1);
-    // qWarning() << "got token" << videoToken;
+    // qDebug() << "got token" << videoToken;
     while (videoToken.contains('%'))
         videoToken = QByteArray::fromPercentEncoding(videoToken.toLatin1());
     // qDebug() << "videoToken" << videoToken;
@@ -179,7 +188,7 @@ void  Video::gotVideoInfo(QByteArray data) {
     // get fmt_url_map
     QRegExp fmtMapRE(JsFunctions::instance()->videoInfoFmtMapRE());
     if (fmtMapRE.indexIn(videoInfo) == -1) {
-        // qWarning() << "Cannot get urlMap. Trying next el param";
+        // qDebug() << "Cannot get urlMap. Trying next el param";
         // Don't panic! We're gonna try another magic "el" param
         elIndex++;
         getVideoInfo();
@@ -189,7 +198,7 @@ void  Video::gotVideoInfo(QByteArray data) {
     // qDebug() << "Got token and urlMap" << elIndex;
 
     QString fmtUrlMap = fmtMapRE.cap(1);
-    // qWarning() << "got fmtUrlMap" << fmtUrlMap;
+    // qDebug() << "got fmtUrlMap" << fmtUrlMap;
     fmtUrlMap = QByteArray::fromPercentEncoding(fmtUrlMap.toUtf8());
     parseFmtUrlMap(fmtUrlMap);
 }
@@ -236,7 +245,7 @@ void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
                             sig = JsFunctions::instance()->decryptSignature(sig);
                     }
                 } else {
-                    // qDebug() << "Loading webpage";
+
                     QUrl url("http://www.youtube.com/watch");
 
 #if QT_VERSION >= 0x050000
@@ -252,6 +261,7 @@ void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
                         u.setQuery(url);
                     }
 #endif
+                    // qDebug() << "Loading webpage" << url;
                     QObject *reply = The::http()->get(url);
                     connect(reply, SIGNAL(data(QByteArray)), SLOT(scrapeWebPage(QByteArray)));
                     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
@@ -270,7 +280,7 @@ void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
         // qWarning() << url;
 
         if (format == definitionCode) {
-            qDebug() << "Found format" << definitionCode;
+            // qDebug() << "Found format" << definitionCode;
             QUrl videoUrl = QUrl::fromEncoded(url.toUtf8(), QUrl::StrictMode);
             m_streamUrl = videoUrl;
             this->definitionCode = definitionCode;
@@ -290,7 +300,7 @@ void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
         if (previousIndex < 0) previousIndex = 0;
         int definitionCode = definitionCodes.at(previousIndex);
         if (urlMap.contains(definitionCode)) {
-            qDebug() << "Found format" << definitionCode;
+            // qDebug() << "Found format" << definitionCode;
             QString url = urlMap.value(definitionCode);
             QUrl videoUrl = QUrl::fromEncoded(url.toUtf8(), QUrl::StrictMode);
             m_streamUrl = videoUrl;
@@ -302,7 +312,7 @@ void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
         currentIndex--;
     }
 
-    emit errorStreamUrl(tr("Cannot get video stream for %1").arg(m_webpage.toString()));
+    emit errorStreamUrl(tr("Cannot get video stream for %1").arg(m_webpage));
 }
 
 void Video::errorVideoInfo(QNetworkReply *reply) {
@@ -312,7 +322,6 @@ void Video::errorVideoInfo(QNetworkReply *reply) {
 
 void Video::scrapeWebPage(QByteArray data) {
     QString html = QString::fromUtf8(data);
-    // qWarning() << html;
 
     QRegExp ageGateRE(JsFunctions::instance()->ageGateRE());
     if (ageGateRE.indexIn(html) != -1) {
@@ -325,7 +334,7 @@ void Video::scrapeWebPage(QByteArray data) {
 
     QRegExp fmtMapRE(JsFunctions::instance()->webPageFmtMapRE());
     if (fmtMapRE.indexIn(html) == -1) {
-        // qWarning() << "Error parsing video page";
+        qWarning() << "Error parsing video page";
         // emit errorStreamUrl("Error parsing video page");
         // loadingStreamUrl = false;
         elIndex++;
@@ -339,7 +348,7 @@ void Video::scrapeWebPage(QByteArray data) {
 #ifdef APP_DASH
     QSettings settings;
     QString definitionName = settings.value("definition", "360p").toString();
-    if (definitionName == QLatin1String("1080p") {
+    if (definitionName == QLatin1String("1080p")) {
         QRegExp dashManifestRe("\"dashmpd\":\\s*\"([^\"]+)\"");
         if (dashManifestRe.indexIn(html) != -1) {
             dashManifestUrl = dashManifestRe.cap(1);
@@ -356,10 +365,10 @@ void Video::scrapeWebPage(QByteArray data) {
         jsPlayerUrl = "http:" + jsPlayerUrl;
         // qDebug() << "jsPlayerUrl" << jsPlayerUrl;
         /*
-        QRegExp jsPlayerIdRe("-(.+)\\.js");
-        jsPlayerIdRe.indexIn(jsPlayerUrl);
-        QString jsPlayerId = jsPlayerRe.cap(1);
-        */
+                    QRegExp jsPlayerIdRe("-(.+)\\.js");
+                    jsPlayerIdRe.indexIn(jsPlayerUrl);
+                    QString jsPlayerId = jsPlayerRe.cap(1);
+                    */
         QObject *reply = The::http()->get(jsPlayerUrl);
         connect(reply, SIGNAL(data(QByteArray)), SLOT(parseJsPlayer(QByteArray)));
         connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
@@ -391,16 +400,18 @@ void Video::parseJsPlayer(QByteArray bytes) {
             dashManifestUrl.replace(sigRe, "/signature/" + sig);
             qDebug() << dashManifestUrl;
 
-            m_streamUrl = dashManifestUrl;
-            this->definitionCode = 37;
-            emit gotStreamUrl(m_streamUrl);
-            loadingStreamUrl = false;
-
-            /*
-            QObject *reply = The::http()->get(QUrl::fromEncoded(dashManifestUrl.toUtf8()));
-            connect(reply, SIGNAL(data(QByteArray)), SLOT(parseDashManifest(QByteArray)));
-            connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
-            */
+            if (false) {
+                // let phonon play the manifest
+                m_streamUrl = dashManifestUrl;
+                this->definitionCode = 37;
+                emit gotStreamUrl(m_streamUrl);
+                loadingStreamUrl = false;
+            } else {
+                // download the manifest
+                QObject *reply = The::http()->get(QUrl::fromEncoded(dashManifestUrl.toUtf8()));
+                connect(reply, SIGNAL(data(QByteArray)), SLOT(parseDashManifest(QByteArray)));
+                connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
+            }
 
             return;
         }
@@ -411,7 +422,7 @@ void Video::parseJsPlayer(QByteArray bytes) {
 }
 
 void Video::parseDashManifest(QByteArray bytes) {
-    QFile file(Temporary::filename());
+    QFile file(Temporary::filename() + ".mpd");
     if (!file.open(QIODevice::WriteOnly))
         qWarning() << file.errorString() << file.fileName();
     QDataStream stream(&file);

@@ -70,11 +70,15 @@ $END_LICENSE */
 #include "videoareawidget.h"
 #include "jsfunctions.h"
 #include "seekslider.h"
+#ifdef APP_YT3
+#include "yt3.h"
+#endif
 
+namespace {
 static MainWindow *singleton = 0;
+}
 
 MainWindow* MainWindow::instance() {
-    if (!singleton) singleton = new MainWindow();
     return singleton;
 }
 
@@ -91,6 +95,10 @@ MainWindow::MainWindow() :
     m_compact(false) {
 
     singleton = this;
+
+#ifdef APP_EXTRA
+    Extra::windowSetup(this);
+#endif
 
     // views mechanism
     history = new QStack<QWidget*>();
@@ -138,10 +146,6 @@ MainWindow::MainWindow() :
 #endif
 
     views->show();
-
-#ifdef APP_EXTRA
-    Extra::windowSetup(this);
-#endif
 
     qApp->processEvents();
     QTimer::singleShot(50, this, SLOT(lazyInit()));
@@ -204,8 +208,6 @@ void MainWindow::lazyInit() {
     JsFunctions::instance();
 
     checkForUpdate();
-
-    ChannelAggregator::instance()->start();
 }
 
 void MainWindow::changeEvent(QEvent* event) {
@@ -230,7 +232,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
 
         // qDebug() << obj << mouseEvent->pos() << isHoveringVideo << mediaView->isPlaylistVisible();
 
-        if (mediaView->isPlaylistVisible()) {
+        if (mediaView && mediaView->isPlaylistVisible()) {
             if (isHoveringVideo && x > 5) mediaView->setPlaylistVisible(false);
         } else {
             if (isHoveringVideo && x >= 0 && x < 5) mediaView->setPlaylistVisible(true);
@@ -438,7 +440,7 @@ void MainWindow::createActions() {
     QAction *definitionAct = new QAction(this);
 #ifdef Q_OS_LINUX
     definitionAct->setIcon(IconUtils::tintedIcon("video-display", QColor(0, 0, 0),
-                                             QList<QSize>() << QSize(16, 16)));
+                                                 QList<QSize>() << QSize(16, 16)));
 #else
     definitionAct->setIcon(IconUtils::icon("video-display"));
 #endif
@@ -750,6 +752,10 @@ void MainWindow::createToolBars() {
 
     mainToolBar->addWidget(new Spacer());
     mainToolBar->addAction(volumeMuteAct);
+#ifdef Q_WS_X11
+    QToolButton *volumeMuteButton = qobject_cast<QToolButton *>(mainToolBar->widgetForAction(volumeMuteAct));
+    volumeMuteButton->setIcon(volumeMuteButton->icon().pixmap(16));
+#endif
 
 #ifdef APP_PHONON
     volumeSlider = new Phonon::VolumeSlider(this);
@@ -978,7 +984,7 @@ void MainWindow::quit() {
     if (!m_fullscreen && !compactViewAct->isChecked()) {
         writeSettings();
     }
-    mediaView->stop();
+    // mediaView->stop();
     Temporary::deleteAll();
     ChannelAggregator::instance()->stop();
     ChannelAggregator::instance()->cleanup();
@@ -1310,20 +1316,25 @@ void MainWindow::initPhonon() {
     mediaObject = new Phonon::MediaObject(this);
     mediaObject->setTickInterval(100);
     connect(mediaObject, SIGNAL(stateChanged(Phonon::State, Phonon::State)),
-            this, SLOT(stateChanged(Phonon::State, Phonon::State)));
-    connect(mediaObject, SIGNAL(tick(qint64)), this, SLOT(tick(qint64)));
-    connect(mediaObject, SIGNAL(totalTimeChanged(qint64)), this, SLOT(totalTimeChanged(qint64)));
+            SLOT(stateChanged(Phonon::State, Phonon::State)));
+    connect(mediaObject, SIGNAL(tick(qint64)), SLOT(tick(qint64)));
+    connect(mediaObject, SIGNAL(totalTimeChanged(qint64)), SLOT(totalTimeChanged(qint64)));
+
+    audioOutput = new Phonon::AudioOutput(Phonon::VideoCategory, this);
+    connect(audioOutput, SIGNAL(volumeChanged(qreal)), SLOT(volumeChanged(qreal)));
+    connect(audioOutput, SIGNAL(mutedChanged(bool)), SLOT(volumeMutedChanged(bool)));
+    Phonon::createPath(mediaObject, audioOutput);
+    volumeSlider->setAudioOutput(audioOutput);
+
 #ifdef APP_PHONON_SEEK
     seekSlider->setMediaObject(mediaObject);
 #endif
-    audioOutput = new Phonon::AudioOutput(Phonon::VideoCategory, this);
-    connect(audioOutput, SIGNAL(volumeChanged(qreal)), this, SLOT(volumeChanged(qreal)));
-    connect(audioOutput, SIGNAL(mutedChanged(bool)), this, SLOT(volumeMutedChanged(bool)));
-    volumeSlider->setAudioOutput(audioOutput);
-    Phonon::createPath(mediaObject, audioOutput);
+
     QSettings settings;
-    audioOutput->setVolume(settings.value("volume", 1).toReal());
+    audioOutput->setVolume(settings.value("volume", 1.).toReal());
     // audioOutput->setMuted(settings.value("volumeMute").toBool());
+
+    mediaObject->stop();
 }
 #endif
 
@@ -1401,15 +1412,20 @@ void MainWindow::volumeDown() {
 
 void MainWindow::volumeMute() {
 #ifdef APP_PHONON
-    volumeSlider->audioOutput()->setMuted(!volumeSlider->audioOutput()->isMuted());
+    bool muted = volumeSlider->audioOutput()->isMuted();
+    volumeSlider->audioOutput()->setMuted(!muted);
+    qApp->processEvents();
+    if (muted && volumeSlider->audioOutput()->volume() == 0) {
+        volumeSlider->audioOutput()->setVolume(volumeSlider->maximumVolume());
+    }
+    qDebug() << volumeSlider->audioOutput()->isMuted() << volumeSlider->audioOutput()->volume();
 #endif
 }
 
 void MainWindow::volumeChanged(qreal newVolume) {
 #ifdef APP_PHONON
     // automatically unmute when volume changes
-    if (volumeSlider->audioOutput()->isMuted())
-        volumeSlider->audioOutput()->setMuted(false);
+    if (volumeSlider->audioOutput()->isMuted()) volumeSlider->audioOutput()->setMuted(false);
 
     bool isZero = volumeSlider->property("zero").toBool();
     bool styleChanged = false;
@@ -1437,6 +1453,10 @@ void MainWindow::volumeMutedChanged(bool muted) {
         volumeMuteAct->setIcon(IconUtils::icon("audio-volume-high"));
         statusBar()->showMessage(tr("Volume is unmuted"));
     }
+#ifdef Q_WS_X11
+    QToolButton *volumeMuteButton = qobject_cast<QToolButton *>(mainToolBar->widgetForAction(volumeMuteAct));
+    volumeMuteButton->setIcon(volumeMuteButton->icon().pixmap(16));
+#endif
 }
 
 void MainWindow::setDefinitionMode(QString definitionName) {

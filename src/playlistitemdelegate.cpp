@@ -131,7 +131,8 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
         painter->drawPixmap(playIcon.rect(), playIcon);
 
     // time
-    drawTime(painter, video->formattedDuration(), line);
+    if (video->duration() > 0)
+        drawTime(painter, video->formattedDuration(), line);
 
     // separator
     painter->setPen(option.palette.color(QPalette::Midlight));
@@ -142,7 +143,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
 
     if (line.width() > THUMB_WIDTH + 60) {
 
-        if (isActive) painter->setFont(boldFont);
+        // if (isActive) painter->setFont(boldFont);
 
         // text color
         if (isSelected)
@@ -192,7 +193,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
                 else
                     painter->setOpacity(.5);
             }
-            QString authorString = video->author();
+            QString authorString = video->channelTitle();
             textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
             stringSize = QSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, authorString ) );
             QRect authorTextBox(textLoc , stringSize);
@@ -226,7 +227,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
 
     } else {
 
-        bool isHovered = option.state & QStyle::State_MouseOver;
+        const bool isHovered = index.data(HoveredItemRole).toBool();
         if (!isActive && isHovered) {
             painter->setFont(smallerFont);
             painter->setPen(Qt::white);

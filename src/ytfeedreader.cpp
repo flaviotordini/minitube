@@ -56,15 +56,15 @@ void YTFeedReader::readEntry() {
                     ) {
                 QString webpage = attributes().value("href").toString();
                 webpage.remove("&feature=youtube_gdata");
-                video->setWebpage(QUrl(webpage));
+                video->setWebpage(webpage);
             } else if (name() == QLatin1String("author")) {
                 while(readNextStartElement())
                     if (name() == QLatin1String("name")) {
                         QString author = readElementText();
-                        video->setAuthor(author);
+                        video->setChannelTitle(author);
                     } else if (name() == QLatin1String("userId")) {
                         QString userId = readElementText();
-                        video->setUserId(userId);
+                        video->setChannelId(userId);
                     } else skipCurrentElement();
             } else if (name() == QLatin1String("published")) {
                 video->setPublished(QDateTime::fromString(readElementText(), Qt::ISODate));

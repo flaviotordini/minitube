@@ -19,7 +19,7 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "channelmodel.h"
-#include "ytuser.h"
+#include "ytchannel.h"
 
 static const int channelOffset = 2;
 
@@ -40,7 +40,7 @@ QVariant ChannelModel::data(const QModelIndex &index, int role) const {
 
     case ChannelModel::DataObjectRole:
         if (typeForIndex(index) == ChannelModel::ItemChannel)
-            return QVariant::fromValue(QPointer<YTUser>(userForIndex(index)));
+            return QVariant::fromValue(QPointer<YTChannel>(channelForIndex(index)));
         break;
 
     case ChannelModel::HoveredItemRole:
@@ -48,14 +48,14 @@ QVariant ChannelModel::data(const QModelIndex &index, int role) const {
 
     case Qt::StatusTipRole:
         if (typeForIndex(index) == ChannelModel::ItemChannel)
-            return userForIndex(index)->getDescription();
+            return channelForIndex(index)->getDescription();
 
     }
 
     return QVariant();
 }
 
-YTUser* ChannelModel::userForIndex(const QModelIndex &index) const {
+YTChannel* ChannelModel::channelForIndex(const QModelIndex &index) const {
     const int row = index.row();
     if (row < channelOffset) return 0;
     return channels.at(index.row() - channelOffset);
@@ -85,11 +85,11 @@ void ChannelModel::setQuery(const QString &query, const QSqlDatabase &db) {
         sqlError = q.lastError();
     }
     while (q.next()) {
-        YTUser *user = YTUser::forId(q.value(0).toString());
-        connect(user, SIGNAL(thumbnailLoaded()), SLOT(updateSender()), Qt::UniqueConnection);
-        connect(user, SIGNAL(notifyCountChanged()), SLOT(updateSender()), Qt::UniqueConnection);
-        connect(user, SIGNAL(destroyed(QObject *)), SLOT(removeChannel(QObject *)), Qt::UniqueConnection);
-        channels << user;
+        YTChannel *channel = YTChannel::forId(q.value(0).toString());
+        connect(channel, SIGNAL(thumbnailLoaded()), SLOT(updateSender()), Qt::UniqueConnection);
+        connect(channel, SIGNAL(notifyCountChanged()), SLOT(updateSender()), Qt::UniqueConnection);
+        connect(channel, SIGNAL(destroyed(QObject *)), SLOT(removeChannel(QObject *)), Qt::UniqueConnection);
+        channels << channel;
     }
     endResetModel();
 }
@@ -99,16 +99,16 @@ QSqlError ChannelModel::lastError() const {
 }
 
 void ChannelModel::updateSender() {
-    YTUser *user = static_cast<YTUser*>(sender());
-    if (!user) {
+    YTChannel *channel = static_cast<YTChannel*>(sender());
+    if (!channel) {
         qWarning() << "Cannot get sender" << __PRETTY_FUNCTION__;
         return;
     }
-    updateChannel(user);
+    updateChannel(channel);
 }
 
-void ChannelModel::updateChannel(YTUser *user) {
-    int row = channels.indexOf(user);
+void ChannelModel::updateChannel(YTChannel *channel) {
+    int row = channels.indexOf(channel);
     if (row == -1) return;
     row += channelOffset;
     QModelIndex i = createIndex(row, 0);
@@ -121,11 +121,11 @@ void ChannelModel::updateUnwatched() {
 }
 
 void ChannelModel::removeChannel(QObject *obj) {
-    YTUser *user = static_cast<YTUser*>(obj);
-    qWarning() << "user is" << user << obj << obj->metaObject()->className();
-    if (!user) return;
+    YTChannel *channel = static_cast<YTChannel*>(obj);
+    // qWarning() << "channel" << channel << obj << obj->metaObject()->className();
+    if (!channel) return;
 
-    int row = channels.indexOf(user);
+    int row = channels.indexOf(channel);
     if (row == -1) return;
 
     int position = row + channelOffset;

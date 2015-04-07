@@ -45,6 +45,8 @@ private:
     QVariant getAttribute(QString name);
     void setAttribute(QString name, QVariant value);
 
+    void fixChannelIds();
+
     QMutex lock;
     QString dbLocation;
     QHash<QThread*, QSqlDatabase> connections;

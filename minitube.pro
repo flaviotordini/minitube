@@ -1,6 +1,6 @@
 CONFIG += release
 TEMPLATE = app
-VERSION = 2.3
+VERSION = 2.4
 DEFINES += APP_VERSION="$$VERSION"
 
 APP_NAME = Minitube
@@ -12,14 +12,19 @@ DEFINES += APP_UNIX_NAME="$$APP_UNIX_NAME"
 DEFINES += APP_PHONON
 DEFINES += APP_PHONON_SEEK
 DEFINES += APP_SNAPSHOT
+DEFINES += APP_YT3
 
 DEFINES *= QT_NO_DEBUG_OUTPUT
 DEFINES *= QT_USE_QSTRINGBUILDER
 DEFINES *= QT_STRICT_ITERATORS
 
+!contains(DEFINES, APP_GOOGLE_API_KEY) {
+    warning("You need to specify a Google API Key, refer to the README.md file for details")
+}
+
 TARGET = $${APP_UNIX_NAME}
 
-QT += network xml sql script
+QT += network sql script
 qt:greaterThan(QT_MAJOR_VERSION, 4) {
     contains(QT, gui): QT *= widgets
 }
@@ -83,7 +88,6 @@ HEADERS += src/video.h \
     src/gridwidget.h \
     src/painterutils.h \
     src/database.h \
-    src/ytuser.h \
     src/channelaggregator.h \
     src/channelmodel.h \
     src/aggregatevideosource.h \
@@ -93,7 +97,11 @@ HEADERS += src/video.h \
     src/seekslider.h \
     src/snapshotsettings.h \
     src/snapshotpreview.h \
-    src/datautils.h
+    src/datautils.h \
+    src/yt3listparser.h \
+    src/ytchannel.h \
+    src/yt3.h \
+    src/paginatedvideosource.h
 SOURCES += src/main.cpp \
     src/searchlineedit.cpp \
     src/urllineedit.cpp \
@@ -149,7 +157,6 @@ SOURCES += src/main.cpp \
     src/gridwidget.cpp \
     src/painterutils.cpp \
     src/database.cpp \
-    src/ytuser.cpp \
     src/channelaggregator.cpp \
     src/channelmodel.cpp \
     src/aggregatevideosource.cpp \
@@ -159,7 +166,11 @@ SOURCES += src/main.cpp \
     src/seekslider.cpp \
     src/snapshotsettings.cpp \
     src/snapshotpreview.cpp \
-    src/datautils.cpp
+    src/datautils.cpp \
+    src/yt3listparser.cpp \
+    src/ytchannel.cpp \
+    src/yt3.cpp \
+    src/paginatedvideosource.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/

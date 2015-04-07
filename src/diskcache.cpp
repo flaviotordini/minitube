@@ -25,7 +25,7 @@ DiskCache::DiskCache(QObject *parent) : QNetworkDiskCache(parent) { }
 
 QIODevice* DiskCache::prepare(const QNetworkCacheMetaData &metaData) {
     QString mime;
-    foreach (QNetworkCacheMetaData::RawHeader header, metaData.rawHeaders()) {
+    foreach (const QNetworkCacheMetaData::RawHeader &header, metaData.rawHeaders()) {
         // qDebug() << header.first << header.second;
         if (header.first.constData() == QLatin1String("Content-Type")) {
             mime = header.second;
@@ -33,9 +33,20 @@ QIODevice* DiskCache::prepare(const QNetworkCacheMetaData &metaData) {
         }
     }
 
-    if (mime.startsWith(QLatin1String("image/")) ||
-                        mime.endsWith(QLatin1String("/javascript")))
+    if (mime == QLatin1String("application/json") || mime.startsWith(QLatin1String("image/"))) {
         return QNetworkDiskCache::prepare(metaData);
+    }
 
     return 0;
+}
+
+QNetworkCacheMetaData DiskCache::metaData(const QUrl &url) {
+    // Remove "key" from query string in order to reuse cache when key changes
+    static const QString keyQueryItem = "key";
+    if (url.hasQueryItem(keyQueryItem)) {
+        QUrl url2(url);
+        url2.removeQueryItem(keyQueryItem);
+        return QNetworkDiskCache::metaData(url2);
+    }
+    return QNetworkDiskCache::metaData(url);
 }

@@ -19,7 +19,7 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "channelaggregator.h"
-#include "ytuser.h"
+#include "ytchannel.h"
 #include "ytsearch.h"
 #include "searchparams.h"
 #include "database.h"
@@ -32,8 +32,7 @@ ChannelAggregator::ChannelAggregator(QObject *parent) : QObject(parent),
     unwatchedCount(-1),
     running(false),
     stopped(false) {
-    QSettings settings;
-    checkInterval = settings.value("subscriptionsCheckInterval", 1800).toUInt();
+    checkInterval = 3600;
 
     timer = new QTimer(this);
     timer->setInterval(60000 * 5);
@@ -46,9 +45,10 @@ ChannelAggregator* ChannelAggregator::instance() {
 }
 
 void ChannelAggregator::start() {
+    stopped = false;
     updateUnwatchedCount();
     QTimer::singleShot(0, this, SLOT(run()));
-    timer->start();
+    if (!timer->isActive()) timer->start();
 }
 
 void ChannelAggregator::stop() {
@@ -56,59 +56,65 @@ void ChannelAggregator::stop() {
     stopped = true;
 }
 
-YTUser* ChannelAggregator::getChannelToCheck() {
+YTChannel* ChannelAggregator::getChannelToCheck() {
     if (stopped) return 0;
     QSqlDatabase db = Database::instance().getConnection();
     QSqlQuery query(db);
     query.prepare("select user_id from subscriptions where checked<? "
                   "order by checked limit 1");
-    query.bindValue(0, QDateTime::currentDateTime().toTime_t() - checkInterval);
+    query.bindValue(0, QDateTime::currentDateTimeUtc().toTime_t() - checkInterval);
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
     if (query.next())
-        return YTUser::forId(query.value(0).toString());
+        return YTChannel::forId(query.value(0).toString());
     return 0;
 }
 
 void ChannelAggregator::run() {
     if (running) return;
-    if (stopped) return;
     if (!Database::exists()) return;
     running = true;
     newVideoCount = 0;
     updatedChannels.clear();
+
     if (!Database::instance().getConnection().transaction())
         qWarning() << "Transaction failed" << __PRETTY_FUNCTION__;
+
     processNextChannel();
 }
 
 void ChannelAggregator::processNextChannel() {
-    if (stopped) return;
+    if (stopped) {
+        running = false;
+        return;
+    }
     qApp->processEvents();
-    YTUser* user = getChannelToCheck();
-    if (user) {
+    YTChannel* channel = getChannelToCheck();
+    if (channel) {
         SearchParams *params = new SearchParams();
-        params->setAuthor(user->getUserId());
+        params->setChannelId(channel->getChannelId());
         params->setSortBy(SearchParams::SortByNewest);
         params->setTransient(true);
+        params->setPublishedAfter(channel->getChecked());
         YTSearch *videoSource = new YTSearch(params, this);
-        connect(videoSource, SIGNAL(gotVideos(QList<Video*>)),
-                SLOT(videosLoaded(QList<Video*>)));
-        videoSource->loadVideos(10, 1);
-        user->updateChecked();
+        connect(videoSource, SIGNAL(gotVideos(QList<Video*>)), SLOT(videosLoaded(QList<Video*>)));
+        videoSource->loadVideos(50, 1);
+        channel->updateChecked();
     } else finish();
 }
 
 void ChannelAggregator::finish() {
-    foreach (YTUser *user, updatedChannels)
-        if (user->updateNotifyCount())
-            emit channelChanged(user);
-
+    /*
+    foreach (YTChannel *channel, updatedChannels)
+        if (channel->updateNotifyCount())
+            emit channelChanged(channel);
     updateUnwatchedCount();
+    */
 
     QSqlDatabase db = Database::instance().getConnection();
     if (!db.commit())
         qWarning() << "Commit failed" << __PRETTY_FUNCTION__;
+
     /*
     QByteArray b = db.databaseName().right(20).toLocal8Bit();
     const char* s = b.constData();
@@ -124,8 +130,8 @@ void ChannelAggregator::finish() {
         QString channelNames;
         const int total = updatedChannels.size();
         for (int i = 0; i < total; ++i) {
-            YTUser *user = updatedChannels.at(i);
-            channelNames += user->getDisplayName();
+            YTChannel *channel = updatedChannels.at(i);
+            channelNames += channel->getDisplayName();
             if (i < total-1) channelNames.append(", ");
         }
         channelNames = tr("By %1").arg(channelNames);
@@ -138,14 +144,23 @@ void ChannelAggregator::finish() {
     running = false;
 }
 
-void ChannelAggregator::videosLoaded(QList<Video *> videos) {
+void ChannelAggregator::videosLoaded(const QList<Video*> &videos) {
     sender()->deleteLater();
+
     foreach (Video* video, videos) {
-        qApp->processEvents();
         addVideo(video);
-        video->deleteLater();
+        qApp->processEvents();
     }
-    processNextChannel();
+
+    if (!videos.isEmpty()) {
+        YTChannel *channel = YTChannel::forId(videos.first()->channelId());
+        channel->updateNotifyCount();
+        emit channelChanged(channel);
+        updateUnwatchedCount();
+        foreach (Video* video, videos) video->deleteLater();
+    }
+
+    QTimer::singleShot(1000, this, SLOT(processNextChannel()));
 }
 
 void ChannelAggregator::updateUnwatchedCount() {
@@ -177,13 +192,16 @@ void ChannelAggregator::addVideo(Video *video) {
 
     // qDebug() << "Inserting" << video->author() << video->title();
 
-    QString userId = video->userId();
-    YTUser *user = YTUser::forId(userId);
-    if (!updatedChannels.contains(user))
-        updatedChannels << user;
-    int channelId = user->getId();
+    YTChannel *channel = YTChannel::forId(video->channelId());
+    if (!channel) {
+        qWarning() << "channelId not present in db" << video->channelId() << video->channelTitle();
+        return;
+    }
 
-    uint now = QDateTime::currentDateTime().toTime_t();
+    if (!updatedChannels.contains(channel))
+        updatedChannels << channel;
+
+    uint now = QDateTime::currentDateTimeUtc().toTime_t();
     uint published = video->published().toTime_t();
     if (published > now) {
         qDebug() << "fixing publish time";
@@ -196,13 +214,13 @@ void ChannelAggregator::addVideo(Video *video) {
                   "title,author,user_id,description,url,thumb_url,views,duration) "
                   "values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
     query.bindValue(0, video->id());
-    query.bindValue(1, channelId);
+    query.bindValue(1, channel->getId());
     query.bindValue(2, published);
     query.bindValue(3, now);
     query.bindValue(4, 0);
     query.bindValue(5, video->title());
-    query.bindValue(6, video->author());
-    query.bindValue(7, video->userId());
+    query.bindValue(6, video->channelTitle());
+    query.bindValue(7, video->channelId());
     query.bindValue(8, video->description());
     query.bindValue(9, video->webpage());
     query.bindValue(10, video->thumbnailUrl());
@@ -216,13 +234,13 @@ void ChannelAggregator::addVideo(Video *video) {
     query = QSqlQuery(db);
     query.prepare("update subscriptions set updated=? where user_id=?");
     query.bindValue(0, published);
-    query.bindValue(1, userId);
+    query.bindValue(1, channel->getChannelId());
     success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
 }
 
 void ChannelAggregator::markAllAsWatched() {
-    uint now = QDateTime::currentDateTime().toTime_t();
+    uint now = QDateTime::currentDateTimeUtc().toTime_t();
 
     QSqlDatabase db = Database::instance().getConnection();
     QSqlQuery query(db);
@@ -232,9 +250,9 @@ void ChannelAggregator::markAllAsWatched() {
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
     unwatchedCount = 0;
 
-    foreach (YTUser *user, YTUser::getCachedUsers()) {
-        user->setWatched(now);
-        user->setNotifyCount(0);
+    foreach (YTChannel *channel, YTChannel::getCachedChannels()) {
+        channel->setWatched(now);
+        channel->setNotifyCount(0);
     }
 
     emit unwatchedCountChanged(0);
@@ -245,19 +263,19 @@ void ChannelAggregator::videoWatched(Video *video) {
     QSqlDatabase db = Database::instance().getConnection();
     QSqlQuery query(db);
     query.prepare("update subscriptions_videos set watched=? where video_id=?");
-    query.bindValue(0, QDateTime::currentDateTime().toTime_t());
+    query.bindValue(0, QDateTime::currentDateTimeUtc().toTime_t());
     query.bindValue(1, video->id());
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
     if (query.numRowsAffected() > 0) {
-        YTUser *user = YTUser::forId(video->userId());
-        user->updateNotifyCount();
+        YTChannel *channel = YTChannel::forId(video->channelId());
+        channel->updateNotifyCount();
     }
 }
 
 void ChannelAggregator::cleanup() {
-    static const int maxVideos = 1000;
-    static const int maxDeletions = 1000;
+    const int maxVideos = 1000;
+    const int maxDeletions = 1000;
     if (!Database::exists()) return;
     QSqlDatabase db = Database::instance().getConnection();
 

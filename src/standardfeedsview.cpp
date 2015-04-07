@@ -50,6 +50,7 @@ StandardFeedsView::StandardFeedsView(QWidget *parent) : QWidget(parent),
 }
 
 void StandardFeedsView::load() {
+    setUpdatesEnabled(false);
     YTCategories *youTubeCategories = new YTCategories(this);
     connect(youTubeCategories, SIGNAL(categoriesLoaded(const QList<YTCategory> &)),
             SLOT(layoutCategories(const QList<YTCategory> &)));
@@ -88,6 +89,7 @@ void StandardFeedsView::layoutCategories(const QList<YTCategory> &categories) {
         feed->setFeedId("most_popular");
         addVideoSourceWidget(feed);
     }
+    if (categories.size() > 1) setUpdatesEnabled(true);
 }
 
 void StandardFeedsView::addVideoSourceWidget(VideoSource *videoSource) {
@@ -124,7 +126,11 @@ YTStandardFeed* StandardFeedsView::buildStardardFeed(
 
 void StandardFeedsView::appear() {
     setFocus();
-    if (!layout) load();
+    if (!layout) {
+        update();
+        qApp->processEvents();
+        load();
+    }
     QAction *regionAction = MainWindow::instance()->getRegionAction();
     regionAction->setVisible(true);
 }
@@ -146,6 +152,6 @@ void StandardFeedsView::selectLocalRegion() {
 
 void StandardFeedsView::paintEvent(QPaintEvent *event) {
     QWidget::paintEvent(event);
-    PainterUtils::topShadow(this);
+    // PainterUtils::topShadow(this);
 }
 

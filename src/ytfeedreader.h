@@ -21,7 +21,7 @@ $END_LICENSE */
 #ifndef YTFEEDREADER_H
 #define YTFEEDREADER_H
 
-#include <QtXml>
+#include <QtCore>
 
 class Video;
 

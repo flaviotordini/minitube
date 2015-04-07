@@ -34,11 +34,37 @@ $END_LICENSE */
 #include "mac_startup.h"
 #endif
 
+void showWindow(QtSingleApplication &app, const QString &dataDir) {
+    MainWindow *mainWin = new MainWindow();
+    mainWin->show();
+
+#ifndef APP_MAC
+    QIcon appIcon;
+    if (QDir(dataDir).exists()) {
+        appIcon = IconUtils::icon(Constants::UNIX_NAME);
+    } else {
+        QString dataDir = qApp->applicationDirPath() + "/data";
+        const int iconSizes [] = { 16, 22, 32, 48, 64, 128, 256, 512 };
+        for (int i = 0; i < 8; i++) {
+            QString size = QString::number(iconSizes[i]);
+            QString png = dataDir + "/" + size + "x" + size + "/" + Constants::UNIX_NAME + ".png";
+            appIcon.addFile(png, QSize(iconSizes[i], iconSizes[i]));
+        }
+    }
+    if (appIcon.isNull()) appIcon.addFile(":/images/app.png");
+    mainWin->setWindowIcon(appIcon);
+#endif
+
+    mainWin->connect(&app, SIGNAL(messageReceived(const QString &)),
+                    mainWin, SLOT(messageReceived(const QString &)));
+    app.setActivationWindow(mainWin, true);
+}
+
 int main(int argc, char **argv) {
 
 #ifdef Q_OS_MAC
     mac::MacMain();
-    QFont::insertSubstitution(".Helvetica Neue DeskInterface", "Helvetica Neue");
+    // QFont::insertSubstitution(".Helvetica Neue DeskInterface", "Helvetica Neue");
 #endif
 
     QtSingleApplication app(argc, argv);
@@ -96,39 +122,16 @@ int main(int argc, char **argv) {
     QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
 #endif
 
-    MainWindow mainWin;
-    mainWin.show();
-
-    // no window icon on Mac
-#ifndef APP_MAC
-    QIcon appIcon;
-    if (QDir(dataDir).exists()) {
-        appIcon = IconUtils::icon(Constants::UNIX_NAME);
-    } else {
-        dataDir = qApp->applicationDirPath() + "/data";
-        const int iconSizes [] = { 16, 22, 32, 48, 64, 128, 256, 512 };
-        for (int i = 0; i < 8; i++) {
-            QString size = QString::number(iconSizes[i]);
-            QString png = dataDir + "/" + size + "x" + size + "/" +
-                    Constants::UNIX_NAME + ".png";
-            appIcon.addFile(png, QSize(iconSizes[i], iconSizes[i]));
-        }
-    }
-    if (appIcon.isNull()) {
-        appIcon.addFile(":/images/app.png");
-    }
-    mainWin.setWindowIcon(appIcon);
-#endif
-
-    mainWin.connect(&app, SIGNAL(messageReceived(const QString &)),
-                    &mainWin, SLOT(messageReceived(const QString &)));
-    app.setActivationWindow(&mainWin, true);
+    // Seed random number generator
+    qsrand(QDateTime::currentDateTime().toTime_t());
 
     // all string literals are UTF-8
     // QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 
-    // Seed random number generator
-    qsrand(QDateTime::currentDateTime().toTime_t());
+#ifdef APP_INTEGRITY
+    if (Extra::integrityCheck())
+#endif
+        showWindow(app, dataDir);
 
     return app.exec();
 }

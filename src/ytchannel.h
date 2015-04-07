@@ -18,8 +18,8 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 
 $END_LICENSE */
 
-#ifndef YTUSER_H
-#define YTUSER_H
+#ifndef YTCHANNEL_H
+#define YTCHANNEL_H
 
 #include <QtGui>
 #if QT_VERSION >= 0x050000
@@ -27,15 +27,15 @@ $END_LICENSE */
 #endif
 #include <QtNetwork>
 
-class YTUser : public QObject {
+class YTChannel : public QObject {
 
     Q_OBJECT
 
 public:
-    static YTUser* forId(QString userId);
-    static void subscribe(QString userId);
-    static void unsubscribe(QString userId);
-    static bool isSubscribed(QString userId);
+    static YTChannel* forId(const QString &channelId);
+    static void subscribe(const QString &channelId);
+    static void unsubscribe(const QString &channelId);
+    static bool isSubscribed(const QString &channelId);
 
     int getId() { return id; }
     void setId(int id) { this->id = id; }
@@ -51,7 +51,7 @@ public:
     void storeNotifyCount(int count);
     bool updateNotifyCount();
 
-    QString getUserId() const { return userId; }
+    QString getChannelId() const { return channelId; }
     QString getUserName() const { return userName; }
     QString getDisplayName() const { return displayName; }
     QString getDescription() const { return description; }
@@ -62,7 +62,7 @@ public:
     QString getThumbnailLocation();
     const QPixmap & getThumbnail() { return thumbnail; }
 
-    static QList<YTUser*> getCachedUsers() { return cache.values(); }
+    static QList<YTChannel*> getCachedChannels() { return cache.values(); }
 
 public slots:
     void updateWatched();
@@ -75,19 +75,19 @@ signals:
     void notifyCountChanged();
 
 private slots:
-    void parseResponse(QByteArray bytes);
+    void parseResponse(const QByteArray &bytes);
     void requestError(QNetworkReply *reply);
-    void storeThumbnail(QByteArray bytes);
+    void storeThumbnail(const QByteArray &bytes);
 
 private:
-    YTUser(QString userId, QObject *parent = 0);
+    YTChannel(const QString &channelId, QObject *parent = 0);
     void maybeLoadfromAPI();
     void storeInfo();
 
-    static QHash<QString, YTUser*> cache;
+    static QHash<QString, YTChannel*> cache;
 
     int id;
-    QString userId;
+    QString channelId;
     QString userName;
     QString displayName;
     QString description;
@@ -105,7 +105,7 @@ private:
 };
 
 // This is required in order to use QPointer<YTUser> as a QVariant
-typedef QPointer<YTUser> YTUserPointer;
-Q_DECLARE_METATYPE(YTUserPointer)
+typedef QPointer<YTChannel> YTChannelPointer;
+Q_DECLARE_METATYPE(YTChannelPointer)
 
-#endif // YTUSER_H
+#endif // YTCHANNEL_H

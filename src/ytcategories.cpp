@@ -20,7 +20,12 @@ $END_LICENSE */
 
 #include "ytcategories.h"
 #include "networkaccess.h"
-#include <QtXml>
+#ifdef APP_YT3
+#include "datautils.h"
+#include "yt3.h"
+#include "ytregions.h"
+#include <QtScript>
+#endif
 
 namespace The {
 NetworkAccess* http();
@@ -33,11 +38,71 @@ void YTCategories::loadCategories(QString language) {
         language = QLocale::system().uiLanguages().first();
     lastLanguage = language;
 
+#ifdef APP_YT3
+    QUrl url = YT3::instance().method("videoCategories");
+
+#if QT_VERSION >= 0x050000
+    {
+        QUrl &u = url;
+        QUrlQuery url(u);
+#endif
+
+        url.addQueryItem("part", "snippet");
+        url.addQueryItem("hl", language);
+
+        QString regionCode = YTRegions::currentRegionId();
+        if (regionCode.isEmpty()) regionCode = "us";
+        url.addQueryItem("regionCode", regionCode);
+
+#if QT_VERSION >= 0x050000
+        u.setQuery(url);
+    }
+#endif
+
+#else
     QString url = "http://gdata.youtube.com/schemas/2007/categories.cat?hl=" + language;
+#endif
+
+
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseCategories(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
 }
+
+#ifdef APP_YT3
+
+void YTCategories::parseCategories(QByteArray bytes) {
+    QList<YTCategory> categories;
+
+    QScriptEngine engine;
+    QScriptValue json = engine.evaluate("(" + QString::fromUtf8(bytes) + ")");
+
+    QScriptValue items = json.property("items");
+
+    if (items.isArray()) {
+        QScriptValueIterator it(items);
+        while (it.hasNext()) {
+            it.next();
+            QScriptValue item = it.value();
+            // For some reason the array has an additional element containing its size.
+            if (!item.isObject()) continue;
+
+            QScriptValue snippet = item.property("snippet");
+
+            bool isAssignable = snippet.property("assignable").toBool();
+            if (!isAssignable) continue;
+
+            YTCategory category;
+            category.term = item.property("id").toString();
+            category.label = snippet.property("title").toString();
+            categories << category;
+        }
+    }
+
+    emit categoriesLoaded(categories);
+}
+
+#else
 
 void YTCategories::parseCategories(QByteArray bytes) {
     QList<YTCategory> categories;
@@ -65,6 +130,8 @@ void YTCategories::parseCategories(QByteArray bytes) {
 
     emit categoriesLoaded(categories);
 }
+
+#endif
 
 void YTCategories::requestError(QNetworkReply *reply) {
     if (lastLanguage != "en") loadCategories("en");

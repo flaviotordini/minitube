@@ -91,7 +91,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
                             #if defined(APP_UBUNTU) || defined(APP_WIN)
                                 "normal"
                             #else
-                                "bold"
+                                "normal"
                             #endif
                                 "' ")
                        .arg(Constants::WEBSITE, Constants::NAME)
@@ -198,12 +198,14 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 }
 
 void SearchView::appear() {
+    setUpdatesEnabled(false);
     updateRecentKeywords();
     updateRecentChannels();
     queryEdit->selectAll();
     queryEdit->enableSuggest();
     if (!queryEdit->hasFocus())
         QTimer::singleShot(10, queryEdit, SLOT(setFocus()));
+    setUpdatesEnabled(true);
 }
 
 void SearchView::updateRecentKeywords() {
@@ -318,7 +320,8 @@ void SearchView::watch(QString query) {
     else {
         // remove spaces from channel name
         query = query.simplified();
-        searchParams->setAuthor(query);
+        query = query.remove(' ');
+        searchParams->setChannelId(query);
         searchParams->setSortBy(SearchParams::SortByNewest);
     }
 
@@ -326,21 +329,19 @@ void SearchView::watch(QString query) {
     emit search(searchParams);
 }
 
-void SearchView::watchChannel(QString channel) {
-
-    channel = channel.simplified();
-
-    // check for empty query
-    if (channel.length() == 0) {
+void SearchView::watchChannel(const QString &channelId) {
+    if (channelId.length() == 0) {
         queryEdit->setFocus(Qt::OtherFocusReason);
         return;
     }
 
-    // remove spaces from channel name
-    channel = channel.remove(" ");
+    QString id = channelId;
+
+    // Fix old settings
+    if (!id.startsWith("UC")) id = "UC" + id;
 
     SearchParams *searchParams = new SearchParams();
-    searchParams->setAuthor(channel);
+    searchParams->setChannelId(id);
     searchParams->setSortBy(SearchParams::SortByNewest);
 
     // go!
@@ -402,5 +403,7 @@ void SearchView::searchTypeChanged(int index) {
 }
 
 void SearchView::suggestionAccepted(Suggestion *suggestion) {
-    watch(suggestion->value);
+    if (suggestion->type == QLatin1String("channel")) {
+        watchChannel(suggestion->userData);
+    } else watch(suggestion->value);
 }
