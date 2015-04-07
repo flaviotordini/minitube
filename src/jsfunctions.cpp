@@ -28,20 +28,20 @@ NetworkAccess* http();
 }
 
 JsFunctions* JsFunctions::instance() {
-    static JsFunctions *i = new JsFunctions();
+    static JsFunctions *i = new JsFunctions(QLatin1String(Constants::WEBSITE) + "-ws/functions.js");
     return i;
 }
 
-JsFunctions::JsFunctions(QObject *parent) : QObject(parent), engine(0) {
+JsFunctions::JsFunctions(const QString &url, QObject *parent) : QObject(parent), url(url), engine(0) {
     QFile file(jsPath());
     if (file.exists()) {
         if (file.open(QIODevice::ReadOnly | QIODevice::Text))
             parseJs(QString::fromUtf8(file.readAll()));
         else
-            qWarning() << file.errorString() << file.fileName();
+            qWarning() << "Cannot open" << file.errorString() << file.fileName();
         QFileInfo info(file);
-        if (info.lastModified().toTime_t() < QDateTime::currentDateTime().toTime_t() - 1800)
-            loadJs();
+        bool stale = info.size() == 0 || info.lastModified().toTime_t() < QDateTime::currentDateTime().toTime_t() - 1800;
+        if (stale) loadJs();
     } else {
         QFile resFile(QLatin1String(":/") + jsFilename());
         resFile.open(QIODevice::ReadOnly | QIODevice::Text);
@@ -52,50 +52,56 @@ JsFunctions::JsFunctions(QObject *parent) : QObject(parent), engine(0) {
 
 void JsFunctions::parseJs(const QString &js) {
     if (js.isEmpty()) return;
+    // qDebug() << "Parsing" << js;
     if (engine) delete engine;
-    engine = new QScriptEngine();
+    engine = new QScriptEngine(this);
     engine->evaluate(js);
+    emit ready();
 }
 
-const QLatin1String & JsFunctions::jsFilename() {
-    static const QLatin1String filename("functions.js");
-    return filename;
+QString JsFunctions::jsFilename() {
+    return QFileInfo(url).fileName();
 }
 
-const QString & JsFunctions::jsPath() {
-    static const QString path(
+QString JsFunctions::jsPath() {
+    return QString(
             #if QT_VERSION >= 0x050000
                 QStandardPaths::writableLocation(QStandardPaths::DataLocation)
             #else
                 QDesktopServices::storageLocation(QDesktopServices::DataLocation)
             #endif
                 + "/" + jsFilename());
-    return path;
 }
 
 void JsFunctions::loadJs() {
-    QUrl url(QLatin1String(Constants::WEBSITE) + "-ws/" + jsFilename());
+    QUrl url(this->url);
     url.addQueryItem("v", Constants::VERSION);
     NetworkReply* reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(gotJs(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorJs(QNetworkReply*)));
 }
 
-void JsFunctions::gotJs(QByteArray bytes) {
-    parseJs(QString::fromUtf8(bytes));
+void JsFunctions::gotJs(const QByteArray &bytes) {
+    if (bytes.isEmpty()) {
+        qWarning() << "Got empty js";
+        return;
+    }
     QFile file(jsPath());
-    if (!file.open(QIODevice::WriteOnly))
-        qWarning() << file.errorString() << file.fileName();
+    if (!file.open(QIODevice::WriteOnly)) {
+        qWarning() << "Cannot write" << file.errorString() << file.fileName();
+        return;
+    }
     QDataStream stream(&file);
     stream.writeRawData(bytes.constData(), bytes.size());
+    parseJs(QString::fromUtf8(bytes));
 }
 
 void JsFunctions::errorJs(QNetworkReply *reply) {
     qWarning() << "Cannot get" << jsFilename() << reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt()
-                  << reply->url().toString() << reply->errorString();
+               << reply->url().toString() << reply->errorString();
 }
 
-QString JsFunctions::evaluate(const QString &js) {
+QScriptValue JsFunctions::evaluate(const QString &js) {
     if (!engine) return QString();
     QScriptValue value = engine->evaluate(js);
     if (value.isUndefined())
@@ -103,41 +109,63 @@ QString JsFunctions::evaluate(const QString &js) {
     if (value.isError())
         qWarning() << "Error in" << js << value.toString();
 
-    return value.toString();
+    return value;
+}
+
+QString JsFunctions::string(const QString &js) {
+    return evaluate(js).toString();
+}
+
+QStringList JsFunctions::stringArray(const QString &js) {
+    QStringList items;
+    QScriptValue array = evaluate(js);
+    if (!array.isArray()) return items;
+    QScriptValueIterator it(array);
+    while (it.hasNext()) {
+        it.next();
+        QScriptValue value = it.value();
+        if (!value.isString()) continue;
+        items << value.toString();
+    }
+    return items;
 }
 
 QString JsFunctions::decryptSignature(const QString &s) {
-    return evaluate("decryptSignature('" + s + "')");
+    return string("decryptSignature('" + s + "')");
 }
 
 QString JsFunctions::decryptAgeSignature(const QString &s) {
-    return evaluate("decryptAgeSignature('" + s + "')");
+    return string("decryptAgeSignature('" + s + "')");
 }
 
 QString JsFunctions::videoIdRE() {
-    return evaluate("videoIdRE()");
+    return string("videoIdRE()");
 }
 
 QString JsFunctions::videoTokenRE() {
-    return evaluate("videoTokenRE()");
+    return string("videoTokenRE()");
 }
 
 QString JsFunctions::videoInfoFmtMapRE() {
-    return evaluate("videoInfoFmtMapRE()");
+    return string("videoInfoFmtMapRE()");
 }
 
 QString JsFunctions::webPageFmtMapRE() {
-    return evaluate("webPageFmtMapRE()");
+    return string("webPageFmtMapRE()");
 }
 
 QString JsFunctions::ageGateRE() {
-    return evaluate("ageGateRE()");
+    return string("ageGateRE()");
 }
 
 QString JsFunctions::jsPlayerRE() {
-    return evaluate("jsPlayerRE()");
+    return string("jsPlayerRE()");
 }
 
 QString JsFunctions::signatureFunctionNameRE() {
-    return evaluate("signatureFunctionNameRE()");
+    return string("signatureFunctionNameRE()");
+}
+
+QStringList JsFunctions::apiKeys() {
+    return stringArray("apiKeys()");
 }

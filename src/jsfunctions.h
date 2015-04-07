@@ -31,6 +31,10 @@ class JsFunctions : public QObject {
 
 public:
     static JsFunctions* instance();
+    JsFunctions(const QString &url, QObject *parent = 0);
+    QScriptValue evaluate(const QString &js);
+    QString string(const QString &js);
+    QStringList stringArray(const QString &js);
 
     // Specialized functions
     // TODO move to subclass
@@ -43,21 +47,22 @@ public:
     QString ageGateRE();
     QString jsPlayerRE();
     QString signatureFunctionNameRE();
+    QStringList apiKeys();
 
-protected:
-    QString evaluate(const QString &js);
+signals:
+    void ready();
 
 private slots:
-    void gotJs(QByteArray bytes);
+    void gotJs(const QByteArray &bytes);
     void errorJs(QNetworkReply *reply);
 
 private:
-    JsFunctions(QObject *parent = 0);
-    static const QLatin1String &jsFilename();
-    static const QString &jsPath();
+    QString jsFilename();
+    QString jsPath();
     void loadJs();
     void parseJs(const QString &js);
 
+    QString url;
     QScriptEngine *engine;
 };
 
