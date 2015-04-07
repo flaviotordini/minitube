@@ -25,7 +25,7 @@ PainterUtils::PainterUtils() { }
 
 void PainterUtils::centeredMessage(QString message, QWidget* widget) {
     QPainter painter(widget);
-    painter.setFont(FontUtils::bigBold());
+    painter.setFont(FontUtils::big());
     QSize textSize(QFontMetrics(painter.font()).size(Qt::TextSingleLine, message));
     QPoint topLeft(
                 (widget->width()-textSize.width())/2,
