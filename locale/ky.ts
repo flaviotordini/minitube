@@ -5,17 +5,17 @@
     <message>
         <location filename="src/aboutview.cpp" line="52"/>
         <source>There&apos;s life outside the browser!</source>
-        <translation>Браузердин тышындагы жашоо!</translation>
+        <translation>Браузердин тышында да өмүр бар!</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="53"/>
         <source>Version %1</source>
-        <translation>Жоромол %1</translation>
+        <translation>Нуска %1</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="58"/>
         <source>Licensed to: %1</source>
-        <translation>%1 үчүн лицензияланган</translation>
+        <translation>Лицензиянын ээси: %1</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="62"/>
@@ -65,7 +65,7 @@
     <message>
         <location filename="src/aboutview.h" line="40"/>
         <source>About</source>
-        <translation>Программа жөнүндө</translation>
+        <translation>Программа тууралуу</translation>
     </message>
     <message>
         <location filename="src/aboutview.h" line="42"/>
@@ -96,7 +96,7 @@
     <message>
         <location filename="local/src/activationview.cpp" line="47"/>
         <source>Please license %1</source>
-        <translation>Лицензия %1</translation>
+        <translation>%1 лицензиялап алыңыз</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="51"/>
@@ -665,7 +665,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="501"/>
         <source>Share the current video using %1</source>
-        <translation>Кезектеги видеону %1 аркылуу бөлүшүү</translation>
+        <translation>Учурдагы видеону %1 аркылуу бөлүшүү</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="521"/>
@@ -821,7 +821,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="1053"/>
         <source>Error: %1</source>
-        <translation>Катасы: %1</translation>
+        <translation>Ката: %1</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="276"/>
@@ -1153,7 +1153,7 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="76"/>
         <source>Anytime</source>
-        <translation>Каалаган убакыт</translation>
+        <translation>Каалаган убакта</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="77"/>
@@ -1173,7 +1173,7 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="93"/>
         <source>Duration</source>
-        <translation>Узундук</translation>
+        <translation>Узактык</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="97"/>
@@ -1194,7 +1194,7 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="100"/>
         <source>Long</source>
-        <translation>Узун</translation>
+        <translation>Узак</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="103"/>
@@ -1224,7 +1224,7 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="128"/>
         <source>720p or higher</source>
-        <translation>720p же жогорураак</translation>
+        <translation>720p же жогору</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="142"/>
@@ -1608,7 +1608,7 @@
     <message>
         <location filename="src/ytregions.cpp" line="148"/>
         <source>Worldwide</source>
-        <translation>Бүткүл дүйнөлүк</translation>
+        <translation>Бүткүл дүйнө</translation>
     </message>
 </context>
 </TS>

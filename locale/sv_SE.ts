@@ -5,7 +5,7 @@
     <message>
         <location filename="src/aboutview.cpp" line="52"/>
         <source>There&apos;s life outside the browser!</source>
-        <translation>Det finns ett liv utanför webläsaren!</translation>
+        <translation>Det finns ett liv utanför webbläsaren!</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="53"/>
@@ -107,7 +107,7 @@
         <location filename="local/src/activationview.cpp" line="53"/>
         <source>The full version allows you to watch videos without interruptions.</source>
         <oldsource>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</oldsource>
-        <translation type="unfinished"/>
+        <translation>Den fulla versionen tillåter dig att kolla på videoklipp utan avbrott.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="55"/>
@@ -216,12 +216,12 @@
     <message>
         <location filename="src/channelview.cpp" line="243"/>
         <source>Mark as Watched</source>
-        <translation type="unfinished"/>
+        <translation>Markera som Sedd</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="256"/>
         <source>Unsubscribe</source>
-        <translation type="unfinished"/>
+        <translation>Avprenumerera</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="269"/>
@@ -655,7 +655,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="486"/>
         <source>Take &amp;Snapshot</source>
-        <translation type="unfinished"/>
+        <translation>Ta &amp;Skärmbild</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="493"/>
@@ -725,7 +725,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="583"/>
         <source>&amp;Love %1? Rate it!</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Älskar du %1? Betygsätt den!</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="605"/>
@@ -1339,12 +1339,12 @@
     <message>
         <location filename="src/snapshotsettings.cpp" line="62"/>
         <source>Snapshot saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>Skärmbild sparad till %1</translation>
     </message>
     <message>
         <location filename="src/snapshotsettings.cpp" line="127"/>
         <source>Snapshots location changed.</source>
-        <translation type="unfinished"/>
+        <translation>Plats för sparade skärmbilder ändrades.</translation>
     </message>
 </context>
 <context>

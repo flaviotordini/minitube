@@ -107,7 +107,7 @@
         <location filename="local/src/activationview.cpp" line="53"/>
         <source>The full version allows you to watch videos without interruptions.</source>
         <oldsource>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</oldsource>
-        <translation type="unfinished"/>
+        <translation>Täysversio mahdollistaa videoiden katselun ilman keskeytyksiä.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="55"/>
@@ -216,12 +216,12 @@
     <message>
         <location filename="src/channelview.cpp" line="243"/>
         <source>Mark as Watched</source>
-        <translation type="unfinished"/>
+        <translation>Merkitse katsotuksi</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="256"/>
         <source>Unsubscribe</source>
-        <translation type="unfinished"/>
+        <translation>Lopeta tilaus</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="269"/>
@@ -655,7 +655,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="486"/>
         <source>Take &amp;Snapshot</source>
-        <translation type="unfinished"/>
+        <translation>Ota &amp;tilannevedos</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="493"/>
@@ -1339,12 +1339,12 @@
     <message>
         <location filename="src/snapshotsettings.cpp" line="62"/>
         <source>Snapshot saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>Tilannevedos tallennettu polkuun %1</translation>
     </message>
     <message>
         <location filename="src/snapshotsettings.cpp" line="127"/>
         <source>Snapshots location changed.</source>
-        <translation type="unfinished"/>
+        <translation>Tilannevedoksien sijainti muutettu.</translation>
     </message>
 </context>
 <context>

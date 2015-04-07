@@ -65,7 +65,7 @@
     <message>
         <location filename="src/aboutview.h" line="40"/>
         <source>About</source>
-        <translation>על אודות</translation>
+        <translation>אודות</translation>
     </message>
     <message>
         <location filename="src/aboutview.h" line="42"/>
@@ -107,7 +107,7 @@
         <location filename="local/src/activationview.cpp" line="53"/>
         <source>The full version allows you to watch videos without interruptions.</source>
         <oldsource>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</oldsource>
-        <translation type="unfinished"/>
+        <translation>הגירסה המלאה מאפשרת לך לצפות בסרטון ללא הפרעות.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="55"/>
@@ -140,7 +140,7 @@
     <message>
         <location filename="src/channelaggregator.cpp" line="131"/>
         <source>By %1</source>
-        <translation type="unfinished"/>
+        <translation>על ידי %1</translation>
     </message>
     <message numerus="yes">
         <location filename="src/channelaggregator.cpp" line="133"/>
@@ -153,12 +153,12 @@
     <message>
         <location filename="src/channelitemdelegate.cpp" line="66"/>
         <source>All Videos</source>
-        <translation type="unfinished"/>
+        <translation>כל הסרטונים</translation>
     </message>
     <message>
         <location filename="src/channelitemdelegate.cpp" line="83"/>
         <source>Unwatched Videos</source>
-        <translation type="unfinished"/>
+        <translation>סרטונים שלא נצפו</translation>
     </message>
 </context>
 <context>
@@ -166,72 +166,72 @@
     <message>
         <location filename="src/channelview.cpp" line="151"/>
         <source>Mark all as watched</source>
-        <translation type="unfinished"/>
+        <translation>סמנו את כולם כנצפו</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="159"/>
         <source>Show Updated</source>
-        <translation type="unfinished"/>
+        <translation>הצג עדכונים</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="103"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>שם</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="110"/>
         <source>Last Updated</source>
-        <translation type="unfinished"/>
+        <translation>עודכן לאחרונה</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="117"/>
         <source>Last Added</source>
-        <translation type="unfinished"/>
+        <translation>נוסף לאחרונה</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="124"/>
         <source>Last Watched</source>
-        <translation type="unfinished"/>
+        <translation>נצפה לאחרונה</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="131"/>
         <source>Most Watched</source>
-        <translation type="unfinished"/>
+        <translation>נצפה ביותר</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="139"/>
         <source>Sort by</source>
-        <translation type="unfinished"/>
+        <translation>מיין לפי</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="221"/>
         <source>All Videos</source>
-        <translation type="unfinished"/>
+        <translation>כל הסרטונים</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="225"/>
         <source>Unwatched Videos</source>
-        <translation type="unfinished"/>
+        <translation>סרטונים שלא נצפו</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="243"/>
         <source>Mark as Watched</source>
-        <translation type="unfinished"/>
+        <translation>סמן כנצפה</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="256"/>
         <source>Unsubscribe</source>
-        <translation type="unfinished"/>
+        <translation>בטל מינוי</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="269"/>
         <source>There are no updated subscriptions at this time.</source>
-        <translation type="unfinished"/>
+        <translation>אין עדכונים בערוצים שאתה מנוי עליהם כרגע.</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="271"/>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation type="unfinished"/>
+        <translation>אין לך מנויים. השתמש בסמל הכוכב על מנת להיות מנוי לערוצים.</translation>
     </message>
 </context>
 <context>
@@ -461,12 +461,12 @@
     <message>
         <location filename="src/homeview.cpp" line="71"/>
         <source>Subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>מנויים</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="73"/>
         <source>Channel subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>מנויים בערוצים</translation>
     </message>
     <message>
         <location filename="src/homeview.h" line="45"/>
@@ -655,17 +655,17 @@
     <message>
         <location filename="src/mainwindow.cpp" line="486"/>
         <source>Take &amp;Snapshot</source>
-        <translation type="unfinished"/>
+        <translation>קח צילום מסך</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="493"/>
         <source>&amp;Subscribe to Channel</source>
-        <translation type="unfinished"/>
+        <translation>הרשם כמנוי לערוץ</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="501"/>
         <source>Share the current video using %1</source>
-        <translation>שיתוף הווידאו הנוכחי דרך %1</translation>
+        <translation>שיתוף הווידאו הנוכחי באמצעות %1</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="521"/>
@@ -710,22 +710,22 @@
     <message>
         <location filename="src/mainwindow.cpp" line="568"/>
         <source>&amp;Related Videos</source>
-        <translation type="unfinished"/>
+        <translation>סרטונים דומים</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="570"/>
         <source>Watch videos related to the current one</source>
-        <translation type="unfinished"/>
+        <translation>צפה בסרטונים הדומים לסרטון זה</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="576"/>
         <source>Open in &amp;Browser...</source>
-        <translation type="unfinished"/>
+        <translation>פתח בדפדפן</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="583"/>
         <source>&amp;Love %1? Rate it!</source>
-        <translation type="unfinished"/>
+        <translation>&amp;אוהב את %1? דרג אותו!</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="605"/>
@@ -866,7 +866,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="397"/>
         <source>Make a &amp;Donation</source>
-        <translation>ה&amp;גשת תרומה</translation>
+        <translation>&amp;תרמו</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="459"/>
@@ -881,7 +881,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="797"/>
         <source>Choose your content location</source>
-        <translation type="unfinished"/>
+        <translation>בחר את המיקום הנוכחי שלך</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1073"/>
@@ -934,7 +934,7 @@
     <message>
         <location filename="src/mediaview.cpp" line="682"/>
         <source>You can now paste the YouTube link into another application</source>
-        <translation>כעת ניתן להדביק את קישור ה־YouTube שלכם ליישום אחר</translation>
+        <translation>כעת ניתן להדביק את קישור ה־YouTube שלכם ביישום אחר</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="690"/>
@@ -987,12 +987,12 @@
     <message>
         <location filename="src/mediaview.cpp" line="1109"/>
         <source>Unsubscribe from %1</source>
-        <translation type="unfinished"/>
+        <translation>בטל מנוי מ %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="1113"/>
         <source>Subscribe to %1</source>
-        <translation type="unfinished"/>
+        <translation>מנוי ל %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="788"/>
@@ -1010,12 +1010,12 @@
     <message>
         <location filename="local/src/updatedialog.cpp" line="21"/>
         <source>A new version of %1 is available!</source>
-        <translation type="unfinished"/>
+        <translation>גירסה חדשה של  %1 זמינה להורדה!</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="28"/>
         <source>%1 %2 is now available. You have %3.</source>
-        <translation type="unfinished"/>
+        <translation>%1 %2 זמין כעת. לך יש %3.</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="33"/>
@@ -1056,47 +1056,47 @@
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="332"/>
         <source>%1 of %2 (%3) — %4</source>
-        <translation type="unfinished"/>
+        <translation>%1 מתוך %2 (%3) — %4</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="339"/>
         <source>Preparing</source>
-        <translation type="unfinished"/>
+        <translation>מתכונן</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="341"/>
         <source>Failed</source>
-        <translation type="unfinished"/>
+        <translation>נכשל</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="343"/>
         <source>Completed</source>
-        <translation type="unfinished"/>
+        <translation>הושלם</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="345"/>
         <source>Stopped</source>
-        <translation type="unfinished"/>
+        <translation>הופסק</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="381"/>
         <source>Stop downloading</source>
-        <translation type="unfinished"/>
+        <translation>עצור הורדות</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="391"/>
         <source>Show in %1</source>
-        <translation type="unfinished"/>
+        <translation>הצג ב %1</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="393"/>
         <source>Open parent folder</source>
-        <translation type="unfinished"/>
+        <translation>פתח תיקיית מקור</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="402"/>
         <source>Restart downloading</source>
-        <translation type="unfinished"/>
+        <translation>התחל הורדות מחדש</translation>
     </message>
 </context>
 <context>
@@ -1303,17 +1303,17 @@
         <location filename="src/sidebarheader.cpp" line="39"/>
         <location filename="src/sidebarheader.cpp" line="46"/>
         <source>&amp;Back</source>
-        <translation type="unfinished"/>
+        <translation>הקודם</translation>
     </message>
     <message>
         <location filename="src/sidebarheader.cpp" line="77"/>
         <source>Forward to %1</source>
-        <translation type="unfinished"/>
+        <translation>העבר אל %1</translation>
     </message>
     <message>
         <location filename="src/sidebarheader.cpp" line="90"/>
         <source>Back to %1</source>
-        <translation type="unfinished"/>
+        <translation>חזור אל %1</translation>
     </message>
 </context>
 <context>
@@ -1339,12 +1339,12 @@
     <message>
         <location filename="src/snapshotsettings.cpp" line="62"/>
         <source>Snapshot saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>צילום מסך נשמר ב %1</translation>
     </message>
     <message>
         <location filename="src/snapshotsettings.cpp" line="127"/>
         <source>Snapshots location changed.</source>
-        <translation type="unfinished"/>
+        <translation>מיקום צילומי מסך שונה.</translation>
     </message>
 </context>
 <context>
@@ -1352,7 +1352,7 @@
     <message>
         <location filename="src/standardfeedsview.cpp" line="105"/>
         <source>Most Popular</source>
-        <translation type="unfinished"/>
+        <translation>הכי פופולאריים</translation>
     </message>
 </context>
 <context>

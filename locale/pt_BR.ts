@@ -15,12 +15,12 @@
     <message>
         <location filename="src/aboutview.cpp" line="58"/>
         <source>Licensed to: %1</source>
-        <translation>Licenciado a: %1</translation>
+        <translation>Licenciado para: %1</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="62"/>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 é um Software livre, mas seu desenvolvimento toma um tempo precioso.</translation>
+        <translation>%1 é um software livre, mas seu desenvolvimento toma um tempo precioso.</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="63"/>
@@ -107,7 +107,7 @@
         <location filename="local/src/activationview.cpp" line="53"/>
         <source>The full version allows you to watch videos without interruptions.</source>
         <oldsource>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</oldsource>
-        <translation type="unfinished"/>
+        <translation>A versão completa permite que você assista vídeos sem interrupções.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="55"/>
@@ -216,12 +216,12 @@
     <message>
         <location filename="src/channelview.cpp" line="243"/>
         <source>Mark as Watched</source>
-        <translation type="unfinished"/>
+        <translation>Marcar como assistido</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="256"/>
         <source>Unsubscribe</source>
-        <translation type="unfinished"/>
+        <translation>Cancelar assinatura</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="269"/>
@@ -655,7 +655,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="486"/>
         <source>Take &amp;Snapshot</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Salvar captura de tela</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="493"/>
@@ -720,12 +720,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="576"/>
         <source>Open in &amp;Browser...</source>
-        <translation type="unfinished"/>
+        <translation>Abrir no &amp;navegador...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="583"/>
         <source>&amp;Love %1? Rate it!</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Gosta do %1? Avalie!</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="605"/>
@@ -1339,12 +1339,12 @@
     <message>
         <location filename="src/snapshotsettings.cpp" line="62"/>
         <source>Snapshot saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>Captura de tela salva em %1</translation>
     </message>
     <message>
         <location filename="src/snapshotsettings.cpp" line="127"/>
         <source>Snapshots location changed.</source>
-        <translation type="unfinished"/>
+        <translation>Local de capturas de tela alterado.</translation>
     </message>
 </context>
 <context>

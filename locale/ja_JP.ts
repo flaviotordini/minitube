@@ -15,7 +15,7 @@
     <message>
         <location filename="src/aboutview.cpp" line="58"/>
         <source>Licensed to: %1</source>
-        <translation type="unfinished"/>
+        <translation>ライセンス：1</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="62"/>
@@ -25,27 +25,27 @@
     <message>
         <location filename="src/aboutview.cpp" line="63"/>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation type="unfinished"/>
+        <translation>継続的な開発を&lt;a href=&apos;%1&apos;&gt;支援する&lt;/a&gt;には%2に寄付してください。</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="67"/>
         <source>You may want to try my other apps as well:</source>
-        <translation>私が作った他のアプリケーションにも興味がありますか。</translation>
+        <translation>私が作成した他のアプリケーションはこちら:</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="70"/>
         <source>%1, a YouTube music player</source>
-        <translation type="unfinished"/>
+        <translation>%1はYoutube音楽プレイヤーです</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="74"/>
         <source>%1, a music player</source>
-        <translation>%1, ミュージックプレイヤー</translation>
+        <translation>%1は音楽プレイヤーです</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="80"/>
         <source>Translate %1 to your native language using %2</source>
-        <translation>%2を使って、%1をあなたの母語に翻訳してください。</translation>
+        <translation>%2を使って、%1をあなたの言語に翻訳してください</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="85"/>
@@ -65,7 +65,7 @@
     <message>
         <location filename="src/aboutview.h" line="40"/>
         <source>About</source>
-        <translation>プログラムについて</translation>
+        <translation>Minitubeについて</translation>
     </message>
     <message>
         <location filename="src/aboutview.h" line="42"/>
@@ -78,7 +78,7 @@
     <message>
         <location filename="local/src/activationdialog.cpp" line="17"/>
         <source>Enter your License Details</source>
-        <translation type="unfinished"/>
+        <translation>ライセンスコードを入力してください</translation>
     </message>
     <message>
         <location filename="local/src/activationdialog.cpp" line="29"/>
@@ -96,33 +96,33 @@
     <message>
         <location filename="local/src/activationview.cpp" line="47"/>
         <source>Please license %1</source>
-        <translation type="unfinished"/>
+        <translation>%1のライセンスを取得してください</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="51"/>
         <source>This demo has expired.</source>
-        <translation type="unfinished"/>
+        <translation>試用版の期限が切れました。</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="53"/>
         <source>The full version allows you to watch videos without interruptions.</source>
         <oldsource>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</oldsource>
-        <translation type="unfinished"/>
+        <translation>製品版では、快適に動画を視聴することができます。</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="55"/>
         <source>Without a license, the application will expire in %1 days.</source>
-        <translation type="unfinished"/>
+        <translation>現在は、ライセンスがないため、このアプリケーションは%1日に期限切れとなります。</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="57"/>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
-        <translation type="unfinished"/>
+        <translation>あなたが製品版を購入することによって、%1の開発を支援することができます。</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="70"/>
         <source>Use Demo</source>
-        <translation>デモを使用</translation>
+        <translation>試用版を使用</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="77"/>
@@ -140,12 +140,12 @@
     <message>
         <location filename="src/channelaggregator.cpp" line="131"/>
         <source>By %1</source>
-        <translation type="unfinished"/>
+        <translation>%1による</translation>
     </message>
     <message numerus="yes">
         <location filename="src/channelaggregator.cpp" line="133"/>
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n件の新しい動画があります</numerusform></translation>
     </message>
 </context>
 <context>
@@ -153,12 +153,12 @@
     <message>
         <location filename="src/channelitemdelegate.cpp" line="66"/>
         <source>All Videos</source>
-        <translation type="unfinished"/>
+        <translation>すべてのチャンネル</translation>
     </message>
     <message>
         <location filename="src/channelitemdelegate.cpp" line="83"/>
         <source>Unwatched Videos</source>
-        <translation type="unfinished"/>
+        <translation>未視聴の動画</translation>
     </message>
 </context>
 <context>
@@ -166,72 +166,72 @@
     <message>
         <location filename="src/channelview.cpp" line="151"/>
         <source>Mark all as watched</source>
-        <translation type="unfinished"/>
+        <translation>視聴済みの動画をマーク</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="159"/>
         <source>Show Updated</source>
-        <translation type="unfinished"/>
+        <translation>動画の更新を確認</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="103"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>名前順</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="110"/>
         <source>Last Updated</source>
-        <translation type="unfinished"/>
+        <translation>更新日が新しい順</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="117"/>
         <source>Last Added</source>
-        <translation type="unfinished"/>
+        <translation>購読日が新しい順</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="124"/>
         <source>Last Watched</source>
-        <translation type="unfinished"/>
+        <translation>視聴日が新しい順</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="131"/>
         <source>Most Watched</source>
-        <translation type="unfinished"/>
+        <translation>視聴回数が多い順</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="139"/>
         <source>Sort by</source>
-        <translation type="unfinished"/>
+        <translation>並び替え</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="221"/>
         <source>All Videos</source>
-        <translation type="unfinished"/>
+        <translation>全ての動画</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="225"/>
         <source>Unwatched Videos</source>
-        <translation type="unfinished"/>
+        <translation>未視聴の動画</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="243"/>
         <source>Mark as Watched</source>
-        <translation type="unfinished"/>
+        <translation>見たものをマーク</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="256"/>
         <source>Unsubscribe</source>
-        <translation type="unfinished"/>
+        <translation>購読を解除</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="269"/>
         <source>There are no updated subscriptions at this time.</source>
-        <translation type="unfinished"/>
+        <translation>購読したチャンネルに更新はありません。</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="271"/>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation type="unfinished"/>
+        <translation>購読済みのものがありません。チャンネルを購読するには星マークをクリックします。</translation>
     </message>
 </context>
 <context>
@@ -295,12 +295,12 @@
     <message>
         <location filename="src/downloadmanager.cpp" line="76"/>
         <source>This is just the demo version of %1.</source>
-        <translation>これは %1 の試用版です。</translation>
+        <translation>これは%1 の試用版です。</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="78"/>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation type="unfinished"/>
+        <translation>動画を%1分程度でダウンロードできる機能を試すことができます。</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="84"/>
@@ -310,22 +310,22 @@
     <message>
         <location filename="src/downloadmanager.cpp" line="85"/>
         <source>Get the full version</source>
-        <translation>製品版を入手する。</translation>
+        <translation>製品版を入手する</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="156"/>
         <source>%1 downloaded in %2</source>
-        <translation type="unfinished"/>
+        <translation>%1を%2にダウンロード中</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="159"/>
         <source>Download finished</source>
-        <translation type="unfinished"/>
+        <translation>ダウンロード完了</translation>
     </message>
     <message numerus="yes">
         <location filename="src/downloadmanager.cpp" line="164"/>
         <source>%n Download(s)</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n件のダウンロード</numerusform></translation>
     </message>
 </context>
 <context>
@@ -338,22 +338,22 @@
     <message>
         <location filename="src/downloadsettings.cpp" line="78"/>
         <source>Choose the download location</source>
-        <translation type="unfinished"/>
+        <translation>ダウンロード場所を選択</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="90"/>
         <source>Download location changed.</source>
-        <translation type="unfinished"/>
+        <translation>ダウンロード場所を変更しました。</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="92"/>
         <source>Current downloads will still go in the previous location.</source>
-        <translation type="unfinished"/>
+        <translation>現在ダウンロードしているファイルは移動されます。</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="107"/>
         <source>Downloading to: %1</source>
-        <translation type="unfinished"/>
+        <translation>%1にダウンロード中</translation>
     </message>
 </context>
 <context>
@@ -370,7 +370,7 @@
     <message>
         <location filename="local/src/updatedialog.cpp" line="60"/>
         <source>Downloading update...</source>
-        <translation type="unfinished"/>
+        <translation>アップデートをダウンロード中...</translation>
     </message>
 </context>
 <context>
@@ -446,27 +446,27 @@
     <message>
         <location filename="src/homeview.cpp" line="60"/>
         <source>Find videos and channels by keyword</source>
-        <translation type="unfinished"/>
+        <translation>キーワードで動画とチャンネルを検索します</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="65"/>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>カテゴリ</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="67"/>
         <source>Browse videos by category</source>
-        <translation type="unfinished"/>
+        <translation>カテゴリ別に動画を参照します</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="71"/>
         <source>Subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>購読</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="73"/>
         <source>Channel subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>購読したチャンネルを視聴します</translation>
     </message>
     <message>
         <location filename="src/homeview.h" line="45"/>
@@ -487,22 +487,22 @@
     <message>
         <location filename="src/mainwindow.cpp" line="267"/>
         <source>&amp;Stop</source>
-        <translation>ストップ(&amp;S)</translation>
+        <translation>再生停止(&amp;S)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="268"/>
         <source>Stop playback and go back to the search view</source>
-        <translation>再生を停止させて、検索ビューに戻ります</translation>
+        <translation>再生を停止し、検索画面に戻ります</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="283"/>
         <source>S&amp;kip</source>
-        <translation>スキップ(&amp;k)</translation>
+        <translation>次へ(&amp;k)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="284"/>
         <source>Skip to the next video</source>
-        <translation>次の動画へ</translation>
+        <translation>次の動画へ進みます</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="290"/>
@@ -519,17 +519,17 @@
     <message>
         <location filename="src/mainwindow.cpp" line="297"/>
         <source>&amp;Full Screen</source>
-        <translation>フルスクリーン(&amp;F)</translation>
+        <translation>フルスクリーンモード(&amp;F)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="298"/>
         <source>Go full screen</source>
-        <translation>フルスクリーン</translation>
+        <translation>フルスクリーンモードで再生します</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="312"/>
         <source>Hide the playlist and the toolbar</source>
-        <translation>プレイリストとツールバーを隠す</translation>
+        <translation>プレイリストとツールバーを隠します</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="325"/>
@@ -539,17 +539,17 @@
     <message>
         <location filename="src/mainwindow.cpp" line="332"/>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation>このビデオのYouTubeページへのリンクをクリップボードにコピーします</translation>
+        <translation>この動画のYouTubeページへのリンクをコピーします</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="339"/>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation type="unfinished"/>
+        <translation>現在の動画のURLをコピーします</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="346"/>
         <source>Find other video parts hopefully in the right order</source>
-        <translation type="unfinished"/>
+        <translation>この動画の他のパートを検索します</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="352"/>
@@ -559,7 +559,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="353"/>
         <source>Remove the selected videos from the playlist</source>
-        <translation>プレイリストから選択した動画を削除</translation>
+        <translation>プレイリストから選択した動画を削除します</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="359"/>
@@ -584,7 +584,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="378"/>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation>検索履歴を削除します。取り消しは出来ません。</translation>
+        <translation>検索履歴を消去します。取り消しは出来ません。</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="383"/>
@@ -594,27 +594,27 @@
     <message>
         <location filename="src/mainwindow.cpp" line="386"/>
         <source>Bye</source>
-        <translation>プログラムを終了</translation>
+        <translation>Minitubeを終了します</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="390"/>
         <source>&amp;Website</source>
-        <translation>&amp;Webページへ</translation>
+        <translation>ウェブサイト(&amp;W)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="392"/>
         <source>%1 on the Web</source>
-        <translation>%1のWebページを開きます</translation>
+        <translation>%1のウェブサイトを開きます</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="398"/>
         <source>Please support the continued development of %1</source>
-        <translation>%1の開発をサポートしてください！</translation>
+        <translation>寄付して%1の開発を助けます</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="403"/>
         <source>&amp;About</source>
-        <translation>プログラムについて(&amp;A)</translation>
+        <translation>Minitubeについて(&amp;A)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="405"/>
@@ -624,12 +624,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="413"/>
         <source>Search</source>
-        <translation>検索</translation>
+        <translation>動画を検索します</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="432"/>
         <source>Mute volume</source>
-        <translation>ミュートにする</translation>
+        <translation>ミュートにします</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="466"/>
@@ -640,7 +640,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="467"/>
         <source>Show details about video downloads</source>
-        <translation type="unfinished"/>
+        <translation>動画のダウンロードについての詳細を表示</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="475"/>
@@ -655,17 +655,17 @@
     <message>
         <location filename="src/mainwindow.cpp" line="486"/>
         <source>Take &amp;Snapshot</source>
-        <translation type="unfinished"/>
+        <translation>スナップショットを撮る(&amp;S)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="493"/>
         <source>&amp;Subscribe to Channel</source>
-        <translation type="unfinished"/>
+        <translation>チャンネル購読(&amp;S)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="501"/>
         <source>Share the current video using %1</source>
-        <translation type="unfinished"/>
+        <translation>現在の動画を%1で共有します</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="521"/>
@@ -685,22 +685,22 @@
     <message>
         <location filename="src/mainwindow.cpp" line="537"/>
         <source>&amp;Float on Top</source>
-        <translation type="unfinished"/>
+        <translation>最前面に表示(&amp;F)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="542"/>
         <source>&amp;Stop After This Video</source>
-        <translation type="unfinished"/>
+        <translation>再生終了後に停止(&amp;S)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="549"/>
         <source>&amp;Report an Issue...</source>
-        <translation>問題点を報告(&amp;R)...</translation>
+        <translation>問題点を報告する(&amp;R)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="553"/>
         <source>&amp;Refine Search...</source>
-        <translation type="unfinished"/>
+        <translation>絞り込み検索(&amp;R)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="565"/>
@@ -710,22 +710,22 @@
     <message>
         <location filename="src/mainwindow.cpp" line="568"/>
         <source>&amp;Related Videos</source>
-        <translation type="unfinished"/>
+        <translation>関連動画(&amp;R)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="570"/>
         <source>Watch videos related to the current one</source>
-        <translation type="unfinished"/>
+        <translation>関連動画を検索します</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="576"/>
         <source>Open in &amp;Browser...</source>
-        <translation type="unfinished"/>
+        <translation>ブラウザで見る(&amp;B)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="583"/>
         <source>&amp;Love %1? Rate it!</source>
-        <translation type="unfinished"/>
+        <translation>%1を評価(&amp;L)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="605"/>
@@ -735,7 +735,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="589"/>
         <source>Buy %1...</source>
-        <translation>%1 を購入...</translation>
+        <translation>%1を購入する</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="619"/>
@@ -770,7 +770,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="760"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation>音量を上げるには%1を、下げるには%2を押してください</translation>
+        <translation>音量を上げるには%1を、下げるには%2を押します</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="955"/>
@@ -781,12 +781,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="1006"/>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation type="unfinished"/>
+        <translation>進行中の%1のダウンロードを停止しますか？</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1007"/>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation type="unfinished"/>
+        <translation>あなたは今%1を停止した場合は、このダウンロードはキャンセルされます。</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1012"/>
@@ -796,7 +796,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="1013"/>
         <source>Wait for download to finish</source>
-        <translation type="unfinished"/>
+        <translation>ダウンロードが完了するまでお待ちください</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1174"/>
@@ -806,7 +806,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="1601"/>
         <source>%1 version %2 is now available.</source>
-        <translation>%1 バージョン %2 が利用可能です</translation>
+        <translation>%1 バージョン %2 が利用可能です。</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1605"/>
@@ -831,37 +831,37 @@
     <message>
         <location filename="src/mainwindow.cpp" line="277"/>
         <source>Go back to the previous track</source>
-        <translation>前の曲へ飛びます</translation>
+        <translation>前の動画へ戻ります</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="311"/>
         <source>&amp;Compact Mode</source>
-        <translation>コンパクト モード(&amp;C)</translation>
+        <translation>コンパクトモード(&amp;C)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="324"/>
         <source>Open the &amp;YouTube Page</source>
-        <translation>YouTube のページを開く(&amp;Y)</translation>
+        <translation>YouTubeのページを開く(&amp;Y)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="331"/>
         <source>Copy the YouTube &amp;Link</source>
-        <translation>YouTube のリンクをコピー(&amp;L)</translation>
+        <translation>YouTubeへのリンクをコピー(&amp;L)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="338"/>
         <source>Copy the Video Stream &amp;URL</source>
-        <translation type="unfinished"/>
+        <translation>動画のURLをコピー(&amp;U)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="345"/>
         <source>Find Video &amp;Parts</source>
-        <translation type="unfinished"/>
+        <translation>他のパートを探す(&amp;P)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="373"/>
         <source>&amp;Clear Recent Searches</source>
-        <translation>最近の検索を消去(&amp;C)</translation>
+        <translation>検索履歴を消去(&amp;C)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="397"/>
@@ -871,17 +871,17 @@
     <message>
         <location filename="src/mainwindow.cpp" line="459"/>
         <source>&amp;Manually Start Playing</source>
-        <translation type="unfinished"/>
+        <translation>手動で再生(&amp;M)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="460"/>
         <source>Manually start playing videos</source>
-        <translation type="unfinished"/>
+        <translation>動画の自動再生をしない</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="797"/>
         <source>Choose your content location</source>
-        <translation type="unfinished"/>
+        <translation>コンテンツの地域を選択</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1073"/>
@@ -891,7 +891,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="1074"/>
         <source>Resume playback</source>
-        <translation>再生再開します</translation>
+        <translation>再生を再開します</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1333"/>
@@ -906,17 +906,17 @@
     <message>
         <location filename="src/mainwindow.cpp" line="1425"/>
         <source>Volume is muted</source>
-        <translation>音量OFFにしました</translation>
+        <translation>ミュートにしました</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1428"/>
         <source>Volume is unmuted</source>
-        <translation>音量ONにしました</translation>
+        <translation>ミュートを解除しました</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1435"/>
         <source>Maximum video definition set to %1</source>
-        <translation type="unfinished"/>
+        <translation>最大画質を%1に設定する</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1476"/>
@@ -939,17 +939,17 @@
     <message>
         <location filename="src/mediaview.cpp" line="690"/>
         <source>You can now paste the video stream URL into another application</source>
-        <translation type="unfinished"/>
+        <translation>他のアプリケーションに動画のURLを貼り付けることができます</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="691"/>
         <source>The link will be valid only for a limited time.</source>
-        <translation type="unfinished"/>
+        <translation>リンクは制限時間内のみ有効です。</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="780"/>
         <source>This is just the demo version of %1.</source>
-        <translation>これは %1 の試用版です。</translation>
+        <translation>これは%1 の試用版です。</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="781"/>
@@ -965,44 +965,44 @@
         <location filename="src/mediaview.cpp" line="946"/>
         <source>of</source>
         <comment>Used in video parts, as in '2 of 3'</comment>
-        <translation type="unfinished"/>
+        <translation>から</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="959"/>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
-        <translation type="unfinished"/>
+        <translation>パート</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="961"/>
         <source>episode</source>
         <comment>This is for video parts, as in 'Cool series - episode 1'</comment>
-        <translation type="unfinished"/>
+        <translation>エピソード</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="1074"/>
         <source>Sent from %1</source>
-        <translation type="unfinished"/>
+        <translation>%1に送る</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="1109"/>
         <source>Unsubscribe from %1</source>
-        <translation type="unfinished"/>
+        <translation>%1の購読を解除する</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="1113"/>
         <source>Subscribe to %1</source>
-        <translation type="unfinished"/>
+        <translation>%1を購読する</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="788"/>
         <source>Get the full version</source>
-        <translation>製品版を入手する。</translation>
+        <translation>製品版を入手する</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="827"/>
         <source>Downloading %1</source>
-        <translation type="unfinished"/>
+        <translation>%1をダウンロード中</translation>
     </message>
 </context>
 <context>
@@ -1010,32 +1010,32 @@
     <message>
         <location filename="local/src/updatedialog.cpp" line="21"/>
         <source>A new version of %1 is available!</source>
-        <translation type="unfinished"/>
+        <translation>新しいバージョンの%1があります！</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="28"/>
         <source>%1 %2 is now available. You have %3.</source>
-        <translation type="unfinished"/>
+        <translation>%1 %2があります。あなたは%3です。</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="33"/>
         <source>Would you like to download it now?</source>
-        <translation type="unfinished"/>
+        <translation>今すぐダウンロードしますか？</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="39"/>
         <source>Skip This Version</source>
-        <translation type="unfinished"/>
+        <translation>このバージョンをスキップ</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="43"/>
         <source>Remind Me Later</source>
-        <translation>このバージョンをスキップ</translation>
+        <translation>後で通知</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="47"/>
         <source>Install Update</source>
-        <translation type="unfinished"/>
+        <translation>アップデートする</translation>
     </message>
 </context>
 <context>
@@ -1056,12 +1056,12 @@
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="332"/>
         <source>%1 of %2 (%3) — %4</source>
-        <translation type="unfinished"/>
+        <translation>%1は%2(%3)%4</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="339"/>
         <source>Preparing</source>
-        <translation type="unfinished"/>
+        <translation>準備中</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="341"/>
@@ -1076,7 +1076,7 @@
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="345"/>
         <source>Stopped</source>
-        <translation type="unfinished"/>
+        <translation>停止</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="381"/>
@@ -1086,7 +1086,7 @@
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="391"/>
         <source>Show in %1</source>
-        <translation type="unfinished"/>
+        <translation>%1を表示</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="393"/>
@@ -1096,7 +1096,7 @@
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="402"/>
         <source>Restart downloading</source>
-        <translation type="unfinished"/>
+        <translation>ダウンロード再開</translation>
     </message>
 </context>
 <context>
@@ -1109,7 +1109,7 @@
     <message>
         <location filename="src/playlistmodel.cpp" line="73"/>
         <source>Show %1 More</source>
-        <translation>さらに%1エントリ観る</translation>
+        <translation>さらに%1件表示</translation>
     </message>
     <message>
         <location filename="src/playlistmodel.cpp" line="74"/>
@@ -1132,7 +1132,7 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="55"/>
         <source>Relevance</source>
-        <translation type="unfinished"/>
+        <translation>関連性</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="56"/>
@@ -1148,12 +1148,12 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="58"/>
         <source>Rating</source>
-        <translation type="unfinished"/>
+        <translation>評価</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="76"/>
         <source>Anytime</source>
-        <translation type="unfinished"/>
+        <translation>すべて</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="77"/>
@@ -1163,17 +1163,17 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="78"/>
         <source>7 Days</source>
-        <translation>7日間</translation>
+        <translation>一週間以内</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="79"/>
         <source>30 Days</source>
-        <translation>30日間</translation>
+        <translation>１ヶ月以内</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="93"/>
         <source>Duration</source>
-        <translation type="unfinished"/>
+        <translation>再生時間</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="97"/>
@@ -1184,17 +1184,17 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="98"/>
         <source>Short</source>
-        <translation type="unfinished"/>
+        <translation>短い</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="99"/>
         <source>Medium</source>
-        <translation type="unfinished"/>
+        <translation>普通</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="100"/>
         <source>Long</source>
-        <translation type="unfinished"/>
+        <translation>長い</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="103"/>
@@ -1214,17 +1214,17 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="120"/>
         <source>Quality</source>
-        <translation>品質</translation>
+        <translation>画質</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="125"/>
         <source>High Definition</source>
-        <translation type="unfinished"/>
+        <translation>高画質</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="128"/>
         <source>720p or higher</source>
-        <translation type="unfinished"/>
+        <translation>720pか高画質</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="142"/>
@@ -1253,33 +1253,33 @@
     <message>
         <location filename="src/searchview.cpp" line="88"/>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
-        <translation>ようこそ&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;へ！</translation>
+        <translation>ようこそ&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;へ</translation>
     </message>
     <message>
         <location filename="src/searchview.cpp" line="195"/>
         <source>Get the full version</source>
-        <translation>製品版を入手する。</translation>
+        <translation>製品版を入手する</translation>
     </message>
     <message>
         <location filename="src/searchview.cpp" line="114"/>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole phrase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation type="unfinished"/>
+        <translation>キーワードを入力して</translation>
     </message>
     <message>
         <location filename="src/searchview.cpp" line="119"/>
         <source>a keyword</source>
-        <translation type="unfinished"/>
+        <translation>動画</translation>
     </message>
     <message>
         <location filename="src/searchview.cpp" line="120"/>
         <source>a channel</source>
-        <translation type="unfinished"/>
+        <translation>チャンネル</translation>
     </message>
     <message>
         <location filename="src/searchview.cpp" line="125"/>
         <source>to start watching videos.</source>
-        <translation type="unfinished"/>
+        <translation>を検索する。</translation>
     </message>
     <message>
         <location filename="src/searchview.cpp" line="149"/>
@@ -1321,7 +1321,7 @@
     <message>
         <location filename="src/sidebarwidget.cpp" line="68"/>
         <source>Refine Search</source>
-        <translation type="unfinished"/>
+        <translation>絞り込み検索</translation>
     </message>
     <message>
         <location filename="src/sidebarwidget.cpp" line="163"/>
@@ -1339,12 +1339,12 @@
     <message>
         <location filename="src/snapshotsettings.cpp" line="62"/>
         <source>Snapshot saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>%1にスナップショットを保存しました</translation>
     </message>
     <message>
         <location filename="src/snapshotsettings.cpp" line="127"/>
         <source>Snapshots location changed.</source>
-        <translation type="unfinished"/>
+        <translation>スナップショットの場所を変更しました。</translation>
     </message>
 </context>
 <context>
@@ -1352,7 +1352,7 @@
     <message>
         <location filename="src/standardfeedsview.cpp" line="105"/>
         <source>Most Popular</source>
-        <translation type="unfinished"/>
+        <translation>とても人気</translation>
     </message>
 </context>
 <context>
@@ -1360,7 +1360,7 @@
     <message>
         <location filename="src/video.cpp" line="309"/>
         <source>Cannot get video stream for %1</source>
-        <translation type="unfinished"/>
+        <translation>%1の動画を取得できませんでした</translation>
     </message>
     <message>
         <location filename="src/video.cpp" line="326"/>

@@ -107,7 +107,7 @@
         <location filename="local/src/activationview.cpp" line="53"/>
         <source>The full version allows you to watch videos without interruptions.</source>
         <oldsource>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</oldsource>
-        <translation type="unfinished"/>
+        <translation>Η πλήρης έκδοση σας επιτρέπει να παρακολουθήσετε βίντεο χωρίς διακοπές.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="55"/>
@@ -216,17 +216,17 @@
     <message>
         <location filename="src/channelview.cpp" line="243"/>
         <source>Mark as Watched</source>
-        <translation type="unfinished"/>
+        <translation>Σήμανση ως Παρακολουθημένο</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="256"/>
         <source>Unsubscribe</source>
-        <translation type="unfinished"/>
+        <translation>Κατάργηση εγγραφής</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="269"/>
         <source>There are no updated subscriptions at this time.</source>
-        <translation>Δεν υπάρχουν ενημερωμένες συνδρομές αυτήν την στιγμή.</translation>
+        <translation>Δεν υπάρχουν ενημερωμένες συδρομές αυτήν την στιγμή.</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="271"/>
@@ -466,7 +466,7 @@
     <message>
         <location filename="src/homeview.cpp" line="73"/>
         <source>Channel subscriptions</source>
-        <translation>Συνδρομές σε κανάλια</translation>
+        <translation>Συδρομές σε κανάλια</translation>
     </message>
     <message>
         <location filename="src/homeview.h" line="45"/>
@@ -655,12 +655,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="486"/>
         <source>Take &amp;Snapshot</source>
-        <translation type="unfinished"/>
+        <translation>Λήψη &amp;Στιγμιότυπου</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="493"/>
         <source>&amp;Subscribe to Channel</source>
-        <translation>&amp;Συδρομή στο Κανάλι</translation>
+        <translation>&amp;Εγγραφή στο Κανάλι</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="501"/>
@@ -725,7 +725,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="583"/>
         <source>&amp;Love %1? Rate it!</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Λατρεύετε το %1? Βαθμολογήστε το!</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="605"/>
@@ -987,12 +987,12 @@
     <message>
         <location filename="src/mediaview.cpp" line="1109"/>
         <source>Unsubscribe from %1</source>
-        <translation>Κατάργηση συνδρομής στο %1</translation>
+        <translation>Κατάργηση εγγραφής στο %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="1113"/>
         <source>Subscribe to %1</source>
-        <translation>Συνδρομή στο %1</translation>
+        <translation>Εγγραφή στο %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="788"/>
@@ -1339,12 +1339,12 @@
     <message>
         <location filename="src/snapshotsettings.cpp" line="62"/>
         <source>Snapshot saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>Το στιγμιότυπο αποθηκεύτηκε σε %1</translation>
     </message>
     <message>
         <location filename="src/snapshotsettings.cpp" line="127"/>
         <source>Snapshots location changed.</source>
-        <translation type="unfinished"/>
+        <translation>Η τοποθεσία για στιγμιότυπα άλλαξε.</translation>
     </message>
 </context>
 <context>
