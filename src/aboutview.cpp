@@ -89,7 +89,7 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
             "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")
             .arg("http://www.gnu.org/licenses/gpl.html") + "</p>"
         #endif
-            "<p>&copy; 2009-2014 " + Constants::ORG_NAME + "</p>"
+            "<p>&copy; 2009-2015 " + Constants::ORG_NAME + "</p>"
             "</body></html>";
     QLabel *infoLabel = new QLabel(info, this);
     infoLabel->setOpenExternalLinks(true);
