@@ -24,6 +24,7 @@ $END_LICENSE */
 #ifdef APP_MAC
 #include "macutils.h"
 #endif
+#include "constants.h"
 
 SnapshotSettings::SnapshotSettings(QWidget *parent) : QWidget(parent) {
     QBoxLayout *layout = new QHBoxLayout(this);
@@ -60,8 +61,8 @@ void SnapshotSettings::setSnapshot(const QPixmap &pixmap, const QString &filenam
     QString display = displayPath(path);
 
     QString msg = tr("Snapshot saved to %1")
-                .arg("<a href='showFile' style='text-decoration:none; color:palette(text); font-weight:bold'>%1</a>")
-                .arg(display);
+            .arg("<a href='showFile' style='text-decoration:none; color:palette(text); font-weight:bold'>%1</a>")
+            .arg(display);
     message->setText(msg);
 }
 
@@ -78,6 +79,9 @@ QString SnapshotSettings::getCurrentLocation() {
         location = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
 #else
         location = QDesktopServices::storageLocation(QDesktopServices::PicturesLocation);
+#endif
+#ifdef APP_MAC_STORE
+        location += "/MinitubeforYouTube";
 #endif
     }
     return location;
