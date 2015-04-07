@@ -1,15 +1,23 @@
-# Build instructions
+# Build Instructions
 
 ## Prerequisites
-To compile Minitube you need at least Qt 4.5, Qt >= 4.6 is recommended.
-The following Qt modules are needed: core, gui, network, sql, script, xml, dbus, phonon
+To compile Minitube you need at least Qt 4.8.
+The following Qt modules are needed: core, gui, network, sql (using the Sqlite plugin), script, dbus, phonon
 
 On a Debian or Ubuntu system type:
-sudo apt-get install build-essential qt4-dev-tools libphonon-dev
+    $ sudo apt-get install build-essential qt4-dev-tools libphonon-dev
+
+## Google API Key
+
+Google is now requiring an API key in order to access YouTube Data web services.
+Create a "Browser Key" at https://console.developers.google.com
+
+The key must be specified at compile time as shown below.
+Alternatively Minitube can read an API key from the GOOGLE_API_KEY environment variable.
 
 ## Compiling
 Run:
-    $ qmake
+    $ qmake -DAPP_GOOGLE_API_KEY="YouAPIKeyHere"
 and then:
     $ make
 Beware of the Qt3 or Qt5 version of qmake! If things go wrong try running qmake-qt4 instead.
