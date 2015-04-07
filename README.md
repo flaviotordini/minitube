@@ -1,13 +1,19 @@
-# Build Instructions
+# Minitube
+Minitube is a YouTube desktop application. It is written in C++ using the Qt framework. Contributing is welcome, especially in the Linux desktop integration area.
 
-## Prerequisites
-To compile Minitube you need at least Qt 4.8.
-The following Qt modules are needed: core, gui, network, sql (using the Sqlite plugin), script, dbus, phonon
+## Traslating Minitube to your language
+Minitube translations are done at https://www.transifex.com/projects/p/minitube/
+Just register and apply for a language team. Please don't request translation merges on GitHub.
 
-On a Debian or Ubuntu system type:
+## Building
+To compile Minitube you need at least Qt 4.8. The following Qt modules are needed:
+core, gui, network, sql (using the Sqlite plugin), script, dbus, phonon
+
+On a Debian or Ubuntu system, type:
+
     $ sudo apt-get install build-essential qt4-dev-tools libphonon-dev
 
-## Google API Key
+### Google API Key
 
 Google is now requiring an API key in order to access YouTube Data web services.
 Create a "Browser Key" at https://console.developers.google.com
@@ -15,15 +21,26 @@ Create a "Browser Key" at https://console.developers.google.com
 The key must be specified at compile time as shown below.
 Alternatively Minitube can read an API key from the GOOGLE_API_KEY environment variable.
 
-## Compiling
+### Compiling
 Run:
+
     $ qmake -DAPP_GOOGLE_API_KEY="YouAPIKeyHere"
+
 and then:
+
     $ make
+
 Beware of the Qt3 or Qt5 version of qmake! If things go wrong try running qmake-qt4 instead.
 
-## Running
-./build/target/minitube
+### Running
+
+	$ ./build/target/minitube
+	
+## Installing on Linux
+
+    $ sudo make install
+
+This is for packagers. End users should not install applications in this way.
 
 ## A word about Phonon on Linux
 To be able to actually watch videos you need a working Phonon setup.
@@ -31,11 +48,6 @@ Please don't contact me about this, ask for help on your distribution support ch
 
 These days Minitube is tested with the VLC backend only.
 Please don't report bugs with other backends as they're not supported.
-
-## Installing on Linux
-Run:
-    $ sudo make install
-This is for packagers. End users should not install applications in this way.
 
 ## Legal Stuff
 Copyright (C) Flavio Tordini
