@@ -1,3 +1,15 @@
+2.4
+- Now using YouTube APIs version 3
+- Now using HTTPS everywhere for better privacy and security
+- Minitube now automatically loads more videos in the playlist for even less clicking
+- Updated media engine to LibVLC 2.2.0 on Mac & Windows
+- Fixed subscriptions sorting
+- Fixed toolbar style on Ubuntu
+- New and updated translations
+
+2.3.1
+- Fix playback problems with some videos
+
 2.3
 - Take video snapshots at full resolution
 - Faster and more reliable seeking
@@ -5,6 +17,7 @@
 - Slide transition in playlist navigation
 - Make the volume handle red when volume is zero
 - Enhancements to the search suggestions
+- Style refresh to make Minitube feel at home on OS X Yosemite and Windows 8
 - The Mac version is now 64bit and uses the VLC engine to play videos
 - Fixed minor style issues with Mac OS X Yosemite 10.10
 - Restored compatibility with Mac OS X Snow Leopard 10.6
