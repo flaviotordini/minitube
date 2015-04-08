@@ -36,7 +36,7 @@ Beware of the Qt3 or Qt5 version of qmake! If things go wrong try running qmake-
 
 	$ ./build/target/minitube
 	
-## Installing on Linux
+### Installing on Linux
 
     $ sudo make install
 
