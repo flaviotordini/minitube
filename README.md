@@ -24,7 +24,7 @@ Alternatively Minitube can read an API key from the GOOGLE_API_KEY environment v
 ### Compiling
 Run:
 
-    $ qmake -DAPP_GOOGLE_API_KEY="YouAPIKeyHere"
+    $ qmake "DEFINES += APP_GOOGLE_API_KEY=YouAPIKeyHere"
 
 and then:
 
