@@ -18,7 +18,7 @@ DEFINES *= QT_NO_DEBUG_OUTPUT
 DEFINES *= QT_USE_QSTRINGBUILDER
 DEFINES *= QT_STRICT_ITERATORS
 
-!contains(DEFINES, APP_GOOGLE_API_KEY) {
+!contains(DEFINES, APP_GOOGLE_API_KEY=.+) {
     warning("You need to specify a Google API Key, refer to the README.md file for details")
 }
 
