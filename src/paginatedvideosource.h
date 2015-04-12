@@ -51,6 +51,7 @@ protected:
     int currentMax;
     int currentStartIndex;
     bool reloadingToken;
+    QList<Video*> videos;
     QHash<QString, Video*> videoMap;
     bool asyncDetails;
 

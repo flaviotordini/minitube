@@ -97,6 +97,7 @@ void PaginatedVideoSource::loadVideoDetails(const QList<Video*> &videos) {
         // TODO get video details from cache
         if (!videoIds.isEmpty()) videoIds += ",";
         videoIds += video->id();
+        this->videos = videos;
         videoMap.insert(video->id(), video);
     }
 
@@ -162,8 +163,8 @@ void PaginatedVideoSource::parseVideoDetails(const QByteArray &bytes) {
         }
     }
     if (!asyncDetails) {
-        emit gotVideos(videoMap.values());
-        emit finished(videoMap.size());
+        emit gotVideos(videos);
+        emit finished(videos.size());
     } else {
         emit gotDetails();
     }
