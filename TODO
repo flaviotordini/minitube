@@ -1,28 +1,19 @@
 # Minitube to do list
 
 ## Major features
-
-- Snapshots (Cannot be done with Phonon)
-
-- Channel subscriptions
-
 - Favorite videos
-
 - Info view
     Displays video metadata. Could be somewhat linked with related videos...
-
 - Subtitles, see http://google2srt.sourceforge.net/
 
 ## Minor Features
-- Search for playlists http://code.google.com/apis/youtube/2.0/developers_guide_protocol.html#Searching_for_Playlists
+- Search for playlists
 - Safe search levels (in the status bar beside the video definition option)
 - Show more thumbs on hover with animated crossfade
 - Accept any URL and scrape web pages searching for YouTube videos.
+- Blacklist channels
 
 ## Unsure features
 - Restore status when a recent keyword is clicked: skipped videos, sortBar and play time
 - Add menu entries for Most relevant, Most recent, Most viewed (Playlist => ...)
 - Saved playlists
-
-## Phonon bugs
-- Phonon::MediaSource does not work with QIODevices (this needs to work to implement seeking)
