@@ -64,7 +64,7 @@ int main(int argc, char **argv) {
 
 #ifdef Q_OS_MAC
     mac::MacMain();
-    // QFont::insertSubstitution(".Helvetica Neue DeskInterface", "Helvetica Neue");
+    QFont::insertSubstitution(".Helvetica Neue DeskInterface", "Helvetica Neue");
 #endif
 
     QtSingleApplication app(argc, argv);
