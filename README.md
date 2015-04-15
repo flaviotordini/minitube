@@ -5,15 +5,7 @@ Minitube is a YouTube desktop application. It is written in C++ using the Qt fra
 Translations are done at https://www.transifex.com/projects/p/minitube/
 Just register and apply for a language team. Please don't request translation merges on GitHub.
 
-## Build instructions
-To compile Minitube you need at least Qt 4.8. The following Qt modules are needed:
-core, gui, network, sql (using the Sqlite plugin), script, dbus, phonon
-
-On a Debian or Ubuntu system, type:
-
-    $ sudo apt-get install build-essential qt4-dev-tools libphonon-dev libqt4-sql-sqlite
-
-### Google API Key
+## Google API Key
 
 Google is now requiring an API key in order to access YouTube Data web services.
 Create a "Browser Key" at https://console.developers.google.com
@@ -21,22 +13,26 @@ Create a "Browser Key" at https://console.developers.google.com
 The key must be specified at compile time as shown below.
 Alternatively Minitube can read an API key from the GOOGLE_API_KEY environment variable.
 
-### Compiling
-Run:
+## Build instructions
+To compile Minitube you need at least Qt 4.8. The following Qt modules are needed:
+core, gui, network, sql (using the Sqlite plugin), script, dbus, phonon
+
+To be able to build on a Debian (or derivative) system:
+
+    $ sudo apt-get install build-essential qt4-dev-tools libphonon-dev libqt4-sql-sqlite
+
+Compiling:
 
     $ qmake "DEFINES += APP_GOOGLE_API_KEY=YouAPIKeyHere"
-
-and then:
-
     $ make
 
 Beware of the Qt3 or Qt5 version of qmake! If things go wrong try running qmake-qt4 instead.
 
-### Running
+Running:
 
-	$ ./build/target/minitube
+	$ build/target/minitube
 	
-### Installing on Linux
+Installing on Linux:
 
     $ sudo make install
 
