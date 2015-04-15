@@ -11,7 +11,7 @@ core, gui, network, sql (using the Sqlite plugin), script, dbus, phonon
 
 On a Debian or Ubuntu system, type:
 
-    $ sudo apt-get install build-essential qt4-dev-tools libphonon-dev
+    $ sudo apt-get install build-essential qt4-dev-tools libphonon-dev libqt4-sql-sqlite
 
 ### Google API Key
 
