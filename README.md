@@ -1,11 +1,11 @@
 # Minitube
 Minitube is a YouTube desktop application. It is written in C++ using the Qt framework. Contributing is welcome, especially in the Linux desktop integration area.
 
-## Traslating Minitube to your language
-Minitube translations are done at https://www.transifex.com/projects/p/minitube/
+## Translating Minitube to your language
+Translations are done at https://www.transifex.com/projects/p/minitube/
 Just register and apply for a language team. Please don't request translation merges on GitHub.
 
-## Building
+## Build instructions
 To compile Minitube you need at least Qt 4.8. The following Qt modules are needed:
 core, gui, network, sql (using the Sqlite plugin), script, dbus, phonon
 
