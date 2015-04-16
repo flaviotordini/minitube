@@ -55,7 +55,7 @@ YT3::YT3() {
         qWarning() << "No available API keys";
     } else {
         key = keys.takeFirst();
-        testApiKey();
+        if (!keys.isEmpty()) testApiKey();
     }
 }
 
