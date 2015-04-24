@@ -24,6 +24,7 @@ $END_LICENSE */
 #ifdef APP_ACTIVATION
 #include "activation.h"
 #endif
+#include "compatibility/qurlqueryhelper.h"
 
 namespace The {
 NetworkAccess* http();
@@ -36,33 +37,25 @@ UpdateChecker::UpdateChecker() {
 void UpdateChecker::checkForUpdate() {
     QUrl url(QLatin1String(Constants::WEBSITE) + "-ws/release.xml");
 
-#if QT_VERSION >= 0x050000
     {
-        QUrl &u = url;
-        QUrlQuery url;
-#endif
-
-        url.addQueryItem("v", Constants::VERSION);
+        QUrlQueryHelper urlHelper(url);
+        urlHelper.addQueryItem("v", Constants::VERSION);
 
 #ifdef APP_MAC
-        url.addQueryItem("os", "mac");
+        urlHelper.addQueryItem("os", "mac");
 #endif
 #ifdef APP_WIN
-        url.addQueryItem("os", "win");
+        urlHelper.addQueryItem("os", "win");
 #endif
 #ifdef APP_ACTIVATION
         QString t = "demo";
         if (Activation::instance().isActivated()) t = "active";
-        url.addQueryItem("t", t);
+        urlHelper.addQueryItem("t", t);
 #endif
 #ifdef APP_MAC_STORE
-        url.addQueryItem("store", "mac");
+        urlHelper.addQueryItem("store", "mac");
 #endif
-
-#if QT_VERSION >= 0x050000
-        u.setQuery(url);
     }
-#endif
 
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(requestFinished(QByteArray)));

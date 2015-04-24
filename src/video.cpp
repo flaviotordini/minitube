@@ -24,6 +24,7 @@ $END_LICENSE */
 #include "videodefinition.h"
 #include "jsfunctions.h"
 #include "temporary.h"
+#include "compatibility/qurlqueryhelper.h"
 
 namespace The {
 NetworkAccess* http();
@@ -123,28 +124,18 @@ void  Video::getVideoInfo() {
     static const QStringList elTypes = QStringList() << "&el=embedded" << "&el=detailpage" << "&el=vevo" << "";
 
     QUrl url;
-
     if (elIndex == elTypes.size()) {
         // qDebug() << "Trying special embedded el param";
         url = QUrl("https://www.youtube.com/get_video_info");
 
-#if QT_VERSION >= 0x050000
-        {
-            QUrl &u = url;
-            QUrlQuery url;
-#endif
-            url.addQueryItem("video_id", videoId);
-            url.addQueryItem("el", "embedded");
-            url.addQueryItem("gl", "US");
-            url.addQueryItem("hl", "en");
-            url.addQueryItem("eurl", "https://youtube.googleapis.com/v/" + videoId);
-            url.addQueryItem("asv", "3");
-            url.addQueryItem("sts", "1588");
-#if QT_VERSION >= 0x050000
-            u.setQuery(url);
-        }
-#endif
-
+        QUrlQueryHelper urlHelper(url);
+        urlHelper.addQueryItem("video_id", videoId);
+        urlHelper.addQueryItem("el", "embedded");
+        urlHelper.addQueryItem("gl", "US");
+        urlHelper.addQueryItem("hl", "en");
+        urlHelper.addQueryItem("eurl", "https://youtube.googleapis.com/v/" + videoId);
+        urlHelper.addQueryItem("asv", "3");
+        urlHelper.addQueryItem("sts", "1588");
     } else if (elIndex > elTypes.size() - 1) {
         qWarning() << "Cannot get video info";
         loadingStreamUrl = false;
@@ -247,20 +238,13 @@ void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
                 } else {
 
                     QUrl url("http://www.youtube.com/watch");
-
-#if QT_VERSION >= 0x050000
                     {
-                        QUrl &u = url;
-                        QUrlQuery url;
-#endif
-                        url.addQueryItem("v", videoId);
-                        url.addQueryItem("gl", "US");
-                        url.addQueryItem("hl", "en");
-                        url.addQueryItem("has_verified", "1");
-#if QT_VERSION >= 0x050000
-                        u.setQuery(url);
+                        QUrlQueryHelper urlHelper(url);
+                        urlHelper.addQueryItem("v", videoId);
+                        urlHelper.addQueryItem("gl", "US");
+                        urlHelper.addQueryItem("hl", "en");
+                        urlHelper.addQueryItem("has_verified", "1");
                     }
-#endif
                     // qDebug() << "Loading webpage" << url;
                     QObject *reply = The::http()->get(url);
                     connect(reply, SIGNAL(data(QByteArray)), SLOT(scrapeWebPage(QByteArray)));

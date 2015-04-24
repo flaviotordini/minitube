@@ -21,6 +21,7 @@ $END_LICENSE */
 #include "ytsinglevideosource.h"
 #include "networkaccess.h"
 #include "video.h"
+#include "compatibility/qurlqueryhelper.h"
 
 #ifdef APP_YT3
 #include "yt3.h"
@@ -63,36 +64,24 @@ void YTSingleVideoSource::loadVideos(int max, int startIndex) {
         }
 
         url = YT3::instance().method("videos");
-#if QT_VERSION >= 0x050000
         {
-            QUrl &u = url;
-            QUrlQuery url;
-#endif
-            url.addQueryItem("part", "snippet");
-            url.addQueryItem("id", videoId);
-#if QT_VERSION >= 0x050000
-            u.setQuery(url);
+            QUrlQueryHelper urlHelper(url);
+            urlHelper.addQueryItem("part", "snippet");
+            urlHelper.addQueryItem("id", videoId);
         }
-#endif
     } else {
         url = YT3::instance().method("search");
-#if QT_VERSION >= 0x050000
         {
-            QUrl &u = url;
-            QUrlQuery url;
-#endif
-            url.addQueryItem("part", "snippet");
-            url.addQueryItem("type", "video");
-            url.addQueryItem("relatedToVideoId", videoId);
-            url.addQueryItem("maxResults", QString::number(max));
+            QUrlQueryHelper urlHelper(url);
+            urlHelper.addQueryItem("part", "snippet");
+            urlHelper.addQueryItem("type", "video");
+            urlHelper.addQueryItem("relatedToVideoId", videoId);
+            urlHelper.addQueryItem("maxResults", QString::number(max));
             if (startIndex > 2) {
                 if (maybeReloadToken(max, startIndex)) return;
-                url.addQueryItem("pageToken", nextPageToken);
+                urlHelper.addQueryItem("pageToken", nextPageToken);
             }
-#if QT_VERSION >= 0x050000
-            u.setQuery(url);
         }
-#endif
     }
 
     lastUrl = url;
@@ -130,22 +119,15 @@ void YTSingleVideoSource::loadVideos(int max, int startIndex) {
     if (startIndex == 1) s = "http://gdata.youtube.com/feeds/api/videos/" + videoId;
     else s = QString("http://gdata.youtube.com/feeds/api/videos/%1/related").arg(videoId);
     QUrl url(s);
-#if QT_VERSION >= 0x050000
     {
-        QUrl &u = url;
-        QUrlQuery url;
-#endif
-        url.addQueryItem("v", "2");
+        QUrlQueryHelper urlHelper(url);
+        urlHelper.addQueryItem("v", "2");
 
         if (startIndex != 1) {
-            url.addQueryItem("max-results", QString::number(max));
-            url.addQueryItem("start-index", QString::number(startIndex-1));
+            urlHelper.addQueryItem("max-results", QString::number(max));
+            urlHelper.addQueryItem("start-index", QString::number(startIndex-1));
         }
-
-#if QT_VERSION >= 0x050000
-        u.setQuery(url);
     }
-#endif
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parse(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));

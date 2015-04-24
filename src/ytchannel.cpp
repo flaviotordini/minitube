@@ -27,6 +27,7 @@ $END_LICENSE */
 #include "yt3.h"
 #include <QtScript>
 #endif
+#include "compatibility/qurlqueryhelper.h"
 
 namespace The {
 NetworkAccess* http();
@@ -92,31 +93,19 @@ void YTChannel::maybeLoadfromAPI() {
 #ifdef APP_YT3
 
     QUrl url = YT3::instance().method("channels");
-#if QT_VERSION >= 0x050000
     {
-        QUrl &u = url;
-        QUrlQuery url;
-#endif
-        url.addQueryItem("id", channelId);
-        url.addQueryItem("part", "snippet");
-#if QT_VERSION >= 0x050000
-        u.setQuery(url);
+        QUrlQueryHelper urlHelper(url);
+        urlHelper.addQueryItem("id", channelId);
+        urlHelper.addQueryItem("part", "snippet");
     }
-#endif
 
 #else
 
     QUrl url("http://gdata.youtube.com/feeds/api/users/" + channelId);
-#if QT_VERSION >= 0x050000
     {
-        QUrl &u = url;
-        QUrlQuery url;
-#endif
-        url.addQueryItem("v", "2");
-#if QT_VERSION >= 0x050000
-        u.setQuery(url);
+        QUrlQueryHelper urlHelper(url);
+        urlHelper.addQueryItem("v", "2");
     }
-#endif
 
 #endif
 

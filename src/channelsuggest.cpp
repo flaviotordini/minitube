@@ -20,6 +20,7 @@ $END_LICENSE */
 
 #include "channelsuggest.h"
 #include "networkaccess.h"
+#include "compatibility/qurlqueryhelper.h"
 
 namespace The {
     NetworkAccess* http();
@@ -31,17 +32,12 @@ ChannelSuggest::ChannelSuggest(QObject *parent) : Suggester(parent) {
 
 void ChannelSuggest::suggest(const QString &query) {
     QUrl url("https://www.youtube.com/results");
-#if QT_VERSION >= 0x050000
-        {
-            QUrl &u = url;
-            QUrlQuery url;
-#endif
-    url.addQueryItem("search_type", "search_users");
-    url.addQueryItem("search_query", query);
-#if QT_VERSION >= 0x050000
-            u.setQuery(url);
-        }
-#endif
+    {
+        QUrlQueryHelper urlHelper(url);
+        urlHelper.addQueryItem("search_type", "search_users");
+        urlHelper.addQueryItem("search_query", query);
+    }
+
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(handleNetworkData(QByteArray)));
 }

@@ -19,6 +19,7 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "iconutils.h"
+#include <QAction>
 
 QIcon IconUtils::fromTheme(const QString &name) {
     const QLatin1String symbolic("-symbolic");
