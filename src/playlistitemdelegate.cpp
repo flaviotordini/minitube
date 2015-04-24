@@ -214,7 +214,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
                 }
 
                 if (downloadInfo) {
-                    QString definitionString = VideoDefinition::getDefinitionName(video->getDefinitionCode());
+                    const QString definitionString = VideoDefinition::getDefinitionFor(video->getDefinitionCode()).getName();
                     textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
                     stringSize = QSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, definitionString ) );
                     QRect viewCountTextBox(textLoc , stringSize);

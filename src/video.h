@@ -27,6 +27,8 @@ $END_LICENSE */
 #endif
 #include <QtNetwork>
 
+class VideoDefinition;
+
 class Video : public QObject {
 
     Q_OBJECT
@@ -106,6 +108,7 @@ private:
     void captureFunction(const QString &name, const QString &js);
     void captureObject(const QString &name, const QString &js);
     QString decryptSignature(const QString &s);
+    void saveDefinitionForUrl(const QString& url, const VideoDefinition& definition);
 
     QString m_title;
     QString m_description;
