@@ -174,6 +174,9 @@ QNetworkReply* NetworkAccess::request(QUrl url, int operation, const QByteArray&
         return 0;
     }
 
+#ifdef APP_MAC
+    networkReply->ignoreSslErrors();
+#endif
     return networkReply;
 }
 
