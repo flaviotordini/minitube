@@ -32,6 +32,7 @@ $END_LICENSE */
 #else
 #include "ytfeedreader.h"
 #endif
+#include "compatibility/qurlqueryhelper.h"
 
 namespace The {
 NetworkAccess* http();
@@ -62,88 +63,78 @@ void YTSearch::loadVideos(int max, int startIndex) {
     aborted = false;
 
     QUrl url = YT3::instance().method("search");
-
-#if QT_VERSION >= 0x050000
     {
-        QUrl &u = url;
-        QUrlQuery url;
-#endif
-
-        url.addQueryItem("part", "snippet");
-        url.addQueryItem("type", "video");
-
-        url.addQueryItem("maxResults", QString::number(max));
+        QUrlQueryHelper urlHelper(url);
+        urlHelper.addQueryItem("part", "snippet");
+        urlHelper.addQueryItem("type", "video");
+        urlHelper.addQueryItem("maxResults", QString::number(max));
 
         if (startIndex > 1) {
             if (maybeReloadToken(max, startIndex)) return;
-            url.addQueryItem("pageToken", nextPageToken);
+            urlHelper.addQueryItem("pageToken", nextPageToken);
         }
 
         // TODO interesting params
-        // url.addQueryItem("videoSyndicated", "true");
-        // url.addQueryItem("regionCode", "IT");
-        // url.addQueryItem("videoType", "movie");
+        // urlHelper.addQueryItem("videoSyndicated", "true");
+        // urlHelper.addQueryItem("regionCode", "IT");
+        // urlHelper.addQueryItem("videoType", "movie");
 
         if (!searchParams->keywords().isEmpty()) {
             if (searchParams->keywords().startsWith("http://") ||
                     searchParams->keywords().startsWith("https://")) {
-                url.addQueryItem("q", YTSearch::videoIdFromUrl(searchParams->keywords()));
-            } else url.addQueryItem("q", searchParams->keywords());
+                urlHelper.addQueryItem("q", YTSearch::videoIdFromUrl(searchParams->keywords()));
+            } else urlHelper.addQueryItem("q", searchParams->keywords());
         }
 
         if (!searchParams->channelId().isEmpty())
-            url.addQueryItem("channelId", searchParams->channelId());
+            urlHelper.addQueryItem("channelId", searchParams->channelId());
 
         switch (searchParams->sortBy()) {
         case SearchParams::SortByNewest:
-            url.addQueryItem("order", "date");
+            urlHelper.addQueryItem("order", "date");
             break;
         case SearchParams::SortByViewCount:
-            url.addQueryItem("order", "viewCount");
+            urlHelper.addQueryItem("order", "viewCount");
             break;
         case SearchParams::SortByRating:
-            url.addQueryItem("order", "rating");
+            urlHelper.addQueryItem("order", "rating");
             break;
         }
 
         switch (searchParams->duration()) {
         case SearchParams::DurationShort:
-            url.addQueryItem("videoDuration", "short");
+            urlHelper.addQueryItem("videoDuration", "short");
             break;
         case SearchParams::DurationMedium:
-            url.addQueryItem("videoDuration", "medium");
+            urlHelper.addQueryItem("videoDuration", "medium");
             break;
         case SearchParams::DurationLong:
-            url.addQueryItem("videoDuration", "long");
+            urlHelper.addQueryItem("videoDuration", "long");
             break;
         }
 
         switch (searchParams->time()) {
         case SearchParams::TimeToday:
-            url.addQueryItem("publishedAfter", RFC3339toString(QDateTime::currentDateTimeUtc().addSecs(-60*60*24)));
+            urlHelper.addQueryItem("publishedAfter", RFC3339toString(QDateTime::currentDateTimeUtc().addSecs(-60*60*24)));
             break;
         case SearchParams::TimeWeek:
-            url.addQueryItem("publishedAfter", RFC3339toString(QDateTime::currentDateTimeUtc().addSecs(-60*60*24*7)));
+            urlHelper.addQueryItem("publishedAfter", RFC3339toString(QDateTime::currentDateTimeUtc().addSecs(-60*60*24*7)));
             break;
         case SearchParams::TimeMonth:
-            url.addQueryItem("publishedAfter", RFC3339toString(QDateTime::currentDateTimeUtc().addSecs(-60*60*24*30)));
+            urlHelper.addQueryItem("publishedAfter", RFC3339toString(QDateTime::currentDateTimeUtc().addSecs(-60*60*24*30)));
             break;
         }
 
         if (searchParams->publishedAfter()) {
-            url.addQueryItem("publishedAfter", RFC3339toString(QDateTime::fromTime_t(searchParams->publishedAfter()).toUTC()));
+            urlHelper.addQueryItem("publishedAfter", RFC3339toString(QDateTime::fromTime_t(searchParams->publishedAfter()).toUTC()));
         }
 
         switch (searchParams->quality()) {
         case SearchParams::QualityHD:
-            url.addQueryItem("videoDefinition", "high");
+            urlHelper.addQueryItem("videoDefinition", "high");
             break;
         }
-
-#if QT_VERSION >= 0x050000
-        u.setQuery(url);
     }
-#endif
 
     lastUrl = url;
 
@@ -183,72 +174,66 @@ void YTSearch::loadVideos(int max, int startIndex) {
     aborted = false;
 
     QUrl url("http://gdata.youtube.com/feeds/api/videos/");
-#if QT_VERSION >= 0x050000
     {
-        QUrl &u = url;
-        QUrlQuery url;
-#endif
+        QUrlQueryHelper urlHelper(url);
 
-        url.addQueryItem("v", "2");
-        url.addQueryItem("max-results", QString::number(max));
-        url.addQueryItem("start-index", QString::number(startIndex));
+        urlHelper.addQueryItem("v", "2");
+        urlHelper.addQueryItem("max-results", QString::number(max));
+        urlHelper.addQueryItem("start-index", QString::number(startIndex));
 
         if (!searchParams->keywords().isEmpty()) {
             if (searchParams->keywords().startsWith("http://") ||
                     searchParams->keywords().startsWith("https://")) {
-                url.addQueryItem("q", YTSearch::videoIdFromUrl(searchParams->keywords()));
-            } else url.addQueryItem("q", searchParams->keywords());
+                urlHelper.addQueryItem("q", YTSearch::videoIdFromUrl(searchParams->keywords()));
+            } else urlHelper.addQueryItem("q", searchParams->keywords());
         }
 
         if (!searchParams->channelId().isEmpty())
-            url.addQueryItem("author", searchParams->channelId());
+            urlHelper.addQueryItem("author", searchParams->channelId());
 
         switch (searchParams->sortBy()) {
         case SearchParams::SortByNewest:
-            url.addQueryItem("orderby", "published");
+            urlHelper.addQueryItem("orderby", "published");
             break;
         case SearchParams::SortByViewCount:
-            url.addQueryItem("orderby", "viewCount");
+            urlHelper.addQueryItem("orderby", "viewCount");
             break;
         case SearchParams::SortByRating:
-            url.addQueryItem("orderby", "rating");
+            urlHelper.addQueryItem("orderby", "rating");
             break;
         }
 
         switch (searchParams->duration()) {
         case SearchParams::DurationShort:
-            url.addQueryItem("duration", "short");
+            urlHelper.addQueryItem("duration", "short");
             break;
         case SearchParams::DurationMedium:
-            url.addQueryItem("duration", "medium");
+            urlHelper.addQueryItem("duration", "medium");
             break;
         case SearchParams::DurationLong:
-            url.addQueryItem("duration", "long");
+            urlHelper.addQueryItem("duration", "long");
             break;
         }
 
         switch (searchParams->time()) {
         case SearchParams::TimeToday:
-            url.addQueryItem("time", "today");
+            urlHelper.addQueryItem("time", "today");
             break;
         case SearchParams::TimeWeek:
-            url.addQueryItem("time", "this_week");
+            urlHelper.addQueryItem("time", "this_week");
             break;
         case SearchParams::TimeMonth:
-            url.addQueryItem("time", "this_month");
+            urlHelper.addQueryItem("time", "this_month");
             break;
         }
 
         switch (searchParams->quality()) {
         case SearchParams::QualityHD:
-            url.addQueryItem("hd", "true");
+            urlHelper.addQueryItem("hd", "true");
             break;
         }
 
-#if QT_VERSION >= 0x050000
-        u.setQuery(url);
     }
-#endif
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResults(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));

@@ -101,7 +101,8 @@ HEADERS += src/video.h \
     src/yt3listparser.h \
     src/ytchannel.h \
     src/yt3.h \
-    src/paginatedvideosource.h
+    src/paginatedvideosource.h \
+    src/compatibility/qurlqueryhelper.h
 SOURCES += src/main.cpp \
     src/searchlineedit.cpp \
     src/urllineedit.cpp \

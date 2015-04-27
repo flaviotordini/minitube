@@ -26,6 +26,8 @@ $END_LICENSE */
 #include "searchlineedit.h"
 #endif
 
+#include <QListWidget>
+
 #ifndef QT_NO_DEBUG_OUTPUT
 /// Gives human-readable event type information.
 QDebug operator<<(QDebug str, const QEvent * ev) {

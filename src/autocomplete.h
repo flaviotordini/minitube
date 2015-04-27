@@ -26,6 +26,10 @@ class Suggester;
 class Suggestion;
 class SearchLineEdit;
 
+QT_FORWARD_DECLARE_CLASS(QListWidget)
+QT_FORWARD_DECLARE_CLASS(QListWidgetItem)
+QT_FORWARD_DECLARE_CLASS(QLineEdit)
+
 class AutoComplete : public QObject {
 
     Q_OBJECT

@@ -23,6 +23,7 @@ $END_LICENSE */
 #include "yt3.h"
 #include "yt3listparser.h"
 #include "datautils.h"
+#include "compatibility/qurlqueryhelper.h"
 
 #include "video.h"
 #include "networkaccess.h"
@@ -110,20 +111,11 @@ void PaginatedVideoSource::loadVideoDetails(const QList<Video*> &videos) {
     }
 
     QUrl url = YT3::instance().method("videos");
-
-#if QT_VERSION >= 0x050000
     {
-        QUrl &u = url;
-        QUrlQuery url;
-#endif
-
-        url.addQueryItem("part", "contentDetails,statistics");
-        url.addQueryItem("id", videoIds);
-
-#if QT_VERSION >= 0x050000
-        u.setQuery(url);
+        QUrlQueryHelper urlHelper(url);
+        urlHelper.addQueryItem("part", "contentDetails,statistics");
+        urlHelper.addQueryItem("id", videoIds);
     }
-#endif
 
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseVideoDetails(QByteArray)));

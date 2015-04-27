@@ -6,6 +6,7 @@
 #include "jsfunctions.h"
 #include "networkaccess.h"
 #include "constants.h"
+#include "compatibility/qurlqueryhelper.h"
 
 #ifdef APP_EXTRA
 #include "extra.h"
@@ -65,18 +66,12 @@ const QString &YT3::baseUrl() {
 
 void YT3::testApiKey() {
     QUrl url = method("videos");
-#if QT_VERSION >= 0x050000
     {
-        QUrl &u = url;
-        QUrlQuery url;
-#endif
-        url.addQueryItem("part", "id");
-        url.addQueryItem("chart", "mostPopular");
-        url.addQueryItem("maxResults", "1");
-#if QT_VERSION >= 0x050000
-        u.setQuery(url);
+        QUrlQueryHelper urlHelper(url);
+        urlHelper.addQueryItem("part", "id");
+        urlHelper.addQueryItem("chart", "mostPopular");
+        urlHelper.addQueryItem("maxResults", "1");
     }
-#endif
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(finished(QNetworkReply*)), SLOT(testResponse(QNetworkReply*)));
 }
@@ -86,16 +81,9 @@ void YT3::addApiKey(QUrl &url) {
         qDebug() << __PRETTY_FUNCTION__ << "empty key";
         return;
     }
-#if QT_VERSION >= 0x050000
-    {
-        QUrl &u = url;
-        QUrlQuery url(u);
-#endif
-        url.addQueryItem("key", key);
-#if QT_VERSION >= 0x050000
-        u.setQuery(url);
-    }
-#endif
+
+    QUrlQueryHelper urlHelper(url);
+    urlHelper.addQueryItem("key", key);
 }
 
 QUrl YT3::method(const QString &name) {

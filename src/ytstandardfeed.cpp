@@ -21,6 +21,7 @@ $END_LICENSE */
 #include "ytstandardfeed.h"
 #include "networkaccess.h"
 #include "video.h"
+#include "compatibility/qurlqueryhelper.h"
 
 #ifdef APP_YT3
 #include "yt3.h"
@@ -44,32 +45,25 @@ void YTStandardFeed::loadVideos(int max, int startIndex) {
 
     QUrl url = YT3::instance().method("videos");
 
-#if QT_VERSION >= 0x050000
     {
-        QUrl &u = url;
-        QUrlQuery url;
-#endif
-
+        QUrlQueryHelper urlHelper(url);
         if (startIndex > 1) {
             if (maybeReloadToken(max, startIndex)) return;
-            url.addQueryItem("pageToken", nextPageToken);
+            urlHelper.addQueryItem("pageToken", nextPageToken);
         }
 
-        url.addQueryItem("part", "snippet,contentDetails,statistics");
-        url.addQueryItem("chart", "mostPopular");
+        urlHelper.addQueryItem("part", "snippet,contentDetails,statistics");
+        urlHelper.addQueryItem("chart", "mostPopular");
 
         if (!category.isEmpty())
-            url.addQueryItem("videoCategoryId", category);
+            urlHelper.addQueryItem("videoCategoryId", category);
 
         if (!regionId.isEmpty())
-            url.addQueryItem("regionCode", regionId);
+            urlHelper.addQueryItem("regionCode", regionId);
 
-        url.addQueryItem("maxResults", QString::number(max));
+        urlHelper.addQueryItem("maxResults", QString::number(max));
 
-#if QT_VERSION >= 0x050000
-        u.setQuery(url);
     }
-#endif
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResults(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
@@ -106,26 +100,19 @@ void YTStandardFeed::loadVideos(int max, int startIndex) {
     if (!category.isEmpty()) s += "_" + category;
 
     QUrl url(s);
-#if QT_VERSION >= 0x050000
     {
-        QUrl &u = url;
-        QUrlQuery url;
-#endif
-        url.addQueryItem("v", "2");
+        QUrlQueryHelper urlHelper(url);
+        urlHelper.addQueryItem("v", "2");
 
         if (feedId != "most_shared" && feedId != "on_the_web") {
             QString t = time;
             if (t.isEmpty()) t = "today";
-            url.addQueryItem("time", t);
+            urlHelper.addQueryItem("time", t);
         }
 
-        url.addQueryItem("max-results", QString::number(max));
-        url.addQueryItem("start-index", QString::number(startIndex));
-
-#if QT_VERSION >= 0x050000
-        u.setQuery(url);
+        urlHelper.addQueryItem("max-results", QString::number(max));
+        urlHelper.addQueryItem("start-index", QString::number(startIndex));
     }
-#endif
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parse(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
