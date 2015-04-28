@@ -33,8 +33,8 @@ protected:
     void enterEvent(QEvent *e);
     void leaveEvent(QEvent *e);
 
-    void mousePressEvent(QEvent *e);
-    void mouseReleaseEvent(QEvent *e);
+    void mousePressEvent(QMouseEvent *e);
+    void mouseReleaseEvent(QMouseEvent *e);
 
 private:
     bool hovered;

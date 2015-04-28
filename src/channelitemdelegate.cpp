@@ -56,6 +56,7 @@ void ChannelItemDelegate::paint( QPainter* painter,
 void ChannelItemDelegate::paintAggregate(QPainter* painter,
                                           const QStyleOptionViewItem& option,
                                           const QModelIndex& index) const {
+    Q_UNUSED(index);
     painter->save();
 
     painter->translate(option.rect.topLeft());
@@ -73,6 +74,7 @@ void ChannelItemDelegate::paintAggregate(QPainter* painter,
 void ChannelItemDelegate::paintUnwatched(QPainter* painter,
                                           const QStyleOptionViewItem& option,
                                           const QModelIndex& index) const {
+    Q_UNUSED(index);
     painter->save();
 
     painter->translate(option.rect.topLeft());

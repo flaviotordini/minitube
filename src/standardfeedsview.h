@@ -28,7 +28,7 @@ $END_LICENSE */
 #include "view.h"
 
 class VideoSource;
-class YTCategory;
+struct YTCategory;
 class YTStandardFeed;
 
 class StandardFeedsView : public QWidget, public View {
