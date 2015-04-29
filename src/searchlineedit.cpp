@@ -45,12 +45,12 @@ void ClearButton::leaveEvent(QEvent *e) {
     hovered = false;
 }
 
-void ClearButton::mousePressEvent(QEvent *e) {
+void ClearButton::mousePressEvent(QMouseEvent *e) {
     Q_UNUSED(e);
     mousePressed = true;
 }
 
-void ClearButton::mouseReleaseEvent(QEvent *e) {
+void ClearButton::mouseReleaseEvent(QMouseEvent *e) {
     Q_UNUSED(e);
     mousePressed = false;
 }

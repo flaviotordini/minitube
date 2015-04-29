@@ -27,7 +27,7 @@ $END_LICENSE */
 #endif
 #include "view.h"
 
-class YTRegion;
+struct YTRegion;
 
 class RegionsView : public QWidget, public View {
 

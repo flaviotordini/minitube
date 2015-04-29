@@ -202,7 +202,7 @@ void ChannelView::leaveEvent(QEvent *event) {
     // channelsModel->clearHover();
 }
 
-void ChannelView::itemEntered(const QModelIndex &index) {
+void ChannelView::itemEntered(const QModelIndex &) {
     // channelsModel->setHoveredRow(index.row());
 }
 
@@ -285,6 +285,7 @@ void ChannelView::toggleShowUpdated(bool enable) {
 }
 
 void ChannelView::updateQuery(bool transition) {
+    Q_UNUSED(transition);
     errorMessage.clear();
     if (!Database::exists()) return;
 

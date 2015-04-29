@@ -46,9 +46,9 @@ public slots:
     void updatePlayIcon();
 
 private:
-    int columnCount() { return 1; }
+    int columnCount(const QModelIndex &/*parent*/ = QModelIndex()) const { return 1; }
 
-    DownloadManager *downloadManager;
+    DownloadManager *const downloadManager;
     int hoveredRow;
     bool playIconHovered;
     bool playIconPressed;
