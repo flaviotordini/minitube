@@ -888,7 +888,6 @@ void MainWindow::goBack() {
 }
 
 void MainWindow::showWidget(QWidget* widget, bool transition) {
-    Q_UNUSED(transition);
     if (compactViewAct->isChecked())
         compactViewAct->toggle();
 
@@ -945,6 +944,8 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
     // if (transition && (oldWidget != mediaView || !mediaView->getVideoArea()->isVideoShown()))
     if (transition)
         Extra::fadeInWidget(oldWidget, widget);
+#else
+    Q_UNUSED(transition);
 #endif
 
     history->push(widget);
