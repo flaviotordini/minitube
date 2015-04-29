@@ -28,6 +28,7 @@ $END_LICENSE */
 #include <QtScript>
 #endif
 #include "compatibility/qurlqueryhelper.h"
+#include "compatibility/pathsservice.h"
 
 namespace The {
 NetworkAccess* http();
@@ -190,13 +191,7 @@ void YTChannel::loadThumbnail() {
 }
 
 const QString & YTChannel::getThumbnailDir() {
-    static const QString thumbDir =
-        #if QT_VERSION >= 0x050000
-            QStandardPaths::writableLocation(QStandardPaths::DataLocation)
-        #else
-            QDesktopServices::storageLocation(QDesktopServices::DataLocation)
-        #endif
-            + "/channels/";
+    static const QString thumbDir = Paths::getDataLocation() + "/channels/";
     return thumbDir;
 }
 
