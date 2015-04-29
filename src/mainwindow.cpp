@@ -888,7 +888,7 @@ void MainWindow::goBack() {
 }
 
 void MainWindow::showWidget(QWidget* widget, bool transition) {
-
+    Q_UNUSED(transition);
     if (compactViewAct->isChecked())
         compactViewAct->toggle();
 

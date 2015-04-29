@@ -40,7 +40,7 @@ void RefineSearchButton::paintBackground() const {
 
 }
 
-void RefineSearchButton::paintEvent(QPaintEvent *event) {
+void RefineSearchButton::paintEvent(QPaintEvent *) {
     // QPushButton::paintEvent(event);
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing, true);

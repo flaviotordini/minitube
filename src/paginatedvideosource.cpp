@@ -35,9 +35,9 @@ QHash<QString, QAction*>* globalActions();
 
 PaginatedVideoSource::PaginatedVideoSource(QObject *parent) : VideoSource(parent)
   , tokenTimestamp(0)
-  , reloadingToken(false)
   , currentMax(0)
   , currentStartIndex(0)
+  , reloadingToken(false)
   , asyncDetails(false) { }
 
 bool PaginatedVideoSource::hasMoreVideos() {

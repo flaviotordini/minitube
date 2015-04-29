@@ -64,12 +64,13 @@ MediaView* MediaView::instance() {
     return i;
 }
 
-MediaView::MediaView(QWidget *parent) : QWidget(parent),
-    stopped(false),
+MediaView::MediaView(QWidget *parent) : QWidget(parent)
+    , stopped(false)
+    , downloadItem(0)
     #ifdef APP_SNAPSHOT
-    snapshotSettings(0),
+    , snapshotSettings(0)
     #endif
-    downloadItem(0) { }
+    { }
 
 void MediaView::initialize() {
     QBoxLayout *layout = new QVBoxLayout(this);
@@ -213,6 +214,7 @@ void MediaView::search(SearchParams *searchParams) {
 }
 
 void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory, bool back) {
+    Q_UNUSED(back);
     stopped = false;
 
 #ifdef APP_ACTIVATION
@@ -900,6 +902,7 @@ void MediaView::startDownloading() {
 }
 
 void MediaView::sliderMoved(int value) {
+    Q_UNUSED(value);
 #ifdef APP_PHONON
 #ifndef APP_PHONON_SEEK
 
