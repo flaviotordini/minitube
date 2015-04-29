@@ -20,11 +20,12 @@ $END_LICENSE */
 
 #include "snapshotsettings.h"
 #include "mainwindow.h"
-#include <QDesktopServices>
 #ifdef APP_MAC
 #include "macutils.h"
 #endif
 #include "constants.h"
+#include "compatibility/pathsservice.h"
+#include <QDesktopServices>
 
 SnapshotSettings::SnapshotSettings(QWidget *parent) : QWidget(parent) {
     QBoxLayout *layout = new QHBoxLayout(this);
@@ -75,11 +76,7 @@ QString SnapshotSettings::getCurrentLocation() {
     QSettings settings;
     QString location = settings.value("snapshotsFolder").toString();
     if (location.isEmpty() || !QFile::exists(location)) {
-#if QT_VERSION >= 0x050000
-        location = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
-#else
-        location = QDesktopServices::storageLocation(QDesktopServices::PicturesLocation);
-#endif
+        location = Paths::getPicturesLocation();
 #ifdef APP_MAC_STORE
         location += "/MinitubeforYouTube";
 #endif
@@ -92,36 +89,21 @@ QString SnapshotSettings::displayPath(const QString &path) {
     return QDir(path).dirName();
 #endif
 
-#if QT_VERSION >= 0x050000
-    QString home = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
-#else
-    QString home = QDesktopServices::storageLocation(QDesktopServices::HomeLocation);
-#endif
+    const QString home = Paths::getHomeLocation();
     QString displayPath = path;
     displayPath = displayPath.remove(home + "/");
     return displayPath;
 }
 
 void SnapshotSettings::changeFolder() {
-    QString path;
+    const QString path = Paths::getHomeLocation();
 #ifdef APP_MAC
     QFileDialog* dialog = new QFileDialog(this);
     dialog->setFileMode(QFileDialog::Directory);
     dialog->setOptions(QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::ReadOnly);
-#if QT_VERSION >= 0x050000
-    path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
-#else
-    path = QDesktopServices::storageLocation(QDesktopServices::HomeLocation);
-#endif
     dialog->setDirectory(path);
     dialog->open(this, SLOT(folderChosen(const QString &)));
 #else
-
-#if QT_VERSION >= 0x050000
-    path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
-#else
-    path = QDesktopServices::storageLocation(QDesktopServices::HomeLocation);
-#endif
     QString folder = QFileDialog::getExistingDirectory(window(), QString(),
                                                        path,
                                                        QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::ReadOnly);

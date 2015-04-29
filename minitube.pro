@@ -102,7 +102,8 @@ HEADERS += src/video.h \
     src/ytchannel.h \
     src/yt3.h \
     src/paginatedvideosource.h \
-    src/compatibility/qurlqueryhelper.h
+    src/compatibility/qurlqueryhelper.h \
+    src/compatibility/pathsservice.h
 SOURCES += src/main.cpp \
     src/searchlineedit.cpp \
     src/urllineedit.cpp \
@@ -171,7 +172,8 @@ SOURCES += src/main.cpp \
     src/yt3listparser.cpp \
     src/ytchannel.cpp \
     src/yt3.cpp \
-    src/paginatedvideosource.cpp
+    src/paginatedvideosource.cpp \
+    src/compatibility/pathsservice.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/

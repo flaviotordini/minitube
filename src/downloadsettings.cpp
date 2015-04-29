@@ -21,6 +21,7 @@ $END_LICENSE */
 #include "downloadsettings.h"
 #include "downloadmanager.h"
 #include "mainwindow.h"
+#include "compatibility/pathsservice.h"
 
 DownloadSettings::DownloadSettings(QWidget *parent) : QWidget(parent) {
 
@@ -56,25 +57,15 @@ void DownloadSettings::paintEvent(QPaintEvent * /*event*/) {
 }
 
 void DownloadSettings::changeFolder() {
-    QString path;
+    const QString path = Paths::getHomeLocation();
 #ifdef APP_MAC
     QFileDialog* dialog = new QFileDialog(this);
     dialog->setFileMode(QFileDialog::Directory);
     dialog->setOptions(QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::ReadOnly);
-#if QT_VERSION >= 0x050000
-    path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
-#else
-    path = QDesktopServices::storageLocation(QDesktopServices::HomeLocation);
-#endif
     dialog->setDirectory(path);
     dialog->open(this, SLOT(folderChosen(const QString &)));
 #else
 
-#if QT_VERSION >= 0x050000
-    path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
-#else
-    path = QDesktopServices::storageLocation(QDesktopServices::HomeLocation);
-#endif
     QString folder = QFileDialog::getExistingDirectory(window(), tr("Choose the download location"),
                                                        path,
                                                        QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::ReadOnly);
@@ -95,12 +86,8 @@ void DownloadSettings::folderChosen(const QString &dir) {
 }
 
 void DownloadSettings::updateMessage() {
-    QString path = DownloadManager::instance()->currentDownloadFolder();
-#if QT_VERSION >= 0x050000
-    QString home = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
-#else
-    QString home = QDesktopServices::storageLocation(QDesktopServices::HomeLocation);
-#endif
+    const QString path = DownloadManager::instance()->currentDownloadFolder();
+    const QString home = Paths::getHomeLocation();
     QString displayPath = path;
     displayPath = displayPath.remove(home + "/");
     message->setText(

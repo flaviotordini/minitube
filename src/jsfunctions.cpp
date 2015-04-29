@@ -20,9 +20,9 @@ $END_LICENSE */
 
 #include "jsfunctions.h"
 #include "networkaccess.h"
-#include <QDesktopServices>
 #include "constants.h"
 #include "compatibility/qurlqueryhelper.h"
+#include "compatibility/pathsservice.h"
 
 namespace The {
 NetworkAccess* http();
@@ -65,13 +65,7 @@ QString JsFunctions::jsFilename() {
 }
 
 QString JsFunctions::jsPath() {
-    return QString(
-            #if QT_VERSION >= 0x050000
-                QStandardPaths::writableLocation(QStandardPaths::DataLocation)
-            #else
-                QDesktopServices::storageLocation(QDesktopServices::DataLocation)
-            #endif
-                + "/" + jsFilename());
+    return Paths::getDataLocation() + "/" + jsFilename();
 }
 
 void JsFunctions::loadJs() {

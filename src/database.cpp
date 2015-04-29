@@ -20,20 +20,19 @@ $END_LICENSE */
 
 #include "database.h"
 #include "constants.h"
-#include <QDesktopServices>
+#include "compatibility/pathsservice.h"
+#include <QtDebug>
 
 static const int DATABASE_VERSION = 1;
 static const QString dbName = QLatin1String(Constants::UNIX_NAME) + ".db";
 static Database *databaseInstance = 0;
 
 Database::Database() {
-#if QT_VERSION >= 0x050000
-    QString dataLocation = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
-#else
-    QString dataLocation = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-#endif
+    QString dataLocation = Paths::getDataLocation();
 
-    QDir().mkpath(dataLocation);
+    if (!QDir().mkpath(dataLocation)) {
+      qCritical() << "Failed to create directory " << dataLocation;
+    }
     dbLocation = dataLocation + "/" + dbName;
 
     QMutexLocker locker(&lock);
@@ -101,15 +100,12 @@ void Database::createDatabase() {
               + QString::number(DATABASE_VERSION) + ")", db);
 }
 
+// static
 QString Database::getDbLocation() {
-#if QT_VERSION >= 0x050000
-    static const QString dataLocation = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
-#else
-    static const QString dataLocation = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-#endif
-    return dataLocation + "/" + dbName;
+    return Paths::getDataLocation() + "/" + dbName;
 }
 
+// static
 bool Database::exists() {
     static bool fileExists = false;
     if (!fileExists)
@@ -117,6 +113,7 @@ bool Database::exists() {
     return fileExists;
 }
 
+// static
 Database& Database::instance() {
     static QMutex mutex;
     QMutexLocker locker(&mutex);
