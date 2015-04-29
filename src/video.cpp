@@ -195,16 +195,15 @@ void  Video::gotVideoInfo(QByteArray data) {
 }
 
 void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
-    QSettings settings;
-    QString definitionName = settings.value("definition", "360p").toString();
-    int definitionCode = VideoDefinition::getDefinitionCode(definitionName);
+    const QString definitionName = QSettings().value("definition", "360p").toString();
+    const VideoDefinition& definition = VideoDefinition::getDefinitionFor(definitionName);
 
     // qDebug() << "fmtUrlMap" << fmtUrlMap;
-    QStringList formatUrls = fmtUrlMap.split(',', QString::SkipEmptyParts);
+    const QStringList formatUrls = fmtUrlMap.split(',', QString::SkipEmptyParts);
     QHash<int, QString> urlMap;
     foreach(QString formatUrl, formatUrls) {
         // qDebug() << "formatUrl" << formatUrl;
-        QStringList urlParams = formatUrl.split('&', QString::SkipEmptyParts);
+        const QStringList urlParams = formatUrl.split('&', QString::SkipEmptyParts);
         // qDebug() << "urlParams" << urlParams;
 
         int format = -1;
@@ -263,37 +262,25 @@ void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
 
         // qWarning() << url;
 
-        if (format == definitionCode) {
+        if (format == definition.getCode()) {
             // qDebug() << "Found format" << definitionCode;
-            QUrl videoUrl = QUrl::fromEncoded(url.toUtf8(), QUrl::StrictMode);
-            m_streamUrl = videoUrl;
-            this->definitionCode = definitionCode;
-            emit gotStreamUrl(videoUrl);
-            loadingStreamUrl = false;
+            saveDefinitionForUrl(url, definition);
             return;
         }
 
         urlMap.insert(format, url);
     }
 
-    QList<int> definitionCodes = VideoDefinition::getDefinitionCodes();
-    int currentIndex = definitionCodes.indexOf(definitionCode);
-    int previousIndex = 0;
-    while (currentIndex >= 0) {
-        previousIndex = currentIndex - 1;
-        if (previousIndex < 0) previousIndex = 0;
-        int definitionCode = definitionCodes.at(previousIndex);
-        if (urlMap.contains(definitionCode)) {
+    const QList<VideoDefinition>& definitions = VideoDefinition::getDefinitions();
+    int previousIndex = std::max(definitions.indexOf(definition) - 1, 0);
+    for (; previousIndex >= 0; previousIndex--) {
+        const VideoDefinition& previousDefinition = definitions.at(previousIndex);
+        if (urlMap.contains(previousDefinition.getCode())) {
             // qDebug() << "Found format" << definitionCode;
-            QString url = urlMap.value(definitionCode);
-            QUrl videoUrl = QUrl::fromEncoded(url.toUtf8(), QUrl::StrictMode);
-            m_streamUrl = videoUrl;
-            this->definitionCode = definitionCode;
-            emit gotStreamUrl(videoUrl);
-            loadingStreamUrl = false;
+            saveDefinitionForUrl(urlMap.value(previousDefinition.getCode()),
+                                 previousDefinition);
             return;
         }
-        currentIndex--;
     }
 
     emit errorStreamUrl(tr("Cannot get video stream for %1").arg(m_webpage));
@@ -489,3 +476,12 @@ QString Video::formattedDuration() const {
     QString format = m_duration > 3600 ? "h:mm:ss" : "m:ss";
     return QTime().addSecs(m_duration).toString(format);
 }
+
+void Video::saveDefinitionForUrl(const QString& url, const VideoDefinition& definition) {
+    const QUrl videoUrl = QUrl::fromEncoded(url.toUtf8(), QUrl::StrictMode);
+    m_streamUrl = videoUrl;
+    definitionCode = definition.getCode();
+    emit gotStreamUrl(videoUrl);
+    loadingStreamUrl = false;
+}
+

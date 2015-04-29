@@ -859,7 +859,8 @@ void MainWindow::readSettings() {
     } else {
         setGeometry(100, 100, 1000, 500);
     }
-    setDefinitionMode(settings.value("definition", VideoDefinition::getDefinitionNames().first()).toString());
+    const VideoDefinition& firstDefinition = VideoDefinition::getDefinitions().first();
+    setDefinitionMode(settings.value("definition", firstDefinition.getName()).toString());
     The::globalActions()->value("manualplay")->setChecked(settings.value("manualplay", false).toBool());
 }
 
@@ -1470,16 +1471,22 @@ void MainWindow::setDefinitionMode(QString definitionName) {
 }
 
 void MainWindow::toggleDefinitionMode() {
-    QSettings settings;
-    QString currentDefinition = settings.value("definition").toString();
-    QStringList definitionNames = VideoDefinition::getDefinitionNames();
-    int currentIndex = definitionNames.indexOf(currentDefinition);
-    int nextIndex = 0;
-    if (currentIndex != definitionNames.size() - 1) {
-        nextIndex = currentIndex + 1;
+    const QString definitionName = QSettings().value("definition").toString();
+    const QList<VideoDefinition>& definitions = VideoDefinition::getDefinitions();
+    const VideoDefinition& currentDefinition = VideoDefinition::getDefinitionFor(definitionName);
+    if (currentDefinition.isEmpty()) {
+        setDefinitionMode(definitions.first().getName());
+        return;
     }
-    QString nextDefinition = definitionNames.at(nextIndex);
-    setDefinitionMode(nextDefinition);
+
+    int index = definitions.indexOf(currentDefinition);
+    if (index != definitions.size() - 1) {
+        index++;
+    } else {
+        index = 0;
+    }
+    // TODO: pass a VideoDefinition instead of QString.
+    setDefinitionMode(definitions.at(index).getName());
 }
 
 void MainWindow::showFullscreenToolbar(bool show) {

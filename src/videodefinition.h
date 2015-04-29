@@ -26,12 +26,26 @@ $END_LICENSE */
 class VideoDefinition {
 
 public:
-    static QStringList getDefinitionNames();
-    static QList<int> getDefinitionCodes();
-    static QHash<QString, int> getDefinitions();
-    static int getDefinitionCode(QString name);
-    static QString getDefinitionName(int code);
+    static const QList<VideoDefinition>& getDefinitions();
+    static const VideoDefinition& getDefinitionFor(const QString& name);
+    static const VideoDefinition& getDefinitionFor(int code);
 
+    VideoDefinition(const QString& name, int code);
+    VideoDefinition(const VideoDefinition& other);
+
+    const QString& getName() const { return m_name; }
+    int getCode() const { return m_code; }
+    bool isEmpty() const;
+
+private:
+    VideoDefinition& operator=(const VideoDefinition&);
+
+    const QString m_name;
+    const int m_code;
 };
+
+inline bool operator==(const VideoDefinition& lhs, const VideoDefinition& rhs) {
+    return lhs.getCode() == rhs.getCode() && lhs.getName() == rhs.getName();
+}
 
 #endif // VIDEODEFINITION_H

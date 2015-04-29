@@ -20,30 +20,54 @@ $END_LICENSE */
 
 #include "videodefinition.h"
 
-QStringList VideoDefinition::getDefinitionNames() {
-    static QStringList definitionNames = QStringList() << "360p" << "720p" << "1080p";
-    return definitionNames;
-}
+namespace {
+static const int kEmptyDefinitionCode = -1;
 
-QList<int> VideoDefinition::getDefinitionCodes() {
-    static QList<int> definitionCodes = QList<int>() << 18 << 22 << 37;
-    return definitionCodes;
-}
+static const VideoDefinition kEmptyDefinition(QString(), kEmptyDefinitionCode);
 
-QHash<QString, int> VideoDefinition::getDefinitions() {
-    static QHash<QString, int> definitions;
-    if (definitions.isEmpty()) {
-        definitions.insert("360p", 18);
-        definitions.insert("720p", 22);
-        definitions.insert("1080p", 37);
+template <typename T, T (VideoDefinition::*Getter)() const>
+const VideoDefinition& getDefinitionForImpl(T matchValue) {
+    const QList<VideoDefinition>& definitions = VideoDefinition::getDefinitions();
+    const int size = definitions.size();
+    for (int ii = 0; ii < size; ++ii) {
+        const VideoDefinition& def = definitions.at(ii);
+        if ((def.*Getter)() == matchValue)
+            return def;
     }
+
+    return kEmptyDefinition;
+}
+}
+
+// static
+const QList<VideoDefinition>& VideoDefinition::getDefinitions() {
+    static QList<VideoDefinition> definitions = QList<VideoDefinition>()
+        << VideoDefinition(QLatin1String("360p"), 18)
+        << VideoDefinition(QLatin1String("720p"), 22)
+        << VideoDefinition(QLatin1String("1080p"), 37);
     return definitions;
 }
 
-int VideoDefinition::getDefinitionCode(QString name) {
-    return VideoDefinition::getDefinitions().value(name);
+// static
+const VideoDefinition& VideoDefinition::getDefinitionFor(const QString& name) {
+    return getDefinitionForImpl<const QString&, &VideoDefinition::getName>(name);
 }
 
-QString VideoDefinition::getDefinitionName(int code) {
-    return getDefinitions().key(code);
+// static
+const VideoDefinition& VideoDefinition::getDefinitionFor(int code) {
+    return getDefinitionForImpl<int, &VideoDefinition::getCode>(code);
+}
+
+VideoDefinition::VideoDefinition(const QString& name, int code) :
+    m_name(name),
+    m_code(code) {
+}
+
+VideoDefinition::VideoDefinition(const VideoDefinition& other) :
+    m_name(other.m_name),
+    m_code(other.m_code) {
+}
+
+bool VideoDefinition::isEmpty() const {
+    return m_code == kEmptyDefinitionCode && m_name.isEmpty();
 }
