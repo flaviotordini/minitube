@@ -22,6 +22,7 @@ $END_LICENSE */
 #include "ytchannel.h"
 #include "ytsearch.h"
 #include "searchparams.h"
+#include "channelcontroller.h"
 #include "channelmodel.h"
 #include "channelitemdelegate.h"
 #include "database.h"
@@ -35,13 +36,9 @@ $END_LICENSE */
 #include "extra.h"
 #endif
 
-static const char *sortByKey = "subscriptionsSortBy";
-static const char *showUpdatedKey = "subscriptionsShowUpdated";
-
-ChannelView::ChannelView(QWidget *parent) : QListView(parent),
-    showUpdated(false),
-    sortBy(SortByName) {
-
+ChannelView::ChannelView(QWidget *parent) : QListView(parent) {
+    channelsModel = new ChannelModel(this);
+    channelsController = new ChannelController(channelsModel, this);
     setItemDelegate(new ChannelItemDelegate(this));
     setSelectionMode(QAbstractItemView::NoSelection);
 
@@ -77,7 +74,6 @@ ChannelView::ChannelView(QWidget *parent) : QListView(parent),
     connect(this, SIGNAL(entered(const QModelIndex &)),
             SLOT(itemEntered(const QModelIndex &)));
 
-    channelsModel = new ChannelModel(this);
     setModel(channelsModel);
     connect(this, SIGNAL(viewportEntered()),
             channelsModel, SLOT(clearHover()));
@@ -93,13 +89,10 @@ ChannelView::ChannelView(QWidget *parent) : QListView(parent),
 }
 
 void ChannelView::setupActions() {
-    QSettings settings;
-
-    sortBy = static_cast<SortBy>(settings.value(sortByKey, SortByName).toInt());
-
     QMenu *sortMenu = new QMenu(this);
     QActionGroup *sortGroup = new QActionGroup(this);
 
+    const SortBy sortBy = static_cast<SortBy>(channelsController->getSortingOrder());
     QAction *sortByNameAction = new QAction(tr("Name"), this);
     sortByNameAction->setActionGroup(sortGroup);
     sortByNameAction->setCheckable(true);
@@ -154,7 +147,7 @@ void ChannelView::setupActions() {
     connect(markAsWatchedAction, SIGNAL(triggered()), SLOT(markAllAsWatched()));
     statusActions << markAsWatchedAction;
 
-    showUpdated = settings.value(showUpdatedKey, false).toBool();
+    const bool showUpdated = channelsController->shouldShowUpdated();
     QAction *showUpdatedAction = new QAction(
                 IconUtils::icon("show-updated"), tr("Show Updated"), this);
     showUpdatedAction->setCheckable(true);
@@ -170,7 +163,8 @@ void ChannelView::setupActions() {
 }
 
 void ChannelView::appear() {
-    updateQuery();
+    channelsController->updateModelData();
+    updateView();
     foreach (QAction* action, statusActions)
         MainWindow::instance()->showActionInStatusBar(action, true);
     setFocus();
@@ -265,9 +259,9 @@ void ChannelView::showContextMenu(const QPoint &point) {
 void ChannelView::paintEvent(QPaintEvent *event) {
     if (model()->rowCount() < 3) {
         QString msg;
-        if (!errorMessage.isEmpty())
-            msg = errorMessage;
-        else if (showUpdated)
+        if (channelsModel->lastError().isValid())
+            msg = channelsModel->lastError().text();
+        else if (channelsController->shouldShowUpdated())
             msg = tr("There are no updated subscriptions at this time.");
         else
             msg = tr("You have no subscriptions. "
@@ -277,67 +271,34 @@ void ChannelView::paintEvent(QPaintEvent *event) {
     PainterUtils::topShadow(viewport());
 }
 
-void ChannelView::toggleShowUpdated(bool enable) {
-    showUpdated = enable;
-    updateQuery(true);
-    QSettings settings;
-    settings.setValue(showUpdatedKey, showUpdated);
-}
-
-void ChannelView::updateQuery(bool transition) {
-    Q_UNUSED(transition);
-    errorMessage.clear();
-    if (!Database::exists()) return;
-
-    QString sql = "select user_id from subscriptions";
-    if (showUpdated)
-        sql += " where notify_count>0";
-
-    switch (sortBy) {
-    case SortByUpdated:
-        sql += " order by updated desc";
-        break;
-    case SortByAdded:
-        sql += " order by added desc";
-        break;
-    case SortByLastWatched:
-        sql += " order by watched desc";
-        break;
-    case SortByMostWatched:
-        sql += " order by views desc";
-        break;
-    default:
-        sql += " order by name collate nocase";
-        break;
-    }
-
+void ChannelView::updateView(bool transition) {
 #ifdef APP_EXTRA
     if (transition)
         Extra::fadeInWidget(this, this);
+#else
+    Q_UNUSED(transition);
 #endif
-
-    channelsModel->setQuery(sql, Database::instance().getConnection());
-    if (channelsModel->lastError().isValid()) {
-        qWarning() << channelsModel->lastError().text();
-        errorMessage = channelsModel->lastError().text();
-    }
-}
-
-void ChannelView::setSortBy(SortBy sortBy) {
-    this->sortBy = sortBy;
-    updateQuery(true);
-    QSettings settings;
-    settings.setValue(sortByKey, (int)sortBy);
 }
 
 void ChannelView::markAllAsWatched() {
     ChannelAggregator::instance()->markAllAsWatched();
-    updateQuery();
+    updateView();
     markAsWatchedAction->setEnabled(false);
+    channelsController->markAllAsWatched();
 }
 
 void ChannelView::unwatchedCountChanged(int count) {
     markAsWatchedAction->setEnabled(count > 0);
-    channelsModel->updateUnwatched();
-    updateQuery();
+    updateView();
+    channelsController->unwatchedCountChanged(count);
+}
+
+void ChannelView::setSortBy(SortBy sortBy) {
+    updateView(true);
+    channelsController->setSortBy(static_cast<ChannelController::SortBy>(sortBy));
+}
+
+void ChannelView::toggleShowUpdated(bool enable) {
+    updateView(true);
+    channelsController->toggleShowUpdated(enable);
 }

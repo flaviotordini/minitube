@@ -27,8 +27,9 @@ $END_LICENSE */
 #endif
 #include "view.h"
 
-class VideoSource;
+class ChannelController;
 class ChannelModel;
+class VideoSource;
 
 class ChannelView : public QListView, public View {
 
@@ -72,18 +73,15 @@ private slots:
     void setSortByMostWatched() { setSortBy(SortByMostWatched); }
     void markAllAsWatched();
     void unwatchedCountChanged(int count);
-    void updateQuery(bool transition = false);
+    void updateView(bool transition = false);
 
 private:
     void setupActions();
 
     ChannelModel *channelsModel;
+    ChannelController *channelsController;
     QList<QAction*> statusActions;
-    bool showUpdated;
-    SortBy sortBy;
-    QString errorMessage;
     QAction *markAsWatchedAction;
-
 };
 
 #endif // CHANNELSVIEW_H
