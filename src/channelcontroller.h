@@ -24,13 +24,15 @@ $END_LICENSE */
 #include <QtCore>
 
 class ChannelModel;
+class VideoSource;
+class YTChannel;
 
 class ChannelController : public QObject {
 
     Q_OBJECT
 
 public:
-    explicit ChannelController(ChannelModel *model, QObject *parent = NULL);
+    explicit ChannelController(QObject *parent = NULL);
 
     enum SortBy {
         SortByName = 0,
@@ -42,12 +44,18 @@ public:
 
     SortBy getSortingOrder() const { return sortBy; }
     bool shouldShowUpdated() const { return showUpdated; }
+    ChannelModel *model() const { return channelModel; }
 
     void setSortBy(SortBy sortBy);
     void toggleShowUpdated(bool enable);
     void markAllAsWatched();
     void unwatchedCountChanged(int count);
     void updateModelData();
+    void activateChannel(YTChannel *channel);
+    void activateVideo(const QString &title, bool unwatched);
+
+signals:
+    void activated(VideoSource *videoSource);
 
 private:
     ChannelModel *channelModel;

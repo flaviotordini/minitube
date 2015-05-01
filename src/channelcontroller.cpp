@@ -21,7 +21,11 @@ $END_LICENSE */
 #include "channelcontroller.h"
 #include "channelaggregator.h"
 #include "channelmodel.h"
+#include "aggregatevideosource.h"
 #include "database.h"
+#include "searchparams.h"
+#include "ytchannel.h"
+#include "ytsearch.h"
 
 #include <QtDebug>
 
@@ -30,14 +34,33 @@ static const char *sortByKey = "subscriptionsSortBy";
 static const char *showUpdatedKey = "subscriptionsShowUpdated";
 }  // namespace
 
-ChannelController::ChannelController(ChannelModel *model, QObject *parent)
+ChannelController::ChannelController(QObject *parent)
     : QObject(parent),
-    channelModel(model),
+    channelModel(NULL),
     sortBy(SortByName),
     showUpdated(false) {
     QSettings settings;
     sortBy = static_cast<SortBy>(settings.value(sortByKey, SortByName).toInt());
     showUpdated = settings.value(showUpdatedKey, false).toBool();
+    channelModel = new ChannelModel(this);
+}
+
+void ChannelController::activateChannel(YTChannel *channel) {
+    SearchParams *params = new SearchParams();
+    params->setChannelId(channel->getChannelId());
+    params->setSortBy(SearchParams::SortByNewest);
+    params->setTransient(true);
+    YTSearch *videoSource = new YTSearch(params, this);
+    videoSource->setAsyncDetails(true);
+    emit activated(videoSource);
+    channel->updateWatched();
+}
+
+void ChannelController::activateVideo(const QString &title, bool unwatched) {
+    AggregateVideoSource * const videoSource = new AggregateVideoSource(this);
+    videoSource->setName(title);
+    videoSource->setUnwatched(unwatched);
+    emit activated(videoSource);
 }
 
 void ChannelController::setSortBy(SortBy sortBy) {
@@ -90,5 +113,5 @@ void ChannelController::markAllAsWatched() {
 }
 
 void ChannelController::unwatchedCountChanged(int) {
-    //ChannelModel->updateUnwatched();
+    //channelModel->updateUnwatched();
 }

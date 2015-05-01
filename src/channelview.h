@@ -29,17 +29,13 @@ $END_LICENSE */
 
 class ChannelController;
 class ChannelModel;
-class VideoSource;
 
 class ChannelView : public QListView, public View {
 
     Q_OBJECT
 
 public:
-    ChannelView(QWidget *parent = 0);
-    
-signals:
-    void activated(VideoSource *videoSource);
+    ChannelView(ChannelController *controller, QWidget *parent = 0);
 
 public slots:
     void appear();
@@ -73,10 +69,11 @@ private slots:
     void setSortByMostWatched() { setSortBy(SortByMostWatched); }
     void markAllAsWatched();
     void unwatchedCountChanged(int count);
-    void updateView(bool transition = false);
 
 private:
+    void updateView(bool transition = false);
     void setupActions();
+    QAction *createAction(const QString &text, QActionGroup *sortGroup, bool isChecked, const char *slot);
 
     ChannelModel *channelsModel;
     ChannelController *channelsController;

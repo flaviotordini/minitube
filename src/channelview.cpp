@@ -19,16 +19,11 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "channelview.h"
-#include "ytchannel.h"
-#include "ytsearch.h"
-#include "searchparams.h"
 #include "channelcontroller.h"
 #include "channelmodel.h"
 #include "channelitemdelegate.h"
-#include "database.h"
-#include "ytsearch.h"
+#include "ytchannel.h"
 #include "channelaggregator.h"
-#include "aggregatevideosource.h"
 #include "painterutils.h"
 #include "mainwindow.h"
 #include "iconutils.h"
@@ -36,9 +31,10 @@ $END_LICENSE */
 #include "extra.h"
 #endif
 
-ChannelView::ChannelView(QWidget *parent) : QListView(parent) {
-    channelsModel = new ChannelModel(this);
-    channelsController = new ChannelController(channelsModel, this);
+ChannelView::ChannelView(ChannelController *controller, QWidget *parent)
+    : QListView(parent)
+    , channelsController(controller) {
+    channelsModel = channelsController->model();
     setItemDelegate(new ChannelItemDelegate(this));
     setSelectionMode(QAbstractItemView::NoSelection);
 
@@ -93,39 +89,24 @@ void ChannelView::setupActions() {
     QActionGroup *sortGroup = new QActionGroup(this);
 
     const SortBy sortBy = static_cast<SortBy>(channelsController->getSortingOrder());
-    QAction *sortByNameAction = new QAction(tr("Name"), this);
-    sortByNameAction->setActionGroup(sortGroup);
-    sortByNameAction->setCheckable(true);
-    if (sortBy == SortByName) sortByNameAction->setChecked(true);
-    connect(sortByNameAction, SIGNAL(triggered()), SLOT(setSortByName()));
+    QAction *sortByNameAction = createAction(
+        tr("Name"), sortGroup, sortBy == SortByName, SLOT(setSortByName()));
     sortMenu->addAction(sortByNameAction);
 
-    QAction *sortByUpdatedAction = new QAction(tr("Last Updated"), this);
-    sortByUpdatedAction->setActionGroup(sortGroup);
-    sortByUpdatedAction->setCheckable(true);
-    if (sortBy == SortByUpdated) sortByUpdatedAction->setChecked(true);
-    connect(sortByUpdatedAction, SIGNAL(triggered()), SLOT(setSortByUpdated()));
+    QAction *sortByUpdatedAction = createAction(
+        tr("Last Updated"), sortGroup, sortBy == SortByUpdated, SLOT(setSortByUpdated()));
     sortMenu->addAction(sortByUpdatedAction);
 
-    QAction *sortByAddedAction = new QAction(tr("Last Added"), this);
-    sortByAddedAction->setActionGroup(sortGroup);
-    sortByAddedAction->setCheckable(true);
-    if (sortBy == SortByAdded) sortByAddedAction->setChecked(true);
-    connect(sortByAddedAction, SIGNAL(triggered()), SLOT(setSortByAdded()));
+    QAction *sortByAddedAction = createAction(
+        tr("Last Added"), sortGroup, sortBy == SortByAdded, SLOT(setSortByAdded()));
     sortMenu->addAction(sortByAddedAction);
 
-    QAction *sortByLastWatched = new QAction(tr("Last Watched"), this);
-    sortByLastWatched->setActionGroup(sortGroup);
-    sortByLastWatched->setCheckable(true);
-    if (sortBy == SortByLastWatched) sortByLastWatched->setChecked(true);
-    connect(sortByLastWatched, SIGNAL(triggered()), SLOT(setSortByLastWatched()));
+    QAction *sortByLastWatched = createAction(
+        tr("Last Watched"), sortGroup, sortBy == SortByLastWatched, SLOT(setSortByLastWatched()));
     sortMenu->addAction(sortByLastWatched);
 
-    QAction *sortByMostWatched = new QAction(tr("Most Watched"), this);
-    sortByMostWatched->setActionGroup(sortGroup);
-    sortByMostWatched->setCheckable(true);
-    if (sortBy == SortByMostWatched) sortByMostWatched->setChecked(true);
-    connect(sortByMostWatched, SIGNAL(triggered()), SLOT(setSortByMostWatched()));
+    QAction *sortByMostWatched = createAction(
+        tr("Most Watched"), sortGroup, sortBy == SortByMostWatched, SLOT(setSortByMostWatched()));
     sortMenu->addAction(sortByMostWatched);
 
     QToolButton *sortButton = new QToolButton(this);
@@ -160,6 +141,15 @@ void ChannelView::setupActions() {
         window()->addAction(action);
         IconUtils::setupAction(action);
     }
+}
+
+QAction *ChannelView::createAction(const QString &text, QActionGroup *sortGroup, bool isChecked, const char *slot) {
+    QAction *action = new QAction(text, this);
+    action->setActionGroup(sortGroup);
+    action->setCheckable(true);
+    action->setChecked(isChecked);
+    connect(action, SIGNAL(triggered()), slot);
+    return action;
 }
 
 void ChannelView::appear() {
@@ -203,24 +193,12 @@ void ChannelView::itemEntered(const QModelIndex &) {
 void ChannelView::itemActivated(const QModelIndex &index) {
     ChannelModel::ItemTypes itemType = channelsModel->typeForIndex(index);
     if (itemType == ChannelModel::ItemChannel) {
-        YTChannel *channel = channelsModel->channelForIndex(index);
-        SearchParams *params = new SearchParams();
-        params->setChannelId(channel->getChannelId());
-        params->setSortBy(SearchParams::SortByNewest);
-        params->setTransient(true);
-        YTSearch *videoSource = new YTSearch(params, this);
-        videoSource->setAsyncDetails(true);
-        emit activated(videoSource);
-        channel->updateWatched();
+        YTChannel *const channel = channelsModel->channelForIndex(index);
+        channelsController->activateChannel(channel);
     } else if (itemType == ChannelModel::ItemAggregate) {
-        AggregateVideoSource *videoSource = new AggregateVideoSource(this);
-        videoSource->setName(tr("All Videos"));
-        emit activated(videoSource);
+        channelsController->activateVideo(tr("All Videos"), false);
     } else if (itemType == ChannelModel::ItemUnwatched) {
-        AggregateVideoSource *videoSource = new AggregateVideoSource(this);
-        videoSource->setName(tr("Unwatched Videos"));
-        videoSource->setUnwatched(true);
-        emit activated(videoSource);
+        channelsController->activateVideo(tr("Unwatched Videos"), true);
     }
 }
 

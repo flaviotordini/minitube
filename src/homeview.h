@@ -31,6 +31,7 @@ class SegmentedControl;
 class SearchView;
 class StandardFeedsView;
 class ChannelView;
+class ChannelController;
 
 class HomeView : public QWidget, public View  {
 
@@ -46,8 +47,8 @@ public:
         return metadata;
     }
     void showWidget(QWidget *widget);
-    SearchView* getSearchView() { return searchView; }
-    StandardFeedsView* getStandardFeedsView() { return standardFeedsView; }
+    SearchView* getSearchView() const { return searchView; }
+    StandardFeedsView* getStandardFeedsView() const { return standardFeedsView; }
 
 private slots:
     void showSearch();
@@ -63,6 +64,7 @@ private:
     SearchView *searchView;
     StandardFeedsView *standardFeedsView;
     ChannelView* channelsView;
+    ChannelController *channelsController;
 
     QAction *subscriptionsAction;
 
