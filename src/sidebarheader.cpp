@@ -22,7 +22,6 @@ $END_LICENSE */
 #include "iconutils.h"
 #include "mediaview.h"
 #include "videosource.h"
-#include "fontutils.h"
 #include "iconutils.h"
 
 SidebarHeader::SidebarHeader(QWidget *parent) : QToolBar(parent) { }
@@ -121,7 +120,6 @@ void SidebarHeader::paintEvent(QPaintEvent *event) {
     QToolBar::paintEvent(event);
     if (title.isEmpty()) return;
     QPainter p(this);
-    p.setFont(FontUtils::smallBold());
     p.setPen(Qt::white);
 
     const QRect r = rect();
