@@ -19,7 +19,6 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "segmentedcontrol.h"
-#include "fontutils.h"
 #include "mainwindow.h"
 #include "painterutils.h"
 
@@ -175,8 +174,7 @@ QAction *SegmentedControl::hoveredAction(const QPoint& pos) const {
 }
 
 int SegmentedControl::calculateButtonWidth (void) const {
-    QFont smallerBoldFont = FontUtils::smallBold();
-    QFontMetrics fontMetrics(smallerBoldFont);
+    QFontMetrics fontMetrics(font());
     int tmpItemWidth, itemWidth = 0;
     foreach (QAction *action, d->actionList) {
         tmpItemWidth = fontMetrics.width(action->text());
@@ -251,8 +249,6 @@ void SegmentedControl::paintButton(QPainter *painter, const QRect& rect, const Q
 #else
     painter->drawRect(0, 0, width, height - 1);
 #endif
-
-    painter->setFont(FontUtils::smallBold());
 
     const QString text = action->text();
 
