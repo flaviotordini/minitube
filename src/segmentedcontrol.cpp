@@ -149,7 +149,7 @@ void SegmentedControl::mouseReleaseEvent(QMouseEvent *event) {
 void SegmentedControl::leaveEvent(QEvent *event) {
     QWidget::leaveEvent(event);
     // status tip
-    // static_cast<QMainWindow*>(window())->statusBar()->clearMessage();
+    MainWindow::instance()->statusBar()->clearMessage();
     d->hoveredAction = 0;
     d->pressedAction = 0;
     update();
