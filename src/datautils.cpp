@@ -50,7 +50,9 @@ uint DataUtils::parseIsoPeriod(const QString &isoPeriod) {
 
     uint days = 0, hours = 0, minutes = 0, seconds = 0;
 
-    const char *ptr = isoPeriod.toStdString().c_str();
+    QByteArray ba = isoPeriod.toLocal8Bit();
+    const char *ptr = ba.data();
+    
     while (*ptr) {
         if(*ptr == 'P' || *ptr == 'T') {
             ptr++;
