@@ -1461,7 +1461,7 @@ void MainWindow::volumeMutedChanged(bool muted) {
 #endif
 }
 
-void MainWindow::setDefinitionMode(QString definitionName) {
+void MainWindow::setDefinitionMode(const QString &definitionName) {
     QAction *definitionAct = The::globalActions()->value("definition");
     definitionAct->setText(definitionName);
     definitionAct->setStatusTip(tr("Maximum video definition set to %1").arg(definitionAct->text())
@@ -1520,7 +1520,7 @@ void MainWindow::setManualPlay(bool enabled) {
     showActionInStatusBar(The::globalActions()->value("manualplay"), enabled);
 }
 
-void MainWindow::updateDownloadMessage(QString message) {
+void MainWindow::updateDownloadMessage(const QString &message) {
     The::globalActions()->value("downloads")->setText(message);
 }
 
@@ -1609,7 +1609,7 @@ void MainWindow::checkForUpdate() {
     settings.setValue(updateCheckKey, unixTime);
 }
 
-void MainWindow::gotNewVersion(QString version) {
+void MainWindow::gotNewVersion(const QString &version) {
     if (updateChecker) {
         delete updateChecker;
         updateChecker = 0;
@@ -1629,7 +1629,7 @@ void MainWindow::gotNewVersion(QString version) {
 #endif
 }
 
-void MainWindow::simpleUpdateDialog(QString version) {
+void MainWindow::simpleUpdateDialog(const QString &version) {
     QMessageBox msgBox(this);
     msgBox.setIconPixmap(
                 QPixmap(":/images/app.png")
@@ -1718,7 +1718,7 @@ void MainWindow::printHelp() {
     std::cout << msg.toLocal8Bit().data();
 }
 
-void MainWindow::showMessage(QString message) {
+void MainWindow::showMessage(const QString &message) {
     statusBar()->showMessage(message, 60000);
 }
 

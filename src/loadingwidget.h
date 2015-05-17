@@ -34,7 +34,7 @@ class LoadingWidget : public QWidget {
 public:
     LoadingWidget(QWidget *parent);
     void setVideo(Video *video);
-    void setError(QString message);
+    void setError(const QString &message);
     void clear();
 
 public slots:

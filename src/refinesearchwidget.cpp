@@ -57,7 +57,7 @@ void RefineSearchWidget::setup() {
             << tr("View Count")
             << tr("Rating");
     int i = 0;
-    foreach (QString actionName, sortOptions) {
+    foreach (const QString &actionName, sortOptions) {
         QAction *action = new QAction(actionName, sortBar);
         action->setCheckable(true);
         action->setFont(FontUtils::medium());
@@ -78,7 +78,7 @@ void RefineSearchWidget::setup() {
             << tr("7 Days")
             << tr("30 Days");
     i = 0;
-    foreach (QString actionName, timeSpans) {
+    foreach (const QString &actionName, timeSpans) {
         QAction *action = new QAction(actionName, timeBar);
         action->setCheckable(true);
         action->setFont(FontUtils::medium());
@@ -104,7 +104,7 @@ void RefineSearchWidget::setup() {
             << tr("Between 4 and 20 minutes")
             << tr("Longer than 20 minutes");
     i = 0;
-    foreach (QString actionName, lengthOptions) {
+    foreach (const QString &actionName, lengthOptions) {
         QAction *action = new QAction(actionName, timeBar);
         action->setStatusTip(tips.at(i));
         action->setCheckable(true);
@@ -127,7 +127,7 @@ void RefineSearchWidget::setup() {
             << ""
             << tr("720p or higher");
     i = 0;
-    foreach (QString actionName, qualityOptions) {
+    foreach (const QString &actionName, qualityOptions) {
         QAction *action = new QAction(actionName, timeBar);
         action->setStatusTip(tips.at(i));
         action->setCheckable(true);
@@ -151,7 +151,7 @@ void RefineSearchWidget::setup() {
     layout->addWidget(doneButton, 0, Qt::AlignLeft);
 }
 
-void RefineSearchWidget::setupLabel(QString text, QBoxLayout *layout, QString paramName) {
+void RefineSearchWidget::setupLabel(const QString &text, QBoxLayout *layout, const QString &paramName) {
     QBoxLayout* hLayout = new QHBoxLayout();
     hLayout->setSpacing(8);
     hLayout->setMargin(0);
@@ -181,7 +181,7 @@ void RefineSearchWidget::setupLabel(QString text, QBoxLayout *layout, QString pa
     layout->addLayout(hLayout);
 }
 
-QToolBar* RefineSearchWidget::setupBar(QString paramName) {
+QToolBar* RefineSearchWidget::setupBar(const QString &paramName) {
     QToolBar* bar = new QToolBar(this);
     bar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     // bar->setProperty("segmented", true);

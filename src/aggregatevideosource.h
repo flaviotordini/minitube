@@ -35,7 +35,7 @@ public:
     virtual void abort();
     virtual const QStringList & getSuggestions();
     QString getName() { return name; }
-    void setName(QString name) { this->name = name; }
+    void setName(const QString &value) { name = value; }
     void setUnwatched(bool enable) { unwatched = enable; }
 
 private:

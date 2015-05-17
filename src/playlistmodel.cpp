@@ -232,7 +232,7 @@ void PlaylistModel::searchFinished(int total) {
         handleFirstVideo(videos.first());
 }
 
-void PlaylistModel::searchError(QString message) {
+void PlaylistModel::searchError(const QString &message) {
     errorMessage = message;
     // update the message item
     emit dataChanged( createIndex( maxItems, 0 ), createIndex( maxItems, columnCount() - 1 ) );
@@ -340,7 +340,7 @@ bool PlaylistModel::removeRows(int position, int rows, const QModelIndex & /*par
 void PlaylistModel::removeIndexes(QModelIndexList &indexes) {
     QList<Video*> originalList(videos);
     QList<Video*> delitems;
-    foreach (QModelIndex index, indexes) {
+    foreach (const QModelIndex &index, indexes) {
         if (index.row() >= originalList.size()) continue;
         Video* video = originalList.at(index.row());
         int idx = videos.indexOf(video);
@@ -464,7 +464,7 @@ QModelIndex PlaylistModel::indexForVideo(Video* video) {
 void PlaylistModel::move(QModelIndexList &indexes, bool up) {
     QList<Video*> movedVideos;
 
-    foreach (QModelIndex index, indexes) {
+    foreach (const QModelIndex &index, indexes) {
         int row = index.row();
         if (row >= videos.size()) continue;
         // qDebug() << "index row" << row;

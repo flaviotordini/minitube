@@ -39,7 +39,7 @@ public:
     QString getName();
     QList<QAction*> getActions();
     SearchParams* getSearchParams() const { return searchParams; }
-    static QString videoIdFromUrl(QString url);
+    static QString videoIdFromUrl(const QString &url);
 
     bool operator==(const YTSearch &other) const {
         return searchParams == other.getSearchParams();

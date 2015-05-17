@@ -39,11 +39,11 @@ protected:
     void paintEvent(QPaintEvent *event);
 
 private slots:
-    void updateTitle(QString title);
+    void updateTitle(const QString &title);
 
 private:
     void setup();
-    void setTitle(QString title);
+    void setTitle(const QString &title);
 
     QAction *backAction;
     QAction * forwardAction;

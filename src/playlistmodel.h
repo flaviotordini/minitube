@@ -90,7 +90,7 @@ public slots:
     void searchNeeded();
     void addVideos(QList<Video*> newVideos);
     void searchFinished(int total);
-    void searchError(QString message);
+    void searchError(const QString &message);
     void updateVideoSender();
     void emitDataChanged();
 

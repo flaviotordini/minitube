@@ -113,7 +113,7 @@ private slots:
     void activeRowChanged(int);
     void selectVideos(QList<Video*> videos);
     void gotStreamUrl(QUrl streamUrl);
-    void handleError(QString message);
+    void handleError(const QString &message);
     // phonon
 #ifdef APP_PHONON
     void stateChanged(Phonon::State newState, Phonon::State oldState);
@@ -137,7 +137,7 @@ private:
     MediaView(QWidget *parent = 0);
     SearchParams* getSearchParams();
 
-    static QRegExp wordRE(QString s);
+    static QRegExp wordRE(const QString &s);
 
     QSplitter *splitter;
     SidebarWidget *sidebar;

@@ -29,7 +29,7 @@ $END_LICENSE */
 class PainterUtils {
 
 public:
-    static void centeredMessage(QString message, QWidget* widget);
+    static void centeredMessage(const QString &message, QWidget* widget);
     static void topShadow(QWidget *widget);
     static void paintBadge(QPainter *painter, const QString &text, bool center = false);
 

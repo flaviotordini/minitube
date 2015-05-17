@@ -82,7 +82,7 @@ public:
     void loadStreamUrl();
     const QUrl & getStreamUrl() { return m_streamUrl; }
 
-    void setId(QString id) { videoId = id; }
+    void setId(const QString &value) { videoId = value; }
     const QString & id() const { return videoId; }
 
     void setLicense(License license) { m_license = license; }

@@ -64,7 +64,7 @@ QString Temporary::filename() {
 }
 
 void Temporary::deleteAll() {
-    foreach(QString path, paths) {
+    foreach(const QString &path, paths) {
         if (QFile::exists(path) && !QFile::remove(path)) {
             qDebug() << "Cannot remove temp file" << path;
         }

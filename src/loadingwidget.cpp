@@ -110,7 +110,7 @@ void LoadingWidget::setVideo(Video *video) {
     startTime.start();
 }
 
-void LoadingWidget::setError(QString message) {
+void LoadingWidget::setError(const QString &message) {
     titleLabel->setText(tr("Error"));
     descriptionLabel->setText(message);
     // progressBar->hide();

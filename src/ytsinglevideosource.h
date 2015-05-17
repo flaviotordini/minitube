@@ -35,7 +35,7 @@ public:
     const QStringList & getSuggestions();
     QString getName();
 
-    void setVideoId(QString videoId) { this->videoId = videoId; }
+    void setVideoId(const QString &value) { videoId = value; }
     void setVideo(Video *video);
 
 private slots:

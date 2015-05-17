@@ -32,19 +32,19 @@ public:
     YTStandardFeed(QObject *parent = 0);
 
     QString getFeedId() { return feedId; }
-    void setFeedId(QString feedId) { this->feedId = feedId; }
+    void setFeedId(const QString &value) { feedId = value; }
 
     QString getRegionId() { return regionId; }
-    void setRegionId(QString regionId) { this->regionId = regionId; }
+    void setRegionId(const QString &value) { regionId = value; }
 
     QString getCategory() { return category; }
-    void setCategory(QString category) { this->category = category; }
+    void setCategory(const QString &value) { category = value; }
 
     QString getLabel() { return label; }
-    void setLabel(QString label) { this->label = label; }
+    void setLabel(const QString &value) { label = value; }
 
     QString getTime() { return time; }
-    void setTime(QString time) { this->time = time; }
+    void setTime(const QString &value) { time = value; }
 
     void loadVideos(int max, int startIndex);
     void abort();

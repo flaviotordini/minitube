@@ -98,12 +98,12 @@ void SidebarHeader::updateInfo() {
     setTitle(currentVideoSource->getName());
 }
 
-void SidebarHeader::updateTitle(QString title) {
+void SidebarHeader::updateTitle(const QString &title) {
     sender()->disconnect(this);
     setTitle(title);
 }
 
-void SidebarHeader::setTitle(QString title) {
+void SidebarHeader::setTitle(const QString &title) {
     this->title = title;
     update();
 

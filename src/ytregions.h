@@ -42,14 +42,14 @@ public:
     static const QList<YTRegion> & list();
     static const YTRegion & localRegion();
     static const YTRegion & worldwideRegion();
-    static void setRegion(QString regionId);
+    static void setRegion(const QString &regionId);
     static QString currentRegionId();
     static YTRegion currentRegion();
-    static QIcon iconForRegionId(QString regionId);
+    static QIcon iconForRegionId(const QString &regionId);
 
 private:
-    static YTRegion r(QString name, QString id);
-    static YTRegion regionById(QString id);
+    static YTRegion r(const QString &name, const QString &id);
+    static YTRegion regionById(const QString &id);
     YTRegions();
 
 };

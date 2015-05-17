@@ -91,7 +91,7 @@ public:
     }
 
 public slots:
-    void setParam(QString name, QVariant value);
+    void setParam(const QString &name, const QVariant &value);
 
 private:
     QString m_keywords;

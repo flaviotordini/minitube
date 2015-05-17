@@ -40,7 +40,7 @@ public:
     virtual QList<QAction*> getActions() { return QList<QAction*>(); }
 
 public slots:
-    void setParam(QString name, QVariant value);
+    void setParam(const QString &name, const QVariant &value);
 
 signals:
     void gotVideos(QList<Video*> videos);

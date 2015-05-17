@@ -41,7 +41,7 @@ public:
     void setLoadingWidget(LoadingWidget *loadingWidget);
     void showLoading(Video* video);
     void showVideo();
-    void showError(QString message);
+    void showError(const QString &message);
     void clear();
     void setListModel(PlaylistModel *listModel) {
         this->listModel = listModel;

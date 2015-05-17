@@ -76,7 +76,7 @@ void VideoAreaWidget::showVideo() {
     loadingWidget->clear();
 }
 
-void VideoAreaWidget::showError(QString message) {
+void VideoAreaWidget::showError(const QString &message) {
     // loadingWidget->setError(message);
     messageLabel->setText(message);
     messageLabel->show();

@@ -42,8 +42,8 @@ private:
     Database();
     static QString getDbLocation();
     void createDatabase();
-    QVariant getAttribute(QString name);
-    void setAttribute(QString name, QVariant value);
+    QVariant getAttribute(const QString &name);
+    void setAttribute(const QString &name, const QVariant &value);
 
     void fixChannelIds();
 

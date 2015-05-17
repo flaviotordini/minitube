@@ -76,7 +76,7 @@ public slots:
     void suggestionAccepted(Suggestion *suggestion);
     void search(const QString &query);
     void goBack();
-    void showMessage(QString message);
+    void showMessage(const QString &message);
 #ifdef APP_ACTIVATION
     void showActivationView(bool transition = true);
     void showActivationDialog();
@@ -97,7 +97,7 @@ protected:
 private slots:
     void lazyInit();
     void checkForUpdate();
-    void gotNewVersion(QString version);
+    void gotNewVersion(const QString &version);
     void visitSite();
     void donate();
     void reportIssue();
@@ -112,7 +112,7 @@ private slots:
     void searchFocus();
     void tick(qint64 time);
     void totalTimeChanged(qint64 time);
-    void setDefinitionMode(QString definitionName);
+    void setDefinitionMode(const QString &definitionName);
     void toggleDefinitionMode();
     void clearRecentKeywords();
 
@@ -128,7 +128,7 @@ private slots:
     void showFullscreenPlaylist(bool show);
 
     void setManualPlay(bool enabled);
-    void updateDownloadMessage(QString);
+    void updateDownloadMessage(const QString &);
     void downloadsFinished();
     void toggleDownloads(bool show);
 
@@ -152,7 +152,7 @@ private:
     void showWidget(QWidget*, bool transition = true);
     static QString formatTime(qint64 time);
     bool confirmQuit();
-    void simpleUpdateDialog(QString version);
+    void simpleUpdateDialog(const QString &version);
 
     UpdateChecker *updateChecker;
 

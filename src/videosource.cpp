@@ -20,7 +20,7 @@ $END_LICENSE */
 
 #include "videosource.h"
 
-void VideoSource::setParam(QString name, QVariant value) {
+void VideoSource::setParam(const QString &name, const QVariant &value) {
     bool success = setProperty(name.toUtf8(), value);
     if (!success) qWarning() << "Failed to set property" << name << value.toString();
 }

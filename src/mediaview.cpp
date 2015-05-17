@@ -307,7 +307,7 @@ void MediaView::disappear() {
 
 }
 
-void MediaView::handleError(QString message) {
+void MediaView::handleError(const QString &message) {
     qWarning() << __PRETTY_FUNCTION__ << message;
 #ifdef APP_PHONON_SEEK
     mediaObject->play();
@@ -341,7 +341,7 @@ void MediaView::pause() {
 #endif
 }
 
-QRegExp MediaView::wordRE(QString s) {
+QRegExp MediaView::wordRE(const QString &s) {
     return QRegExp("\\W" + s + "\\W?", Qt::CaseInsensitive);
 }
 

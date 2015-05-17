@@ -114,8 +114,7 @@ QList<YTStandardFeed*> StandardFeedsView::getMainFeeds() {
     return feeds;
 }
 
-YTStandardFeed* StandardFeedsView::buildStardardFeed(
-        QString feedId, QString label, QString time) {
+YTStandardFeed* StandardFeedsView::buildStardardFeed(const QString &feedId, const QString &label, QString time) {
     YTStandardFeed *feed = new YTStandardFeed(this);
     feed->setFeedId(feedId);
     feed->setLabel(label);

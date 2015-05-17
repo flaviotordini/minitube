@@ -223,7 +223,7 @@ void SearchView::updateRecentKeywords() {
     recentKeywordsLabel->setVisible(!keywords.isEmpty());
     The::globalActions()->value("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
 
-    foreach (QString keyword, keywords) {
+    foreach (const QString &keyword, keywords) {
         QString link = keyword;
         QString display = keyword;
         if (keyword.startsWith("http://") || keyword.startsWith("https://")) {
@@ -271,7 +271,7 @@ void SearchView::updateRecentChannels() {
     recentChannelsLabel->setVisible(!keywords.isEmpty());
     // TODO The::globalActions()->value("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
 
-    foreach (QString keyword, keywords) {
+    foreach (const QString &keyword, keywords) {
         QString link = keyword;
         QString display = keyword;
         int separator = keyword.indexOf('|');
@@ -304,24 +304,22 @@ void SearchView::textChanged(const QString &text) {
     watchButton->setEnabled(!text.simplified().isEmpty());
 }
 
-void SearchView::watch(QString query) {
-
-    query = query.simplified();
+void SearchView::watch(const QString &query) {
+    QString q = query.simplified();
 
     // check for empty query
-    if (query.length() == 0) {
+    if (q.length() == 0) {
         queryEdit->setFocus(Qt::OtherFocusReason);
         return;
     }
 
     SearchParams *searchParams = new SearchParams();
     if (typeCombo->currentIndex() == 0)
-        searchParams->setKeywords(query);
+        searchParams->setKeywords(q);
     else {
         // remove spaces from channel name
-        query = query.simplified();
-        query = query.remove(' ');
-        searchParams->setChannelId(query);
+        q.remove(' ');
+        searchParams->setChannelId(q);
         searchParams->setSortBy(SearchParams::SortByNewest);
     }
 
@@ -348,9 +346,8 @@ void SearchView::watchChannel(const QString &channelId) {
     emit search(searchParams);
 }
 
-void SearchView::watchKeywords(QString query) {
-
-    query = query.simplified();
+void SearchView::watchKeywords(const QString &query) {
+    QString q = query.simplified();
 
     // check for empty query
     if (query.length() == 0) {
@@ -359,12 +356,12 @@ void SearchView::watchKeywords(QString query) {
     }
 
     if (typeCombo->currentIndex() == 0) {
-        queryEdit->setText(query);
+        queryEdit->setText(q);
         watchButton->setEnabled(true);
     }
 
     SearchParams *searchParams = new SearchParams();
-    searchParams->setKeywords(query);
+    searchParams->setKeywords(q);
 
     // go!
     emit search(searchParams);

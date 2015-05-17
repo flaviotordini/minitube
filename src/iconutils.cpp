@@ -52,7 +52,7 @@ QIcon IconUtils::icon(const QString &name) {
 
 QIcon IconUtils::icon(const QStringList &names) {
     QIcon icon;
-    foreach (QString name, names) {
+    foreach (const QString &name, names) {
         icon = IconUtils::icon(name);
         if (!icon.availableSizes().isEmpty()) break;
     }
@@ -63,7 +63,7 @@ QIcon IconUtils::tintedIcon(const QString &name, const QColor &color, QList<QSiz
     QIcon i = IconUtils::icon(name);
     QIcon t;
     if (sizes.isEmpty()) sizes = i.availableSizes();
-    foreach (QSize size, sizes) {
+    foreach (const QSize &size, sizes) {
         QPixmap pixmap = i.pixmap(size);
         QImage tintedImage = tinted(pixmap.toImage(), color);
         t.addPixmap(QPixmap::fromImage(tintedImage));

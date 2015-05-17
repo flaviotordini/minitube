@@ -281,7 +281,7 @@ void YTSearch::requestError(QNetworkReply *reply) {
     emit error(reply->errorString());
 }
 
-QString YTSearch::videoIdFromUrl(QString url) {
+QString YTSearch::videoIdFromUrl(const QString &url) {
     QRegExp re = QRegExp("^.*[\\?&]v=([^&#]+).*$");
     if (re.exactMatch(url)) return re.cap(1);
     re = QRegExp("^.*://.*/([^&#\\?]+).*$");

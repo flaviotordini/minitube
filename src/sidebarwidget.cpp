@@ -163,7 +163,7 @@ void SidebarWidget::showSuggestions(const QStringList &suggestions) {
     QString message = tr("Did you mean: %1");
 
     QString suggestionLinks;
-    foreach (QString suggestion, suggestions) {
+    foreach (const QString &suggestion, suggestions) {
         suggestionLinks += "<a href='" + suggestion + "'>" + suggestion + "</a> ";
     }
     message = message.arg(suggestionLinks);

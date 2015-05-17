@@ -144,7 +144,7 @@ QSqlDatabase Database::getConnection() {
     }
 }
 
-QVariant Database::getAttribute(QString name) {
+QVariant Database::getAttribute(const QString &name) {
     QSqlQuery query("select value from attributes where name=?", getConnection());
     query.bindValue(0, name);
 
@@ -155,7 +155,7 @@ QVariant Database::getAttribute(QString name) {
     return QVariant();
 }
 
-void Database::setAttribute(QString name, QVariant value) {
+void Database::setAttribute(const QString &name, const QVariant &value) {
     QSqlQuery query(getConnection());
     query.prepare("insert or replace into attributes (name, value) values (?,?)");
     query.bindValue(0, name);

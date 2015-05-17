@@ -126,7 +126,7 @@ const QList<YTRegion> & YTRegions::list() {
     return list;
 }
 
-YTRegion YTRegions::r(QString name, QString id) {
+YTRegion YTRegions::r(const QString &name, const QString &id) {
     YTRegion r = {id, name};
     return r;
 }
@@ -149,7 +149,7 @@ const YTRegion & YTRegions::worldwideRegion() {
     return region;
 }
 
-void YTRegions::setRegion(QString regionId) {
+void YTRegions::setRegion(const QString &regionId) {
     QSettings settings;
     settings.setValue("regionId", regionId);
 }
@@ -163,7 +163,7 @@ YTRegion YTRegions::currentRegion() {
     return regionById(currentRegionId());
 }
 
-YTRegion YTRegions::regionById(QString id) {
+YTRegion YTRegions::regionById(const QString &id) {
     if (id.isEmpty()) return worldwideRegion();
     YTRegion region;
     foreach (YTRegion r, list())
@@ -175,7 +175,7 @@ YTRegion YTRegions::regionById(QString id) {
     return region;
 }
 
-QIcon YTRegions::iconForRegionId(QString regionId) {
+QIcon YTRegions::iconForRegionId(const QString &regionId) {
     if (regionId.isEmpty()) return QIcon(":images/worldwide.png");
     return QIcon(":flags/" + regionId.toLower() + ".png");
 }
