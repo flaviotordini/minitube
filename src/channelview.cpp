@@ -19,11 +19,9 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "channelview.h"
-#include "channelcontroller.h"
 #include "channelmodel.h"
 #include "channelitemdelegate.h"
 #include "ytchannel.h"
-#include "channelaggregator.h"
 #include "painterutils.h"
 #include "mainwindow.h"
 #include "iconutils.h"
@@ -31,10 +29,9 @@ $END_LICENSE */
 #include "extra.h"
 #endif
 
-ChannelView::ChannelView(ChannelController *controller, QWidget *parent)
+ChannelView::ChannelView(ChannelModel *model, QWidget *parent)
     : QListView(parent)
-    , channelsController(controller) {
-    channelsModel = channelsController->model();
+    , channelsModel(model) {
     setItemDelegate(new ChannelItemDelegate(this));
     setSelectionMode(QAbstractItemView::NoSelection);
 
@@ -75,20 +72,14 @@ ChannelView::ChannelView(ChannelController *controller, QWidget *parent)
             channelsModel, SLOT(clearHover()));
 
     setupActions();
-
-    connect(ChannelAggregator::instance(), SIGNAL(channelChanged(YTChannel*)),
-            channelsModel, SLOT(updateChannel(YTChannel*)));
-    connect(ChannelAggregator::instance(), SIGNAL(unwatchedCountChanged(int)),
-            SLOT(unwatchedCountChanged(int)));
-
-    unwatchedCountChanged(ChannelAggregator::instance()->getUnwatchedCount());
+    unwatchedCountChanged(channelsModel->getUnwatchedCount());
 }
 
 void ChannelView::setupActions() {
     QMenu *sortMenu = new QMenu(this);
     QActionGroup *sortGroup = new QActionGroup(this);
 
-    const SortBy sortBy = static_cast<SortBy>(channelsController->getSortingOrder());
+    const SortBy sortBy = static_cast<SortBy>(channelsModel->getSortingOrder());
     QAction *sortByNameAction = createAction(
         tr("Name"), sortGroup, sortBy == SortByName, SLOT(setSortByName()));
     sortMenu->addAction(sortByNameAction);
@@ -128,7 +119,7 @@ void ChannelView::setupActions() {
     connect(markAsWatchedAction, SIGNAL(triggered()), SLOT(markAllAsWatched()));
     statusActions << markAsWatchedAction;
 
-    const bool showUpdated = channelsController->shouldShowUpdated();
+    const bool showUpdated = channelsModel->shouldShowUpdated();
     QAction *showUpdatedAction = new QAction(
                 IconUtils::icon("show-updated"), tr("Show Updated"), this);
     showUpdatedAction->setCheckable(true);
@@ -153,18 +144,19 @@ QAction *ChannelView::createAction(const QString &text, QActionGroup *sortGroup,
 }
 
 void ChannelView::appear() {
-    channelsController->updateModelData();
+    emit onBeforeAppearance();
     updateView();
     foreach (QAction* action, statusActions)
         MainWindow::instance()->showActionInStatusBar(action, true);
     setFocus();
-    ChannelAggregator::instance()->start();
+    emit onAppeared();
 }
 
 void ChannelView::disappear() {
-    ChannelAggregator::instance()->stop();
+    emit onBeforeDisappearance();
     foreach (QAction* action, statusActions)
         MainWindow::instance()->showActionInStatusBar(action, false);
+    emit onDisappeared();
 }
 
 void ChannelView::mousePressEvent(QMouseEvent *event) {
@@ -183,22 +175,20 @@ void ChannelView::mouseMoveEvent(QMouseEvent *event) {
 
 void ChannelView::leaveEvent(QEvent *event) {
     QListView::leaveEvent(event);
-    // channelsModel->clearHover();
 }
 
 void ChannelView::itemEntered(const QModelIndex &) {
-    // channelsModel->setHoveredRow(index.row());
 }
 
 void ChannelView::itemActivated(const QModelIndex &index) {
     ChannelModel::ItemTypes itemType = channelsModel->typeForIndex(index);
     if (itemType == ChannelModel::ItemChannel) {
         YTChannel *const channel = channelsModel->channelForIndex(index);
-        channelsController->activateChannel(channel);
+        emit onChannelActivated(channel);
     } else if (itemType == ChannelModel::ItemAggregate) {
-        channelsController->activateVideo(tr("All Videos"), false);
+        emit onVideoActivated(tr("All Videos"), false);
     } else if (itemType == ChannelModel::ItemUnwatched) {
-        channelsController->activateVideo(tr("Unwatched Videos"), true);
+        emit onVideoActivated(tr("Unwatched Videos"), true);
     }
 }
 
@@ -216,7 +206,7 @@ void ChannelView::showContextMenu(const QPoint &point) {
     if (channel->getNotifyCount() > 0) {
         QAction *markAsWatchedAction = menu.addAction(tr("Mark as Watched"), channel, SLOT(updateWatched()));
         connect(markAsWatchedAction, SIGNAL(triggered()),
-                ChannelAggregator::instance(), SLOT(updateUnwatchedCount()));
+                this, SIGNAL(onMarkChannelWatched()));
         menu.addSeparator();
     }
 
@@ -229,7 +219,7 @@ void ChannelView::showContextMenu(const QPoint &point) {
 
     QAction *unsubscribeAction = menu.addAction(tr("Unsubscribe"), channel, SLOT(unsubscribe()));
     connect(unsubscribeAction, SIGNAL(triggered()),
-            ChannelAggregator::instance(), SLOT(updateUnwatchedCount()));
+            this, SIGNAL(onChannelUnsubscribe()));
 
     menu.exec(mapToGlobal(point));
 }
@@ -239,7 +229,7 @@ void ChannelView::paintEvent(QPaintEvent *event) {
         QString msg;
         if (channelsModel->lastError().isValid())
             msg = channelsModel->lastError().text();
-        else if (channelsController->shouldShowUpdated())
+        else if (channelsModel->shouldShowUpdated())
             msg = tr("There are no updated subscriptions at this time.");
         else
             msg = tr("You have no subscriptions. "
@@ -259,24 +249,23 @@ void ChannelView::updateView(bool transition) {
 }
 
 void ChannelView::markAllAsWatched() {
-    ChannelAggregator::instance()->markAllAsWatched();
     updateView();
     markAsWatchedAction->setEnabled(false);
-    channelsController->markAllAsWatched();
+    emit onMarkAllAsWatched();
 }
 
 void ChannelView::unwatchedCountChanged(int count) {
     markAsWatchedAction->setEnabled(count > 0);
     updateView();
-    channelsController->unwatchedCountChanged(count);
+    emit onUnwatchedCountChanged(count);
 }
 
 void ChannelView::setSortBy(SortBy sortBy) {
     updateView(true);
-    channelsController->setSortBy(static_cast<ChannelController::SortBy>(sortBy));
+    emit onSortingOrderChanged((int)sortBy);
 }
 
 void ChannelView::toggleShowUpdated(bool enable) {
     updateView(true);
-    channelsController->toggleShowUpdated(enable);
+    emit onToggleShowUpdated(enable);
 }

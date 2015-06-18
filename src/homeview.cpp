@@ -123,10 +123,11 @@ void HomeView::showStandardFeeds() {
 void HomeView::showChannels() {
     if (!channelsController && !channelsView) {
         channelsController = new ChannelController(this);
-        channelsView = new ChannelView(channelsController);
+        channelsView = new ChannelView(channelsController->model());
         connect(channelsController, SIGNAL(activated(VideoSource*)),
                 MainWindow::instance(),
                 SLOT(showMedia(VideoSource*)));
+        channelsController->connectToView(channelsView);
         stackedWidget->addWidget(channelsView);
     }
     showWidget(channelsView);

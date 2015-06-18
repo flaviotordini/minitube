@@ -18,11 +18,11 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 
 $END_LICENSE */
 
-#include "channelcontroller.h"
-#include "channelaggregator.h"
-#include "channelmodel.h"
 #include "aggregatevideosource.h"
-#include "database.h"
+#include "channelaggregator.h"
+#include "channelcontroller.h"
+#include "channelmodel.h"
+#include "channelview.h"
 #include "searchparams.h"
 #include "ytchannel.h"
 #include "ytsearch.h"
@@ -36,16 +36,96 @@ static const char *showUpdatedKey = "subscriptionsShowUpdated";
 
 ChannelController::ChannelController(QObject *parent)
     : QObject(parent),
-    channelModel(NULL),
-    sortBy(SortByName),
-    showUpdated(false) {
+    channelModel(NULL) {
     QSettings settings;
-    sortBy = static_cast<SortBy>(settings.value(sortByKey, SortByName).toInt());
-    showUpdated = settings.value(showUpdatedKey, false).toBool();
+    const ChannelModel::SortBy sortOrder = static_cast<ChannelModel::SortBy>(settings.value(sortByKey, ChannelModel::SortByName).toInt());
     channelModel = new ChannelModel(this);
+    channelModel->setSortBy(sortOrder);
+    channelModel->toggleShowUpdated(settings.value(showUpdatedKey, false).toBool());
 }
 
-void ChannelController::activateChannel(YTChannel *channel) {
+bool ChannelController::connectToView(ChannelView* channelsView) {
+    bool connected = false;
+    // Connect controller to the view
+    connected = connect(channelsView, SIGNAL(onToggleShowUpdated(bool)),
+                        SLOT(toggleShowUpdated(bool)));
+    connected = connected && connect(channelsView, SIGNAL(onSortingOrderChanged(int)),
+                                     SLOT(sortingOrderChanged(int)));
+    connected = connected && connect(channelsView, SIGNAL(onUnwatchedCountChanged(int)),
+                                     SLOT(unwatchedCountChanged(int)));
+    connected = connected && connect(channelsView, SIGNAL(onMarkAllAsWatched()),
+                                     SLOT(markAllAsWatched()));
+    connected = connected && connect(channelsView, SIGNAL(onBeforeAppearance()),
+                                     SLOT(onBeforeAppearance()));
+    connected = connected && connect(channelsView, SIGNAL(onAppeared()),
+                                     SLOT(onAppeared()));
+    connected = connected && connect(channelsView, SIGNAL(onBeforeDisappearance()),
+                                     SLOT(onBeforeDisappearance()));
+    connected = connected && connect(channelsView, SIGNAL(onDisappeared()),
+                                     SLOT(onDisappeared()));
+    connected = connected && connect(channelsView, SIGNAL(onChannelActivated(YTChannel *)),
+                                     SLOT(channelActivated(YTChannel *)));
+    connected = connected && connect(channelsView, SIGNAL(onVideoActivated(const QString &, bool)),
+                                     SLOT(videoActivated(const QString &, bool)));
+
+    connected = connected && connect(ChannelAggregator::instance(), SIGNAL(channelChanged(YTChannel*)),
+                                     channelModel, SLOT(updateChannel(YTChannel*)));
+    connected = connected && connect(ChannelAggregator::instance(), SIGNAL(unwatchedCountChanged(int)),
+                                     channelsView, SLOT(unwatchedCountChanged(int)));
+
+    connected = connected && connect(channelsView, SLOT(onChannelUnsubscribe()),
+                                     ChannelAggregator::instance(), SLOT(updateUnwatchedCount()));
+    connected = connected && connect(channelsView, SLOT(onMarkChannelWatched()),
+                                     ChannelAggregator::instance(), SLOT(updateUnwatchedCount()));
+
+    connect(channelsView, SIGNAL(viewportEntered()),
+            SLOT(clearHover()));
+    return connected;
+}
+
+void ChannelController::updateModelData() {
+    channelModel->updateData();
+}
+
+//
+void ChannelController::toggleShowUpdated(bool enable) {
+    channelModel->toggleShowUpdated(enable);
+    updateModelData();
+    QSettings settings;
+    settings.setValue(showUpdatedKey, enable);
+}
+
+void ChannelController::sortingOrderChanged(int sortOrder) {
+    channelModel->setSortBy(static_cast<ChannelModel::SortBy>(sortOrder));
+    updateModelData();
+    QSettings settings;
+    settings.setValue(sortByKey, (int)sortOrder);
+}
+
+void ChannelController::unwatchedCountChanged(int) {
+    //channelModel->updateUnwatched();
+}
+
+void ChannelController::markAllAsWatched() {
+    ChannelAggregator::instance()->markAllAsWatched();
+}
+
+void ChannelController::onBeforeAppearance() {
+    updateModelData();
+}
+
+void ChannelController::onAppeared() {
+    ChannelAggregator::instance()->start();
+}
+
+void ChannelController::onBeforeDisappearance() {
+    ChannelAggregator::instance()->stop();
+}
+
+void ChannelController::onDisappeared() {
+}
+
+void ChannelController::channelActivated(YTChannel *channel) {
     SearchParams *params = new SearchParams();
     params->setChannelId(channel->getChannelId());
     params->setSortBy(SearchParams::SortByNewest);
@@ -56,62 +136,13 @@ void ChannelController::activateChannel(YTChannel *channel) {
     channel->updateWatched();
 }
 
-void ChannelController::activateVideo(const QString &title, bool unwatched) {
+void ChannelController::videoActivated(const QString &title, bool unwatched) {
     AggregateVideoSource * const videoSource = new AggregateVideoSource(this);
     videoSource->setName(title);
     videoSource->setUnwatched(unwatched);
     emit activated(videoSource);
 }
 
-void ChannelController::setSortBy(SortBy sortBy) {
-    this->sortBy = sortBy;
-    updateModelData();
-    QSettings settings;
-    settings.setValue(sortByKey, (int)sortBy);
-}
-
-void ChannelController::toggleShowUpdated(bool enable) {
-    showUpdated = enable;
-    updateModelData();
-    QSettings settings;
-    settings.setValue(showUpdatedKey, showUpdated);
-}
-
-void ChannelController::updateModelData() {
-    if (!Database::exists()) return;
-
-    QString sql = "select user_id from subscriptions";
-    if (showUpdated)
-        sql += " where notify_count>0";
-
-    switch (sortBy) {
-    case SortByUpdated:
-        sql += " order by updated desc";
-        break;
-    case SortByAdded:
-        sql += " order by added desc";
-        break;
-    case SortByLastWatched:
-        sql += " order by watched desc";
-        break;
-    case SortByMostWatched:
-        sql += " order by views desc";
-        break;
-    default:
-        sql += " order by name collate nocase";
-        break;
-    }
-
-    channelModel->setQuery(sql, Database::instance().getConnection());
-    if (channelModel->lastError().isValid()) {
-        qWarning() << channelModel->lastError().text();
-    }
-}
-
-void ChannelController::markAllAsWatched() {
-    ChannelAggregator::instance()->markAllAsWatched();
-}
-
-void ChannelController::unwatchedCountChanged(int) {
-    //channelModel->updateUnwatched();
+void ChannelController::clearHover() {
+    channelModel->clearHover();
 }

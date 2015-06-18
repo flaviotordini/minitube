@@ -24,6 +24,7 @@ $END_LICENSE */
 #include <QtCore>
 
 class ChannelModel;
+class ChannelView;
 class VideoSource;
 class YTChannel;
 
@@ -34,33 +35,29 @@ class ChannelController : public QObject {
 public:
     explicit ChannelController(QObject *parent = NULL);
 
-    enum SortBy {
-        SortByName = 0,
-        SortByAdded,
-        SortByUpdated,
-        SortByLastWatched,
-        SortByMostWatched
-    };
-
-    SortBy getSortingOrder() const { return sortBy; }
-    bool shouldShowUpdated() const { return showUpdated; }
     ChannelModel *model() const { return channelModel; }
+    bool connectToView(ChannelView* channelsView);
 
-    void setSortBy(SortBy sortBy);
+public slots:
     void toggleShowUpdated(bool enable);
-    void markAllAsWatched();
+    void sortingOrderChanged(int sortOrder);
     void unwatchedCountChanged(int count);
-    void updateModelData();
-    void activateChannel(YTChannel *channel);
-    void activateVideo(const QString &title, bool unwatched);
+    void markAllAsWatched();
+    void onBeforeAppearance();
+    void onAppeared();
+    void onBeforeDisappearance();
+    void onDisappeared();
+    void channelActivated(YTChannel *channel);
+    void videoActivated(const QString &title, bool unwatched);
+    void clearHover();
 
 signals:
     void activated(VideoSource *videoSource);
 
 private:
+    void updateModelData();
+
     ChannelModel *channelModel;
-    SortBy sortBy;
-    bool showUpdated;
 };
 
 #endif // CHANNELCONTROLLER_H

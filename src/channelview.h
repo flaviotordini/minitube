@@ -27,15 +27,37 @@ $END_LICENSE */
 #endif
 #include "view.h"
 
-class ChannelController;
 class ChannelModel;
+class YTChannel;
 
 class ChannelView : public QListView, public View {
 
     Q_OBJECT
 
 public:
-    ChannelView(ChannelController *controller, QWidget *parent = 0);
+    explicit ChannelView(ChannelModel *model, QWidget *parent = 0);
+
+    enum SortBy {
+        SortByName = 0,
+        SortByAdded,
+        SortByUpdated,
+        SortByLastWatched,
+        SortByMostWatched
+    };
+
+signals:
+    void onToggleShowUpdated(bool enable);
+    void onSortingOrderChanged(int sortOrder);
+    void onUnwatchedCountChanged(int count);
+    void onMarkAllAsWatched();
+    void onBeforeAppearance();
+    void onAppeared();
+    void onBeforeDisappearance();
+    void onDisappeared();
+    void onChannelActivated(YTChannel *);
+    void onVideoActivated(const QString &title, bool unwatched);
+    void onMarkChannelWatched();
+    void onChannelUnsubscribe();
 
 public slots:
     void appear();
@@ -46,15 +68,6 @@ protected:
     void mouseMoveEvent(QMouseEvent *event);
     void leaveEvent(QEvent *event);
     void paintEvent(QPaintEvent *event);
-
-private:
-    enum SortBy {
-        SortByName = 0,
-        SortByAdded,
-        SortByUpdated,
-        SortByLastWatched,
-        SortByMostWatched
-    };
 
 private slots:
     void itemEntered(const QModelIndex &index);
@@ -76,7 +89,6 @@ private:
     QAction *createAction(const QString &text, QActionGroup *sortGroup, bool isChecked, const char *slot);
 
     ChannelModel *channelsModel;
-    ChannelController *channelsController;
     QList<QAction*> statusActions;
     QAction *markAsWatchedAction;
 };

@@ -19,14 +19,20 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "channelmodel.h"
+#include "channelaggregator.h"
+#include "database.h"
 #include "ytchannel.h"
 
+namespace {
 static const int channelOffset = 2;
+}
 
-ChannelModel::ChannelModel(QObject *parent) :
-    QAbstractListModel(parent),
-    hoveredRow(-1) { }
-
+ChannelModel::ChannelModel(QObject *parent)
+    : QAbstractListModel(parent)
+    , hoveredRow(-1)
+    , sortBy(SortByName)
+    , showUpdated(false) {
+}
 
 int ChannelModel::rowCount(const QModelIndex &) const {
     return channels.isEmpty() ? 0 : channelOffset + channels.size();
@@ -34,7 +40,6 @@ int ChannelModel::rowCount(const QModelIndex &) const {
 
 QVariant ChannelModel::data(const QModelIndex &index, int role) const {
     switch (role) {
-
     case ChannelModel::ItemTypeRole:
         return typeForIndex(index);
 
@@ -49,7 +54,6 @@ QVariant ChannelModel::data(const QModelIndex &index, int role) const {
     case Qt::StatusTipRole:
         if (typeForIndex(index) == ChannelModel::ItemChannel)
             return channelForIndex(index)->getDescription();
-
     }
 
     return QVariant();
@@ -144,4 +148,39 @@ void ChannelModel::setHoveredRow(int row) {
 void ChannelModel::clearHover() {
     emit dataChanged( createIndex( hoveredRow, 0 ), createIndex( hoveredRow, 0 ) );
     hoveredRow = -1;
+}
+
+void ChannelModel::updateData() {
+    if (!Database::exists()) return;
+
+    QString sql = "select user_id from subscriptions";
+    if (shouldShowUpdated())
+        sql += " where notify_count>0";
+
+    switch (getSortingOrder()) {
+    case SortByUpdated:
+        sql += " order by updated desc";
+        break;
+    case SortByAdded:
+        sql += " order by added desc";
+        break;
+    case SortByLastWatched:
+        sql += " order by watched desc";
+        break;
+    case SortByMostWatched:
+        sql += " order by views desc";
+        break;
+    default:
+        sql += " order by name collate nocase";
+        break;
+    }
+
+    setQuery(sql, Database::instance().getConnection());
+    if (sqlError.isValid()) {
+        qWarning() << sqlError.text();
+    }
+}
+
+int ChannelModel::getUnwatchedCount() const {
+    return ChannelAggregator::instance()->getUnwatchedCount();
 }
