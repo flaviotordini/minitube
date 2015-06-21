@@ -20,69 +20,50 @@ $END_LICENSE */
 
 #include "fontutils.h"
 
+namespace {
 static const int MIN_PIXEL_SIZE = 11;
 
+QFont createFont(bool isBold, double sizeScale) {
+    QFont font;
+    font.setPointSize(font.pointSize() * sizeScale);
+    font.setBold(isBold);
+    return font;
+}
+
+QFont createFontWithMinSize(bool isBold, double sizeScale) {
+    QFont font = createFont(isBold, sizeScale);
+    if (font.pixelSize() < MIN_PIXEL_SIZE)
+        font.setPixelSize(MIN_PIXEL_SIZE);
+    return font;
+}
+}
+
 const QFont FontUtils::small() {
-    static QFont font;
-    static bool initialized = false;
-    if (!initialized) {
-      initialized = true;
-      font.setPointSize(font.pointSize()*.85);
-      if (font.pixelSize() < MIN_PIXEL_SIZE) font.setPixelSize(MIN_PIXEL_SIZE);
-    }
+    static QFont font = createFontWithMinSize(false, .85);
     return font;
 }
 
 const QFont FontUtils::smallBold() {
-    static QFont font;
-    static bool initialized = false;
-    if (!initialized) {
-      initialized = true;
-      font.setPointSize(font.pointSize()*.85);
-      font.setBold(true);
-      if (font.pixelSize() < MIN_PIXEL_SIZE) font.setPixelSize(MIN_PIXEL_SIZE);
-    }
+    static QFont font = createFontWithMinSize(true, .85);
     return font;
 }
 
 const QFont FontUtils::medium() {
-    static QFont font;
-    static bool initialized = false;
-    if (!initialized) {
-      initialized = true;
-      font.setPointSize(font.pointSize()*1.1);
-    }
+    static QFont font = createFont(false, 1.1);
     return font;
 }
 
 const QFont FontUtils::mediumBold() {
-    static QFont font;
-    static bool initialized = false;
-    if (!initialized) {
-      initialized = true;
-      font.setPointSize(font.pointSize()*0.9);
-      font.setBold(true);
-    }
+    static QFont font = createFont(true, 0.9);
     return font;
 }
 
 const QFont FontUtils::big() {
-    static QFont font;
-    static bool initialized = false;
-    if (!initialized) {
-      initialized = true;
-      font.setPointSize(font.pointSize()*1.5);
-    }
+    static QFont font = createFont(false, 1.5);
     return font;
 }
 
 const QFont FontUtils::bigBold() {
-    static QFont font;
-    static bool initialized = false;
-    if (!initialized) {
-      initialized = true;
-      font.setPointSize(font.pointSize()*1.5);
-      font.setBold(true);
-    }
+    static QFont font = createFont(true, 1.5);
     return font;
 }
