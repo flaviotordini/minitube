@@ -30,6 +30,10 @@ $END_LICENSE */
 #include "ytfeedreader.h"
 #endif
 
+namespace {
+static const QStringList kEmptyList;
+}
+
 namespace The {
 NetworkAccess* http();
 }
@@ -135,8 +139,7 @@ void YTStandardFeed::abort() {
 }
 
 const QStringList & YTStandardFeed::getSuggestions() {
-    QStringList *l = new QStringList();
-    return *l;
+    return kEmptyList;
 }
 
 void YTStandardFeed::requestError(QNetworkReply *reply) {

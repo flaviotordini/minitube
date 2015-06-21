@@ -23,6 +23,10 @@ $END_LICENSE */
 #include "database.h"
 #include <QtSql>
 
+namespace {
+static const QStringList kEmptyList;
+}
+
 AggregateVideoSource::AggregateVideoSource(QObject *parent) :
     VideoSource(parent),
     unwatched(false), hasMore(true) { }
@@ -79,8 +83,7 @@ bool AggregateVideoSource::hasMoreVideos() {
 }
 
 const QStringList & AggregateVideoSource::getSuggestions() {
-    QStringList *l = new QStringList();
-    return *l;
+    return kEmptyList;
 }
 
 void AggregateVideoSource::abort() { }
