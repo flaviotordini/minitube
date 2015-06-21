@@ -27,18 +27,37 @@ $END_LICENSE */
 #endif
 #include "view.h"
 
-class VideoSource;
 class ChannelModel;
+class YTChannel;
 
 class ChannelView : public QListView, public View {
 
     Q_OBJECT
 
 public:
-    ChannelView(QWidget *parent = 0);
-    
+    explicit ChannelView(ChannelModel *model, QWidget *parent = 0);
+
+    enum SortBy {
+        SortByName = 0,
+        SortByAdded,
+        SortByUpdated,
+        SortByLastWatched,
+        SortByMostWatched
+    };
+
 signals:
-    void activated(VideoSource *videoSource);
+    void onToggleShowUpdated(bool enable);
+    void onSortingOrderChanged(int sortOrder);
+    void onUnwatchedCountChanged(int count);
+    void onMarkAllAsWatched();
+    void onBeforeAppearance();
+    void onAppeared();
+    void onBeforeDisappearance();
+    void onDisappeared();
+    void onChannelActivated(YTChannel *);
+    void onVideoActivated(const QString &title, bool unwatched);
+    void onMarkChannelWatched();
+    void onChannelUnsubscribe();
 
 public slots:
     void appear();
@@ -49,15 +68,6 @@ protected:
     void mouseMoveEvent(QMouseEvent *event);
     void leaveEvent(QEvent *event);
     void paintEvent(QPaintEvent *event);
-
-private:
-    enum SortBy {
-        SortByName = 0,
-        SortByAdded,
-        SortByUpdated,
-        SortByLastWatched,
-        SortByMostWatched
-    };
 
 private slots:
     void itemEntered(const QModelIndex &index);
@@ -72,18 +82,15 @@ private slots:
     void setSortByMostWatched() { setSortBy(SortByMostWatched); }
     void markAllAsWatched();
     void unwatchedCountChanged(int count);
-    void updateQuery(bool transition = false);
 
 private:
+    void updateView(bool transition = false);
     void setupActions();
+    QAction *createAction(const QString &text, QActionGroup *sortGroup, bool isChecked, const char *slot);
 
     ChannelModel *channelsModel;
     QList<QAction*> statusActions;
-    bool showUpdated;
-    SortBy sortBy;
-    QString errorMessage;
     QAction *markAsWatchedAction;
-
 };
 
 #endif // CHANNELSVIEW_H

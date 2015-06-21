@@ -19,15 +19,9 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "channelview.h"
-#include "ytchannel.h"
-#include "ytsearch.h"
-#include "searchparams.h"
 #include "channelmodel.h"
 #include "channelitemdelegate.h"
-#include "database.h"
-#include "ytsearch.h"
-#include "channelaggregator.h"
-#include "aggregatevideosource.h"
+#include "ytchannel.h"
 #include "painterutils.h"
 #include "mainwindow.h"
 #include "iconutils.h"
@@ -35,13 +29,9 @@ $END_LICENSE */
 #include "extra.h"
 #endif
 
-static const char *sortByKey = "subscriptionsSortBy";
-static const char *showUpdatedKey = "subscriptionsShowUpdated";
-
-ChannelView::ChannelView(QWidget *parent) : QListView(parent),
-    showUpdated(false),
-    sortBy(SortByName) {
-
+ChannelView::ChannelView(ChannelModel *model, QWidget *parent)
+    : QListView(parent)
+    , channelsModel(model) {
     setItemDelegate(new ChannelItemDelegate(this));
     setSelectionMode(QAbstractItemView::NoSelection);
 
@@ -77,62 +67,37 @@ ChannelView::ChannelView(QWidget *parent) : QListView(parent),
     connect(this, SIGNAL(entered(const QModelIndex &)),
             SLOT(itemEntered(const QModelIndex &)));
 
-    channelsModel = new ChannelModel(this);
     setModel(channelsModel);
     connect(this, SIGNAL(viewportEntered()),
             channelsModel, SLOT(clearHover()));
 
     setupActions();
-
-    connect(ChannelAggregator::instance(), SIGNAL(channelChanged(YTChannel*)),
-            channelsModel, SLOT(updateChannel(YTChannel*)));
-    connect(ChannelAggregator::instance(), SIGNAL(unwatchedCountChanged(int)),
-            SLOT(unwatchedCountChanged(int)));
-
-    unwatchedCountChanged(ChannelAggregator::instance()->getUnwatchedCount());
+    unwatchedCountChanged(channelsModel->getUnwatchedCount());
 }
 
 void ChannelView::setupActions() {
-    QSettings settings;
-
-    sortBy = static_cast<SortBy>(settings.value(sortByKey, SortByName).toInt());
-
     QMenu *sortMenu = new QMenu(this);
     QActionGroup *sortGroup = new QActionGroup(this);
 
-    QAction *sortByNameAction = new QAction(tr("Name"), this);
-    sortByNameAction->setActionGroup(sortGroup);
-    sortByNameAction->setCheckable(true);
-    if (sortBy == SortByName) sortByNameAction->setChecked(true);
-    connect(sortByNameAction, SIGNAL(triggered()), SLOT(setSortByName()));
+    const SortBy sortBy = static_cast<SortBy>(channelsModel->getSortingOrder());
+    QAction *sortByNameAction = createAction(
+        tr("Name"), sortGroup, sortBy == SortByName, SLOT(setSortByName()));
     sortMenu->addAction(sortByNameAction);
 
-    QAction *sortByUpdatedAction = new QAction(tr("Last Updated"), this);
-    sortByUpdatedAction->setActionGroup(sortGroup);
-    sortByUpdatedAction->setCheckable(true);
-    if (sortBy == SortByUpdated) sortByUpdatedAction->setChecked(true);
-    connect(sortByUpdatedAction, SIGNAL(triggered()), SLOT(setSortByUpdated()));
+    QAction *sortByUpdatedAction = createAction(
+        tr("Last Updated"), sortGroup, sortBy == SortByUpdated, SLOT(setSortByUpdated()));
     sortMenu->addAction(sortByUpdatedAction);
 
-    QAction *sortByAddedAction = new QAction(tr("Last Added"), this);
-    sortByAddedAction->setActionGroup(sortGroup);
-    sortByAddedAction->setCheckable(true);
-    if (sortBy == SortByAdded) sortByAddedAction->setChecked(true);
-    connect(sortByAddedAction, SIGNAL(triggered()), SLOT(setSortByAdded()));
+    QAction *sortByAddedAction = createAction(
+        tr("Last Added"), sortGroup, sortBy == SortByAdded, SLOT(setSortByAdded()));
     sortMenu->addAction(sortByAddedAction);
 
-    QAction *sortByLastWatched = new QAction(tr("Last Watched"), this);
-    sortByLastWatched->setActionGroup(sortGroup);
-    sortByLastWatched->setCheckable(true);
-    if (sortBy == SortByLastWatched) sortByLastWatched->setChecked(true);
-    connect(sortByLastWatched, SIGNAL(triggered()), SLOT(setSortByLastWatched()));
+    QAction *sortByLastWatched = createAction(
+        tr("Last Watched"), sortGroup, sortBy == SortByLastWatched, SLOT(setSortByLastWatched()));
     sortMenu->addAction(sortByLastWatched);
 
-    QAction *sortByMostWatched = new QAction(tr("Most Watched"), this);
-    sortByMostWatched->setActionGroup(sortGroup);
-    sortByMostWatched->setCheckable(true);
-    if (sortBy == SortByMostWatched) sortByMostWatched->setChecked(true);
-    connect(sortByMostWatched, SIGNAL(triggered()), SLOT(setSortByMostWatched()));
+    QAction *sortByMostWatched = createAction(
+        tr("Most Watched"), sortGroup, sortBy == SortByMostWatched, SLOT(setSortByMostWatched()));
     sortMenu->addAction(sortByMostWatched);
 
     QToolButton *sortButton = new QToolButton(this);
@@ -154,7 +119,7 @@ void ChannelView::setupActions() {
     connect(markAsWatchedAction, SIGNAL(triggered()), SLOT(markAllAsWatched()));
     statusActions << markAsWatchedAction;
 
-    showUpdated = settings.value(showUpdatedKey, false).toBool();
+    const bool showUpdated = channelsModel->shouldShowUpdated();
     QAction *showUpdatedAction = new QAction(
                 IconUtils::icon("show-updated"), tr("Show Updated"), this);
     showUpdatedAction->setCheckable(true);
@@ -169,18 +134,29 @@ void ChannelView::setupActions() {
     }
 }
 
+QAction *ChannelView::createAction(const QString &text, QActionGroup *sortGroup, bool isChecked, const char *slot) {
+    QAction *action = new QAction(text, this);
+    action->setActionGroup(sortGroup);
+    action->setCheckable(true);
+    action->setChecked(isChecked);
+    connect(action, SIGNAL(triggered()), slot);
+    return action;
+}
+
 void ChannelView::appear() {
-    updateQuery();
+    emit onBeforeAppearance();
+    updateView();
     foreach (QAction* action, statusActions)
         MainWindow::instance()->showActionInStatusBar(action, true);
     setFocus();
-    ChannelAggregator::instance()->start();
+    emit onAppeared();
 }
 
 void ChannelView::disappear() {
-    ChannelAggregator::instance()->stop();
+    emit onBeforeDisappearance();
     foreach (QAction* action, statusActions)
         MainWindow::instance()->showActionInStatusBar(action, false);
+    emit onDisappeared();
 }
 
 void ChannelView::mousePressEvent(QMouseEvent *event) {
@@ -199,34 +175,20 @@ void ChannelView::mouseMoveEvent(QMouseEvent *event) {
 
 void ChannelView::leaveEvent(QEvent *event) {
     QListView::leaveEvent(event);
-    // channelsModel->clearHover();
 }
 
 void ChannelView::itemEntered(const QModelIndex &) {
-    // channelsModel->setHoveredRow(index.row());
 }
 
 void ChannelView::itemActivated(const QModelIndex &index) {
     ChannelModel::ItemTypes itemType = channelsModel->typeForIndex(index);
     if (itemType == ChannelModel::ItemChannel) {
-        YTChannel *channel = channelsModel->channelForIndex(index);
-        SearchParams *params = new SearchParams();
-        params->setChannelId(channel->getChannelId());
-        params->setSortBy(SearchParams::SortByNewest);
-        params->setTransient(true);
-        YTSearch *videoSource = new YTSearch(params, this);
-        videoSource->setAsyncDetails(true);
-        emit activated(videoSource);
-        channel->updateWatched();
+        YTChannel *const channel = channelsModel->channelForIndex(index);
+        emit onChannelActivated(channel);
     } else if (itemType == ChannelModel::ItemAggregate) {
-        AggregateVideoSource *videoSource = new AggregateVideoSource(this);
-        videoSource->setName(tr("All Videos"));
-        emit activated(videoSource);
+        emit onVideoActivated(tr("All Videos"), false);
     } else if (itemType == ChannelModel::ItemUnwatched) {
-        AggregateVideoSource *videoSource = new AggregateVideoSource(this);
-        videoSource->setName(tr("Unwatched Videos"));
-        videoSource->setUnwatched(true);
-        emit activated(videoSource);
+        emit onVideoActivated(tr("Unwatched Videos"), true);
     }
 }
 
@@ -244,7 +206,7 @@ void ChannelView::showContextMenu(const QPoint &point) {
     if (channel->getNotifyCount() > 0) {
         QAction *markAsWatchedAction = menu.addAction(tr("Mark as Watched"), channel, SLOT(updateWatched()));
         connect(markAsWatchedAction, SIGNAL(triggered()),
-                ChannelAggregator::instance(), SLOT(updateUnwatchedCount()));
+                this, SIGNAL(onMarkChannelWatched()));
         menu.addSeparator();
     }
 
@@ -257,7 +219,7 @@ void ChannelView::showContextMenu(const QPoint &point) {
 
     QAction *unsubscribeAction = menu.addAction(tr("Unsubscribe"), channel, SLOT(unsubscribe()));
     connect(unsubscribeAction, SIGNAL(triggered()),
-            ChannelAggregator::instance(), SLOT(updateUnwatchedCount()));
+            this, SIGNAL(onChannelUnsubscribe()));
 
     menu.exec(mapToGlobal(point));
 }
@@ -265,9 +227,9 @@ void ChannelView::showContextMenu(const QPoint &point) {
 void ChannelView::paintEvent(QPaintEvent *event) {
     if (model()->rowCount() < 3) {
         QString msg;
-        if (!errorMessage.isEmpty())
-            msg = errorMessage;
-        else if (showUpdated)
+        if (channelsModel->lastError().isValid())
+            msg = channelsModel->lastError().text();
+        else if (channelsModel->shouldShowUpdated())
             msg = tr("There are no updated subscriptions at this time.");
         else
             msg = tr("You have no subscriptions. "
@@ -277,67 +239,33 @@ void ChannelView::paintEvent(QPaintEvent *event) {
     PainterUtils::topShadow(viewport());
 }
 
-void ChannelView::toggleShowUpdated(bool enable) {
-    showUpdated = enable;
-    updateQuery(true);
-    QSettings settings;
-    settings.setValue(showUpdatedKey, showUpdated);
-}
-
-void ChannelView::updateQuery(bool transition) {
-    Q_UNUSED(transition);
-    errorMessage.clear();
-    if (!Database::exists()) return;
-
-    QString sql = "select user_id from subscriptions";
-    if (showUpdated)
-        sql += " where notify_count>0";
-
-    switch (sortBy) {
-    case SortByUpdated:
-        sql += " order by updated desc";
-        break;
-    case SortByAdded:
-        sql += " order by added desc";
-        break;
-    case SortByLastWatched:
-        sql += " order by watched desc";
-        break;
-    case SortByMostWatched:
-        sql += " order by views desc";
-        break;
-    default:
-        sql += " order by name collate nocase";
-        break;
-    }
-
+void ChannelView::updateView(bool transition) {
 #ifdef APP_EXTRA
     if (transition)
         Extra::fadeInWidget(this, this);
+#else
+    Q_UNUSED(transition);
 #endif
-
-    channelsModel->setQuery(sql, Database::instance().getConnection());
-    if (channelsModel->lastError().isValid()) {
-        qWarning() << channelsModel->lastError().text();
-        errorMessage = channelsModel->lastError().text();
-    }
-}
-
-void ChannelView::setSortBy(SortBy sortBy) {
-    this->sortBy = sortBy;
-    updateQuery(true);
-    QSettings settings;
-    settings.setValue(sortByKey, (int)sortBy);
 }
 
 void ChannelView::markAllAsWatched() {
-    ChannelAggregator::instance()->markAllAsWatched();
-    updateQuery();
+    updateView();
     markAsWatchedAction->setEnabled(false);
+    emit onMarkAllAsWatched();
 }
 
 void ChannelView::unwatchedCountChanged(int count) {
     markAsWatchedAction->setEnabled(count > 0);
-    channelsModel->updateUnwatched();
-    updateQuery();
+    updateView();
+    emit onUnwatchedCountChanged(count);
+}
+
+void ChannelView::setSortBy(SortBy sortBy) {
+    updateView(true);
+    emit onSortingOrderChanged((int)sortBy);
+}
+
+void ChannelView::toggleShowUpdated(bool enable) {
+    updateView(true);
+    emit onToggleShowUpdated(enable);
 }

@@ -45,17 +45,33 @@ public:
         ItemUnwatched
     };
 
+    enum SortBy {
+        SortByName = 0,
+        SortByAdded,
+        SortByUpdated,
+        SortByLastWatched,
+        SortByMostWatched
+    };
+
     void setQuery(const QString &query, const QSqlDatabase &db);
     QSqlError lastError() const;
     ItemTypes typeForIndex(const QModelIndex &index) const;
     YTChannel* channelForIndex(const QModelIndex &index) const;
     void setHoveredRow(int row);
+    void clearHover();
+
+    SortBy getSortingOrder() const { return sortBy; }
+    bool shouldShowUpdated() const { return showUpdated; }
+    void setSortBy(SortBy sortingOrder) { sortBy = sortingOrder; }
+    void toggleShowUpdated(bool enable) { showUpdated = enable; }
+    int getUnwatchedCount() const;
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;
 
+    void updateData();
+
 public slots:
-    void clearHover();
     void updateSender();
     void updateChannel(YTChannel *channel);
     void updateUnwatched();
@@ -65,7 +81,8 @@ private:
     QList<YTChannel*> channels;
     int hoveredRow;
     QSqlError sqlError;
-
+    SortBy sortBy;
+    bool showUpdated;
 };
 
 #endif // CHANNELMODEL_H

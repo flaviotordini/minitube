@@ -28,6 +28,9 @@ public:
         ItemAggregate
     };
 
+signals:
+    void stateChanged();
+
 public slots:
     void clearHover();
 

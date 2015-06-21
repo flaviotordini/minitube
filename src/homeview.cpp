@@ -19,6 +19,7 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "homeview.h"
+#include "channelcontroller.h"
 #include "segmentedcontrol.h"
 #include "searchview.h"
 #include "standardfeedsview.h"
@@ -34,7 +35,8 @@ $END_LICENSE */
 
 HomeView::HomeView(QWidget *parent) : QWidget(parent),
     standardFeedsView(0),
-    channelsView(0) {
+    channelsView(0),
+    channelsController(0) {
 
     QBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
@@ -119,11 +121,13 @@ void HomeView::showStandardFeeds() {
 }
 
 void HomeView::showChannels() {
-    if (!channelsView) {
-        channelsView = new ChannelView();
-        connect(channelsView, SIGNAL(activated(VideoSource*)),
+    if (!channelsController && !channelsView) {
+        channelsController = new ChannelController(this);
+        channelsView = new ChannelView(channelsController->model());
+        connect(channelsController, SIGNAL(activated(VideoSource*)),
                 MainWindow::instance(),
                 SLOT(showMedia(VideoSource*)));
+        channelsController->connectToView(channelsView);
         stackedWidget->addWidget(channelsView);
     }
     showWidget(channelsView);
