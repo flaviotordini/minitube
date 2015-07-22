@@ -31,7 +31,7 @@ QHash<QString, QAction*>* globalActions();
 }
 
 SidebarWidget::SidebarWidget(QWidget *parent) :
-    QWidget(parent) {
+    QWidget(parent), playlistWidth(0) {
     playlist = 0;
 
     QBoxLayout *layout = new QVBoxLayout(this);
@@ -94,6 +94,8 @@ void SidebarWidget::showPlaylist() {
 
 void SidebarWidget::showRefineSearchWidget() {
     if (!refineSearchWidget->isEnabled()) return;
+    playlistWidth = playlist->width();
+    refineSearchWidget->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
     refineSearchWidget->setDirty(false);
     stackedWidget->setCurrentWidget(refineSearchWidget);
     // refineSearchWidget->setFocus();
@@ -105,6 +107,8 @@ void SidebarWidget::showRefineSearchWidget() {
 }
 
 void SidebarWidget::hideRefineSearchWidget() {
+    refineSearchWidget->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+    playlist->resize(playlistWidth, playlist->height());
     stackedWidget->setCurrentWidget(playlist);
     playlist->setFocus();
 #ifdef APP_EXTRA

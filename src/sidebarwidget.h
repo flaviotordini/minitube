@@ -70,6 +70,8 @@ private:
     QTimer *mouseTimer;
     QLabel *messageLabel;
     SidebarHeader *sidebarHeader;
+
+    int playlistWidth;
 };
 
 #endif // SIDEBARWIDGET_H
