@@ -274,7 +274,7 @@ void ChannelView::paintEvent(QPaintEvent *event) {
                      "Use the star symbol to subscribe to channels.");
         PainterUtils::centeredMessage(msg, viewport());
     } else QListView::paintEvent(event);
-    PainterUtils::topShadow(viewport());
+    // PainterUtils::topShadow(viewport());
 }
 
 void ChannelView::toggleShowUpdated(bool enable) {

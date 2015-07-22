@@ -81,5 +81,5 @@ bool DownloadListView::isHoveringPlayIcon(QMouseEvent *event) {
 
 void DownloadListView::paintEvent(QPaintEvent *event) {
     QListView::paintEvent(event);
-    PainterUtils::topShadow(viewport());
+    // PainterUtils::topShadow(viewport());
 }
