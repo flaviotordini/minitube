@@ -64,14 +64,15 @@ void LoadingWidget::setVideo(Video *video) {
     QFont titleFont;
 #ifdef APP_MAC
     titleFont.setFamily("Helvetica Neue");
-#endif
-#ifdef APP_WIN
+    titleFont.setStyleName("Thin");
+#elif APP_WIN
     titleFont.setFamily("Segoe UI Light");
-#endif
     titleFont.setStyleName("Light");
+#else
+    titleFont.setStyleName("Light");
+#endif
     int smallerDimension = qMin(height(), width());
     titleFont.setPixelSize(smallerDimension / 12);
-    titleFont.setHintingPreference(QFont::PreferNoHinting);
     QFontMetrics fm(titleFont);
     int textHeightInPixels = fm.height();
     int spacing = textHeightInPixels / 2;
@@ -80,9 +81,13 @@ void LoadingWidget::setVideo(Video *video) {
 
     QString title = video->title();
     // enhance legibility by splitting the title
-    title = title.replace(" - ", "<p>");
-    title = title.replace("] ", "]<p>");
-    title = title.replace(" [", "<p>[");
+    title.replace(QLatin1String(" - "), QLatin1String("<p>"));
+    title.replace(QLatin1String(" | "), QLatin1String("<p>"));
+    title.replace(QLatin1String(" — "), QLatin1String("<p>"));
+    title.replace(QLatin1String("] "), QLatin1String("]<p>"));
+    title.replace(QLatin1String(" ["), QLatin1String("<p>["));
+    title.replace(QLatin1String(" ("), QLatin1String("<p>("));
+    title.replace(QLatin1String(") "), QLatin1String(")<p>"));
     titleLabel->setText(title);
     titleLabel->setVisible(window()->height() > 100);
     titleLabel->setFont(titleFont);
