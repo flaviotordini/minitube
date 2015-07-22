@@ -426,7 +426,7 @@ void MediaView::activeRowChanged(int row) {
 
     // video title in titlebar
     MainWindow::instance()->setWindowTitle(video->title() + " - " + Constants::NAME);
-    MainWindow::instance()->showMessage(video->description());
+    // MainWindow::instance()->showMessage(video->description());
 
     // ensure active item is visible
     if (row != -1) {
@@ -871,6 +871,7 @@ void MediaView::snapshot() {
     statusBar->clearMessage();
     statusBar->insertPermanentWidget(0, snapshotSettings);
     snapshotSettings->show();
+    statusBar->show();
 }
 #endif
 
