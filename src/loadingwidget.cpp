@@ -45,6 +45,8 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
     descriptionLabel->setForegroundRole(QPalette::Text);
     descriptionLabel->setWordWrap(true);
     descriptionLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Expanding);
+    descriptionLabel->setTextFormat(Qt::RichText);
+    descriptionLabel->setOpenExternalLinks(true);
     layout->addWidget(descriptionLabel);
 
     progressBar = new QProgressBar(this);
@@ -96,11 +98,15 @@ void LoadingWidget::setVideo(Video *video) {
     QString videoDesc = video->description();
     if (videoDesc.length() > maxDescLength) {
         videoDesc.truncate(maxDescLength-1);
-        videoDesc.append("...");
+        videoDesc = videoDesc.trimmed();
+        videoDesc.append("…");
+    } else if (videoDesc.endsWith(QLatin1String(" ..."))) {
+        videoDesc = videoDesc.left(videoDesc.length() - 4);
+        videoDesc.append("…");
     }
+    videoDesc.replace(QRegExp("(https?://\\S+)"), "<a style='color:white' href=\"\\1\">\\1</a>");
     QFont descFont(titleFont);
     descFont.setPixelSize(descFont.pixelSize() / 2);
-    descFont.setHintingPreference(QFont::PreferNoHinting);
     descriptionLabel->setFont(descFont);
     descriptionLabel->setText(videoDesc);
     bool hiddenDesc = height() < 400;
