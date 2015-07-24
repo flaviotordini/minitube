@@ -61,8 +61,6 @@ QVariant PlaylistModel::data(const QModelIndex &index, int role) const {
     if (row == videos.size()) {
         
         QPalette palette;
-        QFont boldFont;
-        boldFont.setBold(true);
         
         switch (role) {
         case ItemTypeRole:
@@ -85,8 +83,6 @@ QVariant PlaylistModel::data(const QModelIndex &index, int role) const {
                 return palette.color(QPalette::ToolTipBase);
             else
                 return QVariant();
-        case Qt::FontRole:
-            return boldFont;
         default:
             return QVariant();
         }
@@ -111,8 +107,10 @@ QVariant PlaylistModel::data(const QModelIndex &index, int role) const {
         return authorHovered;
     case AuthorPressedRole:
         return authorPressed;
+        /*
     case Qt::StatusTipRole:
         return video->description();
+        */
     }
     
     return QVariant();
