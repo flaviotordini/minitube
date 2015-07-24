@@ -19,11 +19,14 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 #include "autocomplete.h"
 #include "suggester.h"
-#ifdef APP_MAC
+#ifdef APP_MAC_SEARCHFIELD
 #include "searchlineedit_mac.h"
-#include "macutils.h"
 #else
 #include "searchlineedit.h"
+#endif
+
+#ifdef APP_MAC
+#include "macutils.h"
 #endif
 
 #include <QListWidget>
@@ -176,7 +179,7 @@ void AutoComplete::showSuggestions(const QList<Suggestion *> &suggestions) {
 
     if (popup->isHidden()) {
         itemHovering = false;
-        popup->show();
+        popup->showNormal();
         QTimer::singleShot(100, this, SLOT(enableItemHovering()));
     }
 }
@@ -242,7 +245,7 @@ void AutoComplete::enableItemHovering() {
 
 void AutoComplete::hideSuggestions() {
     itemHovering = false;
-#ifdef APP_MAC
+#ifdef APP_MAC_NO
     mac::fadeOutWindow(popup);
 #else
     popup->hide();
