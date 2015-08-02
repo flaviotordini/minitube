@@ -79,3 +79,25 @@ uint DataUtils::parseIsoPeriod(const QString &isoPeriod) {
     uint period = ((days * 24 + hours) * 60 + minutes) * 60 + seconds;
     return period;
 }
+
+QString DataUtils::formatDateTime(const QDateTime &dt) {
+    const qint64 seconds = dt.secsTo(QDateTime::currentDateTime());
+    QString s;
+    int f = 60;
+    if (seconds < f) {
+        s = qApp->tr("Just now");
+    } else if (seconds < (f *= 60)) {
+        s = qApp->tr("%n minute(s) ago", "", seconds / 60);
+    } else if (seconds < (f *= 24)) {
+        s = qApp->tr("%n hour(s) ago", "", seconds / (60*60));
+    } else if (seconds < (f *= 7)) {
+        s = qApp->tr("%n day(s) ago", "", seconds / (60*60*24));
+    } else if (seconds < (f = 60*60*24*30)) {
+        s = qApp->tr("%n weeks(s) ago", "", seconds / (60*60*24*7));
+    } else if (seconds < (f = 60*60*24*365)) {
+        s = qApp->tr("%n month(s) ago", "", seconds / (60*60*24*30));
+    } else {
+        s = dt.toString(Qt::DefaultLocaleShortDate);
+    }
+    return s;
+}

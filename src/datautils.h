@@ -10,6 +10,7 @@ public:
     static QString regioneCode(const QLocale &locale);
     static QString systemRegioneCode();
     static uint parseIsoPeriod(const QString &isoPeriod);
+    static QString formatDateTime(const QDateTime &dt);
 
 private:
     DataUtils() { }
