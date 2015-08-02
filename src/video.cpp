@@ -473,8 +473,16 @@ QString Video::decryptSignature(const QString &s) {
 }
 
 QString Video::formattedDuration() const {
-    QString format = m_duration > 3600 ? "h:mm:ss" : "m:ss";
-    return QTime().addSecs(m_duration).toString(format);
+    int duration = m_duration;
+    QString res;
+    int seconds = duration % 60;
+    duration /= 60;
+    int minutes = duration % 60;
+    duration /= 60;
+    int hours = duration % 24;
+    if (hours == 0)
+        return res.asprintf("%d:%02d", minutes, seconds);
+    return res.asprintf("%d:%02d:%02d", hours, minutes, seconds);
 }
 
 void Video::saveDefinitionForUrl(const QString& url, const VideoDefinition& definition) {
