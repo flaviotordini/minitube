@@ -25,6 +25,7 @@ $END_LICENSE */
 #include "iconutils.h"
 #include "videodefinition.h"
 #include "video.h"
+#include "datautils.h"
 
 const int PlaylistItemDelegate::THUMB_HEIGHT = 90;
 const int PlaylistItemDelegate::THUMB_WIDTH = 160;
@@ -115,13 +116,19 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
     const bool isActive = index.data( ActiveTrackRole ).toBool();
     const bool isSelected = option.state & QStyle::State_Selected;
 
+    // get the video metadata
+    const Video *video = index.data(VideoRole).value<VideoPointer>().data();
+
     // draw the "current track" highlight underneath the text
     if (isActive && !isSelected)
-        paintActiveOverlay(painter, line);
+        paintActiveOverlay(painter, option, line);
 
-    // get the video metadata
-    const VideoPointer videoPointer = index.data( VideoRole ).value<VideoPointer>();
-    const Video *video = videoPointer.data();
+    // separator
+    painter->setPen(option.palette.color(QPalette::Midlight));
+    painter->drawLine(THUMB_WIDTH, THUMB_HEIGHT, option.rect.width(), THUMB_HEIGHT);
+    if (!video->thumbnail().isNull())
+        painter->setPen(Qt::black);
+    painter->drawLine(0, THUMB_HEIGHT, THUMB_WIDTH-1, THUMB_HEIGHT);
 
     // thumb
     painter->drawPixmap(0, 0, video->thumbnail());
@@ -133,13 +140,6 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
     // time
     if (video->duration() > 0)
         drawTime(painter, video->formattedDuration(), line);
-
-    // separator
-    painter->setPen(option.palette.color(QPalette::Midlight));
-    painter->drawLine(THUMB_WIDTH, THUMB_HEIGHT, option.rect.width(), THUMB_HEIGHT);
-    if (!video->thumbnail().isNull())
-        painter->setPen(Qt::black);
-    painter->drawLine(0, THUMB_HEIGHT, THUMB_WIDTH-1, THUMB_HEIGHT);
 
     if (line.width() > THUMB_WIDTH + 60) {
 
@@ -168,7 +168,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
         painter->setFont(smallerFont);
 
         // published date
-        QString publishedString = video->published().date().toString(Qt::DefaultLocaleShortDate);
+        QString publishedString = DataUtils::formatDateTime(video->published());
         QSize stringSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, publishedString ) );
         QPoint textLoc(PADDING+THUMB_WIDTH, PADDING*2 + textBox.height());
         QRect publishedTextBox(textLoc , stringSize);
@@ -193,7 +193,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
                 else
                     painter->setOpacity(.5);
             }
-            QString authorString = video->channelTitle();
+            const QString &authorString = video->channelTitle();
             textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
             stringSize = QSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, authorString ) );
             QRect authorTextBox(textLoc , stringSize);
@@ -254,35 +254,11 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
 
 }
 
-void PlaylistItemDelegate::paintActiveOverlay(QPainter *painter, const QRect &line) const {
-    static QLinearGradient linearGradient;
-    static bool initialized = false;
-
-    if (!initialized) {
-        QPalette palette;
-        QColor highlightColor = palette.color(QPalette::Highlight);
-        QColor backgroundColor = palette.color(QPalette::Base);
-        const float animation = 0.4;
-        const int gradientRange = 16;
-
-        QColor color2 = QColor::fromHsv(
-                    highlightColor.hue(),
-                    (int) (backgroundColor.saturation() * (1.0f - animation) + highlightColor.saturation() * animation),
-                    (int) (backgroundColor.value() * (1.0f - animation) + highlightColor.value() * animation)
-                    );
-        QColor color1 = QColor::fromHsv(
-                    color2.hue(),
-                    qMax(color2.saturation() - gradientRange, 0),
-                    qMin(color2.value() + gradientRange, 255)
-                    );
-
-        linearGradient = QLinearGradient(0, 0, 0, THUMB_HEIGHT);
-        linearGradient.setColorAt(0.0, color1);
-        linearGradient.setColorAt(1.0, color2);
-        initialized = true;
-    }
-
-    painter->fillRect(line, linearGradient);
+void PlaylistItemDelegate::paintActiveOverlay(QPainter *painter, const QStyleOptionViewItem& option, const QRect &line) const {
+    painter->save();
+    painter->setOpacity(.1);
+    painter->fillRect(line, option.palette.highlight());
+    painter->restore();
 }
 
 void PlaylistItemDelegate::drawTime(QPainter *painter, const QString &time, const QRect &line) const {

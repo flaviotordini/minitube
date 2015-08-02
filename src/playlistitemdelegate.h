@@ -45,11 +45,7 @@ private:
     void paintDownloadInfo( QPainter* painter,
                                         const QStyleOptionViewItem& option,
                                         const QModelIndex& index ) const;
-
-    // active track painting
-    void paintActiveOverlay(QPainter *painter, const QRect &line) const;
-
-    //  Paints the video duration
+    void paintActiveOverlay(QPainter *painter, const QStyleOptionViewItem& option, const QRect &line) const;
     void drawTime(QPainter *painter, const QString &time, const QRect &line) const;
 
     static const int THUMB_WIDTH;
