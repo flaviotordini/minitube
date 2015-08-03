@@ -134,6 +134,7 @@ private slots:
     void sliderMoved(int value);
     qint64 offsetToTime(qint64 offset);
     void startDownloading();
+    void resumeWithNewStreamUrl(const QUrl &streamUrl);
 
 private:
     MediaView(QWidget *parent = 0);
@@ -171,6 +172,9 @@ private:
 #ifdef APP_SNAPSHOT
     SnapshotSettings *snapshotSettings;
 #endif
+
+    QElapsedTimer pauseTimer;
+    qint64 pauseTime;
 };
 
 #endif // __MEDIAVIEW_H__

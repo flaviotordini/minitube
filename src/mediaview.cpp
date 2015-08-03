@@ -70,6 +70,7 @@ MediaView::MediaView(QWidget *parent) : QWidget(parent)
   #ifdef APP_SNAPSHOT
   , snapshotSettings(0)
   #endif
+  , pauseTime(0)
 { }
 
 void MediaView::initialize() {
@@ -322,9 +323,13 @@ void MediaView::handleError(const QString &message) {
 
 #ifdef APP_PHONON
 void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/) {
-    if (newState == Phonon::PlayingState)
+    if (pauseTime > 0 && (newState == Phonon::PlayingState || newState == Phonon::BufferingState)) {
+        mediaObject->seek(pauseTime);
+        pauseTime = 0;
+    }
+    if (newState == Phonon::PlayingState) {
         videoAreaWidget->showVideo();
-    else if (newState == Phonon::ErrorState) {
+    } else if (newState == Phonon::ErrorState) {
         qWarning() << "Phonon error:" << mediaObject->errorString() << mediaObject->errorType();
         if (mediaObject->errorType() == Phonon::FatalError)
             handleError(mediaObject->errorString());
@@ -337,9 +342,14 @@ void MediaView::pause() {
     switch( mediaObject->state() ) {
     case Phonon::PlayingState:
         mediaObject->pause();
+        pauseTimer.start();
         break;
     default:
-        mediaObject->play();
+        if (pauseTimer.hasExpired(60000)) {
+            pauseTimer.invalidate();
+            connect(playlistModel->activeVideo(), SIGNAL(gotStreamUrl(QUrl)), SLOT(resumeWithNewStreamUrl(QUrl)));
+            playlistModel->activeVideo()->loadStreamUrl();
+        } else mediaObject->play();
         break;
     }
 #endif
@@ -903,6 +913,19 @@ void MediaView::startDownloading() {
     connect(downloadItem, SIGNAL(error(QString)),
             SLOT(handleError(QString)), Qt::UniqueConnection);
     downloadItem->start();
+}
+
+void MediaView::resumeWithNewStreamUrl(const QUrl &streamUrl) {
+    pauseTime = mediaObject->currentTime();
+    mediaObject->setCurrentSource(streamUrl);
+    mediaObject->play();
+
+    Video *video = static_cast<Video *>(sender());
+    if (!video) {
+        qDebug() << "Cannot get sender in" << __PRETTY_FUNCTION__;
+        return;
+    }
+    video->disconnect(this);
 }
 
 void MediaView::maybeAdjustWindowSize() {
