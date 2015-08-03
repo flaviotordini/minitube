@@ -481,8 +481,8 @@ QString Video::formattedDuration() const {
     duration /= 60;
     int hours = duration % 24;
     if (hours == 0)
-        return res.asprintf("%d:%02d", minutes, seconds);
-    return res.asprintf("%d:%02d:%02d", hours, minutes, seconds);
+        return res.sprintf("%d:%02d", minutes, seconds);
+    return res.sprintf("%d:%02d:%02d", hours, minutes, seconds);
 }
 
 void Video::saveDefinitionForUrl(const QString& url, const VideoDefinition& definition) {
