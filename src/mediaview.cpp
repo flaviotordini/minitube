@@ -65,12 +65,12 @@ MediaView* MediaView::instance() {
 }
 
 MediaView::MediaView(QWidget *parent) : QWidget(parent)
-    , stopped(false)
-    , downloadItem(0)
-    #ifdef APP_SNAPSHOT
-    , snapshotSettings(0)
-    #endif
-    { }
+  , stopped(false)
+  , downloadItem(0)
+  #ifdef APP_SNAPSHOT
+  , snapshotSettings(0)
+  #endif
+{ }
 
 void MediaView::initialize() {
     QBoxLayout *layout = new QVBoxLayout(this);
@@ -128,6 +128,7 @@ void MediaView::initialize() {
     QSettings settings;
     splitter->restoreState(settings.value("splitter").toByteArray());
     splitter->setChildrenCollapsible(false);
+    connect(splitter, SIGNAL(splitterMoved(int,int)), SLOT(maybeAdjustWindowSize()));
 
     layout->addWidget(splitter);
 
@@ -294,13 +295,16 @@ int MediaView::getHistoryIndex() {
 }
 
 void MediaView::appear() {
-    playlistView->setFocus();
     Video *currentVideo = playlistModel->activeVideo();
     if (currentVideo) {
         MainWindow::instance()->setWindowTitle(
                     currentVideo->title() + " - " + Constants::NAME);
-        MainWindow::instance()->showMessage(currentVideo->description());
     }
+
+    // optimize window for 16:9 video
+    QTimer::singleShot(50, this, SLOT(maybeAdjustWindowSize()));
+
+    playlistView->setFocus();
 }
 
 void MediaView::disappear() {
@@ -426,7 +430,6 @@ void MediaView::activeRowChanged(int row) {
 
     // video title in titlebar
     MainWindow::instance()->setWindowTitle(video->title() + " - " + Constants::NAME);
-    // MainWindow::instance()->showMessage(video->description());
 
     // ensure active item is visible
     if (row != -1) {
@@ -466,6 +469,7 @@ void MediaView::activeRowChanged(int row) {
     if (snapshotSettings) {
         delete snapshotSettings;
         snapshotSettings = 0;
+        MainWindow::instance()->adjustStatusBarVisibility();
     }
 
     // see you in gotStreamUrl...
@@ -647,7 +651,7 @@ void MediaView::playbackFinished() {
     const qint64 currentTime = mediaObject->currentTime();
     qDebug() << __PRETTY_FUNCTION__ << mediaObject->currentTime() << totalTime;
     // add 10 secs for imprecise Phonon backends (VLC, Xine)
-    if (totalTime < 1 || (currentTime > 0 && currentTime + 10000 < totalTime)) {
+    if (currentTime > 0 && currentTime + 10000 < totalTime) {
         // mediaObject->seek(currentTime);
         QTimer::singleShot(500, this, SLOT(playbackResume()));
     } else {
@@ -868,10 +872,9 @@ void MediaView::snapshot() {
 #ifdef APP_EXTRA
     Extra::fadeInWidget(statusBar, statusBar);
 #endif
-    statusBar->clearMessage();
     statusBar->insertPermanentWidget(0, snapshotSettings);
     snapshotSettings->show();
-    statusBar->show();
+    MainWindow::instance()->setStatusBarVisibility(true);
 }
 #endif
 
@@ -900,6 +903,12 @@ void MediaView::startDownloading() {
     connect(downloadItem, SIGNAL(error(QString)),
             SLOT(handleError(QString)), Qt::UniqueConnection);
     downloadItem->start();
+}
+
+void MediaView::maybeAdjustWindowSize() {
+    QSettings settings;
+    if (settings.value("adjustWindowSize", true).toBool())
+        adjustWindowSize();
 }
 
 void MediaView::sliderMoved(int value) {
@@ -1104,7 +1113,7 @@ void MediaView::updateSubscriptionAction(Video *video, bool subscribed) {
     subscribeAction->setStatusTip(subscribeTip);
 
     if (subscribed) {
-#ifdef Q_OS_LINUX
+#ifdef APP_LINUX
         static QIcon tintedIcon;
         if (tintedIcon.isNull()) {
             QList<QSize> sizes;
@@ -1131,4 +1140,24 @@ void MediaView::toggleSubscription() {
     if (subscribed) YTChannel::unsubscribe(userId);
     else YTChannel::subscribe(userId);
     updateSubscriptionAction(video, !subscribed);
+}
+
+void MediaView::adjustWindowSize() {
+    if (!MainWindow::instance()->isMaximized() && !MainWindow::instance()->isFullScreen()) {
+        const double ratio = 16. / 9.;
+        const int w = videoAreaWidget->width();
+        const int h = videoAreaWidget->height();
+        const double currentVideoRatio = (double)w / (double)h;
+        if (currentVideoRatio != ratio) {
+            if (false && currentVideoRatio > ratio) {
+                // we have vertical black bars
+                int newWidth = (MainWindow::instance()->width() - w) + (h * ratio);
+                MainWindow::instance()->resize(newWidth, MainWindow::instance()->height());
+            } else {
+                // horizontal black bars
+                int newHeight = (MainWindow::instance()->height() - h) + (w / ratio);
+                MainWindow::instance()->resize(MainWindow::instance()->width(), newHeight);
+            }
+        }
+    }
 }

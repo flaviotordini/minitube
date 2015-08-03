@@ -56,7 +56,9 @@ public:
 #endif
 #ifdef APP_PHONON
     Phonon::AudioOutput* getAudioOutput() { return audioOutput; }
+    Phonon::VolumeSlider *getVolumeSlider() { return volumeSlider; }
 #endif
+    QLabel *getCurrentTimeLabel() { return currentTime; }
     void readSettings();
     void writeSettings();
     static void printHelp();
@@ -64,6 +66,8 @@ public:
     QToolButton* getRegionButton() { return regionButton; }
     QAction* getRegionAction() { return regionAction; }
     void showActionInStatusBar(QAction*, bool show);
+    void setStatusBarVisibility(bool show);
+    void adjustStatusBarVisibility();
 
 public slots:
     void showHome(bool transition = true);
@@ -86,13 +90,18 @@ public slots:
     bool isReallyFullScreen();
     bool isCompact() { return m_compact; }
 
+signals:
+    void currentTimeChanged(const QString &s);
+
 protected:
-    void changeEvent(QEvent *);
-    void closeEvent(QCloseEvent *);
-    bool eventFilter(QObject *obj, QEvent *event);
-    void dragEnterEvent(QDragEnterEvent *event);
-    void dropEvent(QDropEvent *event);
-    void resizeEvent(QResizeEvent *);
+    void changeEvent(QEvent *e);
+    void closeEvent(QCloseEvent *e);
+    void showEvent(QShowEvent *e);
+    bool eventFilter(QObject *obj, QEvent *e);
+    void dragEnterEvent(QDragEnterEvent *e);
+    void dropEvent(QDropEvent *e);
+    void resizeEvent(QResizeEvent *e);
+    void moveEvent(QMoveEvent *e);
 
 private slots:
     void lazyInit();
@@ -132,7 +141,9 @@ private slots:
     void downloadsFinished();
     void toggleDownloads(bool show);
 
-    void floatOnTop(bool);
+    void floatOnTop(bool, bool showAction = true);
+    void adjustWindowSizeChanged(bool enabled);
+
     void showStopAfterThisInStatusBar(bool show);
 
     void hideMouse();
@@ -150,9 +161,11 @@ private:
     void createToolBars();
     void createStatusBar();
     void showWidget(QWidget*, bool transition = true);
-    static QString formatTime(qint64 time);
+    static QString formatTime(qint64 duration);
     bool confirmQuit();
     void simpleUpdateDialog(const QString &version);
+    bool needStatusBar();
+    void adjustMessageLabelPosition();
 
     UpdateChecker *updateChecker;
 
@@ -230,6 +243,9 @@ private:
     bool m_maximized;
     QTimer *mouseTimer;
     bool m_compact;
+
+    QLabel *messageLabel;
+    QTimer *messageTimer;
 
 };
 
