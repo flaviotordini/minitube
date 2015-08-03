@@ -22,7 +22,7 @@ $END_LICENSE */
 #include "iconutils.h"
 #include "mediaview.h"
 #include "videosource.h"
-#include "iconutils.h"
+#include "fontutils.h"
 
 SidebarHeader::SidebarHeader(QWidget *parent) : QToolBar(parent) { }
 
@@ -57,8 +57,8 @@ void SidebarHeader::setup() {
     addWidget(spacerWidget);
 }
 
-QSize SidebarHeader::minimumSizeHint (void) const {
-    return(QSize(160, QFontMetrics(font()).height() * 1.9));
+QSize SidebarHeader::minimumSizeHint() const {
+    return QSize(160, QFontMetrics(font()).height() * 1.9);
 }
 
 void SidebarHeader::updateInfo() {
@@ -121,13 +121,14 @@ void SidebarHeader::paintEvent(QPaintEvent *event) {
     if (title.isEmpty()) return;
     QPainter p(this);
     p.setPen(Qt::white);
+    p.setFont(FontUtils::small());
 
     const QRect r = rect();
 
     QString t = title;
     QRect textBox = p.boundingRect(r, Qt::AlignCenter, t);
     int i = 1;
-    static const int margin = 50;
+    const int margin = forwardAction->isVisible() ? 45 : 20;
     while (textBox.width() > r.width() - margin*2 && t.length() > 3) {
         t = t.left(t.length() - i).trimmed() + QLatin1String("...");
         textBox = p.boundingRect(r, Qt::AlignCenter, t);

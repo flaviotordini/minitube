@@ -46,7 +46,7 @@ private:
     void setTitle(const QString &title);
 
     QAction *backAction;
-    QAction * forwardAction;
+    QAction *forwardAction;
     QString title;
     QList<QAction*> videoSourceActions;
 };
