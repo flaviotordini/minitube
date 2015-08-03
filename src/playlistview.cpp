@@ -139,10 +139,3 @@ bool PlaylistView::isShowMoreItem(const QModelIndex &index) {
     return model()->rowCount() > 1 &&
             model()->rowCount() == index.row() + 1;
 }
-
-void PlaylistView::paintEvent(QPaintEvent *event) {
-    QListView::paintEvent(event);
-#ifndef APP_UBUNTU
-    // PainterUtils::topShadow(viewport());
-#endif
-}
