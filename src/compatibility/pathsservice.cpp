@@ -60,4 +60,8 @@ QString getPicturesLocation() {
 QString getTempLocation() {
     return PathProvider::getLocation(PathProvider::TempLocation);
 }
+
+QString getCacheLocation() {
+    return PathProvider::getLocation(PathProvider::CacheLocation);
+}
 }

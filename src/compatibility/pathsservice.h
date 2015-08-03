@@ -30,6 +30,7 @@ QString getHomeLocation();
 QString getDataLocation();
 QString getPicturesLocation();
 QString getTempLocation();
+QString getCacheLocation();
 }
 
 #endif  // PATHSSERVICE_H
