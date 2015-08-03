@@ -38,7 +38,6 @@ class HomeView : public QWidget, public View  {
 
 public:
     HomeView(QWidget *parent = 0);
-    void appear();
     void disappear();
     QHash<QString, QVariant> metadata() {
         QHash<QString, QVariant> metadata;
@@ -50,6 +49,7 @@ public:
     StandardFeedsView* getStandardFeedsView() { return standardFeedsView; }
 
 private slots:
+    void appear();
     void showSearch();
     void showStandardFeeds();
     void showChannels();
