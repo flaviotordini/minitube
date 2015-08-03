@@ -31,9 +31,10 @@ Database::Database() {
     QString dataLocation = Paths::getDataLocation();
 
     if (!QDir().mkpath(dataLocation)) {
-      qCritical() << "Failed to create directory " << dataLocation;
+        qCritical() << "Failed to create directory " << dataLocation;
     }
     dbLocation = dataLocation + "/" + dbName;
+    qDebug() << "dbLocation" << dbLocation;
 
     QMutexLocker locker(&lock);
 
@@ -54,6 +55,20 @@ Database::~Database() {
 }
 
 void Database::createDatabase() {
+    qDebug() << __PRETTY_FUNCTION__;
+
+#ifdef APP_LINUX
+    // Qt5 changed its "data" path. Try to move the old db to the new path
+    QString qt4DataLocation = Paths::getHomeLocation() + "/.local/share/data/" + Constants::ORG_NAME + "/" + Constants::NAME;
+    QString oldDbLocation = qt4DataLocation + "/" + dbName;
+    qDebug() << oldDbLocation;
+    if (QFile::exists(oldDbLocation)) {
+        if (QFile::copy(oldDbLocation, dbLocation)) {
+            qDebug() << "Moved db from" << oldDbLocation << "to" << dbLocation;
+            return;
+        }
+    }
+#endif
 
     qWarning() << "Creating the database";
 
@@ -108,8 +123,17 @@ QString Database::getDbLocation() {
 // static
 bool Database::exists() {
     static bool fileExists = false;
-    if (!fileExists)
+    if (!fileExists) {
         fileExists = QFile::exists(getDbLocation());
+#ifdef APP_LINUX
+        if (!fileExists) {
+            QString qt4DataLocation = Paths::getHomeLocation() + "/.local/share/data/" + Constants::ORG_NAME + "/" + Constants::NAME;
+            QString oldDbLocation = qt4DataLocation + "/" + dbName;
+            qDebug() << "asd" << oldDbLocation;
+            fileExists = QFile::exists(oldDbLocation);
+        }
+#endif
+    }
     return fileExists;
 }
 
