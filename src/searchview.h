@@ -44,7 +44,7 @@ public:
 
 public slots:
     void appear();
-    void disappear() { }
+    void disappear();
     void watch(const QString &query);
     void watchChannel(const QString &channelId);
     void watchKeywords(const QString &query);

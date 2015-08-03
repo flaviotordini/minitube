@@ -24,7 +24,7 @@ $END_LICENSE */
 #include "searchparams.h"
 #include "ytsuggester.h"
 #include "channelsuggest.h"
-#ifdef APP_MAC
+#ifdef APP_MAC_SEARCHFIELD
 #include "searchlineedit_mac.h"
 #else
 #include "searchlineedit.h"
@@ -49,7 +49,7 @@ static const int PADDING = 30;
 SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
     QFont biggerFont = FontUtils::big();
-    QFont smallerFont = FontUtils::smallBold();
+    QFont smallerFont = FontUtils::small();
 
 #if defined(APP_MAC) | defined(APP_WIN)
     // speedup painting since we'll paint the whole background
@@ -87,19 +87,18 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
             new QLabel("<h1 style='font-weight:100'>" +
                        tr("Welcome to <a href='%1'>%2</a>,")
                        // .replace("<a ", "<a style='color:palette(text)'")
-                       .replace("<a ", "<a style='text-decoration:none; color:palette(text);font-weight:"
-                            #if defined(APP_UBUNTU) || defined(APP_WIN)
-                                "normal"
-                            #else
-                                "normal"
-                            #endif
-                                "' ")
+                       .replace("<a ", "<a style='text-decoration:none; color:palette(text);font-weight:normal' ")
                        .arg(Constants::WEBSITE, Constants::NAME)
                        + "</h1>", this);
     welcomeLabel->setOpenExternalLinks(true);
-#ifdef APP_WIN
+    welcomeLabel->setProperty("heading", true);
+#ifdef APP_MAC
     QFont f = welcomeLabel->font();
-    f.setHintingPreference(QFont::PreferNoHinting);
+    f.setFamily("Helvetica Neue");
+    f.setStyleName("Thin");
+    welcomeLabel->setFont(f);
+#elif APP_WIN
+    QFont f = welcomeLabel->font();
     f.setFamily("Segoe UI Light");
     welcomeLabel->setFont(f);
 #endif
@@ -112,18 +111,24 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
     //: "Enter", as in "type". The whole phrase says: "Enter a keyword to start watching videos"
     QLabel *tipLabel = new QLabel(tr("Enter"), this);
+#ifndef APP_MAC
     tipLabel->setFont(biggerFont);
+#endif
     tipLayout->addWidget(tipLabel);
 
     typeCombo = new QComboBox(this);
     typeCombo->addItem(tr("a keyword"));
     typeCombo->addItem(tr("a channel"));
+#ifndef APP_MAC
     typeCombo->setFont(biggerFont);
+#endif
     connect(typeCombo, SIGNAL(currentIndexChanged(int)), SLOT(searchTypeChanged(int)));
     tipLayout->addWidget(typeCombo);
 
     tipLabel = new QLabel(tr("to start watching videos."), this);
+#ifndef APP_MAC
     tipLabel->setFont(biggerFont);
+#endif
     tipLayout->addWidget(tipLabel);
     layout->addLayout(tipLayout);
 
@@ -133,7 +138,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     searchLayout->setAlignment(Qt::AlignVCenter);
 
     queryEdit = new SearchLineEdit(this);
-#ifndef APP_MAC
+#ifndef APP_MAC_SEARCHFIELD
     queryEdit->setFont(biggerFont);
 #endif
     connect(queryEdit, SIGNAL(search(const QString&)), SLOT(watch(const QString&)));
@@ -203,9 +208,16 @@ void SearchView::appear() {
     updateRecentChannels();
     queryEdit->selectAll();
     queryEdit->enableSuggest();
-    if (!queryEdit->hasFocus())
-        QTimer::singleShot(10, queryEdit, SLOT(setFocus()));
     setUpdatesEnabled(true);
+
+    MainWindow::instance()->showActionInStatusBar(The::globalActions()->value("definition"), true);
+
+    queryEdit->setFocus();
+    QTimer::singleShot(100, queryEdit, SLOT(setFocus()));
+}
+
+void SearchView::disappear() {
+    MainWindow::instance()->showActionInStatusBar(The::globalActions()->value("definition"), false);
 }
 
 void SearchView::updateRecentKeywords() {
@@ -372,7 +384,8 @@ void SearchView::paintEvent(QPaintEvent *event) {
 #if defined(APP_MAC) | defined(APP_WIN)
     QBrush brush;
     if (window()->isActiveWindow()) {
-        brush = QBrush(QColor(0xdd, 0xe4, 0xeb));
+        // brush = QBrush(QColor(0xdd, 0xe4, 0xeb));
+        brush = Qt::white;
     } else {
         brush = palette().window();
     }
@@ -386,7 +399,7 @@ void SearchView::paintEvent(QPaintEvent *event) {
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &o, &p, this);
 #endif
-    PainterUtils::topShadow(this);
+    // PainterUtils::topShadow(this);
 }
 
 void SearchView::searchTypeChanged(int index) {
