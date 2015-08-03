@@ -39,8 +39,7 @@ void RefineSearchWidget::setup() {
     if (isSetup) return;
     isSetup = true;
 
-    static const int spacing = 15;
-    setFont(FontUtils::medium());
+    const int spacing = 15;
 
     QBoxLayout *layout = new QVBoxLayout(this);
     layout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
@@ -60,7 +59,6 @@ void RefineSearchWidget::setup() {
     foreach (const QString &actionName, sortOptions) {
         QAction *action = new QAction(actionName, sortBar);
         action->setCheckable(true);
-        action->setFont(FontUtils::medium());
         action->setProperty("paramValue", i);
         sortGroup->addAction(action);
         sortBar->addAction(action);
@@ -81,7 +79,6 @@ void RefineSearchWidget::setup() {
     foreach (const QString &actionName, timeSpans) {
         QAction *action = new QAction(actionName, timeBar);
         action->setCheckable(true);
-        action->setFont(FontUtils::medium());
         action->setProperty("paramValue", i);
         timeGroup->addAction(action);
         timeBar->addAction(action);
@@ -108,7 +105,6 @@ void RefineSearchWidget::setup() {
         QAction *action = new QAction(actionName, timeBar);
         action->setStatusTip(tips.at(i));
         action->setCheckable(true);
-        action->setFont(FontUtils::medium());
         action->setProperty("paramValue", i);
         lengthGroup->addAction(action);
         lengthBar->addAction(action);
@@ -131,7 +127,6 @@ void RefineSearchWidget::setup() {
         QAction *action = new QAction(actionName, timeBar);
         action->setStatusTip(tips.at(i));
         action->setCheckable(true);
-        action->setFont(FontUtils::medium());
         action->setProperty("paramValue", i);
         qualityGroup->addAction(action);
         qualityBar->addAction(action);
@@ -143,10 +138,11 @@ void RefineSearchWidget::setup() {
     doneButton->setDefault(true);
     doneButton->setAutoDefault(true);
     doneButton->setFocusPolicy(Qt::StrongFocus);
-    doneButton->setFont(FontUtils::medium());
+#ifndef APP_MAC
     doneButton->setProperty("custom", true);
     doneButton->setProperty("important", true);
     doneButton->setProperty("big", true);
+#endif
     connect(doneButton, SIGNAL(clicked()), SLOT(doneClicked()));
     layout->addWidget(doneButton, 0, Qt::AlignLeft);
 }
@@ -172,7 +168,7 @@ void RefineSearchWidget::setupLabel(const QString &text, QBoxLayout *layout, con
     hLayout->addWidget(icon);
 
     QLabel *label = new QLabel(text.toUpper(), this);
-    label->setFont(FontUtils::mediumBold());
+    label->setFont(FontUtils::small());
     label->setStyleSheet("color: rgba(0, 0, 0, 128);");
     hLayout->addWidget(label);
 
@@ -185,26 +181,11 @@ QToolBar* RefineSearchWidget::setupBar(const QString &paramName) {
     QToolBar* bar = new QToolBar(this);
     bar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     // bar->setProperty("segmented", true);
-    bar->setFont(FontUtils::medium());
     bar->setProperty("paramName", paramName);
-    connect(bar, SIGNAL(actionTriggered(QAction*)),
-            SLOT(actionTriggered(QAction*)));
+    connect(bar, SIGNAL(actionTriggered(QAction*)), SLOT(actionTriggered(QAction*)));
     bars.insert(paramName, bar);
     layout()->addWidget(bar);
     return bar;
-}
-
-void RefineSearchWidget::paintEvent(QPaintEvent * /*event*/) {
-#if defined(APP_MAC) | defined(APP_WIN)
-    QBrush brush;
-    if (window()->isActiveWindow()) {
-        brush = QBrush(QColor(0xdd, 0xe4, 0xeb));
-    } else {
-        brush = palette().window();
-    }
-    QPainter painter(this);
-    painter.fillRect(0, 0, width(), height(), brush);
-#endif
 }
 
 void RefineSearchWidget::actionTriggered(QAction *action) {

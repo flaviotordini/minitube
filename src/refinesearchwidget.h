@@ -43,9 +43,6 @@ signals:
     void paramChanged(QString name, QVariant value);
     void searchRefined();
     void done();
-    
-protected:
-    void paintEvent(QPaintEvent *);
 
 private slots:
     void actionTriggered(QAction* action);
