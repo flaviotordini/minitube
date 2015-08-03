@@ -73,9 +73,9 @@ void StandardFeedsView::load() {
         addVideoSourceWidget(feed);
 
     YTRegion region = YTRegions::currentRegion();
-    QToolButton *regionButton = MainWindow::instance()->getRegionButton();
-    regionButton->setText(region.name);
-    regionButton->setIcon(YTRegions::iconForRegionId(region.id));
+    QAction *regionAction = MainWindow::instance()->getRegionAction();
+    regionAction->setText(region.name);
+    regionAction->setIcon(YTRegions::iconForRegionId(region.id));
 }
 
 void StandardFeedsView::layoutCategories(const QList<YTCategory> &categories) {
@@ -131,12 +131,12 @@ void StandardFeedsView::appear() {
         load();
     }
     QAction *regionAction = MainWindow::instance()->getRegionAction();
-    regionAction->setVisible(true);
+    MainWindow::instance()->showActionInStatusBar(regionAction, true);
 }
 
 void StandardFeedsView::disappear() {
     QAction *regionAction = MainWindow::instance()->getRegionAction();
-    regionAction->setVisible(false);
+    MainWindow::instance()->showActionInStatusBar(regionAction, false);
 }
 
 void StandardFeedsView::selectWorldwideRegion() {
@@ -151,6 +151,5 @@ void StandardFeedsView::selectLocalRegion() {
 
 void StandardFeedsView::paintEvent(QPaintEvent *event) {
     QWidget::paintEvent(event);
-    // PainterUtils::topShadow(this);
 }
 
