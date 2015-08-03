@@ -85,6 +85,10 @@ void JsFunctions::gotJs(const QByteArray &bytes) {
         qWarning() << "Got empty js";
         return;
     }
+    if (!QDir().mkpath(Paths::getDataLocation())) {
+      qCritical() << "Failed to create" << Paths::getDataLocation();
+      return;
+    }
     QFile file(jsPath());
     if (!file.open(QIODevice::WriteOnly)) {
         qWarning() << "Cannot write" << file.errorString() << file.fileName();
