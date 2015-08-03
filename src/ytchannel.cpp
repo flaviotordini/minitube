@@ -191,7 +191,7 @@ void YTChannel::loadThumbnail() {
 }
 
 const QString & YTChannel::getThumbnailDir() {
-    static const QString thumbDir = Paths::getDataLocation() + "/channels/";
+    static const QString thumbDir = Paths::getCacheLocation() + "/channels/";
     return thumbDir;
 }
 
