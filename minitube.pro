@@ -1,6 +1,6 @@
 CONFIG += release
 TEMPLATE = app
-VERSION = 2.4
+VERSION = 2.5
 DEFINES += APP_VERSION="$$VERSION"
 
 APP_NAME = Minitube
@@ -14,7 +14,10 @@ DEFINES += APP_PHONON_SEEK
 DEFINES += APP_SNAPSHOT
 DEFINES += APP_YT3
 
-DEFINES *= QT_NO_DEBUG_OUTPUT
+message(Building $${APP_NAME} $${VERSION})
+message(Qt $$[QT_VERSION] in $$[QT_INSTALL_PREFIX])
+
+#DEFINES *= QT_NO_DEBUG_OUTPUT
 DEFINES *= QT_USE_QSTRINGBUILDER
 DEFINES *= QT_STRICT_ITERATORS
 
@@ -188,6 +191,7 @@ include(locale/locale.pri)
 # deploy
 DISTFILES += CHANGES COPYING
 unix:!mac {
+    DEFINES += APP_LINUX
     qt:greaterThan(QT_MAJOR_VERSION, 4) {
         LIBS += -lphonon4qt5
         INCLUDEPATH += /usr/include/phonon4qt5

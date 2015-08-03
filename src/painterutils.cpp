@@ -86,11 +86,9 @@ void PainterUtils::paintBadge(QPainter *painter, const QString &text, bool cente
     f.setHintingPreference(QFont::PreferNoHinting);
 #ifdef APP_MAC
     f.setFamily("Helvetica");
-#endif
-#ifdef APP_WIN
+#elif APP_WIN
     rect.adjust(0, -2, 0, 0);
-#endif
-#ifdef Q_OS_LINUX
+#else
     rect.adjust(0, -1, 0, 0);
 #endif
     painter->save();

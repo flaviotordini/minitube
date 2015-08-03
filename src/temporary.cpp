@@ -23,7 +23,7 @@ $END_LICENSE */
 #include "compatibility/pathsservice.h"
 
 static QList<QString> paths;
-#ifdef Q_OS_LINUX
+#ifdef APP_LINUX
 static QString userName;
 #endif
 
@@ -34,7 +34,7 @@ QString Temporary::filename() {
 
     QString tempFile = tempDir + "/" + Constants::UNIX_NAME + "-" + QString::number(qrand());
 
-#ifdef Q_OS_LINUX
+#ifdef APP_LINUX
     if (userName.isNull()) {
         userName = QString(getenv("USERNAME"));
         if (userName.isEmpty())
