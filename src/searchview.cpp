@@ -214,6 +214,11 @@ void SearchView::disappear() {
 }
 
 void SearchView::updateRecentKeywords() {
+    // load
+    QSettings settings;
+    QStringList keywords = settings.value(recentKeywordsKey).toStringList();
+    if (keywords == recentKeywords) return;
+    recentKeywords = keywords;
 
     // cleanup
     QLayoutItem *item;
@@ -222,9 +227,6 @@ void SearchView::updateRecentKeywords() {
         delete item;
     }
 
-    // load
-    QSettings settings;
-    QStringList keywords = settings.value(recentKeywordsKey).toStringList();
     recentKeywordsLabel->setVisible(!keywords.isEmpty());
     The::globalActions()->value("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
 
@@ -262,6 +264,11 @@ void SearchView::updateRecentKeywords() {
 }
 
 void SearchView::updateRecentChannels() {
+    // load
+    QSettings settings;
+    QStringList keywords = settings.value(recentChannelsKey).toStringList();
+    if (keywords == recentChannels) return;
+    recentChannels = keywords;
 
     // cleanup
     QLayoutItem *item;
@@ -270,9 +277,6 @@ void SearchView::updateRecentChannels() {
         delete item;
     }
 
-    // load
-    QSettings settings;
-    QStringList keywords = settings.value(recentChannelsKey).toStringList();
     recentChannelsLabel->setVisible(!keywords.isEmpty());
     // TODO The::globalActions()->value("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
 

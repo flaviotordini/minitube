@@ -74,6 +74,8 @@ private:
     QLabel *message;
     QPushButton *watchButton;
 
+    QStringList recentKeywords;
+    QStringList recentChannels;
 };
 
 #endif // __SEARCHVIEW_H__
