@@ -178,7 +178,6 @@ void ChannelView::appear() {
 }
 
 void ChannelView::disappear() {
-    ChannelAggregator::instance()->stop();
     foreach (QAction* action, statusActions)
         MainWindow::instance()->showActionInStatusBar(action, false);
 }

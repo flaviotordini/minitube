@@ -160,7 +160,7 @@ void ChannelAggregator::videosLoaded(const QList<Video*> &videos) {
         foreach (Video* video, videos) video->deleteLater();
     }
 
-    QTimer::singleShot(1000, this, SLOT(processNextChannel()));
+    QTimer::singleShot(0, this, SLOT(processNextChannel()));
 }
 
 void ChannelAggregator::updateUnwatchedCount() {
