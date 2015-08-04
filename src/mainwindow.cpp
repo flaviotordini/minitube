@@ -162,7 +162,7 @@ MainWindow::MainWindow() :
         showActivationView(false);
 #endif
 
-    QTimer::singleShot(100, this, SLOT(lazyInit()));
+    QTimer::singleShot(0, this, SLOT(lazyInit()));
 }
 
 MainWindow::~MainWindow() {
@@ -225,6 +225,11 @@ void MainWindow::lazyInit() {
 
     // Hack to give focus to searchlineedit
     QMetaObject::invokeMethod(views->currentWidget(), "appear");
+    View* view = dynamic_cast<View *> (views->currentWidget());
+    QString desc = view->metadata().value("description").toString();
+    if (!desc.isEmpty()) showMessage(desc);
+
+    ChannelAggregator::instance()->start();
 }
 
 void MainWindow::changeEvent(QEvent *e) {
@@ -874,7 +879,8 @@ void MainWindow::showActionInStatusBar(QAction* action, bool show) {
 #endif
     if (show) {
         statusToolBar->insertAction(statusToolBar->actions().first(), action);
-        if (statusBar()->isHidden()) setStatusBarVisibility(true);
+        if (statusBar()->isHidden())
+            setStatusBarVisibility(true);
     } else {
         statusToolBar->removeAction(action);
         if (statusBar()->isVisible() && !needStatusBar())
@@ -941,10 +947,10 @@ void MainWindow::goBack() {
 }
 
 void MainWindow::showWidget(QWidget* widget, bool transition) {
+    Q_UNUSED(transition);
+
     if (compactViewAct->isChecked())
         compactViewAct->toggle();
-
-    setUpdatesEnabled(false);
 
     // call hide method on the current view
     View* oldView = dynamic_cast<View *> (views->currentWidget());
@@ -992,19 +998,11 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
         adjustStatusBarVisibility();
         messageLabel->hide();
 
+        /*
         QString desc = metadata.value("description").toString();
         if (!desc.isEmpty()) showMessage(desc);
+        */
     }
-
-    setUpdatesEnabled(true);
-
-#ifdef APP_EXTRA
-    if (transition && (oldWidget != mediaView)) // || !mediaView->getVideoArea()->isVideoShown()
-    // if (transition)
-        Extra::fadeInWidget(oldWidget, widget);
-#else
-    Q_UNUSED(transition);
-#endif
 
     history->push(widget);
 }
@@ -1206,6 +1204,8 @@ void MainWindow::fullscreen() {
     if (compactViewAct->isChecked())
         compactViewAct->toggle();
 
+    m_fullscreen = !m_fullscreen;
+
 #ifdef APP_MAC
     WId handle = winId();
     if (mac::CanGoFullScreen(handle)) {
@@ -1214,8 +1214,6 @@ void MainWindow::fullscreen() {
         return;
     }
 #endif
-
-    m_fullscreen = !m_fullscreen;
 
     if (m_fullscreen) {
         // Enter full screen

@@ -197,14 +197,12 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 }
 
 void SearchView::appear() {
-    setUpdatesEnabled(false);
+    MainWindow::instance()->showActionInStatusBar(The::globalActions()->value("definition"), true);
+
     updateRecentKeywords();
     updateRecentChannels();
     queryEdit->selectAll();
     queryEdit->enableSuggest();
-    setUpdatesEnabled(true);
-
-    MainWindow::instance()->showActionInStatusBar(The::globalActions()->value("definition"), true);
 
     if (!queryEdit->hasFocus()) queryEdit->setFocus();
 }
