@@ -38,32 +38,32 @@ QFont createFontWithMinSize(bool isBold, double sizeScale) {
 }
 }
 
-const QFont FontUtils::small() {
-    static QFont font = createFontWithMinSize(false, .85);
+const QFont &FontUtils::small() {
+    static QFont font = createFontWithMinSize(false, .9);
     return font;
 }
 
-const QFont FontUtils::smallBold() {
-    static QFont font = createFontWithMinSize(true, .85);
+const QFont &FontUtils::smallBold() {
+    static QFont font = createFontWithMinSize(true, .9);
     return font;
 }
 
-const QFont FontUtils::medium() {
+const QFont &FontUtils::medium() {
     static QFont font = createFont(false, 1.1);
     return font;
 }
 
-const QFont FontUtils::mediumBold() {
+const QFont &FontUtils::mediumBold() {
     static QFont font = createFont(true, 0.9);
     return font;
 }
 
-const QFont FontUtils::big() {
+const QFont &FontUtils::big() {
     static QFont font = createFont(false, 1.5);
     return font;
 }
 
-const QFont FontUtils::bigBold() {
+const QFont &FontUtils::bigBold() {
     static QFont font = createFont(true, 1.5);
     return font;
 }
