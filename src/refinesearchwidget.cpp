@@ -19,7 +19,6 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "refinesearchwidget.h"
-#include "fontutils.h"
 #include "searchparams.h"
 #ifdef APP_EXTRA
 #include "extra.h"
@@ -167,8 +166,7 @@ void RefineSearchWidget::setupLabel(const QString &text, QBoxLayout *layout, con
     icon->setPixmap(translucentPixmap);
     hLayout->addWidget(icon);
 
-    QLabel *label = new QLabel(text.toUpper(), this);
-    label->setFont(FontUtils::small());
+    QLabel *label = new QLabel(text, this);
     label->setStyleSheet("color: rgba(0, 0, 0, 128);");
     hLayout->addWidget(label);
 
