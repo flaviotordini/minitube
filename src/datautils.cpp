@@ -101,3 +101,16 @@ QString DataUtils::formatDateTime(const QDateTime &dt) {
     }
     return s;
 }
+
+QString DataUtils::formatDuration(uint secs) {
+    uint d = secs;
+    QString res;
+    uint seconds = d % 60;
+    d /= 60;
+    uint minutes = d % 60;
+    d /= 60;
+    uint hours = d % 24;
+    if (hours == 0)
+        return res.sprintf("%d:%02d", minutes, seconds);
+    return res.sprintf("%d:%02d:%02d", hours, minutes, seconds);
+}

@@ -11,6 +11,7 @@ public:
     static QString systemRegioneCode();
     static uint parseIsoPeriod(const QString &isoPeriod);
     static QString formatDateTime(const QDateTime &dt);
+    static QString formatDuration(uint secs);
 
 private:
     DataUtils() { }

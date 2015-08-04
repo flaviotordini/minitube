@@ -25,6 +25,7 @@ $END_LICENSE */
 #include "jsfunctions.h"
 #include "temporary.h"
 #include "compatibility/qurlqueryhelper.h"
+#include "datautils.h"
 
 namespace The {
 NetworkAccess* http();
@@ -473,16 +474,7 @@ QString Video::decryptSignature(const QString &s) {
 }
 
 QString Video::formattedDuration() const {
-    int duration = m_duration;
-    QString res;
-    int seconds = duration % 60;
-    duration /= 60;
-    int minutes = duration % 60;
-    duration /= 60;
-    int hours = duration % 24;
-    if (hours == 0)
-        return res.sprintf("%d:%02d", minutes, seconds);
-    return res.sprintf("%d:%02d:%02d", hours, minutes, seconds);
+    return DataUtils::formatDuration(m_duration);
 }
 
 void Video::saveDefinitionForUrl(const QString& url, const VideoDefinition& definition) {
