@@ -690,7 +690,8 @@ void MediaView::openWebPage() {
 #ifdef APP_PHONON
     mediaObject->pause();
 #endif
-    QDesktopServices::openUrl(video->webpage());
+    QString url = video->webpage() + QLatin1String("&t=") + QString::number(mediaObject->currentTime() / 1000);
+    QDesktopServices::openUrl(url);
 }
 
 void MediaView::copyWebPage() {
@@ -1160,8 +1161,13 @@ void MediaView::toggleSubscription() {
     QString userId = video->channelId();
     if (userId.isEmpty()) return;
     bool subscribed = YTChannel::isSubscribed(userId);
-    if (subscribed) YTChannel::unsubscribe(userId);
-    else YTChannel::subscribe(userId);
+    if (subscribed) {
+        YTChannel::unsubscribe(userId);
+        MainWindow::instance()->showMessage(tr("Unsubscribed from %1").arg(video->channelTitle()));
+    } else {
+        YTChannel::subscribe(userId);
+        MainWindow::instance()->showMessage(tr("Subscribed to %1").arg(video->channelTitle()));
+    }
     updateSubscriptionAction(video, !subscribed);
 }
 
