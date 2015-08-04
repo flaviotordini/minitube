@@ -41,6 +41,9 @@ public:
         return metadata;
     }
 
+protected:
+    void paintEvent(QPaintEvent *e);
+
 private:
     QPushButton *closeButton;
 

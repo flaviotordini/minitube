@@ -30,6 +30,7 @@ $END_LICENSE */
 #include "macutils.h"
 #include "mac_startup.h"
 #endif
+#include "fontutils.h"
 
 AboutView::AboutView(QWidget *parent) : QWidget(parent) {
 
@@ -47,8 +48,13 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
     layout->setSpacing(30);
     hLayout->addLayout(layout);
 
-    QString info = "<html><style>a { color: palette(text); text-decoration: none; font-weight: bold }</style><body>"
-            "<h1 style='font-weight:normal'>" + QString(Constants::NAME) + "</h1>"
+    QString css = "a { color: palette(text); text-decoration: none; font-weight: bold } h1 { font-weight: 100 }";
+#ifdef APP_MAC
+    css += " h1 { font-family: 'Helvetica Neue' }";
+#endif
+
+    QString info = "<html><style>" + css + "</style><body>"
+            "<h1>" + QString(Constants::NAME) + "</h1>"
             "<p>" + tr("There's life outside the browser!") + "</p>"
             "<p>" + tr("Version %1").arg(Constants::VERSION) + "</p>"
             + QString("<p><a href=\"%1/\">%1</a></p>").arg(Constants::WEBSITE);
@@ -118,4 +124,25 @@ void AboutView::appear() {
 #endif
 #endif
     closeButton->setFocus();
+}
+
+void AboutView::paintEvent(QPaintEvent *event) {
+    QWidget::paintEvent(event);
+#if defined(APP_MAC) | defined(APP_WIN)
+    QBrush brush;
+    if (window()->isActiveWindow()) {
+        brush = Qt::white;
+    } else {
+        brush = palette().window();
+    }
+    QPainter painter(this);
+    painter.fillRect(0, 0, width(), height(), brush);
+    painter.end();
+#endif
+#ifdef APP_UBUNTU
+    QStyleOption o;
+    o.initFrom(this);
+    QPainter p(this);
+    style()->drawPrimitive(QStyle::PE_Widget, &o, &p, this);
+#endif
 }

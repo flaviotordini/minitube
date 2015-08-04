@@ -48,16 +48,11 @@ static const int PADDING = 30;
 
 SearchView::SearchView(QWidget *parent) : QWidget(parent) {
 
-    QFont biggerFont = FontUtils::big();
-    QFont smallerFont = FontUtils::small();
-
 #if defined(APP_MAC) | defined(APP_WIN)
     // speedup painting since we'll paint the whole background
     // by ourselves anyway in paintEvent()
     setAttribute(Qt::WA_OpaquePaintEvent);
 #endif
-
-    setAutoFillBackground(true);
 
     QBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setMargin(PADDING);
@@ -112,6 +107,7 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     //: "Enter", as in "type". The whole phrase says: "Enter a keyword to start watching videos"
     QLabel *tipLabel = new QLabel(tr("Enter"), this);
 #ifndef APP_MAC
+    const QFont &biggerFont = FontUtils::big();
     tipLabel->setFont(biggerFont);
 #endif
     tipLayout->addWidget(tipLabel);
@@ -170,11 +166,10 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     recentKeywordsLayout = new QVBoxLayout();
     recentKeywordsLayout->setSpacing(5);
     recentKeywordsLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-    recentKeywordsLabel = new QLabel(tr("Recent keywords").toUpper(), this);
+    recentKeywordsLabel = new QLabel(tr("Recent keywords"), this);
     recentKeywordsLabel->setProperty("recentHeader", true);
     recentKeywordsLabel->setForegroundRole(QPalette::Dark);
     recentKeywordsLabel->hide();
-    recentKeywordsLabel->setFont(smallerFont);
     recentKeywordsLayout->addWidget(recentKeywordsLabel);
 
     otherLayout->addLayout(recentKeywordsLayout);
@@ -183,11 +178,10 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     recentChannelsLayout = new QVBoxLayout();
     recentChannelsLayout->setSpacing(5);
     recentChannelsLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-    recentChannelsLabel = new QLabel(tr("Recent channels").toUpper(), this);
+    recentChannelsLabel = new QLabel(tr("Recent channels"), this);
     recentChannelsLabel->setProperty("recentHeader", true);
     recentChannelsLabel->setForegroundRole(QPalette::Dark);
     recentChannelsLabel->hide();
-    recentChannelsLabel->setFont(smallerFont);
     recentChannelsLayout->addWidget(recentChannelsLabel);
 
     otherLayout->addLayout(recentChannelsLayout);
@@ -212,8 +206,7 @@ void SearchView::appear() {
 
     MainWindow::instance()->showActionInStatusBar(The::globalActions()->value("definition"), true);
 
-    queryEdit->setFocus();
-    QTimer::singleShot(100, queryEdit, SLOT(setFocus()));
+    if (!queryEdit->hasFocus()) queryEdit->setFocus();
 }
 
 void SearchView::disappear() {
@@ -384,7 +377,6 @@ void SearchView::paintEvent(QPaintEvent *event) {
 #if defined(APP_MAC) | defined(APP_WIN)
     QBrush brush;
     if (window()->isActiveWindow()) {
-        // brush = QBrush(QColor(0xdd, 0xe4, 0xeb));
         brush = Qt::white;
     } else {
         brush = palette().window();
@@ -399,7 +391,6 @@ void SearchView::paintEvent(QPaintEvent *event) {
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &o, &p, this);
 #endif
-    // PainterUtils::topShadow(this);
 }
 
 void SearchView::searchTypeChanged(int index) {
