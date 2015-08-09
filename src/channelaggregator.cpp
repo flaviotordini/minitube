@@ -27,12 +27,18 @@ $END_LICENSE */
 #ifdef APP_MAC
 #include "macutils.h"
 #endif
+#include "networkaccess.h"
+
+namespace The {
+    NetworkAccess* http();
+}
 
 ChannelAggregator::ChannelAggregator(QObject *parent) : QObject(parent),
     unwatchedCount(-1),
     running(false),
-    stopped(false) {
-    checkInterval = 3600;
+    stopped(false),
+    currentChannel(0) {
+    checkInterval = 1800;
 
     timer = new QTimer(this);
     timer->setInterval(60000 * 5);
@@ -88,22 +94,54 @@ void ChannelAggregator::processNextChannel() {
         running = false;
         return;
     }
-    qApp->processEvents();
     YTChannel* channel = getChannelToCheck();
     if (channel) {
-        SearchParams *params = new SearchParams();
-        params->setChannelId(channel->getChannelId());
-        params->setSortBy(SearchParams::SortByNewest);
-        params->setTransient(true);
-        params->setPublishedAfter(channel->getChecked());
-        YTSearch *videoSource = new YTSearch(params, this);
-        connect(videoSource, SIGNAL(gotVideos(QList<Video*>)), SLOT(videosLoaded(QList<Video*>)));
-        videoSource->loadVideos(50, 1);
+        checkWebPage(channel);
         channel->updateChecked();
     } else finish();
 }
 
+void ChannelAggregator::checkWebPage(YTChannel *channel) {
+    currentChannel = channel;
+    QString url = "https://www.youtube.com/channel/" + channel->getChannelId() + "/videos";
+    QObject *reply = The::http()->get(url);
+
+    connect(reply, SIGNAL(data(QByteArray)), SLOT(parseWebPage(QByteArray)));
+    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorWebPage(QNetworkReply*)));
+}
+
+void ChannelAggregator::parseWebPage(const QByteArray &bytes) {
+    bool hasNewVideos = true;
+    QRegExp re = QRegExp("[\\?&]v=([0-9A-Za-z_-]+)");
+    if (re.indexIn(bytes) != -1) {
+        QString videoId = re.cap(1);
+        QString latestVideoId = currentChannel->latestVideoId();
+        // qDebug() << "Comparing" << videoId << latestVideoId;
+        hasNewVideos = videoId != latestVideoId;
+    }
+    if (hasNewVideos) reallyProcessChannel(currentChannel);
+    else processNextChannel();
+}
+
+void ChannelAggregator::errorWebPage(QNetworkReply *reply) {
+    Q_UNUSED(reply);
+    reallyProcessChannel(currentChannel);
+}
+
+void ChannelAggregator::reallyProcessChannel(YTChannel *channel) {
+    SearchParams *params = new SearchParams();
+    params->setChannelId(channel->getChannelId());
+    params->setSortBy(SearchParams::SortByNewest);
+    params->setTransient(true);
+    params->setPublishedAfter(channel->getChecked());
+    YTSearch *videoSource = new YTSearch(params, this);
+    connect(videoSource, SIGNAL(gotVideos(QList<Video*>)), SLOT(videosLoaded(QList<Video*>)));
+    videoSource->loadVideos(50, 1);
+}
+
 void ChannelAggregator::finish() {
+    currentChannel = 0;
+
     /*
     foreach (YTChannel *channel, updatedChannels)
         if (channel->updateNotifyCount())

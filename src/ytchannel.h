@@ -62,6 +62,8 @@ public:
     QString getThumbnailLocation();
     const QPixmap & getThumbnail() { return thumbnail; }
 
+    QString latestVideoId();
+
     static QList<YTChannel*> getCachedChannels() { return cache.values(); }
 
 public slots:

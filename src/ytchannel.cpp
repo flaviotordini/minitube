@@ -199,6 +199,17 @@ QString YTChannel::getThumbnailLocation() {
     return getThumbnailDir() + channelId;
 }
 
+QString YTChannel::latestVideoId() {
+    QSqlDatabase db = Database::instance().getConnection();
+    QSqlQuery query(db);
+    query.prepare("select video_id from subscriptions_videos where user_id=? order by published desc limit 1");
+    query.bindValue(0, channelId);
+    bool success = query.exec();
+    if (!success) qWarning() << query.lastQuery() << query.lastError().text();
+    if (!query.next()) return QString();
+    return query.value(0).toString();
+}
+
 void YTChannel::unsubscribe() {
     YTChannel::unsubscribe(channelId);
 }

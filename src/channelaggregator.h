@@ -22,6 +22,7 @@ $END_LICENSE */
 #define CHANNELAGGREGATOR_H
 
 #include <QtCore>
+#include <QtNetwork>
 
 class YTChannel;
 class Video;
@@ -50,6 +51,10 @@ signals:
 private slots:
     void videosLoaded(const QList<Video*> &videos);
     void processNextChannel();
+    void checkWebPage(YTChannel *channel);
+    void parseWebPage(const QByteArray &bytes);
+    void errorWebPage(QNetworkReply *reply);
+    void reallyProcessChannel(YTChannel *channel);
 
 private:
     ChannelAggregator(QObject *parent = 0);
@@ -66,6 +71,8 @@ private:
 
     QTimer *timer;
     bool stopped;
+
+    YTChannel *currentChannel;
 };
 
 #endif // CHANNELAGGREGATOR_H
