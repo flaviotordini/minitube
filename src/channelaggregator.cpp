@@ -97,7 +97,6 @@ void ChannelAggregator::processNextChannel() {
     YTChannel* channel = getChannelToCheck();
     if (channel) {
         checkWebPage(channel);
-        channel->updateChecked();
     } else finish();
 }
 
@@ -119,13 +118,20 @@ void ChannelAggregator::parseWebPage(const QByteArray &bytes) {
         // qDebug() << "Comparing" << videoId << latestVideoId;
         hasNewVideos = videoId != latestVideoId;
     }
-    if (hasNewVideos) reallyProcessChannel(currentChannel);
-    else processNextChannel();
+    if (hasNewVideos) {
+        reallyProcessChannel(currentChannel);
+        currentChannel = 0;
+    } else {
+        currentChannel->updateChecked();
+        currentChannel = 0;
+        processNextChannel();
+    }
 }
 
 void ChannelAggregator::errorWebPage(QNetworkReply *reply) {
     Q_UNUSED(reply);
     reallyProcessChannel(currentChannel);
+    currentChannel = 0;
 }
 
 void ChannelAggregator::reallyProcessChannel(YTChannel *channel) {
@@ -137,6 +143,8 @@ void ChannelAggregator::reallyProcessChannel(YTChannel *channel) {
     YTSearch *videoSource = new YTSearch(params, this);
     connect(videoSource, SIGNAL(gotVideos(QList<Video*>)), SLOT(videosLoaded(QList<Video*>)));
     videoSource->loadVideos(50, 1);
+
+    channel->updateChecked();
 }
 
 void ChannelAggregator::finish() {
