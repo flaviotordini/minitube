@@ -119,8 +119,10 @@ void ChannelAggregator::parseWebPage(const QByteArray &bytes) {
         hasNewVideos = videoId != latestVideoId;
     }
     if (hasNewVideos) {
-        reallyProcessChannel(currentChannel);
-        currentChannel = 0;
+        if (currentChannel) {
+            reallyProcessChannel(currentChannel);
+            currentChannel = 0;
+        }
     } else {
         currentChannel->updateChecked();
         currentChannel = 0;
