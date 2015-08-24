@@ -104,10 +104,11 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     QBoxLayout *tipLayout = new QHBoxLayout();
     tipLayout->setSpacing(10);
 
+    const QFont &biggerFont = FontUtils::big();
+
     //: "Enter", as in "type". The whole phrase says: "Enter a keyword to start watching videos"
     QLabel *tipLabel = new QLabel(tr("Enter"), this);
 #ifndef APP_MAC
-    const QFont &biggerFont = FontUtils::big();
     tipLabel->setFont(biggerFont);
 #endif
     tipLayout->addWidget(tipLabel);
@@ -133,19 +134,23 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     QHBoxLayout *searchLayout = new QHBoxLayout();
     searchLayout->setAlignment(Qt::AlignVCenter);
 
+#ifdef APP_MAC_SEARCHFIELD
+    queryEdit = new SearchLineEditMac(this);
+#else
     queryEdit = new SearchLineEdit(this);
-#ifndef APP_MAC_SEARCHFIELD
-    queryEdit->setFont(biggerFont);
+    queryEdit->toWidget()->setFont(biggerFont);
 #endif
-    connect(queryEdit, SIGNAL(search(const QString&)), SLOT(watch(const QString&)));
-    connect(queryEdit, SIGNAL(textEdited(const QString &)), SLOT(textChanged(const QString &)));
-    connect(queryEdit, SIGNAL(suggestionAccepted(Suggestion*)), SLOT(suggestionAccepted(Suggestion*)));
+
+    qDebug() << "queryEdit->toWidget()" << (queryEdit->toWidget() == 0) << queryEdit->toWidget();
+    connect(queryEdit->toWidget(), SIGNAL(search(const QString&)), SLOT(watch(const QString&)));
+    connect(queryEdit->toWidget(), SIGNAL(textEdited(const QString &)), SLOT(textChanged(const QString &)));
+    connect(queryEdit->toWidget(), SIGNAL(suggestionAccepted(Suggestion*)), SLOT(suggestionAccepted(Suggestion*)));
 
     youtubeSuggest = new YTSuggester(this);
     channelSuggest = new ChannelSuggest(this);
     searchTypeChanged(0);
 
-    searchLayout->addWidget(queryEdit);
+    searchLayout->addWidget(queryEdit->toWidget());
     searchLayout->addSpacing(10);
 
     watchButton = new QPushButton(tr("Watch"), this);
@@ -204,7 +209,7 @@ void SearchView::appear() {
     queryEdit->selectAll();
     queryEdit->enableSuggest();
 
-    if (!queryEdit->hasFocus()) queryEdit->setFocus();
+    if (!queryEdit->toWidget()->hasFocus()) queryEdit->toWidget()->setFocus();
 }
 
 void SearchView::disappear() {
@@ -249,7 +254,7 @@ void SearchView::updateRecentKeywords() {
                                        + display + "</a>", this);
         itemLabel->setAttribute(Qt::WA_DeleteOnClose);
         itemLabel->setProperty("recentItem", true);
-        itemLabel->setMaximumWidth(queryEdit->width() + watchButton->width());
+        itemLabel->setMaximumWidth(queryEdit->toWidget()->width() + watchButton->width());
         // itemLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         // Make links navigable with the keyboard too
         itemLabel->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard | Qt::LinksAccessibleByMouse);
@@ -291,7 +296,7 @@ void SearchView::updateRecentChannels() {
                                        + display + "</a>", this);
         itemLabel->setAttribute(Qt::WA_DeleteOnClose);
         itemLabel->setProperty("recentItem", true);
-        itemLabel->setMaximumWidth(queryEdit->width() + watchButton->width());
+        itemLabel->setMaximumWidth(queryEdit->toWidget()->width() + watchButton->width());
         // itemLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         // Make links navigable with the keyboard too
         itemLabel->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard | Qt::LinksAccessibleByMouse);
@@ -316,7 +321,7 @@ void SearchView::watch(const QString &query) {
 
     // check for empty query
     if (q.length() == 0) {
-        queryEdit->setFocus(Qt::OtherFocusReason);
+        queryEdit->toWidget()->setFocus(Qt::OtherFocusReason);
         return;
     }
 
@@ -336,7 +341,7 @@ void SearchView::watch(const QString &query) {
 
 void SearchView::watchChannel(const QString &channelId) {
     if (channelId.length() == 0) {
-        queryEdit->setFocus(Qt::OtherFocusReason);
+        queryEdit->toWidget()->setFocus(Qt::OtherFocusReason);
         return;
     }
 
@@ -358,7 +363,7 @@ void SearchView::watchKeywords(const QString &query) {
 
     // check for empty query
     if (query.length() == 0) {
-        queryEdit->setFocus(Qt::OtherFocusReason);
+        queryEdit->toWidget()->setFocus(Qt::OtherFocusReason);
         return;
     }
 
@@ -402,7 +407,7 @@ void SearchView::searchTypeChanged(int index) {
         queryEdit->setSuggester(channelSuggest);
     }
     queryEdit->selectAll();
-    queryEdit->setFocus();
+    queryEdit->toWidget()->setFocus();
 }
 
 void SearchView::suggestionAccepted(Suggestion *suggestion) {

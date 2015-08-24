@@ -21,8 +21,9 @@ $END_LICENSE */
 #include "segmentedcontrol.h"
 #include "mainwindow.h"
 #include "painterutils.h"
+#include "fontutils.h"
 
-static const QColor borderColor = QColor(0x26, 0x26, 0x26);
+static const QColor borderColor = QColor(158, 157, 159);
 
 class SegmentedControl::Private {
 public:
@@ -34,6 +35,8 @@ public:
 
 SegmentedControl::SegmentedControl (QWidget *parent)
     : QWidget(parent), d(new SegmentedControl::Private) {
+
+    setFont(FontUtils::small());
 
     setMouseTracking(true);
 
@@ -86,8 +89,8 @@ void SegmentedControl::paintEvent (QPaintEvent * /*event*/) {
     QPainter p(this);
 
     QLinearGradient linearGrad(rect().topLeft(), rect().bottomLeft());
-    linearGrad.setColorAt(0, borderColor);
-    linearGrad.setColorAt(1, QColor(0x3c, 0x3c, 0x3c));
+    linearGrad.setColorAt(0, QColor(185, 183, 185));
+    linearGrad.setColorAt(1, QColor(176, 176, 178));
     p.fillRect(rect(), QBrush(linearGrad));
 
     // Calculate Buttons Size & Location
@@ -98,7 +101,6 @@ void SegmentedControl::paintEvent (QPaintEvent * /*event*/) {
     const int actionCount = d->actionList.size();
     for (int i = 0; i < actionCount; i++) {
         QAction *action = d->actionList.at(i);
-
         if (i + 1 == actionCount) {
             rect.setWidth(width - buttonWidth * (actionCount-1));
             drawButton(&p, rect, action);
@@ -106,9 +108,7 @@ void SegmentedControl::paintEvent (QPaintEvent * /*event*/) {
             drawButton(&p, rect, action);
             rect.moveLeft(rect.x() + rect.width());
         }
-
     }
-
 }
 
 void SegmentedControl::mouseMoveEvent (QMouseEvent *event) {
@@ -195,6 +195,7 @@ void SegmentedControl::drawButton (QPainter *painter,
 void SegmentedControl::drawUnselectedButton (QPainter *painter,
                                         const QRect& rect,
                                         const QAction *action) {
+    painter->setPen(QPen(QColor(0, 0, 0, 128), 1));
     paintButton(painter, rect, action);
 }
 
@@ -210,11 +211,12 @@ void SegmentedControl::drawSelectedButton (QPainter *painter,
     QRadialGradient gradient(hCenter, 0,
                              width,
                              hCenter, 0);
-    gradient.setColorAt(1, Qt::black);
-    gradient.setColorAt(0, QColor(0x33, 0x33, 0x33));
+    gradient.setColorAt(1, QColor(212, 210, 212));
+    gradient.setColorAt(0, QColor(203, 203, 205));
     painter->fillRect(0, 0, width, height, QBrush(gradient));
 
     painter->restore();
+    painter->setPen(QPen(QColor(0, 0, 0, 232), 1));
     paintButton(painter, rect, action);
 }
 
@@ -225,38 +227,23 @@ void SegmentedControl::paintButton(QPainter *painter, const QRect& rect, const Q
     const int height = rect.height();
     const int width = rect.width();
 
-    if (action == d->pressedAction && action != d->checkedAction) {
-        const int hCenter = width * .5;
-        QRadialGradient gradient(hCenter, 0,
-                                 width,
-                                 hCenter, 0);
-        gradient.setColorAt(1, QColor(0x00, 0x00, 0x00, 0));
-        gradient.setColorAt(0, QColor(0x00, 0x00, 0x00, 16));
-        painter->fillRect(0, 0, width, height, QBrush(gradient));
-    } else if (action == d->hoveredAction && action != d->checkedAction) {
-        const int hCenter = width * .5;
-        QRadialGradient gradient(hCenter, 0,
-                                 width,
-                                 hCenter, 0);
-        gradient.setColorAt(1, QColor(0xff, 0xff, 0xff, 0));
-        gradient.setColorAt(0, QColor(0xff, 0xff, 0xff, 16));
-        painter->fillRect(0, 0, width, height, QBrush(gradient));
-    }
-
+    painter->save();
     painter->setPen(borderColor);
 #if defined(APP_MAC) | defined(APP_WIN)
     painter->drawRect(-1, -1, width, height);
 #else
     painter->drawRect(0, 0, width, height - 1);
 #endif
+    painter->restore();
 
     const QString text = action->text();
 
     // text shadow
+    /*
     painter->setPen(QColor(0, 0, 0, 128));
     painter->drawText(0, -1, width, height, Qt::AlignCenter, text);
+    */
 
-    painter->setPen(QPen(Qt::white, 1));
     painter->drawText(0, 0, width, height, Qt::AlignCenter, text);
 
     if (action->property("notifyCount").isValid()) {
@@ -265,6 +252,24 @@ void SegmentedControl::paintButton(QPainter *painter, const QRect& rect, const Q
                                               text);
         painter->translate((width + textBox.width()) / 2 + 10, (height - 20) / 2);
         PainterUtils::paintBadge(painter, action->property("notifyCount").toString());
+    }
+
+    if (action == d->pressedAction && action != d->checkedAction) {
+        const int hCenter = width * .5;
+        QRadialGradient gradient(hCenter, 0,
+                                 width,
+                                 hCenter, 0);
+        gradient.setColorAt(1, QColor(0x00, 0x00, 0x00, 0));
+        gradient.setColorAt(0, QColor(0x00, 0x00, 0x00, 32));
+        painter->fillRect(0, 0, width, height, QBrush(gradient));
+    } else if (action == d->hoveredAction && action != d->checkedAction) {
+        const int hCenter = width * .5;
+        QRadialGradient gradient(hCenter, 0,
+                                 width,
+                                 hCenter, 0);
+        gradient.setColorAt(1, QColor(0x00, 0x00, 0x00, 0));
+        gradient.setColorAt(0, QColor(0x00, 0x00, 0x00, 16));
+        painter->fillRect(0, 0, width, height, QBrush(gradient));
     }
 
     painter->restore();

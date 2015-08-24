@@ -27,7 +27,7 @@ $END_LICENSE */
 #endif
 #include "view.h"
 
-class SearchLineEdit;
+class SearchWidget;
 class SearchParams;
 class YTSuggester;
 class ChannelSuggest;
@@ -66,7 +66,7 @@ private:
     ChannelSuggest *channelSuggest;
 
     QComboBox *typeCombo;
-    SearchLineEdit *queryEdit;
+    SearchWidget *queryEdit;
     QLabel *recentKeywordsLabel;
     QBoxLayout *recentKeywordsLayout;
     QLabel *recentChannelsLabel;

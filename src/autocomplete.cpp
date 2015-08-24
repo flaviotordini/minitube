@@ -46,14 +46,14 @@ QDebug operator<<(QDebug str, const QEvent * ev) {
 }
 #endif
 
-AutoComplete::AutoComplete(SearchLineEdit *buddy, QLineEdit *lineEdit):
-    QObject(buddy), buddy(buddy), lineEdit(lineEdit), enabled(true), suggester(0), itemHovering(false) {
+AutoComplete::AutoComplete(SearchWidget *buddy, QLineEdit *lineEdit):
+    QObject(lineEdit), buddy(buddy), lineEdit(lineEdit), enabled(true), suggester(0), itemHovering(false) {
 
     popup = new QListWidget();
     popup->setWindowFlags(Qt::Popup);
-    popup->setFocusProxy(buddy);
+    popup->setFocusProxy(buddy->toWidget());
     popup->installEventFilter(this);
-    buddy->window()->installEventFilter(this);
+    buddy->toWidget()->window()->installEventFilter(this);
     popup->setMouseTracking(true);
 
     // style
@@ -71,7 +71,7 @@ AutoComplete::AutoComplete(SearchLineEdit *buddy, QLineEdit *lineEdit):
     timer->setSingleShot(true);
     timer->setInterval(500);
     connect(timer, SIGNAL(timeout()), SLOT(suggest()));
-    connect(buddy, SIGNAL(textEdited(QString)), timer, SLOT(start()));
+    connect(buddy->toWidget(), SIGNAL(textEdited(QString)), timer, SLOT(start()));
 }
 
 bool AutoComplete::eventFilter(QObject *obj, QEvent *ev) {
@@ -128,7 +128,7 @@ bool AutoComplete::eventFilter(QObject *obj, QEvent *ev) {
                 popup->setCurrentItem(0);
                 popup->clearSelection();
                 buddy->setText(originalText);
-                buddy->setFocus();
+                buddy->toWidget()->setFocus();
                 consumed = true;
             }
             break;
@@ -155,6 +155,7 @@ bool AutoComplete::eventFilter(QObject *obj, QEvent *ev) {
 }
 
 void AutoComplete::showSuggestions(const QList<Suggestion *> &suggestions) {
+    qDebug() << __PRETTY_FUNCTION__;
     if (suggestions.isEmpty()) {
         hideSuggestions();
         return;
@@ -173,7 +174,7 @@ void AutoComplete::showSuggestions(const QList<Suggestion *> &suggestions) {
     for (int i = 0; i < suggestions.count(); ++i)
         h += popup->sizeHintForRow(i);
 
-    popup->resize(buddy->width(), h);
+    popup->resize(buddy->toWidget()->width(), h);
     adjustPosition();
     popup->setUpdatesEnabled(true);
 
@@ -231,12 +232,12 @@ void AutoComplete::suggestionsReady(const QList<Suggestion *> &suggestions) {
     qDeleteAll(this->suggestions);
     this->suggestions = suggestions;
     if (!enabled) return;
-    if (!buddy->hasFocus()) return;
+    if (!buddy->toWidget()->hasFocus() && buddy->toWidget()->isVisible()) return;
     showSuggestions(suggestions);
 }
 
 void AutoComplete::adjustPosition() {
-    popup->move(buddy->mapToGlobal(QPoint(0, buddy->height())));
+    popup->move(buddy->toWidget()->mapToGlobal(QPoint(0, buddy->toWidget()->height())));
 }
 
 void AutoComplete::enableItemHovering() {
@@ -255,7 +256,7 @@ void AutoComplete::hideSuggestions() {
         buddy->setText(originalText);
         originalText.clear();
     }
-    buddy->setFocus();
+    buddy->toWidget()->setFocus();
     timer->stop();
 }
 

@@ -24,7 +24,7 @@ $END_LICENSE */
 
 class Suggester;
 class Suggestion;
-class SearchLineEdit;
+class SearchWidget;
 
 QT_FORWARD_DECLARE_CLASS(QListWidget)
 QT_FORWARD_DECLARE_CLASS(QListWidgetItem)
@@ -35,7 +35,7 @@ class AutoComplete : public QObject {
     Q_OBJECT
 
 public:
-    AutoComplete(SearchLineEdit *buddy, QLineEdit *lineEdit);
+    AutoComplete(SearchWidget *buddy, QLineEdit *lineEdit);
     void setSuggester(Suggester* suggester);
     QListWidget* getPopup() { return popup; }
     void preventSuggest();
@@ -61,7 +61,7 @@ private:
     void showSuggestions(const QList<Suggestion*> &suggestions);
     void hideSuggestions();
 
-    SearchLineEdit *buddy;
+    SearchWidget *buddy;
     QLineEdit *lineEdit;
     QString originalText;
     QListWidget *popup;

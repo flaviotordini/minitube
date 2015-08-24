@@ -36,7 +36,6 @@ include(src/qtsingleapplication/qtsingleapplication.pri)
 
 HEADERS += src/video.h \
     src/searchlineedit.h \
-    src/urllineedit.h \
     src/spacer.h \
     src/constants.h \
     src/playlistitemdelegate.h \
@@ -106,10 +105,11 @@ HEADERS += src/video.h \
     src/yt3.h \
     src/paginatedvideosource.h \
     src/compatibility/qurlqueryhelper.h \
-    src/compatibility/pathsservice.h
+    src/compatibility/pathsservice.h \
+    src/searchwidget.h \
+    src/exlineedit.h
 SOURCES += src/main.cpp \
     src/searchlineedit.cpp \
-    src/urllineedit.cpp \
     src/spacer.cpp \
     src/video.cpp \
     src/videomimedata.cpp \
@@ -176,7 +176,9 @@ SOURCES += src/main.cpp \
     src/ytchannel.cpp \
     src/yt3.cpp \
     src/paginatedvideosource.cpp \
-    src/compatibility/pathsservice.cpp
+    src/compatibility/pathsservice.cpp \
+    src/exlineedit.cpp \
+    src/searchwidget.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/

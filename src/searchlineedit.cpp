@@ -1,72 +1,17 @@
 #include "searchlineedit.h"
-
-#include <QPainter>
-#include <QMouseEvent>
-#include <QMenu>
-#include <QStyle>
-#include <QStyleOptionFrameV2>
-
 #include "autocomplete.h"
 #include "iconutils.h"
 
-ClearButton::ClearButton(QWidget *parent) : QAbstractButton(parent), hovered(false), mousePressed(false) {
-    setCursor(Qt::ArrowCursor);
-    setToolTip(tr("Clear"));
-    setVisible(false);
-    setFocusPolicy(Qt::NoFocus);
-}
-
-void ClearButton::paintEvent(QPaintEvent *e) {
-    Q_UNUSED(e);
-    QPainter painter(this);
-    const int h = height();
-    int iconSize = 16;
-    if (h > 30) iconSize = 22;
-    QIcon::Mode iconMode = QIcon::Normal;
-    if (mousePressed) iconMode = QIcon::Active;
-    QPixmap p = IconUtils::icon("edit-clear").pixmap(iconSize, iconSize, iconMode);
-    // QPixmap p = IconUtils::tintedIcon("edit-clear", Qt::black, QSize(iconSize, iconSize)).pixmap(iconSize, iconSize, iconMode);
-    int x = (width() - p.width()) / 2;
-    int y = (h - p.height()) / 2;
-    painter.drawPixmap(x, y, p);
-}
-
-void ClearButton::textChanged(const QString &text) {
-    setVisible(!text.isEmpty());
-}
-
-void ClearButton::enterEvent(QEvent *e) {
-    Q_UNUSED(e);
-    hovered = true;
-}
-
-void ClearButton::leaveEvent(QEvent *e) {
-    Q_UNUSED(e);
-    hovered = false;
-}
-
-void ClearButton::mousePressEvent(QMouseEvent *e) {
-    Q_UNUSED(e);
-    mousePressed = true;
-}
-
-void ClearButton::mouseReleaseEvent(QMouseEvent *e) {
-    Q_UNUSED(e);
-    mousePressed = false;
-}
-
-/*
-    Search icon on the left hand side of the search widget
-    When a menu is set a down arrow appears
- */
 class SearchButton : public QAbstractButton {
+
 public:
     SearchButton(QWidget *parent = 0);
-    void paintEvent(QPaintEvent *event);
     QMenu *m_menu;
 
 protected:
-    void mousePressEvent(QMouseEvent *event);
+    void paintEvent(QPaintEvent *e);
+    void mousePressEvent(QMouseEvent *e);
+
 };
 
 SearchButton::SearchButton(QWidget *parent)
@@ -77,20 +22,20 @@ SearchButton::SearchButton(QWidget *parent)
     setFocusPolicy(Qt::NoFocus);
 }
 
-void SearchButton::mousePressEvent(QMouseEvent *event) {
-    if (m_menu && event->button() == Qt::LeftButton) {
+void SearchButton::mousePressEvent(QMouseEvent *e) {
+    if (m_menu && e->button() == Qt::LeftButton) {
         QWidget *p = parentWidget();
         if (p) {
             QPoint r = p->mapToGlobal(QPoint(0, p->height()));
             m_menu->exec(QPoint(r.x() + height() / 2, r.y()));
         }
-        event->accept();
+        e->accept();
     }
-    QAbstractButton::mousePressEvent(event);
+    QAbstractButton::mousePressEvent(e);
 }
 
-void SearchButton::paintEvent(QPaintEvent *event) {
-    Q_UNUSED(event);
+void SearchButton::paintEvent(QPaintEvent *e) {
+    Q_UNUSED(e);
     QPainter painter(this);
     const int h = height();
     int iconSize = 16;
@@ -101,17 +46,10 @@ void SearchButton::paintEvent(QPaintEvent *event) {
     painter.drawPixmap(x, y, p);
 }
 
-/*
-    SearchLineEdit is an enhanced QLineEdit
-    - A Search icon on the left with optional menu
-    - When there is no text and doesn't have focus an "inactive text" is displayed
-    - When there is text a clear button is displayed on the right hand side
- */
-SearchLineEdit::SearchLineEdit(QWidget *parent) : ExLineEdit(parent),
-searchButton(new SearchButton(this)) {
-    connect(lineEdit(), SIGNAL(textChanged(const QString &)), SIGNAL(textChanged(const QString &)));
-    connect(lineEdit(), SIGNAL(textEdited(const QString &)), SIGNAL(textEdited(const QString &)));
-    connect(lineEdit(), SIGNAL(returnPressed()), SLOT(returnPressed()));
+SearchLineEdit::SearchLineEdit(QWidget *parent) : ExLineEdit(parent), searchButton(new SearchButton(this)) {
+    connect(m_lineEdit, SIGNAL(textChanged(const QString &)), SIGNAL(textChanged(const QString &)));
+    connect(m_lineEdit, SIGNAL(textEdited(const QString &)), SIGNAL(textEdited(const QString &)));
+    connect(m_lineEdit, SIGNAL(returnPressed()), SLOT(returnPressed()));
 
     setLeftWidget(searchButton);
     inactiveText = tr("Search");
@@ -124,27 +62,27 @@ searchButton(new SearchButton(this)) {
     connect(autoComplete, SIGNAL(suggestionAccepted(Suggestion*)), SIGNAL(suggestionAccepted(Suggestion*)));
 }
 
-void SearchLineEdit::paintEvent(QPaintEvent *event) {
-    if (lineEdit()->text().isEmpty() && !hasFocus() && !inactiveText.isEmpty()) {
-        ExLineEdit::paintEvent(event);
+void SearchLineEdit::paintEvent(QPaintEvent *e) {
+    if (m_lineEdit->text().isEmpty() && !hasFocus() && !inactiveText.isEmpty()) {
+        ExLineEdit::paintEvent(e);
         QStyleOptionFrameV2 panel;
         initStyleOption(&panel);
         QRect r = style()->subElementRect(QStyle::SE_LineEditContents, &panel, this);
         QFontMetrics fm = fontMetrics();
-        int horizontalMargin = lineEdit()->x();
+        int horizontalMargin = m_lineEdit->x();
         QRect lineRect(horizontalMargin + r.x(), r.y() + (r.height() - fm.height() + 1) / 2,
                        r.width() - 2 * horizontalMargin, fm.height());
         QPainter painter(this);
         painter.setPen(palette().brush(QPalette::Disabled, QPalette::Text).color());
-        painter.drawText(lineRect, Qt::AlignLeft|Qt::AlignVCenter, inactiveText);
+        painter.drawText(lineRect, Qt::AlignLeft | Qt::AlignVCenter, inactiveText);
     } else {
-        ExLineEdit::paintEvent(event);
+        ExLineEdit::paintEvent(e);
     }
 }
 
-void SearchLineEdit::resizeEvent(QResizeEvent *event) {
+void SearchLineEdit::resizeEvent(QResizeEvent *e) {
     updateGeometries();
-    ExLineEdit::resizeEvent(event);
+    ExLineEdit::resizeEvent(e);
 }
 
 void SearchLineEdit::updateGeometries() {
@@ -157,6 +95,14 @@ void SearchLineEdit::updateGeometries() {
 
 void SearchLineEdit::setInactiveText(const QString &text) {
     inactiveText = text;
+}
+
+void SearchLineEdit::setText(const QString &text) {
+    m_lineEdit->setText(text);
+}
+
+AutoComplete *SearchLineEdit::getAutoComplete() {
+    return autoComplete;
 }
 
 void SearchLineEdit::setMenu(QMenu *menu) {
@@ -176,9 +122,10 @@ QMenu *SearchLineEdit::menu() const {
 }
 
 void SearchLineEdit::returnPressed() {
-    if (!lineEdit()->text().isEmpty()) {
+    QString text = m_lineEdit->text().simplified();
+    if (!text.isEmpty()) {
         autoComplete->preventSuggest();
-        emit search(lineEdit()->text());
+        emit search(text);
     }
 }
 
@@ -190,7 +137,28 @@ void SearchLineEdit::preventSuggest() {
     autoComplete->preventSuggest();
 }
 
-void SearchLineEdit::focusInEvent(QFocusEvent *event) {
-    ExLineEdit::focusInEvent(event);
+void SearchLineEdit::selectAll() {
+    m_lineEdit->selectAll();
+}
+
+void SearchLineEdit::setSuggester(Suggester *suggester) {
+    autoComplete->setSuggester(suggester);
+}
+
+void SearchLineEdit::focusInEvent(QFocusEvent *e) {
+    ExLineEdit::focusInEvent(e);
     enableSuggest();
+}
+
+void SearchLineEdit::emitTextChanged(const QString &text) {
+    autoComplete->enableSuggest();
+    emit textEdited(text);
+}
+
+QString SearchLineEdit::text() {
+    return m_lineEdit->text();
+}
+
+QLineEdit *SearchLineEdit::getLineEdit() {
+    return m_lineEdit;
 }

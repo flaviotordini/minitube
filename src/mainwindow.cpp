@@ -47,7 +47,7 @@ $END_LICENSE */
 #include "ytsuggester.h"
 #include "updatechecker.h"
 #include "temporary.h"
-#ifdef APP_MAC_SEARCHFIELD
+#if defined(APP_MAC_SEARCHFIELD) && !defined(APP_MAC_QMACTOOLBAR)
 #include "searchlineedit_mac.h"
 #else
 #include "searchlineedit.h"
@@ -754,11 +754,12 @@ void MainWindow::createToolBars() {
     volumeSlider->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 #endif
 
-#ifdef APP_MAC_SEARCHFIELD
+#if defined(APP_MAC_SEARCHFIELD) && !defined(APP_MAC_QMACTOOLBAR)
     SearchWrapper* searchWrapper = new SearchWrapper(this);
     toolbarSearch = searchWrapper->getSearchLineEdit();
 #else
     toolbarSearch = new SearchLineEdit(this);
+    qDebug() << "Qt SearchLineEdit" << toolbarSearch;
 #endif
     toolbarSearch->setMinimumWidth(toolbarSearch->fontInfo().pixelSize()*15);
     toolbarSearch->setSuggester(new YTSuggester(this));
@@ -769,7 +770,6 @@ void MainWindow::createToolBars() {
     // Add widgets to toolbar
 
 #ifdef APP_MAC_QMACTOOLBAR
-    searchWrapper->hide();
     currentTime->hide();
     toolbarSearch->hide();
     volumeSlider->hide();
@@ -827,7 +827,7 @@ void MainWindow::createToolBars() {
 
     mainToolBar->addWidget(new Spacer());
 
-#ifdef APP_MAC_SEARCHFIELD
+#if defined(APP_MAC_SEARCHFIELD) && !defined(APP_MAC_QMACTOOLBAR)
     mainToolBar->addWidget(searchWrapper);
 #else
     mainToolBar->addWidget(toolbarSearch);
@@ -841,7 +841,7 @@ void MainWindow::createStatusBar() {
     statusToolBar = new QToolBar(this);
     statusToolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     statusToolBar->setIconSize(QSize(16, 16));
-    statusToolBar->addAction(The::globalActions()->value("downloads"));
+    // statusToolBar->addAction(The::globalActions()->value("downloads"));
 
     regionAction = new QAction(this);
     regionAction->setStatusTip(tr("Choose your content location"));
@@ -879,12 +879,13 @@ void MainWindow::showActionInStatusBar(QAction* action, bool show) {
 #endif
     if (show) {
         statusToolBar->insertAction(statusToolBar->actions().first(), action);
-        if (statusBar()->isHidden())
+        if (statusBar()->isHidden() && !m_fullscreen)
             setStatusBarVisibility(true);
     } else {
         statusToolBar->removeAction(action);
         if (statusBar()->isVisible() && !needStatusBar())
-            setStatusBarVisibility(false);
+            if (m_fullscreen && views->currentWidget() == mediaView)
+                setStatusBarVisibility(false);
     }
 }
 
@@ -910,12 +911,12 @@ void MainWindow::readSettings() {
         int w = qMin(2000, desktopSize.width());
         int h = qMin(w / 3, desktopSize.height());
         setGeometry(
-            QStyle::alignedRect(
-                Qt::LeftToRight,
-                Qt::AlignTop,
-                QSize(w, h),
-                desktopSize)
-            );
+                    QStyle::alignedRect(
+                        Qt::LeftToRight,
+                        Qt::AlignTop,
+                        QSize(w, h),
+                        desktopSize)
+                    );
     }
     const VideoDefinition& firstDefinition = VideoDefinition::getDefinitions().first();
     setDefinitionMode(settings.value("definition", firstDefinition.getName()).toString());
@@ -1190,6 +1191,9 @@ void MainWindow::resizeEvent(QResizeEvent*e) {
             updateUIForFullscreen();
         }
     }
+#endif
+#ifdef APP_MAC_QMACTOOLBAR
+    toolbarSearch->move(width() - toolbarSearch->width() - 13, -38);
 #endif
     adjustMessageLabelPosition();
 }
@@ -1729,8 +1733,7 @@ void MainWindow::simpleUpdateDialog(const QString &version) {
 }
 
 bool MainWindow::needStatusBar() {
-    // 1 fixed action: downloadAction
-    return statusToolBar->actions().size() > 1;
+    return !statusToolBar->actions().isEmpty();
 }
 
 void MainWindow::adjustMessageLabelPosition() {

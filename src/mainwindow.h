@@ -65,6 +65,8 @@ public:
     MediaView* getMediaView() { return mediaView; }
     QToolButton* getRegionButton() { return regionButton; }
     QAction* getRegionAction() { return regionAction; }
+    SearchLineEdit *getToolbarSearch() { return toolbarSearch; }
+
     void showActionInStatusBar(QAction*, bool show);
     void setStatusBarVisibility(bool show);
     void adjustStatusBarVisibility();
