@@ -28,7 +28,7 @@ $END_LICENSE */
 #include "playlistitemdelegate.h"
 #include "segmentedcontrol.h"
 
-DownloadView::DownloadView(QWidget *parent) : QWidget(parent) {
+DownloadView::DownloadView(QWidget *parent) : View(parent) {
 
     QBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);

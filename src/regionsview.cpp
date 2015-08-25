@@ -22,7 +22,7 @@ $END_LICENSE */
 #include "ytregions.h"
 #include "mainwindow.h"
 
-RegionsView::RegionsView(QWidget *parent) : QWidget(parent) {
+RegionsView::RegionsView(QWidget *parent) : View(parent) {
     QBoxLayout *l = new QVBoxLayout(this);
     l->setMargin(30);
     l->setSpacing(30);

@@ -64,7 +64,7 @@ MediaView* MediaView::instance() {
     return i;
 }
 
-MediaView::MediaView(QWidget *parent) : QWidget(parent)
+MediaView::MediaView(QWidget *parent) : View(parent)
   , stopped(false)
   , downloadItem(0)
   #ifdef APP_SNAPSHOT
@@ -190,7 +190,7 @@ void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
 SearchParams* MediaView::getSearchParams() {
     VideoSource *videoSource = playlistModel->getVideoSource();
     if (videoSource && videoSource->metaObject()->className() == QLatin1String("YTSearch")) {
-        YTSearch *search = dynamic_cast<YTSearch *>(videoSource);
+        YTSearch *search = qobject_cast<YTSearch *>(videoSource);
         return search->getSearchParams();
     }
     return 0;

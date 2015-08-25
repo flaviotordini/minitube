@@ -225,7 +225,7 @@ void MainWindow::lazyInit() {
 
     // Hack to give focus to searchlineedit
     QMetaObject::invokeMethod(views->currentWidget(), "appear");
-    View* view = dynamic_cast<View *> (views->currentWidget());
+    View* view = qobject_cast<View *> (views->currentWidget());
     QString desc = view->metadata().value("description").toString();
     if (!desc.isEmpty()) showMessage(desc);
 
@@ -954,7 +954,7 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
         compactViewAct->toggle();
 
     // call hide method on the current view
-    View* oldView = dynamic_cast<View *> (views->currentWidget());
+    View* oldView = qobject_cast<View *> (views->currentWidget());
     if (oldView) {
         oldView->disappear();
         views->currentWidget()->setEnabled(false);
@@ -977,7 +977,7 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
     widget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     // call show method on the new view
-    View* newView = dynamic_cast<View *> (widget);
+    View* newView = qobject_cast<View *> (widget);
     if (newView) {
         widget->setEnabled(true);
         QHash<QString,QVariant> metadata = newView->metadata();

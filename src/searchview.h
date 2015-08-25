@@ -33,7 +33,7 @@ class YTSuggester;
 class ChannelSuggest;
 class Suggestion;
 
-class SearchView : public QWidget, public View {
+class SearchView : public View {
 
     Q_OBJECT
 

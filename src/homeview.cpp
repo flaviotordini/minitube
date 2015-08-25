@@ -32,7 +32,7 @@ $END_LICENSE */
 #include "macutils.h"
 #endif
 
-HomeView::HomeView(QWidget *parent) : QWidget(parent),
+HomeView::HomeView(QWidget *parent) : View(parent),
     standardFeedsView(0),
     channelsView(0) {
 

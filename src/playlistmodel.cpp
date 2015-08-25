@@ -270,7 +270,7 @@ void PlaylistModel::handleFirstVideo(Video *video) {
 
         static const int maxRecentElements = 10;
 
-        YTSearch *search = dynamic_cast<YTSearch *>(videoSource);
+        YTSearch *search = qobject_cast<YTSearch *>(videoSource);
         SearchParams *searchParams = search->getSearchParams();
 
         // save keyword
@@ -414,7 +414,7 @@ bool PlaylistModel::dropMimeData(const QMimeData *data,
     else
         beginRow = rowCount(QModelIndex());
 
-    const VideoMimeData* videoMimeData = dynamic_cast<const VideoMimeData*>( data );
+    const VideoMimeData* videoMimeData = qobject_cast<const VideoMimeData*>( data );
     if(!videoMimeData ) return false;
 
     QList<Video*> droppedVideos = videoMimeData->videos();

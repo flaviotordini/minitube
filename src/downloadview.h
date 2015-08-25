@@ -32,7 +32,7 @@ class DownloadModel;
 class DownloadListView;
 class DownloadSettings;
 
-class DownloadView : public QWidget, public View {
+class DownloadView : public View {
 
     Q_OBJECT
 

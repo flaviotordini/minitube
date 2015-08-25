@@ -50,7 +50,7 @@ namespace The {
 QHash<QString, QAction*>* globalActions();
 }
 
-class MediaView : public QWidget, public View {
+class MediaView : public View {
 
     Q_OBJECT
 

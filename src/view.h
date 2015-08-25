@@ -21,9 +21,17 @@ $END_LICENSE */
 #ifndef VIEW_H
 #define VIEW_H
 
-class View {
+#include <QWidget>
+#include <QHash>
+#include <QString>
+#include <QVariant>
+
+class View : public QWidget {
+
+    Q_OBJECT
 
 public:
+    View(QWidget *parent = 0) : QWidget(parent) { }
     virtual QHash<QString, QVariant> metadata() { return QHash<QString, QVariant>(); }
     virtual void appear() {}
     virtual void disappear() {}

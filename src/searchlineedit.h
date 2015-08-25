@@ -31,6 +31,7 @@ public:
     void emitTextChanged(const QString &text);
     QString text();
     QLineEdit *getLineEdit();
+    QWidget *toWidget() { return qobject_cast<QWidget*>(this); }
 
 public slots:
     void returnPressed();

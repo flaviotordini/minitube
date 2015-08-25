@@ -28,7 +28,7 @@ DownloadListView::DownloadListView(QWidget *parent) : QListView(parent) {
 }
 
 void DownloadListView::leaveEvent(QEvent * /* event */) {
-    DownloadModel *downloadModel = dynamic_cast<DownloadModel *>(model());
+    DownloadModel *downloadModel = qobject_cast<DownloadModel *>(model());
     if (downloadModel) downloadModel->clearHover();
 }
 
@@ -69,7 +69,7 @@ bool DownloadListView::isHoveringPlayIcon(QMouseEvent *event) {
     const QRect itemRect = visualRect(itemIndex);
     // qDebug() << " itemRect.x()" <<  itemRect.x();
 
-    PlaylistItemDelegate *delegate = dynamic_cast<PlaylistItemDelegate *>(itemDelegate());
+    PlaylistItemDelegate *delegate = qobject_cast<PlaylistItemDelegate *>(itemDelegate());
     if (!delegate) return false;
 
     QRect buttonRect = delegate->downloadButtonRect(itemRect);

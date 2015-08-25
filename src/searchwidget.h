@@ -27,10 +27,7 @@ public:
     virtual void returnPressed() = 0;
     virtual QString text() = 0;
     virtual QLineEdit *getLineEdit() = 0;
-
-    QWidget *toWidget() {
-        return dynamic_cast<QWidget*>(this);
-    }
+    virtual QWidget *toWidget() = 0;
 
 signals:
     void textChanged(const QString &text);

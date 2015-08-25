@@ -18,34 +18,34 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 
 $END_LICENSE */
 
-#ifndef ABOUTVIEW_H
-#define ABOUTVIEW_H
+#ifndef CHANNELLISTVIEW_H
+#define CHANNELLISTVIEW_H
 
 #include <QtGui>
 #if QT_VERSION >= 0x050000
 #include <QtWidgets>
 #endif
-#include "view.h"
-#include "constants.h"
 
-class AboutView : public View {
+class ChannelListView : public QListView {
 
     Q_OBJECT
 
 public:
-    AboutView(QWidget *parent);
-    void appear();
-    QHash<QString, QVariant> metadata() {
-        QHash<QString, QVariant> metadata;
-        metadata.insert("title", tr("About"));
-        return metadata;
-    }
+    ChannelListView();
+    void setErrorMessage(const QString &value) { errorMessage = value; }
+    void clearErrorMessage() { errorMessage.clear(); }
+
+signals:
+    void contextMenu(QPoint point);
 
 protected:
-    void paintEvent(QPaintEvent *e);
+    void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
+    void paintEvent(QPaintEvent *event);
 
 private:
-    QPushButton *closeButton;
+    QString errorMessage;
 
 };
-#endif
+
+#endif // CHANNELLISTVIEW_H

@@ -28,59 +28,35 @@ $END_LICENSE */
 #include "ytsearch.h"
 #include "channelaggregator.h"
 #include "aggregatevideosource.h"
-#include "painterutils.h"
 #include "mainwindow.h"
 #include "iconutils.h"
 #ifdef APP_EXTRA
 #include "extra.h"
 #endif
+#include "channellistview.h"
 
 static const char *sortByKey = "subscriptionsSortBy";
 static const char *showUpdatedKey = "subscriptionsShowUpdated";
 
-ChannelView::ChannelView(QWidget *parent) : QListView(parent),
+ChannelView::ChannelView(QWidget *parent) : View(parent),
     showUpdated(false),
     sortBy(SortByName) {
 
-    setItemDelegate(new ChannelItemDelegate(this));
-    setSelectionMode(QAbstractItemView::NoSelection);
+    QBoxLayout *layout = new QVBoxLayout(this);
+    layout->setMargin(0);
+    layout->setSpacing(0);
 
-    // layout
-    setSpacing(15);
-    setFlow(QListView::LeftToRight);
-    setWrapping(true);
-    setResizeMode(QListView::Adjust);
-    setMovement(QListView::Static);
-    setUniformItemSizes(true);
-
-    // cosmetics
-    setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
-    setFrameShape(QFrame::NoFrame);
-    setAttribute(Qt::WA_MacShowFocusRect, false);
-
-    QPalette p = palette();
-    /*
-    p.setColor(QPalette::Base, p.window().color());
-    p.setColor(QPalette::Text, p.windowText().color());
-    */
-    p.setColor(QPalette::Disabled, QPalette::Base, p.base().color());
-    p.setColor(QPalette::Disabled, QPalette::Text, p.text().color());
-    setPalette(p);
-
-    verticalScrollBar()->setPageStep(3);
-    verticalScrollBar()->setSingleStep(1);
-
-    setMouseTracking(true);
-
-    connect(this, SIGNAL(clicked(const QModelIndex &)),
-            SLOT(itemActivated(const QModelIndex &)));
-    connect(this, SIGNAL(entered(const QModelIndex &)),
-            SLOT(itemEntered(const QModelIndex &)));
+    listView = new ChannelListView();
+    listView->setItemDelegate(new ChannelItemDelegate(this));
 
     channelsModel = new ChannelModel(this);
-    setModel(channelsModel);
-    connect(this, SIGNAL(viewportEntered()),
-            channelsModel, SLOT(clearHover()));
+    listView->setModel(channelsModel);
+
+    connect(listView, SIGNAL(clicked(const QModelIndex &)), SLOT(itemActivated(const QModelIndex &)));
+    connect(listView, SIGNAL(contextMenu(QPoint)), SLOT(showContextMenu(QPoint)));
+    connect(listView, SIGNAL(viewportEntered()), channelsModel, SLOT(clearHover()));
+
+    layout->addWidget(listView);
 
     setupActions();
 
@@ -182,29 +158,6 @@ void ChannelView::disappear() {
         MainWindow::instance()->showActionInStatusBar(action, false);
 }
 
-void ChannelView::mousePressEvent(QMouseEvent *event) {
-    if (event->button() == Qt::RightButton)
-        showContextMenu(event->pos());
-    else
-        QListView::mousePressEvent(event);
-}
-
-void ChannelView::mouseMoveEvent(QMouseEvent *event) {
-    QListView::mouseMoveEvent(event);
-    const QModelIndex index = indexAt(event->pos());
-    if (index.isValid()) setCursor(Qt::PointingHandCursor);
-    else unsetCursor();
-}
-
-void ChannelView::leaveEvent(QEvent *event) {
-    QListView::leaveEvent(event);
-    // channelsModel->clearHover();
-}
-
-void ChannelView::itemEntered(const QModelIndex &) {
-    // channelsModel->setHoveredRow(index.row());
-}
-
 void ChannelView::itemActivated(const QModelIndex &index) {
     ChannelModel::ItemTypes itemType = channelsModel->typeForIndex(index);
     if (itemType == ChannelModel::ItemChannel) {
@@ -230,7 +183,7 @@ void ChannelView::itemActivated(const QModelIndex &index) {
 }
 
 void ChannelView::showContextMenu(const QPoint &point) {
-    const QModelIndex index = indexAt(point);
+    const QModelIndex index = listView->indexAt(point);
     if (!index.isValid()) return;
 
     YTChannel *channel = channelsModel->channelForIndex(index);
@@ -261,21 +214,6 @@ void ChannelView::showContextMenu(const QPoint &point) {
     menu.exec(mapToGlobal(point));
 }
 
-void ChannelView::paintEvent(QPaintEvent *event) {
-    if (model()->rowCount() < 3) {
-        QString msg;
-        if (!errorMessage.isEmpty())
-            msg = errorMessage;
-        else if (showUpdated)
-            msg = tr("There are no updated subscriptions at this time.");
-        else
-            msg = tr("You have no subscriptions. "
-                     "Use the star symbol to subscribe to channels.");
-        PainterUtils::centeredMessage(msg, viewport());
-    } else QListView::paintEvent(event);
-    // PainterUtils::topShadow(viewport());
-}
-
 void ChannelView::toggleShowUpdated(bool enable) {
     showUpdated = enable;
     updateQuery(true);
@@ -285,7 +223,7 @@ void ChannelView::toggleShowUpdated(bool enable) {
 
 void ChannelView::updateQuery(bool transition) {
     Q_UNUSED(transition);
-    errorMessage.clear();
+    listView->clearErrorMessage();
     if (!Database::exists()) return;
 
     QString sql = "select user_id from subscriptions";
@@ -318,7 +256,15 @@ void ChannelView::updateQuery(bool transition) {
     channelsModel->setQuery(sql, Database::instance().getConnection());
     if (channelsModel->lastError().isValid()) {
         qWarning() << channelsModel->lastError().text();
-        errorMessage = channelsModel->lastError().text();
+        listView->setErrorMessage(channelsModel->lastError().text());
+    } else if (channelsModel->rowCount() < 3) {
+        QString msg;
+        if (showUpdated)
+            msg = tr("There are no updated subscriptions at this time.");
+        else
+            msg = tr("You have no subscriptions. "
+                     "Use the star symbol to subscribe to channels.");
+        listView->setErrorMessage(msg);
     }
 }
 

@@ -30,7 +30,7 @@ namespace The {
 QHash<QString, QAction*>* globalActions();
 }
 
-StandardFeedsView::StandardFeedsView(QWidget *parent) : QWidget(parent),
+StandardFeedsView::StandardFeedsView(QWidget *parent) : View(parent),
     layout(0) {
     QPalette p = palette();
     p.setBrush(QPalette::Window, Qt::black);

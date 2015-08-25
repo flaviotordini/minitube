@@ -46,7 +46,7 @@ static const QString recentKeywordsKey = "recentKeywords";
 static const QString recentChannelsKey = "recentChannels";
 static const int PADDING = 30;
 
-SearchView::SearchView(QWidget *parent) : QWidget(parent) {
+SearchView::SearchView(QWidget *parent) : View(parent) {
 
 #if defined(APP_MAC) | defined(APP_WIN)
     // speedup painting since we'll paint the whole background

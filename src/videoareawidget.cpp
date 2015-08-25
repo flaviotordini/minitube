@@ -155,7 +155,7 @@ void VideoAreaWidget::dragEnterEvent(QDragEnterEvent *event) {
 
 void VideoAreaWidget::dropEvent(QDropEvent *event) {
     
-    const VideoMimeData* videoMimeData = dynamic_cast<const VideoMimeData*>( event->mimeData() );
+    const VideoMimeData* videoMimeData = qobject_cast<const VideoMimeData*>( event->mimeData() );
     if(!videoMimeData ) return;
     
     QList<Video*> droppedVideos = videoMimeData->videos();

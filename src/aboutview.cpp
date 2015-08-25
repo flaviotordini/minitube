@@ -32,7 +32,7 @@ $END_LICENSE */
 #endif
 #include "fontutils.h"
 
-AboutView::AboutView(QWidget *parent) : QWidget(parent) {
+AboutView::AboutView(QWidget *parent) : View(parent) {
 
     QBoxLayout *hLayout = new QHBoxLayout(this);
     hLayout->setAlignment(Qt::AlignCenter);

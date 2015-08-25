@@ -32,7 +32,7 @@ class SearchView;
 class StandardFeedsView;
 class ChannelView;
 
-class HomeView : public QWidget, public View  {
+class HomeView : public View  {
 
     Q_OBJECT
 

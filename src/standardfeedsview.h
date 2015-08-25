@@ -31,7 +31,7 @@ class VideoSource;
 struct YTCategory;
 class YTStandardFeed;
 
-class StandardFeedsView : public QWidget, public View {
+class StandardFeedsView : public View {
 
     Q_OBJECT
 

@@ -29,7 +29,7 @@ $END_LICENSE */
 
 struct YTRegion;
 
-class RegionsView : public QWidget, public View {
+class RegionsView : public View {
 
     Q_OBJECT
 

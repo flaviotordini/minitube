@@ -26,6 +26,8 @@ $END_LICENSE */
 
 class VideoMimeData : public QMimeData {
 
+    Q_OBJECT
+
 public:
     VideoMimeData();
 
