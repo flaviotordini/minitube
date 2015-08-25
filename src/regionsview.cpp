@@ -39,11 +39,13 @@ RegionsView::RegionsView(QWidget *parent) : View(parent) {
     doneButton = new QPushButton(tr("Done"));
     doneButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     doneButton->setDefault(true);
+#ifndef APP_MAC
     doneButton->setProperty("custom", true);
     doneButton->setProperty("important", true);
     doneButton->setProperty("big", true);
+#endif
     connect(doneButton, SIGNAL(clicked()), MainWindow::instance(), SLOT(goBack()));
-    l->addWidget(doneButton, 0, Qt::AlignCenter);
+    l->addWidget(doneButton, 0, Qt::AlignHCenter | Qt::AlignTop);
 }
 
 void RegionsView::addRegion(const YTRegion &region) {

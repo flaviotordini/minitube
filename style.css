@@ -21,12 +21,12 @@ QStatusBar QToolButton::menu-indicator {
 
 RegionsView QPushButton[regionId] {
     margin: 5px;
-    padding: 10px;
+    padding: 7px 10px;
     text-align: left;
     vertical-align: middle;
     background-color: transparent;
     border: 1px solid transparent;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 RegionsView QPushButton[regionId=""] {
