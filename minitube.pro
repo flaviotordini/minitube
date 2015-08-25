@@ -107,7 +107,8 @@ HEADERS += src/video.h \
     src/compatibility/qurlqueryhelper.h \
     src/compatibility/pathsservice.h \
     src/searchwidget.h \
-    src/exlineedit.h
+    src/exlineedit.h \
+    src/channellistview.h
 SOURCES += src/main.cpp \
     src/searchlineedit.cpp \
     src/spacer.cpp \
@@ -178,7 +179,8 @@ SOURCES += src/main.cpp \
     src/paginatedvideosource.cpp \
     src/compatibility/pathsservice.cpp \
     src/exlineedit.cpp \
-    src/searchwidget.cpp
+    src/searchwidget.cpp \
+    src/channellistview.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/
