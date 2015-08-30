@@ -128,10 +128,7 @@ int main(int argc, char **argv) {
     // all string literals are UTF-8
     // QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 
-#ifdef APP_INTEGRITY
-    if (Extra::integrityCheck())
-#endif
-        showWindow(app, dataDir);
+    showWindow(app, dataDir);
 
     return app.exec();
 }

@@ -221,15 +221,22 @@ void MainWindow::lazyInit() {
 
     JsFunctions::instance();
 
-    checkForUpdate();
-
     // Hack to give focus to searchlineedit
     QMetaObject::invokeMethod(views->currentWidget(), "appear");
     View* view = qobject_cast<View *> (views->currentWidget());
     QString desc = view->metadata().value("description").toString();
     if (!desc.isEmpty()) showMessage(desc);
 
+#ifdef APP_INTEGRITY
+    if (!Extra::integrityCheck()) {
+        deleteLater();
+        return;
+    }
+#endif
+
     ChannelAggregator::instance()->start();
+
+    checkForUpdate();
 }
 
 void MainWindow::changeEvent(QEvent *e) {
