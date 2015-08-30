@@ -105,7 +105,6 @@ MainWindow::MainWindow() :
 #endif
 
     // views mechanism
-    history = new QStack<QWidget*>();
     views = new QStackedWidget();
     views->hide();
     setCentralWidget(views);
@@ -163,10 +162,6 @@ MainWindow::MainWindow() :
 #endif
 
     QTimer::singleShot(0, this, SLOT(lazyInit()));
-}
-
-MainWindow::~MainWindow() {
-    delete history;
 }
 
 void MainWindow::lazyInit() {
@@ -947,9 +942,9 @@ void MainWindow::writeSettings() {
 }
 
 void MainWindow::goBack() {
-    if ( history->size() > 1 ) {
-        history->pop();
-        QWidget *widget = history->pop();
+    if (history.size() > 1) {
+        history.pop();
+        QWidget *widget = history.pop();
         showWidget(widget);
     }
 }
@@ -1012,7 +1007,7 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
         */
     }
 
-    history->push(widget);
+    history.push(widget);
 }
 
 void MainWindow::about() {

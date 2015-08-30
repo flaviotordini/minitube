@@ -48,7 +48,6 @@ class MainWindow : public QMainWindow {
 public:
     static MainWindow* instance();
     MainWindow();
-    ~MainWindow();
 #ifdef APP_PHONON_SEEK
     Phonon::SeekSlider* getSeekSlider() { return seekSlider; }
 #else
@@ -173,7 +172,7 @@ private:
 
     // view mechanism
     QStackedWidget *views;
-    QStack<QWidget*> *history;
+    QStack<QWidget*> history;
     QList<QAction*> viewActions;
 
     // view widgets
