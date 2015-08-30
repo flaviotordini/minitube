@@ -1,64 +1,63 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.0">
-<defaultcodec>UTF-8</defaultcodec>
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
 <context>
     <name>AboutView</name>
     <message>
-        <location filename="src/aboutview.cpp" line="52"/>
+        <location filename="src/aboutview.cpp" line="58"/>
         <source>There&apos;s life outside the browser!</source>
         <translation>Tarayıcının dışındaki yaşam!</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="53"/>
+        <location filename="src/aboutview.cpp" line="59"/>
         <source>Version %1</source>
         <translation>Sürüm %1</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="58"/>
+        <location filename="src/aboutview.cpp" line="64"/>
         <source>Licensed to: %1</source>
         <translation>%1 için lisanslanmıştır</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="62"/>
+        <location filename="src/aboutview.cpp" line="68"/>
         <source>%1 is Free Software but its development takes precious time.</source>
         <translation>%1 özgür yazılımdır ama geliştirmek değerli zaman alır.</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="63"/>
+        <location filename="src/aboutview.cpp" line="69"/>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
         <translation>Lütfen %2 geliştirilmesinin devam etmesi için &lt;a href=&apos;%1&apos;&gt;bağış&lt;/a&gt; yapın.</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="67"/>
+        <location filename="src/aboutview.cpp" line="73"/>
         <source>You may want to try my other apps as well:</source>
         <translation>Bunun yanında diğer uygulamalarımı da denemek isteyebilirsiniz:</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="70"/>
+        <location filename="src/aboutview.cpp" line="76"/>
         <source>%1, a YouTube music player</source>
         <translation>%1, YouTube müzik oynatıcı</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="74"/>
+        <location filename="src/aboutview.cpp" line="80"/>
         <source>%1, a music player</source>
         <translation>%1, bir müzik çalar</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="80"/>
+        <location filename="src/aboutview.cpp" line="86"/>
         <source>Translate %1 to your native language using %2</source>
         <translation>%1&apos;i, %2 kullanarak kendi dilinize çevirin</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="85"/>
+        <location filename="src/aboutview.cpp" line="91"/>
         <source>Icon designed by %1.</source>
         <translation>Simge %1 tarafından tasarlandı.</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="89"/>
+        <location filename="src/aboutview.cpp" line="95"/>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
         <translation>&lt;a href=&apos;%1&apos;&gt;GNU Genel Kamu Lisansı&lt;/a&gt; ile yayınlanmıştır</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="104"/>
+        <location filename="src/aboutview.cpp" line="110"/>
         <source>&amp;Close</source>
         <translation>Kapat (&amp;C)</translation>
     </message>
@@ -66,11 +65,6 @@
         <location filename="src/aboutview.h" line="40"/>
         <source>About</source>
         <translation>Hakkında</translation>
-    </message>
-    <message>
-        <location filename="src/aboutview.h" line="42"/>
-        <source>What you always wanted to know about %1 and never dared to ask</source>
-        <translation>%1 hakkında her zaman bilmek isteyip de soramadıklarınız</translation>
     </message>
 </context>
 <context>
@@ -138,25 +132,25 @@
 <context>
     <name>ChannelAggregator</name>
     <message>
-        <location filename="src/channelaggregator.cpp" line="131"/>
+        <location filename="src/channelaggregator.cpp" line="183"/>
         <source>By %1</source>
         <translation>%1 tarafından</translation>
     </message>
     <message numerus="yes">
-        <location filename="src/channelaggregator.cpp" line="133"/>
+        <location filename="src/channelaggregator.cpp" line="185"/>
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n yeni video(lar) mevcut</numerusform><numerusform>%n yeni video(lar) mevcut</numerusform></translation>
     </message>
 </context>
 <context>
     <name>ChannelItemDelegate</name>
     <message>
-        <location filename="src/channelitemdelegate.cpp" line="66"/>
+        <location filename="src/channelitemdelegate.cpp" line="67"/>
         <source>All Videos</source>
         <translation>Tüm Videolar</translation>
     </message>
     <message>
-        <location filename="src/channelitemdelegate.cpp" line="83"/>
+        <location filename="src/channelitemdelegate.cpp" line="85"/>
         <source>Unwatched Videos</source>
         <translation>İzlenmemiş Videolar</translation>
     </message>
@@ -204,32 +198,32 @@
         <translation>Sırala</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="221"/>
+        <location filename="src/channelview.cpp" line="222"/>
         <source>All Videos</source>
         <translation>Tüm Videolar</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="225"/>
+        <location filename="src/channelview.cpp" line="226"/>
         <source>Unwatched Videos</source>
         <translation>İzlenmemiş Videolar</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="243"/>
+        <location filename="src/channelview.cpp" line="244"/>
         <source>Mark as Watched</source>
         <translation>İzlendi olarak İşaretle</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="256"/>
+        <location filename="src/channelview.cpp" line="257"/>
         <source>Unsubscribe</source>
         <translation>Aboneliği Kaldır</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="269"/>
+        <location filename="src/channelview.cpp" line="270"/>
         <source>There are no updated subscriptions at this time.</source>
         <translation>Şu anda güncellenen abonelik yok.</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="271"/>
+        <location filename="src/channelview.cpp" line="272"/>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
         <translation>Hiç aboneliğiniz yok. Kanallara abone olmak için yıldız simgesini kullanın.</translation>
     </message>
@@ -237,9 +231,42 @@
 <context>
     <name>ClearButton</name>
     <message>
-        <location filename="src/searchlineedit.cpp" line="56"/>
+        <location filename="src/exlineedit.cpp" line="6"/>
         <source>Clear</source>
         <translation>Temizle</translation>
+    </message>
+</context>
+<context>
+    <name>DataUtils</name>
+    <message>
+        <location filename="src/datautils.cpp" line="88"/>
+        <source>Just now</source>
+        <translation>Şuanda</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="src/datautils.cpp" line="90"/>
+        <source>%n minute(s) ago</source>
+        <translation><numerusform>&amp;n dakika önce()</numerusform><numerusform>&amp;n dakika önce()</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="src/datautils.cpp" line="92"/>
+        <source>%n hour(s) ago</source>
+        <translation><numerusform>&amp;n saat önce()</numerusform><numerusform>&amp;n saat önce()</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="src/datautils.cpp" line="94"/>
+        <source>%n day(s) ago</source>
+        <translation><numerusform>&amp;n gün önce()</numerusform><numerusform>&amp;n gün önce()</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="src/datautils.cpp" line="96"/>
+        <source>%n weeks(s) ago</source>
+        <translation><numerusform>&amp;n hafta önce()</numerusform><numerusform>&amp;n hafta önce()</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="src/datautils.cpp" line="98"/>
+        <source>%n month(s) ago</source>
+        <translation><numerusform>&amp;n ay önce()</numerusform><numerusform>&amp;n ay önce()</numerusform></translation>
     </message>
 </context>
 <context>
@@ -293,65 +320,65 @@
 <context>
     <name>DownloadManager</name>
     <message>
-        <location filename="src/downloadmanager.cpp" line="76"/>
+        <location filename="src/downloadmanager.cpp" line="77"/>
         <source>This is just the demo version of %1.</source>
         <translation>Bu sadece %&apos;in demo sürümüdür.</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="78"/>
+        <location filename="src/downloadmanager.cpp" line="79"/>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
         <translation>Bu sadece %1 dakikadan kısa videoları indirebilir, indirme özelliğini böylece test edebilirsiniz.</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="84"/>
+        <location filename="src/downloadmanager.cpp" line="85"/>
         <source>Continue</source>
         <translation>Devam</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="85"/>
+        <location filename="src/downloadmanager.cpp" line="86"/>
         <source>Get the full version</source>
         <translation>Tam sürüme geç</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="156"/>
+        <location filename="src/downloadmanager.cpp" line="157"/>
         <source>%1 downloaded in %2</source>
         <translation>%2 de %1 indirildi</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="159"/>
+        <location filename="src/downloadmanager.cpp" line="160"/>
         <source>Download finished</source>
         <translation>İndirme tamamlandı.</translation>
     </message>
     <message numerus="yes">
-        <location filename="src/downloadmanager.cpp" line="164"/>
+        <location filename="src/downloadmanager.cpp" line="165"/>
         <source>%n Download(s)</source>
-        <translation><numerusform>%n İndirme</numerusform><numerusform>%n İndirme</numerusform></translation>
+        <translation><numerusform>&amp;n İndirme(ler)</numerusform><numerusform>&amp;n İndirme(ler)</numerusform></translation>
     </message>
 </context>
 <context>
     <name>DownloadSettings</name>
     <message>
-        <location filename="src/downloadsettings.cpp" line="35"/>
+        <location filename="src/downloadsettings.cpp" line="36"/>
         <source>Change location...</source>
         <translation>Konumu değiştir...</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="78"/>
+        <location filename="src/downloadsettings.cpp" line="69"/>
         <source>Choose the download location</source>
         <translation>İndirme konumunu seçin</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="90"/>
+        <location filename="src/downloadsettings.cpp" line="81"/>
         <source>Download location changed.</source>
         <translation>İndirme konumu değişti</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="92"/>
+        <location filename="src/downloadsettings.cpp" line="83"/>
         <source>Current downloads will still go in the previous location.</source>
         <translation>Mevcut indirmeler önceki konumda devam edecek</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="107"/>
+        <location filename="src/downloadsettings.cpp" line="94"/>
         <source>Downloading to: %1</source>
         <translation>İndiriliyor: %1</translation>
     </message>
@@ -371,6 +398,29 @@
         <location filename="local/src/updatedialog.cpp" line="60"/>
         <source>Downloading update...</source>
         <translation>Güncelleme indiriliyor...</translation>
+    </message>
+</context>
+<context>
+    <name>Extra</name>
+    <message>
+        <location filename="local/src/extra.cpp" line="251"/>
+        <source>The executable file has been tempered with, maybe by a virus.</source>
+        <translation>Çalıştırılabilir dosya belki virüs tarafından hasar görmüş olabilir.</translation>
+    </message>
+    <message>
+        <location filename="local/src/extra.cpp" line="252"/>
+        <source>%1 will not run. Try installing again.</source>
+        <translation>%1 çalıştırılamıyor. Tekrar yüklemeyi deneyin.</translation>
+    </message>
+    <message>
+        <location filename="local/src/extra.cpp" line="253"/>
+        <source>Quit</source>
+        <translation>Çık</translation>
+    </message>
+    <message>
+        <location filename="local/src/extra.cpp" line="254"/>
+        <source>Reinstall</source>
+        <translation>Yeniden yükle</translation>
     </message>
 </context>
 <context>
@@ -469,7 +519,7 @@
         <translation>Kanal abonelikleri</translation>
     </message>
     <message>
-        <location filename="src/homeview.h" line="45"/>
+        <location filename="src/homeview.h" line="44"/>
         <source>Make yourself comfortable</source>
         <translation>Kendinizi rahat hissedin</translation>
     </message>
@@ -477,7 +527,7 @@
 <context>
     <name>LoadingWidget</name>
     <message>
-        <location filename="src/loadingwidget.cpp" line="114"/>
+        <location filename="src/loadingwidget.cpp" line="125"/>
         <source>Error</source>
         <translation>Hata</translation>
     </message>
@@ -485,446 +535,458 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="src/mainwindow.cpp" line="267"/>
+        <location filename="src/mainwindow.cpp" line="291"/>
         <source>&amp;Stop</source>
         <translation>Dur (&amp;S)</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="268"/>
+        <location filename="src/mainwindow.cpp" line="292"/>
         <source>Stop playback and go back to the search view</source>
         <translation>Oynatmayı durdur ve aramaya geri dön</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="283"/>
+        <location filename="src/mainwindow.cpp" line="307"/>
         <source>S&amp;kip</source>
         <translation>&amp;Atla</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="284"/>
+        <location filename="src/mainwindow.cpp" line="308"/>
         <source>Skip to the next video</source>
         <translation>Sonraki videoya atla</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="290"/>
-        <location filename="src/mainwindow.cpp" line="1060"/>
+        <location filename="src/mainwindow.cpp" line="1134"/>
         <source>&amp;Pause</source>
         <translation>&amp;Bekle</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="291"/>
-        <location filename="src/mainwindow.cpp" line="1061"/>
+        <location filename="src/mainwindow.cpp" line="1135"/>
         <source>Pause playback</source>
         <translation>Oynatmayı beklet</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="297"/>
+        <location filename="src/mainwindow.cpp" line="321"/>
         <source>&amp;Full Screen</source>
         <translation>&amp;Tam ekran</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="298"/>
+        <location filename="src/mainwindow.cpp" line="322"/>
         <source>Go full screen</source>
         <translation>Tam ekran görünümü</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="312"/>
+        <location filename="src/mainwindow.cpp" line="336"/>
         <source>Hide the playlist and the toolbar</source>
         <translation>Listeyi ve araç çubuğunu gizle</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="325"/>
+        <location filename="src/mainwindow.cpp" line="349"/>
         <source>Go to the YouTube video page and pause playback</source>
         <translation>Oynatmayı beklet ve YouTube sayfasına git</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="332"/>
+        <location filename="src/mainwindow.cpp" line="356"/>
         <source>Copy the current video YouTube link to the clipboard</source>
         <translation>Geçerli videonun YouTube bağlantısını panoya kopyala</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="339"/>
+        <location filename="src/mainwindow.cpp" line="363"/>
         <source>Copy the current video stream URL to the clipboard</source>
         <translation>Geçerli video akışının URL adresini panoya kopyala</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="346"/>
+        <location filename="src/mainwindow.cpp" line="370"/>
         <source>Find other video parts hopefully in the right order</source>
         <translation>Doğru sırada olacak şekilde diğer video kısımlarını bul</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="352"/>
+        <location filename="src/mainwindow.cpp" line="376"/>
         <source>&amp;Remove</source>
         <translation>&amp;Kaldır</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="353"/>
+        <location filename="src/mainwindow.cpp" line="377"/>
         <source>Remove the selected videos from the playlist</source>
         <translation>Seçilen videoları listeden kaldır</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="359"/>
+        <location filename="src/mainwindow.cpp" line="383"/>
         <source>Move &amp;Up</source>
         <translation>Y&amp;ukarı taşı</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="360"/>
+        <location filename="src/mainwindow.cpp" line="384"/>
         <source>Move up the selected videos in the playlist</source>
         <translation>Seçilen videoları listede yukarı taşı</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="366"/>
+        <location filename="src/mainwindow.cpp" line="390"/>
         <source>Move &amp;Down</source>
         <translation>A&amp;şağı taşı</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="367"/>
+        <location filename="src/mainwindow.cpp" line="391"/>
         <source>Move down the selected videos in the playlist</source>
         <translation>Seçilen videoları listede aşağı taşı</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="378"/>
+        <location filename="src/mainwindow.cpp" line="402"/>
         <source>Clear the search history. Cannot be undone.</source>
         <translation>Arama geçmişini sil. Bu geri alınamaz.</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="383"/>
+        <location filename="src/mainwindow.cpp" line="407"/>
         <source>&amp;Quit</source>
         <translation>&amp;Çık</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="386"/>
+        <location filename="src/mainwindow.cpp" line="410"/>
         <source>Bye</source>
         <translation>Gülegüle</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="390"/>
+        <location filename="src/mainwindow.cpp" line="414"/>
         <source>&amp;Website</source>
         <translation>&amp;Website</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="392"/>
+        <location filename="src/mainwindow.cpp" line="416"/>
         <source>%1 on the Web</source>
         <translation>%1 İnternette</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="398"/>
+        <location filename="src/mainwindow.cpp" line="422"/>
         <source>Please support the continued development of %1</source>
         <translation>Lütfen %1 gelişiminin sürekliliği için destekleyin</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="403"/>
+        <location filename="src/mainwindow.cpp" line="427"/>
         <source>&amp;About</source>
         <translation>&amp;Hakkında</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="405"/>
+        <location filename="src/mainwindow.cpp" line="429"/>
         <source>Info about %1</source>
         <translation>%1 Hakkında</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="413"/>
+        <location filename="src/mainwindow.cpp" line="437"/>
         <source>Search</source>
         <translation>Ara</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="432"/>
+        <location filename="src/mainwindow.cpp" line="456"/>
         <source>Mute volume</source>
         <translation>Sesi kes</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="466"/>
-        <location filename="src/mainwindow.cpp" line="1490"/>
+        <location filename="src/mainwindow.cpp" line="490"/>
+        <location filename="src/mainwindow.cpp" line="1609"/>
         <source>&amp;Downloads</source>
         <translation>&amp;İndirmeler</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="467"/>
+        <location filename="src/mainwindow.cpp" line="491"/>
         <source>Show details about video downloads</source>
         <translation>Video indirmelerinin ayrıntılarını göster</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="475"/>
+        <location filename="src/mainwindow.cpp" line="499"/>
         <source>&amp;Download</source>
         <translation>&amp;İndir</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="476"/>
+        <location filename="src/mainwindow.cpp" line="500"/>
         <source>Download the current video</source>
         <translation>Geçerli videoyu indir</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="486"/>
+        <location filename="src/mainwindow.cpp" line="510"/>
         <source>Take &amp;Snapshot</source>
         <translation>&amp;Ekran Görüntüsü Al</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="493"/>
+        <location filename="src/mainwindow.cpp" line="517"/>
         <source>&amp;Subscribe to Channel</source>
         <translation>Kanala Abone Ol (&amp;S)</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="501"/>
+        <location filename="src/mainwindow.cpp" line="525"/>
         <source>Share the current video using %1</source>
         <translation>%1 kullanarak şu an ki videoyu paylaş</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="521"/>
+        <location filename="src/mainwindow.cpp" line="545"/>
         <source>&amp;Email</source>
         <translation>&amp;Eposta</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="522"/>
+        <location filename="src/mainwindow.cpp" line="546"/>
         <source>Email</source>
         <translation>Eposta</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="527"/>
+        <location filename="src/mainwindow.cpp" line="551"/>
         <source>&amp;Close</source>
         <translation>&amp;Kapat</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="537"/>
+        <location filename="src/mainwindow.cpp" line="561"/>
         <source>&amp;Float on Top</source>
         <translation>Üstte Sabitle</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="542"/>
+        <location filename="src/mainwindow.cpp" line="566"/>
+        <source>&amp;Adjust Window Size</source>
+        <translation>&amp;Pencere Boyutunu Ayarla</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="571"/>
         <source>&amp;Stop After This Video</source>
         <translation>Bu Videodan &amp;Sonra Durdur</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="549"/>
+        <location filename="src/mainwindow.cpp" line="578"/>
         <source>&amp;Report an Issue...</source>
         <translation>Bir Sorun Bildi&amp;r</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="553"/>
+        <location filename="src/mainwindow.cpp" line="582"/>
         <source>&amp;Refine Search...</source>
         <translation>A&amp;ramayı Sınırla...</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="565"/>
+        <location filename="src/mainwindow.cpp" line="594"/>
         <source>More...</source>
         <translation>Dahası...</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="568"/>
+        <location filename="src/mainwindow.cpp" line="597"/>
         <source>&amp;Related Videos</source>
         <translation>Benze&amp;r Videolar</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="570"/>
+        <location filename="src/mainwindow.cpp" line="599"/>
         <source>Watch videos related to the current one</source>
         <translation>Şu an izlediğinize benzer videolar izleyin</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="576"/>
+        <location filename="src/mainwindow.cpp" line="605"/>
         <source>Open in &amp;Browser...</source>
         <translation>&amp;Tarayıcıda aç...</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="583"/>
+        <location filename="src/mainwindow.cpp" line="612"/>
         <source>&amp;Love %1? Rate it!</source>
         <translation>%1 &amp;seviyor musunuz? Değerlendirin!</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="605"/>
+        <location filename="src/mainwindow.cpp" line="633"/>
         <source>&amp;Application</source>
         <translation>&amp;Uygulama</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="589"/>
+        <location filename="src/mainwindow.cpp" line="618"/>
         <source>Buy %1...</source>
         <translation>%1 Satın Al...</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="619"/>
+        <location filename="src/mainwindow.cpp" line="647"/>
         <source>&amp;Playback</source>
         <translation>&amp;Çalma</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="633"/>
+        <location filename="src/mainwindow.cpp" line="661"/>
         <source>&amp;Playlist</source>
         <translation>Oynatma &amp;listesi</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="642"/>
+        <location filename="src/mainwindow.cpp" line="670"/>
         <source>&amp;Video</source>
         <translation>&amp;Video</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="658"/>
+        <location filename="src/mainwindow.cpp" line="686"/>
         <source>&amp;View</source>
         <translation>&amp;Görünüm</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="665"/>
+        <location filename="src/mainwindow.cpp" line="695"/>
         <source>&amp;Share</source>
         <translation>Payla&amp;s</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="679"/>
+        <location filename="src/mainwindow.cpp" line="709"/>
         <source>&amp;Help</source>
         <translation>Yardı&amp;m</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="760"/>
+        <location filename="src/mainwindow.cpp" line="751"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
         <translation>%1 Sesi arttır, %2 sesi azalt</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="955"/>
-        <location filename="src/mainwindow.cpp" line="961"/>
+        <location filename="src/mainwindow.cpp" line="1021"/>
+        <location filename="src/mainwindow.cpp" line="1027"/>
         <source>Opening %1</source>
         <translation>%1 Açılıyor</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1006"/>
+        <location filename="src/mainwindow.cpp" line="1080"/>
         <source>Do you want to exit %1 with a download in progress?</source>
         <translation>%1 İndiriliyor, çıkmak istiyor musunuz?</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1007"/>
+        <location filename="src/mainwindow.cpp" line="1081"/>
         <source>If you close %1 now, this download will be cancelled.</source>
         <translation>Eğer %1&apos;İ şimdi kapatırsanız, bu indirme iptal edilecek.</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1012"/>
+        <location filename="src/mainwindow.cpp" line="1086"/>
         <source>Close and cancel download</source>
         <translation>Kapat ve indirmeyi iptal et</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1013"/>
+        <location filename="src/mainwindow.cpp" line="1087"/>
         <source>Wait for download to finish</source>
         <translation>İndirmenin bitmesini bekle</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1174"/>
+        <location filename="src/mainwindow.cpp" line="1158"/>
+        <source>&amp;Loading...</source>
+        <translation>&amp;Yükleniyor</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="1264"/>
         <source>Leave &amp;Full Screen</source>
         <translation>&amp;Tam Ekrandan Çık</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1601"/>
+        <location filename="src/mainwindow.cpp" line="1718"/>
         <source>%1 version %2 is now available.</source>
         <translation>%1 sürüm %2 kullanılabilir durumda.</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1605"/>
+        <location filename="src/mainwindow.cpp" line="1722"/>
         <source>Remind me later</source>
         <translation>Daha sonra hatırlat</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1606"/>
+        <location filename="src/mainwindow.cpp" line="1723"/>
         <source>Update</source>
         <translation>Güncelle</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1053"/>
+        <location filename="src/mainwindow.cpp" line="1127"/>
         <source>Error: %1</source>
         <translation>Hata: %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="276"/>
+        <location filename="src/mainwindow.cpp" line="300"/>
         <source>P&amp;revious</source>
         <translation>Önceki</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="277"/>
+        <location filename="src/mainwindow.cpp" line="301"/>
         <source>Go back to the previous track</source>
         <translation>Bir önceki parçaya geri dön</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="311"/>
+        <location filename="src/mainwindow.cpp" line="335"/>
         <source>&amp;Compact Mode</source>
         <translation>Kü&amp;cültümüş Ekran</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="324"/>
+        <location filename="src/mainwindow.cpp" line="348"/>
         <source>Open the &amp;YouTube Page</source>
         <translation>&amp;YouTube Sayfasını Aç</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="331"/>
+        <location filename="src/mainwindow.cpp" line="355"/>
         <source>Copy the YouTube &amp;Link</source>
         <translation>YouTube &amp;Linkini Kopyala</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="338"/>
+        <location filename="src/mainwindow.cpp" line="362"/>
         <source>Copy the Video Stream &amp;URL</source>
         <translation>Video &amp;URL&apos;sini Kopyala</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="345"/>
+        <location filename="src/mainwindow.cpp" line="369"/>
         <source>Find Video &amp;Parts</source>
         <translation>Video Bölümlerini Bul</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="373"/>
+        <location filename="src/mainwindow.cpp" line="397"/>
         <source>&amp;Clear Recent Searches</source>
         <translation>Son Aramaları Temizle</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="397"/>
+        <location filename="src/mainwindow.cpp" line="421"/>
         <source>Make a &amp;Donation</source>
         <translation>Bağış Yap</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="459"/>
+        <location filename="src/mainwindow.cpp" line="483"/>
         <source>&amp;Manually Start Playing</source>
         <translation>&amp;Manuel Olarak Çalmaya Başla</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="460"/>
+        <location filename="src/mainwindow.cpp" line="484"/>
         <source>Manually start playing videos</source>
         <translation>Videoları manuel olarak çalmaya başla</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="797"/>
+        <location filename="src/mainwindow.cpp" line="847"/>
         <source>Choose your content location</source>
         <translation>Konumunuzu seçin</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1073"/>
+        <location filename="src/mainwindow.cpp" line="314"/>
+        <location filename="src/mainwindow.cpp" line="1142"/>
+        <location filename="src/mainwindow.cpp" line="1150"/>
         <source>&amp;Play</source>
         <translation>&amp;Oynat</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1074"/>
+        <location filename="src/mainwindow.cpp" line="315"/>
+        <location filename="src/mainwindow.cpp" line="1143"/>
+        <location filename="src/mainwindow.cpp" line="1151"/>
         <source>Resume playback</source>
         <translation>Oynatmaya devam et</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1333"/>
+        <location filename="src/mainwindow.cpp" line="1437"/>
         <source>Remaining time: %1</source>
         <translation>Kalan zaman: %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1419"/>
+        <location filename="src/mainwindow.cpp" line="1528"/>
         <source>Volume at %1%</source>
         <translation>Ses %1%</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1425"/>
+        <location filename="src/mainwindow.cpp" line="1534"/>
         <source>Volume is muted</source>
         <translation>Ses kapandı</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1428"/>
+        <location filename="src/mainwindow.cpp" line="1537"/>
         <source>Volume is unmuted</source>
         <translation>Ses açık</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1435"/>
+        <location filename="src/mainwindow.cpp" line="1548"/>
         <source>Maximum video definition set to %1</source>
         <translation>En yüksek video tanımı %1 olarak ayarlı</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1476"/>
+        <location filename="src/mainwindow.cpp" line="1595"/>
         <source>Your privacy is now safe</source>
         <translation>Şimdi gizliliğiniz güvende</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1491"/>
+        <location filename="src/mainwindow.cpp" line="1610"/>
         <source>Downloads complete</source>
         <translation>İndirme tamamlandı</translation>
     </message>
@@ -932,75 +994,85 @@
 <context>
     <name>MediaView</name>
     <message>
-        <location filename="src/mediaview.cpp" line="682"/>
+        <location filename="src/mediaview.cpp" line="702"/>
         <source>You can now paste the YouTube link into another application</source>
         <translation>Şimdi YouTube bağlantısını başka bir uygulamaya yapıştırabilirsiniz</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="690"/>
+        <location filename="src/mediaview.cpp" line="710"/>
         <source>You can now paste the video stream URL into another application</source>
         <translation>Şimdi video akışı URL adresini başka bir uygulamaya yapıştırabilirsiniz</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="691"/>
+        <location filename="src/mediaview.cpp" line="711"/>
         <source>The link will be valid only for a limited time.</source>
         <translation>Bağlantı kısıtlı bir süre için geçerli olacak.</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="780"/>
+        <location filename="src/mediaview.cpp" line="800"/>
         <source>This is just the demo version of %1.</source>
         <translation>Bu sadece %1&apos;in demo sürümüdür.</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="781"/>
+        <location filename="src/mediaview.cpp" line="801"/>
         <source>It allows you to test the application and see if it works for you.</source>
         <translation>Bu, uygulamayı test etmenizi ve çalışıp çalışmadığını görmenizi sağlar.</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="813"/>
+        <location filename="src/mediaview.cpp" line="833"/>
         <source>Continue</source>
         <translation>Devam</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="946"/>
+        <location filename="src/mediaview.cpp" line="988"/>
         <source>of</source>
         <comment>Used in video parts, as in '2 of 3'</comment>
         <translation>/</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="959"/>
+        <location filename="src/mediaview.cpp" line="1001"/>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
         <translation>kısım</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="961"/>
+        <location filename="src/mediaview.cpp" line="1003"/>
         <source>episode</source>
         <comment>This is for video parts, as in 'Cool series - episode 1'</comment>
         <translation>bölüm</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="1074"/>
+        <location filename="src/mediaview.cpp" line="1096"/>
         <source>Sent from %1</source>
         <translation>%1 ile gönderildi</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="1109"/>
+        <location filename="src/mediaview.cpp" line="1128"/>
         <source>Unsubscribe from %1</source>
         <translation>%1 aboneliğinden çık</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="1113"/>
+        <location filename="src/mediaview.cpp" line="1132"/>
         <source>Subscribe to %1</source>
         <translation>%1 Abone Ol</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="788"/>
+        <location filename="src/mediaview.cpp" line="1166"/>
+        <source>Unsubscribed from %1</source>
+        <translation>%1 aboneliğinden çık</translation>
+    </message>
+    <message>
+        <location filename="src/mediaview.cpp" line="1169"/>
+        <source>Subscribed to %1</source>
+        <translation>%1 Abone Ol</translation>
+    </message>
+    <message>
+        <location filename="src/mediaview.cpp" line="808"/>
         <source>Get the full version</source>
         <translation>Tam sürüme geç</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="827"/>
+        <location filename="src/mediaview.cpp" line="847"/>
         <source>Downloading %1</source>
         <translation>İndiriliyor %1</translation>
     </message>
@@ -1049,52 +1121,52 @@
 <context>
     <name>PlaylistItemDelegate</name>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="208"/>
+        <location filename="src/playlistitemdelegate.cpp" line="209"/>
         <source>%1 views</source>
         <translation>%1 görüntülenme</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="332"/>
+        <location filename="src/playlistitemdelegate.cpp" line="309"/>
         <source>%1 of %2 (%3) — %4</source>
         <translation>%1 of %2 (%3) — %4</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="339"/>
+        <location filename="src/playlistitemdelegate.cpp" line="316"/>
         <source>Preparing</source>
         <translation>Hazırlanıyor</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="341"/>
+        <location filename="src/playlistitemdelegate.cpp" line="318"/>
         <source>Failed</source>
         <translation>Başarısız</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="343"/>
+        <location filename="src/playlistitemdelegate.cpp" line="320"/>
         <source>Completed</source>
         <translation>Tamamlandı</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="345"/>
+        <location filename="src/playlistitemdelegate.cpp" line="322"/>
         <source>Stopped</source>
         <translation>Durduruldu</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="381"/>
+        <location filename="src/playlistitemdelegate.cpp" line="358"/>
         <source>Stop downloading</source>
         <translation>İndirme işlemini durdur</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="391"/>
+        <location filename="src/playlistitemdelegate.cpp" line="368"/>
         <source>Show in %1</source>
         <translation>%1 içinde göster</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="393"/>
+        <location filename="src/playlistitemdelegate.cpp" line="370"/>
         <source>Open parent folder</source>
         <translation>Önceki dizini aç</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="402"/>
+        <location filename="src/playlistitemdelegate.cpp" line="379"/>
         <source>Restart downloading</source>
         <translation>İndirme işlemini yeniden başlat</translation>
     </message>
@@ -1102,22 +1174,22 @@
 <context>
     <name>PlaylistModel</name>
     <message>
-        <location filename="src/playlistmodel.cpp" line="72"/>
+        <location filename="src/playlistmodel.cpp" line="70"/>
         <source>Searching...</source>
         <translation>Aranıyor...</translation>
     </message>
     <message>
-        <location filename="src/playlistmodel.cpp" line="73"/>
+        <location filename="src/playlistmodel.cpp" line="71"/>
         <source>Show %1 More</source>
         <translation>%1 Tane Daha Göster</translation>
     </message>
     <message>
-        <location filename="src/playlistmodel.cpp" line="74"/>
+        <location filename="src/playlistmodel.cpp" line="72"/>
         <source>No videos</source>
         <translation>Video yok</translation>
     </message>
     <message>
-        <location filename="src/playlistmodel.cpp" line="75"/>
+        <location filename="src/playlistmodel.cpp" line="73"/>
         <source>No more videos</source>
         <translation>Daha fazla video yok</translation>
     </message>
@@ -1125,109 +1197,109 @@
 <context>
     <name>RefineSearchWidget</name>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="51"/>
+        <location filename="src/refinesearchwidget.cpp" line="49"/>
         <source>Sort by</source>
         <translation>Sırala</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="55"/>
+        <location filename="src/refinesearchwidget.cpp" line="53"/>
         <source>Relevance</source>
         <translation>Alaka</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="56"/>
-        <location filename="src/refinesearchwidget.cpp" line="72"/>
+        <location filename="src/refinesearchwidget.cpp" line="54"/>
+        <location filename="src/refinesearchwidget.cpp" line="69"/>
         <source>Date</source>
         <translation>Tarih</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="57"/>
+        <location filename="src/refinesearchwidget.cpp" line="55"/>
         <source>View Count</source>
         <translation>Hiti Göster</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="58"/>
+        <location filename="src/refinesearchwidget.cpp" line="56"/>
         <source>Rating</source>
         <translation>Hit</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="76"/>
+        <location filename="src/refinesearchwidget.cpp" line="73"/>
         <source>Anytime</source>
         <translation>Herhangi bir zaman</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="77"/>
+        <location filename="src/refinesearchwidget.cpp" line="74"/>
         <source>Today</source>
         <translation>Bugün</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="78"/>
+        <location filename="src/refinesearchwidget.cpp" line="75"/>
         <source>7 Days</source>
         <translation>7 Gün</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="79"/>
+        <location filename="src/refinesearchwidget.cpp" line="76"/>
         <source>30 Days</source>
         <translation>30 Gün</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="93"/>
+        <location filename="src/refinesearchwidget.cpp" line="89"/>
         <source>Duration</source>
         <translation>Süre</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="97"/>
-        <location filename="src/refinesearchwidget.cpp" line="124"/>
+        <location filename="src/refinesearchwidget.cpp" line="93"/>
+        <location filename="src/refinesearchwidget.cpp" line="119"/>
         <source>All</source>
         <translation>Hepsi</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="98"/>
+        <location filename="src/refinesearchwidget.cpp" line="94"/>
         <source>Short</source>
         <translation>Kısa</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="99"/>
+        <location filename="src/refinesearchwidget.cpp" line="95"/>
         <source>Medium</source>
         <translation>Orta</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="100"/>
+        <location filename="src/refinesearchwidget.cpp" line="96"/>
         <source>Long</source>
         <translation>Uzun</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="103"/>
+        <location filename="src/refinesearchwidget.cpp" line="99"/>
         <source>Less than 4 minutes</source>
         <translation>4 dakikadan kısa</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="104"/>
+        <location filename="src/refinesearchwidget.cpp" line="100"/>
         <source>Between 4 and 20 minutes</source>
         <translation>4 - 20 dakika arası</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="105"/>
+        <location filename="src/refinesearchwidget.cpp" line="101"/>
         <source>Longer than 20 minutes</source>
         <translation>20 dakikadan uzun</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="120"/>
+        <location filename="src/refinesearchwidget.cpp" line="115"/>
         <source>Quality</source>
         <translation>Kalite</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="125"/>
+        <location filename="src/refinesearchwidget.cpp" line="120"/>
         <source>High Definition</source>
         <translation>Yüksek Kalite</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="128"/>
+        <location filename="src/refinesearchwidget.cpp" line="123"/>
         <source>720p or higher</source>
         <translation>720p veya daha yüksek</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="142"/>
+        <location filename="src/refinesearchwidget.cpp" line="136"/>
         <source>Done</source>
         <translation>Bitti</translation>
     </message>
@@ -1243,7 +1315,7 @@
 <context>
     <name>SearchLineEdit</name>
     <message>
-        <location filename="src/searchlineedit.cpp" line="177"/>
+        <location filename="src/searchlineedit.cpp" line="55"/>
         <source>Search</source>
         <translation>Ara</translation>
     </message>
@@ -1251,28 +1323,28 @@
 <context>
     <name>SearchView</name>
     <message>
-        <location filename="src/searchview.cpp" line="88"/>
+        <location filename="src/searchview.cpp" line="83"/>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
         <translation>&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;&apos;a Hoşgeldiniz</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="195"/>
+        <location filename="src/searchview.cpp" line="200"/>
         <source>Get the full version</source>
         <translation>Tam sürüme geç</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="114"/>
+        <location filename="src/searchview.cpp" line="110"/>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole phrase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
         <translation>Giriş yapın</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="119"/>
+        <location filename="src/searchview.cpp" line="117"/>
         <source>a keyword</source>
         <translation>bir anahtar kelime</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="120"/>
+        <location filename="src/searchview.cpp" line="118"/>
         <source>a channel</source>
         <translation>bir kanal</translation>
     </message>
@@ -1282,17 +1354,17 @@
         <translation>ve videoları izlemeye başlayın.</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="149"/>
+        <location filename="src/searchview.cpp" line="156"/>
         <source>Watch</source>
         <translation>İzle</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="167"/>
+        <location filename="src/searchview.cpp" line="174"/>
         <source>Recent keywords</source>
         <translation>Son arananlar</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="180"/>
+        <location filename="src/searchview.cpp" line="186"/>
         <source>Recent channels</source>
         <translation>Önceki kanallar</translation>
     </message>
@@ -1300,18 +1372,18 @@
 <context>
     <name>SidebarHeader</name>
     <message>
-        <location filename="src/sidebarheader.cpp" line="39"/>
-        <location filename="src/sidebarheader.cpp" line="46"/>
+        <location filename="src/sidebarheader.cpp" line="38"/>
+        <location filename="src/sidebarheader.cpp" line="45"/>
         <source>&amp;Back</source>
         <translation>Geri</translation>
     </message>
     <message>
-        <location filename="src/sidebarheader.cpp" line="77"/>
+        <location filename="src/sidebarheader.cpp" line="76"/>
         <source>Forward to %1</source>
         <translation>%1 Yönlendir</translation>
     </message>
     <message>
-        <location filename="src/sidebarheader.cpp" line="90"/>
+        <location filename="src/sidebarheader.cpp" line="89"/>
         <source>Back to %1</source>
         <translation>Geri Dön: %1</translation>
     </message>
@@ -1324,7 +1396,7 @@
         <translation>A&amp;ramayı Sınırla</translation>
     </message>
     <message>
-        <location filename="src/sidebarwidget.cpp" line="163"/>
+        <location filename="src/sidebarwidget.cpp" line="167"/>
         <source>Did you mean: %1</source>
         <translation>Bunu mu demek istediniz: %1</translation>
     </message>
@@ -1332,17 +1404,17 @@
 <context>
     <name>SnapshotSettings</name>
     <message>
-        <location filename="src/snapshotsettings.cpp" line="45"/>
+        <location filename="src/snapshotsettings.cpp" line="47"/>
         <source>Change location...</source>
         <translation>Konumu değiştir...</translation>
     </message>
     <message>
-        <location filename="src/snapshotsettings.cpp" line="62"/>
+        <location filename="src/snapshotsettings.cpp" line="64"/>
         <source>Snapshot saved to %1</source>
         <translation>Ekran görüntüsü %1 konumuna kaydedildi</translation>
     </message>
     <message>
-        <location filename="src/snapshotsettings.cpp" line="127"/>
+        <location filename="src/snapshotsettings.cpp" line="117"/>
         <source>Snapshots location changed.</source>
         <translation>Ekran görüntüsü konumu değişti.</translation>
     </message>
@@ -1350,7 +1422,7 @@
 <context>
     <name>StandardFeedsView</name>
     <message>
-        <location filename="src/standardfeedsview.cpp" line="105"/>
+        <location filename="src/standardfeedsview.cpp" line="107"/>
         <source>Most Popular</source>
         <translation>En popülerler</translation>
     </message>
@@ -1358,12 +1430,12 @@
 <context>
     <name>Video</name>
     <message>
-        <location filename="src/video.cpp" line="309"/>
+        <location filename="src/video.cpp" line="287"/>
         <source>Cannot get video stream for %1</source>
         <translation>%1 için video akışı alınamıyor.</translation>
     </message>
     <message>
-        <location filename="src/video.cpp" line="326"/>
+        <location filename="src/video.cpp" line="292"/>
         <source>Network error: %1 for %2</source>
         <translation>Ağ hatası: %2 için  %1</translation>
     </message>

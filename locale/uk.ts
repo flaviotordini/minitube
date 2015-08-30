@@ -1,64 +1,63 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="uk" version="2.0">
-<defaultcodec>UTF-8</defaultcodec>
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="uk" version="2.1">
 <context>
     <name>AboutView</name>
     <message>
-        <location filename="src/aboutview.cpp" line="52"/>
+        <location filename="src/aboutview.cpp" line="58"/>
         <source>There&apos;s life outside the browser!</source>
         <translation>За межами оглядача тенет також є життя!</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="53"/>
+        <location filename="src/aboutview.cpp" line="59"/>
         <source>Version %1</source>
         <translation>Версія %1</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="58"/>
+        <location filename="src/aboutview.cpp" line="64"/>
         <source>Licensed to: %1</source>
         <translation>Ліцензія належить: %1</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="62"/>
+        <location filename="src/aboutview.cpp" line="68"/>
         <source>%1 is Free Software but its development takes precious time.</source>
         <translation>%1 — вільне проґрамне забезпечення, але на його розробку було затрачено коштовний час.</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="63"/>
+        <location filename="src/aboutview.cpp" line="69"/>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
         <translation>Будь ласка, &lt;a href=&apos;%1&apos;&gt;внесіть пожертву,&lt;/a&gt; аби підтримати подальший розвиток %2.</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="67"/>
+        <location filename="src/aboutview.cpp" line="73"/>
         <source>You may want to try my other apps as well:</source>
         <translation>Спробуйте інші проґрами:</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="70"/>
+        <location filename="src/aboutview.cpp" line="76"/>
         <source>%1, a YouTube music player</source>
         <translation>%1, музичний програвач для YouTube </translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="74"/>
+        <location filename="src/aboutview.cpp" line="80"/>
         <source>%1, a music player</source>
         <translation>%1, музичний програвач</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="80"/>
+        <location filename="src/aboutview.cpp" line="86"/>
         <source>Translate %1 to your native language using %2</source>
         <translation>Перекласти %1 Вашою рідною мовою за допомогою %2</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="85"/>
+        <location filename="src/aboutview.cpp" line="91"/>
         <source>Icon designed by %1.</source>
         <translation>Розробник піктоґрам %1.</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="89"/>
+        <location filename="src/aboutview.cpp" line="95"/>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
         <translation>Випущено за &lt;a href=&apos;%1&apos;&gt;Загальною громадською ліцензією GNU&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="src/aboutview.cpp" line="104"/>
+        <location filename="src/aboutview.cpp" line="110"/>
         <source>&amp;Close</source>
         <translation>&amp;Закрити</translation>
     </message>
@@ -66,11 +65,6 @@
         <location filename="src/aboutview.h" line="40"/>
         <source>About</source>
         <translation>Про проґраму</translation>
-    </message>
-    <message>
-        <location filename="src/aboutview.h" line="42"/>
-        <source>What you always wanted to know about %1 and never dared to ask</source>
-        <translation>Усе, що ви завжди хотіли знати про %1, але не наважувалися запитати</translation>
     </message>
 </context>
 <context>
@@ -139,12 +133,12 @@
 <context>
     <name>ChannelAggregator</name>
     <message>
-        <location filename="src/channelaggregator.cpp" line="131"/>
+        <location filename="src/channelaggregator.cpp" line="183"/>
         <source>By %1</source>
         <translation>За %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="src/channelaggregator.cpp" line="133"/>
+        <location filename="src/channelaggregator.cpp" line="185"/>
         <source>You have %n new video(s)</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
@@ -152,12 +146,12 @@
 <context>
     <name>ChannelItemDelegate</name>
     <message>
-        <location filename="src/channelitemdelegate.cpp" line="66"/>
+        <location filename="src/channelitemdelegate.cpp" line="67"/>
         <source>All Videos</source>
         <translation>Усі видива</translation>
     </message>
     <message>
-        <location filename="src/channelitemdelegate.cpp" line="83"/>
+        <location filename="src/channelitemdelegate.cpp" line="85"/>
         <source>Unwatched Videos</source>
         <translation>Не переглянуті видива</translation>
     </message>
@@ -205,32 +199,32 @@
         <translation>Сортувати за</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="221"/>
+        <location filename="src/channelview.cpp" line="222"/>
         <source>All Videos</source>
         <translation>Усі видива</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="225"/>
+        <location filename="src/channelview.cpp" line="226"/>
         <source>Unwatched Videos</source>
         <translation>Не переглянуті видива</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="243"/>
+        <location filename="src/channelview.cpp" line="244"/>
         <source>Mark as Watched</source>
         <translation>Позначити як переглянуте</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="256"/>
+        <location filename="src/channelview.cpp" line="257"/>
         <source>Unsubscribe</source>
         <translation>Відмовитися від підписки</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="269"/>
+        <location filename="src/channelview.cpp" line="270"/>
         <source>There are no updated subscriptions at this time.</source>
         <translation>Наразі оновлень підписок немає.</translation>
     </message>
     <message>
-        <location filename="src/channelview.cpp" line="271"/>
+        <location filename="src/channelview.cpp" line="272"/>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
         <translation>У Вас немає підписок. Використовуйте символ зірочки, аби підписуватися на канали.</translation>
     </message>
@@ -238,9 +232,42 @@
 <context>
     <name>ClearButton</name>
     <message>
-        <location filename="src/searchlineedit.cpp" line="56"/>
+        <location filename="src/exlineedit.cpp" line="6"/>
         <source>Clear</source>
         <translation>Очистити</translation>
+    </message>
+</context>
+<context>
+    <name>DataUtils</name>
+    <message>
+        <location filename="src/datautils.cpp" line="88"/>
+        <source>Just now</source>
+        <translation type="unfinished"/>
+    </message>
+    <message numerus="yes">
+        <location filename="src/datautils.cpp" line="90"/>
+        <source>%n minute(s) ago</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="src/datautils.cpp" line="92"/>
+        <source>%n hour(s) ago</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="src/datautils.cpp" line="94"/>
+        <source>%n day(s) ago</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="src/datautils.cpp" line="96"/>
+        <source>%n weeks(s) ago</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="src/datautils.cpp" line="98"/>
+        <source>%n month(s) ago</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
 <context>
@@ -294,65 +321,65 @@
 <context>
     <name>DownloadManager</name>
     <message>
-        <location filename="src/downloadmanager.cpp" line="76"/>
+        <location filename="src/downloadmanager.cpp" line="77"/>
         <source>This is just the demo version of %1.</source>
         <translation>Це демонстраційна версія %1.</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="78"/>
+        <location filename="src/downloadmanager.cpp" line="79"/>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
         <translation>Із метою тестування, Ви можете завантажити видиво тривалістю до %1 хв. </translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="84"/>
+        <location filename="src/downloadmanager.cpp" line="85"/>
         <source>Continue</source>
         <translation>Продовжити</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="85"/>
+        <location filename="src/downloadmanager.cpp" line="86"/>
         <source>Get the full version</source>
         <translation>Отримати повну версію</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="156"/>
+        <location filename="src/downloadmanager.cpp" line="157"/>
         <source>%1 downloaded in %2</source>
         <translation>%1 завантажений до %2</translation>
     </message>
     <message>
-        <location filename="src/downloadmanager.cpp" line="159"/>
+        <location filename="src/downloadmanager.cpp" line="160"/>
         <source>Download finished</source>
         <translation>Завантаження завершено</translation>
     </message>
     <message numerus="yes">
-        <location filename="src/downloadmanager.cpp" line="164"/>
+        <location filename="src/downloadmanager.cpp" line="165"/>
         <source>%n Download(s)</source>
-        <translation><numerusform>Завантажується %n файл</numerusform><numerusform>Завантажуються %n файли</numerusform><numerusform>Завантажуються %n файлів</numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
 <context>
     <name>DownloadSettings</name>
     <message>
-        <location filename="src/downloadsettings.cpp" line="35"/>
+        <location filename="src/downloadsettings.cpp" line="36"/>
         <source>Change location...</source>
         <translation>Змінити теку для завантаження...</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="78"/>
+        <location filename="src/downloadsettings.cpp" line="69"/>
         <source>Choose the download location</source>
         <translation>Оберіть теку для завантаження</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="90"/>
+        <location filename="src/downloadsettings.cpp" line="81"/>
         <source>Download location changed.</source>
         <translation>Теку завантаження змінено.</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="92"/>
+        <location filename="src/downloadsettings.cpp" line="83"/>
         <source>Current downloads will still go in the previous location.</source>
         <translation>Поточні завантаження буде, як і раніше, збережено у попередньому місці.</translation>
     </message>
     <message>
-        <location filename="src/downloadsettings.cpp" line="107"/>
+        <location filename="src/downloadsettings.cpp" line="94"/>
         <source>Downloading to: %1</source>
         <translation>Завантажується до %1</translation>
     </message>
@@ -372,6 +399,29 @@
         <location filename="local/src/updatedialog.cpp" line="60"/>
         <source>Downloading update...</source>
         <translation>Завантаження оновлення...</translation>
+    </message>
+</context>
+<context>
+    <name>Extra</name>
+    <message>
+        <location filename="local/src/extra.cpp" line="251"/>
+        <source>The executable file has been tempered with, maybe by a virus.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="local/src/extra.cpp" line="252"/>
+        <source>%1 will not run. Try installing again.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="local/src/extra.cpp" line="253"/>
+        <source>Quit</source>
+        <translation>Вийти</translation>
+    </message>
+    <message>
+        <location filename="local/src/extra.cpp" line="254"/>
+        <source>Reinstall</source>
+        <translation>Перевстановити</translation>
     </message>
 </context>
 <context>
@@ -470,7 +520,7 @@
         <translation>Підписки на канали</translation>
     </message>
     <message>
-        <location filename="src/homeview.h" line="45"/>
+        <location filename="src/homeview.h" line="44"/>
         <source>Make yourself comfortable</source>
         <translation>Влаштовуйтесь якнайзручніше</translation>
     </message>
@@ -478,7 +528,7 @@
 <context>
     <name>LoadingWidget</name>
     <message>
-        <location filename="src/loadingwidget.cpp" line="114"/>
+        <location filename="src/loadingwidget.cpp" line="125"/>
         <source>Error</source>
         <translation>Помилка</translation>
     </message>
@@ -486,446 +536,458 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="src/mainwindow.cpp" line="267"/>
+        <location filename="src/mainwindow.cpp" line="291"/>
         <source>&amp;Stop</source>
         <translation>&amp;Зупинити</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="268"/>
+        <location filename="src/mainwindow.cpp" line="292"/>
         <source>Stop playback and go back to the search view</source>
         <translation>Зупинити відтворення та перейти до вікна пошуку</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="283"/>
+        <location filename="src/mainwindow.cpp" line="307"/>
         <source>S&amp;kip</source>
         <translation>П&amp;ропустити</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="284"/>
+        <location filename="src/mainwindow.cpp" line="308"/>
         <source>Skip to the next video</source>
         <translation>Перейти до наступного видива</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="290"/>
-        <location filename="src/mainwindow.cpp" line="1060"/>
+        <location filename="src/mainwindow.cpp" line="1134"/>
         <source>&amp;Pause</source>
         <translation>&amp;Призупинити</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="291"/>
-        <location filename="src/mainwindow.cpp" line="1061"/>
+        <location filename="src/mainwindow.cpp" line="1135"/>
         <source>Pause playback</source>
         <translation>Призупинити відтворення</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="297"/>
+        <location filename="src/mainwindow.cpp" line="321"/>
         <source>&amp;Full Screen</source>
         <translation>&amp;Повноекранний режим</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="298"/>
+        <location filename="src/mainwindow.cpp" line="322"/>
         <source>Go full screen</source>
         <translation>Перейти до повноекранного режиму</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="312"/>
+        <location filename="src/mainwindow.cpp" line="336"/>
         <source>Hide the playlist and the toolbar</source>
         <translation>Сховати перелік та панель інструментів</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="325"/>
+        <location filename="src/mainwindow.cpp" line="349"/>
         <source>Go to the YouTube video page and pause playback</source>
         <translation>Відкрити сторінку YouTube та призупинити відтворення видива</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="332"/>
+        <location filename="src/mainwindow.cpp" line="356"/>
         <source>Copy the current video YouTube link to the clipboard</source>
         <translation>Скопіювати YouTube посилання поточного видива до буферу</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="339"/>
+        <location filename="src/mainwindow.cpp" line="363"/>
         <source>Copy the current video stream URL to the clipboard</source>
         <translation>Скопіювати посилання поточного видива до буферу</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="346"/>
+        <location filename="src/mainwindow.cpp" line="370"/>
         <source>Find other video parts hopefully in the right order</source>
         <translation>Знайти інші частини видива, сподіваюся, у правильному порядку</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="352"/>
+        <location filename="src/mainwindow.cpp" line="376"/>
         <source>&amp;Remove</source>
         <translation>&amp;Вилучити</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="353"/>
+        <location filename="src/mainwindow.cpp" line="377"/>
         <source>Remove the selected videos from the playlist</source>
         <translation>Вилучити обрані видива з переліку</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="359"/>
+        <location filename="src/mainwindow.cpp" line="383"/>
         <source>Move &amp;Up</source>
         <translation>До&amp;гори</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="360"/>
+        <location filename="src/mainwindow.cpp" line="384"/>
         <source>Move up the selected videos in the playlist</source>
         <translation>Перемістити обране видиво догори у переліку</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="366"/>
+        <location filename="src/mainwindow.cpp" line="390"/>
         <source>Move &amp;Down</source>
         <translation>Дони&amp;зу</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="367"/>
+        <location filename="src/mainwindow.cpp" line="391"/>
         <source>Move down the selected videos in the playlist</source>
         <translation>Перемістити обране видиво донизу в переліку</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="378"/>
+        <location filename="src/mainwindow.cpp" line="402"/>
         <source>Clear the search history. Cannot be undone.</source>
         <translation>Очистити історію пошуку (зміни незворотні).</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="383"/>
+        <location filename="src/mainwindow.cpp" line="407"/>
         <source>&amp;Quit</source>
         <translation>&amp;Вийти</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="386"/>
+        <location filename="src/mainwindow.cpp" line="410"/>
         <source>Bye</source>
         <translation>Бувайте</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="390"/>
+        <location filename="src/mainwindow.cpp" line="414"/>
         <source>&amp;Website</source>
         <translation>&amp;Веб-сайт</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="392"/>
+        <location filename="src/mainwindow.cpp" line="416"/>
         <source>%1 on the Web</source>
         <translation>%1 у мережі</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="398"/>
+        <location filename="src/mainwindow.cpp" line="422"/>
         <source>Please support the continued development of %1</source>
         <translation>Будь ласка, підтримайте подальший розвиток %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="403"/>
+        <location filename="src/mainwindow.cpp" line="427"/>
         <source>&amp;About</source>
         <translation>&amp;Про проґраму</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="405"/>
+        <location filename="src/mainwindow.cpp" line="429"/>
         <source>Info about %1</source>
         <translation>Інформація про %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="413"/>
+        <location filename="src/mainwindow.cpp" line="437"/>
         <source>Search</source>
         <translation>Шукати</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="432"/>
+        <location filename="src/mainwindow.cpp" line="456"/>
         <source>Mute volume</source>
         <translation>Приглушити гучність</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="466"/>
-        <location filename="src/mainwindow.cpp" line="1490"/>
+        <location filename="src/mainwindow.cpp" line="490"/>
+        <location filename="src/mainwindow.cpp" line="1609"/>
         <source>&amp;Downloads</source>
         <translation>&amp;Завантаження</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="467"/>
+        <location filename="src/mainwindow.cpp" line="491"/>
         <source>Show details about video downloads</source>
         <translation>Показати деталі про видива, що завантажуються</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="475"/>
+        <location filename="src/mainwindow.cpp" line="499"/>
         <source>&amp;Download</source>
         <translation>&amp;Завантажити</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="476"/>
+        <location filename="src/mainwindow.cpp" line="500"/>
         <source>Download the current video</source>
         <translation>Завантажити це видиво</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="486"/>
+        <location filename="src/mainwindow.cpp" line="510"/>
         <source>Take &amp;Snapshot</source>
         <translation>Зробити &amp;Зняток</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="493"/>
+        <location filename="src/mainwindow.cpp" line="517"/>
         <source>&amp;Subscribe to Channel</source>
         <translation>&amp;Підписатися на канал</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="501"/>
+        <location filename="src/mainwindow.cpp" line="525"/>
         <source>Share the current video using %1</source>
         <translation>Поділитися поточним видивом за допомогою %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="521"/>
+        <location filename="src/mainwindow.cpp" line="545"/>
         <source>&amp;Email</source>
         <translation>&amp;Email</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="522"/>
+        <location filename="src/mainwindow.cpp" line="546"/>
         <source>Email</source>
         <translation>Email</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="527"/>
+        <location filename="src/mainwindow.cpp" line="551"/>
         <source>&amp;Close</source>
         <translation>&amp;Закрити</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="537"/>
+        <location filename="src/mainwindow.cpp" line="561"/>
         <source>&amp;Float on Top</source>
         <translation>&amp;Згори всіх вікон</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="542"/>
+        <location filename="src/mainwindow.cpp" line="566"/>
+        <source>&amp;Adjust Window Size</source>
+        <translation>&amp;Змінити розмір вікна</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="571"/>
         <source>&amp;Stop After This Video</source>
         <translation>Зу&amp;пинити після цього видиво</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="549"/>
+        <location filename="src/mainwindow.cpp" line="578"/>
         <source>&amp;Report an Issue...</source>
         <translation>По&amp;відомити про помилку</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="553"/>
+        <location filename="src/mainwindow.cpp" line="582"/>
         <source>&amp;Refine Search...</source>
         <translation>&amp;Уточнити пошук...</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="565"/>
+        <location filename="src/mainwindow.cpp" line="594"/>
         <source>More...</source>
         <translation>Більше...</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="568"/>
+        <location filename="src/mainwindow.cpp" line="597"/>
         <source>&amp;Related Videos</source>
         <translation>Схо&amp;жі видива</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="570"/>
+        <location filename="src/mainwindow.cpp" line="599"/>
         <source>Watch videos related to the current one</source>
         <translation>Дивитися видива, пов’язані з поточним</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="576"/>
+        <location filename="src/mainwindow.cpp" line="605"/>
         <source>Open in &amp;Browser...</source>
         <translation>Відкрити в &amp;оглядачі тенет...</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="583"/>
+        <location filename="src/mainwindow.cpp" line="612"/>
         <source>&amp;Love %1? Rate it!</source>
         <translation>&amp;Подобається %1? Оцініть !</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="605"/>
+        <location filename="src/mainwindow.cpp" line="633"/>
         <source>&amp;Application</source>
         <translation>&amp;Застосунок</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="589"/>
+        <location filename="src/mainwindow.cpp" line="618"/>
         <source>Buy %1...</source>
         <translation>Придбати %1...</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="619"/>
+        <location filename="src/mainwindow.cpp" line="647"/>
         <source>&amp;Playback</source>
         <translation>&amp;Відтворення</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="633"/>
+        <location filename="src/mainwindow.cpp" line="661"/>
         <source>&amp;Playlist</source>
         <translation>&amp;Перелік відтворення</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="642"/>
+        <location filename="src/mainwindow.cpp" line="670"/>
         <source>&amp;Video</source>
         <translation>&amp;Видиво</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="658"/>
+        <location filename="src/mainwindow.cpp" line="686"/>
         <source>&amp;View</source>
         <translation>&amp;Переглянути</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="665"/>
+        <location filename="src/mainwindow.cpp" line="695"/>
         <source>&amp;Share</source>
         <translation>&amp;Поділитися</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="679"/>
+        <location filename="src/mainwindow.cpp" line="709"/>
         <source>&amp;Help</source>
         <translation>&amp;Довідка</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="760"/>
+        <location filename="src/mainwindow.cpp" line="751"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
         <translation>Натисніть %1, аби приглушити гучність, та %2, щоб її відновити</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="955"/>
-        <location filename="src/mainwindow.cpp" line="961"/>
+        <location filename="src/mainwindow.cpp" line="1021"/>
+        <location filename="src/mainwindow.cpp" line="1027"/>
         <source>Opening %1</source>
         <translation>Відкриття %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1006"/>
+        <location filename="src/mainwindow.cpp" line="1080"/>
         <source>Do you want to exit %1 with a download in progress?</source>
         <translation>Триває завантаження, бажаєте закрити %1?</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1007"/>
+        <location filename="src/mainwindow.cpp" line="1081"/>
         <source>If you close %1 now, this download will be cancelled.</source>
         <translation>Якщо закрити %1 негайно, усі завантаження буде скасовано.</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1012"/>
+        <location filename="src/mainwindow.cpp" line="1086"/>
         <source>Close and cancel download</source>
         <translation>Скасувати та закрити</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1013"/>
+        <location filename="src/mainwindow.cpp" line="1087"/>
         <source>Wait for download to finish</source>
         <translation>Дочекатися завершення</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1174"/>
+        <location filename="src/mainwindow.cpp" line="1158"/>
+        <source>&amp;Loading...</source>
+        <translation>&amp;Завантажити...</translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="1264"/>
         <source>Leave &amp;Full Screen</source>
         <translation>Вийти з &amp;повноекранного режиму</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1601"/>
+        <location filename="src/mainwindow.cpp" line="1718"/>
         <source>%1 version %2 is now available.</source>
         <translation>%1 версія %2 доступна.</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1605"/>
+        <location filename="src/mainwindow.cpp" line="1722"/>
         <source>Remind me later</source>
         <translation>Нагадати мені пізніше</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1606"/>
+        <location filename="src/mainwindow.cpp" line="1723"/>
         <source>Update</source>
         <translation>Оновлення</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1053"/>
+        <location filename="src/mainwindow.cpp" line="1127"/>
         <source>Error: %1</source>
         <translation>Помилка: %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="276"/>
+        <location filename="src/mainwindow.cpp" line="300"/>
         <source>P&amp;revious</source>
         <translation>По&amp;передній</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="277"/>
+        <location filename="src/mainwindow.cpp" line="301"/>
         <source>Go back to the previous track</source>
         <translation>Повернутися до попереднього треку</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="311"/>
+        <location filename="src/mainwindow.cpp" line="335"/>
         <source>&amp;Compact Mode</source>
         <translation>Компак&amp;тний режим</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="324"/>
+        <location filename="src/mainwindow.cpp" line="348"/>
         <source>Open the &amp;YouTube Page</source>
         <translation>Від&amp;крити сторінку YouTube</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="331"/>
+        <location filename="src/mainwindow.cpp" line="355"/>
         <source>Copy the YouTube &amp;Link</source>
         <translation>Копіювати &amp;посилання на YouTube</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="338"/>
+        <location filename="src/mainwindow.cpp" line="362"/>
         <source>Copy the Video Stream &amp;URL</source>
         <translation>Копіювати посилання на ви&amp;диво потік</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="345"/>
+        <location filename="src/mainwindow.cpp" line="369"/>
         <source>Find Video &amp;Parts</source>
         <translation>Знайти &amp;фраґменти видива</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="373"/>
+        <location filename="src/mainwindow.cpp" line="397"/>
         <source>&amp;Clear Recent Searches</source>
         <translation>О&amp;чистити останні пошукові запити</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="397"/>
+        <location filename="src/mainwindow.cpp" line="421"/>
         <source>Make a &amp;Donation</source>
         <translation>Підтрима&amp;йте проєкт</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="459"/>
+        <location filename="src/mainwindow.cpp" line="483"/>
         <source>&amp;Manually Start Playing</source>
         <translation>&amp;Почати відтворення самотужки</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="460"/>
+        <location filename="src/mainwindow.cpp" line="484"/>
         <source>Manually start playing videos</source>
         <translation>Почати відтворення видива самотужки</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="797"/>
+        <location filename="src/mainwindow.cpp" line="847"/>
         <source>Choose your content location</source>
         <translation>Оберіть своє місцерозташування</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1073"/>
+        <location filename="src/mainwindow.cpp" line="314"/>
+        <location filename="src/mainwindow.cpp" line="1142"/>
+        <location filename="src/mainwindow.cpp" line="1150"/>
         <source>&amp;Play</source>
         <translation>&amp;Грати</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1074"/>
+        <location filename="src/mainwindow.cpp" line="315"/>
+        <location filename="src/mainwindow.cpp" line="1143"/>
+        <location filename="src/mainwindow.cpp" line="1151"/>
         <source>Resume playback</source>
         <translation>Відновити відтворення</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1333"/>
+        <location filename="src/mainwindow.cpp" line="1437"/>
         <source>Remaining time: %1</source>
         <translation>Залишилося часу: %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1419"/>
+        <location filename="src/mainwindow.cpp" line="1528"/>
         <source>Volume at %1%</source>
         <translation>Гучність %1%</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1425"/>
+        <location filename="src/mainwindow.cpp" line="1534"/>
         <source>Volume is muted</source>
         <translation>Гучність приглушено</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1428"/>
+        <location filename="src/mainwindow.cpp" line="1537"/>
         <source>Volume is unmuted</source>
         <translation>Гучність відновлено</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1435"/>
+        <location filename="src/mainwindow.cpp" line="1548"/>
         <source>Maximum video definition set to %1</source>
         <translation>Режим чіткості видива %1</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1476"/>
+        <location filename="src/mainwindow.cpp" line="1595"/>
         <source>Your privacy is now safe</source>
         <translation>Ваша приватність тепер у безпеці</translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1491"/>
+        <location filename="src/mainwindow.cpp" line="1610"/>
         <source>Downloads complete</source>
         <translation>Завантаження завершено</translation>
     </message>
@@ -933,75 +995,85 @@
 <context>
     <name>MediaView</name>
     <message>
-        <location filename="src/mediaview.cpp" line="682"/>
+        <location filename="src/mediaview.cpp" line="702"/>
         <source>You can now paste the YouTube link into another application</source>
         <translation>Тепер Ви можете використовувати YouTube посилання на видиво у зовнішній проґрамі</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="690"/>
+        <location filename="src/mediaview.cpp" line="710"/>
         <source>You can now paste the video stream URL into another application</source>
         <translation>Тепер Ви можете використовувати посилання на видиво у зовнішній проґрамі</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="691"/>
+        <location filename="src/mediaview.cpp" line="711"/>
         <source>The link will be valid only for a limited time.</source>
         <translation>Посилання буде дійсне лише протягом обмеженого часу.</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="780"/>
+        <location filename="src/mediaview.cpp" line="800"/>
         <source>This is just the demo version of %1.</source>
         <translation>&gt;Це демонстраційна версія %1.</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="781"/>
+        <location filename="src/mediaview.cpp" line="801"/>
         <source>It allows you to test the application and see if it works for you.</source>
         <translation>Ви маєте змогу протестувати проґраму та перевірити працездатність.</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="813"/>
+        <location filename="src/mediaview.cpp" line="833"/>
         <source>Continue</source>
         <translation>Продовжити</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="946"/>
+        <location filename="src/mediaview.cpp" line="988"/>
         <source>of</source>
         <comment>Used in video parts, as in '2 of 3'</comment>
         <translation>з</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="959"/>
+        <location filename="src/mediaview.cpp" line="1001"/>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
         <translation>частина</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="961"/>
+        <location filename="src/mediaview.cpp" line="1003"/>
         <source>episode</source>
         <comment>This is for video parts, as in 'Cool series - episode 1'</comment>
         <translation>епізод</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="1074"/>
+        <location filename="src/mediaview.cpp" line="1096"/>
         <source>Sent from %1</source>
         <translation>Надіслати з %1</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="1109"/>
+        <location filename="src/mediaview.cpp" line="1128"/>
         <source>Unsubscribe from %1</source>
         <translation>Відписатися %1</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="1113"/>
+        <location filename="src/mediaview.cpp" line="1132"/>
         <source>Subscribe to %1</source>
         <translation>Підписуватися на %1</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="788"/>
+        <location filename="src/mediaview.cpp" line="1166"/>
+        <source>Unsubscribed from %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/mediaview.cpp" line="1169"/>
+        <source>Subscribed to %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="src/mediaview.cpp" line="808"/>
         <source>Get the full version</source>
         <translation>Отримати повну версію</translation>
     </message>
     <message>
-        <location filename="src/mediaview.cpp" line="827"/>
+        <location filename="src/mediaview.cpp" line="847"/>
         <source>Downloading %1</source>
         <translation>Завантаження %1</translation>
     </message>
@@ -1050,52 +1122,52 @@
 <context>
     <name>PlaylistItemDelegate</name>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="208"/>
+        <location filename="src/playlistitemdelegate.cpp" line="209"/>
         <source>%1 views</source>
         <translation>%1 переглядів</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="332"/>
+        <location filename="src/playlistitemdelegate.cpp" line="309"/>
         <source>%1 of %2 (%3) — %4</source>
         <translation>%1 з %2 (%3) — %4</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="339"/>
+        <location filename="src/playlistitemdelegate.cpp" line="316"/>
         <source>Preparing</source>
         <translation>Підготовка</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="341"/>
+        <location filename="src/playlistitemdelegate.cpp" line="318"/>
         <source>Failed</source>
         <translation>Невдача</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="343"/>
+        <location filename="src/playlistitemdelegate.cpp" line="320"/>
         <source>Completed</source>
         <translation>Виконано</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="345"/>
+        <location filename="src/playlistitemdelegate.cpp" line="322"/>
         <source>Stopped</source>
         <translation>Зупинено</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="381"/>
+        <location filename="src/playlistitemdelegate.cpp" line="358"/>
         <source>Stop downloading</source>
         <translation>Зупинити завантаження</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="391"/>
+        <location filename="src/playlistitemdelegate.cpp" line="368"/>
         <source>Show in %1</source>
         <translation>Відтворити у %1</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="393"/>
+        <location filename="src/playlistitemdelegate.cpp" line="370"/>
         <source>Open parent folder</source>
         <translation>Перейти до теки з видивами</translation>
     </message>
     <message>
-        <location filename="src/playlistitemdelegate.cpp" line="402"/>
+        <location filename="src/playlistitemdelegate.cpp" line="379"/>
         <source>Restart downloading</source>
         <translation>Завантажити заново</translation>
     </message>
@@ -1103,22 +1175,22 @@
 <context>
     <name>PlaylistModel</name>
     <message>
-        <location filename="src/playlistmodel.cpp" line="72"/>
+        <location filename="src/playlistmodel.cpp" line="70"/>
         <source>Searching...</source>
         <translation>Пошук...</translation>
     </message>
     <message>
-        <location filename="src/playlistmodel.cpp" line="73"/>
+        <location filename="src/playlistmodel.cpp" line="71"/>
         <source>Show %1 More</source>
         <translation>Наступні %1 </translation>
     </message>
     <message>
-        <location filename="src/playlistmodel.cpp" line="74"/>
+        <location filename="src/playlistmodel.cpp" line="72"/>
         <source>No videos</source>
         <translation>Нічого не знайдено</translation>
     </message>
     <message>
-        <location filename="src/playlistmodel.cpp" line="75"/>
+        <location filename="src/playlistmodel.cpp" line="73"/>
         <source>No more videos</source>
         <translation>Більше немає</translation>
     </message>
@@ -1126,109 +1198,109 @@
 <context>
     <name>RefineSearchWidget</name>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="51"/>
+        <location filename="src/refinesearchwidget.cpp" line="49"/>
         <source>Sort by</source>
         <translation>Сортувати за</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="55"/>
+        <location filename="src/refinesearchwidget.cpp" line="53"/>
         <source>Relevance</source>
         <translation>Релевантністю</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="56"/>
-        <location filename="src/refinesearchwidget.cpp" line="72"/>
+        <location filename="src/refinesearchwidget.cpp" line="54"/>
+        <location filename="src/refinesearchwidget.cpp" line="69"/>
         <source>Date</source>
         <translation>Датою</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="57"/>
+        <location filename="src/refinesearchwidget.cpp" line="55"/>
         <source>View Count</source>
         <translation>Числом переглядів</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="58"/>
+        <location filename="src/refinesearchwidget.cpp" line="56"/>
         <source>Rating</source>
         <translation>Рейтинґом</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="76"/>
+        <location filename="src/refinesearchwidget.cpp" line="73"/>
         <source>Anytime</source>
         <translation>У будь-який час</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="77"/>
+        <location filename="src/refinesearchwidget.cpp" line="74"/>
         <source>Today</source>
         <translation>Сьогодні</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="78"/>
+        <location filename="src/refinesearchwidget.cpp" line="75"/>
         <source>7 Days</source>
         <translation>7 днів</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="79"/>
+        <location filename="src/refinesearchwidget.cpp" line="76"/>
         <source>30 Days</source>
         <translation>30 днів</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="93"/>
+        <location filename="src/refinesearchwidget.cpp" line="89"/>
         <source>Duration</source>
         <translation>Тривалістю</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="97"/>
-        <location filename="src/refinesearchwidget.cpp" line="124"/>
+        <location filename="src/refinesearchwidget.cpp" line="93"/>
+        <location filename="src/refinesearchwidget.cpp" line="119"/>
         <source>All</source>
         <translation>Усі</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="98"/>
+        <location filename="src/refinesearchwidget.cpp" line="94"/>
         <source>Short</source>
         <translation>Короткі</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="99"/>
+        <location filename="src/refinesearchwidget.cpp" line="95"/>
         <source>Medium</source>
         <translation>Середні</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="100"/>
+        <location filename="src/refinesearchwidget.cpp" line="96"/>
         <source>Long</source>
         <translation>Довгі</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="103"/>
+        <location filename="src/refinesearchwidget.cpp" line="99"/>
         <source>Less than 4 minutes</source>
         <translation>Коротші за 4 хвилини</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="104"/>
+        <location filename="src/refinesearchwidget.cpp" line="100"/>
         <source>Between 4 and 20 minutes</source>
         <translation>Між 4 та 20 хвилинами</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="105"/>
+        <location filename="src/refinesearchwidget.cpp" line="101"/>
         <source>Longer than 20 minutes</source>
         <translation>Довші, аніж 20 хвилин</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="120"/>
+        <location filename="src/refinesearchwidget.cpp" line="115"/>
         <source>Quality</source>
         <translation>Якість</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="125"/>
+        <location filename="src/refinesearchwidget.cpp" line="120"/>
         <source>High Definition</source>
         <translation>Висока роздільна здатність</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="128"/>
+        <location filename="src/refinesearchwidget.cpp" line="123"/>
         <source>720p or higher</source>
         <translation>720p або більше</translation>
     </message>
     <message>
-        <location filename="src/refinesearchwidget.cpp" line="142"/>
+        <location filename="src/refinesearchwidget.cpp" line="136"/>
         <source>Done</source>
         <translation>Готово</translation>
     </message>
@@ -1244,7 +1316,7 @@
 <context>
     <name>SearchLineEdit</name>
     <message>
-        <location filename="src/searchlineedit.cpp" line="177"/>
+        <location filename="src/searchlineedit.cpp" line="55"/>
         <source>Search</source>
         <translation>Шукати</translation>
     </message>
@@ -1252,28 +1324,28 @@
 <context>
     <name>SearchView</name>
     <message>
-        <location filename="src/searchview.cpp" line="88"/>
+        <location filename="src/searchview.cpp" line="83"/>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
         <translation>Ласкаво просимо до &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="195"/>
+        <location filename="src/searchview.cpp" line="200"/>
         <source>Get the full version</source>
         <translation>Отримати повну версію</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="114"/>
+        <location filename="src/searchview.cpp" line="110"/>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole phrase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
         <translation>Уведіть</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="119"/>
+        <location filename="src/searchview.cpp" line="117"/>
         <source>a keyword</source>
         <translation>запит</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="120"/>
+        <location filename="src/searchview.cpp" line="118"/>
         <source>a channel</source>
         <translation>канал</translation>
     </message>
@@ -1283,17 +1355,17 @@
         <translation>аби розпочати перегляд.</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="149"/>
+        <location filename="src/searchview.cpp" line="156"/>
         <source>Watch</source>
         <translation>Дивитися</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="167"/>
+        <location filename="src/searchview.cpp" line="174"/>
         <source>Recent keywords</source>
         <translation>Нещодавній пошук</translation>
     </message>
     <message>
-        <location filename="src/searchview.cpp" line="180"/>
+        <location filename="src/searchview.cpp" line="186"/>
         <source>Recent channels</source>
         <translation>Останні канали</translation>
     </message>
@@ -1301,18 +1373,18 @@
 <context>
     <name>SidebarHeader</name>
     <message>
-        <location filename="src/sidebarheader.cpp" line="39"/>
-        <location filename="src/sidebarheader.cpp" line="46"/>
+        <location filename="src/sidebarheader.cpp" line="38"/>
+        <location filename="src/sidebarheader.cpp" line="45"/>
         <source>&amp;Back</source>
         <translation>Н&amp;азад</translation>
     </message>
     <message>
-        <location filename="src/sidebarheader.cpp" line="77"/>
+        <location filename="src/sidebarheader.cpp" line="76"/>
         <source>Forward to %1</source>
         <translation>Уперед до %1</translation>
     </message>
     <message>
-        <location filename="src/sidebarheader.cpp" line="90"/>
+        <location filename="src/sidebarheader.cpp" line="89"/>
         <source>Back to %1</source>
         <translation>Назад до %1</translation>
     </message>
@@ -1325,7 +1397,7 @@
         <translation>Уточнити пошук</translation>
     </message>
     <message>
-        <location filename="src/sidebarwidget.cpp" line="163"/>
+        <location filename="src/sidebarwidget.cpp" line="167"/>
         <source>Did you mean: %1</source>
         <translation>Можливо, Ви мали на увазі: %1</translation>
     </message>
@@ -1333,17 +1405,17 @@
 <context>
     <name>SnapshotSettings</name>
     <message>
-        <location filename="src/snapshotsettings.cpp" line="45"/>
+        <location filename="src/snapshotsettings.cpp" line="47"/>
         <source>Change location...</source>
         <translation>Змінити теку для завантаження...</translation>
     </message>
     <message>
-        <location filename="src/snapshotsettings.cpp" line="62"/>
+        <location filename="src/snapshotsettings.cpp" line="64"/>
         <source>Snapshot saved to %1</source>
         <translation>Зняток збережено в %1</translation>
     </message>
     <message>
-        <location filename="src/snapshotsettings.cpp" line="127"/>
+        <location filename="src/snapshotsettings.cpp" line="117"/>
         <source>Snapshots location changed.</source>
         <translation>Місцезнаходження знятків змінено.</translation>
     </message>
@@ -1351,7 +1423,7 @@
 <context>
     <name>StandardFeedsView</name>
     <message>
-        <location filename="src/standardfeedsview.cpp" line="105"/>
+        <location filename="src/standardfeedsview.cpp" line="107"/>
         <source>Most Popular</source>
         <translation>Найпопулярніші</translation>
     </message>
@@ -1359,12 +1431,12 @@
 <context>
     <name>Video</name>
     <message>
-        <location filename="src/video.cpp" line="309"/>
+        <location filename="src/video.cpp" line="287"/>
         <source>Cannot get video stream for %1</source>
         <translation>Не вдалося отримати видивопотік для %1</translation>
     </message>
     <message>
-        <location filename="src/video.cpp" line="326"/>
+        <location filename="src/video.cpp" line="292"/>
         <source>Network error: %1 for %2</source>
         <translation>Помилка мережі: %1 для %2</translation>
     </message>
