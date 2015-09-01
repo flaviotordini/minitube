@@ -95,7 +95,7 @@ MainWindow::MainWindow() :
     mediaObject(0),
     audioOutput(0),
     #endif
-    m_fullscreen(false),
+    fullscreenFlag(false),
     m_compact(false) {
 
     singleton = this;
@@ -245,37 +245,39 @@ void MainWindow::changeEvent(QEvent *e) {
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
 
-    if (m_fullscreen && e->type() == QEvent::MouseMove) {
-
-        QMouseEvent *mouseEvent = static_cast<QMouseEvent*> (e);
-        const int x = mouseEvent->pos().x();
-        const QString className = QString(obj->metaObject()->className());
+    if (fullscreenFlag && e->type() == QEvent::MouseMove) {
+        const char *className = obj->metaObject()->className();
         const bool isHoveringVideo =
                 (className == QLatin1String("QGLWidget")) ||
                 (className == QLatin1String("VideoAreaWidget"));
 
         // qDebug() << obj << mouseEvent->pos() << isHoveringVideo << mediaView->isPlaylistVisible();
 
-        if (mediaView && mediaView->isPlaylistVisible()) {
-            if (isHoveringVideo && x > 5) mediaView->setPlaylistVisible(false);
-        } else {
-            if (isHoveringVideo && x >= 0 && x < 5) mediaView->setPlaylistVisible(true);
-        }
+        if (isHoveringVideo) {
+            QMouseEvent *mouseEvent = static_cast<QMouseEvent*> (e);
+            const int x = mouseEvent->pos().x();
+
+            if (mediaView->isPlaylistVisible()) {
+                if (x > 5) mediaView->setPlaylistVisible(false);
+            } else {
+                if (x >= 0 && x < 5) mediaView->setPlaylistVisible(true);
+            }
 
 #ifndef APP_MAC
-        const int y = mouseEvent->pos().y();
-        if (mainToolBar->isVisible()) {
-            if (isHoveringVideo && y > 5) mainToolBar->setVisible(false);
-        } else {
-            if (isHoveringVideo && y >= 0 && y < 5) mainToolBar->setVisible(true);
-        }
+            const int y = mouseEvent->pos().y();
+            if (mainToolBar->isVisible()) {
+                if (y > 5) mainToolBar->setVisible(false);
+            } else {
+                if (y >= 0 && y < 5) mainToolBar->setVisible(true);
+            }
 #endif
+
+        }
 
         // show the normal cursor
         unsetCursor();
         // then hide it again after a few seconds
         mouseTimer->start();
-
     }
 
     if (e->type() == QEvent::ToolTip) {
@@ -881,12 +883,12 @@ void MainWindow::showActionInStatusBar(QAction* action, bool show) {
 #endif
     if (show) {
         statusToolBar->insertAction(statusToolBar->actions().first(), action);
-        if (statusBar()->isHidden() && !m_fullscreen)
+        if (statusBar()->isHidden() && !fullscreenFlag)
             setStatusBarVisibility(true);
     } else {
         statusToolBar->removeAction(action);
         if (statusBar()->isVisible() && !needStatusBar())
-            if (m_fullscreen && views->currentWidget() == mediaView)
+            if (fullscreenFlag && views->currentWidget() == mediaView)
                 setStatusBarVisibility(false);
     }
 }
@@ -1042,7 +1044,7 @@ void MainWindow::quit() {
     }
 #endif
     // do not save geometry when in full screen or in compact mode
-    if (!m_fullscreen && !compactViewAct->isChecked()) {
+    if (!fullscreenFlag && !compactViewAct->isChecked()) {
         writeSettings();
     }
     // mediaView->stop();
@@ -1184,12 +1186,12 @@ void MainWindow::resizeEvent(QResizeEvent*e) {
 #ifdef APP_MAC
     if (mac::CanGoFullScreen(winId())) {
         bool isFullscreen = mac::IsFullScreen(winId());
-        if (isFullscreen != m_fullscreen) {
+        if (isFullscreen != fullscreenFlag) {
             if (compactViewAct->isChecked()) {
                 compactViewAct->setChecked(false);
                 compactView(false);
             }
-            m_fullscreen = isFullscreen;
+            fullscreenFlag = isFullscreen;
             updateUIForFullscreen();
         }
     }
@@ -1210,7 +1212,7 @@ void MainWindow::fullscreen() {
     if (compactViewAct->isChecked())
         compactViewAct->toggle();
 
-    m_fullscreen = !m_fullscreen;
+    fullscreenFlag = !fullscreenFlag;
 
 #ifdef APP_MAC
     WId handle = winId();
@@ -1221,7 +1223,7 @@ void MainWindow::fullscreen() {
     }
 #endif
 
-    if (m_fullscreen) {
+    if (fullscreenFlag) {
         // Enter full screen
 
         m_maximized = isMaximized();
@@ -1258,12 +1260,14 @@ void MainWindow::fullscreen() {
 }
 
 void MainWindow::updateUIForFullscreen() {
+    qDebug() << __PRETTY_FUNCTION__ << fullscreenFlag;
     static QList<QKeySequence> fsShortcuts;
     static QString fsText;
 
-    if (m_fullscreen) {
+    if (fullscreenFlag) {
         fsShortcuts = fullscreenAct->shortcuts();
         fsText = fullscreenAct->text();
+        if (fsText.isEmpty()) qDebug() << "[taking Empty!]";
         fullscreenAct->setShortcuts(QList<QKeySequence>(fsShortcuts)
                                     << QKeySequence(Qt::Key_Escape));
         fullscreenAct->setText(tr("Leave &Full Screen"));
@@ -1271,6 +1275,7 @@ void MainWindow::updateUIForFullscreen() {
         setStatusBarVisibility(false);
     } else {
         fullscreenAct->setShortcuts(fsShortcuts);
+        if (fsText.isEmpty()) fsText = "[Empty!]";
         fullscreenAct->setText(fsText);
         fullscreenAct->setIcon(IconUtils::icon("view-fullscreen"));
 
@@ -1278,31 +1283,31 @@ void MainWindow::updateUIForFullscreen() {
     }
 
     // No compact view action when in full screen
-    compactViewAct->setVisible(!m_fullscreen);
+    compactViewAct->setVisible(!fullscreenFlag);
     compactViewAct->setChecked(false);
 
     // Hide anything but the video
-    mediaView->setPlaylistVisible(!m_fullscreen);
-    if (mainToolBar) mainToolBar->setVisible(!m_fullscreen);
+    mediaView->setPlaylistVisible(!fullscreenFlag);
+    if (mainToolBar) mainToolBar->setVisible(!fullscreenFlag);
 
 #ifndef APP_MAC
-    menuBar()->setVisible(!m_fullscreen);
+    menuBar()->setVisible(!fullscreenFlag);
 #endif
 
-    if (m_fullscreen) {
+    if (fullscreenFlag) {
         stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_MediaStop));
     } else {
         stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
     }
 
 #ifdef Q_OS_MAC
-    MacSupport::fullScreenActions(The::globalActions()->values(), m_fullscreen);
+    MacSupport::fullScreenActions(The::globalActions()->values(), fullscreenFlag);
 #endif
 
     if (views->currentWidget() == mediaView)
         mediaView->setFocus();
 
-    if (m_fullscreen) {
+    if (fullscreenFlag) {
         hideMouse();
     } else {
         mouseTimer->stop();
@@ -1577,12 +1582,12 @@ void MainWindow::toggleDefinitionMode() {
 }
 
 void MainWindow::showFullscreenToolbar(bool show) {
-    if (!m_fullscreen) return;
+    if (!fullscreenFlag) return;
     mainToolBar->setVisible(show);
 }
 
 void MainWindow::showFullscreenPlaylist(bool show) {
-    if (!m_fullscreen) return;
+    if (!fullscreenFlag) return;
     mediaView->setPlaylistVisible(show);
 }
 

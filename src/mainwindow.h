@@ -239,8 +239,7 @@ private:
     QLabel *currentTime;
     // QLabel *totalTime;
 
-    // fullscreen
-    bool m_fullscreen;
+    bool fullscreenFlag;
     bool m_maximized;
     QTimer *mouseTimer;
     bool m_compact;
