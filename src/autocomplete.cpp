@@ -155,7 +155,6 @@ bool AutoComplete::eventFilter(QObject *obj, QEvent *ev) {
 }
 
 void AutoComplete::showSuggestions(const QList<Suggestion *> &suggestions) {
-    qDebug() << __PRETTY_FUNCTION__;
     if (suggestions.isEmpty()) {
         hideSuggestions();
         return;
