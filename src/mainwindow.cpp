@@ -96,7 +96,8 @@ MainWindow::MainWindow() :
     audioOutput(0),
     #endif
     fullscreenFlag(false),
-    m_compact(false) {
+    m_compact(false),
+    initialized(false) {
 
     singleton = this;
 
@@ -232,6 +233,8 @@ void MainWindow::lazyInit() {
     ChannelAggregator::instance()->start();
 
     checkForUpdate();
+
+    initialized = true;
 }
 
 void MainWindow::changeEvent(QEvent *e) {
@@ -496,7 +499,6 @@ void MainWindow::createActions() {
     action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_J));
     action->setCheckable(true);
     action->setIcon(IconUtils::icon("document-save"));
-    action->setVisible(false);
     connect(action, SIGNAL(toggled(bool)), SLOT(toggleDownloads(bool)));
     actions->insert("downloads", action);
 
@@ -845,7 +847,6 @@ void MainWindow::createStatusBar() {
     statusToolBar = new QToolBar(this);
     statusToolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     statusToolBar->setIconSize(QSize(16, 16));
-    // statusToolBar->addAction(The::globalActions()->value("downloads"));
 
     regionAction = new QAction(this);
     regionAction->setStatusTip(tr("Choose your content location"));
@@ -888,8 +889,7 @@ void MainWindow::showActionInStatusBar(QAction* action, bool show) {
     } else {
         statusToolBar->removeAction(action);
         if (statusBar()->isVisible() && !needStatusBar())
-            if (fullscreenFlag && views->currentWidget() == mediaView)
-                setStatusBarVisibility(false);
+            setStatusBarVisibility(false);
     }
 }
 
@@ -931,7 +931,8 @@ void MainWindow::readSettings() {
 void MainWindow::writeSettings() {
     QSettings settings;
 
-    settings.setValue("geometry", saveGeometry());
+    if (!isReallyFullScreen())
+        settings.setValue("geometry", saveGeometry());
     mediaView->saveSplitterState();
 
 #ifdef APP_PHONON
@@ -1181,11 +1182,12 @@ void MainWindow::stop() {
     mediaView->stop();
 }
 
-void MainWindow::resizeEvent(QResizeEvent*e) {
+void MainWindow::resizeEvent(QResizeEvent *e) {
     Q_UNUSED(e);
 #ifdef APP_MAC
-    if (mac::CanGoFullScreen(winId())) {
+    if (initialized && mac::CanGoFullScreen(winId())) {
         bool isFullscreen = mac::IsFullScreen(winId());
+        qDebug() << __PRETTY_FUNCTION__ << isFullscreen << fullscreenFlag;
         if (isFullscreen != fullscreenFlag) {
             if (compactViewAct->isChecked()) {
                 compactViewAct->setChecked(false);
@@ -1212,8 +1214,6 @@ void MainWindow::fullscreen() {
     if (compactViewAct->isChecked())
         compactViewAct->toggle();
 
-    fullscreenFlag = !fullscreenFlag;
-
 #ifdef APP_MAC
     WId handle = winId();
     if (mac::CanGoFullScreen(handle)) {
@@ -1222,6 +1222,8 @@ void MainWindow::fullscreen() {
         return;
     }
 #endif
+
+    fullscreenFlag = !fullscreenFlag;
 
     if (fullscreenFlag) {
         // Enter full screen

@@ -243,6 +243,7 @@ private:
     bool m_maximized;
     QTimer *mouseTimer;
     bool m_compact;
+    bool initialized;
 
     QLabel *messageLabel;
     QTimer *messageTimer;
