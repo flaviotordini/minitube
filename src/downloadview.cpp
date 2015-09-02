@@ -40,14 +40,6 @@ DownloadView::DownloadView(QWidget *parent) : View(parent) {
     layout->addWidget(bar);
 
     listView = new DownloadListView(this);
-#ifdef APP_MAC
-    listView->setAlternatingRowColors(true);
-#endif
-    /*
-    QPalette p = listView->palette();
-    p.setColor(QPalette::Base, palette().color(QPalette::Window));
-    listView->setPalette(p);
-    */
     PlaylistItemDelegate *delegate = new PlaylistItemDelegate(this, true);
     listView->setItemDelegate(delegate);
     listView->setSelectionMode(QAbstractItemView::NoSelection);
