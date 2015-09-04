@@ -33,6 +33,8 @@ public:
     QLineEdit *getLineEdit();
     QWidget *toWidget() { return qobject_cast<QWidget*>(this); }
 
+    void setEnabled(bool enabled);
+
 public slots:
     void returnPressed();
 
@@ -41,6 +43,8 @@ signals:
     void textEdited(const QString &text);
     void search(const QString &text);
     void suggestionAccepted(Suggestion *suggestion);
+
+    void enabledChanged(bool enabled);
 
 protected:
     void updateGeometries();

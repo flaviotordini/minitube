@@ -162,3 +162,8 @@ QString SearchLineEdit::text() {
 QLineEdit *SearchLineEdit::getLineEdit() {
     return m_lineEdit;
 }
+
+void SearchLineEdit::setEnabled(bool enabled) {
+    ExLineEdit::setEnabled(enabled);
+    emit enabledChanged(enabled);
+}
