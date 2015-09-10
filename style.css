@@ -30,7 +30,7 @@ RegionsView QPushButton[regionId] {
 }
 
 RegionsView QPushButton[regionId=""] {
-    font-weight: bold;
+
 }
 
 RegionsView QPushButton[regionId]:hover {
