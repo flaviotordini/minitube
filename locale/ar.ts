@@ -241,7 +241,7 @@
     <message>
         <location filename="src/datautils.cpp" line="88"/>
         <source>Just now</source>
-        <translation type="unfinished"/>
+        <translation>الآن</translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="90"/>
@@ -415,12 +415,12 @@
     <message>
         <location filename="local/src/extra.cpp" line="253"/>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>خروج</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="254"/>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>إعادة التثبيت</translation>
     </message>
 </context>
 <context>

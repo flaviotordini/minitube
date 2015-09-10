@@ -19,12 +19,12 @@
     <message>
         <location filename="src/aboutview.cpp" line="68"/>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 jest wolnym oprogramowaniem, ale jego rozwój pochłania cenney czas.</translation>
+        <translation>%1 jest wolnym oprogramowaniem, ale jego rozwój pochłania cenny czas.</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="69"/>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>Proszę &lt;a href=&apos;%1&apos;&gt;wesprzyj nas darowizną&lt;/a&gt; żybyśmy mogli ciągle rozwijać %2.</translation>
+        <translation>Proszę &lt;a href=&apos;%1&apos;&gt;wesprzyj nas darowizną&lt;/a&gt; żebyśmy mogli ciągle rozwijać %2.</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="73"/>
@@ -90,12 +90,12 @@
     <message>
         <location filename="local/src/activationview.cpp" line="47"/>
         <source>Please license %1</source>
-        <translation>Proszę licencjonować  %1</translation>
+        <translation>Proszę kupić licencję %1</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="51"/>
         <source>This demo has expired.</source>
-        <translation>To demo wygasło.</translation>
+        <translation>Okres wersji demo został zakończony.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="53"/>
@@ -116,7 +116,7 @@
     <message>
         <location filename="local/src/activationview.cpp" line="70"/>
         <source>Use Demo</source>
-        <translation>Użyj Dema</translation>
+        <translation>Użyj wersji demo</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="77"/>
@@ -139,7 +139,7 @@
     <message numerus="yes">
         <location filename="src/channelaggregator.cpp" line="185"/>
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Masz %n nowy film</numerusform><numerusform>Masz %n nowe filmy</numerusform><numerusform>Masz %n nowych filmów</numerusform></translation>
     </message>
 </context>
 <context>
@@ -175,7 +175,7 @@
     <message>
         <location filename="src/channelview.cpp" line="110"/>
         <source>Last Updated</source>
-        <translation>Ostatnio Dodane</translation>
+        <translation>Ostatnio zaktualizowane</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="117"/>
@@ -215,12 +215,12 @@
     <message>
         <location filename="src/channelview.cpp" line="257"/>
         <source>Unsubscribe</source>
-        <translation>Zakończ subskrypcję</translation>
+        <translation>Anuluj subskrypcję</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="270"/>
         <source>There are no updated subscriptions at this time.</source>
-        <translation>Nie ma aktualizacji subskrypcji, w obecnym  czasie.</translation>
+        <translation>Obecnie nie ma żadnych aktualizacji subskrypcji.</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="272"/>
@@ -241,32 +241,32 @@
     <message>
         <location filename="src/datautils.cpp" line="88"/>
         <source>Just now</source>
-        <translation type="unfinished"/>
+        <translation>Przed chwilą</translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="90"/>
         <source>%n minute(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Minutę temu</numerusform><numerusform>%n minuty temu</numerusform><numerusform>%n minut temu</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="92"/>
         <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Godzinę temu</numerusform><numerusform>%n godziny temu</numerusform><numerusform>%n godzin temu</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="94"/>
         <source>%n day(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Wczoraj</numerusform><numerusform>%n dni temu</numerusform><numerusform>%n dni temu</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="96"/>
         <source>%n weeks(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Tydzień temu</numerusform><numerusform>%n tygodnie temu</numerusform><numerusform>%n tygodni temu</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="98"/>
         <source>%n month(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>W poprzednim miesiącu</numerusform><numerusform>%n miesiące temu</numerusform><numerusform>%n miesiący temu</numerusform></translation>
     </message>
 </context>
 <context>
@@ -322,12 +322,12 @@
     <message>
         <location filename="src/downloadmanager.cpp" line="77"/>
         <source>This is just the demo version of %1.</source>
-        <translation>To jest tylko wersja demo%1.</translation>
+        <translation>To jest jedynie wersja demonstracyjna %1.</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="79"/>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation>Może jedynie pobierać filmy krótsze niż%1 minut, więc można przetestować funkcje pobierania.</translation>
+        <translation>Funkcja testowa - można pobierać filmy krótsze niż %1 minut.</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="85"/>
@@ -352,7 +352,7 @@
     <message numerus="yes">
         <location filename="src/downloadmanager.cpp" line="165"/>
         <source>%n Download(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Pobieranie</numerusform><numerusform>%n pobierane</numerusform><numerusform>%n pobieranych</numerusform></translation>
     </message>
 </context>
 <context>
@@ -405,22 +405,22 @@
     <message>
         <location filename="local/src/extra.cpp" line="251"/>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation type="unfinished"/>
+        <translation>Plik wykonywalny został naruszony, być może przez wirusa</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="252"/>
         <source>%1 will not run. Try installing again.</source>
-        <translation type="unfinished"/>
+        <translation>Nie można uruchomić %1. Spróbuj zainstalować ponownie.</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="253"/>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Wyjdź</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="254"/>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>Zainstaluj ponownie</translation>
     </message>
 </context>
 <context>
@@ -587,7 +587,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="356"/>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation>Kopiuj link aktualnie odtwarzanego video do schowka</translation>
+        <translation>Kopiuj adres YouTube aktualnie odtwarzanego wideo do schowka</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="363"/>
@@ -597,7 +597,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="370"/>
         <source>Find other video parts hopefully in the right order</source>
-        <translation>Znajdź inne części wideo, mam nadzieję, że w odpowiedniej kolejności</translation>
+        <translation>Spróbuj znaleźć inne części wideo w odpowiedniej kolejności</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="376"/>
@@ -738,7 +738,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="566"/>
         <source>&amp;Adjust Window Size</source>
-        <translation type="unfinished"/>
+        <translation>Dostosuj wielkość okn&amp;a</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="571"/>
@@ -753,7 +753,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="582"/>
         <source>&amp;Refine Search...</source>
-        <translation>&amp;Więcej opcji ...</translation>
+        <translation>Opcje wyszukiwania (&amp;R)</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="594"/>
@@ -823,7 +823,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="751"/>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation>Wciścnij %1 żeby zwiększyć głośność, %2 żeby zmiejszyć głośność</translation>
+        <translation>Wciśnij %1 żeby zwiększyć głośność, %2 żeby zmiejszyć głośność</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1021"/>
@@ -839,12 +839,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="1081"/>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation>Jeśli zamkniesz %1 teraz, To pobieranie będzie anulowane.</translation>
+        <translation>Jeśli zamkniesz %1 teraz, to pobieranie będzie anulowane.</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1086"/>
         <source>Close and cancel download</source>
-        <translation>Zamnij i anuluj pobieranie</translation>
+        <translation>Zamknij i anuluj pobieranie</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1087"/>
@@ -854,7 +854,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="1158"/>
         <source>&amp;Loading...</source>
-        <translation type="unfinished"/>
+        <translation>Wczytywanie...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1264"/>
@@ -904,7 +904,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="355"/>
         <source>Copy the YouTube &amp;Link</source>
-        <translation>Kopiuj &amp;link, do filmu na You Tube</translation>
+        <translation>Kopiuj &amp;link do filmu na YouTube</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="362"/>
@@ -1011,12 +1011,12 @@
     <message>
         <location filename="src/mediaview.cpp" line="800"/>
         <source>This is just the demo version of %1.</source>
-        <translation>To jest tylko wersja demo %1.</translation>
+        <translation>To jest jedynie wersja demonstracyjna %1.</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="801"/>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation>Pozwala Ci to na testowanie i sprawdzenie działania aplikacji.</translation>
+        <translation>Pozwala ci to na testowanie i sprawdzenie działania aplikacji.</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="833"/>
@@ -1059,17 +1059,17 @@
     <message>
         <location filename="src/mediaview.cpp" line="1166"/>
         <source>Unsubscribed from %1</source>
-        <translation type="unfinished"/>
+        <translation>Zakończono subskrypcję %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="1169"/>
         <source>Subscribed to %1</source>
-        <translation type="unfinished"/>
+        <translation>Rozpoczęto subskrypcję %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="808"/>
         <source>Get the full version</source>
-        <translation>Pobierz pełną wersję</translation>
+        <translation>Uzyskaj pełną wersję</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="847"/>
@@ -1097,12 +1097,12 @@
     <message>
         <location filename="local/src/updatedialog.cpp" line="39"/>
         <source>Skip This Version</source>
-        <translation>Pomiń Tą Wersję</translation>
+        <translation>Pomiń tą wersję</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="43"/>
         <source>Remind Me Later</source>
-        <translation>Przypomnij Mi Później</translation>
+        <translation>Przypomnij mi później</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="47"/>
@@ -1123,7 +1123,7 @@
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="209"/>
         <source>%1 views</source>
-        <translation>%1 widziane</translation>
+        <translation>Wyświetleń: %1</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="309"/>
@@ -1204,7 +1204,7 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="53"/>
         <source>Relevance</source>
-        <translation>Związane</translation>
+        <translation>Trafność</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="54"/>
@@ -1296,7 +1296,7 @@
     <message>
         <location filename="src/refinesearchwidget.cpp" line="123"/>
         <source>720p or higher</source>
-        <translation>720p lub wyższej </translation>
+        <translation>720p lub lepsza</translation>
     </message>
     <message>
         <location filename="src/refinesearchwidget.cpp" line="136"/>
@@ -1330,7 +1330,7 @@
     <message>
         <location filename="src/searchview.cpp" line="200"/>
         <source>Get the full version</source>
-        <translation>Pobierz pełną wersję</translation>
+        <translation>Uzyskaj pełną wersję</translation>
     </message>
     <message>
         <location filename="src/searchview.cpp" line="110"/>
