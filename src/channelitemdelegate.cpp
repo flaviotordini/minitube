@@ -24,6 +24,7 @@ $END_LICENSE */
 #include "fontutils.h"
 #include "channelaggregator.h"
 #include "painterutils.h"
+#include "iconutils.h"
 
 static const int ITEM_WIDTH = 128;
 static const int ITEM_HEIGHT = 128;
@@ -62,7 +63,7 @@ void ChannelItemDelegate::paintAggregate(QPainter* painter,
     painter->translate(option.rect.topLeft());
     const QRect line(0, 0, option.rect.width(), option.rect.height());
 
-    static const QPixmap thumbnail = QPixmap(":/images/channels.png");
+    static const QPixmap thumbnail = IconUtils::pixmap(":/images/channels.png");
 
     QString name = tr("All Videos");
 
@@ -80,7 +81,7 @@ void ChannelItemDelegate::paintUnwatched(QPainter* painter,
     painter->translate(option.rect.topLeft());
     const QRect line(0, 0, option.rect.width(), option.rect.height());
 
-    static const QPixmap thumbnail = QPixmap(":/images/unwatched.png");
+    static const QPixmap thumbnail = IconUtils::pixmap(":/images/unwatched.png");
 
     QString name = tr("Unwatched Videos");
 

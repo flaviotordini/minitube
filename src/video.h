@@ -42,65 +42,68 @@ public:
         LicenseCC
     };
 
-    const QString & title() const { return m_title; }
-    void setTitle(const QString &title) { m_title = title; }
+    const QString &title() const { return m_title; }
+    void setTitle(const QString &value) { m_title = value; }
 
-    const QString & description() const { return m_description; }
-    void setDescription(const QString &description) { m_description = description; }
+    const QString &description() const { return m_description; }
+    void setDescription(const QString &value) { m_description = value; }
 
-    const QString & channelTitle() const { return m_channelTitle; }
+    const QString &channelTitle() const { return m_channelTitle; }
     void setChannelTitle(const QString &value) { m_channelTitle = value; }
 
-    const QString & channelId() const { return m_channelId; }
+    const QString &channelId() const { return m_channelId; }
     void setChannelId(const QString &value ) { m_channelId = value; }
 
-    const QString & webpage();
+    const QString &webpage();
     void setWebpage(const QString &value);
 
     void loadThumbnail();
-    const QPixmap & thumbnail() const { return m_thumbnail; }
+    const QPixmap &thumbnail() const { return m_thumbnail; }
 
-    const QString & thumbnailUrl() { return m_thumbnailUrl; }
-    void setThumbnailUrl(const QString &url) { m_thumbnailUrl = url; }
+    const QString &thumbnailUrl() { return m_thumbnailUrl; }
+    void setThumbnailUrl(const QString &value) { m_thumbnailUrl = value; }
 
-    void loadMediumThumbnail();
-    const QString & mediumThumbnailUrl() { return m_mediumThumbnailUrl; }
-    void setMediumThumbnailUrl(const QString &url) { m_mediumThumbnailUrl = url; }
+    const QString &mediumThumbnailUrl() { return m_mediumThumbnailUrl; }
+    void setMediumThumbnailUrl(const QString &value) { m_mediumThumbnailUrl = value; }
+
+    const QString &largeThumbnailUrl() { return m_largeThumbnailUrl; }
+    void setLargeThumbnailUrl(const QString &value) { m_largeThumbnailUrl = value; }
 
     int duration() const { return m_duration; }
-    void setDuration( int duration ) { m_duration = duration; }
+    void setDuration(int value) { m_duration = value; }
     QString formattedDuration() const;
 
     int viewCount() const { return m_viewCount; }
-    void setViewCount( int viewCount ) { m_viewCount = viewCount; }
+    void setViewCount(int viewCount) { m_viewCount = viewCount; }
 
-    const QDateTime & published() const { return m_published; }
-    void setPublished(const QDateTime &published ) { m_published = published; }
+    const QDateTime &published() const { return m_published; }
+    void setPublished(const QDateTime &value) { m_published = value; }
 
     int getDefinitionCode() const { return definitionCode; }
 
     void loadStreamUrl();
-    const QUrl & getStreamUrl() { return m_streamUrl; }
+    const QUrl &getStreamUrl() { return m_streamUrl; }
 
     void setId(const QString &value) { videoId = value; }
-    const QString & id() const { return videoId; }
+    const QString &id() const { return videoId; }
 
-    void setLicense(License license) { m_license = license; }
+    void setLicense(License value) { m_license = value; }
     License license() const { return m_license; }
 
 signals:
     void gotThumbnail();
-    void gotMediumThumbnail(QByteArray bytes);
-    void gotStreamUrl(QUrl streamUrl);
-    void errorStreamUrl(QString message);
+    void gotMediumThumbnail(const QByteArray &bytes);
+    void gotLargeThumbnail(const QByteArray &bytes);
+    void gotStreamUrl(const QUrl &streamUrl);
+    void errorStreamUrl(const QString &message);
 
 private slots:
-    void setThumbnail(QByteArray bytes);
-    void gotVideoInfo(QByteArray);
-    void errorVideoInfo(QNetworkReply*);
-    void scrapeWebPage(QByteArray);
-    void parseJsPlayer(QByteArray bytes);
-    void parseDashManifest(QByteArray bytes);
+    void setThumbnail(const QByteArray &bytes);
+    void gotVideoInfo(const QByteArray &bytes);
+    void errorVideoInfo(QNetworkReply *reply);
+    void scrapeWebPage(const QByteArray &bytes);
+    void parseJsPlayer(const QByteArray &bytes);
+    void parseDashManifest(const QByteArray &bytes);
 
 private:
     void getVideoInfo();
@@ -108,7 +111,7 @@ private:
     void captureFunction(const QString &name, const QString &js);
     void captureObject(const QString &name, const QString &js);
     QString decryptSignature(const QString &s);
-    void saveDefinitionForUrl(const QString& url, const VideoDefinition& definition);
+    void saveDefinitionForUrl(const QString &url, const VideoDefinition &definition);
 
     QString m_title;
     QString m_description;
@@ -119,6 +122,7 @@ private:
     QPixmap m_thumbnail;
     QString m_thumbnailUrl;
     QString m_mediumThumbnailUrl;
+    QString m_largeThumbnailUrl;
     int m_duration;
     QDateTime m_published;
     int m_viewCount;

@@ -29,6 +29,7 @@ $END_LICENSE */
 #endif
 #include "compatibility/qurlqueryhelper.h"
 #include "compatibility/pathsservice.h"
+#include "iconutils.h"
 
 namespace The {
 NetworkAccess* http();
@@ -74,6 +75,7 @@ YTChannel* YTChannel::forId(const QString &channelId) {
         channel->checked = query.value(6).toUInt();
         channel->loaded = query.value(7).toUInt();
         channel->thumbnail = QPixmap(channel->getThumbnailLocation());
+        channel->thumbnail.setDevicePixelRatio(IconUtils::maxSupportedPixelRatio());
         channel->maybeLoadfromAPI();
         cache.insert(channelId, channel);
     }
@@ -132,7 +134,7 @@ void YTChannel::parseResponse(const QByteArray &bytes) {
                 displayName = snippet.property("title").toString();
                 description = snippet.property("description").toString();
                 QScriptValue thumbnails = snippet.property("thumbnails");
-                thumbnailUrl = thumbnails.property("default").property("url").toString();
+                thumbnailUrl = thumbnails.property("medium").property("url").toString();
                 qDebug() << displayName << description << thumbnailUrl;
             }
         }
@@ -180,10 +182,6 @@ void YTChannel::loadThumbnail() {
     if (thumbnailUrl.isEmpty()) return;
     loadingThumbnail = true;
 
-#ifdef Q_OS_WIN
-    thumbnailUrl.replace(QLatin1String("https://"), QLatin1String("http://"));
-#endif
-
     QUrl url(thumbnailUrl);
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(storeThumbnail(QByteArray)));
@@ -216,13 +214,16 @@ void YTChannel::unsubscribe() {
 
 void YTChannel::storeThumbnail(const QByteArray &bytes) {
     thumbnail.loadFromData(bytes);
-    static const int maxWidth = 88;
+    qreal maxRatio = IconUtils::maxSupportedPixelRatio();
+    thumbnail.setDevicePixelRatio(maxRatio);
+    const int maxWidth = 88 * maxRatio;
 
     QDir dir;
     dir.mkpath(getThumbnailDir());
 
     if (thumbnail.width() > maxWidth) {
         thumbnail = thumbnail.scaledToWidth(maxWidth, Qt::SmoothTransformation);
+        thumbnail.setDevicePixelRatio(maxRatio);
         thumbnail.save(getThumbnailLocation(), "JPG");
     } else {
         QFile file(getThumbnailLocation());

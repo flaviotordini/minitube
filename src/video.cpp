@@ -94,19 +94,17 @@ void Video::loadThumbnail() {
     connect(reply, SIGNAL(data(QByteArray)), SLOT(setThumbnail(QByteArray)));
 }
 
-void Video::setThumbnail(QByteArray bytes) {
+void Video::setThumbnail(const QByteArray &bytes) {
     loadingThumbnail = false;
+    qreal ratio = qApp->devicePixelRatio();
     m_thumbnail = QPixmap();
     m_thumbnail.loadFromData(bytes);
-    if (m_thumbnail.width() > 160)
-        m_thumbnail = m_thumbnail.scaledToWidth(160, Qt::SmoothTransformation);
+    m_thumbnail.setDevicePixelRatio(ratio);
+    const int thumbWidth = 160 * ratio;
+    if (m_thumbnail.width() > thumbWidth)
+        m_thumbnail = m_thumbnail.scaledToWidth(thumbWidth, Qt::SmoothTransformation);
+    qDebug() << __PRETTY_FUNCTION__ << m_thumbnail.size();
     emit gotThumbnail();
-}
-
-void Video::loadMediumThumbnail() {
-    if (m_mediumThumbnailUrl.isEmpty()) return;
-    QObject *reply = The::http()->get(m_mediumThumbnailUrl);
-    connect(reply, SIGNAL(data(QByteArray)), SIGNAL(gotMediumThumbnail(QByteArray)));
 }
 
 void Video::loadStreamUrl() {
@@ -156,8 +154,8 @@ void  Video::getVideoInfo() {
     // see you in gotVideoInfo...
 }
 
-void  Video::gotVideoInfo(QByteArray data) {
-    QString videoInfo = QString::fromUtf8(data);
+void  Video::gotVideoInfo(const QByteArray &bytes) {
+    QString videoInfo = QString::fromUtf8(bytes);
     // qDebug() << "videoInfo" << videoInfo;
 
     // get video token
@@ -292,8 +290,8 @@ void Video::errorVideoInfo(QNetworkReply *reply) {
     emit errorStreamUrl(tr("Network error: %1 for %2").arg(reply->errorString(), reply->url().toString()));
 }
 
-void Video::scrapeWebPage(QByteArray data) {
-    QString html = QString::fromUtf8(data);
+void Video::scrapeWebPage(const QByteArray &bytes) {
+    QString html = QString::fromUtf8(bytes);
 
     QRegExp ageGateRE(JsFunctions::instance()->ageGateRE());
     if (ageGateRE.indexIn(html) != -1) {
@@ -347,7 +345,7 @@ void Video::scrapeWebPage(QByteArray data) {
     }
 }
 
-void Video::parseJsPlayer(QByteArray bytes) {
+void Video::parseJsPlayer(const QByteArray &bytes) {
     QString js = QString::fromUtf8(bytes);
     // qWarning() << "jsPlayer" << js;
 
@@ -393,7 +391,7 @@ void Video::parseJsPlayer(QByteArray bytes) {
     parseFmtUrlMap(fmtUrlMap, true);
 }
 
-void Video::parseDashManifest(QByteArray bytes) {
+void Video::parseDashManifest(const QByteArray &bytes) {
     QFile file(Temporary::filename() + ".mpd");
     if (!file.open(QIODevice::WriteOnly))
         qWarning() << file.errorString() << file.fileName();

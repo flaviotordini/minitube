@@ -33,9 +33,9 @@ QIcon IconUtils::fromTheme(const QString &name) {
 QIcon IconUtils::fromResources(const QString &name) {
     QIcon icon = QIcon(QString(":/images/%1.png").arg(name));
     if (!icon.isNull()) {
-        icon.addPixmap(QString(":/images/%1_active.png").arg(name), QIcon::Active);
-        icon.addPixmap(QString(":/images/%1_selected.png").arg(name), QIcon::Selected);
-        icon.addPixmap(QString(":/images/%1_disabled.png").arg(name), QIcon::Disabled);
+        icon.addPixmap(IconUtils::pixmap(QString(":/images/%1_active.png").arg(name)), QIcon::Active);
+        icon.addPixmap(IconUtils::pixmap(QString(":/images/%1_selected.png").arg(name)), QIcon::Selected);
+        icon.addPixmap(IconUtils::pixmap(QString(":/images/%1_disabled.png").arg(name)), QIcon::Disabled);
     }
     return icon;
 }
@@ -109,4 +109,20 @@ void IconUtils::setupAction(QAction *action) {
                              " (" +
                              action->shortcut().toString(QKeySequence::NativeText) +
                              ")");
+}
+
+QPixmap IconUtils::pixmap(const QString &name) {
+    // Check if a "@2x" file exists
+    QString fileName = name;
+    if (qApp->devicePixelRatio() > 1.0) {
+        int dotIndex = fileName.lastIndexOf(QLatin1Char('.'));
+        if (dotIndex != -1) {
+            QString at2xfileName = fileName;
+            at2xfileName.insert(dotIndex, QStringLiteral("@2x"));
+            if (QFile::exists(at2xfileName))
+                fileName = at2xfileName;
+        }
+    }
+
+    return QPixmap(fileName);
 }

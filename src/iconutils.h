@@ -35,6 +35,10 @@ public:
     static QIcon tintedIcon(const QString &name, const QColor &color, const QSize &size);
     static void setupAction(QAction *action);
 
+    // HiDPI stuff
+    static QPixmap pixmap(const QString &name);
+    static qreal maxSupportedPixelRatio() { return 2.0; }
+
 private:
     IconUtils() { }
     static QImage grayscaled(const QImage &image);

@@ -64,7 +64,7 @@ int main(int argc, char **argv) {
 
 #ifdef Q_OS_MAC
     mac::MacMain();
-    QFont::insertSubstitution(".Helvetica Neue DeskInterface", "Helvetica Neue");
+    // QFont::insertSubstitution(".Helvetica Neue DeskInterface", "Helvetica Neue");
 #endif
 
     QtSingleApplication app(argc, argv);
@@ -81,9 +81,8 @@ int main(int argc, char **argv) {
     app.setOrganizationDomain(Constants::ORG_DOMAIN);
     app.setApplicationVersion(Constants::VERSION);
     app.setAttribute(Qt::AA_DontShowIconsInMenus);
-#ifndef APP_WIN
     app.setWheelScrollLines(1);
-#endif
+    app.setAttribute(Qt::AA_UseHighDpiPixmaps);
 
 #ifdef APP_EXTRA
     Extra::appSetup(&app);

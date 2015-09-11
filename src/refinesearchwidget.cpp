@@ -23,6 +23,7 @@ $END_LICENSE */
 #ifdef APP_EXTRA
 #include "extra.h"
 #endif
+#include "iconutils.h"
 
 namespace The {
 QHash<QString, QAction*>* globalActions();
@@ -155,7 +156,8 @@ void RefineSearchWidget::setupLabel(const QString &text, QBoxLayout *layout, con
     QLabel *icon = new QLabel(this);
     icon->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     QString resource = paramName;
-    QPixmap pixmap = QPixmap(":/images/search-" + resource + ".png");
+    QPixmap pixmap = IconUtils::pixmap(":/images/search-" + resource + ".png");
+    /*
     QPixmap translucentPixmap(pixmap.size());
     translucentPixmap.fill(Qt::transparent);
     QPainter painter;
@@ -163,11 +165,11 @@ void RefineSearchWidget::setupLabel(const QString &text, QBoxLayout *layout, con
     painter.setOpacity(0.5);
     painter.drawPixmap(0, 0, pixmap);
     painter.end();
-    icon->setPixmap(translucentPixmap);
+    */
+    icon->setPixmap(pixmap);
     hLayout->addWidget(icon);
 
     QLabel *label = new QLabel(text, this);
-    label->setStyleSheet("color: rgba(0, 0, 0, 128);");
     hLayout->addWidget(label);
 
     icon->setMaximumHeight(label->height());

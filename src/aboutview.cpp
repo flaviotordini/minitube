@@ -31,6 +31,7 @@ $END_LICENSE */
 #include "mac_startup.h"
 #endif
 #include "fontutils.h"
+#include "iconutils.h"
 
 AboutView::AboutView(QWidget *parent) : View(parent) {
 
@@ -40,7 +41,7 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
     hLayout->setSpacing(30);
 
     QLabel *logo = new QLabel(this);
-    logo->setPixmap(QPixmap(":/images/app.png"));
+    logo->setPixmap(IconUtils::pixmap(":/images/app.png"));
     hLayout->addWidget(logo, 0, Qt::AlignTop);
 
     QBoxLayout *layout = new QVBoxLayout();

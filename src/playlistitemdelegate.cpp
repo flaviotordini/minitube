@@ -55,10 +55,13 @@ PlaylistItemDelegate::~PlaylistItemDelegate() {
 }
 
 void PlaylistItemDelegate::createPlayIcon() {
-    playIcon = QPixmap(THUMB_WIDTH, THUMB_HEIGHT);
+    qreal maxRatio = IconUtils::maxSupportedPixelRatio();
+    playIcon = QPixmap(THUMB_WIDTH * maxRatio, THUMB_HEIGHT * maxRatio);
+    playIcon.setDevicePixelRatio(maxRatio);
     playIcon.fill(Qt::transparent);
 
-    QPixmap tempPixmap(THUMB_WIDTH, THUMB_HEIGHT);
+    QPixmap tempPixmap(THUMB_WIDTH * maxRatio, THUMB_HEIGHT * maxRatio);
+    tempPixmap.setDevicePixelRatio(maxRatio);
     tempPixmap.fill(Qt::transparent);
     QPainter painter(&tempPixmap);
     painter.setRenderHints(QPainter::Antialiasing, true);
@@ -135,7 +138,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
 
     // play icon overlayed on the thumb
     if (isActive)
-        painter->drawPixmap(playIcon.rect(), playIcon);
+        painter->drawPixmap(0, 0, playIcon);
 
     // time
     if (video->duration() > 0)

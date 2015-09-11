@@ -400,6 +400,8 @@ void MediaView::stop() {
     QSlider *slider = MainWindow::instance()->getSlider();
     slider->setEnabled(false);
     slider->setValue(0);
+#else
+    Phonon::SeekSlider *slider = MainWindow::instance()->getSeekSlider();
 #endif
 
     if (snapshotSettings) {
@@ -796,7 +798,7 @@ void MediaView::demoMessage() {
 #endif
 
     QMessageBox msgBox(this);
-    msgBox.setIconPixmap(QPixmap(":/images/app.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    msgBox.setIconPixmap(IconUtils::pixmap(":/images/app.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     msgBox.setText(tr("This is just the demo version of %1.").arg(Constants::NAME));
     msgBox.setInformativeText(tr("It allows you to test the application and see if it works for you."));
     msgBox.setModal(true);

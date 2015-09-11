@@ -20,6 +20,7 @@ $END_LICENSE */
 
 #include "painterutils.h"
 #include "fontutils.h"
+#include "iconutils.h"
 
 PainterUtils::PainterUtils() { }
 
@@ -63,10 +64,9 @@ void PainterUtils::topShadow(QWidget *widget) {
 }
 
 void PainterUtils::paintBadge(QPainter *painter, const QString &text, bool center) {
-    static const QPixmap badge1 = QPixmap(":/images/badge.png");
-    static const QPixmap badge3 = QPixmap(":/images/badge3.png");
-    static const QPixmap badge4 = QPixmap(":/images/badge4.png");
-    static const int size = badge1.height();
+    const QPixmap badge1 = IconUtils::pixmap(":/images/badge.png");
+    const QPixmap badge3 = IconUtils::pixmap(":/images/badge3.png");
+    const QPixmap badge4 = IconUtils::pixmap(":/images/badge4.png");
 
     const int textSize = text.size();
 
@@ -75,10 +75,13 @@ void PainterUtils::paintBadge(QPainter *painter, const QString &text, bool cente
     else if (textSize == 3) badge = badge3;
     else badge = badge4;
 
-    int x = 0;
-    if (center) x -= badge.width() / 2;
+    const int w = badge.width() / badge.devicePixelRatio();
+    const int h = badge.height() / badge.devicePixelRatio();
 
-    QRect rect(x, 0, badge.width(), size);
+    int x = 0;
+    if (center) x -= w / 2;
+
+    QRect rect(x, 0, w, h);
     painter->drawPixmap(rect, badge);
 
     QFont f = painter->font();

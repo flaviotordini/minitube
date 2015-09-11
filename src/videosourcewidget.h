@@ -45,14 +45,16 @@ protected:
 
 private slots:
     void activate();
-    void previewVideo(QList<Video*> videos);
-    void setPixmapData(QByteArray bytes);
+    void previewVideo(const QList<Video*> &videos);
+    void setPixmapData(const QByteArray &bytes);
 
 private:
+    void loadPreview();
+
     QPixmap playPixmap();
     VideoSource *videoSource;
     QPixmap pixmap;
-    Video *video;
+    qreal lastPixelRatio;
 
 };
 

@@ -62,7 +62,7 @@ private:
                     const QRect& rect,
                     const QAction *action);
     QAction *hoveredAction(const QPoint& pos) const;
-    int calculateButtonWidth(void) const;
+    int calculateButtonWidth() const;
 
     class Private;
     Private *d;

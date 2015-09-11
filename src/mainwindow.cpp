@@ -992,6 +992,8 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
         else title += QLatin1String(" - ") + Constants::NAME;
         setWindowTitle(title);
 
+        statusToolBar->setUpdatesEnabled(false);
+
         // dynamic view actions
         foreach (QAction* action, viewActions)
             showActionInStatusBar(action, false);
@@ -1003,6 +1005,8 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
 
         adjustStatusBarVisibility();
         messageLabel->hide();
+
+        statusToolBar->setUpdatesEnabled(true);
 
         /*
         QString desc = metadata.value("description").toString();
@@ -1081,7 +1085,7 @@ void MainWindow::showEvent(QShowEvent *e) {
 bool MainWindow::confirmQuit() {
     if (DownloadManager::instance()->activeItems() > 0) {
         QMessageBox msgBox(this);
-        msgBox.setIconPixmap(QPixmap(":/images/app.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        msgBox.setIconPixmap(IconUtils::pixmap(":/images/app.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         msgBox.setText(tr("Do you want to exit %1 with a download in progress?").arg(Constants::NAME));
         msgBox.setInformativeText(tr("If you close %1 now, this download will be cancelled.").arg(Constants::NAME));
         msgBox.setModal(true);
@@ -1187,7 +1191,6 @@ void MainWindow::resizeEvent(QResizeEvent *e) {
 #ifdef APP_MAC
     if (initialized && mac::CanGoFullScreen(winId())) {
         bool isFullscreen = mac::IsFullScreen(winId());
-        qDebug() << __PRETTY_FUNCTION__ << isFullscreen << fullscreenFlag;
         if (isFullscreen != fullscreenFlag) {
             if (compactViewAct->isChecked()) {
                 compactViewAct->setChecked(false);
@@ -1725,7 +1728,7 @@ void MainWindow::gotNewVersion(const QString &version) {
 void MainWindow::simpleUpdateDialog(const QString &version) {
     QMessageBox msgBox(this);
     msgBox.setIconPixmap(
-                QPixmap(":/images/app.png")
+                IconUtils::pixmap(":/images/app.png")
                 .scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     msgBox.setText(tr("%1 version %2 is now available.").arg(Constants::NAME, version));
     msgBox.setModal(true);

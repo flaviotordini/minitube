@@ -173,7 +173,7 @@ QAction *SegmentedControl::hoveredAction(const QPoint& pos) const {
     return(d->actionList[buttonIndex]);
 }
 
-int SegmentedControl::calculateButtonWidth (void) const {
+int SegmentedControl::calculateButtonWidth() const {
     QFontMetrics fontMetrics(font());
     int tmpItemWidth, itemWidth = 0;
     foreach (QAction *action, d->actionList) {
@@ -195,7 +195,6 @@ void SegmentedControl::drawButton (QPainter *painter,
 void SegmentedControl::drawUnselectedButton (QPainter *painter,
                                         const QRect& rect,
                                         const QAction *action) {
-    painter->setPen(QPen(QColor(0, 0, 0, 128), 1));
     paintButton(painter, rect, action);
 }
 
@@ -216,7 +215,6 @@ void SegmentedControl::drawSelectedButton (QPainter *painter,
     painter->fillRect(0, 0, width, height, QBrush(gradient));
 
     painter->restore();
-    painter->setPen(QPen(QColor(0, 0, 0, 232), 1));
     paintButton(painter, rect, action);
 }
 
@@ -228,7 +226,7 @@ void SegmentedControl::paintButton(QPainter *painter, const QRect& rect, const Q
     const int width = rect.width();
 
     painter->save();
-    painter->setPen(borderColor);
+    painter->setPen(QPen(borderColor, 1.0 / qApp->devicePixelRatio()));
 #if defined(APP_MAC) | defined(APP_WIN)
     painter->drawRect(-1, -1, width, height);
 #else

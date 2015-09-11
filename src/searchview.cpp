@@ -37,6 +37,7 @@ $END_LICENSE */
 #endif
 #include "mainwindow.h"
 #include "painterutils.h"
+#include "iconutils.h"
 
 namespace The {
 QHash<QString, QAction*>* globalActions();
@@ -70,7 +71,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     mainLayout->addLayout(hLayout);
 
     QLabel *logo = new QLabel(this);
-    logo->setPixmap(QPixmap(":/images/app.png"));
+    logo->setPixmap(IconUtils::pixmap(":/images/app.png"));
     hLayout->addWidget(logo, 0, Qt::AlignTop);
     hLayout->addSpacing(PADDING);
 
@@ -257,7 +258,7 @@ void SearchView::updateRecentKeywords() {
         itemLabel->setAttribute(Qt::WA_DeleteOnClose);
         itemLabel->setProperty("recentItem", true);
         itemLabel->setMaximumWidth(queryEdit->toWidget()->width() + watchButton->width());
-        // itemLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        itemLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         // Make links navigable with the keyboard too
         itemLabel->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard | Qt::LinksAccessibleByMouse);
         if (needStatusTip)

@@ -22,16 +22,21 @@ $END_LICENSE */
 #include "videosource.h"
 #include "video.h"
 #include "fontutils.h"
+#include "iconutils.h"
+#include "networkaccess.h"
+
+namespace The {
+NetworkAccess* http();
+}
 
 VideoSourceWidget::VideoSourceWidget(VideoSource *videoSource, QWidget *parent)
     : GridWidget(parent),
-      videoSource(videoSource) {
+      videoSource(videoSource),
+      lastPixelRatio(0) {
 
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    connect(videoSource, SIGNAL(gotVideos(QList<Video*>)),
-            SLOT(previewVideo(QList<Video*>)), Qt::UniqueConnection);
-    videoSource->loadVideos(1, 1);
+    loadPreview();
 
     connect(this, SIGNAL(activated()), SLOT(activate()));
 }
@@ -40,26 +45,38 @@ void VideoSourceWidget::activate() {
     emit activated(videoSource);
 }
 
-void VideoSourceWidget::previewVideo(QList<Video*> videos) {
+void VideoSourceWidget::previewVideo(const QList<Video *> &videos) {
     videoSource->disconnect();
     if (videos.isEmpty()) return;
-    video = videos.first();
-    connect(video, SIGNAL(gotMediumThumbnail(QByteArray)),
-            SLOT(setPixmapData(QByteArray)), Qt::UniqueConnection);
-    video->loadMediumThumbnail();
+    Video *video = videos.first();
+    lastPixelRatio = window()->devicePixelRatio();
+    bool needLargeThumb = lastPixelRatio > 1.0 || window()->width() > 2000;
+    QString url =  needLargeThumb ? video->largeThumbnailUrl() : video->mediumThumbnailUrl();
+    if (url.isEmpty()) url = video->mediumThumbnailUrl();
+    video->deleteLater();
+    QObject *reply = The::http()->get(url);
+    connect(reply, SIGNAL(data(QByteArray)), SLOT(setPixmapData(QByteArray)));
 }
 
-void VideoSourceWidget::setPixmapData(QByteArray bytes) {
-    video->deleteLater();
-    video = 0;
+void VideoSourceWidget::setPixmapData(const QByteArray &bytes) {
     pixmap.loadFromData(bytes);
+    pixmap.setDevicePixelRatio(lastPixelRatio);
     update();
+}
+
+void VideoSourceWidget::loadPreview() {
+    connect(videoSource, SIGNAL(gotVideos(QList<Video*>)),
+            SLOT(previewVideo(QList<Video*>)), Qt::UniqueConnection);
+    videoSource->loadVideos(1, 1);
 }
 
 QPixmap VideoSourceWidget::playPixmap() {
     const int s = height() / 2;
     const int padding = s / 8;
-    QPixmap playIcon = QPixmap(s, s);
+
+    qreal ratio = window()->devicePixelRatio();
+    QPixmap playIcon = QPixmap(s * ratio, s * ratio);
+    playIcon.setDevicePixelRatio(ratio);
     playIcon.fill(Qt::transparent);
     QPainter painter(&playIcon);
     QPolygon polygon;
@@ -84,11 +101,13 @@ QPixmap VideoSourceWidget::playPixmap() {
 void VideoSourceWidget::paintEvent(QPaintEvent *event) {
     GridWidget::paintEvent(event);
     if (pixmap.isNull()) return;
+    if (window()->devicePixelRatio() != lastPixelRatio) loadPreview();
 
     QPainter p(this);
 
-    const int w = width();
-    const int h = height();
+    qreal ratio = lastPixelRatio;
+    int w = width() * ratio;
+    int h = height() * ratio;
 
     int xOffset = 0;
     int xOrigin = 0;
@@ -102,13 +121,16 @@ void VideoSourceWidget::paintEvent(QPaintEvent *event) {
     else yOrigin = -hDiff / 2;
     p.drawPixmap(xOrigin, yOrigin, pixmap, xOffset, yOffset, w, h);
 
+    w = width();
+    h = height();
+
     if (hovered) {
         QPixmap play = playPixmap();
         p.save();
         p.setOpacity(.5);
         p.drawPixmap(
-                    (w - play.width()) / 2,
-                    (h * 2/3 - play.height()) / 2,
+                    (w - play.width() * ratio) / 2,
+                    (h * 2/3 - play.height() * ratio) / 2,
                     play
                     );
         p.restore();

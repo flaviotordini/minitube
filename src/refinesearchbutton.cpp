@@ -19,21 +19,17 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "refinesearchbutton.h"
-
-static const int refineButtonSize = 48;
+#include "iconutils.h"
 
 RefineSearchButton::RefineSearchButton(QWidget *parent) :
     QPushButton(parent) {
 
     hovered = false;
 
+    const int refineButtonSize = 48;
     setMinimumSize(refineButtonSize, refineButtonSize);
     setMaximumSize(refineButtonSize, refineButtonSize);
     setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    setStyleSheet(
-                "background: red url(:/images/refine-search.png) no-repeat center;"
-                "border: 0;"
-                );
 }
 
 void RefineSearchButton::paintBackground() const {
@@ -41,19 +37,18 @@ void RefineSearchButton::paintBackground() const {
 }
 
 void RefineSearchButton::paintEvent(QPaintEvent *) {
-    // QPushButton::paintEvent(event);
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing, true);
+    painter.setPen(Qt::NoPen);
     painter.setBrush(QColor(0,0,0, hovered ? 192 : 170));
-    QPen pen(Qt::white);
-    pen.setWidth(2);
-    painter.setPen(pen);
     painter.drawEllipse(QPoint(width(), height()), width()-2, height()-2);
 
-    QPixmap icon = QPixmap(":/images/refine-search.png");
-    painter.drawPixmap(width() - icon.width() - 6, height() - icon.height() - 6,
-                       icon.width(), icon.height(),
-                       icon);
+    QPixmap pixmap = IconUtils::pixmap(":/images/refine-search.png");
+    int pw = pixmap.width() / pixmap.devicePixelRatio();
+    int ph = pixmap.height() / pixmap.devicePixelRatio();
+    painter.drawPixmap(width() - pw - 6, height() - ph - 6,
+                       pw, ph,
+                       pixmap);
 }
 
 void RefineSearchButton::enterEvent(QEvent *) {

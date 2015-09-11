@@ -32,6 +32,7 @@ $END_LICENSE */
 #endif
 #include "datautils.h"
 #include "compatibility/pathsservice.h"
+#include "iconutils.h"
 
 static DownloadManager *downloadManagerInstance = 0;
 
@@ -73,7 +74,7 @@ void DownloadManager::addItem(Video *video) {
     if (!Activation::instance().isActivated()) {
         if (video->duration() >= 60*4) {
             QMessageBox msgBox(MainWindow::instance());
-            msgBox.setIconPixmap(QPixmap(":/images/app.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            msgBox.setIconPixmap(IconUtils::pixmap(":/images/app.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             msgBox.setText(tr("This is just the demo version of %1.").arg(Constants::NAME));
             msgBox.setInformativeText(
                         tr("It can only download videos shorter than %1 minutes so you can test the download functionality.")

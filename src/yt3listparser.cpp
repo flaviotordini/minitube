@@ -3,7 +3,6 @@
 #include "datautils.h"
 
 YT3ListParser::YT3ListParser(const QByteArray &bytes) {
-
     QScriptEngine engine;
     QScriptValue json = engine.evaluate("(" + QString::fromUtf8(bytes) + ")");
 
@@ -54,6 +53,7 @@ void YT3ListParser::parseItem(const QScriptValue &item) {
     QScriptValue thumbnails = snippet.property("thumbnails");
     video->setThumbnailUrl(thumbnails.property("medium").property("url").toString());
     video->setMediumThumbnailUrl(thumbnails.property("high").property("url").toString());
+    video->setLargeThumbnailUrl(thumbnails.property("standard").property("url").toString());
 
     video->setChannelTitle(snippet.property("channelTitle").toString());
 
