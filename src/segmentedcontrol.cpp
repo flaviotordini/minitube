@@ -195,6 +195,7 @@ void SegmentedControl::drawButton (QPainter *painter,
 void SegmentedControl::drawUnselectedButton (QPainter *painter,
                                         const QRect& rect,
                                         const QAction *action) {
+    painter->setPen(QColor(0, 0, 0, 128));
     paintButton(painter, rect, action);
 }
 
@@ -215,6 +216,7 @@ void SegmentedControl::drawSelectedButton (QPainter *painter,
     painter->fillRect(0, 0, width, height, QBrush(gradient));
 
     painter->restore();
+    painter->setPen(palette().windowText().color());
     paintButton(painter, rect, action);
 }
 
