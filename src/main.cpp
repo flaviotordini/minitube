@@ -36,7 +36,6 @@ $END_LICENSE */
 
 void showWindow(QtSingleApplication &app, const QString &dataDir) {
     MainWindow *mainWin = new MainWindow();
-    mainWin->show();
 
 #ifndef APP_MAC
     QIcon appIcon;
@@ -58,6 +57,8 @@ void showWindow(QtSingleApplication &app, const QString &dataDir) {
     mainWin->connect(&app, SIGNAL(messageReceived(const QString &)),
                     mainWin, SLOT(messageReceived(const QString &)));
     app.setActivationWindow(mainWin, true);
+
+    mainWin->show();
 }
 
 int main(int argc, char **argv) {
