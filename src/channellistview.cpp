@@ -26,7 +26,7 @@ ChannelListView::ChannelListView() {
     setSelectionMode(QAbstractItemView::NoSelection);
 
     // layout
-    setSpacing(15);
+    setSpacing(10);
     setFlow(QListView::LeftToRight);
     setWrapping(true);
     setResizeMode(QListView::Adjust);

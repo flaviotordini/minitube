@@ -26,8 +26,8 @@ $END_LICENSE */
 #include "painterutils.h"
 #include "iconutils.h"
 
-static const int ITEM_WIDTH = 128;
-static const int ITEM_HEIGHT = 128;
+static const int ITEM_WIDTH = 150;
+static const int ITEM_HEIGHT = 150;
 static const int THUMB_WIDTH = 88;
 static const int THUMB_HEIGHT = 88;
 
