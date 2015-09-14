@@ -103,7 +103,6 @@ void Video::setThumbnail(const QByteArray &bytes) {
     const int thumbWidth = 160 * ratio;
     if (m_thumbnail.width() > thumbWidth)
         m_thumbnail = m_thumbnail.scaledToWidth(thumbWidth, Qt::SmoothTransformation);
-    qDebug() << __PRETTY_FUNCTION__ << m_thumbnail.size();
     emit gotThumbnail();
 }
 
