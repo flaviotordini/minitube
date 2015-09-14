@@ -144,7 +144,6 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     queryEdit = sle;
 #endif
 
-    qDebug() << "queryEdit->toWidget()" << (queryEdit->toWidget() == 0) << queryEdit->toWidget();
     connect(queryEdit->toWidget(), SIGNAL(search(const QString&)), SLOT(watch(const QString&)));
     connect(queryEdit->toWidget(), SIGNAL(textChanged(const QString &)), SLOT(textChanged(const QString &)));
     connect(queryEdit->toWidget(), SIGNAL(suggestionAccepted(Suggestion*)), SLOT(suggestionAccepted(Suggestion*)));

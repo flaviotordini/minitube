@@ -765,7 +765,6 @@ void MainWindow::createToolBars() {
     toolbarSearch = searchWrapper->getSearchLineEdit();
 #else
     toolbarSearch = new SearchLineEdit(this);
-    qDebug() << "Qt SearchLineEdit" << toolbarSearch;
 #endif
     toolbarSearch->setMinimumWidth(toolbarSearch->fontInfo().pixelSize()*15);
     toolbarSearch->setSuggester(new YTSuggester(this));
