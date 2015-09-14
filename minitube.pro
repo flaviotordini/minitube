@@ -179,7 +179,6 @@ SOURCES += src/main.cpp \
     src/paginatedvideosource.cpp \
     src/compatibility/pathsservice.cpp \
     src/exlineedit.cpp \
-    src/searchwidget.cpp \
     src/channellistview.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/

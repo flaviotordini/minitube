@@ -36,28 +36,5 @@ signals:
     void suggestionAccepted(Suggestion *suggestion);
 
 };
-/*
-class SearchWidget : public QWidget, public SearchWidgetInterface {
-
-public:
-    SearchWidget(QWidget *parent = 0);
-    QMenu *menu() const;
-    void setMenu(QMenu *menu);
-    void enableSuggest();
-    void preventSuggest();
-    void selectAll();
-    void setSuggester(Suggester *suggester);
-    void setInactiveText(const QString &text);
-    void setText(const QString &text);
-    AutoComplete *getAutoComplete();
-    void emitTextChanged(const QString &text);
-    void returnPressed();
-    QString text();
-
-private:
-    SearchWidgetInterface *interface;
-
-};
-*/
 
 #endif // SEARCHWIDGET
