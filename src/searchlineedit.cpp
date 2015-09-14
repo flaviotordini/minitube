@@ -63,8 +63,8 @@ SearchLineEdit::SearchLineEdit(QWidget *parent) : ExLineEdit(parent), searchButt
 }
 
 void SearchLineEdit::paintEvent(QPaintEvent *e) {
+    ExLineEdit::paintEvent(e);
     if (m_lineEdit->text().isEmpty() && !hasFocus() && !inactiveText.isEmpty()) {
-        ExLineEdit::paintEvent(e);
         QStyleOptionFrameV2 panel;
         initStyleOption(&panel);
         QRect r = style()->subElementRect(QStyle::SE_LineEditContents, &panel, this);
@@ -75,8 +75,6 @@ void SearchLineEdit::paintEvent(QPaintEvent *e) {
         QPainter painter(this);
         painter.setPen(palette().brush(QPalette::Disabled, QPalette::Text).color());
         painter.drawText(lineRect, Qt::AlignLeft | Qt::AlignVCenter, inactiveText);
-    } else {
-        ExLineEdit::paintEvent(e);
     }
 }
 

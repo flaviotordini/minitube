@@ -82,7 +82,6 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     QLabel *welcomeLabel =
             new QLabel("<h1 style='font-weight:100'>" +
                        tr("Welcome to <a href='%1'>%2</a>,")
-                       // .replace("<a ", "<a style='color:palette(text)'")
                        .replace("<a ", "<a style='text-decoration:none; color:palette(text);font-weight:normal' ")
                        .arg(Constants::WEBSITE, Constants::NAME)
                        + "</h1>", this);
@@ -140,13 +139,14 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 #ifdef APP_MAC_SEARCHFIELD
     queryEdit = new SearchLineEditMac(this);
 #else
-    queryEdit = new SearchLineEdit(this);
-    queryEdit->toWidget()->setFont(biggerFont);
+    SearchLineEdit *sle = new SearchLineEdit(this);
+    sle->setFont(biggerFont);
+    queryEdit = sle;
 #endif
 
     qDebug() << "queryEdit->toWidget()" << (queryEdit->toWidget() == 0) << queryEdit->toWidget();
     connect(queryEdit->toWidget(), SIGNAL(search(const QString&)), SLOT(watch(const QString&)));
-    connect(queryEdit->toWidget(), SIGNAL(textEdited(const QString &)), SLOT(textChanged(const QString &)));
+    connect(queryEdit->toWidget(), SIGNAL(textChanged(const QString &)), SLOT(textChanged(const QString &)));
     connect(queryEdit->toWidget(), SIGNAL(suggestionAccepted(Suggestion*)), SLOT(suggestionAccepted(Suggestion*)));
 
     youtubeSuggest = new YTSuggester(this);
@@ -157,6 +157,9 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     searchLayout->addSpacing(10);
 
     watchButton = new QPushButton(tr("Watch"), this);
+#ifndef APP_MAC
+    watchButton->setFont(biggerFont);
+#endif
     watchButton->setDefault(true);
     watchButton->setEnabled(false);
     watchButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);

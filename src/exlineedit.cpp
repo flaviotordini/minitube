@@ -27,23 +27,23 @@ void ClearButton::textChanged(const QString &text) {
 }
 
 void ClearButton::enterEvent(QEvent *e) {
-    Q_UNUSED(e);
     hovered = true;
+    QAbstractButton::enterEvent(e);
 }
 
 void ClearButton::leaveEvent(QEvent *e) {
-    Q_UNUSED(e);
     hovered = false;
+    QAbstractButton::leaveEvent(e);
 }
 
 void ClearButton::mousePressEvent(QMouseEvent *e) {
-    Q_UNUSED(e);
     mousePressed = true;
+    QAbstractButton::mousePressEvent(e);
 }
 
 void ClearButton::mouseReleaseEvent(QMouseEvent *e) {
-    Q_UNUSED(e);
     mousePressed = false;
+    QAbstractButton::mouseReleaseEvent(e);
 }
 
 ExLineEdit::ExLineEdit(QWidget *parent)
