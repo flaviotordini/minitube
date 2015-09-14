@@ -21,7 +21,6 @@ $END_LICENSE */
 #include "fontutils.h"
 
 namespace {
-static const int MIN_PIXEL_SIZE = 11;
 
 QFont createFont(bool isBold, double sizeScale) {
     QFont font;
@@ -31,39 +30,41 @@ QFont createFont(bool isBold, double sizeScale) {
 }
 
 QFont createFontWithMinSize(bool isBold, double sizeScale) {
+    const int MIN_PIXEL_SIZE = 12;
     QFont font = createFont(isBold, sizeScale);
     if (font.pixelSize() < MIN_PIXEL_SIZE)
         font.setPixelSize(MIN_PIXEL_SIZE);
     return font;
 }
+
 }
 
 const QFont &FontUtils::small() {
-    static QFont font = createFontWithMinSize(false, .9);
+    static const QFont font = createFontWithMinSize(false, .9);
     return font;
 }
 
 const QFont &FontUtils::smallBold() {
-    static QFont font = createFontWithMinSize(true, .9);
+    static const QFont font = createFontWithMinSize(true, .9);
     return font;
 }
 
 const QFont &FontUtils::medium() {
-    static QFont font = createFont(false, 1.1);
+    static const QFont font = createFont(false, 1.1);
     return font;
 }
 
 const QFont &FontUtils::mediumBold() {
-    static QFont font = createFont(true, 0.9);
+    static const QFont font = createFont(true, 1.1);
     return font;
 }
 
 const QFont &FontUtils::big() {
-    static QFont font = createFont(false, 1.5);
+    static const QFont font = createFont(false, 1.5);
     return font;
 }
 
 const QFont &FontUtils::bigBold() {
-    static QFont font = createFont(true, 1.5);
+    static const QFont font = createFont(true, 1.5);
     return font;
 }
