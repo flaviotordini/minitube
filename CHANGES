@@ -1,3 +1,17 @@
+2.5
+- Upgraded to Qt 5
+- HiDPI (aka Retina Display) support
+- Mac style overhaul: new toolbar, lighter fonts & tabs
+- Reworked icons on Mac & Windows
+- Status Bar hidden when not needed: less clutter, more room for videos
+- Clickable links in video description
+- Autoadjust window size (Bye, useless black bars!)
+- Smart date formatting: 3 hours ago, 1 month ago, etc.
+- When opening the YouTube webpage the video now starts from where it left in Minitube
+- Fixed videos restarting after long pause
+- Dropped support for OS X 10.6
+- New and updated translations
+
 2.4
 - Now using YouTube APIs version 3
 - Now using HTTPS everywhere for better privacy and security
