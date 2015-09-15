@@ -43,7 +43,7 @@ void RefineSearchWidget::setup() {
 
     QBoxLayout *layout = new QVBoxLayout(this);
     layout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
-    layout->setMargin(spacing*2);
+    layout->setMargin(spacing);
     layout->setSpacing(spacing);
 
     QString paramName = "sortBy";
