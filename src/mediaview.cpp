@@ -646,7 +646,7 @@ void MediaView::aboutToFinish() {
 #ifdef APP_PHONON
     qint64 currentTime = mediaObject->currentTime();
     qint64 totalTime = mediaObject->totalTime();
-    qDebug() << __PRETTY_FUNCTION__ << currentTime << totalTime;
+    // qDebug() << __PRETTY_FUNCTION__ << currentTime << totalTime;
     if (totalTime < 1 || currentTime + 10000 < totalTime) {
         // QTimer::singleShot(500, this, SLOT(playbackResume()));
         mediaObject->seek(currentTime);
@@ -661,7 +661,7 @@ void MediaView::playbackFinished() {
 #ifdef APP_PHONON
     const qint64 totalTime = mediaObject->totalTime();
     const qint64 currentTime = mediaObject->currentTime();
-    qDebug() << __PRETTY_FUNCTION__ << mediaObject->currentTime() << totalTime;
+    // qDebug() << __PRETTY_FUNCTION__ << mediaObject->currentTime() << totalTime;
     // add 10 secs for imprecise Phonon backends (VLC, Xine)
     if (currentTime > 0 && currentTime + 10000 < totalTime) {
         // mediaObject->seek(currentTime);
@@ -679,7 +679,7 @@ void MediaView::playbackResume() {
     if (stopped) return;
 #ifdef APP_PHONON
     const qint64 currentTime = mediaObject->currentTime();
-    qDebug() << __PRETTY_FUNCTION__ << currentTime;
+    // qDebug() << __PRETTY_FUNCTION__ << currentTime;
     if (currentTime > 0)
         mediaObject->seek(currentTime);
     mediaObject->play();

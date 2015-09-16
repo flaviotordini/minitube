@@ -1264,7 +1264,6 @@ void MainWindow::fullscreen() {
 }
 
 void MainWindow::updateUIForFullscreen() {
-    qDebug() << __PRETTY_FUNCTION__ << fullscreenFlag;
     static QList<QKeySequence> fsShortcuts;
     static QString fsText;
 

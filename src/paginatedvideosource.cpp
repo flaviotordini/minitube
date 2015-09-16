@@ -41,7 +41,6 @@ PaginatedVideoSource::PaginatedVideoSource(QObject *parent) : VideoSource(parent
   , asyncDetails(false) { }
 
 bool PaginatedVideoSource::hasMoreVideos() {
-    qDebug() << __PRETTY_FUNCTION__ << nextPageToken;
     return !nextPageToken.isEmpty();
 }
 

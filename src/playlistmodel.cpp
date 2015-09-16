@@ -216,7 +216,6 @@ void PlaylistModel::abortSearch() {
 }
 
 void PlaylistModel::searchFinished(int total) {
-    qDebug() << __PRETTY_FUNCTION__ << total;
     searching = false;
     canSearchMore = videoSource->hasMoreVideos();
 
