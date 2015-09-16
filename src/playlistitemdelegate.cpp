@@ -31,6 +31,15 @@ const int PlaylistItemDelegate::THUMB_HEIGHT = 90;
 const int PlaylistItemDelegate::THUMB_WIDTH = 160;
 const int PlaylistItemDelegate::PADDING = 10;
 
+namespace {
+
+void drawElidedText(QPainter *painter, const QRect &textBox, const int flags, const QString &text) {
+    QString elidedText = QFontMetrics(painter->font()).elidedText(text, Qt::ElideRight, textBox.width(), flags);
+    painter->drawText(textBox, 0, elidedText);
+}
+
+}
+
 PlaylistItemDelegate::PlaylistItemDelegate(QObject* parent, bool downloadInfo)
     : QStyledItemDelegate(parent),
       downloadInfo(downloadInfo),
@@ -199,7 +208,8 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
         stringSize = QSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, authorString ) );
         QRect authorTextBox(textLoc , stringSize);
         authorRects.insert(index.row(), authorTextBox);
-        painter->drawText(authorTextBox, Qt::AlignLeft | Qt::AlignTop, authorString);
+        if (authorTextBox.right() > line.width()) authorTextBox.setRight(line.width());
+        drawElidedText(painter, authorTextBox, Qt::AlignLeft | Qt::AlignTop, authorString);
         painter->restore();
 
         // view count
@@ -209,7 +219,8 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
             textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
             stringSize = QSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, viewCountString ) );
             QRect viewCountTextBox(textLoc , stringSize);
-            painter->drawText(viewCountTextBox, Qt::AlignLeft | Qt::AlignBottom, viewCountString);
+            if (viewCountTextBox.right() > line.width()) viewCountTextBox.setRight(line.width());
+            drawElidedText(painter, viewCountTextBox, Qt::AlignLeft | Qt::AlignBottom, viewCountString);
         }
 
         if (downloadInfo) {
