@@ -178,7 +178,6 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     recentKeywordsLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     recentKeywordsLabel = new QLabel(tr("Recent keywords"), this);
     recentKeywordsLabel->setProperty("recentHeader", true);
-    recentKeywordsLabel->setForegroundRole(QPalette::Dark);
     recentKeywordsLabel->hide();
     recentKeywordsLayout->addWidget(recentKeywordsLabel);
 

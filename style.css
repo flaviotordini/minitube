@@ -81,3 +81,7 @@ SidebarHeader QComboBox::drop-down {
     width: 0;
     border-style: none;
 }
+
+QLabel[recentHeader="true"] {
+    color: rgba(0,0,0,128);
+}
