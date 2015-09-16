@@ -177,55 +177,47 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
         QRect publishedTextBox(textLoc , stringSize);
         painter->drawText(publishedTextBox, Qt::AlignLeft | Qt::AlignTop, publishedString);
 
-        if (line.width() > publishedTextBox.x() + publishedTextBox.width()*2) {
+        // author
+        bool authorHovered = false;
+        bool authorPressed = false;
+        const bool isHovered = index.data(HoveredItemRole).toBool();
+        if (isHovered) {
+            authorHovered = index.data(AuthorHoveredRole).toBool();
+            authorPressed = index.data(AuthorPressedRole).toBool();
+        }
 
-            // author
-            bool authorHovered = false;
-            bool authorPressed = false;
-            const bool isHovered = index.data(HoveredItemRole).toBool();
-            if (isHovered) {
-                authorHovered = index.data(AuthorHoveredRole).toBool();
-                authorPressed = index.data(AuthorPressedRole).toBool();
-            }
+        painter->save();
+        painter->setFont(smallerBoldFont);
+        if (!isSelected) {
+            if (authorHovered)
+                painter->setPen(QPen(option.palette.brush(QPalette::Highlight), 0));
+            else
+                painter->setOpacity(.5);
+        }
+        const QString &authorString = video->channelTitle();
+        textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
+        stringSize = QSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, authorString ) );
+        QRect authorTextBox(textLoc , stringSize);
+        authorRects.insert(index.row(), authorTextBox);
+        painter->drawText(authorTextBox, Qt::AlignLeft | Qt::AlignTop, authorString);
+        painter->restore();
 
-            painter->save();
-            painter->setFont(smallerBoldFont);
-            if (!isSelected) {
-                if (authorHovered)
-                    painter->setPen(QPen(option.palette.brush(QPalette::Highlight), 0));
-                else
-                    painter->setOpacity(.5);
-            }
-            const QString &authorString = video->channelTitle();
+        // view count
+        if (video->viewCount() >= 0) {
+            QLocale locale;
+            QString viewCountString = tr("%1 views").arg(locale.toString(video->viewCount()));
             textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
-            stringSize = QSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, authorString ) );
-            QRect authorTextBox(textLoc , stringSize);
-            authorRects.insert(index.row(), authorTextBox);
-            painter->drawText(authorTextBox, Qt::AlignLeft | Qt::AlignTop, authorString);
-            painter->restore();
+            stringSize = QSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, viewCountString ) );
+            QRect viewCountTextBox(textLoc , stringSize);
+            painter->drawText(viewCountTextBox, Qt::AlignLeft | Qt::AlignBottom, viewCountString);
+        }
 
-            if (line.width() > authorTextBox.x() + 50) {
-
-                // view count
-                if (video->viewCount() >= 0) {
-                    QLocale locale;
-                    QString viewCountString = tr("%1 views").arg(locale.toString(video->viewCount()));
-                    textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
-                    stringSize = QSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, viewCountString ) );
-                    QRect viewCountTextBox(textLoc , stringSize);
-                    painter->drawText(viewCountTextBox, Qt::AlignLeft | Qt::AlignBottom, viewCountString);
-                }
-
-                if (downloadInfo) {
-                    const QString definitionString = VideoDefinition::getDefinitionFor(video->getDefinitionCode()).getName();
-                    textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
-                    stringSize = QSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, definitionString ) );
-                    QRect viewCountTextBox(textLoc , stringSize);
-                    painter->drawText(viewCountTextBox, Qt::AlignLeft | Qt::AlignBottom, definitionString);
-                }
-
-            }
-
+        if (downloadInfo) {
+            const QString definitionString = VideoDefinition::getDefinitionFor(video->getDefinitionCode()).getName();
+            textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
+            stringSize = QSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, definitionString ) );
+            QRect viewCountTextBox(textLoc , stringSize);
+            painter->drawText(viewCountTextBox, Qt::AlignLeft | Qt::AlignBottom, definitionString);
         }
 
     } else {
