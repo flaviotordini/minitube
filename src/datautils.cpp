@@ -97,7 +97,7 @@ QString DataUtils::formatDateTime(const QDateTime &dt) {
     } else if (seconds < (f = 60*60*24*365)) {
         s = qApp->tr("%n month(s) ago", "", seconds / (60*60*24*30));
     } else {
-        s = dt.toString(Qt::DefaultLocaleShortDate);
+        s = dt.date().toString(Qt::DefaultLocaleShortDate);
     }
     return s;
 }
