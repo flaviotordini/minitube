@@ -15,7 +15,7 @@ Alternatively Minitube can read an API key from the GOOGLE_API_KEY environment v
 
 ## Build instructions
 To compile Minitube you need at least Qt 5.0. The following Qt modules are needed:
-core, gui, network, sql (using the Sqlite plugin), script, dbus, phonon
+core, gui, widgets, network, sql (using the Sqlite plugin), script, dbus.
 
 To be able to build on a Debian (or derivative) system:
 
