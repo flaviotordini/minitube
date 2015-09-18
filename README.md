@@ -14,19 +14,19 @@ The key must be specified at compile time as shown below.
 Alternatively Minitube can read an API key from the GOOGLE_API_KEY environment variable.
 
 ## Build instructions
-To compile Minitube you need at least Qt 4.8. The following Qt modules are needed:
+To compile Minitube you need at least Qt 5.0. The following Qt modules are needed:
 core, gui, network, sql (using the Sqlite plugin), script, dbus, phonon
 
 To be able to build on a Debian (or derivative) system:
 
-    $ sudo apt-get install build-essential qt4-dev-tools libphonon-dev libqt4-sql-sqlite
+    $ sudo apt-get install build-essential qttool5-dev-tools qt5-qmake qtscript5-dev libphonon4qt5-dev libqt5sql5-sqlite qt5-default
 
 Compiling:
 
     $ qmake "DEFINES += APP_GOOGLE_API_KEY=YouAPIKeyHere"
     $ make
 
-Beware of the Qt3 or Qt5 version of qmake! If things go wrong try running qmake-qt4 instead.
+Beware of the Qt 4 version of qmake!
 
 Running:
 
