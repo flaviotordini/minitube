@@ -23,7 +23,7 @@ To be able to build on a Debian (or derivative) system:
 
 Compiling:
 
-    $ qmake "DEFINES += APP_GOOGLE_API_KEY=YouAPIKeyHere"
+    $ qmake "DEFINES += APP_GOOGLE_API_KEY=YourAPIKeyHere"
     $ make
 
 Beware of the Qt 4 version of qmake!
