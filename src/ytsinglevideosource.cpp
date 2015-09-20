@@ -158,8 +158,8 @@ void YTSingleVideoSource::abort() {
 }
 
 const QStringList & YTSingleVideoSource::getSuggestions() {
-    static const QStringList *l = new QStringList();
-    return *l;
+    static const QStringList l;
+    return l;
 }
 
 QString YTSingleVideoSource::getName() {

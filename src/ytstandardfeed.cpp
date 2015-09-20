@@ -135,8 +135,8 @@ void YTStandardFeed::abort() {
 }
 
 const QStringList & YTStandardFeed::getSuggestions() {
-    QStringList *l = new QStringList();
-    return *l;
+    static const QStringList l;
+    return l;
 }
 
 void YTStandardFeed::requestError(QNetworkReply *reply) {

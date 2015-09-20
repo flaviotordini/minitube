@@ -79,8 +79,8 @@ bool AggregateVideoSource::hasMoreVideos() {
 }
 
 const QStringList & AggregateVideoSource::getSuggestions() {
-    QStringList *l = new QStringList();
-    return *l;
+    static const QStringList l;
+    return l;
 }
 
 void AggregateVideoSource::abort() { }
