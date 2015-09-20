@@ -30,6 +30,10 @@ $END_LICENSE */
 #include "ytfeedreader.h"
 #endif
 
+namespace {
+static const QStringList kEmptyList;
+}
+
 namespace The {
 NetworkAccess* http();
 }
@@ -158,8 +162,7 @@ void YTSingleVideoSource::abort() {
 }
 
 const QStringList & YTSingleVideoSource::getSuggestions() {
-    static const QStringList *l = new QStringList();
-    return *l;
+    return kEmptyList;
 }
 
 QString YTSingleVideoSource::getName() {
