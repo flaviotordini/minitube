@@ -1211,6 +1211,12 @@ void MainWindow::moveEvent(QMoveEvent *e) {
     adjustMessageLabelPosition();
 }
 
+void MainWindow::leaveEvent(QEvent *e) {
+    Q_UNUSED(e);
+    showFullscreenPlaylist(false);
+    showFullscreenToolbar(false);
+}
+
 void MainWindow::fullscreen() {
 
     if (compactViewAct->isChecked())

@@ -103,6 +103,7 @@ protected:
     void dropEvent(QDropEvent *e);
     void resizeEvent(QResizeEvent *e);
     void moveEvent(QMoveEvent *e);
+    void leaveEvent(QEvent *e);
 
 private slots:
     void lazyInit();
