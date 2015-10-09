@@ -259,15 +259,15 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
         if (isHoveringVideo) {
             QMouseEvent *mouseEvent = static_cast<QMouseEvent*> (e);
             const int x = mouseEvent->pos().x();
+            const int y = mouseEvent->pos().y();
 
             if (mediaView->isPlaylistVisible()) {
                 if (x > 5) mediaView->setPlaylistVisible(false);
             } else {
-                if (x >= 0 && x < 5) mediaView->setPlaylistVisible(true);
+                if (x >= 0 && x < 5 && (y <= 150 || y >= height() - 150)) mediaView->setPlaylistVisible(true);
             }
 
 #ifndef APP_MAC
-            const int y = mouseEvent->pos().y();
             if (mainToolBar->isVisible()) {
                 if (y > 5) mainToolBar->setVisible(false);
             } else {
