@@ -404,10 +404,12 @@ void MediaView::stop() {
     Phonon::SeekSlider *slider = MainWindow::instance()->getSeekSlider();
 #endif
 
+#ifdef APP_SNAPSHOT
     if (snapshotSettings) {
         delete snapshotSettings;
         snapshotSettings = 0;
     }
+#endif
 }
 
 const QString & MediaView::getCurrentVideoId() {
@@ -478,11 +480,13 @@ void MediaView::activeRowChanged(int row) {
     slider->setValue(0);
 #endif
 
+#ifdef APP_SNAPSHOT
     if (snapshotSettings) {
         delete snapshotSettings;
         snapshotSettings = 0;
         MainWindow::instance()->adjustStatusBarVisibility();
     }
+#endif
 
     // see you in gotStreamUrl...
 }
