@@ -139,7 +139,7 @@
     <message numerus="yes">
         <location filename="src/channelaggregator.cpp" line="185"/>
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Usted tiene %n Nuevo(s) Video(s)</numerusform><numerusform>Usted tiene %n Nuevo(s) Video(s)</numerusform></translation>
     </message>
 </context>
 <context>
@@ -241,7 +241,7 @@
     <message>
         <location filename="src/datautils.cpp" line="88"/>
         <source>Just now</source>
-        <translation type="unfinished"/>
+        <translation>Justo Ahora</translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="90"/>

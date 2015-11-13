@@ -708,7 +708,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="517"/>
         <source>&amp;Subscribe to Channel</source>
-        <translation>%Tilaa kanava</translation>
+        <translation>&amp;Tilaa kanava</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="525"/>
@@ -909,7 +909,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="362"/>
         <source>Copy the Video Stream &amp;URL</source>
-        <translation>Kopioi videovirran &amp;URL</translation>
+        <translation>Kopioi videovirran &amp;verkko-osoite</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="369"/>
