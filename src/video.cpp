@@ -406,8 +406,12 @@ void Video::parseDashManifest(const QByteArray &bytes) {
 void Video::captureFunction(const QString &name, const QString &js) {
     QRegExp funcRe("function\\s+" + QRegExp::escape(name) + "\\s*\\([" + jsNameChars + ",\\s]*\\)\\s*\\{[^\\}]+\\}");
     if (funcRe.indexIn(js) == -1) {
-        qWarning() << "Cannot capture function" << name;
-        return;
+        // try var foo = function(bar) { };
+        funcRe = QRegExp("var\\s+" + QRegExp::escape(name) + "\\s*=\\s*function\\s*\\([" + jsNameChars + ",\\s]*\\)\\s*\\{[^\\}]+\\}");
+        if (funcRe.indexIn(js) == -1) {
+            qWarning() << "Cannot capture function" << name;
+            return;
+        }
     }
     QString func = funcRe.cap(0);
     sigFunctions.insert(name, func);
