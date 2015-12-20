@@ -356,7 +356,7 @@ void Video::parseJsPlayer(const QByteArray &bytes) {
     } else {
         sigFuncName = funcNameRe.cap(1);
         captureFunction(sigFuncName, js);
-        // qWarning() << sigFunctions;
+        // qWarning() << sigFunctions << sigObjects;
     }
 
 #ifdef APP_DASH
@@ -404,16 +404,27 @@ void Video::parseDashManifest(const QByteArray &bytes) {
 }
 
 void Video::captureFunction(const QString &name, const QString &js) {
-    QRegExp funcRe("function\\s+" + QRegExp::escape(name) + "\\s*\\([" + jsNameChars + ",\\s]*\\)\\s*\\{[^\\}]+\\}");
-    if (funcRe.indexIn(js) == -1) {
+    const QString argsAndBody = "\\s*\\([" + jsNameChars + ",\\s]*\\)\\s*\\{[^\\}]+\\}";
+    QString func;
+    QRegExp funcRe("function\\s+" + QRegExp::escape(name) + argsAndBody);
+    if (funcRe.indexIn(js) != -1) {
+        func = funcRe.cap(0);
+    } else {
         // try var foo = function(bar) { };
-        funcRe = QRegExp("var\\s+" + QRegExp::escape(name) + "\\s*=\\s*function\\s*\\([" + jsNameChars + ",\\s]*\\)\\s*\\{[^\\}]+\\}");
-        if (funcRe.indexIn(js) == -1) {
-            qWarning() << "Cannot capture function" << name;
-            return;
+        funcRe = QRegExp("var\\s+" + QRegExp::escape(name) + "\\s*=\\s*function" + argsAndBody);
+        if (funcRe.indexIn(js) != -1) {
+            func = funcRe.cap(0);
+        } else {
+            // try ,gr= function(bar) { };
+            funcRe = QRegExp("[,\\s;}\\.\\)](" + QRegExp::escape(name) + "\\s*=\\s*function" + argsAndBody + ")");
+            if (funcRe.indexIn(js) != -1) {
+                func = funcRe.cap(1);
+            } else {
+                qWarning() << "Cannot capture function" << name;
+                return;
+            }
         }
     }
-    QString func = funcRe.cap(0);
     sigFunctions.insert(name, func);
 
     // capture inner functions
@@ -438,7 +449,7 @@ void Video::captureFunction(const QString &name, const QString &js) {
 }
 
 void Video::captureObject(const QString &name, const QString &js) {
-    QRegExp re("var\\s+" + QRegExp::escape(name) + "\\s*=\\s*\\{.+\\}\\s*;");
+    QRegExp re("var\\s+" + QRegExp::escape(name) + "\\s*=\\s*\\{.*\\}\\s*;");
     re.setMinimal(true);
     if (re.indexIn(js) == -1) {
         qWarning() << "Cannot capture object" << name;
