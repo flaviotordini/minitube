@@ -242,7 +242,7 @@
     <message>
         <location filename="src/datautils.cpp" line="88"/>
         <source>Just now</source>
-        <translation type="unfinished"/>
+        <translation>Тільки зараз</translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="90"/>
@@ -411,17 +411,17 @@
     <message>
         <location filename="local/src/extra.cpp" line="252"/>
         <source>%1 will not run. Try installing again.</source>
-        <translation type="unfinished"/>
+        <translation>%1 не буде працювати. Спробуйте встановити заново</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="253"/>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Вийти</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="254"/>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>Перевстановити</translation>
     </message>
 </context>
 <context>
@@ -739,12 +739,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="566"/>
         <source>&amp;Adjust Window Size</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Змінити розмір вікна</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="571"/>
         <source>&amp;Stop After This Video</source>
-        <translation>Зу&amp;пинити після цього видиво</translation>
+        <translation>&amp;Зупинити після цього відео</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="578"/>
@@ -764,12 +764,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="597"/>
         <source>&amp;Related Videos</source>
-        <translation>Схо&amp;жі видива</translation>
+        <translation>&amp;Схожі відео</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="599"/>
         <source>Watch videos related to the current one</source>
-        <translation>Дивитися видива, пов’язані з поточним</translation>
+        <translation>Дивитися відео, пов’язані з поточним</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="605"/>
@@ -804,7 +804,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="670"/>
         <source>&amp;Video</source>
-        <translation>&amp;Видиво</translation>
+        <translation>&amp;Відео</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="686"/>
@@ -855,7 +855,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="1158"/>
         <source>&amp;Loading...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Завантаження...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1264"/>
@@ -910,7 +910,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="362"/>
         <source>Copy the Video Stream &amp;URL</source>
-        <translation>Копіювати посилання на ви&amp;диво потік</translation>
+        <translation>Копіювати посилання на ві&amp;део-потік</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="369"/>
@@ -1060,12 +1060,12 @@
     <message>
         <location filename="src/mediaview.cpp" line="1166"/>
         <source>Unsubscribed from %1</source>
-        <translation type="unfinished"/>
+        <translation>Підписка на %1 анульована</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="1169"/>
         <source>Subscribed to %1</source>
-        <translation type="unfinished"/>
+        <translation>Підписка на %1 оформлена</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="808"/>
