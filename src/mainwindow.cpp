@@ -247,6 +247,7 @@ void MainWindow::changeEvent(QEvent *e) {
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
+    int angle;
 
     if (fullscreenFlag && e->type() == QEvent::MouseMove) {
         const char *className = obj->metaObject()->className();
@@ -275,6 +276,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
             }
 #endif
 
+
         }
 
         // show the normal cursor
@@ -286,6 +288,28 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
     if (e->type() == QEvent::ToolTip) {
         // kill tooltips
         return true;
+    }
+    if( e->type() == QEvent::Wheel )
+    {
+        const char *className = obj->metaObject()->className();
+        const bool isHoveringVideo =
+            (className == QLatin1String("QGLWidget")) ||
+            (className == QLatin1String("VideoAreaWidget"));
+
+        if(isHoveringVideo){
+            QWheelEvent *wheelEvent = static_cast<QWheelEvent*> (e);
+            //QPoint u = wheelEvent->angleDelta();
+            angle = wheelEvent->angleDelta().y();
+            if(angle>0)
+            {
+                this->volumeUp();
+            }
+            if(angle<0)
+            {
+                this->volumeDown();
+            }
+            return true;
+        }
     }
     // standard event processing
     return QMainWindow::eventFilter(obj, e);
@@ -331,7 +355,7 @@ void MainWindow::createActions() {
 #ifdef APP_MAC
     fsShortcuts << QKeySequence(Qt::CTRL + Qt::META + Qt::Key_F);
 #else
-    fsShortcuts << QKeySequence(Qt::Key_F11) << QKeySequence(Qt::ALT + Qt::Key_Return);
+    fsShortcuts << QKeySequence(Qt::Key_F11) << QKeySequence(Qt::ALT + Qt::Key_Return) << QKeySequence(Qt::Key_F);
 #endif
     fullscreenAct->setShortcuts(fsShortcuts);
     fullscreenAct->setShortcutContext(Qt::ApplicationShortcut);
@@ -453,7 +477,7 @@ void MainWindow::createActions() {
     addAction(volumeUpAct);
 
     volumeDownAct = new QAction(this);
-    volumeDownAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_Minus));
+    volumeDownAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_Minus) << QKeySequence(Qt::AllButtons));
     actions->insert("volume-down", volumeDownAct);
     connect(volumeDownAct, SIGNAL(triggered()), this, SLOT(volumeDown()));
     addAction(volumeDownAct);
