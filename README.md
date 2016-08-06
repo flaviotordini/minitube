@@ -13,6 +13,17 @@ Create a "Browser Key" at https://console.developers.google.com
 The key must be specified at compile time as shown below.
 Alternatively Minitube can read an API key from the GOOGLE_API_KEY environment variable.
 
+Not specifying an API key will result in Minitube showing an Google API error 'Error 403: Forbidden'
+
+### API Key on Linux
+To add or change the Google API key for an existing install of Minitube, add your API key to the file: /etc/profile.d/minitube.sh.
+This file may or may not already exist, depending on the package you downloaded.
+If it does not exist, create the file, make it executable (using chmod +x minitube.sh) and add the line:
+
+    export GOOGLE_API_KEY="[YOUR KEY HERE]"
+    
+You will need to log out, and log back in again before Minitube will see the new API Key.
+
 ## Build instructions
 To compile Minitube you need at least Qt 5.0. The following Qt modules are needed:
 core, gui, widgets, network, sql (using the Sqlite plugin), script, dbus.
