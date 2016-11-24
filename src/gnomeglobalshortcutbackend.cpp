@@ -49,6 +49,12 @@ bool GnomeGlobalShortcutBackend::DoRegister() {
                 kGsdService, kGsdPath, kGsdInterface, QDBusConnection::sessionBus(), this);
     }
 
+    QDBusMessage reply = interface_->call("GrabMediaPlayerKeys", "Minitube", (unsigned int) 0);
+
+    if (reply.type() == QDBusMessage::ErrorMessage) {
+      qWarning() << "Failed to grab media player keys. Error:" << reply.errorMessage();
+    }
+
     connect(interface_, SIGNAL(MediaPlayerKeyPressed(QString,QString)),
             this, SLOT(GnomeMediaKeyPressed(QString,QString)));
 
@@ -64,6 +70,8 @@ void GnomeGlobalShortcutBackend::DoUnregister() {
 
     disconnect(interface_, SIGNAL(MediaPlayerKeyPressed(QString,QString)),
                this, SLOT(GnomeMediaKeyPressed(QString,QString)));
+
+    interface_->call("ReleaseMediaPlayerKeys", "Minitube");
 }
 
 void GnomeGlobalShortcutBackend::GnomeMediaKeyPressed(const QString&, const QString& key) {
