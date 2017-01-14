@@ -213,7 +213,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
         painter->restore();
 
         // view count
-        if (video->viewCount() >= 0) {
+        if (video->viewCount() > 0) {
             QLocale locale;
             QString viewCountString = tr("%1 views").arg(locale.toString(video->viewCount()));
             textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
