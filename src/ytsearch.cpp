@@ -32,7 +32,6 @@ $END_LICENSE */
 #else
 #include "ytfeedreader.h"
 #endif
-#include "compatibility/qurlqueryhelper.h"
 
 namespace The {
 NetworkAccess* http();
@@ -63,78 +62,79 @@ void YTSearch::loadVideos(int max, int startIndex) {
     aborted = false;
 
     QUrl url = YT3::instance().method("search");
-    {
-        QUrlQueryHelper urlHelper(url);
-        urlHelper.addQueryItem("part", "snippet");
-        urlHelper.addQueryItem("type", "video");
-        urlHelper.addQueryItem("maxResults", QString::number(max));
 
-        if (startIndex > 1) {
-            if (maybeReloadToken(max, startIndex)) return;
-            urlHelper.addQueryItem("pageToken", nextPageToken);
-        }
+    QUrlQuery q(url);
+    q.addQueryItem("part", "snippet");
+    q.addQueryItem("type", "video");
+    q.addQueryItem("maxResults", QString::number(max));
 
-        // TODO interesting params
-        // urlHelper.addQueryItem("videoSyndicated", "true");
-        // urlHelper.addQueryItem("regionCode", "IT");
-        // urlHelper.addQueryItem("videoType", "movie");
-
-        if (!searchParams->keywords().isEmpty()) {
-            if (searchParams->keywords().startsWith("http://") ||
-                    searchParams->keywords().startsWith("https://")) {
-                urlHelper.addQueryItem("q", YTSearch::videoIdFromUrl(searchParams->keywords()));
-            } else urlHelper.addQueryItem("q", searchParams->keywords());
-        }
-
-        if (!searchParams->channelId().isEmpty())
-            urlHelper.addQueryItem("channelId", searchParams->channelId());
-
-        switch (searchParams->sortBy()) {
-        case SearchParams::SortByNewest:
-            urlHelper.addQueryItem("order", "date");
-            break;
-        case SearchParams::SortByViewCount:
-            urlHelper.addQueryItem("order", "viewCount");
-            break;
-        case SearchParams::SortByRating:
-            urlHelper.addQueryItem("order", "rating");
-            break;
-        }
-
-        switch (searchParams->duration()) {
-        case SearchParams::DurationShort:
-            urlHelper.addQueryItem("videoDuration", "short");
-            break;
-        case SearchParams::DurationMedium:
-            urlHelper.addQueryItem("videoDuration", "medium");
-            break;
-        case SearchParams::DurationLong:
-            urlHelper.addQueryItem("videoDuration", "long");
-            break;
-        }
-
-        switch (searchParams->time()) {
-        case SearchParams::TimeToday:
-            urlHelper.addQueryItem("publishedAfter", RFC3339toString(QDateTime::currentDateTimeUtc().addSecs(-60*60*24)));
-            break;
-        case SearchParams::TimeWeek:
-            urlHelper.addQueryItem("publishedAfter", RFC3339toString(QDateTime::currentDateTimeUtc().addSecs(-60*60*24*7)));
-            break;
-        case SearchParams::TimeMonth:
-            urlHelper.addQueryItem("publishedAfter", RFC3339toString(QDateTime::currentDateTimeUtc().addSecs(-60*60*24*30)));
-            break;
-        }
-
-        if (searchParams->publishedAfter()) {
-            urlHelper.addQueryItem("publishedAfter", RFC3339toString(QDateTime::fromTime_t(searchParams->publishedAfter()).toUTC()));
-        }
-
-        switch (searchParams->quality()) {
-        case SearchParams::QualityHD:
-            urlHelper.addQueryItem("videoDefinition", "high");
-            break;
-        }
+    if (startIndex > 1) {
+        if (maybeReloadToken(max, startIndex)) return;
+        q.addQueryItem("pageToken", nextPageToken);
     }
+
+    // TODO interesting params
+    // urlHelper.addQueryItem("videoSyndicated", "true");
+    // urlHelper.addQueryItem("regionCode", "IT");
+    // urlHelper.addQueryItem("videoType", "movie");
+
+    if (!searchParams->keywords().isEmpty()) {
+        if (searchParams->keywords().startsWith("http://") ||
+                searchParams->keywords().startsWith("https://")) {
+            q.addQueryItem("q", YTSearch::videoIdFromUrl(searchParams->keywords()));
+        } else q.addQueryItem("q", searchParams->keywords());
+    }
+
+    if (!searchParams->channelId().isEmpty())
+        q.addQueryItem("channelId", searchParams->channelId());
+
+    switch (searchParams->sortBy()) {
+    case SearchParams::SortByNewest:
+        q.addQueryItem("order", "date");
+        break;
+    case SearchParams::SortByViewCount:
+        q.addQueryItem("order", "viewCount");
+        break;
+    case SearchParams::SortByRating:
+        q.addQueryItem("order", "rating");
+        break;
+    }
+
+    switch (searchParams->duration()) {
+    case SearchParams::DurationShort:
+        q.addQueryItem("videoDuration", "short");
+        break;
+    case SearchParams::DurationMedium:
+        q.addQueryItem("videoDuration", "medium");
+        break;
+    case SearchParams::DurationLong:
+        q.addQueryItem("videoDuration", "long");
+        break;
+    }
+
+    switch (searchParams->time()) {
+    case SearchParams::TimeToday:
+        q.addQueryItem("publishedAfter", RFC3339toString(QDateTime::currentDateTimeUtc().addSecs(-60*60*24)));
+        break;
+    case SearchParams::TimeWeek:
+        q.addQueryItem("publishedAfter", RFC3339toString(QDateTime::currentDateTimeUtc().addSecs(-60*60*24*7)));
+        break;
+    case SearchParams::TimeMonth:
+        q.addQueryItem("publishedAfter", RFC3339toString(QDateTime::currentDateTimeUtc().addSecs(-60*60*24*30)));
+        break;
+    }
+
+    if (searchParams->publishedAfter()) {
+        q.addQueryItem("publishedAfter", RFC3339toString(QDateTime::fromTime_t(searchParams->publishedAfter()).toUTC()));
+    }
+
+    switch (searchParams->quality()) {
+    case SearchParams::QualityHD:
+        q.addQueryItem("videoDefinition", "high");
+        break;
+    }
+
+    url.setQuery(q);
 
     lastUrl = url;
 

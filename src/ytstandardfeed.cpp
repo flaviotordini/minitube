@@ -21,7 +21,6 @@ $END_LICENSE */
 #include "ytstandardfeed.h"
 #include "networkaccess.h"
 #include "video.h"
-#include "compatibility/qurlqueryhelper.h"
 
 #ifdef APP_YT3
 #include "yt3.h"
@@ -45,25 +44,25 @@ void YTStandardFeed::loadVideos(int max, int startIndex) {
 
     QUrl url = YT3::instance().method("videos");
 
-    {
-        QUrlQueryHelper urlHelper(url);
-        if (startIndex > 1) {
-            if (maybeReloadToken(max, startIndex)) return;
-            urlHelper.addQueryItem("pageToken", nextPageToken);
-        }
-
-        urlHelper.addQueryItem("part", "snippet,contentDetails,statistics");
-        urlHelper.addQueryItem("chart", "mostPopular");
-
-        if (!category.isEmpty())
-            urlHelper.addQueryItem("videoCategoryId", category);
-
-        if (!regionId.isEmpty())
-            urlHelper.addQueryItem("regionCode", regionId);
-
-        urlHelper.addQueryItem("maxResults", QString::number(max));
-
+    QUrlQuery q(url);
+    if (startIndex > 1) {
+        if (maybeReloadToken(max, startIndex)) return;
+        q.addQueryItem("pageToken", nextPageToken);
     }
+
+    q.addQueryItem("part", "snippet,contentDetails,statistics");
+    q.addQueryItem("chart", "mostPopular");
+
+    if (!category.isEmpty())
+        q.addQueryItem("videoCategoryId", category);
+
+    if (!regionId.isEmpty())
+        q.addQueryItem("regionCode", regionId);
+
+    q.addQueryItem("maxResults", QString::number(max));
+
+    url.setQuery(q);
+
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResults(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));

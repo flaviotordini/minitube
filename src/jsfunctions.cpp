@@ -21,7 +21,6 @@ $END_LICENSE */
 #include "jsfunctions.h"
 #include "networkaccess.h"
 #include "constants.h"
-#include "compatibility/qurlqueryhelper.h"
 #include "compatibility/pathsservice.h"
 
 namespace The {
@@ -70,10 +69,9 @@ QString JsFunctions::jsPath() {
 
 void JsFunctions::loadJs() {
     QUrl url(this->url);
-    {
-        QUrlQueryHelper urlHelper(url);
-        urlHelper.addQueryItem("v", Constants::VERSION);
-    }
+    QUrlQuery q(url);
+    q.addQueryItem("v", Constants::VERSION);
+    url.setQuery(q);
 
     NetworkReply* reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(gotJs(QByteArray)));

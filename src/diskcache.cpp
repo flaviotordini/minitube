@@ -20,7 +20,6 @@ $END_LICENSE */
 
 #include "diskcache.h"
 #include <QtNetwork>
-#include "compatibility/qurlqueryhelper.h"
 
 DiskCache::DiskCache(QObject *parent) : QNetworkDiskCache(parent) { }
 
@@ -44,10 +43,11 @@ QIODevice* DiskCache::prepare(const QNetworkCacheMetaData &metaData) {
 QNetworkCacheMetaData DiskCache::metaData(const QUrl &url) {
     // Remove "key" from query string in order to reuse cache when key changes
     static const QString keyQueryItem = "key";
-    QUrl url2(url);
-    QUrlQueryHelper urlHelper(url2);
-    if (urlHelper.hasQueryItem(keyQueryItem)) {
-        urlHelper.removeQueryItem(keyQueryItem);
+    QUrlQuery q(url);
+    if (q.hasQueryItem(keyQueryItem)) {
+        q.removeQueryItem(keyQueryItem);
+        QUrl url2(url);
+        url2.setQuery(q);
         return QNetworkDiskCache::metaData(url2);
     }
 

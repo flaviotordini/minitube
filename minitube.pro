@@ -1,6 +1,6 @@
-CONFIG += release
+CONFIG += release c++11
 TEMPLATE = app
-VERSION = 2.5.2
+VERSION = 2.6
 DEFINES += APP_VERSION="$$VERSION"
 
 APP_NAME = Minitube
@@ -17,7 +17,7 @@ DEFINES += APP_YT3
 message(Building $${APP_NAME} $${VERSION})
 message(Qt $$[QT_VERSION] in $$[QT_INSTALL_PREFIX])
 
-DEFINES *= QT_NO_DEBUG_OUTPUT
+#DEFINES *= QT_NO_DEBUG_OUTPUT
 DEFINES *= QT_USE_QSTRINGBUILDER
 DEFINES *= QT_STRICT_ITERATORS
 
@@ -104,7 +104,6 @@ HEADERS += src/video.h \
     src/ytchannel.h \
     src/yt3.h \
     src/paginatedvideosource.h \
-    src/compatibility/qurlqueryhelper.h \
     src/compatibility/pathsservice.h \
     src/searchwidget.h \
     src/exlineedit.h \

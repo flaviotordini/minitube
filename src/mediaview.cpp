@@ -50,7 +50,6 @@ $END_LICENSE */
 #include "snapshotsettings.h"
 #endif
 #include "datautils.h"
-#include "compatibility/qurlqueryhelper.h"
 
 namespace The {
 NetworkAccess* http();
@@ -1055,12 +1054,11 @@ void MediaView::shareViaTwitter() {
     Video* video = playlistModel->activeVideo();
     if (!video) return;
     QUrl url("https://twitter.com/intent/tweet");
-    {
-        QUrlQueryHelper urlHelper(url);
-        urlHelper.addQueryItem("via", "minitubeapp");
-        urlHelper.addQueryItem("text", video->title());
-        urlHelper.addQueryItem("url", video->webpage());
-    }
+    QUrlQuery q;
+    q.addQueryItem("via", "minitubeapp");
+    q.addQueryItem("text", video->title());
+    q.addQueryItem("url", video->webpage());
+    url.setQuery(q);
     QDesktopServices::openUrl(url);
 }
 
@@ -1068,11 +1066,10 @@ void MediaView::shareViaFacebook() {
     Video* video = playlistModel->activeVideo();
     if (!video) return;
     QUrl url("https://www.facebook.com/sharer.php");
-    {
-        QUrlQueryHelper urlHelper(url);
-        urlHelper.addQueryItem("t", video->title());
-        urlHelper.addQueryItem("u", video->webpage());
-    }
+    QUrlQuery q;
+    q.addQueryItem("t", video->title());
+    q.addQueryItem("u", video->webpage());
+    url.setQuery(q);
     QDesktopServices::openUrl(url);
 }
 
@@ -1080,13 +1077,12 @@ void MediaView::shareViaBuffer() {
     Video* video = playlistModel->activeVideo();
     if (!video) return;
     QUrl url("http://bufferapp.com/add");
-    {
-        QUrlQueryHelper urlHelper(url);
-        urlHelper.addQueryItem("via", "minitubeapp");
-        urlHelper.addQueryItem("text", video->title());
-        urlHelper.addQueryItem("url", video->webpage());
-        urlHelper.addQueryItem("picture", video->thumbnailUrl());
-    }
+    QUrlQuery q;
+    q.addQueryItem("via", "minitubeapp");
+    q.addQueryItem("text", video->title());
+    q.addQueryItem("url", video->webpage());
+    q.addQueryItem("picture", video->thumbnailUrl());
+    url.setQuery(q);
     QDesktopServices::openUrl(url);
 }
 
@@ -1094,15 +1090,14 @@ void MediaView::shareViaEmail() {
     Video* video = playlistModel->activeVideo();
     if (!video) return;
     QUrl url("mailto:");
-    {
-        QUrlQueryHelper urlHelper(url);
-        urlHelper.addQueryItem("subject", video->title());
-        const QString body = video->title() + "\n" +
-                video->webpage() + "\n\n" +
-                tr("Sent from %1").arg(Constants::NAME) + "\n" +
-                Constants::WEBSITE;
-        urlHelper.addQueryItem("body", body);
-    }
+    QUrlQuery q;
+    q.addQueryItem("subject", video->title());
+    const QString body = video->title() + "\n" +
+            video->webpage() + "\n\n" +
+            tr("Sent from %1").arg(Constants::NAME) + "\n" +
+            Constants::WEBSITE;
+    q.addQueryItem("body", body);
+    url.setQuery(q);
     QDesktopServices::openUrl(url);
 }
 

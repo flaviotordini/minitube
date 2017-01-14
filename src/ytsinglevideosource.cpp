@@ -21,7 +21,6 @@ $END_LICENSE */
 #include "ytsinglevideosource.h"
 #include "networkaccess.h"
 #include "video.h"
-#include "compatibility/qurlqueryhelper.h"
 
 #ifdef APP_YT3
 #include "yt3.h"
@@ -64,24 +63,23 @@ void YTSingleVideoSource::loadVideos(int max, int startIndex) {
         }
 
         url = YT3::instance().method("videos");
-        {
-            QUrlQueryHelper urlHelper(url);
-            urlHelper.addQueryItem("part", "snippet");
-            urlHelper.addQueryItem("id", videoId);
-        }
+        QUrlQuery q(url);
+        q.addQueryItem("part", "snippet");
+        q.addQueryItem("id", videoId);
+        url.setQuery(q);
+
     } else {
         url = YT3::instance().method("search");
-        {
-            QUrlQueryHelper urlHelper(url);
-            urlHelper.addQueryItem("part", "snippet");
-            urlHelper.addQueryItem("type", "video");
-            urlHelper.addQueryItem("relatedToVideoId", videoId);
-            urlHelper.addQueryItem("maxResults", QString::number(max));
-            if (startIndex > 2) {
-                if (maybeReloadToken(max, startIndex)) return;
-                urlHelper.addQueryItem("pageToken", nextPageToken);
-            }
+        QUrlQuery q(url);
+        q.addQueryItem("part", "snippet");
+        q.addQueryItem("type", "video");
+        q.addQueryItem("relatedToVideoId", videoId);
+        q.addQueryItem("maxResults", QString::number(max));
+        if (startIndex > 2) {
+            if (maybeReloadToken(max, startIndex)) return;
+            q.addQueryItem("pageToken", nextPageToken);
         }
+        url.setQuery(q);
     }
 
     lastUrl = url;

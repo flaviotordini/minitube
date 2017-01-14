@@ -6,7 +6,6 @@
 #include "jsfunctions.h"
 #include "networkaccess.h"
 #include "constants.h"
-#include "compatibility/qurlqueryhelper.h"
 
 #ifdef APP_EXTRA
 #include "extra.h"
@@ -66,12 +65,11 @@ const QString &YT3::baseUrl() {
 
 void YT3::testApiKey() {
     QUrl url = method("videos");
-    {
-        QUrlQueryHelper urlHelper(url);
-        urlHelper.addQueryItem("part", "id");
-        urlHelper.addQueryItem("chart", "mostPopular");
-        urlHelper.addQueryItem("maxResults", "1");
-    }
+    QUrlQuery q(url);
+    q.addQueryItem("part", "id");
+    q.addQueryItem("chart", "mostPopular");
+    q.addQueryItem("maxResults", "1");
+    url.setQuery(q);
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(finished(QNetworkReply*)), SLOT(testResponse(QNetworkReply*)));
 }
@@ -82,8 +80,9 @@ void YT3::addApiKey(QUrl &url) {
         return;
     }
 
-    QUrlQueryHelper urlHelper(url);
-    urlHelper.addQueryItem("key", key);
+    QUrlQuery q(url);
+    q.addQueryItem("key", key);
+    url.setQuery(q);
 }
 
 QUrl YT3::method(const QString &name) {

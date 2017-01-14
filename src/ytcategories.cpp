@@ -26,7 +26,6 @@ $END_LICENSE */
 #include "ytregions.h"
 #include <QtScript>
 #endif
-#include "compatibility/qurlqueryhelper.h"
 
 namespace The {
 NetworkAccess* http();
@@ -41,15 +40,16 @@ void YTCategories::loadCategories(QString language) {
 
 #ifdef APP_YT3
     QUrl url = YT3::instance().method("videoCategories");
-    {
-        QUrlQueryHelper urlHelper(url);
-        urlHelper.addQueryItem("part", "snippet");
-        urlHelper.addQueryItem("hl", language);
 
-        QString regionCode = YTRegions::currentRegionId();
-        if (regionCode.isEmpty()) regionCode = "us";
-        urlHelper.addQueryItem("regionCode", regionCode);
-    }
+    QUrlQuery q(url);
+    q.addQueryItem("part", "snippet");
+    q.addQueryItem("hl", language);
+
+    QString regionCode = YTRegions::currentRegionId();
+    if (regionCode.isEmpty()) regionCode = "us";
+    q.addQueryItem("regionCode", regionCode);
+    url.setQuery(q);
+
 #else
     QString url = "http://gdata.youtube.com/schemas/2007/categories.cat?hl=" + language;
 #endif
