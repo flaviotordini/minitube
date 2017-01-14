@@ -1201,7 +1201,7 @@ void MainWindow::resizeEvent(QResizeEvent *e) {
     }
 #endif
 #ifdef APP_MAC_QMACTOOLBAR
-    toolbarSearch->move(width() - toolbarSearch->width() - 13, -38);
+    toolbarSearch->move(width() - toolbarSearch->width() - 7, -38);
 #endif
     adjustMessageLabelPosition();
 }
