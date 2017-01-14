@@ -21,10 +21,7 @@ $END_LICENSE */
 #ifndef SPACER_H
 #define SPACER_H
 
-#include <QtGui>
-#if QT_VERSION >= 0x050000
 #include <QtWidgets>
-#endif
 
 class Spacer : public QWidget {
 

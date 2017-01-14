@@ -28,11 +28,7 @@ SnapshotPreview::SnapshotPreview(QWidget *parent) : QWidget(parent),
 #endif
     {
     setAttribute(Qt::WA_ShowWithoutActivating);
-    setWindowFlags(Qt::FramelessWindowHint);
-#if QT_VERSION >= 0x050000
-    setWindowFlags(windowFlags() | Qt::WindowDoesNotAcceptFocus);
-#endif
-
+    setWindowFlags(Qt::FramelessWindowHint | Qt::WindowDoesNotAcceptFocus);
     setAttribute(Qt::WA_StaticContents);
     setAttribute(Qt::WA_OpaquePaintEvent);
     setAttribute(Qt::WA_NoSystemBackground);

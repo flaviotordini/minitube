@@ -30,7 +30,7 @@ PlaylistView::PlaylistView(QWidget *parent) : QListView(parent),
 
     setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Expanding);
 
-#if QT_VERSION >= 0x050000 && defined(APP_MAC)
+#if defined(APP_MAC)
     setMinimumWidth(160);
 #else
     setMinimumWidth(175);

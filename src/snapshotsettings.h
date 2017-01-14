@@ -21,10 +21,7 @@ $END_LICENSE */
 #ifndef SNAPSHOTSETTINGS_H
 #define SNAPSHOTSETTINGS_H
 
-#include <QtGui>
-#if QT_VERSION >= 0x050000
 #include <QtWidgets>
-#endif
 
 class SnapshotSettings : public QWidget {
 

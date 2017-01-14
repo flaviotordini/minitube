@@ -21,10 +21,7 @@ $END_LICENSE */
 #ifndef PLAYLISTVIEW_H
 #define PLAYLISTVIEW_H
 
-#include <QtGui>
-#if QT_VERSION >= 0x050000
 #include <QtWidgets>
-#endif
 
 class PlaylistView : public QListView {
 

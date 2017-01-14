@@ -21,10 +21,8 @@ $END_LICENSE */
 #ifndef ABOUTVIEW_H
 #define ABOUTVIEW_H
 
-#include <QtGui>
-#if QT_VERSION >= 0x050000
 #include <QtWidgets>
-#endif
+
 #include "view.h"
 #include "constants.h"
 

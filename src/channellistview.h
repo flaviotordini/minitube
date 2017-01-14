@@ -21,10 +21,7 @@ $END_LICENSE */
 #ifndef CHANNELLISTVIEW_H
 #define CHANNELLISTVIEW_H
 
-#include <QtGui>
-#if QT_VERSION >= 0x050000
 #include <QtWidgets>
-#endif
 
 class ChannelListView : public QListView {
 

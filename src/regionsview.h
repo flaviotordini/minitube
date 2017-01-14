@@ -21,10 +21,8 @@ $END_LICENSE */
 #ifndef REGIONSVIEW_H
 #define REGIONSVIEW_H
 
-#include <QtGui>
-#if QT_VERSION >= 0x050000
 #include <QtWidgets>
-#endif
+
 #include "view.h"
 
 struct YTRegion;

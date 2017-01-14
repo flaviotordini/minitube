@@ -18,10 +18,7 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 
 $END_LICENSE */
 
-#include <QtGui>
-#if QT_VERSION >= 0x050000
 #include <QtWidgets>
-#endif
 #include <qtsingleapplication.h>
 #include "constants.h"
 #include "mainwindow.h"

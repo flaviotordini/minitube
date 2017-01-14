@@ -21,10 +21,7 @@ $END_LICENSE */
 #ifndef __MEDIAVIEW_H__
 #define __MEDIAVIEW_H__
 
-#include <QtGui>
-#if QT_VERSION >= 0x050000
 #include <QtWidgets>
-#endif
 #include <QtNetwork>
 #ifdef APP_PHONON
 #include <phonon/mediaobject.h>
