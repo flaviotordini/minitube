@@ -168,27 +168,27 @@ void  Video::gotVideoInfo(const QByteArray &bytes) {
     }
 
     QString videoToken = videoTokeRE.cap(1);
-    // qDebug() << "got token" << videoToken;
+    qDebug() << "got token" << videoToken;
     while (videoToken.contains('%'))
         videoToken = QByteArray::fromPercentEncoding(videoToken.toLatin1());
-    // qDebug() << "videoToken" << videoToken;
+    qDebug() << "videoToken" << videoToken;
     this->videoToken = videoToken;
 
     // get fmt_url_map
     QRegExp fmtMapRE(JsFunctions::instance()->videoInfoFmtMapRE());
     if (fmtMapRE.indexIn(videoInfo) == -1) {
-        // qDebug() << "Cannot get urlMap. Trying next el param";
+        qDebug() << "Cannot get urlMap. Trying next el param";
         // Don't panic! We're gonna try another magic "el" param
         elIndex++;
         getVideoInfo();
         return;
     }
 
-    // qDebug() << "Got token and urlMap" << elIndex;
-
     QString fmtUrlMap = fmtMapRE.cap(1);
     // qDebug() << "got fmtUrlMap" << fmtUrlMap;
     fmtUrlMap = QByteArray::fromPercentEncoding(fmtUrlMap.toUtf8());
+
+    qDebug() << "Got token and urlMap" << elIndex << videoToken << fmtUrlMap;
     parseFmtUrlMap(fmtUrlMap);
 }
 
@@ -196,7 +196,7 @@ void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
     const QString definitionName = QSettings().value("definition", "360p").toString();
     const VideoDefinition& definition = VideoDefinition::getDefinitionFor(definitionName);
 
-    // qDebug() << "fmtUrlMap" << fmtUrlMap;
+    qDebug() << "fmtUrlMap" << fmtUrlMap;
     const QStringList formatUrls = fmtUrlMap.split(',', QString::SkipEmptyParts);
     QHash<int, QString> urlMap;
     foreach(const QString &formatUrl, formatUrls) {
@@ -242,7 +242,7 @@ void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
                         urlHelper.addQueryItem("hl", "en");
                         urlHelper.addQueryItem("has_verified", "1");
                     }
-                    // qDebug() << "Loading webpage" << url;
+                    qDebug() << "Loading webpage" << url;
                     QObject *reply = The::http()->get(url);
                     connect(reply, SIGNAL(data(QByteArray)), SLOT(scrapeWebPage(QByteArray)));
                     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
@@ -258,10 +258,10 @@ void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
         if (!url.contains("ratebypass"))
             url += "&ratebypass=yes";
 
-        // qWarning() << url;
+        qDebug() << url;
 
         if (format == definition.getCode()) {
-            // qDebug() << "Found format" << definitionCode;
+            qDebug() << "Found format" << definitionCode;
             saveDefinitionForUrl(url, definition);
             return;
         }
