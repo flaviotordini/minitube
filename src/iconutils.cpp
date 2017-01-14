@@ -20,12 +20,12 @@ $END_LICENSE */
 
 #include "iconutils.h"
 #include <QAction>
+#include "mainwindow.h"
 
 QIcon IconUtils::fromTheme(const QString &name) {
     const QLatin1String symbolic("-symbolic");
     if (name.endsWith(symbolic)) return QIcon::fromTheme(name);
-    QIcon icon;
-    icon = QIcon::fromTheme(name + symbolic);
+    QIcon icon = QIcon::fromTheme(name + symbolic);
     if (icon.isNull()) return QIcon::fromTheme(name);
     return icon;
 }
@@ -33,21 +33,23 @@ QIcon IconUtils::fromTheme(const QString &name) {
 QIcon IconUtils::fromResources(const QString &name) {
     QIcon icon = QIcon(QString(":/images/%1.png").arg(name));
     if (!icon.isNull()) {
-        icon.addPixmap(IconUtils::pixmap(QString(":/images/%1_active.png").arg(name)), QIcon::Active);
-        icon.addPixmap(IconUtils::pixmap(QString(":/images/%1_selected.png").arg(name)), QIcon::Selected);
-        icon.addPixmap(IconUtils::pixmap(QString(":/images/%1_disabled.png").arg(name)), QIcon::Disabled);
+        icon.addPixmap(QPixmap(QString(":/images/%1_active.png").arg(name)), QIcon::Active);
+        icon.addPixmap(QPixmap(QString(":/images/%1_selected.png").arg(name)), QIcon::Selected);
+        icon.addPixmap(QPixmap(QString(":/images/%1_disabled.png").arg(name)), QIcon::Disabled);
+        icon.addPixmap(QPixmap(QString(":/images/%1_checked.png").arg(name)), QIcon::Normal, QIcon::On);
+
+        icon.addPixmap(QPixmap(QString(":/images/%1_active@2x.png").arg(name)), QIcon::Active);
+        icon.addPixmap(QPixmap(QString(":/images/%1_selected@2x.png").arg(name)), QIcon::Selected);
+        icon.addPixmap(QPixmap(QString(":/images/%1_disabled@2x.png").arg(name)), QIcon::Disabled);
+        icon.addPixmap(QPixmap(QString(":/images/%1_checked@2x.png").arg(name)), QIcon::Normal, QIcon::On);
     }
     return icon;
 }
 
 QIcon IconUtils::icon(const QString &name) {
-#if defined(APP_MAC) || defined(APP_WIN)
-    return fromResources(name);
-#else
-    QIcon icon = fromTheme(name);
-    if (icon.isNull()) icon = fromResources(name);
+    QIcon icon = fromResources(name);
+    if (icon.isNull()) icon = fromTheme(name);
     return icon;
-#endif
 }
 
 QIcon IconUtils::icon(const QStringList &names) {
@@ -113,16 +115,29 @@ void IconUtils::setupAction(QAction *action) {
 
 QPixmap IconUtils::pixmap(const QString &name) {
     // Check if a "@2x" file exists
+    const qreal pixelRatio = IconUtils::pixelRatio();
     QString fileName = name;
-    if (qApp->devicePixelRatio() > 1.0) {
+    if (pixelRatio > 1.0) {
         int dotIndex = fileName.lastIndexOf(QLatin1Char('.'));
         if (dotIndex != -1) {
             QString at2xfileName = fileName;
             at2xfileName.insert(dotIndex, QStringLiteral("@2x"));
-            if (QFile::exists(at2xfileName))
+            if (QFile::exists(at2xfileName)) {
                 fileName = at2xfileName;
+                QPixmap pixmap(fileName);
+                pixmap.setDevicePixelRatio(pixelRatio);
+                return pixmap;
+            }
         }
     }
 
     return QPixmap(fileName);
+}
+
+qreal IconUtils::pixelRatio() {
+#if QT_VERSION >= 0x050600
+    return MainWindow::instance()->devicePixelRatioF();
+#else
+    return MainWindow::instance()->devicePixelRatio();
+#endif
 }

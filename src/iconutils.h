@@ -38,6 +38,7 @@ public:
     // HiDPI stuff
     static QPixmap pixmap(const QString &name);
     static qreal maxSupportedPixelRatio() { return 2.0; }
+    static qreal pixelRatio();
 
 private:
     IconUtils() { }
