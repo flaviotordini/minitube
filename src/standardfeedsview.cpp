@@ -26,10 +26,6 @@ $END_LICENSE */
 #include "mainwindow.h"
 #include "painterutils.h"
 
-namespace The {
-QHash<QString, QAction*>* globalActions();
-}
-
 StandardFeedsView::StandardFeedsView(QWidget *parent) : View(parent),
     layout(0) {
     QPalette p = palette();
@@ -37,10 +33,10 @@ StandardFeedsView::StandardFeedsView(QWidget *parent) : View(parent),
     setPalette(p);
     setAutoFillBackground(true);
 
-    connect(The::globalActions()->value("worldwide-region"), SIGNAL(triggered()),
+    connect(MainWindow::instance()->getActionMap().value("worldwide-region"), SIGNAL(triggered()),
             SLOT(selectWorldwideRegion()));
 
-    connect(The::globalActions()->value("local-region"), SIGNAL(triggered()),
+    connect(MainWindow::instance()->getActionMap().value("local-region"), SIGNAL(triggered()),
             SLOT(selectLocalRegion()));
 
     /*

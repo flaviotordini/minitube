@@ -28,10 +28,10 @@ $END_LICENSE */
 #include "yt3.h"
 #include "yt3listparser.h"
 #include "datautils.h"
+#include "mainwindow.h"
 
 namespace The {
 NetworkAccess* http();
-QHash<QString, QAction*>* globalActions();
 }
 
 namespace {
@@ -193,6 +193,6 @@ QList<QAction*> YTSearch::getActions() {
     QList<QAction*> channelActions;
     if (searchParams->channelId().isEmpty())
         return channelActions;
-    channelActions << The::globalActions()->value("subscribe-channel");
+    channelActions << MainWindow::instance()->getActionMap().value("subscribe-channel");
     return channelActions;
 }

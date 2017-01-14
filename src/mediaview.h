@@ -43,10 +43,6 @@ class VideoSource;
 class SnapshotSettings;
 #endif
 
-namespace The {
-QHash<QString, QAction*>* globalActions();
-}
-
 class MediaView : public View {
 
     Q_OBJECT

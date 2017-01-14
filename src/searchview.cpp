@@ -39,10 +39,6 @@ $END_LICENSE */
 #include "painterutils.h"
 #include "iconutils.h"
 
-namespace The {
-QHash<QString, QAction*>* globalActions();
-}
-
 static const QString recentKeywordsKey = "recentKeywords";
 static const QString recentChannelsKey = "recentChannels";
 static const int PADDING = 30;
@@ -206,7 +202,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 }
 
 void SearchView::appear() {
-    MainWindow::instance()->showActionInStatusBar(The::globalActions()->value("definition"), true);
+    MainWindow::instance()->showActionInStatusBar(MainWindow::instance()->getActionMap().value("definition"), true);
 
     updateRecentKeywords();
     updateRecentChannels();
@@ -217,7 +213,7 @@ void SearchView::appear() {
 }
 
 void SearchView::disappear() {
-    MainWindow::instance()->showActionInStatusBar(The::globalActions()->value("definition"), false);
+    MainWindow::instance()->showActionInStatusBar(MainWindow::instance()->getActionMap().value("definition"), false);
 }
 
 void SearchView::updateRecentKeywords() {
@@ -235,7 +231,7 @@ void SearchView::updateRecentKeywords() {
     }
 
     recentKeywordsLabel->setVisible(!keywords.isEmpty());
-    The::globalActions()->value("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
+    MainWindow::instance()->getActionMap().value("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
 
     foreach (const QString &keyword, keywords) {
         QString link = keyword;
@@ -285,7 +281,7 @@ void SearchView::updateRecentChannels() {
     }
 
     recentChannelsLabel->setVisible(!keywords.isEmpty());
-    // TODO The::globalActions()->value("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
+    // TODO MainWindow::instance()->getActionMap().value("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
 
     foreach (const QString &keyword, keywords) {
         QString link = keyword;

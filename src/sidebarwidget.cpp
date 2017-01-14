@@ -22,13 +22,10 @@ $END_LICENSE */
 #include "refinesearchbutton.h"
 #include "refinesearchwidget.h"
 #include "sidebarheader.h"
+#include "mainwindow.h"
 #ifdef APP_EXTRA
 #include "extra.h"
 #endif
-
-namespace The {
-QHash<QString, QAction*>* globalActions();
-}
 
 SidebarWidget::SidebarWidget(QWidget *parent) :
     QWidget(parent), playlistWidth(0) {
@@ -89,7 +86,7 @@ void SidebarWidget::setPlaylist(QListView *playlist) {
 
 void SidebarWidget::showPlaylist() {
     stackedWidget->setCurrentWidget(playlist);
-    The::globalActions()->value("refine-search")->setChecked(false);
+    MainWindow::instance()->getActionMap().value("refine-search")->setChecked(false);
 }
 
 void SidebarWidget::showRefineSearchWidget() {
@@ -103,7 +100,7 @@ void SidebarWidget::showRefineSearchWidget() {
     Extra::fadeInWidget(playlist, refineSearchWidget);
 #endif
     refineSearchButton->hide();
-    The::globalActions()->value("refine-search")->setChecked(true);
+    MainWindow::instance()->getActionMap().value("refine-search")->setChecked(true);
 }
 
 void SidebarWidget::hideRefineSearchWidget() {
@@ -114,7 +111,7 @@ void SidebarWidget::hideRefineSearchWidget() {
 #ifdef APP_EXTRA
     Extra::fadeInWidget(refineSearchWidget, playlist);
 #endif
-    The::globalActions()->value("refine-search")->setChecked(false);
+    MainWindow::instance()->getActionMap().value("refine-search")->setChecked(false);
 }
 
 void SidebarWidget::toggleRefineSearch(bool show) {

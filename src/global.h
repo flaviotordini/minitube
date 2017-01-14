@@ -32,16 +32,6 @@ $END_LICENSE */
 
 namespace The {
 
-    QHash<QString, QAction*>* globalActions() {
-        static QHash<QString, QAction*> *actions = new QHash<QString, QAction*>;
-        return actions;
-    }
-
-    QHash<QString, QMenu*>* globalMenus() {
-        static QHash<QString, QMenu*> *menus = new QHash<QString, QMenu*>;
-        return menus;
-    }
-
     void maybeSetSystemProxy() {
 
         QNetworkProxyQuery proxyQuery(QUrl("http://www"));

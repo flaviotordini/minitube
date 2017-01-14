@@ -53,8 +53,6 @@ $END_LICENSE */
 
 namespace The {
 NetworkAccess* http();
-QHash<QString, QAction*>* globalActions();
-QHash<QString, QMenu*>* globalMenus();
 QNetworkAccessManager* networkAccessManager();
 }
 
@@ -144,30 +142,30 @@ void MediaView::initialize() {
 #endif
 
     connect(videoAreaWidget, SIGNAL(doubleClicked()),
-            The::globalActions()->value("fullscreen"), SLOT(trigger()));
+            MainWindow::instance()->getActionMap().value("fullscreen"), SLOT(trigger()));
 
-    QAction* refineSearchAction = The::globalActions()->value("refine-search");
+    QAction* refineSearchAction = MainWindow::instance()->getActionMap().value("refine-search");
     connect(refineSearchAction, SIGNAL(toggled(bool)),
             sidebar, SLOT(toggleRefineSearch(bool)));
 
     currentVideoActions
-            << The::globalActions()->value("webpage")
-            << The::globalActions()->value("pagelink")
-            << The::globalActions()->value("videolink")
-            << The::globalActions()->value("open-in-browser")
+            << MainWindow::instance()->getActionMap().value("webpage")
+            << MainWindow::instance()->getActionMap().value("pagelink")
+            << MainWindow::instance()->getActionMap().value("videolink")
+            << MainWindow::instance()->getActionMap().value("open-in-browser")
            #ifdef APP_SNAPSHOT
-            << The::globalActions()->value("snapshot")
+            << MainWindow::instance()->getActionMap().value("snapshot")
            #endif
-            << The::globalActions()->value("findVideoParts")
-            << The::globalActions()->value("skip")
-            << The::globalActions()->value("previous")
-            << The::globalActions()->value("stopafterthis")
-            << The::globalActions()->value("related-videos")
-            << The::globalActions()->value("refine-search")
-            << The::globalActions()->value("twitter")
-            << The::globalActions()->value("facebook")
-            << The::globalActions()->value("buffer")
-            << The::globalActions()->value("email");
+            << MainWindow::instance()->getActionMap().value("findVideoParts")
+            << MainWindow::instance()->getActionMap().value("skip")
+            << MainWindow::instance()->getActionMap().value("previous")
+            << MainWindow::instance()->getActionMap().value("stopafterthis")
+            << MainWindow::instance()->getActionMap().value("related-videos")
+            << MainWindow::instance()->getActionMap().value("refine-search")
+            << MainWindow::instance()->getActionMap().value("twitter")
+            << MainWindow::instance()->getActionMap().value("facebook")
+            << MainWindow::instance()->getActionMap().value("buffer")
+            << MainWindow::instance()->getActionMap().value("email");
 
 #ifndef APP_PHONON_SEEK
     QSlider *slider = MainWindow::instance()->getSlider();
@@ -377,7 +375,7 @@ void MediaView::stop() {
         downloadItem = 0;
         currentVideoSize = 0;
     }
-    The::globalActions()->value("refine-search")->setChecked(false);
+    MainWindow::instance()->getActionMap().value("refine-search")->setChecked(false);
     updateSubscriptionAction(0, false);
 #ifdef APP_ACTIVATION
     demoTimer->stop();
@@ -386,7 +384,7 @@ void MediaView::stop() {
     foreach (QAction *action, currentVideoActions)
         action->setEnabled(false);
 
-    QAction *a = The::globalActions()->value("download");
+    QAction *a = MainWindow::instance()->getActionMap().value("download");
     a->setEnabled(false);
     a->setVisible(false);
 
@@ -451,11 +449,11 @@ void MediaView::activeRowChanged(int row) {
     }
 
     // enable/disable actions
-    The::globalActions()->value("download")->setEnabled(
+    MainWindow::instance()->getActionMap().value("download")->setEnabled(
                 DownloadManager::instance()->itemForVideo(video) == 0);
-    The::globalActions()->value("previous")->setEnabled(row > 0);
-    The::globalActions()->value("stopafterthis")->setEnabled(true);
-    The::globalActions()->value("related-videos")->setEnabled(true);
+    MainWindow::instance()->getActionMap().value("previous")->setEnabled(row > 0);
+    MainWindow::instance()->getActionMap().value("stopafterthis")->setEnabled(true);
+    MainWindow::instance()->getActionMap().value("related-videos")->setEnabled(true);
 
     bool enableDownload = video->license() == Video::LicenseCC;
 #ifdef APP_ACTIVATION
@@ -464,7 +462,7 @@ void MediaView::activeRowChanged(int row) {
 #ifdef APP_DOWNLOADS
     enableDownload = true;
 #endif
-    QAction *a = The::globalActions()->value("download");
+    QAction *a = MainWindow::instance()->getActionMap().value("download");
     a->setEnabled(enableDownload);
     a->setVisible(enableDownload);
 
@@ -670,7 +668,7 @@ void MediaView::playbackFinished() {
         // mediaObject->seek(currentTime);
         QTimer::singleShot(500, this, SLOT(playbackResume()));
     } else {
-        QAction* stopAfterThisAction = The::globalActions()->value("stopafterthis");
+        QAction* stopAfterThisAction = MainWindow::instance()->getActionMap().value("stopafterthis");
         if (stopAfterThisAction->isChecked()) {
             stopAfterThisAction->setChecked(false);
         } else skip();
@@ -743,9 +741,9 @@ void MediaView::selectVideos(QList<Video*> videos) {
 void MediaView::selectionChanged(const QItemSelection & /*selected*/,
                                  const QItemSelection & /*deselected*/) {
     const bool gotSelection = playlistView->selectionModel()->hasSelection();
-    The::globalActions()->value("remove")->setEnabled(gotSelection);
-    The::globalActions()->value("moveUp")->setEnabled(gotSelection);
-    The::globalActions()->value("moveDown")->setEnabled(gotSelection);
+    MainWindow::instance()->getActionMap().value("remove")->setEnabled(gotSelection);
+    MainWindow::instance()->getActionMap().value("moveUp")->setEnabled(gotSelection);
+    MainWindow::instance()->getActionMap().value("moveDown")->setEnabled(gotSelection);
 }
 
 void MediaView::moveUpSelected() {
@@ -848,7 +846,7 @@ void MediaView::downloadVideo() {
     Video* video = playlistModel->activeVideo();
     if (!video) return;
     DownloadManager::instance()->addItem(video);
-    MainWindow::instance()->showActionInStatusBar(The::globalActions()->value("downloads"), true);
+    MainWindow::instance()->showActionInStatusBar(MainWindow::instance()->getActionMap().value("downloads"), true);
     QString message = tr("Downloading %1").arg(video->title());
     MainWindow::instance()->showMessage(message);
 }
@@ -1047,7 +1045,7 @@ void MediaView::relatedVideos() {
     singleVideoSource->setVideo(video->clone());
     singleVideoSource->setAsyncDetails(true);
     setVideoSource(singleVideoSource);
-    The::globalActions()->value("related-videos")->setEnabled(false);
+    MainWindow::instance()->getActionMap().value("related-videos")->setEnabled(false);
 }
 
 void MediaView::shareViaTwitter() {
@@ -1118,7 +1116,7 @@ void MediaView::authorPushed(QModelIndex index) {
 }
 
 void MediaView::updateSubscriptionAction(Video *video, bool subscribed) {
-    QAction *subscribeAction = The::globalActions()->value("subscribe-channel");
+    QAction *subscribeAction = MainWindow::instance()->getActionMap().value("subscribe-channel");
 
     QString subscribeTip;
     QString subscribeText;

@@ -24,10 +24,7 @@ $END_LICENSE */
 #include "extra.h"
 #endif
 #include "iconutils.h"
-
-namespace The {
-QHash<QString, QAction*>* globalActions();
-}
+#include "mainwindow.h"
 
 RefineSearchWidget::RefineSearchWidget(QWidget *parent) :
     QWidget(parent) {
@@ -207,7 +204,7 @@ void RefineSearchWidget::actionTriggered(QAction *action) {
 void RefineSearchWidget::setSearchParams(SearchParams *params) {
     setup();
 
-    The::globalActions()->value("refine-search")->setEnabled(params);
+    MainWindow::instance()->getActionMap().value("refine-search")->setEnabled(params);
     setEnabled(params);
 
     if (!params) return;

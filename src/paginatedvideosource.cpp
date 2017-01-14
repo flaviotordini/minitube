@@ -27,7 +27,6 @@ $END_LICENSE */
 
 namespace The {
 NetworkAccess* http();
-QHash<QString, QAction*>* globalActions();
 }
 
 PaginatedVideoSource::PaginatedVideoSource(QObject *parent) : VideoSource(parent)
