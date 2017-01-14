@@ -12,7 +12,6 @@ DEFINES += APP_UNIX_NAME="$$APP_UNIX_NAME"
 DEFINES += APP_PHONON
 DEFINES += APP_PHONON_SEEK
 DEFINES += APP_SNAPSHOT
-DEFINES += APP_YT3
 
 message(Building $${APP_NAME} $${VERSION})
 message(Qt $$[QT_VERSION] in $$[QT_INSTALL_PREFIX])
@@ -79,7 +78,6 @@ HEADERS += src/video.h \
     src/standardfeedsview.h \
     src/ytregions.h \
     src/ytcategories.h \
-    src/ytfeedreader.h \
     src/ytsuggester.h \
     src/videosourcewidget.h \
     src/regionsview.h \
@@ -151,7 +149,6 @@ SOURCES += src/main.cpp \
     src/standardfeedsview.cpp \
     src/ytregions.cpp \
     src/ytcategories.cpp \
-    src/ytfeedreader.cpp \
     src/ytsuggester.cpp \
     src/videosourcewidget.cpp \
     src/regionsview.cpp \

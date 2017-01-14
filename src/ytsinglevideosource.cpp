@@ -22,12 +22,8 @@ $END_LICENSE */
 #include "networkaccess.h"
 #include "video.h"
 
-#ifdef APP_YT3
 #include "yt3.h"
 #include "yt3listparser.h"
-#else
-#include "ytfeedreader.h"
-#endif
 
 namespace The {
 NetworkAccess* http();
@@ -37,8 +33,6 @@ YTSingleVideoSource::YTSingleVideoSource(QObject *parent) : PaginatedVideoSource
     video(0),
     startIndex(0),
     max(0) { }
-
-#ifdef APP_YT3
 
 void YTSingleVideoSource::loadVideos(int max, int startIndex) {
     aborted = false;
@@ -105,51 +99,6 @@ void YTSingleVideoSource::parseResults(QByteArray data) {
     }
     loadVideoDetails(videos);
 }
-
-#else
-
-void YTSingleVideoSource::loadVideos(int max, int startIndex) {
-    aborted = false;
-    this->startIndex = startIndex;
-    this->max = max;
-
-    QString s;
-    if (startIndex == 1) s = "http://gdata.youtube.com/feeds/api/videos/" + videoId;
-    else s = QString("http://gdata.youtube.com/feeds/api/videos/%1/related").arg(videoId);
-    QUrl url(s);
-    {
-        QUrlQueryHelper urlHelper(url);
-        urlHelper.addQueryItem("v", "2");
-
-        if (startIndex != 1) {
-            urlHelper.addQueryItem("max-results", QString::number(max));
-            urlHelper.addQueryItem("start-index", QString::number(startIndex-1));
-        }
-    }
-    QObject *reply = The::http()->get(url);
-    connect(reply, SIGNAL(data(QByteArray)), SLOT(parse(QByteArray)));
-    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
-}
-
-void YTSingleVideoSource::parse(QByteArray data) {
-    if (aborted) return;
-
-    YTFeedReader reader(data);
-    QList<Video*> videos = reader.getVideos();
-
-    if (name.isEmpty() && !videos.isEmpty() && startIndex == 1) {
-        name = videos.first()->title();
-        emit nameChanged(name);
-    }
-
-    emit gotVideos(videos);
-
-    if (startIndex == 1) loadVideos(max - 1, 2);
-    else if (startIndex == 2) emit finished(videos.size() + 1);
-    else emit finished(videos.size());
-}
-
-#endif
 
 void YTSingleVideoSource::abort() {
     aborted = true;

@@ -23,10 +23,9 @@ $END_LICENSE */
 #include "database.h"
 #include <QtSql>
 
-#ifdef APP_YT3
 #include "yt3.h"
 #include <QtScript>
-#endif
+
 #include "compatibility/pathsservice.h"
 #include "iconutils.h"
 
@@ -92,29 +91,16 @@ void YTChannel::maybeLoadfromAPI() {
 
     loading = true;
 
-#ifdef APP_YT3
-
     QUrl url = YT3::instance().method("channels");
     QUrlQuery q(url);
     q.addQueryItem("id", channelId);
     q.addQueryItem("part", "snippet");
     url.setQuery(q);
 
-#else
-
-    QUrl url("http://gdata.youtube.com/feeds/api/users/" + channelId);
-    QUrlQuery q(url);
-    q.addQueryItem("v", "2");
-    url.setQuery(q);
-
-#endif
-
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResponse(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
 }
-
-#ifdef APP_YT3
 
 void YTChannel::parseResponse(const QByteArray &bytes) {
     QScriptEngine engine;
@@ -141,38 +127,6 @@ void YTChannel::parseResponse(const QByteArray &bytes) {
     storeInfo();
     loading = false;
 }
-
-#else
-
-void YTChannel::parseResponse(const QByteArray &bytes) {
-    QXmlStreamReader xml(bytes);
-    xml.readNextStartElement();
-    if (xml.name() == QLatin1String("entry"))
-        while(xml.readNextStartElement()) {
-            const QStringRef n = xml.name();
-            if (n == QLatin1String("summary"))
-                description = xml.readElementText().simplified();
-            else if (n == QLatin1String("title"))
-                displayName = xml.readElementText();
-            else if (n == QLatin1String("thumbnail")) {
-                thumbnailUrl = xml.attributes().value("url").toString();
-                xml.skipCurrentElement();
-            } else if (n == QLatin1String("username"))
-                userName = xml.readElementText();
-            else xml.skipCurrentElement();
-        }
-
-    if (xml.hasError()) {
-        emit error(xml.errorString());
-        qWarning() << xml.errorString();
-    }
-
-    emit infoLoaded();
-    storeInfo();
-    loading = false;
-}
-
-#endif
 
 void YTChannel::loadThumbnail() {
     if (loadingThumbnail) return;

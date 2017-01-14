@@ -25,13 +25,9 @@ $END_LICENSE */
 #include "video.h"
 #include "ytchannel.h"
 
-#ifdef APP_YT3
 #include "yt3.h"
 #include "yt3listparser.h"
 #include "datautils.h"
-#else
-#include "ytfeedreader.h"
-#endif
 
 namespace The {
 NetworkAccess* http();
@@ -55,8 +51,6 @@ YTSearch::YTSearch(SearchParams *searchParams, QObject *parent) :
     searchParams(searchParams) {
     searchParams->setParent(this);
 }
-
-#ifdef APP_YT3
 
 void YTSearch::loadVideos(int max, int startIndex) {
     aborted = false;
@@ -167,100 +161,6 @@ void YTSearch::parseResults(QByteArray data) {
     }
     loadVideoDetails(videos);
 }
-
-#else
-
-void YTSearch::loadVideos(int max, int startIndex) {
-    aborted = false;
-
-    QUrl url("http://gdata.youtube.com/feeds/api/videos/");
-    {
-        QUrlQueryHelper urlHelper(url);
-
-        urlHelper.addQueryItem("v", "2");
-        urlHelper.addQueryItem("max-results", QString::number(max));
-        urlHelper.addQueryItem("start-index", QString::number(startIndex));
-
-        if (!searchParams->keywords().isEmpty()) {
-            if (searchParams->keywords().startsWith("http://") ||
-                    searchParams->keywords().startsWith("https://")) {
-                urlHelper.addQueryItem("q", YTSearch::videoIdFromUrl(searchParams->keywords()));
-            } else urlHelper.addQueryItem("q", searchParams->keywords());
-        }
-
-        if (!searchParams->channelId().isEmpty())
-            urlHelper.addQueryItem("author", searchParams->channelId());
-
-        switch (searchParams->sortBy()) {
-        case SearchParams::SortByNewest:
-            urlHelper.addQueryItem("orderby", "published");
-            break;
-        case SearchParams::SortByViewCount:
-            urlHelper.addQueryItem("orderby", "viewCount");
-            break;
-        case SearchParams::SortByRating:
-            urlHelper.addQueryItem("orderby", "rating");
-            break;
-        }
-
-        switch (searchParams->duration()) {
-        case SearchParams::DurationShort:
-            urlHelper.addQueryItem("duration", "short");
-            break;
-        case SearchParams::DurationMedium:
-            urlHelper.addQueryItem("duration", "medium");
-            break;
-        case SearchParams::DurationLong:
-            urlHelper.addQueryItem("duration", "long");
-            break;
-        }
-
-        switch (searchParams->time()) {
-        case SearchParams::TimeToday:
-            urlHelper.addQueryItem("time", "today");
-            break;
-        case SearchParams::TimeWeek:
-            urlHelper.addQueryItem("time", "this_week");
-            break;
-        case SearchParams::TimeMonth:
-            urlHelper.addQueryItem("time", "this_month");
-            break;
-        }
-
-        switch (searchParams->quality()) {
-        case SearchParams::QualityHD:
-            urlHelper.addQueryItem("hd", "true");
-            break;
-        }
-
-    }
-    QObject *reply = The::http()->get(url);
-    connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResults(QByteArray)));
-    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
-}
-
-void YTSearch::parseResults(QByteArray data) {
-    if (aborted) return;
-
-    YTFeedReader reader(data);
-    QList<Video*> videos = reader.getVideos();
-    suggestions = reader.getSuggestions();
-
-    if (name.isEmpty() && !searchParams->channelId().isEmpty()) {
-        if (videos.isEmpty()) name = searchParams->channelId();
-        else {
-            name = videos.first()->channelTitle();
-            // also grab the userId
-            userId = videos.first()->channelId();
-        }
-        emit nameChanged(name);
-    }
-
-    emit gotVideos(videos);
-    emit finished(videos.size());
-}
-
-#endif
 
 void YTSearch::abort() {
     aborted = true;

@@ -22,12 +22,8 @@ $END_LICENSE */
 #include "networkaccess.h"
 #include "video.h"
 
-#ifdef APP_YT3
 #include "yt3.h"
 #include "yt3listparser.h"
-#else
-#include "ytfeedreader.h"
-#endif
 
 namespace The {
 NetworkAccess* http();
@@ -36,8 +32,6 @@ NetworkAccess* http();
 YTStandardFeed::YTStandardFeed(QObject *parent)
     : PaginatedVideoSource(parent),
       aborted(false) { }
-
-#ifdef APP_YT3
 
 void YTStandardFeed::loadVideos(int max, int startIndex) {
     aborted = false;
@@ -87,47 +81,6 @@ void YTStandardFeed::parseResults(QByteArray data) {
     emit gotVideos(videos);
     emit finished(videos.size());
 }
-
-#else
-
-void YTStandardFeed::loadVideos(int max, int startIndex) {
-    aborted = false;
-
-    QString s = "http://gdata.youtube.com/feeds/api/standardfeeds/";
-    if (!regionId.isEmpty()) s += regionId + "/";
-    s += feedId;
-    if (!category.isEmpty()) s += "_" + category;
-
-    QUrl url(s);
-    {
-        QUrlQueryHelper urlHelper(url);
-        urlHelper.addQueryItem("v", "2");
-
-        if (feedId != "most_shared" && feedId != "on_the_web") {
-            QString t = time;
-            if (t.isEmpty()) t = "today";
-            urlHelper.addQueryItem("time", t);
-        }
-
-        urlHelper.addQueryItem("max-results", QString::number(max));
-        urlHelper.addQueryItem("start-index", QString::number(startIndex));
-    }
-    QObject *reply = The::http()->get(url);
-    connect(reply, SIGNAL(data(QByteArray)), SLOT(parse(QByteArray)));
-    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
-}
-
-void YTStandardFeed::parseResults(QByteArray data) {
-    if (aborted) return;
-
-    YTFeedReader reader(data);
-    QList<Video*> videos = reader.getVideos();
-
-    emit gotVideos(videos);
-    emit finished(videos.size());
-}
-
-#endif
 
 void YTStandardFeed::abort() {
     aborted = true;

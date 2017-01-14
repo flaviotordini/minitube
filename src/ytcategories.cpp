@@ -20,12 +20,10 @@ $END_LICENSE */
 
 #include "ytcategories.h"
 #include "networkaccess.h"
-#ifdef APP_YT3
 #include "datautils.h"
 #include "yt3.h"
 #include "ytregions.h"
 #include <QtScript>
-#endif
 
 namespace The {
 NetworkAccess* http();
@@ -38,7 +36,6 @@ void YTCategories::loadCategories(QString language) {
         language = QLocale::system().uiLanguages().first();
     lastLanguage = language;
 
-#ifdef APP_YT3
     QUrl url = YT3::instance().method("videoCategories");
 
     QUrlQuery q(url);
@@ -50,17 +47,10 @@ void YTCategories::loadCategories(QString language) {
     q.addQueryItem("regionCode", regionCode);
     url.setQuery(q);
 
-#else
-    QString url = "http://gdata.youtube.com/schemas/2007/categories.cat?hl=" + language;
-#endif
-
-
     QObject *reply = The::http()->get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseCategories(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
 }
-
-#ifdef APP_YT3
 
 void YTCategories::parseCategories(QByteArray bytes) {
     QList<YTCategory> categories;
@@ -92,37 +82,6 @@ void YTCategories::parseCategories(QByteArray bytes) {
 
     emit categoriesLoaded(categories);
 }
-
-#else
-
-void YTCategories::parseCategories(QByteArray bytes) {
-    QList<YTCategory> categories;
-
-    QXmlStreamReader xml(bytes);
-    while (!xml.atEnd()) {
-        xml.readNext();
-        if (xml.isStartElement() && xml.name() == QLatin1String("category")) {
-            QString term = xml.attributes().value("term").toString();
-            QString label = xml.attributes().value("label").toString();
-            while(xml.readNextStartElement())
-                if (xml.name() == QLatin1String("assignable")) {
-                    YTCategory category;
-                    category.term = term;
-                    category.label = label;
-                    categories << category;
-                } else xml.skipCurrentElement();
-        }
-    }
-
-    if (xml.hasError()) {
-        emit error(xml.errorString());
-        return;
-    }
-
-    emit categoriesLoaded(categories);
-}
-
-#endif
 
 void YTCategories::requestError(QNetworkReply *reply) {
     if (lastLanguage != "en") loadCategories("en");

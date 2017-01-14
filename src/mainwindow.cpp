@@ -73,9 +73,7 @@ $END_LICENSE */
 #include "videoareawidget.h"
 #include "jsfunctions.h"
 #include "seekslider.h"
-#ifdef APP_YT3
 #include "yt3.h"
-#endif
 
 namespace {
 static MainWindow *singleton = 0;
