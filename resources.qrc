@@ -60,20 +60,14 @@
         <file>images/mark-watched.png</file>
         <file>images/channels.png</file>
         <file>images/unwatched.png</file>
-        <file>images/badge.png</file>
-        <file>images/badge3.png</file>
-        <file>images/badge4.png</file>
         <file>sounds/snapshot.wav</file>
         <file>images/app@2x.png</file>
         <file>images/sort@2x.png</file>
         <file>images/unwatched@2x.png</file>
-        <file>images/badge@2x.png</file>
-        <file>images/badge3@2x.png</file>
         <file>images/channels@2x.png</file>
         <file>images/mark-watched@2x.png</file>
         <file>images/show-updated@2x.png</file>
         <file>images/worldwide@2x.png</file>
-        <file>images/badge4@2x.png</file>
         <file>images/refine-search@2x.png</file>
         <file>images/search-duration@2x.png</file>
         <file>images/search-quality@2x.png</file>

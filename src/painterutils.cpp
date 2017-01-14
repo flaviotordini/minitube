@@ -64,44 +64,21 @@ void PainterUtils::topShadow(QWidget *widget) {
 }
 
 void PainterUtils::paintBadge(QPainter *painter, const QString &text, bool center) {
-    const QPixmap badge1 = IconUtils::pixmap(":/images/badge.png");
-    const QPixmap badge3 = IconUtils::pixmap(":/images/badge3.png");
-    const QPixmap badge4 = IconUtils::pixmap(":/images/badge4.png");
+    painter->save();
 
-    const int textSize = text.size();
-
-    QPixmap badge;
-    if (textSize < 3) badge = badge1;
-    else if (textSize == 3) badge = badge3;
-    else badge = badge4;
-
-    const int w = badge.width() / badge.devicePixelRatio();
-    const int h = badge.height() / badge.devicePixelRatio();
-
+    painter->setFont(FontUtils::small());
+    QRect textBox = painter->boundingRect(QRect(), Qt::AlignCenter, text);
+    int w = textBox.width() + painter->fontMetrics().width('m');
     int x = 0;
     if (center) x -= w / 2;
+    QRect rect(x, 0, w, textBox.height());
 
-    QRect rect(x, 0, w, h);
-    painter->drawPixmap(rect, badge);
+    painter->setPen(Qt::NoPen);
+    painter->setBrush(QColor(230,36,41));
+    painter->setRenderHint(QPainter::Antialiasing);
+    qreal borderRadius = rect.height()/2.;
+    painter->drawRoundedRect(rect, borderRadius, borderRadius);
 
-    QFont f = painter->font();
-    f.setPixelSize(11);
-    f.setHintingPreference(QFont::PreferNoHinting);
-#ifdef APP_MAC
-    f.setFamily("Helvetica");
-#elif APP_WIN
-    rect.adjust(0, -2, 0, 0);
-#else
-    rect.adjust(0, -1, 0, 0);
-#endif
-    painter->save();
-    painter->setFont(f);
-
-    rect.adjust(0, 1, 0, 0);
-    painter->setPen(QColor(0, 0, 0, 64));
-    painter->drawText(rect, Qt::AlignCenter, text);
-
-    rect.adjust(0, -1, 0, 0);
     painter->setPen(Qt::white);
     painter->drawText(rect, Qt::AlignCenter, text);
 
