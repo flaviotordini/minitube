@@ -20,10 +20,15 @@ $END_LICENSE */
 
 #include "segmentedcontrol.h"
 #include "mainwindow.h"
-#include "painterutils.h"
 #include "fontutils.h"
+#include "iconutils.h"
+#include "painterutils.h"
 
-static const QColor borderColor = QColor(158, 157, 159);
+namespace {
+static const QColor borderColor = QColor(160, 160, 160);
+static const QColor backgroundColor = QColor(183, 183, 183);
+static const QColor selectedColor = QColor(212, 212, 212);
+}
 
 class SegmentedControl::Private {
 public:
@@ -36,7 +41,9 @@ public:
 SegmentedControl::SegmentedControl (QWidget *parent)
     : QWidget(parent), d(new SegmentedControl::Private) {
 
+#ifdef APP_MAC
     setFont(FontUtils::small());
+#endif
 
     setMouseTracking(true);
 
@@ -79,22 +86,25 @@ bool SegmentedControl::setCheckedAction(QAction *action) {
 
 QSize SegmentedControl::minimumSizeHint (void) const {
     int itemsWidth = calculateButtonWidth() * d->actionList.size() * 1.2;
-    return(QSize(itemsWidth, QFontMetrics(font()).height() * 1.9));
+    return(QSize(itemsWidth, QFontMetrics(font()).height() * 1.8));
 }
 
 void SegmentedControl::paintEvent (QPaintEvent * /*event*/) {
-    int height = rect().height();
-    int width = rect().width();
+    const int height = rect().height();
+    const int width = rect().width();
 
     QPainter p(this);
-
-    QLinearGradient linearGrad(rect().topLeft(), rect().bottomLeft());
-    linearGrad.setColorAt(0, QColor(185, 183, 185));
-    linearGrad.setColorAt(1, QColor(176, 176, 178));
-    p.fillRect(rect(), QBrush(linearGrad));
+    p.fillRect(rect(), backgroundColor);
 
     // Calculate Buttons Size & Location
     const int buttonWidth = width / d->actionList.size();
+
+    const qreal pixelRatio = IconUtils::pixelRatio();
+
+    QPen pen(borderColor);
+    const qreal penWidth = 1. / pixelRatio;
+    pen.setWidthF(penWidth);
+    p.setPen(pen);
 
     // Draw Buttons
     QRect rect(0, 0, buttonWidth, height);
@@ -102,13 +112,18 @@ void SegmentedControl::paintEvent (QPaintEvent * /*event*/) {
     for (int i = 0; i < actionCount; i++) {
         QAction *action = d->actionList.at(i);
         if (i + 1 == actionCount) {
+            // last button
             rect.setWidth(width - buttonWidth * (actionCount-1));
             drawButton(&p, rect, action);
         } else {
             drawButton(&p, rect, action);
+            qreal w = rect.x() + rect.width() - penWidth;
+            p.drawLine(QPointF(w, 0), QPointF(w, height));
             rect.moveLeft(rect.x() + rect.width());
         }
     }
+    const qreal y = height - penWidth;
+    p.drawLine(QPointF(0, y), QPointF(width, y));
 }
 
 void SegmentedControl::mouseMoveEvent (QMouseEvent *event) {
@@ -195,7 +210,6 @@ void SegmentedControl::drawButton (QPainter *painter,
 void SegmentedControl::drawUnselectedButton (QPainter *painter,
                                         const QRect& rect,
                                         const QAction *action) {
-    painter->setPen(QColor(0, 0, 0, 128));
     paintButton(painter, rect, action);
 }
 
@@ -207,16 +221,9 @@ void SegmentedControl::drawSelectedButton (QPainter *painter,
 
     const int width = rect.width();
     const int height = rect.height();
-    const int hCenter = width * .5;
-    QRadialGradient gradient(hCenter, 0,
-                             width,
-                             hCenter, 0);
-    gradient.setColorAt(1, QColor(212, 210, 212));
-    gradient.setColorAt(0, QColor(203, 203, 205));
-    painter->fillRect(0, 0, width, height, QBrush(gradient));
+    painter->fillRect(0, 0, width, height, selectedColor);
 
     painter->restore();
-    painter->setPen(palette().windowText().color());
     paintButton(painter, rect, action);
 }
 
@@ -228,48 +235,28 @@ void SegmentedControl::paintButton(QPainter *painter, const QRect& rect, const Q
     const int width = rect.width();
 
     painter->save();
-    painter->setPen(QPen(borderColor, 1.0 / qApp->devicePixelRatio()));
-#if defined(APP_MAC) | defined(APP_WIN)
-    painter->drawRect(-1, -1, width, height);
-#else
-    painter->drawRect(0, 0, width, height - 1);
-#endif
+    painter->setPen(Qt::NoPen);
+
+    painter->drawRect(0, 0, width, height);
     painter->restore();
 
     const QString text = action->text();
 
-    // text shadow
-    /*
-    painter->setPen(QColor(0, 0, 0, 128));
-    painter->drawText(0, -1, width, height, Qt::AlignCenter, text);
-    */
-
+    painter->setPen(palette().windowText().color());
     painter->drawText(0, 0, width, height, Qt::AlignCenter, text);
+
+    if (action == d->pressedAction && action != d->checkedAction) {
+        painter->fillRect(0, 0, width, height, QColor(0x00, 0x00, 0x00, 32));
+    } else if (action == d->hoveredAction && action != d->checkedAction) {
+        painter->fillRect(0, 0, width, height, QColor(0x00, 0x00, 0x00, 16));
+    }
 
     if (action->property("notifyCount").isValid()) {
         QRect textBox = painter->boundingRect(rect,
                                               Qt::AlignCenter,
                                               text);
-        painter->translate((width + textBox.width()) / 2 + 10, (height - 20) / 2);
+        painter->translate((width + textBox.width()) / 2 + 10, (height - textBox.height()) / 2);
         PainterUtils::paintBadge(painter, action->property("notifyCount").toString());
-    }
-
-    if (action == d->pressedAction && action != d->checkedAction) {
-        const int hCenter = width * .5;
-        QRadialGradient gradient(hCenter, 0,
-                                 width,
-                                 hCenter, 0);
-        gradient.setColorAt(1, QColor(0x00, 0x00, 0x00, 0));
-        gradient.setColorAt(0, QColor(0x00, 0x00, 0x00, 32));
-        painter->fillRect(0, 0, width, height, QBrush(gradient));
-    } else if (action == d->hoveredAction && action != d->checkedAction) {
-        const int hCenter = width * .5;
-        QRadialGradient gradient(hCenter, 0,
-                                 width,
-                                 hCenter, 0);
-        gradient.setColorAt(1, QColor(0x00, 0x00, 0x00, 0));
-        gradient.setColorAt(0, QColor(0x00, 0x00, 0x00, 16));
-        painter->fillRect(0, 0, width, height, QBrush(gradient));
     }
 
     painter->restore();
