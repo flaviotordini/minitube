@@ -26,7 +26,6 @@ $END_LICENSE */
 #include "yt3.h"
 #include <QtScript>
 
-#include "compatibility/pathsservice.h"
 #include "iconutils.h"
 
 namespace The {
@@ -140,7 +139,7 @@ void YTChannel::loadThumbnail() {
 }
 
 const QString & YTChannel::getThumbnailDir() {
-    static const QString thumbDir = Paths::getCacheLocation() + "/channels/";
+    static const QString thumbDir = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + "/channels/";
     return thumbDir;
 }
 

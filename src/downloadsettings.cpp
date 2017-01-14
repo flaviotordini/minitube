@@ -21,7 +21,6 @@ $END_LICENSE */
 #include "downloadsettings.h"
 #include "downloadmanager.h"
 #include "mainwindow.h"
-#include "compatibility/pathsservice.h"
 
 DownloadSettings::DownloadSettings(QWidget *parent) : QWidget(parent) {
 
@@ -57,7 +56,7 @@ void DownloadSettings::paintEvent(QPaintEvent * /*event*/) {
 }
 
 void DownloadSettings::changeFolder() {
-    const QString path = Paths::getHomeLocation();
+    const QString path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
 #ifdef APP_MAC
     QFileDialog* dialog = new QFileDialog(this);
     dialog->setFileMode(QFileDialog::Directory);
@@ -87,7 +86,7 @@ void DownloadSettings::folderChosen(const QString &dir) {
 
 void DownloadSettings::updateMessage() {
     const QString path = DownloadManager::instance()->currentDownloadFolder();
-    const QString home = Paths::getHomeLocation();
+    const QString home = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
     QString displayPath = path;
     displayPath = displayPath.remove(home + "/");
     message->setText(

@@ -20,7 +20,6 @@ $END_LICENSE */
 
 #include "temporary.h"
 #include "constants.h"
-#include "compatibility/pathsservice.h"
 
 static QList<QString> paths;
 #ifdef APP_LINUX
@@ -30,7 +29,7 @@ static QString userName;
 Temporary::Temporary() { }
 
 QString Temporary::filename() {
-    static const QString tempDir = Paths::getTempLocation();
+    static const QString tempDir = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
 
     QString tempFile = tempDir + "/" + Constants::UNIX_NAME + "-" + QString::number(qrand());
 

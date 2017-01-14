@@ -24,7 +24,6 @@ $END_LICENSE */
 #include "macutils.h"
 #endif
 #include "constants.h"
-#include "compatibility/pathsservice.h"
 #include <QDesktopServices>
 
 SnapshotSettings::SnapshotSettings(QWidget *parent) : QWidget(parent) {
@@ -76,7 +75,7 @@ QString SnapshotSettings::getCurrentLocation() {
     QSettings settings;
     QString location = settings.value("snapshotsFolder").toString();
     if (location.isEmpty() || !QFile::exists(location)) {
-        location = Paths::getPicturesLocation();
+        location = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
 #ifdef APP_MAC_STORE
         location += "/MinitubeforYouTube";
 #endif
@@ -89,14 +88,14 @@ QString SnapshotSettings::displayPath(const QString &path) {
     return QDir(path).dirName();
 #endif
 
-    const QString home = Paths::getHomeLocation();
+    const QString home = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
     QString displayPath = path;
     displayPath = displayPath.remove(home + "/");
     return displayPath;
 }
 
 void SnapshotSettings::changeFolder() {
-    const QString path = Paths::getHomeLocation();
+    const QString path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
 #ifdef APP_MAC
     QFileDialog* dialog = new QFileDialog(this);
     dialog->setFileMode(QFileDialog::Directory);

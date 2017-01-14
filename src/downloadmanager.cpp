@@ -31,7 +31,6 @@ $END_LICENSE */
 #include "extra.h"
 #endif
 #include "datautils.h"
-#include "compatibility/pathsservice.h"
 #include "iconutils.h"
 
 static DownloadManager *downloadManagerInstance = 0;
@@ -169,17 +168,17 @@ void DownloadManager::updateStatusMessage() {
 
 QString DownloadManager::defaultDownloadFolder() {
     // download in the Movies system folder
-    QString path = Paths::getMoviesLocation();
+    QString path = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation);
 
     const QDir moviesDir(path);
     if (!moviesDir.exists()) {
         // fallback to Desktop
-        path = Paths::getDesktopLocation();
+        path = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
 
         const QDir desktopDir(path);
         if (!desktopDir.exists()) {
             // fallback to Home
-            path = Paths::getHomeLocation();
+            path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
         }
     }
     return path;

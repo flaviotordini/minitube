@@ -21,7 +21,6 @@ $END_LICENSE */
 #include "jsfunctions.h"
 #include "networkaccess.h"
 #include "constants.h"
-#include "compatibility/pathsservice.h"
 
 namespace The {
 NetworkAccess* http();
@@ -64,7 +63,7 @@ QString JsFunctions::jsFilename() {
 }
 
 QString JsFunctions::jsPath() {
-    return Paths::getDataLocation() + "/" + jsFilename();
+    return QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/" + jsFilename();
 }
 
 void JsFunctions::loadJs() {
@@ -83,8 +82,9 @@ void JsFunctions::gotJs(const QByteArray &bytes) {
         qWarning() << "Got empty js";
         return;
     }
-    if (!QDir().mkpath(Paths::getDataLocation())) {
-      qCritical() << "Failed to create" << Paths::getDataLocation();
+    QString location = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+    if (!QDir().mkpath(location)) {
+      qCritical() << "Failed to create" << location;
       return;
     }
     QFile file(jsPath());

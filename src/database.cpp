@@ -20,7 +20,6 @@ $END_LICENSE */
 
 #include "database.h"
 #include "constants.h"
-#include "compatibility/pathsservice.h"
 #include <QtDebug>
 
 static const int DATABASE_VERSION = 1;
@@ -28,7 +27,7 @@ static const QString dbName = QLatin1String(Constants::UNIX_NAME) + ".db";
 static Database *databaseInstance = 0;
 
 Database::Database() {
-    QString dataLocation = Paths::getDataLocation();
+    QString dataLocation = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
 
     if (!QDir().mkpath(dataLocation)) {
         qCritical() << "Failed to create directory " << dataLocation;
@@ -59,7 +58,8 @@ void Database::createDatabase() {
 
 #ifdef APP_LINUX
     // Qt5 changed its "data" path. Try to move the old db to the new path
-    QString qt4DataLocation = Paths::getHomeLocation() + "/.local/share/data/" + Constants::ORG_NAME + "/" + Constants::NAME;
+    QString homeLocation = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+    QString qt4DataLocation = homeLocation + "/.local/share/data/" + Constants::ORG_NAME + "/" + Constants::NAME;
     QString oldDbLocation = qt4DataLocation + "/" + dbName;
     qDebug() << oldDbLocation;
     if (QFile::exists(oldDbLocation)) {
@@ -117,7 +117,7 @@ void Database::createDatabase() {
 
 // static
 QString Database::getDbLocation() {
-    return Paths::getDataLocation() + "/" + dbName;
+    return QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/" + dbName;
 }
 
 // static
@@ -127,7 +127,8 @@ bool Database::exists() {
         fileExists = QFile::exists(getDbLocation());
 #ifdef APP_LINUX
         if (!fileExists) {
-            QString qt4DataLocation = Paths::getHomeLocation() + "/.local/share/data/" + Constants::ORG_NAME + "/" + Constants::NAME;
+            QString homeLocation = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+            QString qt4DataLocation = homeLocation + "/.local/share/data/" + Constants::ORG_NAME + "/" + Constants::NAME;
             QString oldDbLocation = qt4DataLocation + "/" + dbName;
             qDebug() << "asd" << oldDbLocation;
             fileExists = QFile::exists(oldDbLocation);

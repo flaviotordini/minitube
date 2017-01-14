@@ -102,7 +102,6 @@ HEADERS += src/video.h \
     src/ytchannel.h \
     src/yt3.h \
     src/paginatedvideosource.h \
-    src/compatibility/pathsservice.h \
     src/searchwidget.h \
     src/exlineedit.h \
     src/channellistview.h
@@ -173,7 +172,6 @@ SOURCES += src/main.cpp \
     src/ytchannel.cpp \
     src/yt3.cpp \
     src/paginatedvideosource.cpp \
-    src/compatibility/pathsservice.cpp \
     src/exlineedit.cpp \
     src/channellistview.cpp
 RESOURCES += resources.qrc

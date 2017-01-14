@@ -29,7 +29,6 @@ $END_LICENSE */
 #include <cstdlib>
 #include "networkaccess.h"
 #include "diskcache.h"
-#include "compatibility/pathsservice.h"
 
 namespace The {
 
@@ -146,7 +145,7 @@ namespace The {
             maybeSetSystemProxy();
             nam = new QNetworkAccessManager();
             QNetworkDiskCache *cache = new DiskCache();
-            cache->setCacheDirectory(Paths::getCacheLocation());
+            cache->setCacheDirectory(QStandardPaths::writableLocation(QStandardPaths::CacheLocation));
             nam->setCache(cache);
         }
         return nam;
