@@ -23,7 +23,7 @@ $END_LICENSE */
 #include "playlistview.h"
 #include "loadingwidget.h"
 #include "videoareawidget.h"
-#include "networkaccess.h"
+#include "http.h"
 #include "minisplitter.h"
 #include "constants.h"
 #include "downloadmanager.h"
@@ -50,11 +50,6 @@ $END_LICENSE */
 #include "snapshotsettings.h"
 #endif
 #include "datautils.h"
-
-namespace The {
-NetworkAccess* http();
-QNetworkAccessManager* networkAccessManager();
-}
 
 MediaView* MediaView::instance() {
     static MediaView *i = new MediaView();

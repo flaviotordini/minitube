@@ -19,15 +19,12 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "updatechecker.h"
-#include "networkaccess.h"
+#include "http.h"
+#include "httputils.h"
 #include "constants.h"
 #ifdef APP_ACTIVATION
 #include "activation.h"
 #endif
-
-namespace The {
-NetworkAccess* http();
-}
 
 UpdateChecker::UpdateChecker() {
     m_needUpdate = false;
@@ -53,7 +50,7 @@ void UpdateChecker::checkForUpdate() {
 #endif
     url.setQuery(q);
 
-    QObject *reply = The::http()->get(url);
+    QObject *reply = HttpUtils::notCached().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(requestFinished(QByteArray)));
 }
 

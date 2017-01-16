@@ -19,16 +19,13 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "video.h"
-#include "networkaccess.h"
+#include "http.h"
+#include "httputils.h"
 #include <QtNetwork>
 #include "videodefinition.h"
 #include "jsfunctions.h"
 #include "temporary.h"
 #include "datautils.h"
-
-namespace The {
-NetworkAccess* http();
-}
 
 namespace {
 static const QString jsNameChars = "a-zA-Z0-9\\$_";
@@ -89,7 +86,7 @@ void Video::setWebpage(const QString &value) {
 void Video::loadThumbnail() {
     if (m_thumbnailUrl.isEmpty() || loadingThumbnail) return;
     loadingThumbnail = true;
-    QObject *reply = The::http()->get(m_thumbnailUrl);
+    QObject *reply = HttpUtils::cached().get(m_thumbnailUrl);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(setThumbnail(QByteArray)));
 }
 
@@ -145,7 +142,7 @@ void  Video::getVideoInfo() {
                        ).arg(videoId, elTypes.at(elIndex)));
     }
 
-    QObject *reply = The::http()->get(url);
+    QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(gotVideoInfo(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
 
@@ -241,7 +238,7 @@ void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
                     q.addQueryItem("has_verified", "1");
                     url.setQuery(q);
                     qDebug() << "Loading webpage" << url;
-                    QObject *reply = The::http()->get(url);
+                    QObject *reply = HttpUtils::yt().get(url);
                     connect(reply, SIGNAL(data(QByteArray)), SLOT(scrapeWebPage(QByteArray)));
                     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
                     // see you in scrapWebPage(QByteArray)
@@ -336,7 +333,7 @@ void Video::scrapeWebPage(const QByteArray &bytes) {
                     jsPlayerIdRe.indexIn(jsPlayerUrl);
                     QString jsPlayerId = jsPlayerRe.cap(1);
                     */
-        QObject *reply = The::http()->get(jsPlayerUrl);
+        QObject *reply = HttpUtils::yt().get(jsPlayerUrl);
         connect(reply, SIGNAL(data(QByteArray)), SLOT(parseJsPlayer(QByteArray)));
         connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
     }

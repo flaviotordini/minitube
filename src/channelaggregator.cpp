@@ -27,11 +27,8 @@ $END_LICENSE */
 #ifdef APP_MAC
 #include "macutils.h"
 #endif
-#include "networkaccess.h"
-
-namespace The {
-    NetworkAccess* http();
-}
+#include "http.h"
+#include "httputils.h"
 
 ChannelAggregator::ChannelAggregator(QObject *parent) : QObject(parent),
     unwatchedCount(-1),
@@ -103,7 +100,7 @@ void ChannelAggregator::processNextChannel() {
 void ChannelAggregator::checkWebPage(YTChannel *channel) {
     currentChannel = channel;
     QString url = "https://www.youtube.com/channel/" + channel->getChannelId() + "/videos";
-    QObject *reply = The::http()->get(url);
+    QObject *reply = HttpUtils::yt().get(url);
 
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseWebPage(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorWebPage(QNetworkReply*)));

@@ -27,7 +27,6 @@ $END_LICENSE */
 #include "spacer.h"
 #include "constants.h"
 #include "iconutils.h"
-#include "global.h"
 #include "videodefinition.h"
 #include "fontutils.h"
 #include "globalshortcuts.h"
@@ -74,6 +73,7 @@ $END_LICENSE */
 #include "jsfunctions.h"
 #include "seekslider.h"
 #include "yt3.h"
+#include "httputils.h"
 
 namespace {
 static MainWindow *singleton = 0;
@@ -1597,8 +1597,7 @@ void MainWindow::clearRecentKeywords() {
         searchView->updateRecentKeywords();
         searchView->updateRecentChannels();
     }
-    QAbstractNetworkCache *cache = The::networkAccessManager()->cache();
-    if (cache) cache->clear();
+    HttpUtils::clearCaches();
     showMessage(tr("Your privacy is now safe"));
 }
 

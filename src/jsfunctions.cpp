@@ -19,12 +19,9 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "jsfunctions.h"
-#include "networkaccess.h"
+#include "http.h"
+#include "httputils.h"
 #include "constants.h"
-
-namespace The {
-NetworkAccess* http();
-}
 
 JsFunctions* JsFunctions::instance() {
     static JsFunctions *i = new JsFunctions(QLatin1String(Constants::WEBSITE) + "-ws/functions.js");
@@ -72,7 +69,7 @@ void JsFunctions::loadJs() {
     q.addQueryItem("v", Constants::VERSION);
     url.setQuery(q);
 
-    NetworkReply* reply = The::http()->get(url);
+    QObject* reply = HttpUtils::notCached().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(gotJs(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorJs(QNetworkReply*)));
 }

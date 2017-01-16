@@ -19,7 +19,8 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "ytchannel.h"
-#include "networkaccess.h"
+#include "http.h"
+#include "httputils.h"
 #include "database.h"
 #include <QtSql>
 
@@ -27,10 +28,6 @@ $END_LICENSE */
 #include <QtScript>
 
 #include "iconutils.h"
-
-namespace The {
-NetworkAccess* http();
-}
 
 YTChannel::YTChannel(const QString &channelId, QObject *parent) : QObject(parent),
     id(0),
@@ -96,7 +93,7 @@ void YTChannel::maybeLoadfromAPI() {
     q.addQueryItem("part", "snippet");
     url.setQuery(q);
 
-    QObject *reply = The::http()->get(url);
+    QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResponse(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
 }
@@ -133,7 +130,7 @@ void YTChannel::loadThumbnail() {
     loadingThumbnail = true;
 
     QUrl url(thumbnailUrl);
-    QObject *reply = The::http()->get(url);
+    QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(storeThumbnail(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
 }

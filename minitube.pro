@@ -26,21 +26,17 @@ DEFINES *= QT_STRICT_ITERATORS
 
 TARGET = $${APP_UNIX_NAME}
 
-QT += network sql script
-qt:greaterThan(QT_MAJOR_VERSION, 4) {
-    contains(QT, gui): QT *= widgets
-}
+QT += widgets network sql script
 
 include(src/qtsingleapplication/qtsingleapplication.pri)
+include(src/http/http.pri)
 
 HEADERS += src/video.h \
     src/searchlineedit.h \
     src/spacer.h \
     src/constants.h \
     src/playlistitemdelegate.h \
-    src/networkaccess.h \
     src/videomimedata.h \
-    src/global.h \
     src/updatechecker.h \
     src/searchparams.h \
     src/minisplitter.h \
@@ -104,14 +100,14 @@ HEADERS += src/video.h \
     src/paginatedvideosource.h \
     src/searchwidget.h \
     src/exlineedit.h \
-    src/channellistview.h
+    src/channellistview.h \
+    src/httputils.h
 SOURCES += src/main.cpp \
     src/searchlineedit.cpp \
     src/spacer.cpp \
     src/video.cpp \
     src/videomimedata.cpp \
     src/updatechecker.cpp \
-    src/networkaccess.cpp \
     src/searchparams.cpp \
     src/minisplitter.cpp \
     src/loadingwidget.cpp \
@@ -173,7 +169,8 @@ SOURCES += src/main.cpp \
     src/yt3.cpp \
     src/paginatedvideosource.cpp \
     src/exlineedit.cpp \
-    src/channellistview.cpp
+    src/channellistview.cpp \
+    src/httputils.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/

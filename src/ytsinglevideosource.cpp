@@ -19,15 +19,12 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "ytsinglevideosource.h"
-#include "networkaccess.h"
+#include "http.h"
+#include "httputils.h"
 #include "video.h"
 
 #include "yt3.h"
 #include "yt3listparser.h"
-
-namespace The {
-NetworkAccess* http();
-}
 
 YTSingleVideoSource::YTSingleVideoSource(QObject *parent) : PaginatedVideoSource(parent),
     video(0),
@@ -78,7 +75,7 @@ void YTSingleVideoSource::loadVideos(int max, int startIndex) {
 
     lastUrl = url;
 
-    QObject *reply = The::http()->get(url);
+    QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResults(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
 }

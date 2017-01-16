@@ -19,21 +19,21 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "ytcategories.h"
-#include "networkaccess.h"
+#include "http.h"
+#include "httputils.h"
 #include "datautils.h"
 #include "yt3.h"
 #include "ytregions.h"
 #include <QtScript>
 
-namespace The {
-NetworkAccess* http();
-}
-
 YTCategories::YTCategories(QObject *parent) : QObject(parent) { }
 
 void YTCategories::loadCategories(QString language) {
-    if (language.isEmpty())
+    if (language.isEmpty()) {
         language = QLocale::system().uiLanguages().first();
+        int index = language.indexOf('-');
+        if (index > 0) language = language.mid(0, index);
+    }
     lastLanguage = language;
 
     QUrl url = YT3::instance().method("videoCategories");
@@ -47,7 +47,7 @@ void YTCategories::loadCategories(QString language) {
     q.addQueryItem("regionCode", regionCode);
     url.setQuery(q);
 
-    QObject *reply = The::http()->get(url);
+    QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseCategories(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
 }

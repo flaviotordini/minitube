@@ -4,7 +4,8 @@
 #include <ctime>
 
 #include "jsfunctions.h"
-#include "networkaccess.h"
+#include "http.h"
+#include "httputils.h"
 #include "constants.h"
 
 #ifdef APP_EXTRA
@@ -13,10 +14,6 @@
 
 #define STR(x) #x
 #define STRINGIFY(x) STR(x)
-
-namespace The {
-NetworkAccess* http();
-}
 
 YT3 &YT3::instance() {
     static YT3 *i = new YT3();
@@ -70,7 +67,7 @@ void YT3::testApiKey() {
     q.addQueryItem("chart", "mostPopular");
     q.addQueryItem("maxResults", "1");
     url.setQuery(q);
-    QObject *reply = The::http()->get(url);
+    QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(finished(QNetworkReply*)), SLOT(testResponse(QNetworkReply*)));
 }
 

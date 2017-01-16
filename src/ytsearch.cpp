@@ -20,7 +20,8 @@ $END_LICENSE */
 
 #include "ytsearch.h"
 #include "constants.h"
-#include "networkaccess.h"
+#include "http.h"
+#include "httputils.h"
 #include "searchparams.h"
 #include "video.h"
 #include "ytchannel.h"
@@ -29,10 +30,6 @@ $END_LICENSE */
 #include "yt3listparser.h"
 #include "datautils.h"
 #include "mainwindow.h"
-
-namespace The {
-NetworkAccess* http();
-}
 
 namespace {
 
@@ -133,7 +130,7 @@ void YTSearch::loadVideos(int max, int startIndex) {
     lastUrl = url;
 
     // qWarning() << "YT3 search" << url.toString();
-    QObject *reply = The::http()->get(url);
+    QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResults(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
 }

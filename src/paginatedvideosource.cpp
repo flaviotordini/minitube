@@ -23,11 +23,8 @@ $END_LICENSE */
 #include "yt3listparser.h"
 #include "datautils.h"
 #include "video.h"
-#include "networkaccess.h"
-
-namespace The {
-NetworkAccess* http();
-}
+#include "http.h"
+#include "httputils.h"
 
 PaginatedVideoSource::PaginatedVideoSource(QObject *parent) : VideoSource(parent)
   , tokenTimestamp(0)
@@ -82,7 +79,7 @@ bool PaginatedVideoSource::isPageTokenExpired() {
 
 void PaginatedVideoSource::reloadToken() {
     qDebug() << "Reloading pageToken";
-    QObject *reply = The::http()->get(lastUrl);
+    QObject *reply = HttpUtils::yt().get(lastUrl);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResults(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
 }
@@ -111,7 +108,7 @@ void PaginatedVideoSource::loadVideoDetails(const QList<Video*> &videos) {
     q.addQueryItem("id", videoIds);
     url.setQuery(q);
 
-    QObject *reply = The::http()->get(url);
+    QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseVideoDetails(QByteArray)));
     connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
 }

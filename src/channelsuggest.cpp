@@ -19,11 +19,8 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "channelsuggest.h"
-#include "networkaccess.h"
-
-namespace The {
-NetworkAccess* http();
-}
+#include "http.h"
+#include "httputils.h"
 
 ChannelSuggest::ChannelSuggest(QObject *parent) : Suggester(parent) {
 
@@ -36,7 +33,7 @@ void ChannelSuggest::suggest(const QString &query) {
     q.addQueryItem("search_query", query);
     url.setQuery(q);
 
-    QObject *reply = The::http()->get(url);
+    QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(handleNetworkData(QByteArray)));
 }
 

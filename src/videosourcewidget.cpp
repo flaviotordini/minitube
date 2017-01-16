@@ -23,11 +23,8 @@ $END_LICENSE */
 #include "video.h"
 #include "fontutils.h"
 #include "iconutils.h"
-#include "networkaccess.h"
-
-namespace The {
-NetworkAccess* http();
-}
+#include "http.h"
+#include "httputils.h"
 
 VideoSourceWidget::VideoSourceWidget(VideoSource *videoSource, QWidget *parent)
     : GridWidget(parent),
@@ -54,7 +51,7 @@ void VideoSourceWidget::previewVideo(const QList<Video *> &videos) {
     QString url =  needLargeThumb ? video->largeThumbnailUrl() : video->mediumThumbnailUrl();
     if (url.isEmpty()) url = video->mediumThumbnailUrl();
     video->deleteLater();
-    QObject *reply = The::http()->get(url);
+    QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(setPixmapData(QByteArray)));
 }
 

@@ -19,7 +19,8 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "downloaditem.h"
-#include "networkaccess.h"
+#include "http.h"
+#include "httputils.h"
 #include "video.h"
 
 #include <QDesktopServices>
@@ -28,10 +29,6 @@ $END_LICENSE */
 #ifdef APP_MAC
 #include "macutils.h"
 #endif
-
-namespace The {
-    NetworkAccess* http();
-}
 
 DownloadItem::DownloadItem(Video *video, QUrl url, QString filename, QObject *parent)
     : QObject(parent)
@@ -126,10 +123,11 @@ void DownloadItem::seekTo(qint64 offset, bool sendStatusChanges) {
 
 void DownloadItem::start() {
     // qDebug() << "Starting download at" << m_offset;
-    if (m_offset > 0)
-        m_reply = The::http()->request(m_url, QNetworkAccessManager::GetOperation, QByteArray(), m_offset);
-    else
-        m_reply = The::http()->request(m_url);
+    HttpRequest req;
+    req.url = m_url;
+    if (m_offset > 0) req.offset = m_offset;
+    m_reply = HttpUtils::yt().networkReply(req);
+
     init();
 }
 
@@ -282,8 +280,8 @@ void DownloadItem::downloadProgress(qint64 bytesReceived, qint64 bytesTotal) {
         if (bufferSize > bytesTotal) bufferSize = bytesTotal;
         // qDebug() << bytesReceived << bytesTotal << neededBytes << bufferSize << m_downloadTime.elapsed();
         if (bytesReceived > bufferSize
-            && bytesReceived > neededBytes
-            && m_downloadTime.elapsed() > 2000) {
+                && bytesReceived > neededBytes
+                && m_downloadTime.elapsed() > 2000) {
             emit bufferProgress(100);
             m_status = Downloading;
             emit statusChanged();
@@ -437,7 +435,7 @@ QString DownloadItem::formattedTime(double timeRemaining, bool remaining) {
     }
     timeRemaining = floor(timeRemaining);
     QString msg = remaining ? tr("%4 %5 remaining") : "%4 %5";
-        return msg
+    return msg
             .arg(timeRemaining)
             .arg(timeRemainingString);
 }
