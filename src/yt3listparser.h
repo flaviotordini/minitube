@@ -2,7 +2,6 @@
 #define YT3LISTPARSER_H
 
 #include <QtCore>
-#include <QtScript>
 
 class Video;
 
@@ -15,7 +14,7 @@ public:
     const QString &getNextPageToken() { return nextPageToken; }
 
 private:
-    void parseItem(const QScriptValue &item);
+    void parseItem(const QJsonObject &item);
 
     QList<Video*> videos;
     QStringList suggestions;

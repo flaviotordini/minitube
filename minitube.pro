@@ -26,7 +26,7 @@ DEFINES *= QT_STRICT_ITERATORS
 
 TARGET = $${APP_UNIX_NAME}
 
-QT += widgets network sql script
+QT += widgets network sql qml
 
 include(src/qtsingleapplication/qtsingleapplication.pri)
 include(src/http/http.pri)

@@ -3,72 +3,67 @@
 #include "datautils.h"
 
 YT3ListParser::YT3ListParser(const QByteArray &bytes) {
-    QScriptEngine engine;
-    QScriptValue json = engine.evaluate("(" + QString::fromUtf8(bytes) + ")");
+    QJsonDocument doc = QJsonDocument::fromJson(bytes);
+    QJsonObject obj = doc.object();
 
-    nextPageToken = json.property("nextPageToken").toString();
+    nextPageToken = obj["nextPageToken"].toString();
 
-    QScriptValue items = json.property("items");
-    videos.reserve(items.property("length").toInt32() - 1);
-    if (items.isArray()) {
-        QScriptValueIterator it(items);
-        while (it.hasNext()) {
-            it.next();
-            QScriptValue item = it.value();
-            // For some reason the array has an additional element containing its size.
-            if (item.isObject()) parseItem(item);
-        }
+    QJsonArray items = obj["items"].toArray();
+    videos.reserve(items.size());
+    foreach (const QJsonValue &v, items) {
+        QJsonObject item = v.toObject();
+        parseItem(item);
     }
 
     // TODO suggestions!
 }
 
-void YT3ListParser::parseItem(const QScriptValue &item) {
+void YT3ListParser::parseItem(const QJsonObject &item) {
     Video *video = new Video();
 
-    QScriptValue id = item.property("id");
+    QJsonValue id = item["id"];
     if (id.isString()) video->setId(id.toString());
     else {
-        QString videoId = id.property("videoId").toString();
+        QString videoId = id.toObject()["videoId"].toString();
         video->setId(videoId);
     }
 
-    QScriptValue snippet = item.property("snippet");
+    QJsonObject snippet = item["snippet"].toObject();
 
-    bool isLiveBroadcastContent = snippet.property("liveBroadcastContent").toString() != QLatin1String("none");
+    bool isLiveBroadcastContent = snippet["liveBroadcastContent"].toString() != QLatin1String("none");
     if (isLiveBroadcastContent) {
         delete video;
         return;
     }
 
-    QString publishedAt = snippet.property("publishedAt").toString();
+    QString publishedAt = snippet["publishedAt"].toString();
     QDateTime publishedDateTime = QDateTime::fromString(publishedAt, Qt::ISODate);
     video->setPublished(publishedDateTime);
 
-    video->setChannelId(snippet.property("channelId").toString());
+    video->setChannelId(snippet["channelId"].toString());
 
-    video->setTitle(snippet.property("title").toString());
-    video->setDescription(snippet.property("description").toString());
+    video->setTitle(snippet["title"].toString());
+    video->setDescription(snippet["description"].toString());
 
-    QScriptValue thumbnails = snippet.property("thumbnails");
-    video->setThumbnailUrl(thumbnails.property("medium").property("url").toString());
-    video->setMediumThumbnailUrl(thumbnails.property("high").property("url").toString());
-    video->setLargeThumbnailUrl(thumbnails.property("standard").property("url").toString());
+    QJsonObject thumbnails = snippet["thumbnails"].toObject();
+    video->setThumbnailUrl(thumbnails["medium"].toObject()["url"].toString());
+    video->setMediumThumbnailUrl(thumbnails["high"].toObject()["url"].toString());
+    video->setLargeThumbnailUrl(thumbnails["standard"].toObject()["url"].toString());
 
-    video->setChannelTitle(snippet.property("channelTitle").toString());
+    video->setChannelTitle(snippet["channelTitle"].toString());
 
     // These are only for "videos" requests
 
-    QScriptValue contentDetails = item.property("contentDetails");
+    QJsonValue contentDetails = item["contentDetails"];
     if (contentDetails.isObject()) {
-        QString isoPeriod = contentDetails.property("duration").toString();
+        QString isoPeriod = contentDetails.toObject()["duration"].toString();
         int duration = DataUtils::parseIsoPeriod(isoPeriod);
         video->setDuration(duration);
     }
 
-    QScriptValue statistics = item.property("statistics");
+    QJsonValue statistics = item["statistics"];
     if (statistics.isObject()) {
-        uint viewCount = statistics.property("viewCount").toUInt32();
+        int viewCount = statistics.toObject()["viewCount"].toInt();
         video->setViewCount(viewCount);
     }
 

@@ -22,8 +22,9 @@ $END_LICENSE */
 #define JSFUNCTIONS_H
 
 #include <QtCore>
-#include <QtScript>
 #include <QtNetwork>
+#include <QJSEngine>
+#include <QJSValue>
 
 class JsFunctions : public QObject {
 
@@ -32,7 +33,7 @@ class JsFunctions : public QObject {
 public:
     static JsFunctions* instance();
     JsFunctions(const QString &url, QObject *parent = 0);
-    QScriptValue evaluate(const QString &js);
+    QJSValue evaluate(const QString &js);
     QString string(const QString &js);
     QStringList stringArray(const QString &js);
 
@@ -54,7 +55,7 @@ signals:
 
 private slots:
     void gotJs(const QByteArray &bytes);
-    void errorJs(QNetworkReply *reply);
+    void errorJs(const QString &message);
 
 private:
     QString jsFilename();
@@ -63,7 +64,7 @@ private:
     void parseJs(const QString &js);
 
     QString url;
-    QScriptEngine *engine;
+    QJSEngine *engine;
 };
 
 #endif // JSFUNCTIONS_H

@@ -19,21 +19,24 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "paginatedvideosource.h"
+
 #include "yt3.h"
 #include "yt3listparser.h"
 #include "datautils.h"
+
 #include "video.h"
 #include "http.h"
 #include "httputils.h"
 
 PaginatedVideoSource::PaginatedVideoSource(QObject *parent) : VideoSource(parent)
   , tokenTimestamp(0)
+  , reloadingToken(false)
   , currentMax(0)
   , currentStartIndex(0)
-  , reloadingToken(false)
   , asyncDetails(false) { }
 
 bool PaginatedVideoSource::hasMoreVideos() {
+    qDebug() << __PRETTY_FUNCTION__ << nextPageToken;
     return !nextPageToken.isEmpty();
 }
 
@@ -81,7 +84,7 @@ void PaginatedVideoSource::reloadToken() {
     qDebug() << "Reloading pageToken";
     QObject *reply = HttpUtils::yt().get(lastUrl);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResults(QByteArray)));
-    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
+    connect(reply, SIGNAL(error(QString)), SLOT(requestError(QString)));
 }
 
 void PaginatedVideoSource::loadVideoDetails(const QList<Video*> &videos) {
@@ -110,36 +113,34 @@ void PaginatedVideoSource::loadVideoDetails(const QList<Video*> &videos) {
 
     QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseVideoDetails(QByteArray)));
-    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
+    connect(reply, SIGNAL(error(QString)), SLOT(requestError(QString)));
 }
 
 void PaginatedVideoSource::parseVideoDetails(const QByteArray &bytes) {
+    QJsonDocument doc = QJsonDocument::fromJson(bytes);
+    QJsonObject obj = doc.object();
 
-    QScriptEngine engine;
-    QScriptValue json = engine.evaluate("(" + QString::fromUtf8(bytes) + ")");
-
-    QScriptValue items = json.property("items");
+    QJsonValue items = obj["items"];
     if (items.isArray()) {
-        QScriptValueIterator it(items);
-        while (it.hasNext()) {
-            it.next();
-            QScriptValue item = it.value();
-            if (!item.isObject()) continue;
+        foreach (const QJsonValue &v, items.toArray()) {
+            if (!v.isObject()) continue;
+
+            QJsonObject item = v.toObject();
 
             // qDebug() << item.toString();
 
-            QString id = item.property("id").toString();
+            QString id = item["id"].toString();
             Video *video = videoMap.value(id);
             if (!video) {
                 qWarning() << "No video for id" << id;
                 continue;
             }
 
-            QString isoPeriod = item.property("contentDetails").property("duration").toString();
+            QString isoPeriod = item["contentDetails"].toObject()["duration"].toString();
             int duration = DataUtils::parseIsoPeriod(isoPeriod);
             video->setDuration(duration);
 
-            uint viewCount = item.property("statistics").property("viewCount").toUInt32();
+            int viewCount = item["statistics"].toObject()["viewCount"].toInt();
             video->setViewCount(viewCount);
 
             // TODO cache by etag?

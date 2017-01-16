@@ -20,8 +20,9 @@ $END_LICENSE */
 
 #include "jsfunctions.h"
 #include "http.h"
-#include "httputils.h"
 #include "constants.h"
+
+#include <QJSValueIterator>
 
 JsFunctions* JsFunctions::instance() {
     static JsFunctions *i = new JsFunctions(QLatin1String(Constants::WEBSITE) + "-ws/functions.js");
@@ -50,7 +51,7 @@ void JsFunctions::parseJs(const QString &js) {
     if (js.isEmpty()) return;
     // qDebug() << "Parsing" << js;
     if (engine) delete engine;
-    engine = new QScriptEngine(this);
+    engine = new QJSEngine(this);
     engine->evaluate(js);
     emit ready();
 }
@@ -65,24 +66,18 @@ QString JsFunctions::jsPath() {
 
 void JsFunctions::loadJs() {
     QUrl url(this->url);
-    QUrlQuery q(url);
+    QUrlQuery q;
     q.addQueryItem("v", Constants::VERSION);
     url.setQuery(q);
-
-    QObject* reply = HttpUtils::notCached().get(url);
+    QObject* reply = Http::instance().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(gotJs(QByteArray)));
-    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorJs(QNetworkReply*)));
+    connect(reply, SIGNAL(error(QString)), SLOT(errorJs(QString)));
 }
 
 void JsFunctions::gotJs(const QByteArray &bytes) {
     if (bytes.isEmpty()) {
         qWarning() << "Got empty js";
         return;
-    }
-    QString location = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
-    if (!QDir().mkpath(location)) {
-      qCritical() << "Failed to create" << location;
-      return;
     }
     QFile file(jsPath());
     if (!file.open(QIODevice::WriteOnly)) {
@@ -94,14 +89,13 @@ void JsFunctions::gotJs(const QByteArray &bytes) {
     parseJs(QString::fromUtf8(bytes));
 }
 
-void JsFunctions::errorJs(QNetworkReply *reply) {
-    qWarning() << "Cannot get" << jsFilename() << reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt()
-               << reply->url().toString() << reply->errorString();
+void JsFunctions::errorJs(const QString &message) {
+    qWarning() << message;
 }
 
-QScriptValue JsFunctions::evaluate(const QString &js) {
+QJSValue JsFunctions::evaluate(const QString &js) {
     if (!engine) return QString();
-    QScriptValue value = engine->evaluate(js);
+    QJSValue value = engine->evaluate(js);
     if (value.isUndefined())
         qWarning() << "Undefined result for" << js;
     if (value.isError())
@@ -116,12 +110,12 @@ QString JsFunctions::string(const QString &js) {
 
 QStringList JsFunctions::stringArray(const QString &js) {
     QStringList items;
-    QScriptValue array = evaluate(js);
+    QJSValue array = evaluate(js);
     if (!array.isArray()) return items;
-    QScriptValueIterator it(array);
+    QJSValueIterator it(array);
     while (it.hasNext()) {
         it.next();
-        QScriptValue value = it.value();
+        QJSValue value = it.value();
         if (!value.isString()) continue;
         items << value.toString();
     }

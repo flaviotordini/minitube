@@ -24,7 +24,6 @@ $END_LICENSE */
 #include "datautils.h"
 #include "yt3.h"
 #include "ytregions.h"
-#include <QtScript>
 
 YTCategories::YTCategories(QObject *parent) : QObject(parent) { }
 
@@ -55,29 +54,19 @@ void YTCategories::loadCategories(QString language) {
 void YTCategories::parseCategories(QByteArray bytes) {
     QList<YTCategory> categories;
 
-    QScriptEngine engine;
-    QScriptValue json = engine.evaluate("(" + QString::fromUtf8(bytes) + ")");
+    QJsonDocument doc = QJsonDocument::fromJson(bytes);
+    QJsonObject obj = doc.object();
+    QJsonArray items = obj["items"].toArray();
+    foreach (const QJsonValue &v, items) {
+        QJsonObject item = v.toObject();
+        QJsonObject snippet = item["snippet"].toObject();
+        bool isAssignable = snippet["assignable"].toBool();
+        if (!isAssignable) continue;
 
-    QScriptValue items = json.property("items");
-
-    if (items.isArray()) {
-        QScriptValueIterator it(items);
-        while (it.hasNext()) {
-            it.next();
-            QScriptValue item = it.value();
-            // For some reason the array has an additional element containing its size.
-            if (!item.isObject()) continue;
-
-            QScriptValue snippet = item.property("snippet");
-
-            bool isAssignable = snippet.property("assignable").toBool();
-            if (!isAssignable) continue;
-
-            YTCategory category;
-            category.term = item.property("id").toString();
-            category.label = snippet.property("title").toString();
-            categories << category;
-        }
+        YTCategory category;
+        category.term = item["id"].toString();
+        category.label = snippet["title"].toString();
+        categories << category;
     }
 
     emit categoriesLoaded(categories);

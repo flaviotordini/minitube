@@ -25,7 +25,6 @@ $END_LICENSE */
 #include <QtSql>
 
 #include "yt3.h"
-#include <QtScript>
 
 #include "iconutils.h"
 
@@ -99,24 +98,17 @@ void YTChannel::maybeLoadfromAPI() {
 }
 
 void YTChannel::parseResponse(const QByteArray &bytes) {
-    QScriptEngine engine;
-    QScriptValue json = engine.evaluate("(" + QString::fromUtf8(bytes) + ")");
-    QScriptValue items = json.property("items");
-    if (items.isArray()) {
-        QScriptValueIterator it(items);
-        while (it.hasNext()) {
-            it.next();
-            QScriptValue item = it.value();
-            // For some reason the array has an additional element containing its size.
-            if (item.isObject()) {
-                QScriptValue snippet = item.property("snippet");
-                displayName = snippet.property("title").toString();
-                description = snippet.property("description").toString();
-                QScriptValue thumbnails = snippet.property("thumbnails");
-                thumbnailUrl = thumbnails.property("medium").property("url").toString();
-                qDebug() << displayName << description << thumbnailUrl;
-            }
-        }
+    QJsonDocument doc = QJsonDocument::fromJson(bytes);
+    QJsonObject obj = doc.object();
+    QJsonArray items = obj["items"].toArray();
+    foreach (const QJsonValue &v, items) {
+        QJsonObject item = v.toObject();
+        QJsonObject snippet = item["snippet"].toObject();
+        displayName = snippet["title"].toString();
+        description = snippet["description"].toString();
+        QJsonObject thumbnails = snippet["thumbnails"].toObject();
+        thumbnailUrl = thumbnails["medium"].toObject()["url"].toString();
+        qDebug() << displayName << description << thumbnailUrl;
     }
 
     emit infoLoaded();

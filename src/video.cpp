@@ -21,11 +21,14 @@ $END_LICENSE */
 #include "video.h"
 #include "http.h"
 #include "httputils.h"
-#include <QtNetwork>
 #include "videodefinition.h"
 #include "jsfunctions.h"
 #include "temporary.h"
 #include "datautils.h"
+
+#include <QtNetwork>
+#include <QJSEngine>
+#include <QJSValue>
 
 namespace {
 static const QString jsNameChars = "a-zA-Z0-9\\$_";
@@ -456,19 +459,19 @@ void Video::captureObject(const QString &name, const QString &js) {
 
 QString Video::decryptSignature(const QString &s) {
     if (sigFuncName.isEmpty()) return QString();
-    QScriptEngine engine;
+    QJSEngine engine;
     foreach (const QString &f, sigObjects.values()) {
-        QScriptValue value = engine.evaluate(f);
+        QJSValue value = engine.evaluate(f);
         if (value.isError())
             qWarning() << "Error in" << f << value.toString();
     }
     foreach (const QString &f, sigFunctions.values()) {
-        QScriptValue value = engine.evaluate(f);
+        QJSValue value = engine.evaluate(f);
         if (value.isError())
             qWarning() << "Error in" << f << value.toString();
     }
     QString js = sigFuncName + "('" + s + "');";
-    QScriptValue value = engine.evaluate(js);
+    QJSValue value = engine.evaluate(js);
     if (value.isUndefined()) {
         qWarning() << "Undefined result for" << js;
         return QString();
