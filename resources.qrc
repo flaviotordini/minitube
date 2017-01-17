@@ -73,5 +73,56 @@
         <file>images/search-quality@2x.png</file>
         <file>images/search-time@2x.png</file>
         <file>images/search-sortBy@2x.png</file>
+        <file>images/audio-volume-high.png</file>
+        <file>images/audio-volume-high@2x.png</file>
+        <file>images/audio-volume-muted.png</file>
+        <file>images/audio-volume-muted@2x.png</file>
+        <file>images/bookmark-new.png</file>
+        <file>images/bookmark-new@2x.png</file>
+        <file>images/bookmark-new_active.png</file>
+        <file>images/bookmark-new_active@2x.png</file>
+        <file>images/bookmark-remove.png</file>
+        <file>images/bookmark-remove@2x.png</file>
+        <file>images/content-loading.png</file>
+        <file>images/content-loading@2x.png</file>
+        <file>images/document-save.png</file>
+        <file>images/document-save@2x.png</file>
+        <file>images/edit-clear.png</file>
+        <file>images/edit-find.png</file>
+        <file>images/go-next.png</file>
+        <file>images/go-next@2x.png</file>
+        <file>images/go-next_active.png</file>
+        <file>images/go-next_active@2x.png</file>
+        <file>images/go-previous.png</file>
+        <file>images/go-previous@2x.png</file>
+        <file>images/go-previous_active.png</file>
+        <file>images/go-previous_active@2x.png</file>
+        <file>images/go-top.png</file>
+        <file>images/go-top@2x.png</file>
+        <file>images/media-playback-pause.png</file>
+        <file>images/media-playback-pause@2x.png</file>
+        <file>images/media-playback-start.png</file>
+        <file>images/media-playback-start@2x.png</file>
+        <file>images/media-playback-stop.png</file>
+        <file>images/media-playback-stop@2x.png</file>
+        <file>images/media-skip-forward.png</file>
+        <file>images/media-skip-forward@2x.png</file>
+        <file>images/system-search.png</file>
+        <file>images/system-search_active.png</file>
+        <file>images/system-search_selected.png</file>
+        <file>images/video-display.png</file>
+        <file>images/video-display@2x.png</file>
+        <file>images/view-fullscreen.png</file>
+        <file>images/view-fullscreen@2x.png</file>
+        <file>images/view-list.png</file>
+        <file>images/view-list@2x.png</file>
+        <file>images/view-refresh.png</file>
+        <file>images/view-refresh_active.png</file>
+        <file>images/view-refresh_selected.png</file>
+        <file>images/view-restore.png</file>
+        <file>images/view-restore@2x.png</file>
+        <file>images/window-close.png</file>
+        <file>images/window-close_active.png</file>
+        <file>images/window-close_selected.png</file>
     </qresource>
 </RCC>
