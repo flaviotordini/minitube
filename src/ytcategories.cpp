@@ -48,7 +48,7 @@ void YTCategories::loadCategories(QString language) {
 
     QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseCategories(QByteArray)));
-    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
+    connect(reply, SIGNAL(error(QString)), SLOT(requestError(QString)));
 }
 
 void YTCategories::parseCategories(QByteArray bytes) {
@@ -72,7 +72,7 @@ void YTCategories::parseCategories(QByteArray bytes) {
     emit categoriesLoaded(categories);
 }
 
-void YTCategories::requestError(QNetworkReply *reply) {
+void YTCategories::requestError(const QString &message) {
     if (lastLanguage != "en") loadCategories("en");
-    else emit error(reply->errorString());
+    else emit error(message);
 }

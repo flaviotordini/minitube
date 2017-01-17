@@ -97,7 +97,7 @@ signals:
 private slots:
     void setThumbnail(const QByteArray &bytes);
     void gotVideoInfo(const QByteArray &bytes);
-    void errorVideoInfo(QNetworkReply *reply);
+    void errorVideoInfo(const QString &message);
     void scrapeWebPage(const QByteArray &bytes);
     void parseJsPlayer(const QByteArray &bytes);
     void parseDashManifest(const QByteArray &bytes);

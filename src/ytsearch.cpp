@@ -132,7 +132,7 @@ void YTSearch::loadVideos(int max, int startIndex) {
     // qWarning() << "YT3 search" << url.toString();
     QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResults(QByteArray)));
-    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
+    connect(reply, SIGNAL(error(QString)), SLOT(requestError(QString)));
 }
 
 void YTSearch::parseResults(QByteArray data) {
@@ -173,9 +173,9 @@ QString YTSearch::getName() {
     return QString();
 }
 
-void YTSearch::requestError(QNetworkReply *reply) {
-    qWarning() << reply->errorString();
-    emit error(reply->errorString());
+void YTSearch::requestError(const QString &message) {
+    qWarning() << message;
+    emit error(message);
 }
 
 QString YTSearch::videoIdFromUrl(const QString &url) {

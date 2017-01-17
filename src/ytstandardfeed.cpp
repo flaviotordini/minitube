@@ -56,7 +56,7 @@ void YTStandardFeed::loadVideos(int max, int startIndex) {
 
     QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResults(QByteArray)));
-    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
+    connect(reply, SIGNAL(error(QString)), SLOT(requestError(QString)));
 }
 
 void YTStandardFeed::parseResults(QByteArray data) {
@@ -88,6 +88,6 @@ const QStringList & YTStandardFeed::getSuggestions() {
     return l;
 }
 
-void YTStandardFeed::requestError(QNetworkReply *reply) {
-    emit error(reply->errorString());
+void YTStandardFeed::requestError(const QString &message) {
+    emit error(message);
 }

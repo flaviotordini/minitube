@@ -103,7 +103,7 @@ void ChannelAggregator::checkWebPage(YTChannel *channel) {
     QObject *reply = HttpUtils::yt().get(url);
 
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseWebPage(QByteArray)));
-    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorWebPage(QNetworkReply*)));
+    connect(reply, SIGNAL(error(QString)), SLOT(errorWebPage(QString)));
 }
 
 void ChannelAggregator::parseWebPage(const QByteArray &bytes) {
@@ -127,8 +127,8 @@ void ChannelAggregator::parseWebPage(const QByteArray &bytes) {
     }
 }
 
-void ChannelAggregator::errorWebPage(QNetworkReply *reply) {
-    Q_UNUSED(reply);
+void ChannelAggregator::errorWebPage(const QString &message) {
+    Q_UNUSED(message);
     reallyProcessChannel(currentChannel);
     currentChannel = 0;
 }

@@ -53,7 +53,7 @@ private slots:
     void processNextChannel();
     void checkWebPage(YTChannel *channel);
     void parseWebPage(const QByteArray &bytes);
-    void errorWebPage(QNetworkReply *reply);
+    void errorWebPage(const QString &message);
     void reallyProcessChannel(YTChannel *channel);
 
 private:

@@ -75,7 +75,7 @@ signals:
 
 private slots:
     void parseResponse(const QByteArray &bytes);
-    void requestError(QNetworkReply *reply);
+    void requestError(const QString &message);
     void storeThumbnail(const QByteArray &bytes);
 
 private:

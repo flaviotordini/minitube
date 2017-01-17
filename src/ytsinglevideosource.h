@@ -40,7 +40,7 @@ public:
 
 private slots:
     void parseResults(QByteArray data);
-    void requestError(QNetworkReply *reply);
+    void requestError(const QString &message);
 
 private:
     Video *video;

@@ -94,7 +94,7 @@ void YTChannel::maybeLoadfromAPI() {
 
     QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResponse(QByteArray)));
-    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
+    connect(reply, SIGNAL(error(QString)), SLOT(requestError(QString)));
 }
 
 void YTChannel::parseResponse(const QByteArray &bytes) {
@@ -124,7 +124,7 @@ void YTChannel::loadThumbnail() {
     QUrl url(thumbnailUrl);
     QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(storeThumbnail(QByteArray)));
-    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
+    connect(reply, SIGNAL(error(QString)), SLOT(requestError(QString)));
 }
 
 const QString & YTChannel::getThumbnailDir() {
@@ -176,9 +176,9 @@ void YTChannel::storeThumbnail(const QByteArray &bytes) {
     loadingThumbnail = false;
 }
 
-void YTChannel::requestError(QNetworkReply *reply) {
-    emit error(reply->errorString());
-    qWarning() << reply->errorString();
+void YTChannel::requestError(const QString &message) {
+    emit error(message);
+    qWarning() << message;
     loading = false;
     loadingThumbnail = false;
 }

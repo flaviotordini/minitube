@@ -147,7 +147,7 @@ void  Video::getVideoInfo() {
 
     QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(gotVideoInfo(QByteArray)));
-    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
+    connect(reply, SIGNAL(error(QString)), SLOT(errorVideoInfo(QString)));
 
     // see you in gotVideoInfo...
 }
@@ -243,7 +243,7 @@ void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
                     qDebug() << "Loading webpage" << url;
                     QObject *reply = HttpUtils::yt().get(url);
                     connect(reply, SIGNAL(data(QByteArray)), SLOT(scrapeWebPage(QByteArray)));
-                    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
+                    connect(reply, SIGNAL(error(QString)), SLOT(errorVideoInfo(QString)));
                     // see you in scrapWebPage(QByteArray)
                     return;
                 }
@@ -282,9 +282,9 @@ void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
     emit errorStreamUrl(tr("Cannot get video stream for %1").arg(m_webpage));
 }
 
-void Video::errorVideoInfo(QNetworkReply *reply) {
+void Video::errorVideoInfo(const QString &message) {
     loadingStreamUrl = false;
-    emit errorStreamUrl(tr("Network error: %1 for %2").arg(reply->errorString(), reply->url().toString()));
+    emit errorStreamUrl(message);
 }
 
 void Video::scrapeWebPage(const QByteArray &bytes) {
@@ -338,7 +338,7 @@ void Video::scrapeWebPage(const QByteArray &bytes) {
                     */
         QObject *reply = HttpUtils::yt().get(jsPlayerUrl);
         connect(reply, SIGNAL(data(QByteArray)), SLOT(parseJsPlayer(QByteArray)));
-        connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
+        connect(reply, SIGNAL(error(QString)), SLOT(errorVideoInfo(QString)));
     }
 }
 
@@ -377,7 +377,7 @@ void Video::parseJsPlayer(const QByteArray &bytes) {
                 // download the manifest
                 QObject *reply = The::http()->get(QUrl::fromEncoded(dashManifestUrl.toUtf8()));
                 connect(reply, SIGNAL(data(QByteArray)), SLOT(parseDashManifest(QByteArray)));
-                connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(errorVideoInfo(QNetworkReply*)));
+                connect(reply, SIGNAL(error(QString)), SLOT(errorVideoInfo(QString)));
             }
 
             return;

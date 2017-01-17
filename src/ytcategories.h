@@ -42,7 +42,7 @@ signals:
 
 private slots:
     void parseCategories(QByteArray bytes);
-    void requestError(QNetworkReply *reply);
+    void requestError(const QString &message);
 
 private:
     QString lastLanguage;

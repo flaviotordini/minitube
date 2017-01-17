@@ -77,7 +77,7 @@ void YTSingleVideoSource::loadVideos(int max, int startIndex) {
 
     QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResults(QByteArray)));
-    connect(reply, SIGNAL(error(QNetworkReply*)), SLOT(requestError(QNetworkReply*)));
+    connect(reply, SIGNAL(error(QString)), SLOT(requestError(QString)));
 }
 
 void YTSingleVideoSource::parseResults(QByteArray data) {
@@ -115,6 +115,6 @@ void YTSingleVideoSource::setVideo(Video *video) {
     videoId = video->id();
 }
 
-void YTSingleVideoSource::requestError(QNetworkReply *reply) {
-    emit error(reply->errorString());
+void YTSingleVideoSource::requestError(const QString &message) {
+    emit error(message);
 }
