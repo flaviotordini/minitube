@@ -781,9 +781,7 @@ void MainWindow::createToolBars() {
     mainToolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
     mainToolBar->setFloatable(false);
     mainToolBar->setMovable(false);
-#if defined(APP_MAC) | defined(APP_WIN)
     mainToolBar->setIconSize(QSize(32, 32));
-#endif
 
     mainToolBar->addAction(stopAct);
     mainToolBar->addAction(pauseAct);
