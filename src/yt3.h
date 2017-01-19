@@ -2,7 +2,8 @@
 #define YT3_H
 
 #include <QtCore>
-#include <QtNetwork>
+
+class HttpReply;
 
 class YT3 : public QObject {
 
@@ -20,7 +21,7 @@ signals:
     void gotChannelId(QString channelId);
 
 private slots:
-    void testResponse(QNetworkReply *reply);
+    void testResponse(const HttpReply &reply);
 
 private:
     YT3();

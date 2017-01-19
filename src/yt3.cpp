@@ -68,7 +68,7 @@ void YT3::testApiKey() {
     q.addQueryItem("maxResults", "1");
     url.setQuery(q);
     QObject *reply = HttpUtils::yt().get(url);
-    connect(reply, SIGNAL(finished(QNetworkReply*)), SLOT(testResponse(QNetworkReply*)));
+    connect(reply, SIGNAL(finished(HttpReply)), SLOT(testResponse(HttpReply)));
 }
 
 void YT3::addApiKey(QUrl &url) {
@@ -88,8 +88,8 @@ QUrl YT3::method(const QString &name) {
     return url;
 }
 
-void YT3::testResponse(QNetworkReply *reply) {
-    int status = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+void YT3::testResponse(const HttpReply &reply) {
+    int status = reply.statusCode();
     if (status != 200) {
         if (keys.isEmpty()) {
             qWarning() << "Fatal error: No working API keys!";
