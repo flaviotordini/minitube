@@ -63,7 +63,7 @@ void YT3ListParser::parseItem(const QJsonObject &item) {
 
     QJsonValue statistics = item["statistics"];
     if (statistics.isObject()) {
-        int viewCount = statistics.toObject()["viewCount"].toInt();
+        int viewCount = statistics.toObject()["viewCount"].toString().toInt();
         video->setViewCount(viewCount);
     }
 

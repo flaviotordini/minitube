@@ -127,8 +127,6 @@ void PaginatedVideoSource::parseVideoDetails(const QByteArray &bytes) {
 
             QJsonObject item = v.toObject();
 
-            // qDebug() << item.toString();
-
             QString id = item["id"].toString();
             Video *video = videoMap.value(id);
             if (!video) {
@@ -140,7 +138,7 @@ void PaginatedVideoSource::parseVideoDetails(const QByteArray &bytes) {
             int duration = DataUtils::parseIsoPeriod(isoPeriod);
             video->setDuration(duration);
 
-            int viewCount = item["statistics"].toObject()["viewCount"].toInt();
+            int viewCount = item["statistics"].toObject()["viewCount"].toString().toInt();
             video->setViewCount(viewCount);
 
             // TODO cache by etag?
