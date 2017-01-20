@@ -101,7 +101,8 @@ HEADERS += src/video.h \
     src/searchwidget.h \
     src/exlineedit.h \
     src/channellistview.h \
-    src/httputils.h
+    src/httputils.h \
+    src/appwidget.h
 SOURCES += src/main.cpp \
     src/searchlineedit.cpp \
     src/spacer.cpp \
@@ -170,7 +171,8 @@ SOURCES += src/main.cpp \
     src/paginatedvideosource.cpp \
     src/exlineedit.cpp \
     src/channellistview.cpp \
-    src/httputils.cpp
+    src/httputils.cpp \
+    src/appwidget.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/

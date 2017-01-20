@@ -42,7 +42,11 @@ public:
 protected:
     void paintEvent(QPaintEvent *e);
 
+private slots:
+    void screenChanged();
+
 private:
+    QLabel *logo;
     QPushButton *closeButton;
 
 };

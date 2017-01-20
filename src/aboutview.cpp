@@ -32,22 +32,32 @@ $END_LICENSE */
 #endif
 #include "fontutils.h"
 #include "iconutils.h"
+#include "appwidget.h"
 
 AboutView::AboutView(QWidget *parent) : View(parent) {
 
-    QBoxLayout *hLayout = new QHBoxLayout(this);
-    hLayout->setAlignment(Qt::AlignCenter);
-    hLayout->setMargin(30);
-    hLayout->setSpacing(30);
+    const int padding = 30;
 
-    QLabel *logo = new QLabel(this);
+    connect(window()->windowHandle(), SIGNAL(screenChanged(QScreen*)), SLOT(screenChanged()));
+
+    QBoxLayout *verticalLayout = new QVBoxLayout(this);
+    verticalLayout->setMargin(0);
+    verticalLayout->setSpacing(0);
+
+    QBoxLayout *aboutlayout = new QHBoxLayout();
+    verticalLayout->addLayout(aboutlayout, 1);
+    aboutlayout->setAlignment(Qt::AlignCenter);
+    aboutlayout->setMargin(padding);
+    aboutlayout->setSpacing(padding);
+
+    logo = new QLabel();
     logo->setPixmap(IconUtils::pixmap(":/images/app.png"));
-    hLayout->addWidget(logo, 0, Qt::AlignTop);
+    aboutlayout->addWidget(logo, 0, Qt::AlignTop);
 
     QBoxLayout *layout = new QVBoxLayout();
     layout->setAlignment(Qt::AlignCenter);
-    layout->setSpacing(30);
-    hLayout->addLayout(layout);
+    layout->setSpacing(padding);
+    aboutlayout->addLayout(layout);
 
     QString css = "a { color: palette(text); text-decoration: none; font-weight: bold } h1 { font-weight: 100 }";
 #ifdef APP_MAC
@@ -71,20 +81,7 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
             .arg(QString(Constants::WEBSITE).append("#donate"), Constants::NAME) + "</p>";
 #endif
 
-    info += "<p>" + tr("You may want to try my other apps as well:") + "</p>"
-            "<ul>"
-
-            "<li>" + tr("%1, a YouTube music player")
-            .arg("<a href='http://flavio.tordini.org/musictube'>Musictube</a>")
-            + "</li>"
-
-            "<li>" + tr("%1, a music player")
-            .arg("<a href='http://flavio.tordini.org/musique'>Musique</a>")
-            + "</li>"
-
-            "</ul>"
-
-            "<p>" + tr("Translate %1 to your native language using %2").arg(Constants::NAME)
+    info += "<p>" + tr("Translate %1 to your native language using %2").arg(Constants::NAME)
             .arg("<a href='http://www.transifex.net/projects/p/" + QString(Constants::UNIX_NAME) + "/'>Transifex</a>")
             + "</p>"
 
@@ -96,25 +93,27 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
             "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")
             .arg("http://www.gnu.org/licenses/gpl.html") + "</p>"
         #endif
-            "<p>&copy; 2009-2015 " + Constants::ORG_NAME + "</p>"
+            "<p>&copy; 2017 " + Constants::ORG_NAME + "</p>"
             "</body></html>";
+
     QLabel *infoLabel = new QLabel(info, this);
     infoLabel->setOpenExternalLinks(true);
     infoLabel->setWordWrap(true);
     layout->addWidget(infoLabel);
 
     QLayout *buttonLayout = new QHBoxLayout();
-    buttonLayout->setMargin(0);
-    buttonLayout->setSpacing(0);
     buttonLayout->setAlignment(Qt::AlignLeft);
-
-    closeButton = new QPushButton(tr("&Close"));
+    closeButton = new QPushButton(tr("&Close"), this);
     closeButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+
     closeButton->setDefault(true);
+    closeButton->setFocus();
     connect(closeButton, SIGNAL(clicked()), parent, SLOT(goBack()));
     buttonLayout->addWidget(closeButton);
 
     layout->addLayout(buttonLayout);
+
+    verticalLayout->addWidget(new AppsWidget());
 }
 
 void AboutView::appear() {
@@ -146,4 +145,8 @@ void AboutView::paintEvent(QPaintEvent *event) {
     QPainter p(this);
     style()->drawPrimitive(QStyle::PE_Widget, &o, &p, this);
 #endif
+}
+
+void AboutView::screenChanged() {
+    logo->setPixmap(IconUtils::pixmap(":/images/app.png"));
 }
