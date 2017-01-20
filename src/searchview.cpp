@@ -41,9 +41,9 @@ $END_LICENSE */
 
 static const QString recentKeywordsKey = "recentKeywords";
 static const QString recentChannelsKey = "recentChannels";
-static const int PADDING = 30;
 
 SearchView::SearchView(QWidget *parent) : View(parent) {
+    const int PADDING = 30;
 
 #if defined(APP_MAC) | defined(APP_WIN)
     // speedup painting since we'll paint the whole background
@@ -381,23 +381,15 @@ void SearchView::watchKeywords(const QString &query) {
 
 void SearchView::paintEvent(QPaintEvent *event) {
     QWidget::paintEvent(event);
-#if defined(APP_MAC) | defined(APP_WIN)
     QBrush brush;
     if (window()->isActiveWindow()) {
-        brush = Qt::white;
+        brush = palette().base();
     } else {
         brush = palette().window();
     }
     QPainter painter(this);
     painter.fillRect(0, 0, width(), height(), brush);
     painter.end();
-#endif
-#ifdef APP_UBUNTU
-    QStyleOption o;
-    o.initFrom(this);
-    QPainter p(this);
-    style()->drawPrimitive(QStyle::PE_Widget, &o, &p, this);
-#endif
 }
 
 void SearchView::searchTypeChanged(int index) {
