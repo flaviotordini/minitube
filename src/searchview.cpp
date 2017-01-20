@@ -45,6 +45,8 @@ static const QString recentChannelsKey = "recentChannels";
 SearchView::SearchView(QWidget *parent) : View(parent) {
     const int PADDING = 30;
 
+    connect(window()->windowHandle(), SIGNAL(screenChanged(QScreen*)), SLOT(screenChanged()));
+
 #if defined(APP_MAC) | defined(APP_WIN)
     // speedup painting since we'll paint the whole background
     // by ourselves anyway in paintEvent()
@@ -66,7 +68,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     hLayout->setAlignment(Qt::AlignCenter);
     mainLayout->addLayout(hLayout);
 
-    QLabel *logo = new QLabel(this);
+    logo = new QLabel(this);
     logo->setPixmap(IconUtils::pixmap(":/images/app.png"));
     hLayout->addWidget(logo, 0, Qt::AlignTop);
     hLayout->addSpacing(PADDING);
@@ -406,4 +408,8 @@ void SearchView::suggestionAccepted(Suggestion *suggestion) {
     if (suggestion->type == QLatin1String("channel")) {
         watchChannel(suggestion->userData);
     } else watch(suggestion->value);
+}
+
+void SearchView::screenChanged() {
+    logo->setPixmap(IconUtils::pixmap(":/images/app.png"));
 }

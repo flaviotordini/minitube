@@ -794,7 +794,7 @@ void MediaView::demoMessage() {
 #endif
 
     QMessageBox msgBox(this);
-    msgBox.setIconPixmap(IconUtils::pixmap(":/images/app.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    msgBox.setIconPixmap(IconUtils::pixmap(":/images/64x64/app.png"));
     msgBox.setText(tr("This is just the demo version of %1.").arg(Constants::NAME));
     msgBox.setInformativeText(tr("It allows you to test the application and see if it works for you."));
     msgBox.setModal(true);

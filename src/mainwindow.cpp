@@ -1076,7 +1076,7 @@ void MainWindow::showEvent(QShowEvent *e) {
 bool MainWindow::confirmQuit() {
     if (DownloadManager::instance()->activeItems() > 0) {
         QMessageBox msgBox(this);
-        msgBox.setIconPixmap(IconUtils::pixmap(":/images/app.png").scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        msgBox.setIconPixmap(IconUtils::pixmap(":/images/64x64/app.png"));
         msgBox.setText(tr("Do you want to exit %1 with a download in progress?").arg(Constants::NAME));
         msgBox.setInformativeText(tr("If you close %1 now, this download will be cancelled.").arg(Constants::NAME));
         msgBox.setModal(true);
@@ -1716,9 +1716,7 @@ void MainWindow::gotNewVersion(const QString &version) {
 
 void MainWindow::simpleUpdateDialog(const QString &version) {
     QMessageBox msgBox(this);
-    msgBox.setIconPixmap(
-                IconUtils::pixmap(":/images/app.png")
-                .scaled(64, 64, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    msgBox.setIconPixmap(IconUtils::pixmap(":/images/64x64/app.png"));
     msgBox.setText(tr("%1 version %2 is now available.").arg(Constants::NAME, version));
     msgBox.setModal(true);
     msgBox.setWindowModality(Qt::WindowModal);

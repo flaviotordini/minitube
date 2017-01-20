@@ -124,5 +124,7 @@
         <file>images/window-close.png</file>
         <file>images/window-close_active.png</file>
         <file>images/window-close_selected.png</file>
+        <file>images/64x64/app.png</file>
+        <file>images/64x64/app@2x.png</file>
     </qresource>
 </RCC>
