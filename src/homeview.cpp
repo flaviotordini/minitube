@@ -46,7 +46,7 @@ HomeView::HomeView(QWidget *parent) : View(parent),
     stackedWidget = new QStackedWidget();
     layout->addWidget(stackedWidget);
 
-    searchView = new SearchView();
+    searchView = new SearchView(this);
     connect(searchView, SIGNAL(search(SearchParams*)),
             MainWindow::instance(), SLOT(showMedia(SearchParams*)));
     stackedWidget->addWidget(searchView);

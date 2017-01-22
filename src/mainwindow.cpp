@@ -120,7 +120,7 @@ MainWindow::MainWindow() :
     connect(messageTimer, SIGNAL(timeout()), messageLabel, SLOT(clear()));
 
     // views
-    homeView = new HomeView();
+    homeView = new HomeView(this);
     views->addWidget(homeView);
 
     // TODO make this lazy
