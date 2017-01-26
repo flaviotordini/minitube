@@ -365,9 +365,9 @@ void Video::parseJsPlayer(const QByteArray &bytes) {
             QString sig = sigRe.cap(1);
             sig = decryptSignature(sig);
             dashManifestUrl.replace(sigRe, "/signature/" + sig);
-            qDebug() << dashManifestUrl;
+            qDebug() << "dash manifest" << dashManifestUrl;
 
-            if (false) {
+            if (true) {
                 // let phonon play the manifest
                 m_streamUrl = dashManifestUrl;
                 this->definitionCode = 37;
@@ -375,7 +375,7 @@ void Video::parseJsPlayer(const QByteArray &bytes) {
                 loadingStreamUrl = false;
             } else {
                 // download the manifest
-                QObject *reply = The::http()->get(QUrl::fromEncoded(dashManifestUrl.toUtf8()));
+                QObject *reply = HttpUtils::yt().get(QUrl::fromEncoded(dashManifestUrl.toUtf8()));
                 connect(reply, SIGNAL(data(QByteArray)), SLOT(parseDashManifest(QByteArray)));
                 connect(reply, SIGNAL(error(QString)), SLOT(errorVideoInfo(QString)));
             }
