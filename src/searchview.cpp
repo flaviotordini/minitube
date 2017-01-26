@@ -45,8 +45,6 @@ static const QString recentChannelsKey = "recentChannels";
 SearchView::SearchView(QWidget *parent) : View(parent) {
     const int PADDING = 30;
 
-    connect(window()->windowHandle(), SIGNAL(screenChanged(QScreen*)), SLOT(screenChanged()));
-
 #if defined(APP_MAC) | defined(APP_WIN)
     // speedup painting since we'll paint the whole background
     // by ourselves anyway in paintEvent()
@@ -204,7 +202,10 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 }
 
 void SearchView::appear() {
-    MainWindow::instance()->showActionInStatusBar(MainWindow::instance()->getActionMap().value("definition"), true);
+    MainWindow *w = MainWindow::instance();
+    w->showActionInStatusBar(w->getActionMap().value("manualplay"), true);
+    w->showActionInStatusBar(w->getActionMap().value("safeSearch"), true);
+    w->showActionInStatusBar(w->getActionMap().value("definition"), true);
 
     updateRecentKeywords();
     updateRecentChannels();
@@ -212,10 +213,15 @@ void SearchView::appear() {
     queryEdit->enableSuggest();
 
     if (!queryEdit->toWidget()->hasFocus()) queryEdit->toWidget()->setFocus();
+
+    connect(window()->windowHandle(), SIGNAL(screenChanged(QScreen*)), SLOT(screenChanged()), Qt::UniqueConnection);
 }
 
 void SearchView::disappear() {
-    MainWindow::instance()->showActionInStatusBar(MainWindow::instance()->getActionMap().value("definition"), false);
+    MainWindow *w = MainWindow::instance();
+    w->showActionInStatusBar(w->getActionMap().value("safeSearch"), false);
+    w->showActionInStatusBar(w->getActionMap().value("definition"), false);
+    w->showActionInStatusBar(w->getActionMap().value("manualplay"), false);
 }
 
 void SearchView::updateRecentKeywords() {

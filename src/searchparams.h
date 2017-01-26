@@ -59,6 +59,12 @@ public:
         TimeMonth
     };
 
+    enum SafeSearch {
+        None = 0,
+        Moderate,
+        Strict
+    };
+
     SearchParams(QObject *parent = 0);
 
     const QString keywords() const { return m_keywords; }
@@ -85,6 +91,9 @@ public:
     uint publishedAfter() const { return m_publishedAfter; }
     void setPublishedAfter(uint value) { m_publishedAfter = value; }
 
+    int safeSearch() const { return m_safeSearch; }
+    void setSafeSearch( int safeSearch ) { m_safeSearch = safeSearch; }
+
     bool operator==(const SearchParams &other) const {
         return m_keywords == other.keywords() &&
                 m_channelId == other.channelId();
@@ -102,6 +111,7 @@ private:
     int m_quality;
     int m_time;
     uint m_publishedAfter;
+    int m_safeSearch;
 
 };
 

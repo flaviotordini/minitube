@@ -125,6 +125,15 @@ void YTSearch::loadVideos(int max, int startIndex) {
         break;
     }
 
+    switch (searchParams->safeSearch()) {
+    case SearchParams::None:
+        q.addQueryItem("safeSearch", "none");
+        break;
+    case SearchParams::Strict:
+        q.addQueryItem("safeSearch", "strict");
+        break;
+    }
+
     url.setQuery(q);
 
     lastUrl = url;

@@ -126,5 +126,7 @@
         <file>images/window-close_selected.png</file>
         <file>images/64x64/app.png</file>
         <file>images/64x64/app@2x.png</file>
+        <file>images/safesearch.png</file>
+        <file>images/safesearch@2x.png</file>
     </qresource>
 </RCC>

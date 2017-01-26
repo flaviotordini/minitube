@@ -462,12 +462,7 @@ void MainWindow::createActions() {
     addAction(volumeMuteAct);
 
     QAction *definitionAct = new QAction(this);
-#ifdef APP_LINUX
-    definitionAct->setIcon(IconUtils::tintedIcon("video-display", QColor(0, 0, 0),
-                                                 QList<QSize>() << QSize(16, 16)));
-#else
     definitionAct->setIcon(IconUtils::icon("video-display"));
-#endif
     definitionAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_D));
     /*
     QMenu *definitionMenu = new QMenu(this);
@@ -608,6 +603,13 @@ void MainWindow::createActions() {
     action->setEnabled(false);
     actionMap.insert("open-in-browser", action);
     connect(action, SIGNAL(triggered()), mediaView, SLOT(openInBrowser()));
+
+    action = new QAction(IconUtils::icon("safesearch"), tr("Restricted Mode"), this);
+    action->setStatusTip(tr("Hide videos that may contain inappropriate content"));
+    action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_K));
+    action->setCheckable(true);
+    actionMap.insert("safeSearch", action);
+    connect(action, SIGNAL(triggered(bool)), SLOT(safeSearchChanged(bool)));
 
 #ifdef APP_MAC_STORE
     action = new QAction(tr("&Love %1? Rate it!").arg(Constants::NAME), this);
@@ -874,6 +876,7 @@ void MainWindow::showActionInStatusBar(QAction* action, bool show) {
     Extra::fadeInWidget(statusBar(), statusBar());
 #endif
     if (show) {
+        if (statusToolBar->actions().contains(action)) return;
         statusToolBar->insertAction(statusToolBar->actions().first(), action);
         if (statusBar()->isHidden() && !fullscreenFlag)
             setStatusBarVisibility(true);
@@ -917,6 +920,7 @@ void MainWindow::readSettings() {
     setDefinitionMode(settings.value("definition", firstDefinition.getName()).toString());
     actionMap.value("manualplay")->setChecked(settings.value("manualplay", false).toBool());
     actionMap.value("adjustwindowsize")->setChecked(settings.value("adjustWindowSize", true).toBool());
+    actionMap.value("safeSearch")->setChecked(settings.value("safeSearch", true).toBool());
 }
 
 void MainWindow::writeSettings() {
@@ -933,6 +937,7 @@ void MainWindow::writeSettings() {
 #endif
 
     settings.setValue("manualplay", actionMap.value("manualplay")->isChecked());
+    settings.setValue("safeSearch", actionMap.value("safeSearch")->isChecked());
 }
 
 void MainWindow::goBack() {
@@ -1103,6 +1108,10 @@ void MainWindow::showHome(bool transition) {
 
 void MainWindow::showMedia(SearchParams *searchParams) {
     showWidget(mediaView);
+    if (actionMap.value("safeSearch")->isChecked())
+        searchParams->setSafeSearch(SearchParams::Strict);
+    else
+        searchParams->setSafeSearch(SearchParams::None);
     mediaView->search(searchParams);
 }
 
@@ -1602,6 +1611,8 @@ void MainWindow::clearRecentKeywords() {
 void MainWindow::setManualPlay(bool enabled) {
     QSettings settings;
     settings.setValue("manualplay", QVariant::fromValue(enabled));
+    if (views->currentWidget() == homeView && homeView->currentWidget() == homeView->getSearchView())
+        return;
     showActionInStatusBar(actionMap.value("manualplay"), enabled);
 }
 

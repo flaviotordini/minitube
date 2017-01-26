@@ -43,6 +43,7 @@ public:
         return metadata;
     }
     void showWidget(QWidget *widget);
+    QWidget *currentWidget() { return stackedWidget->currentWidget(); }
     SearchView* getSearchView() { return searchView; }
     StandardFeedsView* getStandardFeedsView() { return standardFeedsView; }
 
