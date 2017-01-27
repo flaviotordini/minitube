@@ -24,6 +24,9 @@ private:
     LocalCache(const QString &name);
     QString cachePath(const QString &key) const;
     qint64 expire();
+#ifndef QT_NO_DEBUG_OUTPUT
+    void debugStats();
+#endif
 
     QString name;
     QString directory;

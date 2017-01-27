@@ -17,18 +17,15 @@ LocalCache::LocalCache(const QString &name) : name(name),
     insertCount(0) {
     directory = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1Char('/') +
             name + QLatin1Char('/');
+#ifndef QT_NO_DEBUG_OUTPUT
+    hits = 0;
+    misses = 0;
+#endif
 }
 
 LocalCache::~LocalCache() {
 #ifndef QT_NO_DEBUG_OUTPUT
-    int total = hits + misses;
-    if (total > 0) {
-        qDebug() << __PRETTY_FUNCTION__
-                 << "Cache:" << name
-                 << "Total:" << total
-                 << QString("Hits: %1").arg((hits*100)/total)
-                 << QString("Misses: %1").arg((misses*100)/total);
-    }
+    debugStats();
 #endif
 }
 
@@ -78,15 +75,21 @@ void LocalCache::insert(const QString &key, const QByteArray &value) {
 
     // expire cache every n inserts
     if (maxSize > 0 && ++insertCount % 100 == 0) {
-        if (size > 0) {
+        if (size == 0) size = expire();
+        else {
             size += value.size();
             if (size > maxSize) size = expire();
-        } else
-            size = expire();
+        }
     }
 }
 
 bool LocalCache::clear() {
+#ifndef QT_NO_DEBUG_OUTPUT
+    hits = 0;
+    misses = 0;
+#endif
+    size = 0;
+    insertCount = 0;
     return QDir(directory).removeRecursively();
 }
 
@@ -127,13 +130,7 @@ qint64 LocalCache::expire() {
         qApp->processEvents();
     }
 #ifndef QT_NO_DEBUG_OUTPUT
-    int total = hits + misses;
-    if (total > 0) {
-        qDebug() << "Cache:" << name
-                 << "Requests:" << total
-                 << QString("Hits: %1").arg((hits*100)/total)
-                 << QString("Misses: %1").arg((misses*100)/total);
-    }
+    debugStats();
     if (removedFiles > 0) {
         qDebug() << "Removed:" << removedFiles
                  << "Kept:" << cacheItems.count() - removedFiles
@@ -145,3 +142,16 @@ qint64 LocalCache::expire() {
 
     return totalSize;
 }
+
+#ifndef QT_NO_DEBUG_OUTPUT
+void LocalCache::debugStats() {
+    int total = hits + misses;
+    if (total > 0) {
+        qDebug() << "Cache:" << name << '\n'
+                 << "Inserts:" << insertCount << '\n'
+                 << "Requests:" << total << '\n'
+                 << "Hits:" << hits << (hits*100)/total  << "%\n"
+                 << "Misses:" << misses << (misses*100)/total << "%";
+    }
+}
+#endif
