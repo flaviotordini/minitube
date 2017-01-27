@@ -687,12 +687,14 @@ void MainWindow::createMenus() {
 
     QMenu* viewMenu = menuBar()->addMenu(tr("&View"));
     menuMap.insert("view", viewMenu);
-    viewMenu->addAction(fullscreenAct);
-    viewMenu->addAction(compactViewAct);
-    viewMenu->addSeparator();
     viewMenu->addAction(actionMap.value("adjustwindowsize"));
     viewMenu->addSeparator();
     viewMenu->addAction(actionMap.value("ontop"));
+    viewMenu->addSeparator();
+    viewMenu->addAction(compactViewAct);
+#ifndef APP_MAC
+    viewMenu->addAction(fullscreenAct);
+#endif
 
     QMenu* shareMenu = menuBar()->addMenu(tr("&Share"));
     menuMap.insert("share", shareMenu);
