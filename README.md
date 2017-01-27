@@ -6,7 +6,6 @@ Translations are done at https://www.transifex.com/projects/p/minitube/
 Just register and apply for a language team. Please don't request translation merges on GitHub.
 
 ## Google API Key
-
 Google is now requiring an API key in order to access YouTube Data web services.
 Create a "Browser Key" at https://console.developers.google.com
 
@@ -14,8 +13,7 @@ The key must be specified at compile time as shown below.
 Alternatively Minitube can read an API key from the GOOGLE_API_KEY environment variable.
 
 ## Build instructions
-To compile Minitube you need at least Qt 5.0. The following Qt modules are needed:
-core, gui, widgets, network, sql (using the Sqlite plugin), script, dbus.
+To compile Minitube you need at least Qt 5.0. The following Qt modules are needed: core, gui, widgets, network, sql (using the Sqlite plugin), declarative, dbus.
 
 To be able to build on a Debian (or derivative) system:
 
