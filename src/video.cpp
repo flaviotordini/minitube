@@ -89,7 +89,7 @@ void Video::setWebpage(const QString &value) {
 void Video::loadThumbnail() {
     if (m_thumbnailUrl.isEmpty() || loadingThumbnail) return;
     loadingThumbnail = true;
-    QObject *reply = HttpUtils::cached().get(m_thumbnailUrl);
+    QObject *reply = HttpUtils::yt().get(m_thumbnailUrl);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(setThumbnail(QByteArray)));
 }
 
