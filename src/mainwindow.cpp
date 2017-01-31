@@ -609,7 +609,6 @@ void MainWindow::createActions() {
     action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_K));
     action->setCheckable(true);
     actionMap.insert("safeSearch", action);
-    connect(action, SIGNAL(triggered(bool)), SLOT(safeSearchChanged(bool)));
 
 #ifdef APP_MAC_STORE
     action = new QAction(tr("&Love %1? Rate it!").arg(Constants::NAME), this);
