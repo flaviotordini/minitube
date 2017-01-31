@@ -50,6 +50,7 @@ $END_LICENSE */
 #include "snapshotsettings.h"
 #endif
 #include "datautils.h"
+#include "idle.h"
 
 MediaView* MediaView::instance() {
     static MediaView *i = new MediaView();
@@ -314,7 +315,7 @@ void MediaView::handleError(const QString &message) {
 }
 
 #ifdef APP_PHONON
-void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/) {
+void MediaView::stateChanged(Phonon::State newState, Phonon::State oldState) {
     if (pauseTime > 0 && (newState == Phonon::PlayingState || newState == Phonon::BufferingState)) {
         mediaObject->seek(pauseTime);
         pauseTime = 0;
@@ -325,6 +326,14 @@ void MediaView::stateChanged(Phonon::State newState, Phonon::State /*oldState*/)
         qWarning() << "Phonon error:" << mediaObject->errorString() << mediaObject->errorType();
         if (mediaObject->errorType() == Phonon::FatalError)
             handleError(mediaObject->errorString());
+    }
+
+    if (newState == Phonon::PlayingState) {
+        bool res = Idle::preventDisplaySleep(QString("%1 is playing").arg(Constants::NAME));
+        if (!res) qWarning() << "Error disabling idle display sleep" << Idle::displayErrorMessage();
+    } else if (oldState == Phonon::PlayingState) {
+        bool res = Idle::allowDisplaySleep();
+        if (!res) qWarning() << "Error enabling idle display sleep" << Idle::displayErrorMessage();
     }
 }
 #endif

@@ -16,7 +16,7 @@ DEFINES += APP_SNAPSHOT
 message(Building $${APP_NAME} $${VERSION})
 message(Qt $$[QT_VERSION] in $$[QT_INSTALL_PREFIX])
 
-#DEFINES *= QT_NO_DEBUG_OUTPUT
+DEFINES *= QT_NO_DEBUG_OUTPUT
 DEFINES *= QT_USE_QSTRINGBUILDER
 DEFINES *= QT_STRICT_ITERATORS
 
@@ -30,6 +30,7 @@ QT += widgets network sql qml
 
 include(src/qtsingleapplication/qtsingleapplication.pri)
 include(src/http/http.pri)
+include(src/idle/idle.pri)
 
 HEADERS += src/video.h \
     src/searchlineedit.h \
@@ -241,6 +242,3 @@ unix:!mac {
     icon512.files += data/512x512/minitube.png
 }
 mac|win32|contains(DEFINES, APP_UBUNTU):include(local/local.pri)
-
-OTHER_FILES += \
-    sounds/snapshot.wav
