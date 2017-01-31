@@ -49,6 +49,7 @@ YT3::YT3() {
 
     if (keys.isEmpty()) {
         qWarning() << "No available API keys";
+        QMetaObject::invokeMethod(qApp->activeWindow(), "missingKeyWarning");
     } else {
         key = keys.takeFirst();
         if (!keys.isEmpty()) testApiKey();

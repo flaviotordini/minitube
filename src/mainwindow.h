@@ -90,6 +90,7 @@ public slots:
 #endif
     bool isReallyFullScreen();
     bool isCompact() { return m_compact; }
+    void missingKeyWarning();
 
 signals:
     void currentTimeChanged(const QString &s);
