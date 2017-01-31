@@ -13,7 +13,7 @@ IOReturn systemRes = 0;
 }
 
 bool Idle::preventDisplaySleep(const QString &reason) {
-    displayRes = IOPMAssertionCreateWithName(kIOPMAssertPreventUserIdleDisplaySleep,
+    displayRes = IOPMAssertionCreateWithName(kIOPMAssertionTypePreventUserIdleDisplaySleep,
                                         kIOPMAssertionLevelOn, reason.toCFString(), &displayAssertionID);
     return displayRes == kIOReturnSuccess;
 }
@@ -29,7 +29,7 @@ QString Idle::displayErrorMessage() {
 }
 
 bool Idle::preventSystemSleep(const QString &reason) {
-    systemRes = IOPMAssertionCreateWithName(kIOPMAssertPreventUserIdleSystemSleep,
+    systemRes = IOPMAssertionCreateWithName(kIOPMAssertionTypePreventUserIdleSystemSleep,
                                         kIOPMAssertionLevelOn, reason.toCFString(), &systemAssertionID);
     return systemRes == kIOReturnSuccess;
 }
