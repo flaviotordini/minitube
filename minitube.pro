@@ -189,13 +189,8 @@ include(locale/locale.pri)
 DISTFILES += CHANGES COPYING
 unix:!mac {
     DEFINES += APP_LINUX
-    qt:greaterThan(QT_MAJOR_VERSION, 4) {
-        LIBS += -lphonon4qt5
-        INCLUDEPATH += /usr/include/phonon4qt5
-    } else {
-        QT += phonon
-        INCLUDEPATH += /usr/include/phonon
-    }
+    LIBS += -lphonon4qt5
+    INCLUDEPATH += /usr/include/phonon4qt5
     QT += dbus
     HEADERS += src/gnomeglobalshortcutbackend.h
     SOURCES += src/gnomeglobalshortcutbackend.cpp
