@@ -329,7 +329,11 @@ void Video::scrapeWebPage(const QByteArray &bytes) {
     if (jsPlayerRe.indexIn(html) != -1) {
         QString jsPlayerUrl = jsPlayerRe.cap(1);
         jsPlayerUrl.remove('\\');
-        jsPlayerUrl = "http:" + jsPlayerUrl;
+        if (jsPlayerUrl.startsWith("//")) {
+            jsPlayerUrl = "https:" + jsPlayerUrl;
+        } else if (jsPlayerUrl.startsWith("/")) {
+            jsPlayerUrl = "https://youtube.com" + jsPlayerUrl;
+        }
         // qDebug() << "jsPlayerUrl" << jsPlayerUrl;
         /*
                     QRegExp jsPlayerIdRe("-(.+)\\.js");
