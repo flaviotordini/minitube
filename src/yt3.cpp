@@ -7,6 +7,7 @@
 #include "http.h"
 #include "httputils.h"
 #include "constants.h"
+#include "mainwindow.h"
 
 #ifdef APP_EXTRA
 #include "extra.h"
@@ -50,7 +51,7 @@ YT3::YT3() {
     if (keys.isEmpty()) {
         qWarning() << "No available API keys";
 #ifdef APP_LINUX
-        QMetaObject::invokeMethod(qApp->activeWindow(), "missingKeyWarning");
+        QMetaObject::invokeMethod(MainWindow::instance(), "missingKeyWarning");
 #endif
     } else {
         key = keys.takeFirst();
