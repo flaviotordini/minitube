@@ -17,9 +17,6 @@ public:
     void addApiKey(QUrl &url);
     QUrl method(const QString &name);
 
-signals:
-    void gotChannelId(QString channelId);
-
 private slots:
     void testResponse(const HttpReply &reply);
 
