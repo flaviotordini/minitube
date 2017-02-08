@@ -405,22 +405,22 @@
     <message>
         <location filename="local/src/extra.cpp" line="251"/>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation type="unfinished"/>
+        <translation>El fitxer executable ha estat manipulat, potser per un virus.</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="252"/>
         <source>%1 will not run. Try installing again.</source>
-        <translation type="unfinished"/>
+        <translation>%1 no funcionarà. Proveu tornar a instal·lar.</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="253"/>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Surt</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="254"/>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>Reinstal·la</translation>
     </message>
 </context>
 <context>
@@ -854,7 +854,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="1158"/>
         <source>&amp;Loading...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Carregant...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1264"/>

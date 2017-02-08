@@ -778,7 +778,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="612"/>
         <source>&amp;Love %1? Rate it!</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Yêu thích %1? Hãy đánh giá!</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="633"/>

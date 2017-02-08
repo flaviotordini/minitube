@@ -241,17 +241,17 @@
     <message>
         <location filename="src/datautils.cpp" line="88"/>
         <source>Just now</source>
-        <translation type="unfinished"/>
+        <translation>Ara mateix</translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="90"/>
         <source>%n minute(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>fa %n minut(s)</numerusform><numerusform>fa %n minut(s)</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="92"/>
         <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>fa %n hora</numerusform><numerusform>fa %n hores</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="94"/>
@@ -405,22 +405,22 @@
     <message>
         <location filename="local/src/extra.cpp" line="251"/>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation type="unfinished"/>
+        <translation>El fitxer executable ha estat manipulat, potser per un virus.</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="252"/>
         <source>%1 will not run. Try installing again.</source>
-        <translation type="unfinished"/>
+        <translation>%1 no funcionarà. Proveu tornar a instalar</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="253"/>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Surt</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="254"/>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>Reinstala</translation>
     </message>
 </context>
 <context>
@@ -738,7 +738,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="566"/>
         <source>&amp;Adjust Window Size</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ajusta la mida de la finestra</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="571"/>
@@ -854,7 +854,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="1158"/>
         <source>&amp;Loading...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Carregant...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1264"/>
@@ -1059,12 +1059,12 @@
     <message>
         <location filename="src/mediaview.cpp" line="1166"/>
         <source>Unsubscribed from %1</source>
-        <translation type="unfinished"/>
+        <translation>De-subscrit de %1 </translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="1169"/>
         <source>Subscribed to %1</source>
-        <translation type="unfinished"/>
+        <translation>Subscrit a %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="808"/>

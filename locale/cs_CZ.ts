@@ -405,12 +405,12 @@
     <message>
         <location filename="local/src/extra.cpp" line="251"/>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation type="unfinished"/>
+        <translation>Soubor pro spuštění byl požkozen, toto mohl zapříčinit virus.</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="252"/>
         <source>%1 will not run. Try installing again.</source>
-        <translation type="unfinished"/>
+        <translation>%1 nepoběží. Zkuste instalovat znovu.</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="253"/>

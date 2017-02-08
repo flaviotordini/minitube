@@ -4,7 +4,7 @@
     <message>
         <location filename="src/aboutview.cpp" line="58"/>
         <source>There&apos;s life outside the browser!</source>
-        <translation>Il y a une vie après le navigateur !</translation>
+        <translation>Il y a une vie en dehors du navigateur !</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="59"/>
@@ -54,7 +54,7 @@
     <message>
         <location filename="src/aboutview.cpp" line="95"/>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
-        <translation>Proposé sous licence &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</translation>
+        <translation>Publié sous la licence &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="110"/>
@@ -95,7 +95,7 @@
     <message>
         <location filename="local/src/activationview.cpp" line="51"/>
         <source>This demo has expired.</source>
-        <translation>Cette version de démo a expiré.</translation>
+        <translation>Cette version de démonstration a expiré.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="53"/>
@@ -111,12 +111,12 @@
     <message>
         <location filename="local/src/activationview.cpp" line="57"/>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
-        <translation>En achetant la version complète, vous supporterai aussi le grand travail que j&apos;ai investi dans la création de %1.</translation>
+        <translation>En achetant la version complète,vous supporterez aussi le grand travail que j&apos;ai investi dans la création de %1.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="70"/>
         <source>Use Demo</source>
-        <translation>Utilisez la version de démo</translation>
+        <translation>Utilisez la version de démonstration</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="77"/>
@@ -165,7 +165,7 @@
     <message>
         <location filename="src/channelview.cpp" line="159"/>
         <source>Show Updated</source>
-        <translation>Afficher les mises à jour</translation>
+        <translation>Afficher les mises à jours</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="103"/>
@@ -175,7 +175,7 @@
     <message>
         <location filename="src/channelview.cpp" line="110"/>
         <source>Last Updated</source>
-        <translation>Dernièrement mis à jour</translation>
+        <translation>Dernièrement mis à jours</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="117"/>
@@ -225,7 +225,7 @@
     <message>
         <location filename="src/channelview.cpp" line="272"/>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation>Vous n&apos;avez pas d&apos;abonnements. Utilisez le symbole de l&apos;étoile pour vous abonner à des chaines,</translation>
+        <translation>Vous n&apos;avez pas d&apos;abonnements. Utilisez le symbole en forme d&apos;étoile pour vous abonner à des chaines,</translation>
     </message>
 </context>
 <context>
@@ -233,7 +233,7 @@
     <message>
         <location filename="src/exlineedit.cpp" line="6"/>
         <source>Clear</source>
-        <translation>Effacer</translation>
+        <translation>Nettoyer </translation>
     </message>
 </context>
 <context>
@@ -322,12 +322,12 @@
     <message>
         <location filename="src/downloadmanager.cpp" line="77"/>
         <source>This is just the demo version of %1.</source>
-        <translation>Il s&apos;agit seulement de la version démo de %1.</translation>
+        <translation>Il s&apos;agit seulement de la version de démonstration de %1.</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="79"/>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation>Vous ne pouvez télécharger que des vidéos plus courtes que %1 minutes de sorte que vous pouvez tester la fonctionnalité de téléchargement.</translation>
+        <translation>Vous ne pouvez télécharger que des vidéos plus courtes que %1 minutes de sorte que vous puissiez tester la fonctionnalité de téléchargement.</translation>
     </message>
     <message>
         <location filename="src/downloadmanager.cpp" line="85"/>
@@ -375,7 +375,7 @@
     <message>
         <location filename="src/downloadsettings.cpp" line="83"/>
         <source>Current downloads will still go in the previous location.</source>
-        <translation>Les téléchargements en cours iront à l&apos;emplacement précédent.</translation>
+        <translation>Les téléchargements en cours iront encore à l&apos;emplacement précédent.</translation>
     </message>
     <message>
         <location filename="src/downloadsettings.cpp" line="94"/>
@@ -410,7 +410,7 @@
     <message>
         <location filename="local/src/extra.cpp" line="252"/>
         <source>%1 will not run. Try installing again.</source>
-        <translation>%1 ne sera pas exécuté. Essayez d&apos;installer de nouveau.</translation>
+        <translation>%1 ne sera pas exécuté. Essayez d&apos;installer à nouveau.</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="253"/>
@@ -448,7 +448,7 @@
     <message>
         <location filename="src/globalshortcuts.cpp" line="40"/>
         <source>Stop playing after current track</source>
-        <translation>Arrêtez après le morceau en cours</translation>
+        <translation>Arrêtez la lecture après le morceau en cours</translation>
     </message>
     <message>
         <location filename="src/globalshortcuts.cpp" line="41"/>

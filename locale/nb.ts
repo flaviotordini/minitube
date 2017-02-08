@@ -405,22 +405,22 @@
     <message>
         <location filename="local/src/extra.cpp" line="251"/>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation type="unfinished"/>
+        <translation>Den kjørbare filen er infisert, muligens med et virus.</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="252"/>
         <source>%1 will not run. Try installing again.</source>
-        <translation type="unfinished"/>
+        <translation>%1 vil ikke kjøre. Prøv å installere igjen.</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="253"/>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Avslutt</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="254"/>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>Installer på nytt</translation>
     </message>
 </context>
 <context>
@@ -778,7 +778,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="612"/>
         <source>&amp;Love %1? Rate it!</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Liker %1? Ranger den!</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="633"/>
@@ -854,7 +854,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="1158"/>
         <source>&amp;Loading...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Laster...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1264"/>

@@ -352,7 +352,7 @@
     <message numerus="yes">
         <location filename="src/downloadmanager.cpp" line="165"/>
         <source>%n Download(s)</source>
-        <translation><numerusform>%n descarga(s)</numerusform><numerusform>%n descarga(s)</numerusform></translation>
+        <translation><numerusform>%n descarga(s)</numerusform><numerusform>%n Descarga(s)</numerusform></translation>
     </message>
 </context>
 <context>
@@ -703,12 +703,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="510"/>
         <source>Take &amp;Snapshot</source>
-        <translation>Tomar &amp;captura</translation>
+        <translation>Tomar &amp;Captura</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="517"/>
         <source>&amp;Subscribe to Channel</source>
-        <translation>&amp;Suscribirse al canal</translation>
+        <translation>&amp;Suscribirse al Canal</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="525"/>
@@ -763,7 +763,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="597"/>
         <source>&amp;Related Videos</source>
-        <translation>Vídeos &amp;relacionados</translation>
+        <translation>Vídeos &amp;Relacionados</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="599"/>

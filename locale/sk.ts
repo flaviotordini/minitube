@@ -101,7 +101,7 @@
         <location filename="local/src/activationview.cpp" line="53"/>
         <source>The full version allows you to watch videos without interruptions.</source>
         <oldsource>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</oldsource>
-        <translation type="unfinished"/>
+        <translation>Plná verzia vám umožňuje pozerať videá bez prerušení.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="55"/>
@@ -139,7 +139,7 @@
     <message numerus="yes">
         <location filename="src/channelaggregator.cpp" line="185"/>
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Máte %n nové vide(o)</numerusform><numerusform>Máte %n nových vide(í)</numerusform><numerusform>Máte %n nových vide(í)</numerusform></translation>
     </message>
 </context>
 <context>
@@ -210,12 +210,12 @@
     <message>
         <location filename="src/channelview.cpp" line="244"/>
         <source>Mark as Watched</source>
-        <translation type="unfinished"/>
+        <translation>Označiť ako už videné</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="257"/>
         <source>Unsubscribe</source>
-        <translation type="unfinished"/>
+        <translation>Zrušiť odber</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="270"/>
@@ -241,32 +241,32 @@
     <message>
         <location filename="src/datautils.cpp" line="88"/>
         <source>Just now</source>
-        <translation type="unfinished"/>
+        <translation>Práve teraz</translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="90"/>
         <source>%n minute(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Pred %n minút(ou)</numerusform><numerusform>Pred %n minút(ami)</numerusform><numerusform>Pred %n minút(ami)</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="92"/>
         <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Pred %n hodin(ou)</numerusform><numerusform>Pred %n hodin(ami)</numerusform><numerusform>Pred %n hodin(ami)</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="94"/>
         <source>%n day(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Pred %n dň(om)</numerusform><numerusform>Pred %n dň(ami)</numerusform><numerusform>Pred %n dň(ami)</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="96"/>
         <source>%n weeks(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Pred %n týždň(om)</numerusform><numerusform>Pred %n týždň(ami)</numerusform><numerusform>Pred %n týždň(ami)</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="98"/>
         <source>%n month(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Pred %n mesiac(om)</numerusform><numerusform>Pred %n mesiac(mi)</numerusform><numerusform>Pred %n mesiac(mi)</numerusform></translation>
     </message>
 </context>
 <context>
@@ -352,7 +352,7 @@
     <message numerus="yes">
         <location filename="src/downloadmanager.cpp" line="165"/>
         <source>%n Download(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n stiahnutie</numerusform><numerusform>%n stiahnutí</numerusform><numerusform>%n stiahnutí</numerusform></translation>
     </message>
 </context>
 <context>
@@ -405,22 +405,22 @@
     <message>
         <location filename="local/src/extra.cpp" line="251"/>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation type="unfinished"/>
+        <translation>Spustiteľný súbor bol pravdepodobne upravený vírusom.</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="252"/>
         <source>%1 will not run. Try installing again.</source>
-        <translation type="unfinished"/>
+        <translation>%1 sa nespustí. Skúste inštalovať znova.</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="253"/>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Ukončiť</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="254"/>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>Preinštalovať</translation>
     </message>
 </context>
 <context>
@@ -703,7 +703,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="510"/>
         <source>Take &amp;Snapshot</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Snímka obrazovky</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="517"/>
@@ -738,7 +738,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="566"/>
         <source>&amp;Adjust Window Size</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Upraviť veľkosť okna</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="571"/>
@@ -778,7 +778,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="612"/>
         <source>&amp;Love %1? Rate it!</source>
-        <translation type="unfinished"/>
+        <translation>%Páči sa vám %1? ohodnoťte ho!</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="633"/>
@@ -854,7 +854,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="1158"/>
         <source>&amp;Loading...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Načítava sa...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1264"/>
@@ -1059,12 +1059,12 @@
     <message>
         <location filename="src/mediaview.cpp" line="1166"/>
         <source>Unsubscribed from %1</source>
-        <translation type="unfinished"/>
+        <translation>Bol zrušený odber kanála %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="1169"/>
         <source>Subscribed to %1</source>
-        <translation type="unfinished"/>
+        <translation>Odoberáte kanál %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="808"/>
@@ -1411,12 +1411,12 @@
     <message>
         <location filename="src/snapshotsettings.cpp" line="64"/>
         <source>Snapshot saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>Snímka obrazovky uložená v %1</translation>
     </message>
     <message>
         <location filename="src/snapshotsettings.cpp" line="117"/>
         <source>Snapshots location changed.</source>
-        <translation type="unfinished"/>
+        <translation>Úložisko snímok obrazovky zmenené.</translation>
     </message>
 </context>
 <context>

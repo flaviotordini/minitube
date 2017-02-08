@@ -406,7 +406,7 @@
     <message>
         <location filename="local/src/extra.cpp" line="251"/>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation type="unfinished"/>
+        <translation>Исполняемый файл был изменен, возможно вирусом.</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="252"/>

@@ -405,12 +405,12 @@
     <message>
         <location filename="local/src/extra.cpp" line="251"/>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation type="unfinished"/>
+        <translation>Die Binärdatei wurde kompromittiert. Möglicherweise von einem Virus.</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="252"/>
         <source>%1 will not run. Try installing again.</source>
-        <translation type="unfinished"/>
+        <translation>%1 startet nicht. Bitte versuchen Sie eine Neuinstallation.</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="253"/>
@@ -1059,12 +1059,12 @@
     <message>
         <location filename="src/mediaview.cpp" line="1166"/>
         <source>Unsubscribed from %1</source>
-        <translation type="unfinished"/>
+        <translation>Abonnement von %1 wurde aufgehoben.</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="1169"/>
         <source>Subscribed to %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 abonniert</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="808"/>

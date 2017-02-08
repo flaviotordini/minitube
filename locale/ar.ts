@@ -738,7 +738,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="566"/>
         <source>&amp;Adjust Window Size</source>
-        <translation type="unfinished"/>
+        <translation>&amp;ضبط حجم النافذة</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="571"/>
@@ -854,7 +854,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="1158"/>
         <source>&amp;Loading...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;تحميل...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1264"/>
@@ -1059,12 +1059,12 @@
     <message>
         <location filename="src/mediaview.cpp" line="1166"/>
         <source>Unsubscribed from %1</source>
-        <translation type="unfinished"/>
+        <translation>تم إلغاء متابعتك ل %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="1169"/>
         <source>Subscribed to %1</source>
-        <translation type="unfinished"/>
+        <translation>تمت اضافة متابعة ل %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="808"/>

@@ -516,7 +516,7 @@
     <message>
         <location filename="src/homeview.cpp" line="73"/>
         <source>Channel subscriptions</source>
-        <translation>Συδρομές σε κανάλια</translation>
+        <translation>Συνδρομές σε κανάλια</translation>
     </message>
     <message>
         <location filename="src/homeview.h" line="44"/>
@@ -587,7 +587,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="356"/>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation>Αντιγραφή του συνδεσμού του τρέχοντος βίντεο YouTube στο πρόχειρο</translation>
+        <translation>Αντιγραφή του συνδέσμου του τρέχοντος βίντεο YouTube στο πρόχειρο</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="363"/>
