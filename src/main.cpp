@@ -19,6 +19,8 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include <QtWidgets>
+#include <QtNetwork>
+
 #include <qtsingleapplication.h>
 #include "constants.h"
 #include "mainwindow.h"
@@ -124,6 +126,8 @@ int main(int argc, char **argv) {
 
     // all string literals are UTF-8
     // QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+
+    QNetworkProxyFactory::setUseSystemConfiguration(true);
 
     showWindow(app, dataDir);
 
