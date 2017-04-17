@@ -142,6 +142,7 @@ private:
     QHash<QString, QString> sigObjects;
 
     QString dashManifestUrl;
+    QString jsPlayer;
 };
 
 // This is required in order to use QPointer<Video> as a QVariant

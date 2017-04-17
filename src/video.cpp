@@ -210,7 +210,7 @@ void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
             // qWarning() << urlParam;
             if (urlParam.startsWith("itag=")) {
                 int separator = urlParam.indexOf("=");
-                format = urlParam.mid(separator + 1).toInt();
+                format = urlParam.midRef(separator + 1).toInt();
             } else if (urlParam.startsWith("url=")) {
                 int separator = urlParam.indexOf("=");
                 url = urlParam.mid(separator + 1);
@@ -348,9 +348,10 @@ void Video::scrapeWebPage(const QByteArray &bytes) {
 
 void Video::parseJsPlayer(const QByteArray &bytes) {
     QString js = QString::fromUtf8(bytes);
-    // qWarning() << "jsPlayer" << js;
+    jsPlayer = js;
+    // qDebug() << "jsPlayer" << js;
 
-    // QRegExp funcNameRe("\"signature\"\\w*,\\w*([" + jsNameChars + "]+)");
+    // QRegExp funcNameRe("[\"']signature[\"']\\s*,\\s*([" + jsNameChars + "]+)\\(");
     QRegExp funcNameRe(JsFunctions::instance()->signatureFunctionNameRE().arg(jsNameChars));
 
     if (funcNameRe.indexIn(js) == -1) {
@@ -406,6 +407,7 @@ void Video::parseDashManifest(const QByteArray &bytes) {
 }
 
 void Video::captureFunction(const QString &name, const QString &js) {
+    qDebug() << __PRETTY_FUNCTION__ << name;
     const QString argsAndBody = "\\s*\\([" + jsNameChars + ",\\s]*\\)\\s*\\{[^\\}]+\\}";
     QString func;
     QRegExp funcRe("function\\s+" + QRegExp::escape(name) + argsAndBody);
@@ -462,6 +464,7 @@ void Video::captureObject(const QString &name, const QString &js) {
 }
 
 QString Video::decryptSignature(const QString &s) {
+    qDebug() << "decryptSignature" << sigFuncName << sigFunctions << sigObjects;
     if (sigFuncName.isEmpty()) return QString();
     QJSEngine engine;
     foreach (const QString &f, sigObjects.values()) {
@@ -476,14 +479,30 @@ QString Video::decryptSignature(const QString &s) {
     }
     QString js = sigFuncName + "('" + s + "');";
     QJSValue value = engine.evaluate(js);
+    bool error = false;
     if (value.isUndefined()) {
         qWarning() << "Undefined result for" << js;
-        return QString();
+        error = true;
     }
     if (value.isError()) {
         qWarning() << "Error in" << js << value.toString();
-        return QString();
+        error = true;
     }
+    if (error) {
+        QJSEngine engine2;
+        engine2.evaluate(jsPlayer);
+        value = engine2.evaluate(js);
+        if (value.isUndefined()) {
+            qWarning() << "Undefined result for" << js;
+            error = true;
+        }
+        if (value.isError()) {
+            qWarning() << "Error in" << js << value.toString();
+            error = true;
+        }
+    }
+    // jsPlayer.clear();
+    if (error) return QString();
     return value.toString();
 }
 
