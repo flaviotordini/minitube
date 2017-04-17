@@ -47,6 +47,15 @@ Http &myHttp() {
 }
 ```
 
+If the full power (and complexity) of QNetworkReply is needed you can always fallback to it:
+
+```
+HttpRequest req;
+req.url = "https://flavio.tordini.org/";
+QNetworkReply *reply = Http::instance().networkReply(req);
+// Use QNetworkReply as needed...
+```
+
 You can use this library under the MIT license and at your own risk. If you do, you're welcome contributing your changes and fixes.
 
 Cheers,

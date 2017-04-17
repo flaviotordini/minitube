@@ -33,7 +33,9 @@ QString LocalCache::hash(const QString &s) {
     QCryptographicHash hash(QCryptographicHash::Sha1);
     hash.addData(s.toUtf8());
     QString h = QString::number(*(qlonglong*)hash.result().constData(), 36);
-    return h.at(0) + QLatin1Char('/') + h.at(1) + QLatin1Char('/') + h.mid(2);
+    static const QLatin1Char sep('/');
+    QString p = h.at(0) + sep + h.at(1) + sep;
+    return p.append(h.midRef(2));
 }
 
 bool LocalCache::isCached(const QString &key) {
