@@ -35,7 +35,8 @@ namespace {
 
 void drawElidedText(QPainter *painter, const QRect &textBox, const int flags, const QString &text) {
     QString elidedText = QFontMetrics(painter->font()).elidedText(text, Qt::ElideRight, textBox.width(), flags);
-    painter->drawText(textBox, 0, elidedText);
+    if (elidedText.length() > 3)
+        painter->drawText(textBox, 0, elidedText);
 }
 
 }
@@ -171,8 +172,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
         textBox = painter->boundingRect(textBox, flags, v);
         while (textBox.height() > 55 && v.length() > 10) {
             videoTitle.truncate(videoTitle.length() - 1);
-            v = videoTitle;
-            v = v.trimmed().append("...");
+            v = videoTitle.trimmed().append(QLatin1String("…"));
             textBox = painter->boundingRect(textBox, flags, v);
         }
         painter->drawText(textBox, flags, v);
@@ -188,11 +188,9 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
 
         // author
         bool authorHovered = false;
-        bool authorPressed = false;
         const bool isHovered = index.data(HoveredItemRole).toBool();
         if (isHovered) {
             authorHovered = index.data(AuthorHoveredRole).toBool();
-            authorPressed = index.data(AuthorPressedRole).toBool();
         }
 
         painter->save();
@@ -244,8 +242,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
             textBox = painter->boundingRect(textBox, flags, v);
             while (textBox.height() > THUMB_HEIGHT && v.length() > 10) {
                 videoTitle.truncate(videoTitle.length() - 1);
-                v = videoTitle;
-                v = v.trimmed().append("...");
+                v = videoTitle.trimmed().append(QLatin1String("…"));
                 textBox = painter->boundingRect(textBox, flags, v);
             }
             painter->fillRect(QRect(0, 0, THUMB_WIDTH, textBox.height() + PADDING*2), QColor(0, 0, 0, 128));

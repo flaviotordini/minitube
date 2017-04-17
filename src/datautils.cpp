@@ -16,7 +16,7 @@ QString DataUtils::stringToFilename(const QString &s) {
     f = f.simplified();
 
     if (!f.isEmpty() && f.at(0) == '.')
-        f = f.mid(1).trimmed();
+        f = f.midRef(1).trimmed().toString();
 
     return f;
 }
