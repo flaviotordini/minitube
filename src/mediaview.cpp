@@ -72,7 +72,8 @@ void MediaView::initialize() {
 
     splitter = new MiniSplitter();
 
-    playlistView = new PlaylistView(this);
+    playlistView = new PlaylistView();
+    playlistView->setParent(this);
     // respond to the user doubleclicking a playlist item
     connect(playlistView, SIGNAL(activated(const QModelIndex &)),
             SLOT(itemActivated(const QModelIndex &)));
@@ -1175,6 +1176,8 @@ void MediaView::toggleSubscription() {
 }
 
 void MediaView::adjustWindowSize() {
+    Video *video = playlistModel->activeVideo();
+    if (!video) return;
     if (!MainWindow::instance()->isMaximized() && !MainWindow::instance()->isFullScreen()) {
         const double ratio = 16. / 9.;
         const int w = videoAreaWidget->width();
