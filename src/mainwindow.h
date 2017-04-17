@@ -70,6 +70,9 @@ public:
     void setStatusBarVisibility(bool show);
     void adjustStatusBarVisibility();
 
+    void hideToolbar();
+    void showToolbar();
+
 public slots:
     void showHome(bool transition = true);
     void showMedia(SearchParams *params);
@@ -82,6 +85,7 @@ public slots:
     void search(const QString &query);
     void goBack();
     void showMessage(const QString &message);
+    void hideMessage();
 #ifdef APP_ACTIVATION
     void showActivationView(bool transition = true);
     void showActivationDialog();

@@ -116,8 +116,7 @@ MainWindow::MainWindow() :
     messageTimer = new QTimer(this);
     messageTimer->setInterval(5000);
     messageTimer->setSingleShot(true);
-    connect(messageTimer, SIGNAL(timeout()), messageLabel, SLOT(hide()));
-    connect(messageTimer, SIGNAL(timeout()), messageLabel, SLOT(clear()));
+    connect(messageTimer, SIGNAL(timeout()), SLOT(hideMessage()));
 
     // views
     homeView = new HomeView(this);
@@ -889,6 +888,10 @@ void MainWindow::showActionInStatusBar(QAction* action, bool show) {
 }
 
 void MainWindow::setStatusBarVisibility(bool show) {
+#ifdef APP_MAC
+    // workaround Qt bug with garbled floating statusToolBar when statusBar is hidden
+    statusToolBar->setVisible(show);
+#endif
     statusBar()->setVisible(show);
     if (views->currentWidget() == mediaView)
         QTimer::singleShot(0, mediaView, SLOT(maybeAdjustWindowSize()));
@@ -896,6 +899,22 @@ void MainWindow::setStatusBarVisibility(bool show) {
 
 void MainWindow::adjustStatusBarVisibility() {
     setStatusBarVisibility(needStatusBar());
+}
+
+void MainWindow::hideToolbar() {
+#ifdef APP_MAC
+    mac::showToolBar(winId(), false);
+#else
+    mainToolBar->hide();
+#endif
+}
+
+void MainWindow::showToolbar() {
+#ifdef APP_MAC
+    mac::showToolBar(winId(), true);
+#else
+    mainToolBar->show();
+#endif
 }
 
 void MainWindow::readSettings() {
@@ -1866,6 +1885,11 @@ void MainWindow::showMessage(const QString &message) {
         messageLabel->show();
         messageTimer->start();
     }
+}
+
+void MainWindow::hideMessage() {
+    messageLabel->hide();
+    messageLabel->clear();
 }
 
 #ifdef APP_ACTIVATION
