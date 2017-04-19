@@ -107,7 +107,7 @@ void PlaylistItemDelegate::paint( QPainter* painter,
 
     int itemType = index.data(ItemTypeRole).toInt();
     if (itemType == ItemTypeVideo) {
-        QStyleOptionViewItemV4 opt = QStyleOptionViewItemV4(option);
+        QStyleOptionViewItem opt = QStyleOptionViewItem(option);
         initStyleOption(&opt, index);
         opt.text = "";
         opt.widget->style()->drawControl(QStyle::CE_ItemViewItem, &opt, painter, opt.widget);
@@ -171,8 +171,8 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
         QRect textBox = line.adjusted(PADDING+THUMB_WIDTH, PADDING, 0, 0);
         textBox = painter->boundingRect(textBox, flags, v);
         while (textBox.height() > 55 && v.length() > 10) {
-            videoTitle.truncate(videoTitle.length() - 1);
-            v = videoTitle.trimmed().append(QLatin1String("…"));
+            videoTitle.chop(1);
+            v = videoTitle.trimmed().append(QStringLiteral("…"));
             textBox = painter->boundingRect(textBox, flags, v);
         }
         painter->drawText(textBox, flags, v);
@@ -241,8 +241,8 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
             QRect textBox(PADDING, PADDING, THUMB_WIDTH - PADDING*2, THUMB_HEIGHT - PADDING*2);
             textBox = painter->boundingRect(textBox, flags, v);
             while (textBox.height() > THUMB_HEIGHT && v.length() > 10) {
-                videoTitle.truncate(videoTitle.length() - 1);
-                v = videoTitle.trimmed().append(QLatin1String("…"));
+                videoTitle.chop(1);
+                v = videoTitle.trimmed().append(QStringLiteral("…"));
                 textBox = painter->boundingRect(textBox, flags, v);
             }
             painter->fillRect(QRect(0, 0, THUMB_WIDTH, textBox.height() + PADDING*2), QColor(0, 0, 0, 128));
