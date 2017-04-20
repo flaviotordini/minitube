@@ -103,8 +103,7 @@ RegionsView QPushButton[regionId]:checked {
 /* Sidebar */
 
 SidebarHeader {
-    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                         stop: 0 #262626, stop: 1 #3c3c3c);
+    background: #3c3c3c;
     padding: 0;
     margin: 0;
     spacing: 0;
