@@ -146,17 +146,18 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
     // thumb
     painter->drawPixmap(0, 0, video->thumbnail());
 
+    const bool thumbsOnly = line.width() <= THUMB_WIDTH + 60;
+    const bool isHovered = index.data(HoveredItemRole).toBool();
+
     // play icon overlayed on the thumb
-    if (isActive)
+    if (isActive && (!isHovered && thumbsOnly))
         painter->drawPixmap(0, 0, playIcon);
 
     // time
     if (video->duration() > 0)
         drawTime(painter, video->formattedDuration(), line);
 
-    if (line.width() > THUMB_WIDTH + 60) {
-
-        // if (isActive) painter->setFont(boldFont);
+    if (!thumbsOnly) {
 
         // text color
         if (isSelected)
@@ -187,11 +188,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
         painter->drawText(publishedTextBox, Qt::AlignLeft | Qt::AlignTop, publishedString);
 
         // author
-        bool authorHovered = false;
-        const bool isHovered = index.data(HoveredItemRole).toBool();
-        if (isHovered) {
-            authorHovered = index.data(AuthorHoveredRole).toBool();
-        }
+        bool authorHovered = isHovered && index.data(AuthorHoveredRole).toBool();
 
         painter->save();
         painter->setFont(smallerBoldFont);
@@ -231,8 +228,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
 
     } else {
 
-        const bool isHovered = index.data(HoveredItemRole).toBool();
-        if (!isActive && isHovered) {
+        if (isHovered) {
             painter->setFont(smallerFont);
             painter->setPen(Qt::white);
             QString videoTitle = video->title();
@@ -259,7 +255,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
 
 void PlaylistItemDelegate::paintActiveOverlay(QPainter *painter, const QStyleOptionViewItem& option, const QRect &line) const {
     painter->save();
-    painter->setOpacity(.1);
+    painter->setOpacity(.2);
     painter->fillRect(line, option.palette.highlight());
     painter->restore();
 }
