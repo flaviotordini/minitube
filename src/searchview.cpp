@@ -39,18 +39,20 @@ $END_LICENSE */
 #include "painterutils.h"
 #include "iconutils.h"
 
+namespace {
 static const QString recentKeywordsKey = "recentKeywords";
 static const QString recentChannelsKey = "recentChannels";
+}
 
 SearchView::SearchView(QWidget *parent) : View(parent) {
-    const int PADDING = 30;
+    const int padding = 30;
 
     // speedup painting since we'll paint the whole background
     // by ourselves anyway in paintEvent()
     setAttribute(Qt::WA_OpaquePaintEvent);
 
     QBoxLayout *mainLayout = new QVBoxLayout(this);
-    mainLayout->setMargin(PADDING);
+    mainLayout->setMargin(padding);
     mainLayout->setSpacing(0);
 
     // hidden message widget
@@ -67,7 +69,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     logo = new QLabel(this);
     logo->setPixmap(IconUtils::pixmap(":/images/app.png"));
     hLayout->addWidget(logo, 0, Qt::AlignTop);
-    hLayout->addSpacing(PADDING);
+    hLayout->addSpacing(padding);
 
     QVBoxLayout *layout = new QVBoxLayout();
     layout->setAlignment(Qt::AlignCenter);
@@ -93,7 +95,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 #endif
     layout->addWidget(welcomeLabel);
 
-    layout->addSpacing(PADDING / 2);
+    layout->addSpacing(padding / 2);
 
     QBoxLayout *tipLayout = new QHBoxLayout();
     tipLayout->setSpacing(10);
@@ -125,7 +127,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     tipLayout->addWidget(tipLabel);
     layout->addLayout(tipLayout);
 
-    layout->addSpacing(PADDING / 2);
+    layout->addSpacing(padding / 2);
 
     QHBoxLayout *searchLayout = new QHBoxLayout();
     searchLayout->setAlignment(Qt::AlignVCenter);
@@ -161,7 +163,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 
     layout->addItem(searchLayout);
 
-    layout->addSpacing(PADDING / 2);
+    layout->addSpacing(padding / 2);
 
     QHBoxLayout *otherLayout = new QHBoxLayout();
     otherLayout->setMargin(0);
