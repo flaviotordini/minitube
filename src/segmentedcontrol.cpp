@@ -24,12 +24,6 @@ $END_LICENSE */
 #include "iconutils.h"
 #include "painterutils.h"
 
-namespace {
-static const QColor borderColor = QColor(160, 160, 160);
-static const QColor backgroundColor = QColor(183, 183, 183);
-static const QColor selectedColor = QColor(212, 212, 212);
-}
-
 class SegmentedControl::Private {
 public:
     QList<QAction *> actionList;
@@ -50,6 +44,10 @@ SegmentedControl::SegmentedControl (QWidget *parent)
     d->hoveredAction = 0;
     d->checkedAction = 0;
     d->pressedAction = 0;
+
+    selectedColor = palette().color(QPalette::Window);
+    backgroundColor = selectedColor.darker(120);
+    borderColor = backgroundColor.darker(120);
 }
 
 SegmentedControl::~SegmentedControl() {

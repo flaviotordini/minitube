@@ -64,6 +64,10 @@ private:
     class Private;
     Private *d;
 
+    QColor borderColor;
+    QColor backgroundColor;
+    QColor selectedColor;
+
 };
 
 #endif /* !SEGMENTEDCONTROL_H */
