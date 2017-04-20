@@ -24,16 +24,7 @@ $END_LICENSE */
 #include "iconutils.h"
 #include "painterutils.h"
 
-class SegmentedControl::Private {
-public:
-    QList<QAction *> actionList;
-    QAction *checkedAction;
-    QAction *hoveredAction;
-    QAction *pressedAction;
-};
-
-SegmentedControl::SegmentedControl (QWidget *parent)
-    : QWidget(parent), d(new SegmentedControl::Private) {
+SegmentedControl::SegmentedControl (QWidget *parent) : QWidget(parent) {
 
 #ifdef APP_MAC
     setFont(FontUtils::small());
@@ -41,49 +32,45 @@ SegmentedControl::SegmentedControl (QWidget *parent)
 
     setMouseTracking(true);
 
-    d->hoveredAction = 0;
-    d->checkedAction = 0;
-    d->pressedAction = 0;
+    hoveredAction = 0;
+    checkedAction = 0;
+    pressedAction = 0;
 
     selectedColor = palette().color(QPalette::Window);
     backgroundColor = selectedColor.darker(120);
     borderColor = backgroundColor.darker(120);
 }
 
-SegmentedControl::~SegmentedControl() {
-    delete d;
-}
-
 QAction *SegmentedControl::addAction(QAction *action) {
     QWidget::addAction(action);
     action->setCheckable(true);
-    d->actionList.append(action);
+    actionList.append(action);
     return action;
 }
 
 bool SegmentedControl::setCheckedAction(int index) {
     if (index < 0) {
-        d->checkedAction = 0;
+        checkedAction = 0;
         return true;
     }
-    QAction* newCheckedAction = d->actionList.at(index);
+    QAction* newCheckedAction = actionList.at(index);
     return setCheckedAction(newCheckedAction);
 }
 
 bool SegmentedControl::setCheckedAction(QAction *action) {
-    if (d->checkedAction == action) {
+    if (checkedAction == action) {
         return false;
     }
-    if (d->checkedAction)
-        d->checkedAction->setChecked(false);
-    d->checkedAction = action;
-    d->checkedAction->setChecked(true);
+    if (checkedAction)
+        checkedAction->setChecked(false);
+    checkedAction = action;
+    checkedAction->setChecked(true);
     update();
     return true;
 }
 
 QSize SegmentedControl::minimumSizeHint (void) const {
-    int itemsWidth = calculateButtonWidth() * d->actionList.size() * 1.2;
+    int itemsWidth = calculateButtonWidth() * actionList.size() * 1.2;
     return(QSize(itemsWidth, QFontMetrics(font()).height() * 1.8));
 }
 
@@ -95,7 +82,7 @@ void SegmentedControl::paintEvent (QPaintEvent * /*event*/) {
     p.fillRect(rect(), backgroundColor);
 
     // Calculate Buttons Size & Location
-    const int buttonWidth = width / d->actionList.size();
+    const int buttonWidth = width / actionList.size();
 
     const qreal pixelRatio = IconUtils::pixelRatio();
 
@@ -106,9 +93,9 @@ void SegmentedControl::paintEvent (QPaintEvent * /*event*/) {
 
     // Draw Buttons
     QRect rect(0, 0, buttonWidth, height);
-    const int actionCount = d->actionList.size();
+    const int actionCount = actionList.size();
     for (int i = 0; i < actionCount; i++) {
-        QAction *action = d->actionList.at(i);
+        QAction *action = actionList.at(i);
         if (i + 1 == actionCount) {
             // last button
             rect.setWidth(width - buttonWidth * (actionCount-1));
@@ -127,13 +114,13 @@ void SegmentedControl::paintEvent (QPaintEvent * /*event*/) {
 void SegmentedControl::mouseMoveEvent (QMouseEvent *event) {
     QWidget::mouseMoveEvent(event);
 
-    QAction *action = hoveredAction(event->pos());
+    QAction *action = findHoveredAction(event->pos());
 
-    if (!action && d->hoveredAction) {
-        d->hoveredAction = 0;
+    if (!action && hoveredAction) {
+        hoveredAction = 0;
         update();
-    } else if (action && action != d->hoveredAction) {
-        d->hoveredAction = action;
+    } else if (action && action != hoveredAction) {
+        hoveredAction = action;
         action->hover();
         update();
 
@@ -144,18 +131,18 @@ void SegmentedControl::mouseMoveEvent (QMouseEvent *event) {
 
 void SegmentedControl::mousePressEvent(QMouseEvent *event) {
     QWidget::mousePressEvent(event);
-    if (d->hoveredAction) {
-        d->pressedAction = d->hoveredAction;
+    if (hoveredAction) {
+        pressedAction = hoveredAction;
         update();
     }
 }
 
 void SegmentedControl::mouseReleaseEvent(QMouseEvent *event) {
     QWidget::mouseReleaseEvent(event);
-    d->pressedAction = 0;
-    if (d->hoveredAction) {
-        bool changed = setCheckedAction(d->hoveredAction);
-        if (changed) d->hoveredAction->trigger();
+    pressedAction = 0;
+    if (hoveredAction) {
+        bool changed = setCheckedAction(hoveredAction);
+        if (changed) hoveredAction->trigger();
     }
 }
 
@@ -163,16 +150,16 @@ void SegmentedControl::leaveEvent(QEvent *event) {
     QWidget::leaveEvent(event);
     // status tip
     MainWindow::instance()->statusBar()->clearMessage();
-    d->hoveredAction = 0;
-    d->pressedAction = 0;
+    hoveredAction = 0;
+    pressedAction = 0;
     update();
 }
 
-QAction *SegmentedControl::hoveredAction(const QPoint& pos) const {
+QAction *SegmentedControl::findHoveredAction(const QPoint& pos) const {
     if (pos.y() <= 0 || pos.y() >= height())
         return 0;
 
-    int buttonWidth = width() / d->actionList.size();
+    int buttonWidth = width() / actionList.size();
     int buttonsWidth = width();
     int buttonsX = 0;
 
@@ -181,15 +168,15 @@ QAction *SegmentedControl::hoveredAction(const QPoint& pos) const {
 
     int buttonIndex = (pos.x() - buttonsX) / buttonWidth;
 
-    if (buttonIndex >= d->actionList.size())
+    if (buttonIndex >= actionList.size())
         return 0;
-    return(d->actionList[buttonIndex]);
+    return(actionList[buttonIndex]);
 }
 
 int SegmentedControl::calculateButtonWidth() const {
     QFontMetrics fontMetrics(font());
     int tmpItemWidth, itemWidth = 0;
-    foreach (QAction *action, d->actionList) {
+    foreach (QAction *action, actionList) {
         tmpItemWidth = fontMetrics.width(action->text());
         if (itemWidth < tmpItemWidth) itemWidth = tmpItemWidth;
     }
@@ -199,7 +186,7 @@ int SegmentedControl::calculateButtonWidth() const {
 void SegmentedControl::drawButton (QPainter *painter,
                               const QRect& rect,
                               const QAction *action) {
-    if (action == d->checkedAction)
+    if (action == checkedAction)
         drawSelectedButton(painter, rect, action);
     else
         drawUnselectedButton(painter, rect, action);
@@ -243,9 +230,9 @@ void SegmentedControl::paintButton(QPainter *painter, const QRect& rect, const Q
     painter->setPen(palette().windowText().color());
     painter->drawText(0, 0, width, height, Qt::AlignCenter, text);
 
-    if (action == d->pressedAction && action != d->checkedAction) {
+    if (action == pressedAction && action != checkedAction) {
         painter->fillRect(0, 0, width, height, QColor(0x00, 0x00, 0x00, 32));
-    } else if (action == d->hoveredAction && action != d->checkedAction) {
+    } else if (action == hoveredAction && action != checkedAction) {
         painter->fillRect(0, 0, width, height, QColor(0x00, 0x00, 0x00, 16));
     }
 

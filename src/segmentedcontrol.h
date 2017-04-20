@@ -29,7 +29,6 @@ class SegmentedControl : public QWidget {
 
 public:
     SegmentedControl(QWidget *parent = 0);
-    ~SegmentedControl();
     QAction *addAction(QAction *action);
     bool setCheckedAction(int index);
     bool setCheckedAction(QAction *action);
@@ -58,11 +57,13 @@ private:
     void paintButton(QPainter *painter,
                     const QRect& rect,
                     const QAction *action);
-    QAction *hoveredAction(const QPoint& pos) const;
+    QAction *findHoveredAction(const QPoint& pos) const;
     int calculateButtonWidth() const;
 
-    class Private;
-    Private *d;
+    QList<QAction *> actionList;
+    QAction *checkedAction;
+    QAction *hoveredAction;
+    QAction *pressedAction;
 
     QColor borderColor;
     QColor backgroundColor;
