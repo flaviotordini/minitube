@@ -38,6 +38,10 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
 
     const int padding = 30;
 
+    // speedup painting since we'll paint the whole background
+    // by ourselves anyway in paintEvent()
+    setAttribute(Qt::WA_OpaquePaintEvent);
+
     connect(window()->windowHandle(), SIGNAL(screenChanged(QScreen*)), SLOT(screenChanged()));
 
     QBoxLayout *verticalLayout = new QVBoxLayout(this);
@@ -128,7 +132,6 @@ void AboutView::appear() {
 
 void AboutView::paintEvent(QPaintEvent *event) {
     QWidget::paintEvent(event);
-#if defined(APP_MAC) | defined(APP_WIN)
     QBrush brush;
     if (window()->isActiveWindow()) {
         brush = Qt::white;
@@ -138,13 +141,6 @@ void AboutView::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     painter.fillRect(0, 0, width(), height(), brush);
     painter.end();
-#endif
-#ifdef APP_UBUNTU
-    QStyleOption o;
-    o.initFrom(this);
-    QPainter p(this);
-    style()->drawPrimitive(QStyle::PE_Widget, &o, &p, this);
-#endif
 }
 
 void AboutView::screenChanged() {

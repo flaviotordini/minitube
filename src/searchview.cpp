@@ -45,11 +45,9 @@ static const QString recentChannelsKey = "recentChannels";
 SearchView::SearchView(QWidget *parent) : View(parent) {
     const int PADDING = 30;
 
-#if defined(APP_MAC) | defined(APP_WIN)
     // speedup painting since we'll paint the whole background
     // by ourselves anyway in paintEvent()
     setAttribute(Qt::WA_OpaquePaintEvent);
-#endif
 
     QBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->setMargin(PADDING);
@@ -215,6 +213,8 @@ void SearchView::appear() {
     if (!queryEdit->toWidget()->hasFocus()) queryEdit->toWidget()->setFocus();
 
     connect(window()->windowHandle(), SIGNAL(screenChanged(QScreen*)), SLOT(screenChanged()), Qt::UniqueConnection);
+
+    update();
 }
 
 void SearchView::disappear() {
