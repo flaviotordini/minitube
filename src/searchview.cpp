@@ -76,14 +76,14 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     hLayout->addLayout(layout);
 
     QLabel *welcomeLabel =
-            new QLabel("<h1 style='font-weight:100'>" +
+            new QLabel("<h1 style='font-weight:300'>" +
                        tr("Welcome to <a href='%1'>%2</a>,")
                        .replace("<a ", "<a style='text-decoration:none; color:palette(text);font-weight:normal' ")
                        .arg(Constants::WEBSITE, Constants::NAME)
                        + "</h1>", this);
     welcomeLabel->setOpenExternalLinks(true);
     welcomeLabel->setProperty("heading", true);
-#ifdef APP_MAC
+#ifdef APP_MAC_NO
     QFont f = welcomeLabel->font();
     f.setFamily("Helvetica Neue");
     f.setStyleName("Thin");
