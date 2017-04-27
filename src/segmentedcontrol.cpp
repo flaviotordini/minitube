@@ -25,20 +25,21 @@ $END_LICENSE */
 #include "painterutils.h"
 
 SegmentedControl::SegmentedControl (QWidget *parent) : QWidget(parent) {
-
-#ifdef APP_MAC
-    setFont(FontUtils::small());
-#endif
-
     setMouseTracking(true);
 
     hoveredAction = 0;
     checkedAction = 0;
     pressedAction = 0;
 
+#ifdef APP_WIN
+    int darkerFactor = 105;
+    selectedColor = palette().color(QPalette::Base);
+#else
+    int darkerFactor = 115;
     selectedColor = palette().color(QPalette::Window);
-    backgroundColor = selectedColor.darker(120);
-    borderColor = backgroundColor.darker(120);
+#endif
+    backgroundColor = selectedColor.darker(darkerFactor);
+    borderColor = backgroundColor.darker(darkerFactor);
 }
 
 QAction *SegmentedControl::addAction(QAction *action) {
