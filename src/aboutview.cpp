@@ -37,12 +37,11 @@ $END_LICENSE */
 AboutView::AboutView(QWidget *parent) : View(parent) {
 
     const int padding = 30;
+    const char *buildYear = __DATE__ + 7;
 
     // speedup painting since we'll paint the whole background
     // by ourselves anyway in paintEvent()
     setAttribute(Qt::WA_OpaquePaintEvent);
-
-    connect(window()->windowHandle(), SIGNAL(screenChanged(QScreen*)), SLOT(screenChanged()));
 
     QBoxLayout *verticalLayout = new QVBoxLayout(this);
     verticalLayout->setMargin(0);
@@ -63,10 +62,7 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
     layout->setSpacing(padding);
     aboutlayout->addLayout(layout);
 
-    QString css = "a { color: palette(text); text-decoration: none; font-weight: bold } h1 { font-weight: 100 }";
-#ifdef APP_MAC
-    css += " h1 { font-family: 'Helvetica Neue' }";
-#endif
+    QString css = "a { color: palette(text); text-decoration: none; font-weight: bold } h1 { font-weight: 300 }";
 
     QString info = "<html><style>" + css + "</style><body>"
             "<h1>" + QString(Constants::NAME) + "</h1>"
@@ -97,7 +93,7 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
             "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")
             .arg("http://www.gnu.org/licenses/gpl.html") + "</p>"
         #endif
-            "<p>&copy; 2017 " + Constants::ORG_NAME + "</p>"
+            "<p>&copy; " + buildYear + " " + Constants::ORG_NAME + "</p>"
             "</body></html>";
 
     QLabel *infoLabel = new QLabel(info, this);
@@ -128,6 +124,8 @@ void AboutView::appear() {
 #endif
 #endif
     closeButton->setFocus();
+
+    connect(window()->windowHandle(), SIGNAL(screenChanged(QScreen*)), SLOT(screenChanged()), Qt::UniqueConnection);
 }
 
 void AboutView::paintEvent(QPaintEvent *event) {
