@@ -59,6 +59,7 @@ private slots:
 
 private:
     QString jsFilename();
+    QString jsDir();
     QString jsPath();
     void loadJs();
     void parseJs(const QString &js);

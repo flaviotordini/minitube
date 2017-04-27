@@ -60,8 +60,12 @@ QString JsFunctions::jsFilename() {
     return QFileInfo(url).fileName();
 }
 
+QString JsFunctions::jsDir() {
+    return QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+}
+
 QString JsFunctions::jsPath() {
-    return QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/" + jsFilename();
+    return jsDir() + QLatin1String("/") + jsFilename();
 }
 
 void JsFunctions::loadJs() {
@@ -79,6 +83,7 @@ void JsFunctions::gotJs(const QByteArray &bytes) {
         qWarning() << "Got empty js";
         return;
     }
+    QDir().mkpath(jsDir());
     QFile file(jsPath());
     if (!file.open(QIODevice::WriteOnly)) {
         qWarning() << "Cannot write" << file.errorString() << file.fileName();
