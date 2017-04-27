@@ -183,8 +183,9 @@ QString YTSearch::getName() {
 }
 
 void YTSearch::requestError(const QString &message) {
-    qWarning() << message;
-    emit error(message);
+    QString msg = message;
+    msg.remove(QRegularExpression("key=[^ &]+"));
+    emit error(msg);
 }
 
 QString YTSearch::videoIdFromUrl(const QString &url) {
