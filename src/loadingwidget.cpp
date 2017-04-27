@@ -94,10 +94,10 @@ void LoadingWidget::setVideo(Video *video) {
     titleLabel->setVisible(window()->height() > 100);
     titleLabel->setFont(titleFont);
 
-    static const int maxDescLength = 256;
+    static const int maxDescLength = 400;
     QString videoDesc = video->description();
     if (videoDesc.length() > maxDescLength) {
-        videoDesc.truncate(maxDescLength-1);
+        videoDesc.truncate(maxDescLength);
         videoDesc = videoDesc.trimmed();
         videoDesc.append("…");
     } else if (videoDesc.endsWith(QLatin1String(" ..."))) {
