@@ -30,6 +30,7 @@ class PlaylistView : public QListView {
 public:
     PlaylistView(QWidget *parent = 0);
     void setClickableAuthors(bool enabled) { clickableAuthors = enabled; }
+    bool isClickableAuthors() { return clickableAuthors; }
 
 protected:
     void leaveEvent(QEvent *event);

@@ -23,6 +23,8 @@ $END_LICENSE */
 
 #include <QtWidgets>
 
+class PlaylistView;
+
 class PlaylistItemDelegate : public QStyledItemDelegate {
 
     Q_OBJECT
@@ -59,6 +61,8 @@ private:
 
     mutable QRect lastAuthorRect;
     mutable QHash<int, QRect> authorRects;
+
+    PlaylistView *listView;
 };
 
 #endif

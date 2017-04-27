@@ -20,6 +20,7 @@ $END_LICENSE */
 
 #include "playlistitemdelegate.h"
 #include "playlistmodel.h"
+#include "playlistview.h"
 #include "fontutils.h"
 #include "downloaditem.h"
 #include "iconutils.h"
@@ -35,8 +36,7 @@ namespace {
 
 void drawElidedText(QPainter *painter, const QRect &textBox, const int flags, const QString &text) {
     QString elidedText = QFontMetrics(painter->font()).elidedText(text, Qt::ElideRight, textBox.width(), flags);
-    if (elidedText.length() > 3)
-        painter->drawText(textBox, 0, elidedText);
+    painter->drawText(textBox, 0, elidedText);
 }
 
 }
@@ -45,6 +45,8 @@ PlaylistItemDelegate::PlaylistItemDelegate(QObject* parent, bool downloadInfo)
     : QStyledItemDelegate(parent),
       downloadInfo(downloadInfo),
       progressBar(0) {
+
+    listView = qobject_cast<PlaylistView*>(parent);
 
     boldFont.setBold(true);
     smallerBoldFont = FontUtils::smallBold();
@@ -179,6 +181,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
         painter->drawText(textBox, flags, v);
 
         painter->setFont(smallerFont);
+        painter->setOpacity(.5);
 
         // published date
         QString publishedString = DataUtils::formatDateTime(video->published());
@@ -188,24 +191,24 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
         painter->drawText(publishedTextBox, Qt::AlignLeft | Qt::AlignTop, publishedString);
 
         // author
-        bool authorHovered = isHovered && index.data(AuthorHoveredRole).toBool();
+        if (listView->isClickableAuthors()) {
+            bool authorHovered = isHovered && index.data(AuthorHoveredRole).toBool();
 
-        painter->save();
-        painter->setFont(smallerBoldFont);
-        if (!isSelected) {
-            if (authorHovered)
-                painter->setPen(QPen(option.palette.brush(QPalette::Highlight), 0));
-            else
-                painter->setOpacity(.5);
+            painter->save();
+            painter->setFont(smallerBoldFont);
+            if (!isSelected) {
+                if (authorHovered)
+                    painter->setPen(QPen(option.palette.brush(QPalette::Highlight), 0));
+            }
+            const QString &authorString = video->channelTitle();
+            textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
+            stringSize = QSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, authorString ) );
+            QRect authorTextBox(textLoc , stringSize);
+            authorRects.insert(index.row(), authorTextBox);
+            if (authorTextBox.right() > line.width()) authorTextBox.setRight(line.width());
+            drawElidedText(painter, authorTextBox, Qt::AlignLeft | Qt::AlignTop, authorString);
+            painter->restore();
         }
-        const QString &authorString = video->channelTitle();
-        textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
-        stringSize = QSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, authorString ) );
-        QRect authorTextBox(textLoc , stringSize);
-        authorRects.insert(index.row(), authorTextBox);
-        if (authorTextBox.right() > line.width()) authorTextBox.setRight(line.width());
-        drawElidedText(painter, authorTextBox, Qt::AlignLeft | Qt::AlignTop, authorString);
-        painter->restore();
 
         // view count
         if (video->viewCount() > 0) {
