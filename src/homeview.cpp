@@ -94,12 +94,10 @@ void HomeView::showWidget(QWidget *widget) {
 }
 
 void HomeView::appear() {
-    MainWindow::instance()->hideToolbar();
     QMetaObject::invokeMethod(stackedWidget->currentWidget(), "appear");
 }
 
 void HomeView::disappear() {
-    MainWindow::instance()->showToolbar();
     QMetaObject::invokeMethod(stackedWidget->currentWidget(), "disappear");
 }
 

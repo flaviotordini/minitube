@@ -131,6 +131,7 @@ MainWindow::MainWindow() :
     createActions();
     createMenus();
     createToolBars();
+    hideToolbar();
     createStatusBar();
 
     // remove that useless menu/toolbar context menu
@@ -685,14 +686,14 @@ void MainWindow::createMenus() {
 
     QMenu* viewMenu = menuBar()->addMenu(tr("&View"));
     menuMap.insert("view", viewMenu);
-    viewMenu->addAction(actionMap.value("adjustwindowsize"));
-    viewMenu->addSeparator();
     viewMenu->addAction(actionMap.value("ontop"));
     viewMenu->addSeparator();
     viewMenu->addAction(compactViewAct);
 #ifndef APP_MAC
     viewMenu->addAction(fullscreenAct);
 #endif
+    viewMenu->addSeparator();
+    viewMenu->addAction(actionMap.value("adjustwindowsize"));
 
     QMenu* shareMenu = menuBar()->addMenu(tr("&Share"));
     menuMap.insert("share", shareMenu);
@@ -971,6 +972,8 @@ void MainWindow::goBack() {
 void MainWindow::showWidget(QWidget* widget, bool transition) {
     Q_UNUSED(transition);
 
+    setUpdatesEnabled(false);
+
     if (compactViewAct->isChecked())
         compactViewAct->toggle();
 
@@ -1029,6 +1032,8 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
         if (!desc.isEmpty()) showMessage(desc);
         */
     }
+
+    setUpdatesEnabled(true);
 
     history.push(widget);
 }
@@ -1880,9 +1885,18 @@ void MainWindow::showMessage(const QString &message) {
         statusBar()->showMessage(message, 60000);
     else {
         messageLabel->setText(message);
-        messageLabel->resize(messageLabel->sizeHint());
-        adjustMessageLabelPosition();
-        messageLabel->show();
+        QSize size = messageLabel->sizeHint();
+        // round width to nearest 10 to avoid flicker with fast changing messages (e.g. volume changes)
+        int w = size.width();
+        const int multiple = 10;
+        w = w + multiple/2;
+        w -= w % multiple;
+        size.setWidth(w);
+        messageLabel->resize(size);
+        if (messageLabel->isHidden()) {
+            adjustMessageLabelPosition();
+            messageLabel->show();
+        }
         messageTimer->start();
     }
 }

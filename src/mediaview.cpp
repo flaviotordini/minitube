@@ -249,8 +249,6 @@ void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory, bool
     SearchParams *searchParams = getSearchParams();
     bool isChannel = searchParams && !searchParams->channelId().isEmpty();
     playlistView->setClickableAuthors(!isChannel);
-
-
 }
 
 void MediaView::searchAgain() {
@@ -290,6 +288,8 @@ int MediaView::getHistoryIndex() {
 }
 
 void MediaView::appear() {
+    MainWindow::instance()->showToolbar();
+
     Video *currentVideo = playlistModel->activeVideo();
     if (currentVideo) {
         MainWindow::instance()->setWindowTitle(
@@ -303,7 +303,7 @@ void MediaView::appear() {
 }
 
 void MediaView::disappear() {
-
+    MainWindow::instance()->hideToolbar();
 }
 
 void MediaView::handleError(const QString &message) {
@@ -1141,7 +1141,7 @@ void MediaView::updateSubscriptionAction(Video *video, bool subscribed) {
     subscribeAction->setStatusTip(subscribeTip);
 
     if (subscribed) {
-#ifdef APP_LINUX
+#ifdef APP_LINUX_NO
         static QIcon tintedIcon;
         if (tintedIcon.isNull()) {
             QList<QSize> sizes;
