@@ -30,10 +30,10 @@ QFont createFont(bool isBold, double sizeScale) {
 }
 
 QFont createFontWithMinSize(bool isBold, double sizeScale) {
-    const int MIN_PIXEL_SIZE = 12;
+    const int minPixels = 11;
     QFont font = createFont(isBold, sizeScale);
-    if (font.pixelSize() < MIN_PIXEL_SIZE)
-        font.setPixelSize(MIN_PIXEL_SIZE);
+    if (font.pixelSize() < minPixels)
+        font.setPixelSize(minPixels);
     return font;
 }
 
