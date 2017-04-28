@@ -139,7 +139,7 @@
     <message numerus="yes">
         <location filename="src/channelaggregator.cpp" line="185"/>
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Tienes %n nuevo(s) vídeo(s)</numerusform><numerusform>Hay %n nuevo(s) vídeo(s)</numerusform></translation>
     </message>
 </context>
 <context>
@@ -241,32 +241,32 @@
     <message>
         <location filename="src/datautils.cpp" line="88"/>
         <source>Just now</source>
-        <translation type="unfinished"/>
+        <translation>Justo ahora</translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="90"/>
         <source>%n minute(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>hace %n minuto(s)</numerusform><numerusform>hace %n minuto(s)</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="92"/>
         <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>hace %n hora(s)</numerusform><numerusform>hace %n hora(s)</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="94"/>
         <source>%n day(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>hace %n día(s)</numerusform><numerusform>hace %n día(s)</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="96"/>
         <source>%n weeks(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>hace %n semana(s)</numerusform><numerusform>hace %n semana(s)</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="98"/>
         <source>%n month(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>hace %n mes(es)</numerusform><numerusform>hace %n mes(es)</numerusform></translation>
     </message>
 </context>
 <context>
@@ -352,7 +352,7 @@
     <message numerus="yes">
         <location filename="src/downloadmanager.cpp" line="165"/>
         <source>%n Download(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n Descarga(s)</numerusform><numerusform>%n Descarga(s)</numerusform></translation>
     </message>
 </context>
 <context>
@@ -405,22 +405,22 @@
     <message>
         <location filename="local/src/extra.cpp" line="251"/>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation type="unfinished"/>
+        <translation>El ejecutable ha sido modificado, probablemente sea un virus</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="252"/>
         <source>%1 will not run. Try installing again.</source>
-        <translation type="unfinished"/>
+        <translation>%1 no puede ejecutarse. Intenta reinstalándolo</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="253"/>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Salir</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="254"/>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>Reinstalar</translation>
     </message>
 </context>
 <context>
@@ -537,7 +537,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="291"/>
         <source>&amp;Stop</source>
-        <translation>%Detener</translation>
+        <translation>&amp;Detener</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="292"/>
@@ -738,7 +738,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="566"/>
         <source>&amp;Adjust Window Size</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ajustar tamaño de ventana</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="571"/>
@@ -783,7 +783,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="633"/>
         <source>&amp;Application</source>
-        <translation>%Aplicación</translation>
+        <translation>&amp;Aplicación</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="618"/>
@@ -813,7 +813,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="695"/>
         <source>&amp;Share</source>
-        <translation>%Compartir</translation>
+        <translation>&amp;Compartir</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="709"/>
@@ -854,7 +854,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="1158"/>
         <source>&amp;Loading...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Cargando...</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1264"/>
@@ -946,7 +946,7 @@
         <location filename="src/mainwindow.cpp" line="1142"/>
         <location filename="src/mainwindow.cpp" line="1150"/>
         <source>&amp;Play</source>
-        <translation>%Reproducir</translation>
+        <translation>&amp;Reproducir</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="315"/>
@@ -1059,12 +1059,12 @@
     <message>
         <location filename="src/mediaview.cpp" line="1166"/>
         <source>Unsubscribed from %1</source>
-        <translation type="unfinished"/>
+        <translation>Desuscribir de %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="1169"/>
         <source>Subscribed to %1</source>
-        <translation type="unfinished"/>
+        <translation>Suscrito a %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="808"/>

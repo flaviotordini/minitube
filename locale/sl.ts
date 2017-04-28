@@ -14,7 +14,7 @@
     <message>
         <location filename="src/aboutview.cpp" line="64"/>
         <source>Licensed to: %1</source>
-        <translation type="unfinished"/>
+        <translation>Licenca pripada: %1</translation>
     </message>
     <message>
         <location filename="src/aboutview.cpp" line="68"/>
@@ -72,7 +72,7 @@
     <message>
         <location filename="local/src/activationdialog.cpp" line="17"/>
         <source>Enter your License Details</source>
-        <translation type="unfinished"/>
+        <translation>Vnesite svoje licenčne podatke</translation>
     </message>
     <message>
         <location filename="local/src/activationdialog.cpp" line="29"/>
@@ -101,7 +101,7 @@
         <location filename="local/src/activationview.cpp" line="53"/>
         <source>The full version allows you to watch videos without interruptions.</source>
         <oldsource>The full version allows you to download videos longer than %1 minutes and to watch videos without interruptions.</oldsource>
-        <translation type="unfinished"/>
+        <translation>Polna verzija vam omogoča ogled posnetkov brez prekinitev.</translation>
     </message>
     <message>
         <location filename="local/src/activationview.cpp" line="55"/>
@@ -134,12 +134,12 @@
     <message>
         <location filename="src/channelaggregator.cpp" line="183"/>
         <source>By %1</source>
-        <translation type="unfinished"/>
+        <translation>Za %1</translation>
     </message>
     <message numerus="yes">
         <location filename="src/channelaggregator.cpp" line="185"/>
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Imate en nov posnetek</numerusform><numerusform>Imate dva nova posneteka</numerusform><numerusform>Imate tri nove posneteke</numerusform><numerusform>Imate %n novih posnetkov</numerusform></translation>
     </message>
 </context>
 <context>
@@ -152,7 +152,7 @@
     <message>
         <location filename="src/channelitemdelegate.cpp" line="85"/>
         <source>Unwatched Videos</source>
-        <translation type="unfinished"/>
+        <translation>Neogledani posnetki</translation>
     </message>
 </context>
 <context>
@@ -205,27 +205,27 @@
     <message>
         <location filename="src/channelview.cpp" line="226"/>
         <source>Unwatched Videos</source>
-        <translation type="unfinished"/>
+        <translation>Neogledani posnetki</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="244"/>
         <source>Mark as Watched</source>
-        <translation type="unfinished"/>
+        <translation>Označite kot ogledano</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="257"/>
         <source>Unsubscribe</source>
-        <translation type="unfinished"/>
+        <translation>Odjavite se</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="270"/>
         <source>There are no updated subscriptions at this time.</source>
-        <translation type="unfinished"/>
+        <translation>Za zdaj ni nobenih novih posnetkov, na katere ste prijavljeni</translation>
     </message>
     <message>
         <location filename="src/channelview.cpp" line="272"/>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation type="unfinished"/>
+        <translation>Nimate naročnin. Uporabite zvezdo da se naročite na kanale.</translation>
     </message>
 </context>
 <context>
@@ -241,32 +241,32 @@
     <message>
         <location filename="src/datautils.cpp" line="88"/>
         <source>Just now</source>
-        <translation type="unfinished"/>
+        <translation>Ravnokar</translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="90"/>
         <source>%n minute(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Eno minuto nazaj</numerusform><numerusform>Dve minuti nazaj</numerusform><numerusform>Tri minute nazaj</numerusform><numerusform>%n minut nazaj</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="92"/>
         <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Eno uro nazaj</numerusform><numerusform>Dve uri nazaj</numerusform><numerusform>Tri ure nazaj</numerusform><numerusform>%n ur nazaj</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="94"/>
         <source>%n day(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>En dan nazaj</numerusform><numerusform>Dva dni nazaj</numerusform><numerusform>Tri dni nazaj</numerusform><numerusform>%n dni nazaj</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="96"/>
         <source>%n weeks(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>En teden nazaj</numerusform><numerusform>Dva tedna nazaj</numerusform><numerusform>Tri tedne nazaj</numerusform><numerusform>%n tednov nazaj</numerusform></translation>
     </message>
     <message numerus="yes">
         <location filename="src/datautils.cpp" line="98"/>
         <source>%n month(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>En mesec nazaj</numerusform><numerusform>Dva meseca nazaj</numerusform><numerusform>Tri mesece nazaj</numerusform><numerusform>%n mesecev nazaj</numerusform></translation>
     </message>
 </context>
 <context>
@@ -352,7 +352,7 @@
     <message numerus="yes">
         <location filename="src/downloadmanager.cpp" line="165"/>
         <source>%n Download(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>En prenos</numerusform><numerusform>Dva prenosa</numerusform><numerusform>Trije prenosi</numerusform><numerusform>%n prenosov</numerusform></translation>
     </message>
 </context>
 <context>
@@ -405,22 +405,22 @@
     <message>
         <location filename="local/src/extra.cpp" line="251"/>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation type="unfinished"/>
+        <translation>Nekdo je ponaredil namestitveno datoteko, najverjetneje virus</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="252"/>
         <source>%1 will not run. Try installing again.</source>
-        <translation type="unfinished"/>
+        <translation>%1 ni bilo mogoče zagnati. Poskusite še enkrat.</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="253"/>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Zapri</translation>
     </message>
     <message>
         <location filename="local/src/extra.cpp" line="254"/>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>Ponovno namesti</translation>
     </message>
 </context>
 <context>
@@ -506,7 +506,7 @@
     <message>
         <location filename="src/homeview.cpp" line="67"/>
         <source>Browse videos by category</source>
-        <translation type="unfinished"/>
+        <translation>Brskaj posnetke po kategoriji</translation>
     </message>
     <message>
         <location filename="src/homeview.cpp" line="71"/>
@@ -703,12 +703,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="510"/>
         <source>Take &amp;Snapshot</source>
-        <translation type="unfinished"/>
+        <translation>Vzemi &amp; Naredi Sliko</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="517"/>
         <source>&amp;Subscribe to Channel</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Prijavi se na kanal</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="525"/>
@@ -738,7 +738,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="566"/>
         <source>&amp;Adjust Window Size</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Prilagodi velikost okna</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="571"/>
@@ -763,12 +763,12 @@
     <message>
         <location filename="src/mainwindow.cpp" line="597"/>
         <source>&amp;Related Videos</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Povezani posnetki</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="599"/>
         <source>Watch videos related to the current one</source>
-        <translation type="unfinished"/>
+        <translation>Glej posnetke, povezane s sedanjim</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="605"/>
@@ -778,7 +778,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="612"/>
         <source>&amp;Love %1? Rate it!</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Vam je všeč %1? Oceni!</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="633"/>
@@ -854,7 +854,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="1158"/>
         <source>&amp;Loading...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Nalaganje</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="1264"/>
@@ -939,7 +939,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="847"/>
         <source>Choose your content location</source>
-        <translation type="unfinished"/>
+        <translation>Izberi mesto za vsebino</translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="314"/>
@@ -1049,7 +1049,7 @@
     <message>
         <location filename="src/mediaview.cpp" line="1128"/>
         <source>Unsubscribe from %1</source>
-        <translation type="unfinished"/>
+        <translation>Odjavite se od %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="1132"/>
@@ -1059,12 +1059,12 @@
     <message>
         <location filename="src/mediaview.cpp" line="1166"/>
         <source>Unsubscribed from %1</source>
-        <translation type="unfinished"/>
+        <translation>Odjavljeni od %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="1169"/>
         <source>Subscribed to %1</source>
-        <translation type="unfinished"/>
+        <translation>Prijavljeni ste na %1</translation>
     </message>
     <message>
         <location filename="src/mediaview.cpp" line="808"/>
@@ -1082,27 +1082,27 @@
     <message>
         <location filename="local/src/updatedialog.cpp" line="21"/>
         <source>A new version of %1 is available!</source>
-        <translation type="unfinished"/>
+        <translation>Nova različica %1 je na voljo!</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="28"/>
         <source>%1 %2 is now available. You have %3.</source>
-        <translation type="unfinished"/>
+        <translation>%1 %2 je sedaj na voljo. Vi imate %3.</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="33"/>
         <source>Would you like to download it now?</source>
-        <translation type="unfinished"/>
+        <translation>Bi jo radi prenesli sedaj?</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="39"/>
         <source>Skip This Version</source>
-        <translation type="unfinished"/>
+        <translation>Preskočite to verzijo</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="43"/>
         <source>Remind Me Later</source>
-        <translation type="unfinished"/>
+        <translation>Opomni me kasneje</translation>
     </message>
     <message>
         <location filename="local/src/updatedialog.cpp" line="47"/>
@@ -1138,37 +1138,37 @@
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="318"/>
         <source>Failed</source>
-        <translation type="unfinished"/>
+        <translation>Neuspešno</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="320"/>
         <source>Completed</source>
-        <translation type="unfinished"/>
+        <translation>Dokončano</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="322"/>
         <source>Stopped</source>
-        <translation type="unfinished"/>
+        <translation>Ustavljeno</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="358"/>
         <source>Stop downloading</source>
-        <translation type="unfinished"/>
+        <translation>Ustavi prenos</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="368"/>
         <source>Show in %1</source>
-        <translation type="unfinished"/>
+        <translation>Pokaži v %1</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="370"/>
         <source>Open parent folder</source>
-        <translation type="unfinished"/>
+        <translation>Odpri nadrejeno mapo</translation>
     </message>
     <message>
         <location filename="src/playlistitemdelegate.cpp" line="379"/>
         <source>Restart downloading</source>
-        <translation type="unfinished"/>
+        <translation>Ponovno prenesi</translation>
     </message>
 </context>
 <context>
@@ -1181,7 +1181,7 @@
     <message>
         <location filename="src/playlistmodel.cpp" line="71"/>
         <source>Show %1 More</source>
-        <translation type="unfinished"/>
+        <translation>Pokaži %1 več</translation>
     </message>
     <message>
         <location filename="src/playlistmodel.cpp" line="72"/>
@@ -1191,7 +1191,7 @@
     <message>
         <location filename="src/playlistmodel.cpp" line="73"/>
         <source>No more videos</source>
-        <translation type="unfinished"/>
+        <translation>Nobenega videa več</translation>
     </message>
 </context>
 <context>
@@ -1309,7 +1309,7 @@
     <message>
         <location filename="src/regionsview.cpp" line="39"/>
         <source>Done</source>
-        <translation type="unfinished"/>
+        <translation>Končano</translation>
     </message>
 </context>
 <context>
@@ -1380,12 +1380,12 @@
     <message>
         <location filename="src/sidebarheader.cpp" line="76"/>
         <source>Forward to %1</source>
-        <translation type="unfinished"/>
+        <translation>Naprej na %1</translation>
     </message>
     <message>
         <location filename="src/sidebarheader.cpp" line="89"/>
         <source>Back to %1</source>
-        <translation type="unfinished"/>
+        <translation>Nazaj na %1</translation>
     </message>
 </context>
 <context>
@@ -1411,12 +1411,12 @@
     <message>
         <location filename="src/snapshotsettings.cpp" line="64"/>
         <source>Snapshot saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>Posnetek slike shranjen v %1</translation>
     </message>
     <message>
         <location filename="src/snapshotsettings.cpp" line="117"/>
         <source>Snapshots location changed.</source>
-        <translation type="unfinished"/>
+        <translation>Lokacija slik spremenjena</translation>
     </message>
 </context>
 <context>
