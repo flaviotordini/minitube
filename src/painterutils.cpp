@@ -63,18 +63,18 @@ void PainterUtils::topShadow(QWidget *widget) {
     p.fillRect(rect.x(), rect.y(), rect.width(), shadowHeight, QBrush(shadow));
 }
 
-void PainterUtils::paintBadge(QPainter *painter, const QString &text, bool center) {
+void PainterUtils::paintBadge(QPainter *painter, const QString &text, bool center, QColor backgroundColor) {
     painter->save();
 
-    painter->setFont(FontUtils::small());
     QRect textBox = painter->boundingRect(QRect(), Qt::AlignCenter, text);
     int w = textBox.width() + painter->fontMetrics().width('m');
     int x = 0;
     if (center) x -= w / 2;
     QRect rect(x, 0, w, textBox.height());
+    if (rect.width() < rect.height() || text.length() == 1) rect.setWidth(rect.height());
 
     painter->setPen(Qt::NoPen);
-    painter->setBrush(QColor(230,36,41));
+    painter->setBrush(backgroundColor);
     painter->setRenderHint(QPainter::Antialiasing);
     qreal borderRadius = rect.height()/2.;
     painter->drawRoundedRect(rect, borderRadius, borderRadius);

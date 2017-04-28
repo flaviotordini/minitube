@@ -242,7 +242,7 @@ void SegmentedControl::paintButton(QPainter *painter, const QRect& rect, const Q
                                               Qt::AlignCenter,
                                               text);
         painter->translate((width + textBox.width()) / 2 + 10, (height - textBox.height()) / 2);
-        PainterUtils::paintBadge(painter, action->property("notifyCount").toString());
+        PainterUtils::paintBadge(painter, action->property("notifyCount").toString(), false, QColor(0,0,0,64));
     }
 
     painter->restore();
