@@ -684,6 +684,16 @@ void MainWindow::createMenus() {
     videoMenu->addAction(actionMap.value("open-in-browser"));
     videoMenu->addAction(actionMap.value("download"));
 
+    QMenu* shareMenu = menuBar()->addMenu(tr("&Share"));
+    menuMap.insert("share", shareMenu);
+    shareMenu->addAction(copyPageAct);
+    shareMenu->addSeparator();
+    shareMenu->addAction(actionMap.value("twitter"));
+    shareMenu->addAction(actionMap.value("facebook"));
+    shareMenu->addAction(actionMap.value("buffer"));
+    shareMenu->addSeparator();
+    shareMenu->addAction(actionMap.value("email"));
+
     QMenu* viewMenu = menuBar()->addMenu(tr("&View"));
     menuMap.insert("view", viewMenu);
     viewMenu->addAction(actionMap.value("ontop"));
@@ -694,16 +704,6 @@ void MainWindow::createMenus() {
 #endif
     viewMenu->addSeparator();
     viewMenu->addAction(actionMap.value("adjustwindowsize"));
-
-    QMenu* shareMenu = menuBar()->addMenu(tr("&Share"));
-    menuMap.insert("share", shareMenu);
-    shareMenu->addAction(copyPageAct);
-    shareMenu->addSeparator();
-    shareMenu->addAction(actionMap.value("twitter"));
-    shareMenu->addAction(actionMap.value("facebook"));
-    shareMenu->addAction(actionMap.value("buffer"));
-    shareMenu->addSeparator();
-    shareMenu->addAction(actionMap.value("email"));
 
 #ifdef APP_MAC
     MacSupport::windowMenu(this);
