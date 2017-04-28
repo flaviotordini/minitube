@@ -103,7 +103,7 @@ void ExLineEdit::resizeEvent(QResizeEvent *e) {
 }
 
 void ExLineEdit::updateGeometries() {
-    QStyleOptionFrameV2 panel;
+    QStyleOptionFrame panel;
     initStyleOption(&panel);
     QRect rect = style()->subElementRect(QStyle::SE_LineEditContents, &panel, this);
 
@@ -123,7 +123,7 @@ void ExLineEdit::updateGeometries() {
                                clearButtonWidth, this->height());
 }
 
-void ExLineEdit::initStyleOption(QStyleOptionFrameV2 *option) const {
+void ExLineEdit::initStyleOption(QStyleOptionFrame *option) const {
     option->initFrom(this);
     option->rect = contentsRect();
     option->lineWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth, option, this);
@@ -135,7 +135,7 @@ void ExLineEdit::initStyleOption(QStyleOptionFrameV2 *option) const {
     if (hasEditFocus())
         option->state |= QStyle::State_HasEditFocus;
 #endif
-    option->features = QStyleOptionFrameV2::None;
+    option->features = QStyleOptionFrame::None;
 }
 
 QSize ExLineEdit::sizeHint() const {
@@ -180,7 +180,7 @@ bool ExLineEdit::event(QEvent *e) {
 void ExLineEdit::paintEvent(QPaintEvent *e) {
     Q_UNUSED(e);
     QPainter p(this);
-    QStyleOptionFrameV2 panel;
+    QStyleOptionFrame panel;
     initStyleOption(&panel);
     style()->drawPrimitive(QStyle::PE_PanelLineEdit, &panel, &p, this);
 }

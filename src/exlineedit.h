@@ -47,7 +47,7 @@ protected:
     void paintEvent(QPaintEvent *e);
     void resizeEvent(QResizeEvent *e);
     bool event(QEvent *e);
-    void initStyleOption(QStyleOptionFrameV2 *option) const;
+    void initStyleOption(QStyleOptionFrame *option) const;
 
     QWidget *m_leftWidget;
     QLineEdit *m_lineEdit;

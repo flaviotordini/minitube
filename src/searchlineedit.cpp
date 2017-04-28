@@ -65,7 +65,7 @@ SearchLineEdit::SearchLineEdit(QWidget *parent) : ExLineEdit(parent), searchButt
 void SearchLineEdit::paintEvent(QPaintEvent *e) {
     ExLineEdit::paintEvent(e);
     if (m_lineEdit->text().isEmpty() && !hasFocus() && !inactiveText.isEmpty()) {
-        QStyleOptionFrameV2 panel;
+        QStyleOptionFrame panel;
         initStyleOption(&panel);
         QRect r = style()->subElementRect(QStyle::SE_LineEditContents, &panel, this);
         QFontMetrics fm = fontMetrics();
