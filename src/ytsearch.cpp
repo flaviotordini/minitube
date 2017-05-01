@@ -195,6 +195,52 @@ QString YTSearch::videoIdFromUrl(const QString &url) {
     return QString();
 }
 
+QTime YTSearch::videoTimestampFromUrl(const QString &url) {
+    QTime res(0, 0);
+
+    // TODO: should we make this accept h/m/s in any order?
+    //       timestamps returned by youtube always seem to be
+    //       ordered.
+    QRegExp re = QRegExp(".*t=([0-9]*h)?([0-9]*m)?([0-9]*s)?.*");
+
+    if (!re.exactMatch(url)) {
+        return res;
+    }
+
+    foreach (const QString &str, re.capturedTexts()) {
+        if (str.length() <= 1) continue;
+
+        QString truncated = str;
+        truncated.chop(1);
+
+        bool ok = false;
+        int value = truncated.toInt(&ok);
+        if (!ok) continue;
+        char unit = (*str.rbegin()).toLatin1();
+
+        switch (unit)
+        {
+            case 'h':
+                value *= 60 * 60; // hours -> seconds
+                break;
+
+            case 'm':
+                value *= 60; // minutes -> seconds
+                break;
+
+            case 's':
+                break;
+
+            default:
+                continue;
+        }
+
+        res = res.addSecs(value);
+    }
+
+    return res;
+}
+
 QList<QAction*> YTSearch::getActions() {
     QList<QAction*> channelActions;
     if (searchParams->channelId().isEmpty())
