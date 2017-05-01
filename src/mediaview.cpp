@@ -148,6 +148,7 @@ void MediaView::initialize() {
     currentVideoActions
             << MainWindow::instance()->getActionMap().value("webpage")
             << MainWindow::instance()->getActionMap().value("pagelink")
+            << MainWindow::instance()->getActionMap().value("pagetimelink")
             << MainWindow::instance()->getActionMap().value("videolink")
             << MainWindow::instance()->getActionMap().value("open-in-browser")
            #ifdef APP_SNAPSHOT
@@ -694,20 +695,27 @@ void MediaView::playbackResume() {
 #endif
 }
 
+QString MediaView::getVideoTimeString() {
+    Video* video = playlistModel->activeVideo();
+    if (!video) return QString("");
+    return QLatin1String("&t=") + QString::number(mediaObject->currentTime() / 1000);
+}
+
 void MediaView::openWebPage() {
     Video* video = playlistModel->activeVideo();
     if (!video) return;
 #ifdef APP_PHONON
     mediaObject->pause();
 #endif
-    QString url = video->webpage() + QLatin1String("&t=") + QString::number(mediaObject->currentTime() / 1000);
+    QString url = video->webpage() + getVideoTimeString();
     QDesktopServices::openUrl(url);
 }
 
-void MediaView::copyWebPage() {
+void MediaView::copyWebPage(int withTime) {
     Video* video = playlistModel->activeVideo();
     if (!video) return;
     QString address = video->webpage();
+    if (withTime) address += getVideoTimeString();
     QApplication::clipboard()->setText(address);
     QString message = tr("You can now paste the YouTube link into another application");
     MainWindow::instance()->showMessage(message);
