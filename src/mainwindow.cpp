@@ -732,7 +732,9 @@ void MainWindow::createToolBars() {
 
 #ifdef APP_PHONON_SEEK
     seekSlider = new Phonon::SeekSlider();
-    seekSlider->setTracking(true);
+    seekSlider->setTracking(false);
+    // Phonon freezes the application with streaming videos if
+    // tracking is set to true and the seek slider is dragged.
     seekSlider->setIconVisible(false);
     seekSlider->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
 #else
