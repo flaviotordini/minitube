@@ -880,7 +880,11 @@ void MainWindow::showActionInStatusBar(QAction* action, bool show) {
 #endif
     if (show) {
         if (statusToolBar->actions().contains(action)) return;
-        statusToolBar->insertAction(statusToolBar->actions().first(), action);
+        if (statusToolBar->actions().isEmpty()) {
+            statusToolBar->addAction(action);
+        } else {
+            statusToolBar->insertAction(statusToolBar->actions().first(), action);
+        }
         if (statusBar()->isHidden() && !fullscreenFlag)
             setStatusBarVisibility(true);
     } else {
