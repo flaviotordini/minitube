@@ -1357,19 +1357,27 @@ bool MainWindow::isReallyFullScreen() {
 void MainWindow::missingKeyWarning() {
     QMessageBox msgBox(this);
     msgBox.setIconPixmap(IconUtils::pixmap(":/images/64x64/app.png"));
-    msgBox.setText(QString("This %1 package was built without a Google API key.").arg(Constants::NAME));
-    msgBox.setInformativeText(QString("It won't work unless you create one and set the GOOGLE_API_KEY environment variable."
+    msgBox.setText(QString("%1 was built without a Google API key.").arg(Constants::NAME));
+    msgBox.setInformativeText(QString("It won't work unless you enter one."
                               "<p>In alternative you can get %1 from the developer site.").arg(Constants::NAME));
     msgBox.setModal(true);
     msgBox.setWindowModality(Qt::WindowModal);
-    QPushButton *abortButton = msgBox.addButton(QMessageBox::Abort);
+    QPushButton *enterKeyButton = msgBox.addButton(QString("Enter API key..."), QMessageBox::AcceptRole);
     QPushButton *devButton = msgBox.addButton(QString("Get from %1").arg(Constants::WEBSITE), QMessageBox::AcceptRole);
     QPushButton *helpButton = msgBox.addButton(QMessageBox::Help);
     msgBox.exec();
     if (msgBox.clickedButton() == helpButton) {
         QDesktopServices::openUrl(QUrl("https://github.com/flaviotordini/minitube/blob/master/README.md#google-api-key"));
-    } else if (msgBox.clickedButton() == abortButton) {
-        quit();
+    } else if (msgBox.clickedButton() == enterKeyButton) {
+        bool ok;
+        QString text = QInputDialog::getText(this, QString(),
+                                             tr("Google API key:"), QLineEdit::Normal,
+                                             QString(), &ok);
+        if (ok && !text.isEmpty()) {
+            QSettings settings;
+            settings.setValue("googleApiKey", text);
+            YT3::instance().initApiKeys();
+        }
     } else if (msgBox.clickedButton() == devButton) {
         QDesktopServices::openUrl(QUrl(Constants::WEBSITE));
     }

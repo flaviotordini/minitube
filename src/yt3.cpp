@@ -21,7 +21,18 @@ YT3 &YT3::instance() {
     return *i;
 }
 
+const QString &YT3::baseUrl() {
+    static const QString base = "https://www.googleapis.com/youtube/v3/";
+    return base;
+}
+
 YT3::YT3() {
+    initApiKeys();
+}
+
+void YT3::initApiKeys() {
+    keys.clear();
+
     QByteArray customApiKey = qgetenv("GOOGLE_API_KEY");
     if (!customApiKey.isEmpty()) {
         keys << QString::fromUtf8(customApiKey);
@@ -51,17 +62,12 @@ YT3::YT3() {
     if (keys.isEmpty()) {
         qWarning() << "No available API keys";
 #ifdef APP_LINUX
-        QMetaObject::invokeMethod(MainWindow::instance(), "missingKeyWarning");
+        QMetaObject::invokeMethod(MainWindow::instance(), "missingKeyWarning", Qt::QueuedConnection);
 #endif
     } else {
         key = keys.takeFirst();
         if (!keys.isEmpty()) testApiKey();
     }
-}
-
-const QString &YT3::baseUrl() {
-    static const QString base = "https://www.googleapis.com/youtube/v3/";
-    return base;
 }
 
 void YT3::testApiKey() {

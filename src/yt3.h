@@ -13,6 +13,7 @@ public:
     static YT3 &instance();
     static const QString &baseUrl();
 
+    void initApiKeys();
     void testApiKey();
     void addApiKey(QUrl &url);
     QUrl method(const QString &name);
