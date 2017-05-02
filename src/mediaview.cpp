@@ -298,9 +298,6 @@ void MediaView::appear() {
                     currentVideo->title() + " - " + Constants::NAME);
     }
 
-    // optimize window for 16:9 video
-    QTimer::singleShot(50, this, SLOT(maybeAdjustWindowSize()));
-
     playlistView->setFocus();
 }
 
@@ -437,6 +434,9 @@ void MediaView::activeRowChanged(int row) {
 
     Video *video = playlistModel->videoAt(row);
     if (!video) return;
+
+    // optimize window for 16:9 video
+    maybeAdjustWindowSize();
 
     videoAreaWidget->showLoading(video);
 
