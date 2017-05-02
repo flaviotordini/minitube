@@ -191,7 +191,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
         painter->drawText(publishedTextBox, Qt::AlignLeft | Qt::AlignTop, publishedString);
 
         // author
-        if (listView->isClickableAuthors()) {
+        if (!listView || listView->isClickableAuthors()) {
             bool authorHovered = isHovered && index.data(AuthorHoveredRole).toBool();
 
             painter->save();

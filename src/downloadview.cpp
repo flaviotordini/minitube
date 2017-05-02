@@ -40,7 +40,7 @@ DownloadView::DownloadView(QWidget *parent) : View(parent) {
     layout->addWidget(bar);
 
     listView = new DownloadListView(this);
-    PlaylistItemDelegate *delegate = new PlaylistItemDelegate(this, true);
+    PlaylistItemDelegate *delegate = new PlaylistItemDelegate(listView, true);
     listView->setItemDelegate(delegate);
     listView->setSelectionMode(QAbstractItemView::NoSelection);
 
