@@ -40,6 +40,7 @@ public:
     QList<QAction*> getActions();
     SearchParams* getSearchParams() const { return searchParams; }
     static QString videoIdFromUrl(const QString &url);
+    static QTime videoTimestampFromUrl(const QString &url);
 
     bool operator==(const YTSearch &other) const {
         return searchParams == other.getSearchParams();

@@ -199,6 +199,8 @@ void MediaView::search(SearchParams *searchParams) {
                 YTSingleVideoSource *singleVideoSource = new YTSingleVideoSource(this);
                 singleVideoSource->setVideoId(videoId);
                 setVideoSource(singleVideoSource);
+                QTime tstamp = YTSearch::videoTimestampFromUrl(searchParams->keywords());
+                pauseTime = QTime(0, 0).msecsTo(tstamp);
                 return;
             }
         }
