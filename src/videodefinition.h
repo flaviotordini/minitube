@@ -37,9 +37,9 @@ public:
     int getCode() const { return m_code; }
     bool isEmpty() const;
 
-private:
     VideoDefinition& operator=(const VideoDefinition&);
 
+private:
     const QString m_name;
     const int m_code;
 };
