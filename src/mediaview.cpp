@@ -698,7 +698,12 @@ void MediaView::playbackResume() {
 QString MediaView::getVideoTimeString() {
     Video* video = playlistModel->activeVideo();
     if (!video) return QString("");
-    return QLatin1String("&t=") + QString::number(mediaObject->currentTime() / 1000);
+    QTime t(0, 0);
+    t = t.addSecs(mediaObject->currentTime() / 1000);
+    return QLatin1String("&t=") +
+           (t.hour()   ? QString::number(t.hour())   + QString("h") : QString("")) +
+           (t.minute() ? QString::number(t.minute()) + QString("m") : QString("")) +
+           QString::number(t.second()) + QString("s");
 }
 
 void MediaView::openWebPage() {
