@@ -33,21 +33,6 @@ QString DataUtils::systemRegioneCode() {
 }
 
 uint DataUtils::parseIsoPeriod(const QString &isoPeriod) {
-    // QTime time = QTime::fromString("1mm12car00", "PT8M50S");
-    // ^P((\d+Y)?(\d+M)?(\d+W)?(\d+D)?)?(T(\d+H)?(\d+M)?(\d+S)?)?$
-    /*
-    QRegExp isoPeriodRE("^PT(\d+H)?(\d+M)?(\d+S)?)?$");
-    if (!isoPeriodRE.indexIn(isoPeriod)) {
-        qWarning() << "Cannot parse ISO period" << isoPeriod;
-        continue;
-    }
-
-    int totalCaptures = isoPeriodRE.capturedTexts();
-    for (int i = totalCaptures; i > 0; --i) {
-
-    }
-    */
-
     uint days = 0, hours = 0, minutes = 0, seconds = 0;
 
     QByteArray ba = isoPeriod.toLocal8Bit();
@@ -85,17 +70,21 @@ QString DataUtils::formatDateTime(const QDateTime &dt) {
     QString s;
     int f = 60;
     if (seconds < f) {
-        s = qApp->translate("DataUtils", "Just now");
+        s = QCoreApplication::translate("DataUtils", "Just now");
     } else if (seconds < (f *= 60)) {
-        s = qApp->translate("DataUtils", "%n minute(s) ago", "", seconds / 60);
+        s = QCoreApplication::translate("DataUtils", "%n minute(s) ago", Q_NULLPTR, seconds / 60);
     } else if (seconds < (f *= 24)) {
-        s = qApp->translate("DataUtils", "%n hour(s) ago", "", seconds / (60*60));
+        int n = seconds / (60*60);
+        s = QCoreApplication::translate("DataUtils", "%n hour(s) ago", Q_NULLPTR, n);
     } else if (seconds < (f *= 7)) {
-        s = qApp->translate("DataUtils", "%n day(s) ago", "", seconds / (60*60*24));
+        int n = seconds / (60*60*24);
+        s = QCoreApplication::translate("DataUtils", "%n day(s) ago", Q_NULLPTR, n);
     } else if (seconds < (f = 60*60*24*30)) {
-        s = qApp->translate("DataUtils", "%n weeks(s) ago", "", seconds / (60*60*24*7));
+        int n = seconds / (60*60*24*7);
+        s = QCoreApplication::translate("DataUtils", "%n weeks(s) ago", Q_NULLPTR, n);
     } else if (seconds < (f = 60*60*24*365)) {
-        s = qApp->translate("DataUtils", "%n month(s) ago", "", seconds / (60*60*24*30));
+        int n = seconds / (60*60*24*30);
+        s = QCoreApplication::translate("DataUtils", "%n month(s) ago", Q_NULLPTR, n);
     } else {
         s = dt.date().toString(Qt::DefaultLocaleShortDate);
     }
