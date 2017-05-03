@@ -840,7 +840,7 @@ void MainWindow::createToolBars() {
 }
 
 void MainWindow::createStatusBar() {
-    statusToolBar = new QToolBar(this);
+    statusToolBar = new QToolBar(statusBar());
     statusToolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     statusToolBar->setIconSize(QSize(16, 16));
 
@@ -895,10 +895,6 @@ void MainWindow::showActionInStatusBar(QAction* action, bool show) {
 }
 
 void MainWindow::setStatusBarVisibility(bool show) {
-#ifdef APP_MAC
-    // workaround Qt bug with garbled floating statusToolBar when statusBar is hidden
-    statusToolBar->setVisible(show);
-#endif
     statusBar()->setVisible(show);
     if (views->currentWidget() == mediaView)
         QTimer::singleShot(0, mediaView, SLOT(maybeAdjustWindowSize()));
@@ -1377,7 +1373,7 @@ void MainWindow::missingKeyWarning() {
     } else if (msgBox.clickedButton() == enterKeyButton) {
         bool ok;
         QString text = QInputDialog::getText(this, QString(),
-                                             tr("Google API key:"), QLineEdit::Normal,
+                                             "Google API key:", QLineEdit::Normal,
                                              QString(), &ok);
         if (ok && !text.isEmpty()) {
             QSettings settings;
