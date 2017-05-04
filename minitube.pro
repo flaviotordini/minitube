@@ -204,6 +204,7 @@ unix:!mac {
         PKGDATADIR=\\\"$$PKGDATADIR\\\"
     INSTALLS += translations \
         desktop \
+        appdata \
         iconsvg \
         icon16 \
         icon22 \
@@ -217,6 +218,8 @@ unix:!mac {
     translations.files += $$DESTDIR/locale
     desktop.path = $$DATADIR/applications
     desktop.files += minitube.desktop
+    appdata.path = $$DATADIR/appdata
+    appdata.files += minitube.appdata.xml
     iconsvg.path = $$DATADIR/icons/hicolor/scalable/apps
     iconsvg.files += data/minitube.svg
     icon16.path = $$DATADIR/icons/hicolor/16x16/apps
