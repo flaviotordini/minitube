@@ -94,7 +94,7 @@ void HomeView::showWidget(QWidget *widget) {
 }
 
 void HomeView::appear() {
-    QMetaObject::invokeMethod(stackedWidget->currentWidget(), "appear");
+    QMetaObject::invokeMethod(stackedWidget->currentWidget(), "appear", Qt::QueuedConnection);
 }
 
 void HomeView::disappear() {
