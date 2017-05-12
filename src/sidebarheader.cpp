@@ -121,7 +121,6 @@ void SidebarHeader::paintEvent(QPaintEvent *event) {
     if (title.isEmpty()) return;
     QPainter p(this);
     p.setPen(Qt::white);
-    p.setFont(FontUtils::small());
 
     const QRect r = rect();
 
