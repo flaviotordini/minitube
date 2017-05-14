@@ -93,8 +93,8 @@ MainWindow::MainWindow() :
     mediaObject(0),
     audioOutput(0),
     #endif
-    fullscreenFlag(false),
-    m_compact(false),
+    fullScreenActive(false),
+    compactModeActive(false),
     initialized(false) {
 
     singleton = this;
@@ -208,10 +208,10 @@ void MainWindow::lazyInit() {
 
     setAcceptDrops(true);
 
-    mouseTimer = new QTimer(this);
-    mouseTimer->setInterval(5000);
-    mouseTimer->setSingleShot(true);
-    connect(mouseTimer, SIGNAL(timeout()), SLOT(hideMouse()));
+    hideMouseTimer = new QTimer(this);
+    hideMouseTimer->setInterval(5000);
+    hideMouseTimer->setSingleShot(true);
+    connect(hideMouseTimer, SIGNAL(timeout()), SLOT(hideMouse()));
 
     JsFunctions::instance();
 
@@ -256,7 +256,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
     }
 #endif
 
-    if (fullscreenFlag && e->type() == QEvent::MouseMove) {
+    if (fullScreenActive && e->type() == QEvent::MouseMove) {
         const char *className = obj->metaObject()->className();
         const bool isHoveringVideo =
                 (className == QLatin1String("QGLWidget")) ||
@@ -288,7 +288,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
         // show the normal cursor
         unsetCursor();
         // then hide it again after a few seconds
-        mouseTimer->start();
+        hideMouseTimer->start();
     }
 
     if (e->type() == QEvent::ToolTip) {
@@ -901,7 +901,7 @@ void MainWindow::showActionInStatusBar(QAction* action, bool show) {
         } else {
             statusToolBar->insertAction(statusToolBar->actions().first(), action);
         }
-        if (statusBar()->isHidden() && !fullscreenFlag)
+        if (statusBar()->isHidden() && !fullScreenActive)
             setStatusBarVisibility(true);
     } else {
         statusToolBar->removeAction(action);
@@ -1094,7 +1094,7 @@ void MainWindow::quit() {
     }
 #endif
     // do not save geometry when in full screen or in compact mode
-    if (!fullscreenFlag && !compactViewAct->isChecked()) {
+    if (!fullScreenActive && !compactViewAct->isChecked()) {
         writeSettings();
     }
     // mediaView->stop();
@@ -1275,12 +1275,12 @@ void MainWindow::fullscreen() {
     }
 #endif
 
-    fullscreenFlag = !fullscreenFlag;
+    fullScreenActive = !fullScreenActive;
 
-    if (fullscreenFlag) {
+    if (fullScreenActive) {
         // Enter full screen
 
-        m_maximized = isMaximized();
+        maximizedBeforeFullScreen = isMaximized();
 
         // save geometry now, if the user quits when in full screen
         // geometry won't be saved
@@ -1303,7 +1303,7 @@ void MainWindow::fullscreen() {
 #else
         menuBar()->setVisible(menuVisibleBeforeFullScreen);
         if (mainToolBar) mainToolBar->show();
-        if (m_maximized) showMaximized();
+        if (maximizedBeforeFullScreen) showMaximized();
         else showNormal();
 #endif
 
@@ -1320,7 +1320,7 @@ void MainWindow::updateUIForFullscreen() {
     static QList<QKeySequence> fsShortcuts;
     static QString fsText;
 
-    if (fullscreenFlag) {
+    if (fullScreenActive) {
         fsShortcuts = fullscreenAct->shortcuts();
         fsText = fullscreenAct->text();
         if (fsText.isEmpty()) qDebug() << "[taking Empty!]";
@@ -1339,14 +1339,14 @@ void MainWindow::updateUIForFullscreen() {
     }
 
     // No compact view action when in full screen
-    compactViewAct->setVisible(!fullscreenFlag);
+    compactViewAct->setVisible(!fullScreenActive);
     compactViewAct->setChecked(false);
 
     // Hide anything but the video
-    mediaView->setPlaylistVisible(!fullscreenFlag);
-    if (mainToolBar) mainToolBar->setVisible(!fullscreenFlag);
+    mediaView->setPlaylistVisible(!fullScreenActive);
+    if (mainToolBar) mainToolBar->setVisible(!fullScreenActive);
 
-    if (fullscreenFlag) {
+    if (fullScreenActive) {
         stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_MediaStop));
     } else {
         stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
@@ -1359,10 +1359,10 @@ void MainWindow::updateUIForFullscreen() {
     if (views->currentWidget() == mediaView)
         mediaView->setFocus();
 
-    if (fullscreenFlag) {
+    if (fullScreenActive) {
         hideMouse();
     } else {
-        mouseTimer->stop();
+        hideMouseTimer->stop();
         unsetCursor();
     }
 }
@@ -1407,7 +1407,7 @@ void MainWindow::missingKeyWarning() {
 }
 
 void MainWindow::compactView(bool enable) {
-    m_compact = enable;
+    compactModeActive = enable;
 
     static QList<QKeySequence> compactShortcuts;
     static QList<QKeySequence> stopShortcuts;
@@ -1663,12 +1663,12 @@ void MainWindow::toggleDefinitionMode() {
 }
 
 void MainWindow::showFullscreenToolbar(bool show) {
-    if (!fullscreenFlag) return;
+    if (!fullScreenActive) return;
     mainToolBar->setVisible(show);
 }
 
 void MainWindow::showFullscreenPlaylist(bool show) {
-    if (!fullscreenFlag) return;
+    if (!fullScreenActive) return;
     mediaView->setPlaylistVisible(show);
 }
 

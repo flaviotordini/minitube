@@ -59,7 +59,6 @@ public:
     void writeSettings();
     static void printHelp();
     MediaView* getMediaView() { return mediaView; }
-    QToolButton* getRegionButton() { return regionButton; }
     QAction* getRegionAction() { return regionAction; }
     SearchLineEdit *getToolbarSearch() { return toolbarSearch; }
 
@@ -93,7 +92,7 @@ public slots:
     void hideBuyAction();
 #endif
     bool isReallyFullScreen();
-    bool isCompact() { return m_compact; }
+    bool isCompact() { return compactModeActive; }
     void missingKeyWarning();
 
 signals:
@@ -232,7 +231,6 @@ private:
     QToolBar *mainToolBar;
     SearchLineEdit *toolbarSearch;
     QToolBar *statusToolBar;
-    QToolButton *regionButton;
     QAction *regionAction;
 
     // phonon
@@ -247,18 +245,16 @@ private:
     Phonon::AudioOutput *audioOutput;
 #endif
     QLabel *currentTime;
-    // QLabel *totalTime;
 
-    bool fullscreenFlag;
-    bool m_maximized;
+    bool fullScreenActive;
+    bool maximizedBeforeFullScreen;
     bool menuVisibleBeforeFullScreen;
-    QTimer *mouseTimer;
-    bool m_compact;
+    QTimer *hideMouseTimer;
+    bool compactModeActive;
     bool initialized;
 
     QLabel *messageLabel;
     QTimer *messageTimer;
-
 };
 
 #endif
