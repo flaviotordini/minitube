@@ -216,6 +216,7 @@ void SearchView::appear() {
 
     connect(window()->windowHandle(), SIGNAL(screenChanged(QScreen*)), SLOT(screenChanged()), Qt::UniqueConnection);
 
+    qApp->processEvents();
     update();
 }
 
