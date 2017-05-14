@@ -808,7 +808,6 @@ void MainWindow::createToolBars() {
     mainToolBar->addAction(pauseAct);
     mainToolBar->addAction(skipAct);
     mainToolBar->addAction(actionMap.value("related-videos"));
-    mainToolBar->addAction(actionMap.value("download"));
 
     bool addFullScreenAct = true;
 #ifdef Q_OS_MAC
