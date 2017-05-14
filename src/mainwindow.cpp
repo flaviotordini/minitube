@@ -1289,6 +1289,8 @@ void MainWindow::fullscreen() {
 #ifdef APP_MAC
         MacSupport::enterFullScreen(this, views);
 #else
+        menuVisibleBeforeFullScreen = menuBar()->isVisible();
+        menuBar()->hide();
         if (mainToolBar) mainToolBar->hide();
         showFullScreen();
 #endif
@@ -1299,6 +1301,7 @@ void MainWindow::fullscreen() {
 #ifdef APP_MAC
         MacSupport::exitFullScreen(this, views);
 #else
+        menuBar()->setVisible(menuVisibleBeforeFullScreen);
         if (mainToolBar) mainToolBar->show();
         if (m_maximized) showMaximized();
         else showNormal();
@@ -1342,10 +1345,6 @@ void MainWindow::updateUIForFullscreen() {
     // Hide anything but the video
     mediaView->setPlaylistVisible(!fullscreenFlag);
     if (mainToolBar) mainToolBar->setVisible(!fullscreenFlag);
-
-#ifndef APP_MAC
-    menuBar()->setVisible(!fullscreenFlag);
-#endif
 
     if (fullscreenFlag) {
         stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_MediaStop));

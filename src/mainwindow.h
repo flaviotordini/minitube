@@ -251,6 +251,7 @@ private:
 
     bool fullscreenFlag;
     bool m_maximized;
+    bool menuVisibleBeforeFullScreen;
     QTimer *mouseTimer;
     bool m_compact;
     bool initialized;
