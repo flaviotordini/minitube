@@ -47,9 +47,13 @@ QIcon IconUtils::fromResources(const QString &name) {
 }
 
 QIcon IconUtils::icon(const QString &name) {
-    QIcon icon = fromResources(name);
-    if (icon.isNull()) icon = fromTheme(name);
+#ifdef APP_LINUX
+    QIcon icon = fromTheme(name);
+    if (icon.isNull()) icon = fromResources(name);
     return icon;
+#else
+    return fromResources(name);
+#endif
 }
 
 QIcon IconUtils::icon(const QStringList &names) {
