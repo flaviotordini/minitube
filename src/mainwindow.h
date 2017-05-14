@@ -107,6 +107,7 @@ protected:
     void dropEvent(QDropEvent *e);
     void resizeEvent(QResizeEvent *e);
     void moveEvent(QMoveEvent *e);
+    void leaveEvent(QEvent *e);
 
 private slots:
     void lazyInit();
@@ -130,28 +131,22 @@ private slots:
     void toggleDefinitionMode();
     void clearRecentKeywords();
 
-    // volume shortcuts
     void volumeUp();
     void volumeDown();
     void volumeMute();
     void volumeChanged(qreal newVolume);
     void volumeMutedChanged(bool muted);
 
-    // fullscreen toolbar
-    void showFullscreenToolbar(bool show);
-    void showFullscreenPlaylist(bool show);
-
-    void setManualPlay(bool enabled);
     void updateDownloadMessage(const QString &);
     void downloadsFinished();
     void toggleDownloads(bool show);
 
+    void setManualPlay(bool enabled);
     void floatOnTop(bool, bool showAction = true);
     void adjustWindowSizeChanged(bool enabled);
-
     void showStopAfterThisInStatusBar(bool show);
-
     void hideMouse();
+
     void toggleMenuVisibility();
     void toggleMenuVisibilityWithMessage();
 

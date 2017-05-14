@@ -1260,6 +1260,14 @@ void MainWindow::moveEvent(QMoveEvent *e) {
     adjustMessageLabelPosition();
 }
 
+void MainWindow::leaveEvent(QEvent *e) {
+    Q_UNUSED(e);
+    if (fullScreenActive) {
+        if (mainToolBar) mainToolBar->hide();
+        if (mediaView) mediaView->setPlaylistVisible(false);
+    }
+}
+
 void MainWindow::fullscreen() {
 
     if (compactViewAct->isChecked())
@@ -1659,16 +1667,6 @@ void MainWindow::toggleDefinitionMode() {
     }
     // TODO: pass a VideoDefinition instead of QString.
     setDefinitionMode(definitions.at(index).getName());
-}
-
-void MainWindow::showFullscreenToolbar(bool show) {
-    if (!fullScreenActive) return;
-    mainToolBar->setVisible(show);
-}
-
-void MainWindow::showFullscreenPlaylist(bool show) {
-    if (!fullScreenActive) return;
-    mediaView->setPlaylistVisible(show);
 }
 
 void MainWindow::clearRecentKeywords() {
