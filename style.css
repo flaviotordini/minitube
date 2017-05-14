@@ -18,54 +18,6 @@ AppsWidget {
     border-top: 1px solid #808080;
 }
 
-QSlider::groove:horizontal {
-     border: 1px solid #808080;
-     height: 8px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */
-     background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #B1B1B1, stop:1 #ccc);
-     border-radius: 5px;
- }
-
-QSlider::sub-page:horizontal {
-    border: 1px solid #808080;
-    height: 8px; /* the groove expands to the size of the slider by default. by giving it a height, it has a fixed size */
-    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #6c6c6c, stop:1 #B1B1B1);
-    border-radius: 5px;
-}
-
-QSlider::handle:horizontal {
-    border: 1px solid #5c5c5c;
-    width: 14px;
-    height: 16px;
-    margin: -4px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
-    border-radius: 8px;
-    background: qradialgradient(
-        cx: .5, cy: .5,
-        fx: .33, fy: .33,
-        radius: .5,
-        stop: 0 #fff, stop: 1 #ccc);
-}
-
-QSlider::handle:pressed {
-    background: qradialgradient(
-        cx: .5, cy: .5,
-        fx: .33, fy: .33,
-        radius: .5,
-        stop: 0 #ccc, stop: 1 #9c9c9c);
-}
-
-Phonon--SeekSlider QSlider::sub-page:horizontal {
-    border: 1px solid #808080;
-    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #B1B1B1, stop:1 #6c6c6c);
-}
-
-Phonon--VolumeSlider[zero="true"] QSlider::handle:horizontal {
-    background: qradialgradient(
-        cx: .5, cy: .5,
-        fx: .33, fy: .33,
-        radius: .5,
-        stop: 0 #f66, stop: 1 #c33);
-}
-
 /* Regions */
 
 RegionsView QPushButton[regionId] {
