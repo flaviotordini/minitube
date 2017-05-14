@@ -246,6 +246,16 @@ void MainWindow::changeEvent(QEvent *e) {
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
 
+#ifndef APP_MAC
+    if (e->type() == QEvent::KeyRelease) {
+        QKeyEvent *ke = static_cast<QKeyEvent*>(e);
+        if (ke->key() == Qt::Key_Alt) {
+            toggleMenuVisibility();
+            return true;
+        }
+    }
+#endif
+
     if (fullscreenFlag && e->type() == QEvent::MouseMove) {
         const char *className = obj->metaObject()->className();
         const bool isHoveringVideo =
@@ -610,6 +620,10 @@ void MainWindow::createActions() {
     action->setCheckable(true);
     actionMap.insert("safeSearch", action);
 
+    action = new QAction(tr("Toggle &Menu Bar"), this);
+    connect(action, SIGNAL(triggered()), SLOT(toggleMenuVisibilityWithMessage()));
+    actionMap.insert("toggle-menu", action);
+
 #ifdef APP_MAC_STORE
     action = new QAction(tr("&Love %1? Rate it!").arg(Constants::NAME), this);
     actionMap.insert("app-store", action);
@@ -701,6 +715,7 @@ void MainWindow::createMenus() {
     viewMenu->addAction(compactViewAct);
 #ifndef APP_MAC
     viewMenu->addAction(fullscreenAct);
+    viewMenu->addAction(actionMap.value("toggle-menu"));
 #endif
     viewMenu->addSeparator();
     viewMenu->addAction(actionMap.value("adjustwindowsize"));
@@ -786,8 +801,9 @@ void MainWindow::createToolBars() {
     mainToolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
     mainToolBar->setFloatable(false);
     mainToolBar->setMovable(false);
+#ifndef APP_LINUX
     mainToolBar->setIconSize(QSize(32, 32));
-
+#endif
     mainToolBar->addAction(stopAct);
     mainToolBar->addAction(pauseAct);
     mainToolBar->addAction(skipAct);
@@ -944,6 +960,9 @@ void MainWindow::readSettings() {
     actionMap.value("manualplay")->setChecked(settings.value("manualplay", false).toBool());
     actionMap.value("adjustwindowsize")->setChecked(settings.value("adjustWindowSize", true).toBool());
     actionMap.value("safeSearch")->setChecked(settings.value("safeSearch", true).toBool());
+#ifndef APP_MAC
+    menuBar()->setVisible(settings.value("menuBar", true).toBool());
+#endif
 }
 
 void MainWindow::writeSettings() {
@@ -961,6 +980,9 @@ void MainWindow::writeSettings() {
 
     settings.setValue("manualplay", actionMap.value("manualplay")->isChecked());
     settings.setValue("safeSearch", actionMap.value("safeSearch")->isChecked());
+#ifndef APP_MAC
+    settings.setValue("menuBar", menuBar()->isVisible());
+#endif
 }
 
 void MainWindow::goBack() {
@@ -1361,7 +1383,7 @@ void MainWindow::missingKeyWarning() {
     msgBox.setIconPixmap(IconUtils::pixmap(":/images/64x64/app.png"));
     msgBox.setText(QString("%1 was built without a Google API key.").arg(Constants::NAME));
     msgBox.setInformativeText(QString("It won't work unless you enter one."
-                              "<p>In alternative you can get %1 from the developer site.").arg(Constants::NAME));
+                                      "<p>In alternative you can get %1 from the developer site.").arg(Constants::NAME));
     msgBox.setModal(true);
     msgBox.setWindowModality(Qt::WindowModal);
     QPushButton *enterKeyButton = msgBox.addButton(QString("Enter API key..."), QMessageBox::AcceptRole);
@@ -1861,6 +1883,21 @@ void MainWindow::hideMouse() {
 #ifndef APP_MAC
     mainToolBar->setVisible(false);
 #endif
+}
+
+void MainWindow::toggleMenuVisibility() {
+    qWarning() << __PRETTY_FUNCTION__;
+    bool show = !menuBar()->isVisible();
+    menuBar()->setVisible(show);
+}
+
+void MainWindow::toggleMenuVisibilityWithMessage() {
+    qWarning() << __PRETTY_FUNCTION__;
+    bool show = !menuBar()->isVisible();
+    menuBar()->setVisible(show);
+    if (!show) {
+        showMessage(tr("You can still access the menu bar by pressing the ALT key"));
+    }
 }
 
 #ifdef APP_MAC_STORE

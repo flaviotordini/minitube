@@ -153,6 +153,8 @@ private slots:
     void showStopAfterThisInStatusBar(bool show);
 
     void hideMouse();
+    void toggleMenuVisibility();
+    void toggleMenuVisibilityWithMessage();
 
 #ifdef APP_MAC_STORE
     void rateOnAppStore();
