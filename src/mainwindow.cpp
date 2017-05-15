@@ -1882,13 +1882,11 @@ void MainWindow::hideMouse() {
 }
 
 void MainWindow::toggleMenuVisibility() {
-    qWarning() << __PRETTY_FUNCTION__;
     bool show = !menuBar()->isVisible();
     menuBar()->setVisible(show);
 }
 
 void MainWindow::toggleMenuVisibilityWithMessage() {
-    qWarning() << __PRETTY_FUNCTION__;
     bool show = !menuBar()->isVisible();
     menuBar()->setVisible(show);
     if (!show) {
