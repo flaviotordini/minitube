@@ -47,7 +47,7 @@ void VideoSourceWidget::previewVideo(const QList<Video *> &videos) {
     if (videos.isEmpty()) return;
     Video *video = videos.first();
     lastPixelRatio = window()->devicePixelRatio();
-    bool needLargeThumb = lastPixelRatio > 1.0 || window()->width() > 2000;
+    bool needLargeThumb = lastPixelRatio > 1.0 || window()->width() > 1000;
     QString url =  needLargeThumb ? video->largeThumbnailUrl() : video->mediumThumbnailUrl();
     if (url.isEmpty()) url = video->mediumThumbnailUrl();
     video->deleteLater();
@@ -114,7 +114,7 @@ void VideoSourceWidget::paintEvent(QPaintEvent *event) {
     int yOffset = 0;
     int yOrigin = 0;
     int hDiff = pixmap.height() - h;
-    if (hDiff > 0) yOffset = hDiff / 4;
+    if (hDiff > 0) yOffset = hDiff / 2;
     else yOrigin = -hDiff / 2;
     p.drawPixmap(xOrigin, yOrigin, pixmap, xOffset, yOffset, w, h);
 
