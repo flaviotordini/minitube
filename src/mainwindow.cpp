@@ -816,8 +816,9 @@ void MainWindow::createToolBars() {
     if (addFullScreenAct) mainToolBar->addAction(fullscreenAct);
 
     mainToolBar->addWidget(new Spacer());
-    mainToolBar->addWidget(new Spacer());
+
     mainToolBar->addWidget(currentTimeLabel);
+    mainToolBar->addWidget(new Spacer(this, currentTimeLabel->sizeHint().height() / 2));
 #ifdef APP_PHONON_SEEK
     mainToolBar->addWidget(seekSlider);
 #else
@@ -848,7 +849,6 @@ void MainWindow::createToolBars() {
     mainToolBar->addWidget(searchWrapper);
 #else
     mainToolBar->addWidget(toolbarSearch);
-    mainToolBar->addWidget(new Spacer());
 #endif
 
     addToolBar(mainToolBar);
