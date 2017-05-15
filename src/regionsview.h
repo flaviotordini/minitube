@@ -35,6 +35,9 @@ public:
     RegionsView(QWidget *parent = 0);
     void appear();
 
+protected:
+    void paintEvent(QPaintEvent *e);
+
 signals:
     void regionChanged();
 

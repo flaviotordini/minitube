@@ -73,6 +73,19 @@ void RegionsView::appear() {
     }
 }
 
+void RegionsView::paintEvent(QPaintEvent *e) {
+    QWidget::paintEvent(e);
+    QBrush brush;
+    if (window()->isActiveWindow()) {
+        brush = Qt::white;
+    } else {
+        brush = palette().window();
+    }
+    QPainter painter(this);
+    painter.fillRect(0, 0, width(), height(), brush);
+    painter.end();
+}
+
 void RegionsView::buttonClicked() {
     QObject* o = sender();
     QString regionId = o->property("regionId").toString();

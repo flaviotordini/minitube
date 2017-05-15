@@ -28,8 +28,7 @@ RegionsView QPushButton[regionId] {
     text-align: left;
     vertical-align: middle;
     background-color: transparent;
-    border: 1px solid transparent;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
 RegionsView QPushButton[regionId=""] {
@@ -37,21 +36,17 @@ RegionsView QPushButton[regionId=""] {
 }
 
 RegionsView QPushButton[regionId]:hover {
-    border: 1px solid rgba(0,0,0,32);
     background: rgba(0,0,0,16);
 }
 
 RegionsView QPushButton[regionId]:focus {
-    border: 1px solid palette(highlight);
-    background: rgba(0,0,0,16);
+    background: palette(highlight);
+    color: palette(highlightText);
+    outline: 0;
 }
 
 RegionsView QPushButton[regionId]:checked {
-    color: #fff;
-    border: 1px solid rgba(0,0,0,64);
-    background: qradialgradient(cx: 0.5, cy: 0,
-    fx: 0.5, fy: 0,
-    radius: 1.35, stop: 0 rgba(0,0,0,128), stop: 1 rgba(0,0,0,64));
+    background: rgba(0,0,0,32)
 }
 
 /* Sidebar */
