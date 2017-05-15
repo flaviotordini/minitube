@@ -54,7 +54,7 @@ public:
     Phonon::AudioOutput* getAudioOutput() { return audioOutput; }
     Phonon::VolumeSlider *getVolumeSlider() { return volumeSlider; }
 #endif
-    QLabel *getCurrentTimeLabel() { return currentTime; }
+    QLabel *getCurrentTimeLabel() { return currentTimeLabel; }
     void readSettings();
     void writeSettings();
     static void printHelp();
@@ -239,7 +239,7 @@ private:
     Phonon::MediaObject *mediaObject;
     Phonon::AudioOutput *audioOutput;
 #endif
-    QLabel *currentTime;
+    QLabel *currentTimeLabel;
 
     bool fullScreenActive;
     bool maximizedBeforeFullScreen;

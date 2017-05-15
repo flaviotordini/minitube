@@ -742,8 +742,8 @@ void MainWindow::createToolBars() {
 
     // Create widgets
 
-    currentTime = new QLabel("00:00");
-    currentTime->setFont(FontUtils::small());
+    currentTimeLabel = new QLabel("00:00");
+    currentTimeLabel->setFont(FontUtils::small());
 
 #ifdef APP_PHONON_SEEK
     seekSlider = new Phonon::SeekSlider();
@@ -816,8 +816,8 @@ void MainWindow::createToolBars() {
     if (addFullScreenAct) mainToolBar->addAction(fullscreenAct);
 
     mainToolBar->addWidget(new Spacer());
-    mainToolBar->addWidget(currentTime);
     mainToolBar->addWidget(new Spacer());
+    mainToolBar->addWidget(currentTimeLabel);
 #ifdef APP_PHONON_SEEK
     mainToolBar->addWidget(seekSlider);
 #else
@@ -1150,7 +1150,7 @@ bool MainWindow::confirmQuit() {
 
 void MainWindow::showHome(bool transition) {
     showWidget(homeView, transition);
-    currentTime->clear();
+    currentTimeLabel->clear();
     // totalTime->clear();
 }
 
@@ -1218,7 +1218,7 @@ void MainWindow::stateChanged(Phonon::State newState, Phonon::State /* oldState 
 
     case Phonon::LoadingState:
         pauseAct->setEnabled(false);
-        currentTime->clear();
+        currentTimeLabel->clear();
         // totalTime->clear();
         // stopAct->setEnabled(true);
         break;
@@ -1524,15 +1524,15 @@ void MainWindow::initPhonon() {
 
 void MainWindow::tick(qint64 time) {
     const QString s = formatTime(time);
-    if (s != currentTime->text()) {
-        currentTime->setText(s);
+    if (s != currentTimeLabel->text()) {
+        currentTimeLabel->setText(s);
         emit currentTimeChanged(s);
     }
 
     // remaining time
 #ifdef APP_PHONON
     const qint64 remainingTime = mediaObject->remainingTime();
-    currentTime->setStatusTip(tr("Remaining time: %1").arg(formatTime(remainingTime)));
+    currentTimeLabel->setStatusTip(tr("Remaining time: %1").arg(formatTime(remainingTime)));
 
 #ifndef APP_PHONON_SEEK
     const qint64 totalTime = mediaObject->totalTime();
