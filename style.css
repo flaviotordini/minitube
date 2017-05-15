@@ -1,3 +1,5 @@
+QToolButton::menu-indicator { image: none; }
+
 QStatusBar QToolBar {
     padding:0;
     spacing:0;

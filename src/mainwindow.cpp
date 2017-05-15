@@ -805,6 +805,13 @@ void MainWindow::createToolBars() {
     mainToolBar->setIconSize(QSize(32, 32));
 #endif
     mainToolBar->addAction(stopAct);
+    QToolButton *stopToolButton = qobject_cast<QToolButton*>(mainToolBar->widgetForAction(stopAct));
+    if (stopToolButton) {
+        QMenu *stopMenu = new QMenu(this);
+        stopMenu->addAction(actionMap.value("stopafterthis"));
+        stopToolButton->setMenu(stopMenu);
+        stopToolButton->setPopupMode(QToolButton::DelayedPopup);
+    }
     mainToolBar->addAction(pauseAct);
     mainToolBar->addAction(skipAct);
     mainToolBar->addAction(actionMap.value("related-videos"));
