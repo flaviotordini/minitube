@@ -93,7 +93,7 @@ void StandardFeedsView::addVideoSourceWidget(VideoSource *videoSource) {
     connect(w, SIGNAL(activated(VideoSource*)),
             SIGNAL(activated(VideoSource*)));
     int i = layout->count();
-    static const int cols = 4;
+    const int cols = 5;
     layout->addWidget(w, i / cols, i % cols);
 }
 

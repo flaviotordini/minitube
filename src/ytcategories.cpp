@@ -66,6 +66,7 @@ void YTCategories::parseCategories(QByteArray bytes) {
         YTCategory category;
         category.term = item["id"].toString();
         category.label = snippet["title"].toString();
+        if (category.label.startsWith(QLatin1String("News"))) continue;
         categories << category;
     }
 
