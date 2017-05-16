@@ -1,4 +1,4 @@
-QToolButton::menu-indicator { image: none; }
+QMainWindow > QToolBar QToolButton::menu-indicator { image: none; }
 
 QStatusBar QToolBar {
     padding:0;
@@ -19,8 +19,6 @@ AppsWidget {
     background-color: palette(window);
     border-top: 1px solid #808080;
 }
-
-/* Regions */
 
 RegionsView QPushButton[regionId] {
     margin: 5px;
@@ -48,8 +46,6 @@ RegionsView QPushButton[regionId]:focus {
 RegionsView QPushButton[regionId]:checked {
     background: rgba(0,0,0,32)
 }
-
-/* Sidebar */
 
 SidebarHeader {
     background: #3c3c3c;
@@ -79,6 +75,30 @@ SidebarHeader QComboBox::drop-down {
     border-style: none;
 }
 
-QLabel[recentHeader="true"] {
-    color: rgba(0,0,0,128);
+SearchView QLabel[recentHeader="true"] {
+    color: #808080;
+    margin-left: 2px;
+    margin-bottom: 4px;
+    padding: 0;
+}
+
+SearchView QPushButton[recentItem="true"] {
+    border: 0;
+    padding: 4px;
+    text-align: left;
+    outline: 0;
+}
+
+SearchView QPushButton[recentItem="true"]:hover {
+    background: rgba(0,0,0,16);
+}
+
+SearchView QPushButton[recentItem="true"]:pressed {
+    background: palette(highlight);
+    color: palette(highlightText);
+}
+
+SearchView QPushButton[recentItem="true"]:focus {
+    outline: 1px solid palette(highlight);
+    outline-offset: 4px;
 }

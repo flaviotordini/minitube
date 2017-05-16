@@ -51,20 +51,23 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     // by ourselves anyway in paintEvent()
     setAttribute(Qt::WA_OpaquePaintEvent);
 
-    QBoxLayout *mainLayout = new QVBoxLayout(this);
-    mainLayout->setMargin(padding);
-    mainLayout->setSpacing(0);
+    QBoxLayout *vLayout = new QVBoxLayout(this);
+    vLayout->setMargin(padding);
+    vLayout->setSpacing(0);
 
     // hidden message widget
     message = new QLabel(this);
     message->hide();
-    mainLayout->addWidget(message);
+    vLayout->addWidget(message);
 
-    mainLayout->addStretch();
+    vLayout->addStretch();
 
     QBoxLayout *hLayout = new QHBoxLayout();
     hLayout->setAlignment(Qt::AlignCenter);
-    mainLayout->addLayout(hLayout);
+
+    vLayout->addLayout(hLayout);
+
+    hLayout->addStretch();
 
     logo = new QLabel(this);
     logo->setPixmap(IconUtils::pixmap(":/images/app.png"));
@@ -98,6 +101,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     layout->addSpacing(padding / 2);
 
     QBoxLayout *tipLayout = new QHBoxLayout();
+    tipLayout->setAlignment(Qt::AlignLeft);
     tipLayout->setSpacing(10);
 
 #ifndef APP_MAC
@@ -165,35 +169,38 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 
     layout->addSpacing(padding / 2);
 
-    QHBoxLayout *otherLayout = new QHBoxLayout();
-    otherLayout->setMargin(0);
-    otherLayout->setSpacing(10);
+    QHBoxLayout *recentLayout = new QHBoxLayout();
+    recentLayout->setMargin(5);
+    recentLayout->setSpacing(10);
 
     recentKeywordsLayout = new QVBoxLayout();
-    recentKeywordsLayout->setSpacing(5);
+    recentKeywordsLayout->setMargin(0);
+    recentKeywordsLayout->setSpacing(0);
     recentKeywordsLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     recentKeywordsLabel = new QLabel(tr("Recent keywords"), this);
     recentKeywordsLabel->setProperty("recentHeader", true);
     recentKeywordsLabel->hide();
     recentKeywordsLayout->addWidget(recentKeywordsLabel);
 
-    otherLayout->addLayout(recentKeywordsLayout);
+    recentLayout->addLayout(recentKeywordsLayout);
 
     // recent channels
     recentChannelsLayout = new QVBoxLayout();
-    recentChannelsLayout->setSpacing(5);
+    recentChannelsLayout->setMargin(0);
+    recentChannelsLayout->setSpacing(0);
     recentChannelsLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     recentChannelsLabel = new QLabel(tr("Recent channels"), this);
     recentChannelsLabel->setProperty("recentHeader", true);
-    recentChannelsLabel->setForegroundRole(QPalette::Dark);
     recentChannelsLabel->hide();
     recentChannelsLayout->addWidget(recentChannelsLabel);
 
-    otherLayout->addLayout(recentChannelsLayout);
+    recentLayout->addLayout(recentChannelsLayout);
 
-    layout->addLayout(otherLayout);
+    layout->addLayout(recentLayout);
 
-    mainLayout->addStretch();
+    hLayout->addStretch();
+
+    vLayout->addStretch();
 
 #ifdef APP_ACTIVATION
     if (!Activation::instance().isActivated())
@@ -247,32 +254,33 @@ void SearchView::updateRecentKeywords() {
     foreach (const QString &keyword, keywords) {
         QString link = keyword;
         QString display = keyword;
-        if (keyword.startsWith("http://") || keyword.startsWith("https://")) {
-            int separator = keyword.indexOf("|");
+        if (keyword.startsWith(QLatin1String("http://")) || keyword.startsWith(QLatin1String("https://"))) {
+            int separator = keyword.indexOf('|');
             if (separator > 0 && separator + 1 < keyword.length()) {
                 link = keyword.left(separator);
                 display = keyword.mid(separator+1);
             }
         }
         bool needStatusTip = false;
-        if (display.length() > 24) {
-            display.truncate(24);
-            display.append("...");
+        const int maxDisplayLength = 25;
+        if (display.length() > maxDisplayLength) {
+            display.truncate(maxDisplayLength);
+            display.append("\u2026");
             needStatusTip = true;
         }
-        QLabel *itemLabel = new QLabel("<a href=\"" + link
-                                       + "\" style=\"color:palette(text); text-decoration:none\">"
-                                       + display + "</a>", this);
-        itemLabel->setAttribute(Qt::WA_DeleteOnClose);
-        itemLabel->setProperty("recentItem", true);
-        itemLabel->setMaximumWidth(queryEdit->toWidget()->width() + watchButton->width());
-        itemLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        // Make links navigable with the keyboard too
-        itemLabel->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard | Qt::LinksAccessibleByMouse);
+        QPushButton *itemButton = new QPushButton(display);
+        itemButton->setAttribute(Qt::WA_DeleteOnClose);
+        itemButton->setProperty("recentItem", true);
+        itemButton->setCursor(Qt::PointingHandCursor);
+        itemButton->setFocusPolicy(Qt::TabFocus);
+        itemButton->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
         if (needStatusTip)
-            itemLabel->setStatusTip(link);
-        connect(itemLabel, SIGNAL(linkActivated(QString)), this, SLOT(watchKeywords(QString)));
-        recentKeywordsLayout->addWidget(itemLabel);
+            itemButton->setStatusTip(link);
+        connect(itemButton, &QPushButton::clicked, [this,link]() {
+            watchKeywords(link);
+        });
+
+        recentKeywordsLayout->addWidget(itemButton);
     }
 
 }
@@ -302,18 +310,16 @@ void SearchView::updateRecentChannels() {
             link = keyword.left(separator);
             display = keyword.mid(separator+1);
         }
-        QLabel *itemLabel = new QLabel("<a href=\"" + link
-                                       + "\" style=\"color:palette(text); text-decoration:none\">"
-                                       + display + "</a>", this);
-        itemLabel->setAttribute(Qt::WA_DeleteOnClose);
-        itemLabel->setProperty("recentItem", true);
-        itemLabel->setMaximumWidth(queryEdit->toWidget()->width() + watchButton->width());
-        // itemLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        // Make links navigable with the keyboard too
-        itemLabel->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard | Qt::LinksAccessibleByMouse);
-
-        connect(itemLabel, SIGNAL(linkActivated(QString)), this, SLOT(watchChannel(QString)));
-        recentChannelsLayout->addWidget(itemLabel);
+        QPushButton *itemButton = new QPushButton(display);
+        itemButton->setAttribute(Qt::WA_DeleteOnClose);
+        itemButton->setProperty("recentItem", true);
+        itemButton->setCursor(Qt::PointingHandCursor);
+        itemButton->setFocusPolicy(Qt::TabFocus);
+        itemButton->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
+        connect(itemButton, &QPushButton::clicked, [this,link]() {
+            watchChannel(link);
+        });
+        recentChannelsLayout->addWidget(itemButton);
     }
 
 }
