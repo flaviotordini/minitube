@@ -1259,12 +1259,12 @@ void MainWindow::resizeEvent(QResizeEvent *e) {
 #ifdef APP_MAC_QMACTOOLBAR
     toolbarSearch->move(width() - toolbarSearch->width() - 7, -38);
 #endif
-    adjustMessageLabelPosition();
+    hideMessage();
 }
 
 void MainWindow::moveEvent(QMoveEvent *e) {
     Q_UNUSED(e);
-    adjustMessageLabelPosition();
+    hideMessage();
 }
 
 void MainWindow::leaveEvent(QEvent *e) {
@@ -1950,8 +1950,10 @@ void MainWindow::showMessage(const QString &message) {
 }
 
 void MainWindow::hideMessage() {
-    messageLabel->hide();
-    messageLabel->clear();
+    if (messageLabel->isVisible()) {
+        messageLabel->hide();
+        messageLabel->clear();
+    }
 }
 
 #ifdef APP_ACTIVATION
