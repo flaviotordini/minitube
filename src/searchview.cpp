@@ -204,7 +204,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 
 #ifdef APP_ACTIVATION
     if (!Activation::instance().isActivated())
-        mainLayout->addWidget(Extra::buyButton(tr("Get the full version")), 0, Qt::AlignRight);
+        vLayout->addWidget(Extra::buyButton(tr("Get the full version")), 0, Qt::AlignRight);
 #endif
 }
 
