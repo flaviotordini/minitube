@@ -26,7 +26,7 @@ $END_LICENSE */
 class Spacer : public QWidget {
 
 public:
-    Spacer(QWidget *parent = 0, int minWidth = 50);
+    Spacer(QWidget *parent = 0, int minWidth = 60);
 
 protected:
     QSize sizeHint() const;
