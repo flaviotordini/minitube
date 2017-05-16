@@ -56,6 +56,10 @@ VideoAreaWidget::VideoAreaWidget(QWidget *parent) : QWidget(parent), videoWidget
     setAcceptDrops(true);
     setMouseTracking(true);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+    setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
+            SLOT(showContextMenu(const QPoint &)));
 }
 
 void VideoAreaWidget::setVideoWidget(QWidget *videoWidget) {
@@ -166,4 +170,9 @@ void VideoAreaWidget::dropEvent(QDropEvent *event) {
     if (row != -1)
         listModel->setActiveRow(row);
     event->acceptProposedAction();
+}
+
+void VideoAreaWidget::showContextMenu(const QPoint &point) {
+    QMenu *menu = MainWindow::instance()->getMenuMap().value("video");
+    menu->exec(mapToGlobal(point));
 }
