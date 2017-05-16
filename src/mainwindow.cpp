@@ -848,6 +848,7 @@ void MainWindow::createToolBars() {
     mainToolBar->addWidget(searchWrapper);
 #else
     mainToolBar->addWidget(toolbarSearch);
+    mainToolBar->addWidget(new Spacer(this, 10));
 #endif
 
     addToolBar(mainToolBar);
