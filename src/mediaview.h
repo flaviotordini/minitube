@@ -99,7 +99,6 @@ public slots:
     void goForward();
     void toggleSubscription();
     void adjustWindowSize();
-    void maybeAdjustWindowSize();
 
 private slots:
     // list/model

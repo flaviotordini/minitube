@@ -143,7 +143,6 @@ private slots:
 
     void setManualPlay(bool enabled);
     void floatOnTop(bool, bool showAction = true);
-    void adjustWindowSizeChanged(bool enabled);
     void showStopAfterThisInStatusBar(bool show);
     void hideMouse();
 

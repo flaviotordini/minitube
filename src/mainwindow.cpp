@@ -569,11 +569,6 @@ void MainWindow::createActions() {
     actionMap.insert("ontop", action);
     connect(action, SIGNAL(toggled(bool)), SLOT(floatOnTop(bool)));
 
-    action = new QAction(tr("&Adjust Window Size"), this);
-    action->setCheckable(true);
-    actionMap.insert("adjustwindowsize", action);
-    connect(action, SIGNAL(toggled(bool)), SLOT(adjustWindowSizeChanged(bool)));
-
     action = new QAction(IconUtils::icon("media-playback-stop"), tr("&Stop After This Video"), this);
     action->setShortcut(QKeySequence(Qt::SHIFT + Qt::Key_Escape));
     action->setCheckable(true);
@@ -711,14 +706,11 @@ void MainWindow::createMenus() {
     QMenu* viewMenu = menuBar()->addMenu(tr("&View"));
     menuMap.insert("view", viewMenu);
     viewMenu->addAction(actionMap.value("ontop"));
-    viewMenu->addSeparator();
     viewMenu->addAction(compactViewAct);
 #ifndef APP_MAC
     viewMenu->addAction(fullscreenAct);
     viewMenu->addAction(actionMap.value("toggle-menu"));
 #endif
-    viewMenu->addSeparator();
-    viewMenu->addAction(actionMap.value("adjustwindowsize"));
 
 #ifdef APP_MAC
     MacSupport::windowMenu(this);
@@ -919,7 +911,7 @@ void MainWindow::showActionInStatusBar(QAction* action, bool show) {
 void MainWindow::setStatusBarVisibility(bool show) {
     statusBar()->setVisible(show);
     if (views->currentWidget() == mediaView)
-        QTimer::singleShot(0, mediaView, SLOT(maybeAdjustWindowSize()));
+        QTimer::singleShot(0, mediaView, SLOT(adjustWindowSize()));
 }
 
 void MainWindow::adjustStatusBarVisibility() {
@@ -964,7 +956,6 @@ void MainWindow::readSettings() {
     const VideoDefinition& firstDefinition = VideoDefinition::getDefinitions().first();
     setDefinitionMode(settings.value("definition", firstDefinition.getName()).toString());
     actionMap.value("manualplay")->setChecked(settings.value("manualplay", false).toBool());
-    actionMap.value("adjustwindowsize")->setChecked(settings.value("adjustWindowSize", true).toBool());
     actionMap.value("safeSearch")->setChecked(settings.value("safeSearch", true).toBool());
 #ifndef APP_MAC
     menuBar()->setVisible(settings.value("menuBar", true).toBool());
@@ -1847,13 +1838,6 @@ void MainWindow::floatOnTop(bool onTop, bool showAction) {
         setWindowFlags(windowFlags() ^ Qt::WindowStaysOnTopHint);
         show();
     }
-}
-
-void MainWindow::adjustWindowSizeChanged(bool enabled) {
-    QSettings settings;
-    settings.setValue("adjustWindowSize", enabled);
-    if (enabled && views->currentWidget() == mediaView)
-        mediaView->adjustWindowSize();
 }
 
 void MainWindow::restore() {

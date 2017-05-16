@@ -123,7 +123,7 @@ void MediaView::initialize() {
     QSettings settings;
     splitter->restoreState(settings.value("splitter").toByteArray());
     splitter->setChildrenCollapsible(false);
-    connect(splitter, SIGNAL(splitterMoved(int,int)), SLOT(maybeAdjustWindowSize()));
+    connect(splitter, SIGNAL(splitterMoved(int,int)), SLOT(adjustWindowSize()));
 
     layout->addWidget(splitter);
 
@@ -436,7 +436,7 @@ void MediaView::activeRowChanged(int row) {
     if (!video) return;
 
     // optimize window for 16:9 video
-    maybeAdjustWindowSize();
+    adjustWindowSize();
 
     videoAreaWidget->showLoading(video);
 
@@ -939,12 +939,6 @@ void MediaView::resumeWithNewStreamUrl(const QUrl &streamUrl) {
     video->disconnect(this);
 }
 
-void MediaView::maybeAdjustWindowSize() {
-    QSettings settings;
-    if (settings.value("adjustWindowSize", true).toBool())
-        adjustWindowSize();
-}
-
 void MediaView::sliderMoved(int value) {
     Q_UNUSED(value);
 #ifdef APP_PHONON
@@ -1180,21 +1174,15 @@ void MediaView::toggleSubscription() {
 void MediaView::adjustWindowSize() {
     Video *video = playlistModel->activeVideo();
     if (!video) return;
-    if (!MainWindow::instance()->isMaximized() && !MainWindow::instance()->isFullScreen()) {
+    QWidget *window = this->window();
+    if (!window->isMaximized() && !window->isFullScreen()) {
         const double ratio = 16. / 9.;
-        const int w = videoAreaWidget->width();
-        const int h = videoAreaWidget->height();
-        const double currentVideoRatio = (double)w / (double)h;
+        const double w = (double) videoAreaWidget->width();
+        const double h = (double) videoAreaWidget->height();
+        const double currentVideoRatio = w / h;
         if (currentVideoRatio != ratio) {
-            if (false && currentVideoRatio > ratio) {
-                // we have vertical black bars
-                int newWidth = (MainWindow::instance()->width() - w) + (h * ratio);
-                MainWindow::instance()->resize(newWidth, MainWindow::instance()->height());
-            } else {
-                // horizontal black bars
-                int newHeight = (MainWindow::instance()->height() - h) + (w / ratio);
-                MainWindow::instance()->resize(MainWindow::instance()->width(), newHeight);
-            }
+            int newHeight = std::round((window->height() - h) + (w / ratio));
+            window->resize(window->width(), newHeight);
         }
     }
 }
