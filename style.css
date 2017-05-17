@@ -52,7 +52,6 @@ SidebarHeader {
     padding: 0;
     margin: 0;
     spacing: 0;
-    border-bottom: 1px solid black;
 }
 
 SidebarHeader QToolButton {
@@ -95,7 +94,7 @@ SearchView QPushButton[recentItem="true"]:hover {
 
 SearchView QPushButton[recentItem="true"]:pressed {
     background: palette(highlight);
-    color: palette(highlightText);
+    color: white; /* SHOULD BE color: palette(highlightText); */
 }
 
 SearchView QPushButton[recentItem="true"]:focus {
