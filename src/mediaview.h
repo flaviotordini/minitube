@@ -83,8 +83,11 @@ public slots:
     void removeSelected();
     void moveUpSelected();
     void moveDownSelected();
-    bool isPlaylistVisible();
-    void setPlaylistVisible(bool visible=true);
+    bool isSidebarVisible();
+    void setSidebarVisibility(bool visible);
+    SidebarWidget *getSidebar() { return sidebar; }
+    void removeSidebar();
+    void restoreSidebar();
     void saveSplitterState();
     void downloadVideo();
 #ifdef APP_SNAPSHOT

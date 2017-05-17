@@ -144,7 +144,7 @@ private slots:
     void setManualPlay(bool enabled);
     void floatOnTop(bool, bool showAction = true);
     void showStopAfterThisInStatusBar(bool show);
-    void hideMouse();
+    void hideFullscreenUI();
 
     void toggleMenuVisibility();
     void toggleMenuVisibilityWithMessage();
@@ -243,7 +243,7 @@ private:
     bool fullScreenActive;
     bool maximizedBeforeFullScreen;
     bool menuVisibleBeforeFullScreen;
-    QTimer *hideMouseTimer;
+    QTimer *fullscreenTimer;
     bool compactModeActive;
     bool initialized;
 

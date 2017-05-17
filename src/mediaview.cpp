@@ -780,14 +780,26 @@ void MediaView::moveDownSelected() {
                 playlistModel->index(row>max?max:row), QItemSelectionModel::NoUpdate);
 }
 
-void MediaView::setPlaylistVisible(bool visible) {
-    if (splitter->widget(0)->isVisible() == visible) return;
-    splitter->widget(0)->setVisible(visible);
+void MediaView::setSidebarVisibility(bool visible) {
+    if (sidebar->isVisible() == visible) return;
+    sidebar->setVisible(visible);
     playlistView->setFocus();
 }
 
-bool MediaView::isPlaylistVisible() {
-    return splitter->widget(0)->isVisible();
+void MediaView::removeSidebar() {
+    sidebar->hide();
+    sidebar->setParent(0);
+    sidebar->setParent(this);
+    sidebar->move(0, 0);
+}
+
+void MediaView::restoreSidebar() {
+    sidebar->setVisible(true);
+    splitter->insertWidget(0, sidebar);
+}
+
+bool MediaView::isSidebarVisible() {
+    return sidebar->isVisible();
 }
 
 void MediaView::saveSplitterState() {

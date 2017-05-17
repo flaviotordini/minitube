@@ -74,6 +74,7 @@ $END_LICENSE */
 #include "seekslider.h"
 #include "yt3.h"
 #include "httputils.h"
+#include "sidebarwidget.h"
 
 namespace {
 static MainWindow *singleton = 0;
@@ -208,10 +209,10 @@ void MainWindow::lazyInit() {
 
     setAcceptDrops(true);
 
-    hideMouseTimer = new QTimer(this);
-    hideMouseTimer->setInterval(5000);
-    hideMouseTimer->setSingleShot(true);
-    connect(hideMouseTimer, SIGNAL(timeout()), SLOT(hideMouse()));
+    fullscreenTimer = new QTimer(this);
+    fullscreenTimer->setInterval(10000);
+    fullscreenTimer->setSingleShot(true);
+    connect(fullscreenTimer, SIGNAL(timeout()), SLOT(hideFullscreenUI()));
 
     JsFunctions::instance();
 
@@ -268,10 +269,14 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
             QMouseEvent *mouseEvent = static_cast<QMouseEvent*> (e);
             const int x = mouseEvent->pos().x();
 
-            if (mediaView->isPlaylistVisible()) {
-                if (x > 5) mediaView->setPlaylistVisible(false);
+            if (mediaView->isSidebarVisible()) {
+                if (x > 5) mediaView->setSidebarVisibility(false);
             } else {
-                if (x >= 0 && x < 5) mediaView->setPlaylistVisible(true);
+                if (x >= 0 && x < 5) {
+                    QWidget *sidebar = mediaView->getSidebar();
+                    sidebar->resize(sidebar->width(), height());
+                    sidebar->setVisible(true);
+                }
             }
 
 #ifndef APP_MAC
@@ -279,7 +284,10 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
             if (mainToolBar->isVisible()) {
                 if (y > 5) mainToolBar->setVisible(false);
             } else {
-                if (y >= 0 && y < 5) mainToolBar->setVisible(true);
+                if (y >= 0 && y < 5) {
+                    mainToolBar->resize(width(), mainToolBar->sizeHint().height());
+                    mainToolBar->setVisible(true);
+                }
             }
 #endif
 
@@ -288,7 +296,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
         // show the normal cursor
         unsetCursor();
         // then hide it again after a few seconds
-        hideMouseTimer->start();
+        fullscreenTimer->start();
     }
 
     if (e->type() == QEvent::ToolTip) {
@@ -1261,10 +1269,7 @@ void MainWindow::moveEvent(QMoveEvent *e) {
 
 void MainWindow::leaveEvent(QEvent *e) {
     Q_UNUSED(e);
-    if (fullScreenActive) {
-        if (mainToolBar) mainToolBar->hide();
-        if (mediaView) mediaView->setPlaylistVisible(false);
-    }
+    if (fullScreenActive) hideFullscreenUI();
 }
 
 void MainWindow::fullscreen() {
@@ -1318,8 +1323,8 @@ void MainWindow::fullscreen() {
 
     }
 
+    qApp->processEvents();
     updateUIForFullscreen();
-
 }
 
 void MainWindow::updateUIForFullscreen() {
@@ -1335,6 +1340,14 @@ void MainWindow::updateUIForFullscreen() {
         fullscreenAct->setText(tr("Leave &Full Screen"));
         fullscreenAct->setIcon(IconUtils::icon("view-restore"));
         setStatusBarVisibility(false);
+
+        if (mainToolBar) {
+            removeToolBar(mainToolBar);
+            mainToolBar->move(0, 0);
+        }
+
+        mediaView->removeSidebar();
+
     } else {
         fullscreenAct->setShortcuts(fsShortcuts);
         if (fsText.isEmpty()) fsText = "[Empty!]";
@@ -1342,6 +1355,12 @@ void MainWindow::updateUIForFullscreen() {
         fullscreenAct->setIcon(IconUtils::icon("view-fullscreen"));
 
         if (needStatusBar()) setStatusBarVisibility(true);
+
+        if (mainToolBar) {
+            addToolBar(mainToolBar);
+        }
+
+        mediaView->restoreSidebar();
     }
 
     // No compact view action when in full screen
@@ -1349,7 +1368,7 @@ void MainWindow::updateUIForFullscreen() {
     compactViewAct->setChecked(false);
 
     // Hide anything but the video
-    mediaView->setPlaylistVisible(!fullScreenActive);
+    mediaView->setSidebarVisibility(!fullScreenActive);
     if (mainToolBar) mainToolBar->setVisible(!fullScreenActive);
 
     if (fullScreenActive) {
@@ -1366,9 +1385,9 @@ void MainWindow::updateUIForFullscreen() {
         mediaView->setFocus();
 
     if (fullScreenActive) {
-        hideMouse();
+        hideFullscreenUI();
     } else {
-        hideMouseTimer->stop();
+        fullscreenTimer->stop();
         unsetCursor();
     }
 }
@@ -1442,7 +1461,7 @@ void MainWindow::compactView(bool enable) {
 #else
         mainToolBar->setVisible(!enable);
 #endif
-        mediaView->setPlaylistVisible(!enable);
+        mediaView->setSidebarVisibility(!enable);
         statusBar()->hide();
 
         compactShortcuts = compactViewAct->shortcuts();
@@ -1469,7 +1488,7 @@ void MainWindow::compactView(bool enable) {
 #else
         mainToolBar->setVisible(!enable);
 #endif
-        mediaView->setPlaylistVisible(!enable);
+        mediaView->setSidebarVisibility(!enable);
         if (needStatusBar()) setStatusBarVisibility(true);
 
         readSettings();
@@ -1865,11 +1884,12 @@ void MainWindow::messageReceived(const QString &message) {
     }
 }
 
-void MainWindow::hideMouse() {
+void MainWindow::hideFullscreenUI() {
     setCursor(Qt::BlankCursor);
-    mediaView->setPlaylistVisible(false);
+    mediaView->setSidebarVisibility(false);
 #ifndef APP_MAC
-    mainToolBar->setVisible(false);
+    if (!toolbarSearch->hasFocus())
+        mainToolBar->setVisible(false);
 #endif
 }
 
