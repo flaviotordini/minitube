@@ -181,7 +181,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
         painter->drawText(textBox, flags, v);
 
         painter->setFont(smallerFont);
-        painter->setOpacity(.5);
+        painter->setOpacity(.7);
 
         // published date
         QString publishedString = DataUtils::formatDateTime(video->published());
