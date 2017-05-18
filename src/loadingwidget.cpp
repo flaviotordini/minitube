@@ -62,24 +62,7 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
 }
 
 void LoadingWidget::setVideo(Video *video) {
-
-    QFont titleFont;
-#ifdef APP_MAC
-    titleFont.setFamily("Helvetica Neue");
-    titleFont.setStyleName("Thin");
-#elif APP_WIN
-    titleFont.setFamily("Segoe UI Light");
-    titleFont.setStyleName("Light");
-#else
-    titleFont.setStyleName("Light");
-#endif
-    int smallerDimension = qMin(height(), width());
-    titleFont.setPixelSize(smallerDimension / 12);
-    QFontMetrics fm(titleFont);
-    int textHeightInPixels = fm.height();
-    int spacing = textHeightInPixels / 2;
-    layout()->setSpacing(spacing);
-    layout()->setMargin(spacing);
+    adjustFontSize();
 
     QString title = video->title();
     // enhance legibility by splitting the title
@@ -92,7 +75,6 @@ void LoadingWidget::setVideo(Video *video) {
     title.replace(QLatin1String(") "), QLatin1String(")<p>"));
     titleLabel->setText(title);
     titleLabel->setVisible(window()->height() > 100);
-    titleLabel->setFont(titleFont);
 
     static const int maxDescLength = 400;
     QString videoDesc = video->description();
@@ -105,9 +87,6 @@ void LoadingWidget::setVideo(Video *video) {
         videoDesc.append("…");
     }
     videoDesc.replace(QRegExp("(https?://\\S+)"), "<a style='color:white' href=\"\\1\">\\1</a>");
-    QFont descFont(titleFont);
-    descFont.setPixelSize(descFont.pixelSize() / 2);
-    descriptionLabel->setFont(descFont);
     descriptionLabel->setText(videoDesc);
     bool hiddenDesc = height() < 400;
     if (hiddenDesc)
@@ -146,9 +125,38 @@ void LoadingWidget::bufferStatus(int percent) {
     progressBar->setValue(percent);
 }
 
+void LoadingWidget::adjustFontSize() {
+    QFont titleFont;
+#ifdef APP_MAC
+    titleFont.setFamily("Helvetica Neue");
+    titleFont.setStyleName("Thin");
+#elif APP_WIN
+    titleFont.setFamily("Segoe UI Light");
+    titleFont.setStyleName("Light");
+#else
+    titleFont.setStyleName("Light");
+#endif
+    int smallerDimension = qMin(height(), width());
+    titleFont.setPixelSize(smallerDimension / 12);
+    QFontMetrics fm(titleFont);
+    int textHeightInPixels = fm.height();
+    int spacing = textHeightInPixels / 2;
+    layout()->setSpacing(spacing);
+    layout()->setMargin(spacing);
+    titleLabel->setFont(titleFont);
+
+    QFont descFont(titleFont);
+    descFont.setPixelSize(descFont.pixelSize() / 2);
+    descriptionLabel->setFont(descFont);
+}
+
 void LoadingWidget::clear() {
     titleLabel->clear();
     descriptionLabel->clear();
     // progressBar->hide();
     progressBar->setValue(0);
+}
+
+void LoadingWidget::resizeEvent(QResizeEvent *e) {
+    if (isVisible()) adjustFontSize();
 }

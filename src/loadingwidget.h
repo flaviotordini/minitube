@@ -35,10 +35,15 @@ public:
     void setError(const QString &message);
     void clear();
 
+protected:
+    void resizeEvent(QResizeEvent *e);
+
 public slots:
     void bufferStatus(int);
 
 private:
+    void adjustFontSize();
+
     QLabel *titleLabel;
     QLabel *descriptionLabel;
     QProgressBar *progressBar;
