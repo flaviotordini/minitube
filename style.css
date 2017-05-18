@@ -52,6 +52,7 @@ SidebarHeader {
     padding: 0;
     margin: 0;
     spacing: 0;
+    border: 0;
 }
 
 SidebarHeader QToolButton {
