@@ -258,40 +258,31 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
 #endif
 
     if (fullScreenActive && e->type() == QEvent::MouseMove) {
-        const char *className = obj->metaObject()->className();
-        const bool isHoveringVideo =
-                (className == QLatin1String("QGLWidget")) ||
-                (className == QLatin1String("VideoAreaWidget"));
+        QMouseEvent *mouseEvent = static_cast<QMouseEvent*> (e);
+        const int x = mouseEvent->pos().x();
+        const int y = mouseEvent->pos().y();
 
-        // qDebug() << obj << mouseEvent->pos() << isHoveringVideo << mediaView->isPlaylistVisible();
-
-        if (isHoveringVideo) {
-            QMouseEvent *mouseEvent = static_cast<QMouseEvent*> (e);
-            const int x = mouseEvent->pos().x();
-
-            if (mediaView->isSidebarVisible()) {
-                if (x > 5) mediaView->setSidebarVisibility(false);
-            } else {
-                if (x >= 0 && x < 5) {
-                    QWidget *sidebar = mediaView->getSidebar();
-                    sidebar->resize(sidebar->width(), height());
-                    sidebar->setVisible(true);
-                }
+        if (mediaView->isSidebarVisible()) {
+            if (y > 0 && x > mediaView->getSidebar()->width()) mediaView->setSidebarVisibility(false);
+        } else {
+            if (x >= 0 && x < 5) {
+                SidebarWidget *sidebar = mediaView->getSidebar();
+                sidebar->resize(sidebar->width(), height());
+                sidebar->setVisible(true);
+                sidebar->getPlaylist()->setFocus();
             }
+        }
 
 #ifndef APP_MAC
-            const int y = mouseEvent->pos().y();
-            if (mainToolBar->isVisible()) {
-                if (y > 5) mainToolBar->setVisible(false);
-            } else {
-                if (y >= 0 && y < 5) {
-                    mainToolBar->resize(width(), mainToolBar->sizeHint().height());
-                    mainToolBar->setVisible(true);
-                }
+        if (mainToolBar->isVisible()) {
+            if (x > 0 && y > mainToolBar->height()) mainToolBar->setVisible(false);
+        } else {
+            if (y >= 0 && y < 5) {
+                mainToolBar->resize(width(), mainToolBar->sizeHint().height());
+                mainToolBar->setVisible(true);
             }
-#endif
-
         }
+#endif
 
         // show the normal cursor
         unsetCursor();
@@ -789,7 +780,7 @@ void MainWindow::createToolBars() {
     // Add widgets to toolbar
 
 #ifdef APP_MAC_QMACTOOLBAR
-    currentTime->hide();
+    currentTimeLabel->hide();
     toolbarSearch->hide();
     volumeSlider->hide();
     seekSlider->hide();
@@ -1246,12 +1237,13 @@ void MainWindow::resizeEvent(QResizeEvent *e) {
 #ifdef APP_MAC
     if (initialized && mac::CanGoFullScreen(winId())) {
         bool isFullscreen = mac::IsFullScreen(winId());
-        if (isFullscreen != fullscreenFlag) {
+        if (isFullscreen != fullScreenActive) {
+            qDebug() << "Fullscreen changed to" << isFullscreen;
             if (compactViewAct->isChecked()) {
                 compactViewAct->setChecked(false);
                 compactView(false);
             }
-            fullscreenFlag = isFullscreen;
+            fullScreenActive = isFullscreen;
             updateUIForFullscreen();
         }
     }
@@ -1378,7 +1370,7 @@ void MainWindow::updateUIForFullscreen() {
     }
 
 #ifdef Q_OS_MAC
-    MacSupport::fullScreenActions(actionMap.values(), fullscreenFlag);
+    MacSupport::fullScreenActions(actionMap.values(), fullScreenActive);
 #endif
 
     if (views->currentWidget() == mediaView)
@@ -1886,10 +1878,17 @@ void MainWindow::messageReceived(const QString &message) {
 
 void MainWindow::hideFullscreenUI() {
     setCursor(Qt::BlankCursor);
-    mediaView->setSidebarVisibility(false);
+
+    QPoint p = mapFromGlobal(QCursor::pos());
+    const int x = p.x();
+    const int y = p.y();
+
+    if (x > mediaView->getSidebar()->width())
+        mediaView->setSidebarVisibility(false);
+
 #ifndef APP_MAC
-    if (!toolbarSearch->hasFocus())
-        mainToolBar->setVisible(false);
+    bool shouldHideToolbar = !toolbarSearch->hasFocus() && y > mainToolBar->height();
+    if (shouldHideToolbar) mainToolBar->setVisible(false);
 #endif
 }
 

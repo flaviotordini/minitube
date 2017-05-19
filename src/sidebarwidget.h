@@ -33,6 +33,7 @@ class SidebarWidget : public QWidget {
 
 public:
     SidebarWidget(QWidget *parent = 0);
+    QListView *getPlaylist() { return playlist; }
     void setPlaylist(QListView *playlist);
     void showPlaylist();
     RefineSearchWidget* getRefineSearchWidget() { return refineSearchWidget; }
