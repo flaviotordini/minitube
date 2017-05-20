@@ -29,6 +29,8 @@ $END_LICENSE */
 RefineSearchWidget::RefineSearchWidget(QWidget *parent) :
     QWidget(parent) {
     dirty = false;
+    // Fixes background painting in fullscreen
+    setAutoFillBackground(true);
 }
 
 void RefineSearchWidget::setup() {
