@@ -57,8 +57,6 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
     progressBar->setStyleSheet("QProgressBar {max-height:3px; background:black; border:0} QProgressBar::chunk {background:white}");
     progressBar->setTextVisible(false);
     layout->addWidget(progressBar);
-
-    setMouseTracking(true);
 }
 
 void LoadingWidget::setVideo(Video *video) {

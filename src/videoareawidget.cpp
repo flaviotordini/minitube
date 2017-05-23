@@ -54,7 +54,6 @@ VideoAreaWidget::VideoAreaWidget(QWidget *parent) : QWidget(parent), videoWidget
 #endif
 
     setAcceptDrops(true);
-    setMouseTracking(true);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     setContextMenuPolicy(Qt::CustomContextMenu);
@@ -64,7 +63,6 @@ VideoAreaWidget::VideoAreaWidget(QWidget *parent) : QWidget(parent), videoWidget
 
 void VideoAreaWidget::setVideoWidget(QWidget *videoWidget) {
     this->videoWidget = videoWidget;
-    videoWidget->setMouseTracking(true);
     stackedLayout->addWidget(videoWidget);
 }
 
@@ -81,7 +79,6 @@ void VideoAreaWidget::showVideo() {
 }
 
 void VideoAreaWidget::showError(const QString &message) {
-    // loadingWidget->setError(message);
     messageLabel->setText(message);
     messageLabel->show();
     stackedLayout->setCurrentWidget(loadingWidget);
@@ -118,36 +115,6 @@ void VideoAreaWidget::clear() {
 void VideoAreaWidget::mouseDoubleClickEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton)
         emit doubleClicked();
-}
-
-void VideoAreaWidget::mousePressEvent(QMouseEvent *event) {
-    QWidget::mousePressEvent(event);
-
-    if(event->button() == Qt::RightButton)
-        emit rightClicked();
-
-    else if (event->button() == Qt::LeftButton) {
-        bool isNormalWindow = !window()->isMaximized() &&
-                !MainWindow::instance()->isReallyFullScreen();
-        if (isNormalWindow) {
-            dragPosition = event->globalPos() - window()->frameGeometry().topLeft();
-            event->accept();
-        }
-    }
-}
-
-void VideoAreaWidget::mouseMoveEvent(QMouseEvent *event) {
-    bool isNormalWindow = !window()->isMaximized() &&
-            !MainWindow::instance()->isReallyFullScreen();
-    if (event->buttons() & Qt::LeftButton && isNormalWindow) {
-        QPoint p = event->globalPos() - dragPosition;
-#ifdef Q_OS_MAC
-        // FIXME mac::moveWindowTo(window()->winId(), p.x(), p.y());
-#else
-        window()->move(p);
-#endif
-        event->accept();
-    }
 }
 
 void VideoAreaWidget::dragEnterEvent(QDragEnterEvent *event) {
