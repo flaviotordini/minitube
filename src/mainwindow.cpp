@@ -1633,7 +1633,9 @@ void MainWindow::volumeChanged(qreal newVolume) {
         style()->polish(volumeQSlider);
     }
 #endif
-    showMessage(tr("Volume at %1%").arg((int)(newVolume*100)));
+    int newVolumeInt = (int)(newVolume*100);
+    if (newVolume >= 0)
+        showMessage(tr("Volume at %1%").arg(newVolumeInt));
 }
 
 void MainWindow::volumeMutedChanged(bool muted) {
