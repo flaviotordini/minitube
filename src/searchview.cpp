@@ -265,7 +265,7 @@ void SearchView::updateRecentKeywords() {
         const int maxDisplayLength = 25;
         if (display.length() > maxDisplayLength) {
             display.truncate(maxDisplayLength);
-            display.append("\u2026");
+            display.append(QStringLiteral("\u2026"));
             needStatusTip = true;
         }
         QPushButton *itemButton = new QPushButton(display);
