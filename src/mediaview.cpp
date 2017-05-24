@@ -783,19 +783,24 @@ void MediaView::moveDownSelected() {
 void MediaView::setSidebarVisibility(bool visible) {
     if (sidebar->isVisible() == visible) return;
     sidebar->setVisible(visible);
+    sidebar->raise();
     playlistView->setFocus();
 }
 
 void MediaView::removeSidebar() {
     sidebar->hide();
-    sidebar->setParent(0);
-    sidebar->setParent(this);
+#ifndef APP_MAC
+    sidebar->setParent(window());
     sidebar->move(0, 0);
+    sidebar->raise();
+#endif
 }
 
 void MediaView::restoreSidebar() {
-    sidebar->setVisible(true);
+#ifndef APP_MAC
     splitter->insertWidget(0, sidebar);
+#endif
+    sidebar->show();
 }
 
 bool MediaView::isSidebarVisible() {

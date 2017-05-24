@@ -210,7 +210,7 @@ void MainWindow::lazyInit() {
     setAcceptDrops(true);
 
     fullscreenTimer = new QTimer(this);
-    fullscreenTimer->setInterval(10000);
+    fullscreenTimer->setInterval(3000);
     fullscreenTimer->setSingleShot(true);
     connect(fullscreenTimer, SIGNAL(timeout()), SLOT(hideFullscreenUI()));
 
@@ -246,9 +246,10 @@ void MainWindow::changeEvent(QEvent *e) {
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
+    const QEvent::Type t = e->type();
 
 #ifndef APP_MAC
-    if (e->type() == QEvent::KeyRelease) {
+    if (t == QEvent::KeyRelease) {
         QKeyEvent *ke = static_cast<QKeyEvent*>(e);
         if (ke->key() == Qt::Key_Alt) {
             toggleMenuVisibility();
@@ -257,26 +258,28 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
     }
 #endif
 
-    if (fullScreenActive && e->type() == QEvent::MouseMove) {
+    if (fullScreenActive && t == QEvent::MouseMove
+            && obj->isWidgetType() && qobject_cast<QWidget*>(obj)->window() == this) {
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*> (e);
-        const int x = mouseEvent->pos().x();
-        const int y = mouseEvent->pos().y();
 
-        if (mediaView->isSidebarVisible()) {
-            if (y > 0 && x > mediaView->getSidebar()->width()) mediaView->setSidebarVisibility(false);
-        } else {
+        bool toolBarVisible = mainToolBar && mainToolBar->isVisible();
+        bool sidebarVisible = mediaView->isSidebarVisible();
+
+        if (!sidebarVisible && !toolBarVisible) {
+            const int x = mouseEvent->pos().x();
             if (x >= 0 && x < 5) {
                 SidebarWidget *sidebar = mediaView->getSidebar();
+#ifndef APP_MAC
                 sidebar->resize(sidebar->width(), height());
-                sidebar->setVisible(true);
-                sidebar->getPlaylist()->setFocus();
+#endif
+                mediaView->setSidebarVisibility(true);
+                sidebarVisible = true;
             }
         }
 
 #ifndef APP_MAC
-        if (mainToolBar->isVisible()) {
-            if (x > 0 && y > mainToolBar->height()) mainToolBar->setVisible(false);
-        } else {
+        if (!toolBarVisible && !sidebarVisible) {
+            const int y = mouseEvent->pos().y();
             if (y >= 0 && y < 5) {
                 mainToolBar->resize(width(), mainToolBar->sizeHint().height());
                 mainToolBar->setVisible(true);
@@ -290,7 +293,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
         fullscreenTimer->start();
     }
 
-    if (e->type() == QEvent::ToolTip) {
+    if (t == QEvent::ToolTip) {
         // kill tooltips
         return true;
     }
@@ -1238,7 +1241,6 @@ void MainWindow::resizeEvent(QResizeEvent *e) {
     if (initialized && mac::CanGoFullScreen(winId())) {
         bool isFullscreen = mac::IsFullScreen(winId());
         if (isFullscreen != fullScreenActive) {
-            qDebug() << "Fullscreen changed to" << isFullscreen;
             if (compactViewAct->isChecked()) {
                 compactViewAct->setChecked(false);
                 compactView(false);
@@ -1883,12 +1885,12 @@ void MainWindow::hideFullscreenUI() {
 
     QPoint p = mapFromGlobal(QCursor::pos());
     const int x = p.x();
-    const int y = p.y();
 
     if (x > mediaView->getSidebar()->width())
         mediaView->setSidebarVisibility(false);
 
 #ifndef APP_MAC
+    const int y = p.y();
     bool shouldHideToolbar = !toolbarSearch->hasFocus() && y > mainToolBar->height();
     if (shouldHideToolbar) mainToolBar->setVisible(false);
 #endif
