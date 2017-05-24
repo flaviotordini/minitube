@@ -1,3 +1,28 @@
+2.7
+- Show toolbar only in "media view"
+- Don't draw channel in playlist when all videos from same channel
+- Use system proxies
+- Ability to hide menu on Windows and Linux
+- Use system icons on Linux
+- Remove slider custom style on Windows and Linux
+- Long press on stop toolbar button to show "Stop After This" menu on Windows and Linux
+- Style tweaks
+- Fix sidebar resizing on Mac
+- Fix floating garbage on fullscreen on Mac
+- Fix painting issues in "search view" on Linux
+- Updated translations
+
+2.6
+- Windows 10 style
+- Prevent sleep
+- Warn on GPL build without API key, messagebox to user at startup
+- Safe search
+- Custom icons on Linux
+- Drop QtScript
+- Move to Http lib
+- Fix GNOME media keys
+- Notification count style
+
 2.5.2
 - Fixed VEVO videos
 
