@@ -435,14 +435,6 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <source>&amp;Window</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Minimize</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Stop</source>
         <translation type="unfinished"></translation>
     </message>
@@ -647,10 +639,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Adjust Window Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Stop After This Video</source>
         <translation type="unfinished"></translation>
     </message>
@@ -808,6 +796,22 @@
     </message>
     <message>
         <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Toggle &amp;Menu Bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can still access the menu bar by pressing the ALT key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Minimize</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
