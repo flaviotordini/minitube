@@ -797,10 +797,10 @@ void MediaView::removeSidebar() {
 }
 
 void MediaView::restoreSidebar() {
+    sidebar->show();
 #ifndef APP_MAC
     splitter->insertWidget(0, sidebar);
 #endif
-    sidebar->show();
 }
 
 bool MediaView::isSidebarVisible() {
