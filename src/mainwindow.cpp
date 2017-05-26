@@ -1261,6 +1261,14 @@ void MainWindow::moveEvent(QMoveEvent *e) {
     hideMessage();
 }
 
+void MainWindow::enterEvent(QEvent *e) {
+    Q_UNUSED(e);
+#ifdef APP_MAC
+    // Workaround cursor bug on macOS
+    unsetCursor();
+#endif
+}
+
 void MainWindow::leaveEvent(QEvent *e) {
     Q_UNUSED(e);
     if (fullScreenActive) hideFullscreenUI();
