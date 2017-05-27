@@ -19,12 +19,18 @@ To be able to build on a Debian (or derivative) system:
 
     $ sudo apt-get install build-essential qttools5-dev-tools qt5-qmake  qtdeclarative5-dev libphonon4qt5-dev libqt5sql5-sqlite qt5-default
 
+For Fedora 23:
+
+    $ sudo dnf install gcc-c++ qt5-qtbase-devel qt5-qtscript-devel qt5-linguist phonon-qt5-devel
+
 Compiling:
 
     $ qmake "DEFINES += APP_GOOGLE_API_KEY=YourAPIKeyHere"
     $ make
 
 Beware of the Qt 4 version of qmake!
+
+Use qmake-qt5 on Fedora systems.
 
 Running:
 
