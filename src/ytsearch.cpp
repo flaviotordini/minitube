@@ -217,7 +217,7 @@ QTime YTSearch::videoTimestampFromUrl(const QString &url) {
         bool ok = false;
         int value = truncated.toInt(&ok);
         if (!ok) continue;
-        char unit = (*str.rbegin()).toLatin1();
+        char unit = str.at(str.length() - 1).toLatin1();
 
         switch (unit)
         {
