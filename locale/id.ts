@@ -96,7 +96,7 @@
     <name>AppWidget</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished"/>
+        <translation>Unduh</translation>
     </message>
 </context>
 <context>
@@ -314,11 +314,11 @@
     <name>Extra</name>
     <message>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation type="unfinished"/>
+        <translation>arsip exe telah dimodifikasi, mungkin oleh virus</translation>
     </message>
     <message>
         <source>%1 will not run. Try installing again.</source>
-        <translation type="unfinished"/>
+        <translation>%1 tidak akan berjalan. Coba instal ulang</translation>
     </message>
     <message>
         <source>Quit</source>
@@ -326,7 +326,7 @@
     </message>
     <message>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>Instal ulang</translation>
     </message>
 </context>
 <context>
@@ -750,7 +750,7 @@
     </message>
     <message>
         <source>&amp;Loading...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Memuat...</translation>
     </message>
     <message>
         <source>Leave &amp;Full Screen</source>
@@ -1160,7 +1160,7 @@
     </message>
     <message>
         <source>Downloading %1...</source>
-        <translation type="unfinished"/>
+        <translation>Mengunduh %1...</translation>
     </message>
 </context>
 <context>
