@@ -117,9 +117,6 @@ int main(int argc, char **argv) {
     QTranslator translator;
     translator.load(QLocale::system(), QString(), QString(), localeDir);
     app.installTranslator(&translator);
-#if QT_VERSION < 0x050000
-    QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
-#endif
 
     // Seed random number generator
     qsrand(QDateTime::currentDateTime().toTime_t());
