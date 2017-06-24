@@ -41,9 +41,7 @@ void PainterUtils::centeredMessage(const QString &message, QWidget* widget) {
     rect.adjust(0, 1, 0, 0);
     */
 
-    QPen textPen;
-    textPen.setBrush(widget->palette().mid());
-    painter.setPen(textPen);
+    painter.setOpacity(.5);
     painter.drawText(rect, Qt::AlignCenter, message);
 }
 
