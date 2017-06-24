@@ -959,7 +959,7 @@ void MainWindow::readSettings() {
     const VideoDefinition& firstDefinition = VideoDefinition::getDefinitions().first();
     setDefinitionMode(settings.value("definition", firstDefinition.getName()).toString());
     actionMap.value("manualplay")->setChecked(settings.value("manualplay", false).toBool());
-    actionMap.value("safeSearch")->setChecked(settings.value("safeSearch", true).toBool());
+    actionMap.value("safeSearch")->setChecked(settings.value("safeSearch", false).toBool());
 #ifndef APP_MAC
     menuBar()->setVisible(settings.value("menuBar", true).toBool());
 #endif
