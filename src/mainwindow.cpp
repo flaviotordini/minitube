@@ -215,6 +215,9 @@ void MainWindow::lazyInit() {
     connect(fullscreenTimer, SIGNAL(timeout()), SLOT(hideFullscreenUI()));
 
     JsFunctions::instance();
+#ifdef APP_EXTRA
+    Extra::extraFunctions();
+#endif
 
     // Hack to give focus to searchlineedit
     QMetaObject::invokeMethod(views->currentWidget(), "appear");
