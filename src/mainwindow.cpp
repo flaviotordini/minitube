@@ -746,7 +746,11 @@ void MainWindow::createToolBars() {
 
 #ifdef APP_PHONON_SEEK
     seekSlider = new Phonon::SeekSlider();
+#if APP_LINUX
     seekSlider->setTracking(false);
+#else
+    seekSlider->setTracking(true);
+#endif
     // Phonon freezes the application with streaming videos if
     // tracking is set to true and the seek slider is dragged.
     seekSlider->setIconVisible(false);
