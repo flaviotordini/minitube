@@ -145,6 +145,11 @@ void ChannelView::setupActions() {
     }
 }
 
+QString ChannelView::noSubscriptionsMessage() {
+    return tr("You have no subscriptions. "
+                    "Use the star symbol to subscribe to channels.");
+}
+
 void ChannelView::appear() {
     updateQuery();
     foreach (QAction* action, statusActions)
@@ -224,7 +229,11 @@ void ChannelView::toggleShowUpdated(bool enable) {
 void ChannelView::updateQuery(bool transition) {
     Q_UNUSED(transition);
     listView->clearErrorMessage();
-    if (!Database::exists()) return;
+
+    if (!Database::exists()) {
+        listView->setErrorMessage(noSubscriptionsMessage());
+        return;
+    }
 
     QString sql = "select user_id from subscriptions";
     if (showUpdated)
@@ -262,8 +271,7 @@ void ChannelView::updateQuery(bool transition) {
         if (showUpdated)
             msg = tr("There are no updated subscriptions at this time.");
         else
-            msg = tr("You have no subscriptions. "
-                     "Use the star symbol to subscribe to channels.");
+            msg = noSubscriptionsMessage();
         listView->setErrorMessage(msg);
     }
 }

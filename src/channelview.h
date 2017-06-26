@@ -68,6 +68,7 @@ private slots:
 
 private:
     void setupActions();
+    QString noSubscriptionsMessage();
 
     ChannelListView *listView;
     ChannelModel *channelsModel;
