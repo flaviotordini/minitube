@@ -944,17 +944,14 @@ void MainWindow::readSettings() {
     QSettings settings;
     if (settings.contains("geometry")) {
         restoreGeometry(settings.value("geometry").toByteArray());
-#ifdef APP_MAC
-        MacSupport::fixGeometry(this);
-#endif
     } else {
         const QRect desktopSize = qApp->desktop()->availableGeometry();
-        int w = qMin(2000, desktopSize.width());
-        int h = qMin(w / 3, desktopSize.height());
+        int w = desktopSize.width() * .9;
+        int h = qMin(w / 2, desktopSize.height());
         setGeometry(
                     QStyle::alignedRect(
                         Qt::LeftToRight,
-                        Qt::AlignTop,
+                        Qt::AlignCenter,
                         QSize(w, h),
                         desktopSize)
                     );
