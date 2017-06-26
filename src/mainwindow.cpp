@@ -157,8 +157,10 @@ MainWindow::MainWindow() :
     showHome(false);
 
 #ifdef APP_ACTIVATION
-    if (!Activation::instance().isActivated())
+    if (!Activation::instance().isActivated()) {
+        qApp->processEvents();
         showActivationView(false);
+    }
 #endif
 
     QTimer::singleShot(0, this, SLOT(lazyInit()));
@@ -887,6 +889,7 @@ void MainWindow::createStatusBar() {
     */
 
     statusBar()->addPermanentWidget(statusToolBar);
+    statusBar()->hide();
 }
 
 void MainWindow::showStopAfterThisInStatusBar(bool show) {
