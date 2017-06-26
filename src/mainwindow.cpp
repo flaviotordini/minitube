@@ -1525,7 +1525,6 @@ void MainWindow::initPhonon() {
     connect(mediaObject, SIGNAL(totalTimeChanged(qint64)), SLOT(totalTimeChanged(qint64)));
 
     audioOutput = new Phonon::AudioOutput(Phonon::VideoCategory, this);
-    connect(audioOutput, SIGNAL(volumeChanged(qreal)), SLOT(volumeChanged(qreal)));
     connect(audioOutput, SIGNAL(mutedChanged(bool)), SLOT(volumeMutedChanged(bool)));
     Phonon::createPath(mediaObject, audioOutput);
     volumeSlider->setAudioOutput(audioOutput);
@@ -1621,31 +1620,6 @@ void MainWindow::volumeMute() {
     }
     qDebug() << volumeSlider->audioOutput()->isMuted() << volumeSlider->audioOutput()->volume();
 #endif
-}
-
-void MainWindow::volumeChanged(qreal newVolume) {
-#ifdef APP_PHONON
-    // automatically unmute when volume changes
-    if (volumeSlider->audioOutput()->isMuted()) volumeSlider->audioOutput()->setMuted(false);
-
-    bool isZero = volumeSlider->property("zero").toBool();
-    bool styleChanged = false;
-    if (newVolume == 0. && !isZero) {
-        volumeSlider->setProperty("zero", true);
-        styleChanged = true;
-    } else if (newVolume > 0. && isZero) {
-        volumeSlider->setProperty("zero", false);
-        styleChanged = true;
-    }
-    if (styleChanged) {
-        QSlider* volumeQSlider = volumeSlider->findChild<QSlider*>();
-        style()->unpolish(volumeQSlider);
-        style()->polish(volumeQSlider);
-    }
-#endif
-    int newVolumeInt = (int)(newVolume*100);
-    if (newVolume >= 0)
-        showMessage(tr("Volume at %1%").arg(newVolumeInt));
 }
 
 void MainWindow::volumeMutedChanged(bool muted) {

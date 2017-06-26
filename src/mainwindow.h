@@ -135,7 +135,6 @@ private slots:
     void volumeUp();
     void volumeDown();
     void volumeMute();
-    void volumeChanged(qreal newVolume);
     void volumeMutedChanged(bool muted);
 
     void updateDownloadMessage(const QString &);
