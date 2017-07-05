@@ -47,11 +47,13 @@ public:
     SearchView* getSearchView() { return searchView; }
     StandardFeedsView* getStandardFeedsView() { return standardFeedsView; }
 
-private slots:
-    void appear();
+public slots:
     void showSearch();
     void showStandardFeeds();
     void showChannels();
+
+private slots:
+    void appear();
     void unwatchedCountChanged(int count);
 
 private:

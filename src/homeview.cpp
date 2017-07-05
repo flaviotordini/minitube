@@ -90,7 +90,12 @@ void HomeView::showWidget(QWidget *widget) {
     stackedWidget->setCurrentWidget(widget);
     widget->setEnabled(true);
     QMetaObject::invokeMethod(widget, "appear");
-    widget->setFocus();
+    QTimer::singleShot(0, widget, SLOT(setFocus()));
+
+#ifdef APP_MAC
+    // Workaround cursor bug on macOS
+    window()->unsetCursor();
+#endif
 }
 
 void HomeView::appear() {

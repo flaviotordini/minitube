@@ -225,6 +225,11 @@ void SearchView::appear() {
 
     qApp->processEvents();
     update();
+
+#ifdef APP_MAC
+    // Workaround cursor bug on macOS
+    window()->unsetCursor();
+#endif
 }
 
 void SearchView::disappear() {
@@ -321,7 +326,6 @@ void SearchView::updateRecentChannels() {
         });
         recentChannelsLayout->addWidget(itemButton);
     }
-
 }
 
 void SearchView::watch() {
