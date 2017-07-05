@@ -120,7 +120,6 @@ YTStandardFeed* StandardFeedsView::buildStardardFeed(const QString &feedId, cons
 }
 
 void StandardFeedsView::appear() {
-    setFocus();
     if (!layout) {
         update();
         qApp->processEvents();

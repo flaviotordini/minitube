@@ -137,7 +137,9 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     searchLayout->setAlignment(Qt::AlignVCenter);
 
 #ifdef APP_MAC_SEARCHFIELD
-    queryEdit = new SearchLineEditMac(this);
+    SearchLineEditMac *slem = new SearchLineEditMac(this);
+    queryEdit = slem;
+    setFocusProxy(slem);
 #else
     SearchLineEdit *sle = new SearchLineEdit(this);
     sle->setFont(biggerFont);
