@@ -975,15 +975,10 @@ void MainWindow::readSettings() {
 void MainWindow::writeSettings() {
     QSettings settings;
 
-    if (!isReallyFullScreen())
+    if (!isReallyFullScreen()) {
         settings.setValue("geometry", saveGeometry());
-    mediaView->saveSplitterState();
-
-#ifdef APP_PHONON
-    if (audioOutput->volume() > 0.1)
-        settings.setValue("volume", audioOutput->volume());
-    // settings.setValue("volumeMute", audioOutput->isMuted());
-#endif
+        mediaView->saveSplitterState();
+    }
 
     settings.setValue("manualplay", actionMap.value("manualplay")->isChecked());
     settings.setValue("safeSearch", actionMap.value("safeSearch")->isChecked());
