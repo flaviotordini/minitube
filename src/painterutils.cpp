@@ -33,32 +33,8 @@ void PainterUtils::centeredMessage(const QString &message, QWidget* widget) {
                 ((widget->height()-textSize.height())/2)
                 );
     QRect rect(topLeft, textSize);
-
-    /*
-    rect.adjust(0, -1, 0, 0);
-    painter.setPen(QColor(0, 0, 0, 128));
-    painter.drawText(rect, Qt::AlignCenter, message);
-    rect.adjust(0, 1, 0, 0);
-    */
-
     painter.setOpacity(.5);
     painter.drawText(rect, Qt::AlignCenter, message);
-}
-
-void PainterUtils::topShadow(QWidget *widget) {
-    static QLinearGradient shadow;
-    static const int shadowHeight = 10;
-    if (shadow.stops().count() == 2) {
-        shadow.setFinalStop(0, shadowHeight);
-        const qreal initialOpacity = 96;
-        for (qreal i = 0; i <= 1; i += 1.0/shadowHeight) {
-            qreal opacity = qPow(initialOpacity, (1.0 - i)) - 1;
-            shadow.setColorAt(i, QColor(0x00, 0x00, 0x00, opacity));
-        }
-    }
-    QRect rect = widget->rect();
-    QPainter p(widget);
-    p.fillRect(rect.x(), rect.y(), rect.width(), shadowHeight, QBrush(shadow));
 }
 
 void PainterUtils::paintBadge(QPainter *painter, const QString &text, bool center, QColor backgroundColor) {
