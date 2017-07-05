@@ -71,6 +71,7 @@ void MediaView::initialize() {
     layout->setMargin(0);
 
     splitter = new MiniSplitter();
+    layout->addWidget(splitter);
 
     playlistView = new PlaylistView();
     playlistView->setParent(this);
@@ -116,16 +117,16 @@ void MediaView::initialize() {
 
     splitter->addWidget(videoAreaWidget);
 
-    splitter->setStretchFactor(0, 0);
-    splitter->setStretchFactor(1, 8);
-
     // restore splitter state
     QSettings settings;
-    splitter->restoreState(settings.value("splitter").toByteArray());
+    if (settings.contains("splitter"))
+        splitter->restoreState(settings.value("splitter").toByteArray());
+    else {
+        int sidebarDefaultWidth = 180;
+        splitter->setSizes(QList<int>() << sidebarDefaultWidth << splitter->size().width() - sidebarDefaultWidth);
+    }
     splitter->setChildrenCollapsible(false);
     connect(splitter, SIGNAL(splitterMoved(int,int)), SLOT(adjustWindowSize()));
-
-    layout->addWidget(splitter);
 
     errorTimer = new QTimer(this);
     errorTimer->setSingleShot(true);
