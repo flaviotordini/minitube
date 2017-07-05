@@ -156,5 +156,6 @@ void LoadingWidget::clear() {
 }
 
 void LoadingWidget::resizeEvent(QResizeEvent *e) {
+    Q_UNUSED(e);
     if (isVisible()) adjustFontSize();
 }
