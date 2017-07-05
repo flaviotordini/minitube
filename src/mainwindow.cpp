@@ -273,8 +273,8 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
         if (!sidebarVisible && !toolBarVisible) {
             const int x = mouseEvent->pos().x();
             if (x >= 0 && x < 5) {
-                SidebarWidget *sidebar = mediaView->getSidebar();
 #ifndef APP_MAC
+                SidebarWidget *sidebar = mediaView->getSidebar();
                 sidebar->resize(sidebar->width(), height());
 #endif
                 mediaView->setSidebarVisibility(true);
