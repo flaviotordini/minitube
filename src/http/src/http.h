@@ -96,6 +96,7 @@ private:
     void setupReply();
     QString errorMessage();
     void emitError();
+    void emitFinished();
 
     Http &http;
     HttpRequest req;

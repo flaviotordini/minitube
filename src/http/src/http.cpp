@@ -192,6 +192,20 @@ void NetworkHttpReply::emitError() {
     if (!req.body.isEmpty()) qDebug() << "Http:" << req.body;
 #endif
     emit error(msg);
+    emitFinished();
+}
+
+void NetworkHttpReply::emitFinished() {
+    readTimeoutTimer->stop();
+
+    // disconnect to avoid replyFinished() from being called
+    networkReply->disconnect();
+
+    emit finished(*this);
+
+    // bye bye my reply
+    // this will also delete this object and HttpReply as the QNetworkReply is their parent
+    networkReply->deleteLater();
 }
 
 void NetworkHttpReply::replyFinished() {
@@ -224,24 +238,13 @@ void NetworkHttpReply::replyFinished() {
 #endif
     }
 
-    emit finished(*this);
-
-    readTimeoutTimer->stop();
-
-    // bye bye my reply
-    // this will also delete this object and HttpReply as the QNetworkReply is their parent
-    networkReply->deleteLater();
+    emitFinished();
 }
 
 void NetworkHttpReply::replyError(QNetworkReply::NetworkError code) {
     Q_UNUSED(code);
-    if (retryCount > 3) {
-        emitError();
-        return;
-    }
-
     const int status = statusCode();
-    if (status >= 500 && status < 600) {
+    if (retryCount <= 3 && status >= 500 && status < 600) {
         qDebug() << "Retrying" << req.url;
         networkReply->disconnect();
         networkReply->deleteLater();
