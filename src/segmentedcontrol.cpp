@@ -39,7 +39,7 @@ SegmentedControl::SegmentedControl (QWidget *parent) : QWidget(parent) {
     selectedColor = palette().color(QPalette::Window);
 #endif
     backgroundColor = selectedColor.darker(darkerFactor);
-    borderColor = backgroundColor.darker(darkerFactor);
+    borderColor = backgroundColor;
 }
 
 QAction *SegmentedControl::addAction(QAction *action) {
