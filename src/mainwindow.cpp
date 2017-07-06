@@ -1446,12 +1446,8 @@ void MainWindow::compactView(bool enable) {
     static QList<QKeySequence> compactShortcuts;
     static QList<QKeySequence> stopShortcuts;
 
-    const static QString key = "compactGeometry";
+    const  QString key = "compactGeometry";
     QSettings settings;
-
-#ifndef APP_MAC
-    menuBar()->setVisible(!enable);
-#endif
 
     if (enable) {
         setMinimumSize(320, 180);
@@ -1509,8 +1505,15 @@ void MainWindow::compactView(bool enable) {
     // auto float on top
     floatOnTop(enable, false);
 
-#ifdef Q_OS_MAC
+#ifdef APP_MAC
     mac::compactMode(winId(), enable);
+#else
+    if (enable) {
+        menuVisibleBeforeCompactMode = menuBar()->isVisible();
+        menuBar()->hide();
+    } else {
+        menuBar()->setVisible(menuVisibleBeforeCompactMode);
+    }
 #endif
 }
 
