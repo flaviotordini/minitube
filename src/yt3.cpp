@@ -84,6 +84,7 @@ void YT3::testApiKey() {
 void YT3::addApiKey(QUrl &url) {
     if (key.isEmpty()) {
         qDebug() << __PRETTY_FUNCTION__ << "empty key";
+        initApiKeys();
         return;
     }
 
