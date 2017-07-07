@@ -1897,7 +1897,10 @@ void MainWindow::toggleMenuVisibilityWithMessage() {
     bool show = !menuBar()->isVisible();
     menuBar()->setVisible(show);
     if (!show) {
-        showMessage(tr("You can still access the menu bar by pressing the ALT key"));
+        msgBox.setText(tr("You can still access the menu bar by pressing the ALT key"));
+        msgBox.setModal(true);
+        msgBox.setWindowModality(Qt::WindowModal);
+        msgBox.exec();
     }
 }
 
