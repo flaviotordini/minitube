@@ -45,15 +45,6 @@ protected:
     void leaveEvent(QEvent *event);
 
 private:
-    void drawButton(QPainter *painter,
-                    const QRect& rect,
-                    const QAction *action);
-    void drawUnselectedButton(QPainter *painter,
-                              const QRect& rect,
-                              const QAction *action);
-    void drawSelectedButton(QPainter *painter,
-                            const QRect& rect,
-                            const QAction *action);
     void paintButton(QPainter *painter,
                     const QRect& rect,
                     const QAction *action);
@@ -68,6 +59,8 @@ private:
     QColor borderColor;
     QColor backgroundColor;
     QColor selectedColor;
+    QColor hoveredColor;
+    QColor pressedColor;
 
 };
 

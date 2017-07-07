@@ -25,6 +25,8 @@ $END_LICENSE */
 #include "painterutils.h"
 
 SegmentedControl::SegmentedControl (QWidget *parent) : QWidget(parent) {
+    setAttribute(Qt::WA_OpaquePaintEvent);
+
     setMouseTracking(true);
 
     hoveredAction = 0;
@@ -32,14 +34,15 @@ SegmentedControl::SegmentedControl (QWidget *parent) : QWidget(parent) {
     pressedAction = 0;
 
 #ifdef APP_WIN
-    int darkerFactor = 105;
     selectedColor = palette().color(QPalette::Base);
 #else
-    int darkerFactor = 115;
     selectedColor = palette().color(QPalette::Window);
 #endif
+    int darkerFactor = 105;
     backgroundColor = selectedColor.darker(darkerFactor);
     borderColor = backgroundColor;
+    hoveredColor = backgroundColor.darker(darkerFactor);
+    pressedColor = hoveredColor.darker(darkerFactor);
 }
 
 QAction *SegmentedControl::addAction(QAction *action) {
@@ -80,7 +83,6 @@ void SegmentedControl::paintEvent (QPaintEvent * /*event*/) {
     const int width = rect().width();
 
     QPainter p(this);
-    p.fillRect(rect(), backgroundColor);
 
     // Calculate Buttons Size & Location
     const int buttonWidth = width / actionList.size();
@@ -100,11 +102,9 @@ void SegmentedControl::paintEvent (QPaintEvent * /*event*/) {
         if (i + 1 == actionCount) {
             // last button
             rect.setWidth(width - buttonWidth * (actionCount-1));
-            drawButton(&p, rect, action);
+            paintButton(&p, rect, action);
         } else {
-            drawButton(&p, rect, action);
-            qreal w = rect.x() + rect.width() - penWidth;
-            p.drawLine(QPointF(w, 0), QPointF(w, height));
+            paintButton(&p, rect, action);
             rect.moveLeft(rect.x() + rect.width());
         }
     }
@@ -113,8 +113,6 @@ void SegmentedControl::paintEvent (QPaintEvent * /*event*/) {
 }
 
 void SegmentedControl::mouseMoveEvent (QMouseEvent *event) {
-    QWidget::mouseMoveEvent(event);
-
     QAction *action = findHoveredAction(event->pos());
 
     if (!action && hoveredAction) {
@@ -157,21 +155,17 @@ void SegmentedControl::leaveEvent(QEvent *event) {
 }
 
 QAction *SegmentedControl::findHoveredAction(const QPoint& pos) const {
-    if (pos.y() <= 0 || pos.y() >= height())
+    const int w = width();
+    if (pos.y() <= 0 || pos.x() >= w || pos.y() >= height())
         return 0;
 
-    int buttonWidth = width() / actionList.size();
-    int buttonsWidth = width();
-    int buttonsX = 0;
+    int buttonWidth = w / actionList.size();
 
-    if (pos.x() <= buttonsX || pos.x() >= (buttonsX + buttonsWidth))
-        return 0;
-
-    int buttonIndex = (pos.x() - buttonsX) / buttonWidth;
+    int buttonIndex = pos.x() / buttonWidth;
 
     if (buttonIndex >= actionList.size())
         return 0;
-    return(actionList[buttonIndex]);
+    return actionList[buttonIndex];
 }
 
 int SegmentedControl::calculateButtonWidth() const {
@@ -184,35 +178,6 @@ int SegmentedControl::calculateButtonWidth() const {
     return itemWidth;
 }
 
-void SegmentedControl::drawButton (QPainter *painter,
-                              const QRect& rect,
-                              const QAction *action) {
-    if (action == checkedAction)
-        drawSelectedButton(painter, rect, action);
-    else
-        drawUnselectedButton(painter, rect, action);
-}
-
-void SegmentedControl::drawUnselectedButton (QPainter *painter,
-                                        const QRect& rect,
-                                        const QAction *action) {
-    paintButton(painter, rect, action);
-}
-
-void SegmentedControl::drawSelectedButton (QPainter *painter,
-                                      const QRect& rect,
-                                      const QAction *action) {
-    painter->save();
-    painter->translate(rect.topLeft());
-
-    const int width = rect.width();
-    const int height = rect.height();
-    painter->fillRect(0, 0, width, height, selectedColor);
-
-    painter->restore();
-    paintButton(painter, rect, action);
-}
-
 void SegmentedControl::paintButton(QPainter *painter, const QRect& rect, const QAction *action) {
     painter->save();
     painter->translate(rect.topLeft());
@@ -220,22 +185,22 @@ void SegmentedControl::paintButton(QPainter *painter, const QRect& rect, const Q
     const int height = rect.height();
     const int width = rect.width();
 
-    painter->save();
-    painter->setPen(Qt::NoPen);
-
-    painter->drawRect(0, 0, width, height);
-    painter->restore();
+    QColor c;
+    if (action == checkedAction) {
+        c = selectedColor;
+    } else if (action == pressedAction) {
+        c = pressedColor;
+    } else if (action == hoveredAction) {
+        c = hoveredColor;
+    } else {
+        c = backgroundColor;
+    }
+    painter->fillRect(0, 0, width, height, c);
 
     const QString text = action->text();
 
     painter->setPen(palette().windowText().color());
     painter->drawText(0, 0, width, height, Qt::AlignCenter, text);
-
-    if (action == pressedAction && action != checkedAction) {
-        painter->fillRect(0, 0, width, height, QColor(0x00, 0x00, 0x00, 32));
-    } else if (action == hoveredAction && action != checkedAction) {
-        painter->fillRect(0, 0, width, height, QColor(0x00, 0x00, 0x00, 16));
-    }
 
     if (action->property("notifyCount").isValid()) {
         QRect textBox = painter->boundingRect(rect,
