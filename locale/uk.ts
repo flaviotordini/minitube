@@ -667,11 +667,11 @@
     </message>
     <message>
         <source>Restricted Mode</source>
-        <translation type="unfinished"/>
+        <translation>Обмежений режим</translation>
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
-        <translation type="unfinished"/>
+        <translation>Приховати відео, які можуть містити небажаний контент</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>

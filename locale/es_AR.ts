@@ -96,14 +96,14 @@
     <name>AppWidget</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished"/>
+        <translation>Descarga</translation>
     </message>
 </context>
 <context>
     <name>ChannelAggregator</name>
     <message>
         <source>By %1</source>
-        <translation type="unfinished"/>
+        <translation>Por %1</translation>
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
@@ -314,19 +314,19 @@
     <name>Extra</name>
     <message>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation type="unfinished"/>
+        <translation>El archivo ejecutable ha sido corrompido, quizás por un virus.</translation>
     </message>
     <message>
         <source>%1 will not run. Try installing again.</source>
-        <translation type="unfinished"/>
+        <translation>%1 no ejecutará. Intenta instalar nuevamente.</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Salir</translation>
     </message>
     <message>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>Reinstalar</translation>
     </message>
 </context>
 <context>
@@ -634,7 +634,7 @@
     </message>
     <message>
         <source>&amp;Adjust Window Size</source>
-        <translation type="unfinished"/>
+        <translation>Ajustar el tamaño de la ventana</translation>
     </message>
     <message>
         <source>&amp;Stop After This Video</source>
@@ -666,15 +666,15 @@
     </message>
     <message>
         <source>Restricted Mode</source>
-        <translation type="unfinished"/>
+        <translation>Modo restringido</translation>
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
-        <translation type="unfinished"/>
+        <translation>Ocultar videos que puedan tener contenido inapropiado</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
-        <translation type="unfinished"/>
+        <translation>¿Amas %1? ¡Califícalo!</translation>
     </message>
     <message>
         <source>Buy %1...</source>
@@ -750,7 +750,7 @@
     </message>
     <message>
         <source>&amp;Loading...</source>
-        <translation type="unfinished"/>
+        <translation>Cargando...</translation>
     </message>
     <message>
         <source>Leave &amp;Full Screen</source>
@@ -860,11 +860,11 @@
     </message>
     <message>
         <source>Unsubscribed from %1</source>
-        <translation type="unfinished"/>
+        <translation>Desubscripto de %1</translation>
     </message>
     <message>
         <source>Subscribed to %1</source>
-        <translation type="unfinished"/>
+        <translation>Subscripto a %1</translation>
     </message>
 </context>
 <context>
@@ -1160,7 +1160,7 @@
     </message>
     <message>
         <source>Downloading %1...</source>
-        <translation type="unfinished"/>
+        <translation>Descargando %1...</translation>
     </message>
 </context>
 <context>

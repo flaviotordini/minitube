@@ -666,11 +666,11 @@
     </message>
     <message>
         <source>Restricted Mode</source>
-        <translation type="unfinished"/>
+        <translation>Modo Restrito</translation>
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
-        <translation type="unfinished"/>
+        <translation>Ocultar vídeos com conteúdo inapropriado</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>

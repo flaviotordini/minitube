@@ -69,7 +69,7 @@
     </message>
     <message>
         <source>The full version allows you to watch videos without interruptions.</source>
-        <translation type="unfinished"/>
+        <translation>La versión completa le permite mirar videos sin interrupciones.</translation>
     </message>
     <message>
         <source>Without a license, the application will expire in %1 days.</source>
@@ -96,14 +96,14 @@
     <name>AppWidget</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished"/>
+        <translation>Descarga</translation>
     </message>
 </context>
 <context>
     <name>ChannelAggregator</name>
     <message>
         <source>By %1</source>
-        <translation type="unfinished"/>
+        <translation>Por %1</translation>
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
@@ -114,11 +114,11 @@
     <name>ChannelItemDelegate</name>
     <message>
         <source>All Videos</source>
-        <translation type="unfinished"/>
+        <translation>Todos los videos</translation>
     </message>
     <message>
         <source>Unwatched Videos</source>
-        <translation type="unfinished"/>
+        <translation>Videos no vistos</translation>
     </message>
 </context>
 <context>
@@ -129,19 +129,19 @@
     </message>
     <message>
         <source>Last Updated</source>
-        <translation type="unfinished"/>
+        <translation>Última actualización</translation>
     </message>
     <message>
         <source>Last Added</source>
-        <translation type="unfinished"/>
+        <translation>Último agregado</translation>
     </message>
     <message>
         <source>Last Watched</source>
-        <translation type="unfinished"/>
+        <translation>Último visto</translation>
     </message>
     <message>
         <source>Most Watched</source>
-        <translation type="unfinished"/>
+        <translation>Más vistos</translation>
     </message>
     <message>
         <source>Sort by</source>
@@ -149,35 +149,35 @@
     </message>
     <message>
         <source>Mark all as watched</source>
-        <translation type="unfinished"/>
+        <translation>Marcar todos como vistos</translation>
     </message>
     <message>
         <source>Show Updated</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar actualizados</translation>
     </message>
     <message>
         <source>All Videos</source>
-        <translation type="unfinished"/>
+        <translation>Todos los videos</translation>
     </message>
     <message>
         <source>Unwatched Videos</source>
-        <translation type="unfinished"/>
+        <translation>Videos no vistos</translation>
     </message>
     <message>
         <source>Mark as Watched</source>
-        <translation type="unfinished"/>
+        <translation>Marcar como visto</translation>
     </message>
     <message>
         <source>Unsubscribe</source>
-        <translation type="unfinished"/>
+        <translation>Desusbcribirse</translation>
     </message>
     <message>
         <source>There are no updated subscriptions at this time.</source>
-        <translation type="unfinished"/>
+        <translation>No existen subscripciones actualizadas en este momento.</translation>
     </message>
     <message>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation type="unfinished"/>
+        <translation>No tienes ninguna subscripción. Usa la estrella para subscribirte a los canales.</translation>
     </message>
 </context>
 <context>
@@ -191,7 +191,7 @@
     <name>DataUtils</name>
     <message>
         <source>Just now</source>
-        <translation type="unfinished"/>
+        <translation>Ahora</translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
@@ -314,19 +314,19 @@
     <name>Extra</name>
     <message>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation type="unfinished"/>
+        <translation>El archivo ejecutable ha sido corrompido, quizás por un virus.</translation>
     </message>
     <message>
         <source>%1 will not run. Try installing again.</source>
-        <translation type="unfinished"/>
+        <translation>%1 no se ejecutará. Intenta instalar nuevamente.</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Salir</translation>
     </message>
     <message>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>Reinstalar</translation>
     </message>
 </context>
 <context>
@@ -400,11 +400,11 @@
     </message>
     <message>
         <source>Subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>Subscripciones</translation>
     </message>
     <message>
         <source>Channel subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>Subscripciones a canales</translation>
     </message>
     <message>
         <source>Make yourself comfortable</source>
@@ -606,11 +606,11 @@
     </message>
     <message>
         <source>Take &amp;Snapshot</source>
-        <translation type="unfinished"/>
+        <translation>Tomar una &amp;instantánea</translation>
     </message>
     <message>
         <source>&amp;Subscribe to Channel</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Subscribirse al canal</translation>
     </message>
     <message>
         <source>Share the current video using %1</source>
@@ -634,7 +634,7 @@
     </message>
     <message>
         <source>&amp;Adjust Window Size</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ajustar el tamaños de la ventana</translation>
     </message>
     <message>
         <source>&amp;Stop After This Video</source>
@@ -662,15 +662,15 @@
     </message>
     <message>
         <source>Open in &amp;Browser...</source>
-        <translation type="unfinished"/>
+        <translation>Abrir en el &amp;navegador...</translation>
     </message>
     <message>
         <source>Restricted Mode</source>
-        <translation type="unfinished"/>
+        <translation>Modo restringido</translation>
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
-        <translation type="unfinished"/>
+        <translation>Ocultar video que puedan poseer contenido inapropiado</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -750,7 +750,7 @@
     </message>
     <message>
         <source>&amp;Loading...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Cargando...</translation>
     </message>
     <message>
         <source>Leave &amp;Full Screen</source>
@@ -852,19 +852,19 @@
     </message>
     <message>
         <source>Unsubscribe from %1</source>
-        <translation type="unfinished"/>
+        <translation>Desubscribirse de %1</translation>
     </message>
     <message>
         <source>Subscribe to %1</source>
-        <translation type="unfinished"/>
+        <translation>Subscribirse a %1</translation>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
-        <translation type="unfinished"/>
+        <translation>Desubscripto de %1</translation>
     </message>
     <message>
         <source>Subscribed to %1</source>
-        <translation type="unfinished"/>
+        <translation>Subscripto a %1</translation>
     </message>
 </context>
 <context>
@@ -1138,11 +1138,11 @@
     </message>
     <message>
         <source>Snapshot saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>Instantánea guardada en %1</translation>
     </message>
     <message>
         <source>Snapshots location changed.</source>
-        <translation type="unfinished"/>
+        <translation>La ubicación de las instantáneas ha cambiado.</translation>
     </message>
 </context>
 <context>
@@ -1160,7 +1160,7 @@
     </message>
     <message>
         <source>Downloading %1...</source>
-        <translation type="unfinished"/>
+        <translation>Descargando %1...</translation>
     </message>
 </context>
 <context>

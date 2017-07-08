@@ -96,7 +96,7 @@
     <name>AppWidget</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished"/>
+        <translation>下载</translation>
     </message>
 </context>
 <context>
@@ -666,11 +666,11 @@
     </message>
     <message>
         <source>Restricted Mode</source>
-        <translation type="unfinished"/>
+        <translation>受限模式</translation>
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
-        <translation type="unfinished"/>
+        <translation>隐藏可能含有不恰当内容的视频</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -1160,7 +1160,7 @@
     </message>
     <message>
         <source>Downloading %1...</source>
-        <translation type="unfinished"/>
+        <translation>正在下载 %1...</translation>
     </message>
 </context>
 <context>

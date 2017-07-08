@@ -670,7 +670,7 @@
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
-        <translation type="unfinished"/>
+        <translation>Verstecke Videos die unpassende Inhalte enthalten können</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>

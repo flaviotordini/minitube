@@ -666,11 +666,11 @@
     </message>
     <message>
         <source>Restricted Mode</source>
-        <translation type="unfinished"/>
+        <translation>Omezený režim</translation>
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
-        <translation type="unfinished"/>
+        <translation>Skrýt videa, která by mohla obsahovat nevhodný obsah</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -860,11 +860,11 @@
     </message>
     <message>
         <source>Unsubscribed from %1</source>
-        <translation type="unfinished"/>
+        <translation>Odhlášen z odběru %1</translation>
     </message>
     <message>
         <source>Subscribed to %1</source>
-        <translation type="unfinished"/>
+        <translation>Přihlášen k odběru %1</translation>
     </message>
 </context>
 <context>
