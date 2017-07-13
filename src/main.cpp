@@ -62,6 +62,9 @@ void showWindow(QtSingleApplication &app, const QString &dataDir) {
 
 int main(int argc, char **argv) {
 
+    // Seed random number generator
+    qsrand(QDateTime::currentDateTime().toTime_t());
+
 #ifdef Q_OS_MAC
     mac::MacMain();
     // QFont::insertSubstitution(".Helvetica Neue DeskInterface", "Helvetica Neue");
@@ -117,9 +120,6 @@ int main(int argc, char **argv) {
     QTranslator translator;
     translator.load(QLocale::system(), QString(), QString(), localeDir);
     app.installTranslator(&translator);
-
-    // Seed random number generator
-    qsrand(QDateTime::currentDateTime().toTime_t());
 
     // all string literals are UTF-8
     // QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
