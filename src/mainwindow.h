@@ -245,6 +245,7 @@ private:
     bool menuVisibleBeforeFullScreen;
     QTimer *fullscreenTimer;
     bool compactModeActive;
+    bool menuVisibleBeforeCompactMode;
     bool initialized;
 
     QLabel *messageLabel;
