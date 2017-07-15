@@ -94,6 +94,7 @@ public slots:
     bool isReallyFullScreen();
     bool isCompact() { return compactModeActive; }
     void missingKeyWarning();
+    void visitSite();
 
 signals:
     void currentTimeChanged(const QString &s);
@@ -114,7 +115,6 @@ private slots:
     void lazyInit();
     void checkForUpdate();
     void gotNewVersion(const QString &version);
-    void visitSite();
     void donate();
     void reportIssue();
     void about();

@@ -26,6 +26,8 @@ $END_LICENSE */
 #include "view.h"
 #include "constants.h"
 
+class ClickableLabel;
+
 class AboutView : public View {
 
     Q_OBJECT
@@ -46,7 +48,7 @@ private slots:
     void screenChanged();
 
 private:
-    QLabel *logo;
+    ClickableLabel *logo;
     QPushButton *closeButton;
 
 };

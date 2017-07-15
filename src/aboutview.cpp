@@ -33,6 +33,7 @@ $END_LICENSE */
 #include "fontutils.h"
 #include "iconutils.h"
 #include "appwidget.h"
+#include "clickablelabel.h"
 
 AboutView::AboutView(QWidget *parent) : View(parent) {
 
@@ -53,8 +54,9 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
     aboutlayout->setMargin(padding);
     aboutlayout->setSpacing(padding);
 
-    logo = new QLabel();
+    logo = new ClickableLabel();
     logo->setPixmap(IconUtils::pixmap(":/images/app.png"));
+    connect(logo, &ClickableLabel::clicked, MainWindow::instance(), &MainWindow::visitSite);
     aboutlayout->addWidget(logo, 0, Qt::AlignTop);
 
     QBoxLayout *layout = new QVBoxLayout();

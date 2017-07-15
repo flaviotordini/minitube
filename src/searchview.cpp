@@ -38,6 +38,7 @@ $END_LICENSE */
 #include "mainwindow.h"
 #include "painterutils.h"
 #include "iconutils.h"
+#include "clickablelabel.h"
 
 namespace {
 static const QString recentKeywordsKey = "recentKeywords";
@@ -69,8 +70,9 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 
     hLayout->addStretch();
 
-    logo = new QLabel(this);
+    logo = new ClickableLabel(this);
     logo->setPixmap(IconUtils::pixmap(":/images/app.png"));
+    connect(logo, &ClickableLabel::clicked, MainWindow::instance(), &MainWindow::visitSite);
     hLayout->addWidget(logo, 0, Qt::AlignTop);
     hLayout->addSpacing(padding);
 

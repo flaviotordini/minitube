@@ -30,6 +30,7 @@ class SearchParams;
 class YTSuggester;
 class ChannelSuggest;
 class Suggestion;
+class ClickableLabel;
 
 class SearchView : public View {
 
@@ -77,8 +78,9 @@ private:
     QStringList recentKeywords;
     QStringList recentChannels;
 
-    QLabel *logo;
     QList<Suggestion*> lastChannelSuggestions;
+
+    ClickableLabel *logo;
 };
 
 #endif // __SEARCHVIEW_H__
