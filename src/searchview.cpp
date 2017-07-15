@@ -152,6 +152,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 
     youtubeSuggest = new YTSuggester(this);
     channelSuggest = new ChannelSuggest(this);
+    connect(channelSuggest, SIGNAL(ready(QList<Suggestion*>)), SLOT(onChannelSuggestions(QList<Suggestion*>)));
     searchTypeChanged(0);
 
     searchLayout->addWidget(queryEdit->toWidget());
@@ -337,6 +338,7 @@ void SearchView::watch() {
 
 void SearchView::textChanged(const QString &text) {
     watchButton->setEnabled(!text.simplified().isEmpty());
+    lastChannelSuggestions.clear();
 }
 
 void SearchView::watch(const QString &query) {
@@ -352,10 +354,11 @@ void SearchView::watch(const QString &query) {
     if (typeCombo->currentIndex() == 0)
         searchParams->setKeywords(q);
     else {
-        // remove spaces from channel name
-        q.remove(' ');
-        searchParams->setChannelId(q);
-        searchParams->setSortBy(SearchParams::SortByNewest);
+        if (lastChannelSuggestions.isEmpty())
+            MainWindow::instance()->showMessage(tr("Pick a channel from the suggestions"));
+        else
+            suggestionAccepted(lastChannelSuggestions.first());
+        return;
     }
 
     // go!
@@ -433,4 +436,8 @@ void SearchView::suggestionAccepted(Suggestion *suggestion) {
 
 void SearchView::screenChanged() {
     logo->setPixmap(IconUtils::pixmap(":/images/app.png"));
+}
+
+void SearchView::onChannelSuggestions(const QList<Suggestion *> &suggestions) {
+    lastChannelSuggestions = suggestions;
 }

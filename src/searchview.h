@@ -59,6 +59,7 @@ private slots:
     void searchTypeChanged(int index);
     void suggestionAccepted(Suggestion *suggestion);
     void screenChanged();
+    void onChannelSuggestions(const QList<Suggestion*> &suggestions);
 
 private:
     YTSuggester *youtubeSuggest;
@@ -77,6 +78,7 @@ private:
     QStringList recentChannels;
 
     QLabel *logo;
+    QList<Suggestion*> lastChannelSuggestions;
 };
 
 #endif // __SEARCHVIEW_H__
