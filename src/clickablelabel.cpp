@@ -1,10 +1,9 @@
 #include "clickablelabel.h"
 
-ClickableLabel::ClickableLabel(QWidget* parent, Qt::WindowFlags f)
-    : QLabel(parent) {
+ClickableLabel::ClickableLabel(QWidget *parent) : QLabel(parent) {
     setCursor(Qt::PointingHandCursor);
 }
 
-void ClickableLabel::mouseReleaseEvent(QMouseEvent* event) {
-    emit clicked();
+void ClickableLabel::mouseReleaseEvent(QMouseEvent *e) {
+    if (rect().contains(e->pos())) emit clicked();
 }
