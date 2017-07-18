@@ -19,6 +19,7 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "loadingwidget.h"
+#include "fontutils.h"
 
 LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
 
@@ -37,6 +38,7 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
     titleLabel->setForegroundRole(QPalette::Text);
     titleLabel->setWordWrap(true);
     titleLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    titleLabel->setFont(FontUtils::light(titleLabel->font().pointSize()));
     layout->addWidget(titleLabel);
 
     descriptionLabel = new QLabel(this);
@@ -124,16 +126,7 @@ void LoadingWidget::bufferStatus(int percent) {
 }
 
 void LoadingWidget::adjustFontSize() {
-    QFont titleFont;
-#ifdef APP_MAC
-    titleFont.setFamily("Helvetica Neue");
-    titleFont.setStyleName("Thin");
-#elif APP_WIN
-    titleFont.setFamily("Segoe UI Light");
-    titleFont.setStyleName("Light");
-#else
-    titleFont.setStyleName("Light");
-#endif
+    QFont titleFont = titleLabel->font();
     int smallerDimension = qMin(height(), width());
     titleFont.setPixelSize(smallerDimension / 12);
     QFontMetrics fm(titleFont);

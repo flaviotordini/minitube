@@ -80,24 +80,21 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     layout->setAlignment(Qt::AlignCenter);
     hLayout->addLayout(layout);
 
+    QColor titleColor = palette().color(QPalette::WindowText);
+    titleColor.setAlphaF(.75);
+    int r,g,b,a;
+    titleColor.getRgb(&r,&g,&b,&a);
+    QString cssColor = QString::asprintf("rgba(%d,%d,%d,%d)", r, g, b, a);
+
     QLabel *welcomeLabel =
-            new QLabel("<h1 style='font-weight:300'>" +
+            new QLabel(QString("<h1 style='font-weight:300;color:%1'>").arg(cssColor) +
                        tr("Welcome to <a href='%1'>%2</a>,")
-                       .replace("<a ", "<a style='text-decoration:none; color:palette(text);font-weight:normal' ")
+                       .replace("<a ", "<a style='text-decoration:none; color:palette(text)' ")
                        .arg(Constants::WEBSITE, Constants::NAME)
-                       + "</h1>", this);
+                       + "</h1>");
     welcomeLabel->setOpenExternalLinks(true);
     welcomeLabel->setProperty("heading", true);
-#ifdef APP_MAC_NO
-    QFont f = welcomeLabel->font();
-    f.setFamily("Helvetica Neue");
-    f.setStyleName("Thin");
-    welcomeLabel->setFont(f);
-#elif APP_WIN
-    QFont f = welcomeLabel->font();
-    f.setFamily("Segoe UI Light");
-    welcomeLabel->setFont(f);
-#endif
+    welcomeLabel->setFont(FontUtils::light(welcomeLabel->font().pointSize() * 1.25));
     layout->addWidget(welcomeLabel);
 
     layout->addSpacing(padding / 2);
