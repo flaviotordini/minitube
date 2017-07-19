@@ -196,34 +196,31 @@ void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
     const VideoDefinition& definition = VideoDefinition::getDefinitionFor(definitionName);
 
     qDebug() << "fmtUrlMap" << fmtUrlMap;
-    const QStringList formatUrls = fmtUrlMap.split(',', QString::SkipEmptyParts);
+    const QVector<QStringRef> formatUrls = fmtUrlMap.splitRef(',', QString::SkipEmptyParts);
     QHash<int, QString> urlMap;
-    foreach(const QString &formatUrl, formatUrls) {
+    foreach(const QStringRef &formatUrl, formatUrls) {
         // qDebug() << "formatUrl" << formatUrl;
-        const QStringList urlParams = formatUrl.split('&', QString::SkipEmptyParts);
+        const QVector<QStringRef> urlParams = formatUrl.split('&', QString::SkipEmptyParts);
         // qDebug() << "urlParams" << urlParams;
 
         int format = -1;
         QString url;
         QString sig;
-        foreach(const QString &urlParam, urlParams) {
+        foreach(const QStringRef &urlParam, urlParams) {
             // qWarning() << urlParam;
-            if (urlParam.startsWith("itag=")) {
-                int separator = urlParam.indexOf("=");
-                format = urlParam.midRef(separator + 1).toInt();
-            } else if (urlParam.startsWith("url=")) {
-                int separator = urlParam.indexOf("=");
-                url = urlParam.mid(separator + 1);
-                url = QByteArray::fromPercentEncoding(url.toUtf8());
-            } else if (urlParam.startsWith("sig=")) {
-                int separator = urlParam.indexOf("=");
-                sig = urlParam.mid(separator + 1);
-                sig = QByteArray::fromPercentEncoding(sig.toUtf8());
-            } else if (urlParam.startsWith("s=")) {
+            if (urlParam.startsWith(QLatin1String("itag="))) {
+                int separator = urlParam.indexOf('=');
+                format = urlParam.mid(separator + 1).toInt();
+            } else if (urlParam.startsWith(QLatin1String("url="))) {
+                int separator = urlParam.indexOf('=');
+                url = QByteArray::fromPercentEncoding(urlParam.mid(separator + 1).toUtf8());
+            } else if (urlParam.startsWith(QLatin1String("sig="))) {
+                int separator = urlParam.indexOf('=');
+                sig = QByteArray::fromPercentEncoding(urlParam.mid(separator + 1).toUtf8());
+            } else if (urlParam.startsWith(QLatin1String("s="))) {
                 if (fromWebPage || ageGate) {
-                    int separator = urlParam.indexOf("=");
-                    sig = urlParam.mid(separator + 1);
-                    sig = QByteArray::fromPercentEncoding(sig.toUtf8());
+                    int separator = urlParam.indexOf('=');
+                    sig = QByteArray::fromPercentEncoding(urlParam.mid(separator + 1).toUtf8());
                     if (ageGate)
                         sig = JsFunctions::instance()->decryptAgeSignature(sig);
                     else {
@@ -251,10 +248,10 @@ void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
         }
         if (format == -1 || url.isNull()) continue;
 
-        url += "&signature=" + sig;
+        url += QLatin1String("&signature=") + sig;
 
-        if (!url.contains("ratebypass"))
-            url += "&ratebypass=yes";
+        if (!url.contains(QLatin1String("ratebypass")))
+            url += QLatin1String("&ratebypass=yes");
 
         qDebug() << url;
 
@@ -321,6 +318,13 @@ void Video::scrapeWebPage(const QByteArray &bytes) {
             dashManifestUrl = dashManifestRe.cap(1);
             dashManifestUrl.remove('\\');
             qDebug() << "dashManifestUrl" << dashManifestUrl;
+        } else {
+            qWarning() << "DASH manifest not found in webpage";
+            if (dashManifestRe.indexIn(fmtUrlMap) != -1) {
+                dashManifestUrl = dashManifestRe.cap(1);
+                dashManifestUrl.remove('\\');
+                qDebug() << "dashManifestUrl" << dashManifestUrl;
+            } else qWarning() << "DASH manifest not found in fmtUrlMap" << fmtUrlMap;
         }
     }
 #endif
@@ -329,10 +333,10 @@ void Video::scrapeWebPage(const QByteArray &bytes) {
     if (jsPlayerRe.indexIn(html) != -1) {
         QString jsPlayerUrl = jsPlayerRe.cap(1);
         jsPlayerUrl.remove('\\');
-        if (jsPlayerUrl.startsWith("//")) {
-            jsPlayerUrl = "https:" + jsPlayerUrl;
+        if (jsPlayerUrl.startsWith(QLatin1String("//"))) {
+            jsPlayerUrl = QLatin1String("https:") + jsPlayerUrl;
         } else if (jsPlayerUrl.startsWith("/")) {
-            jsPlayerUrl = "https://youtube.com" + jsPlayerUrl;
+            jsPlayerUrl = QLatin1String("https://youtube.com") + jsPlayerUrl;
         }
         // qDebug() << "jsPlayerUrl" << jsPlayerUrl;
         /*
@@ -370,7 +374,7 @@ void Video::parseJsPlayer(const QByteArray &bytes) {
             QString sig = sigRe.cap(1);
             sig = decryptSignature(sig);
             dashManifestUrl.replace(sigRe, "/signature/" + sig);
-            qDebug() << "dash manifest" << dashManifestUrl;
+            qWarning() << "dash manifest" << dashManifestUrl;
 
             if (true) {
                 // let phonon play the manifest
@@ -408,19 +412,22 @@ void Video::parseDashManifest(const QByteArray &bytes) {
 
 void Video::captureFunction(const QString &name, const QString &js) {
     qDebug() << __PRETTY_FUNCTION__ << name;
-    const QString argsAndBody = "\\s*\\([" + jsNameChars + ",\\s]*\\)\\s*\\{[^\\}]+\\}";
+    const QString argsAndBody = QLatin1String("\\s*\\([") + jsNameChars +
+            QLatin1String(",\\s]*\\)\\s*\\{[^\\}]+\\}");
     QString func;
-    QRegExp funcRe("function\\s+" + QRegExp::escape(name) + argsAndBody);
+    QRegExp funcRe(QLatin1String("function\\s+") + QRegExp::escape(name) + argsAndBody);
     if (funcRe.indexIn(js) != -1) {
         func = funcRe.cap(0);
     } else {
         // try var foo = function(bar) { };
-        funcRe = QRegExp("var\\s+" + QRegExp::escape(name) + "\\s*=\\s*function" + argsAndBody);
+        funcRe = QRegExp(QLatin1String("var\\s+") + QRegExp::escape(name) +
+                         QLatin1String("\\s*=\\s*function") + argsAndBody);
         if (funcRe.indexIn(js) != -1) {
             func = funcRe.cap(0);
         } else {
             // try ,gr= function(bar) { };
-            funcRe = QRegExp("[,\\s;}\\.\\)](" + QRegExp::escape(name) + "\\s*=\\s*function" + argsAndBody + ")");
+            funcRe = QRegExp(QLatin1String("[,\\s;}\\.\\)](") + QRegExp::escape(name) +
+                             QLatin1String("\\s*=\\s*function") + argsAndBody + ")");
             if (funcRe.indexIn(js) != -1) {
                 func = funcRe.cap(1);
             } else {
@@ -432,7 +439,8 @@ void Video::captureFunction(const QString &name, const QString &js) {
     sigFunctions.insert(name, func);
 
     // capture inner functions
-    QRegExp invokedFuncRe("[\\s=;\\(]([" + jsNameChars + "]+)\\s*\\([" + jsNameChars + ",\\s]+\\)");
+    QRegExp invokedFuncRe(QLatin1String("[\\s=;\\(]([") + jsNameChars + QLatin1String("]+)\\s*\\([") +
+                          jsNameChars + QLatin1String(",\\s]+\\)"));
     int pos = name.length() + 9;
     while ((pos = invokedFuncRe.indexIn(func, pos)) != -1) {
         QString funcName = invokedFuncRe.cap(1);
@@ -442,7 +450,8 @@ void Video::captureFunction(const QString &name, const QString &js) {
     }
 
     // capture referenced objects
-    QRegExp objRe("[\\s=;\\(]([" + jsNameChars + "]+)\\.[" + jsNameChars + "]+");
+    QRegExp objRe(QLatin1String("[\\s=;\\(]([") + jsNameChars + QLatin1String("]+)\\.[") +
+                  jsNameChars + QLatin1String("]+"));
     pos = name.length() + 9;
     while ((pos = objRe.indexIn(func, pos)) != -1) {
         QString objName = objRe.cap(1);
@@ -453,7 +462,7 @@ void Video::captureFunction(const QString &name, const QString &js) {
 }
 
 void Video::captureObject(const QString &name, const QString &js) {
-    QRegExp re("var\\s+" + QRegExp::escape(name) + "\\s*=\\s*\\{.*\\}\\s*;");
+    QRegExp re(QLatin1String("var\\s+") + QRegExp::escape(name) + QLatin1String("\\s*=\\s*\\{.*\\}\\s*;"));
     re.setMinimal(true);
     if (re.indexIn(js) == -1) {
         qWarning() << "Cannot capture object" << name;
