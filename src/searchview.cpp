@@ -97,7 +97,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     welcomeLabel->setFont(FontUtils::light(welcomeLabel->font().pointSize() * 1.25));
     layout->addWidget(welcomeLabel);
 
-    layout->addSpacing(padding / 2);
+    layout->addSpacing(padding);
 
     QBoxLayout *tipLayout = new QHBoxLayout();
     tipLayout->setAlignment(Qt::AlignLeft);
@@ -147,6 +147,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 
     connect(queryEdit->toWidget(), SIGNAL(search(const QString&)), SLOT(watch(const QString&)));
     connect(queryEdit->toWidget(), SIGNAL(textChanged(const QString &)), SLOT(textChanged(const QString &)));
+    connect(queryEdit->toWidget(), SIGNAL(textEdited(const QString &)), SLOT(textChanged(const QString &)));
     connect(queryEdit->toWidget(), SIGNAL(suggestionAccepted(Suggestion*)), SLOT(suggestionAccepted(Suggestion*)));
 
     youtubeSuggest = new YTSuggester(this);
@@ -154,8 +155,8 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     connect(channelSuggest, SIGNAL(ready(QList<Suggestion*>)), SLOT(onChannelSuggestions(QList<Suggestion*>)));
     searchTypeChanged(0);
 
-    searchLayout->addWidget(queryEdit->toWidget());
-    searchLayout->addSpacing(10);
+    searchLayout->addWidget(queryEdit->toWidget(), 0, Qt::AlignBaseline);
+    searchLayout->addSpacing(padding);
 
     watchButton = new QPushButton(tr("Watch"), this);
 #ifndef APP_MAC
@@ -165,11 +166,11 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     watchButton->setEnabled(false);
     watchButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     connect(watchButton, SIGNAL(clicked()), this, SLOT(watch()));
-    searchLayout->addWidget(watchButton);
+    searchLayout->addWidget(watchButton, 0, Qt::AlignBaseline);
 
     layout->addItem(searchLayout);
 
-    layout->addSpacing(padding / 2);
+    layout->addSpacing(padding);
 
     QHBoxLayout *recentLayout = new QHBoxLayout();
     recentLayout->setMargin(5);
@@ -414,7 +415,6 @@ void SearchView::paintEvent(QPaintEvent *event) {
     }
     QPainter painter(this);
     painter.fillRect(0, 0, width(), height(), brush);
-    painter.end();
 }
 
 void SearchView::searchTypeChanged(int index) {
