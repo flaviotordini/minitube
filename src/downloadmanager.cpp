@@ -69,33 +69,6 @@ DownloadItem* DownloadManager::itemForVideo(Video* video) {
 void DownloadManager::addItem(Video *video) {
     // qDebug() << __FUNCTION__ << video->title();
 
-#ifdef APP_ACTIVATION
-    if (!Activation::instance().isActivated()) {
-        if (video->duration() >= 60*4) {
-            QMessageBox msgBox(MainWindow::instance());
-            msgBox.setIconPixmap(IconUtils::pixmap(":/images/64x64/app.png"));
-            msgBox.setText(tr("This is just the demo version of %1.").arg(Constants::NAME));
-            msgBox.setInformativeText(
-                        tr("It can only download videos shorter than %1 minutes so you can test the download functionality.")
-                        .arg(4));
-            msgBox.setModal(true);
-            // make it a "sheet" on the Mac
-            msgBox.setWindowModality(Qt::WindowModal);
-
-            msgBox.addButton(tr("Continue"), QMessageBox::RejectRole);
-            QPushButton *buyButton = msgBox.addButton(tr("Get the full version"), QMessageBox::ActionRole);
-
-            msgBox.exec();
-
-            if (msgBox.clickedButton() == buyButton) {
-                MainWindow::instance()->showActivationView();
-            }
-
-            return;
-        }
-    }
-#endif
-
     DownloadItem *item = itemForVideo(video);
     if (item != 0) {
         if (item->status() == Failed || item->status() == Idle) {

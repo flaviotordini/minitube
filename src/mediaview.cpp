@@ -136,7 +136,7 @@ void MediaView::initialize() {
 #ifdef APP_ACTIVATION
     demoTimer = new QTimer(this);
     demoTimer->setSingleShot(true);
-    connect(demoTimer, SIGNAL(timeout()), SLOT(demoMessage()));
+    connect(demoTimer, &QTimer::timeout, MainWindow::instance(), &MainWindow::showActivationView, Qt::QueuedConnection);
 #endif
 
     connect(videoAreaWidget, SIGNAL(doubleClicked()),
@@ -215,10 +215,6 @@ void MediaView::search(SearchParams *searchParams) {
 void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory, bool back) {
     Q_UNUSED(back);
     stopped = false;
-
-#ifdef APP_ACTIVATION
-    demoTimer->stop();
-#endif
     errorTimer->stop();
 
     // qDebug() << "Adding VideoSource" << videoSource->getName() << videoSource;
@@ -403,7 +399,7 @@ void MediaView::stop() {
     slider->setEnabled(false);
     slider->setValue(0);
 #else
-    Phonon::SeekSlider *slider = MainWindow::instance()->getSeekSlider();
+    // Phonon::SeekSlider *slider = MainWindow::instance()->getSeekSlider();
 #endif
 
 #ifdef APP_SNAPSHOT
@@ -530,8 +526,10 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
     }
 
 #ifdef APP_ACTIVATION
-    if (!Activation::instance().isActivated())
-        demoTimer->start(180000);
+    if (!Activation::instance().isActivated() && !demoTimer->isActive()) {
+        int ms = (60000 * 5) + (qrand() % (60000 * 5));
+        demoTimer->start(ms);
+    }
 #endif
 
 #ifdef APP_EXTRA
@@ -812,60 +810,6 @@ void MediaView::saveSplitterState() {
     QSettings settings;
     settings.setValue("splitter", splitter->saveState());
 }
-
-#ifdef APP_ACTIVATION
-
-static QPushButton *continueButton;
-
-void MediaView::demoMessage() {
-#ifdef APP_PHONON
-    if (mediaObject->state() != Phonon::PlayingState) return;
-    mediaObject->pause();
-#endif
-
-    QMessageBox msgBox(this);
-    msgBox.setIconPixmap(IconUtils::pixmap(":/images/64x64/app.png"));
-    msgBox.setText(tr("This is just the demo version of %1.").arg(Constants::NAME));
-    msgBox.setInformativeText(tr("It allows you to test the application and see if it works for you."));
-    msgBox.setModal(true);
-    // make it a "sheet" on the Mac
-    msgBox.setWindowModality(Qt::WindowModal);
-
-    continueButton = msgBox.addButton("5", QMessageBox::RejectRole);
-    continueButton->setEnabled(false);
-    QPushButton *buyButton = msgBox.addButton(tr("Get the full version"), QMessageBox::ActionRole);
-
-    QTimeLine *timeLine = new QTimeLine(6000, this);
-    timeLine->setCurveShape(QTimeLine::LinearCurve);
-    timeLine->setFrameRange(5, 0);
-    connect(timeLine, SIGNAL(frameChanged(int)), SLOT(updateContinueButton(int)));
-    timeLine->start();
-
-    msgBox.exec();
-
-    if (msgBox.clickedButton() == buyButton) {
-        MainWindow::instance()->showActivationView();
-    } else {
-#ifdef APP_PHONON
-        mediaObject->play();
-#endif
-        demoTimer->start(600000);
-    }
-
-    delete timeLine;
-
-}
-
-void MediaView::updateContinueButton(int value) {
-    if (value == 0) {
-        continueButton->setText(tr("Continue"));
-        continueButton->setEnabled(true);
-    } else {
-        continueButton->setText(QString::number(value));
-    }
-}
-
-#endif
 
 void MediaView::downloadVideo() {
     Video* video = playlistModel->activeVideo();

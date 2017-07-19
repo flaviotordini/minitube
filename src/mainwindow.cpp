@@ -62,7 +62,6 @@ $END_LICENSE */
 #ifdef APP_ACTIVATION
 #include "activation.h"
 #include "activationview.h"
-#include "activationdialog.h"
 #endif
 #include "ytregions.h"
 #include "regionsview.h"
@@ -100,14 +99,14 @@ MainWindow::MainWindow() :
 
     singleton = this;
 
-#ifdef APP_EXTRA
-    Extra::windowSetup(this);
-#endif
-
     // views mechanism
     views = new QStackedWidget();
     views->hide();
     setCentralWidget(views);
+
+#ifdef APP_EXTRA
+    Extra::windowSetup(this);
+#endif
 
     messageLabel = new QLabel();
     messageLabel->setWindowFlags(Qt::ToolTip | Qt::FramelessWindowHint);
@@ -153,14 +152,10 @@ MainWindow::MainWindow() :
 
     views->show();
 
-    // show the initial view
-    showHome(false);
-
 #ifdef APP_ACTIVATION
-    if (!Activation::instance().isActivated()) {
-        qApp->processEvents();
-        showActivationView(false);
-    }
+    Activation::instance().initialCheck();
+#else
+    showHome();
 #endif
 
     QTimer::singleShot(0, this, SLOT(lazyInit()));
@@ -217,22 +212,14 @@ void MainWindow::lazyInit() {
     connect(fullscreenTimer, SIGNAL(timeout()), SLOT(hideFullscreenUI()));
 
     JsFunctions::instance();
-#ifdef APP_EXTRA
-    Extra::extraFunctions();
-#endif
 
     // Hack to give focus to searchlineedit
-    QMetaObject::invokeMethod(views->currentWidget(), "appear");
     View* view = qobject_cast<View *> (views->currentWidget());
-    QString desc = view->metadata().value("description").toString();
-    if (!desc.isEmpty()) showMessage(desc);
-
-#ifdef APP_INTEGRITY
-    if (!Extra::integrityCheck()) {
-        deleteLater();
-        return;
+    if (view == homeView) {
+        QMetaObject::invokeMethod(views->currentWidget(), "appear");
+        QString desc = view->metadata().value("description").toString();
+        if (!desc.isEmpty()) showMessage(desc);
     }
-#endif
 
     ChannelAggregator::instance()->start();
 
@@ -638,7 +625,7 @@ void MainWindow::createActions() {
 #endif
 
 #ifdef APP_ACTIVATION
-    Extra::createActivationAction(tr("Buy %1...").arg(Constants::NAME));
+    ActivationView::createActivationAction(tr("Buy %1...").arg(Constants::NAME));
 #endif
 
     // common action properties
@@ -1051,10 +1038,10 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
         foreach (QAction* action, viewActions)
             showActionInStatusBar(action, true);
 
-        newView->appear();
-
         adjustStatusBarVisibility();
         messageLabel->hide();
+
+        newView->appear();
 
         statusToolBar->setUpdatesEnabled(true);
 
@@ -1072,6 +1059,7 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
 #endif
 
     history.push(widget);
+    emit viewChanged();
 }
 
 void MainWindow::about() {
@@ -1161,10 +1149,9 @@ bool MainWindow::confirmQuit() {
     return true;
 }
 
-void MainWindow::showHome(bool transition) {
-    showWidget(homeView, transition);
+void MainWindow::showHome() {
+    showWidget(homeView);
     currentTimeLabel->clear();
-    // totalTime->clear();
 }
 
 void MainWindow::showMedia(SearchParams *searchParams) {
@@ -1967,28 +1954,11 @@ void MainWindow::hideMessage() {
 }
 
 #ifdef APP_ACTIVATION
-void MainWindow::showActivationView(bool transition) {
+void MainWindow::showActivationView() {
     QWidget *activationView = ActivationView::instance();
-    if (views->currentWidget() == activationView) {
-        buy();
-        return;
-    }
     views->addWidget(activationView);
-    showWidget(activationView, transition);
-}
-
-void MainWindow::showActivationDialog() {
-    QTimer::singleShot(0, new ActivationDialog(this), SLOT(show()));
-}
-
-void MainWindow::buy() {
-    Extra::buy();
-}
-
-void MainWindow::hideBuyAction() {
-    QAction *action = actionMap.value("buy");
-    action->setVisible(false);
-    action->setEnabled(false);
+    if (views->currentWidget() != activationView)
+        showWidget(activationView);
 }
 #endif
 

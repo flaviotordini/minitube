@@ -73,8 +73,9 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
             + QString("<p><a href=\"%1/\">%1</a></p>").arg(Constants::WEBSITE);
 
 #ifdef APP_ACTIVATION
-    if (Activation::instance().isActivated())
-        info += "<p>" + tr("Licensed to: %1").arg("<b>" + Activation::instance().getEmail() + "</b>");
+    QString email = Activation::instance().getEmail();
+    if (!email.isEmpty())
+        info += "<p>" + tr("Licensed to: %1").arg("<b>" + email + "</b>");
 #endif
 
 #ifndef APP_EXTRA

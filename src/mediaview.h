@@ -116,10 +116,6 @@ private slots:
     void stateChanged(Phonon::State newState, Phonon::State oldState);
 #endif
     void aboutToFinish();
-#ifdef APP_ACTIVATION
-    void demoMessage();
-    void updateContinueButton(int);
-#endif
     void startPlaying();
     void downloadStatusChanged();
     void playbackFinished();

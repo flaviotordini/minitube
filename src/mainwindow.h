@@ -58,7 +58,9 @@ public:
     void readSettings();
     void writeSettings();
     static void printHelp();
+    QStackedWidget *getViews() { return views; }
     MediaView* getMediaView() { return mediaView; }
+    HomeView* getHomeView() { return homeView; }
     QAction* getRegionAction() { return regionAction; }
     SearchLineEdit *getToolbarSearch() { return toolbarSearch; }
 
@@ -72,8 +74,12 @@ public:
     void hideToolbar();
     void showToolbar();
 
+#ifdef APP_ACTIVATION
+    void showActivationView();
+#endif
+
 public slots:
-    void showHome(bool transition = true);
+    void showHome();
     void showMedia(SearchParams *params);
     void showMedia(VideoSource *videoSource);
     void showRegionsView();
@@ -82,15 +88,10 @@ public slots:
     void quit();
     void suggestionAccepted(Suggestion *suggestion);
     void search(const QString &query);
+    bool canGoBack() { return history.size() > 1; }
     void goBack();
     void showMessage(const QString &message);
     void hideMessage();
-#ifdef APP_ACTIVATION
-    void showActivationView(bool transition = true);
-    void showActivationDialog();
-    void buy();
-    void hideBuyAction();
-#endif
     bool isReallyFullScreen();
     bool isCompact() { return compactModeActive; }
     void missingKeyWarning();
@@ -98,6 +99,7 @@ public slots:
 
 signals:
     void currentTimeChanged(const QString &s);
+    void viewChanged();
 
 protected:
     void changeEvent(QEvent *e);

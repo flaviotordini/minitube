@@ -34,6 +34,7 @@ $END_LICENSE */
 #endif
 #ifdef APP_ACTIVATION
 #include "activation.h"
+#include "activationview.h"
 #endif
 #include "mainwindow.h"
 #include "painterutils.h"
@@ -207,7 +208,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 
 #ifdef APP_ACTIVATION
     if (!Activation::instance().isActivated())
-        vLayout->addWidget(Extra::buyButton(tr("Get the full version")), 0, Qt::AlignRight);
+        vLayout->addWidget(ActivationView::buyButton(tr("Get the full version")), 0, Qt::AlignRight);
 #endif
 }
 
