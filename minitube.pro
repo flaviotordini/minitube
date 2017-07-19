@@ -1,6 +1,6 @@
 CONFIG += release c++11
 TEMPLATE = app
-VERSION = 2.7
+VERSION = 2.8
 DEFINES += APP_VERSION="$$VERSION"
 
 APP_NAME = Minitube
