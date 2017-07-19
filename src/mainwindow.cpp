@@ -263,7 +263,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
     }
 #endif
 
-    if (fullScreenActive && t == QEvent::MouseMove
+    if (fullScreenActive && views->currentWidget() == mediaView && t == QEvent::MouseMove
             && obj->isWidgetType() && qobject_cast<QWidget*>(obj)->window() == this) {
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*> (e);
 
@@ -349,7 +349,7 @@ void MainWindow::createActions() {
     fullscreenAct->setShortcutContext(Qt::ApplicationShortcut);
     fullscreenAct->setPriority(QAction::LowPriority);
     actionMap.insert("fullscreen", fullscreenAct);
-    connect(fullscreenAct, SIGNAL(triggered()), this, SLOT(fullscreen()));
+    connect(fullscreenAct, SIGNAL(triggered()), SLOT(toggleFullscreen()));
 
     compactViewAct = new QAction(tr("&Compact Mode"), this);
     compactViewAct->setStatusTip(tr("Hide the playlist and the toolbar"));
@@ -1281,7 +1281,7 @@ void MainWindow::leaveEvent(QEvent *e) {
     if (fullScreenActive) hideFullscreenUI();
 }
 
-void MainWindow::fullscreen() {
+void MainWindow::toggleFullscreen() {
 
     if (compactViewAct->isChecked())
         compactViewAct->toggle();
@@ -1322,7 +1322,8 @@ void MainWindow::fullscreen() {
         MacSupport::exitFullScreen(this, views);
 #else
         menuBar()->setVisible(menuVisibleBeforeFullScreen);
-        if (mainToolBar) mainToolBar->show();
+        if (mainToolBar)
+            mainToolBar->setVisible(views->currentWidget() == mediaView);
         if (maximizedBeforeFullScreen) showMaximized();
         else showNormal();
 #endif
@@ -1378,7 +1379,6 @@ void MainWindow::updateUIForFullscreen() {
 
     // Hide anything but the video
     mediaView->setSidebarVisibility(!fullScreenActive);
-    if (mainToolBar) mainToolBar->setVisible(!fullScreenActive);
 
     if (fullScreenActive) {
         stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_MediaStop));
@@ -1394,7 +1394,7 @@ void MainWindow::updateUIForFullscreen() {
         mediaView->setFocus();
 
     if (fullScreenActive) {
-        hideFullscreenUI();
+        if (views->currentWidget() == mediaView) hideFullscreenUI();
     } else {
         fullscreenTimer->stop();
         unsetCursor();
@@ -1873,6 +1873,7 @@ void MainWindow::messageReceived(const QString &message) {
 }
 
 void MainWindow::hideFullscreenUI() {
+    if (views->currentWidget() != mediaView) return;
     setCursor(Qt::BlankCursor);
 
     QPoint p = mapFromGlobal(QCursor::pos());

@@ -118,7 +118,7 @@ private slots:
     void donate();
     void reportIssue();
     void about();
-    void fullscreen();
+    void toggleFullscreen();
     void updateUIForFullscreen();
     void compactView(bool enable);
     void stop();
