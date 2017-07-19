@@ -254,12 +254,17 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
     const QEvent::Type t = e->type();
 
 #ifndef APP_MAC
-    if (t == QEvent::KeyRelease) {
+    static bool altPressed = false;
+    if (t == QEvent::KeyRelease && altPressed) {
+        altPressed = false;
         QKeyEvent *ke = static_cast<QKeyEvent*>(e);
         if (ke->key() == Qt::Key_Alt) {
             toggleMenuVisibility();
             return true;
         }
+    } else if (t == QEvent::KeyPress) {
+        QKeyEvent *ke = static_cast<QKeyEvent*>(e);
+        altPressed = ke->key() == Qt::Key_Alt;
     }
 #endif
 
@@ -1898,6 +1903,7 @@ void MainWindow::toggleMenuVisibilityWithMessage() {
     bool show = !menuBar()->isVisible();
     menuBar()->setVisible(show);
     if (!show) {
+        QMessageBox msgBox(this);
         msgBox.setText(tr("You can still access the menu bar by pressing the ALT key"));
         msgBox.setModal(true);
         msgBox.setWindowModality(Qt::WindowModal);
