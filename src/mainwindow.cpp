@@ -363,12 +363,24 @@ void MainWindow::createActions() {
     actionMap.insert("webpage", webPageAct);
     connect(webPageAct, SIGNAL(triggered()), mediaView, SLOT(openWebPage()));
 
+    QSignalMapper* copyWebPageSignalMapper = new QSignalMapper(mediaView);
+    connect(copyWebPageSignalMapper, SIGNAL(mapped(int)), mediaView, SLOT(copyWebPage(int)));
+
     copyPageAct = new QAction(tr("Copy the YouTube &Link"), this);
     copyPageAct->setStatusTip(tr("Copy the current video YouTube link to the clipboard"));
     copyPageAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_L));
     copyPageAct->setEnabled(false);
     actionMap.insert("pagelink", copyPageAct);
-    connect(copyPageAct, SIGNAL(triggered()), mediaView, SLOT(copyWebPage()));
+    connect(copyPageAct, SIGNAL(triggered()), copyWebPageSignalMapper, SLOT(map()));
+    copyWebPageSignalMapper->setMapping(copyPageAct, 0);
+
+    copyPageTimeAct = new QAction(tr("Copy the YouTube &Link at current time"), this);
+    copyPageTimeAct->setStatusTip(tr("Copy the current video and time YouTube link to the clipboard"));
+    copyPageTimeAct->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_L));
+    copyPageTimeAct->setEnabled(false);
+    actionMap.insert("pagetimelink", copyPageTimeAct);
+    connect(copyPageTimeAct, SIGNAL(triggered()), copyWebPageSignalMapper, SLOT(map()));
+    copyWebPageSignalMapper->setMapping(copyPageTimeAct, 1);
 
     copyLinkAct = new QAction(tr("Copy the Video Stream &URL"), this);
     copyLinkAct->setStatusTip(tr("Copy the current video stream URL to the clipboard"));
@@ -695,6 +707,7 @@ void MainWindow::createMenus() {
     QMenu* shareMenu = menuBar()->addMenu(tr("&Share"));
     menuMap.insert("share", shareMenu);
     shareMenu->addAction(copyPageAct);
+    shareMenu->addAction(copyPageTimeAct);
     shareMenu->addSeparator();
     shareMenu->addAction(actionMap.value("twitter"));
     shareMenu->addAction(actionMap.value("facebook"));

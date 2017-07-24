@@ -204,6 +204,7 @@ private:
     QAction *compactViewAct;
     QAction *webPageAct;
     QAction *copyPageAct;
+    QAction *copyPageTimeAct;
     QAction *copyLinkAct;
     QAction *volumeUpAct;
     QAction *volumeDownAct;

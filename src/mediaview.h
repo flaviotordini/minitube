@@ -73,7 +73,7 @@ public slots:
     void skipBackward();
     void skipVideo();
     void openWebPage();
-    void copyWebPage();
+    void copyWebPage(int withTime = 0); // QSignalMapper doesnt have bool
     void copyVideoLink();
     void openInBrowser();
     void shareViaTwitter();
@@ -130,6 +130,7 @@ private slots:
 private:
     MediaView(QWidget *parent = 0);
     SearchParams* getSearchParams();
+    QString getVideoTimeString();
 
     static QRegExp wordRE(const QString &s);
 
