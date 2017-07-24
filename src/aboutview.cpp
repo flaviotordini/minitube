@@ -34,6 +34,7 @@ $END_LICENSE */
 #include "iconutils.h"
 #include "appwidget.h"
 #include "clickablelabel.h"
+#include "mainwindow.h"
 
 AboutView::AboutView(QWidget *parent) : View(parent) {
 
