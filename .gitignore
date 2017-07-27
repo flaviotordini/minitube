@@ -12,3 +12,5 @@ android
 qtc_packaging
 debian
 
+
+*.stash
