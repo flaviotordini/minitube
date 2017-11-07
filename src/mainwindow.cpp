@@ -1829,8 +1829,7 @@ void MainWindow::floatOnTop(bool onTop, bool showAction) {
     if (showAction) showActionInStatusBar(actionMap.value("ontop"), onTop);
 #ifdef APP_MAC
     mac::floatOnTop(winId(), onTop);
-    return;
-#endif
+#else
     if (onTop) {
         setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
         show();
@@ -1838,6 +1837,7 @@ void MainWindow::floatOnTop(bool onTop, bool showAction) {
         setWindowFlags(windowFlags() ^ Qt::WindowStaysOnTopHint);
         show();
     }
+#endif
 }
 
 void MainWindow::restore() {
