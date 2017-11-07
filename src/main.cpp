@@ -100,7 +100,7 @@ int main(int argc, char **argv) {
 
     // qt translations
     QTranslator qtTranslator;
-    qtTranslator.load("qt_" + QLocale::system().name(),
+    qtTranslator.load(QLatin1String("qt_") + QLocale::system().name(),
                       QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     app.installTranslator(&qtTranslator);
 
@@ -111,12 +111,12 @@ int main(int argc, char **argv) {
     QString dataDir = "";
 #endif
 #ifdef APP_MAC
-    QString localeDir = qApp->applicationDirPath() + "/../Resources/locale";
+    QString localeDir = qApp->applicationDirPath() + QLatin1String("/../Resources/locale");
 #else
-    QString localeDir = qApp->applicationDirPath() + "/locale";
+    QString localeDir = qApp->applicationDirPath() + QLatin1String("/locale");
 #endif
     if (!QDir(localeDir).exists()) {
-        localeDir = dataDir + "/locale";
+        localeDir = dataDir + QLatin1String("/locale");
     }
     // qDebug() << "Using locale dir" << localeDir << locale;
     QTranslator translator;
