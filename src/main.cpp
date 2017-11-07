@@ -123,9 +123,6 @@ int main(int argc, char **argv) {
     translator.load(QLocale::system(), QString(), QString(), localeDir);
     app.installTranslator(&translator);
 
-    // all string literals are UTF-8
-    // QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
-
     QNetworkProxyFactory::setUseSystemConfiguration(true);
 
     showWindow(app, dataDir);
