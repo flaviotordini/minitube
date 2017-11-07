@@ -61,6 +61,9 @@ void showWindow(QtSingleApplication &app, const QString &dataDir) {
 }
 
 int main(int argc, char **argv) {
+#ifndef Q_NO_DEBUG_OUTPUT
+    qSetMessagePattern("[%{function}] %{message}");
+#endif
 
     // Seed random number generator
     qsrand(QDateTime::currentDateTime().toTime_t());
