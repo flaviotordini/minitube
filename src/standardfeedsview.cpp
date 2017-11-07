@@ -100,17 +100,17 @@ void StandardFeedsView::addVideoSourceWidget(VideoSource *videoSource) {
 QList<YTStandardFeed*> StandardFeedsView::getMainFeeds() {
     QList<YTStandardFeed*> feeds;
 
-    feeds << buildStardardFeed("most_popular", tr("Most Popular"));
-          // << buildStardardFeed("recently_featured", tr("Featured"))
-          // << buildStardardFeed("most_shared", tr("Most Shared"))
-          // << buildStardardFeed("most_discussed", tr("Most Discussed"))
-          // << buildStardardFeed("top_rated", tr("Top Rated"))
-          // << buildStardardFeed("most_popular", tr("All Time Popular"), "all_time");
+    feeds << buildStandardFeed("most_popular", tr("Most Popular"));
+          // << buildStandardFeed("recently_featured", tr("Featured"))
+          // << buildStandardFeed("most_shared", tr("Most Shared"))
+          // << buildStandardFeed("most_discussed", tr("Most Discussed"))
+          // << buildStandardFeed("top_rated", tr("Top Rated"))
+          // << buildStandardFeed("most_popular", tr("All Time Popular"), "all_time");
 
     return feeds;
 }
 
-YTStandardFeed* StandardFeedsView::buildStardardFeed(const QString &feedId, const QString &label, QString time) {
+YTStandardFeed* StandardFeedsView::buildStandardFeed(const QString &feedId, const QString &label, QString time) {
     YTStandardFeed *feed = new YTStandardFeed(this);
     feed->setFeedId(feedId);
     feed->setLabel(label);

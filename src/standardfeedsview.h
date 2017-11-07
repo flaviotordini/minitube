@@ -55,7 +55,7 @@ private slots:
 private:
     void addVideoSourceWidget(VideoSource *videoSource);
     QList<YTStandardFeed*> getMainFeeds();
-    YTStandardFeed* buildStardardFeed(const QString &feedId, const QString &label, QString time = QString());
+    YTStandardFeed* buildStandardFeed(const QString &feedId, const QString &label, QString time = QString());
     QGridLayout *layout;
     
 };
