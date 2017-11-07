@@ -51,6 +51,7 @@ AppWidget::AppWidget(const QString &name, const QString &code, QWidget *parent) 
     layout->setAlignment(Qt::AlignHCenter);
 
     icon = new QLabel();
+    icon->setMinimumHeight(128);
     layout->addWidget(icon);
     const QString iconUrl = filesUrl + QLatin1String("products/") + unixName + QLatin1String(".png");
     QObject *reply = Http::instance().get(iconUrl);
