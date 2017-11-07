@@ -1617,7 +1617,7 @@ void MainWindow::volumeMute() {
     bool muted = volumeSlider->audioOutput()->isMuted();
     volumeSlider->audioOutput()->setMuted(!muted);
     qApp->processEvents();
-    if (muted && volumeSlider->audioOutput()->volume() == 0) {
+    if (muted && volumeSlider->audioOutput()->volume() == 0.) {
         volumeSlider->audioOutput()->setVolume(volumeSlider->maximumVolume());
     }
     qDebug() << volumeSlider->audioOutput()->isMuted() << volumeSlider->audioOutput()->volume();
