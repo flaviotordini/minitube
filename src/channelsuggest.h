@@ -34,7 +34,7 @@ public:
     void suggest(const QString &query);
 
 signals:
-    void ready(const QList<Suggestion*> &suggestions);
+    void ready(const QVector<Suggestion*> &suggestions);
 
 private slots:
     void handleNetworkData(QByteArray response);

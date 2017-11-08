@@ -43,7 +43,7 @@ protected:
 
 private slots:
     void activate();
-    void previewVideo(const QList<Video*> &videos);
+    void previewVideo(const QVector<Video*> &videos);
     void setPixmapData(const QByteArray &bytes);
 
 private:

@@ -26,47 +26,33 @@ static const int kEmptyDefinitionCode = -1;
 static const VideoDefinition kEmptyDefinition(QString(), kEmptyDefinitionCode);
 
 template <typename T, T (VideoDefinition::*Getter)() const>
-const VideoDefinition& getDefinitionForImpl(T matchValue) {
-    const QList<VideoDefinition>& definitions = VideoDefinition::getDefinitions();
-    const int size = definitions.size();
-    for (int ii = 0; ii < size; ++ii) {
-        const VideoDefinition& def = definitions.at(ii);
-        if ((def.*Getter)() == matchValue)
-            return def;
+const VideoDefinition &getDefinitionForImpl(T matchValue) {
+    foreach (const VideoDefinition &def, VideoDefinition::getDefinitions()) {
+        if ((def.*Getter)() == matchValue) return def;
     }
-
     return kEmptyDefinition;
 }
 }
 
 // static
-const QList<VideoDefinition>& VideoDefinition::getDefinitions() {
-    static QList<VideoDefinition> definitions = QList<VideoDefinition>()
-        << VideoDefinition(QLatin1String("360p"), 18)
-        << VideoDefinition(QLatin1String("720p"), 22)
-        << VideoDefinition(QLatin1String("1080p"), 37);
+const QVector<VideoDefinition> &VideoDefinition::getDefinitions() {
+    static const QVector<VideoDefinition> definitions = {
+            VideoDefinition(QLatin1String("360p"), 18), VideoDefinition(QLatin1String("720p"), 22),
+            VideoDefinition(QLatin1String("1080p"), 37)};
     return definitions;
 }
 
 // static
-const VideoDefinition& VideoDefinition::getDefinitionFor(const QString& name) {
-    return getDefinitionForImpl<const QString&, &VideoDefinition::getName>(name);
+const VideoDefinition &VideoDefinition::getDefinitionFor(const QString &name) {
+    return getDefinitionForImpl<const QString &, &VideoDefinition::getName>(name);
 }
 
 // static
-const VideoDefinition& VideoDefinition::getDefinitionFor(int code) {
+const VideoDefinition &VideoDefinition::getDefinitionFor(int code) {
     return getDefinitionForImpl<int, &VideoDefinition::getCode>(code);
 }
 
-VideoDefinition::VideoDefinition(const QString& name, int code) :
-    m_name(name),
-    m_code(code) {
-}
-
-VideoDefinition::VideoDefinition(const VideoDefinition& other) :
-    m_name(other.m_name),
-    m_code(other.m_code) {
-}
+VideoDefinition::VideoDefinition(const QString &name, int code) : m_name(name), m_code(code) {}
 
 bool VideoDefinition::isEmpty() const {
     return m_code == kEmptyDefinitionCode && m_name.isEmpty();

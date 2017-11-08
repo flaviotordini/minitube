@@ -26,22 +26,20 @@ $END_LICENSE */
 #include "video.h"
 #include "ytchannel.h"
 
-#include "yt3.h"
-#include "yt3listparser.h"
 #include "datautils.h"
 #include "mainwindow.h"
+#include "yt3.h"
+#include "yt3listparser.h"
 
 namespace {
 
 QString RFC3339toString(const QDateTime &dt) {
     return dt.toString("yyyy-MM-ddThh:mm:ssZ");
 }
-
 }
 
-YTSearch::YTSearch(SearchParams *searchParams, QObject *parent) :
-    PaginatedVideoSource(parent),
-    searchParams(searchParams) {
+YTSearch::YTSearch(SearchParams *searchParams, QObject *parent)
+    : PaginatedVideoSource(parent), searchParams(searchParams) {
     searchParams->setParent(this);
 }
 
@@ -67,9 +65,10 @@ void YTSearch::loadVideos(int max, int startIndex) {
 
     if (!searchParams->keywords().isEmpty()) {
         if (searchParams->keywords().startsWith("http://") ||
-                searchParams->keywords().startsWith("https://")) {
+            searchParams->keywords().startsWith("https://")) {
             q.addQueryItem("q", YTSearch::videoIdFromUrl(searchParams->keywords()));
-        } else q.addQueryItem("q", searchParams->keywords());
+        } else
+            q.addQueryItem("q", searchParams->keywords());
     }
 
     if (!searchParams->channelId().isEmpty())
@@ -101,18 +100,23 @@ void YTSearch::loadVideos(int max, int startIndex) {
 
     switch (searchParams->time()) {
     case SearchParams::TimeToday:
-        q.addQueryItem("publishedAfter", RFC3339toString(QDateTime::currentDateTimeUtc().addSecs(-60*60*24)));
+        q.addQueryItem("publishedAfter",
+                       RFC3339toString(QDateTime::currentDateTimeUtc().addSecs(-60 * 60 * 24)));
         break;
     case SearchParams::TimeWeek:
-        q.addQueryItem("publishedAfter", RFC3339toString(QDateTime::currentDateTimeUtc().addSecs(-60*60*24*7)));
+        q.addQueryItem("publishedAfter",
+                       RFC3339toString(QDateTime::currentDateTimeUtc().addSecs(-60 * 60 * 24 * 7)));
         break;
     case SearchParams::TimeMonth:
-        q.addQueryItem("publishedAfter", RFC3339toString(QDateTime::currentDateTimeUtc().addSecs(-60*60*24*30)));
+        q.addQueryItem("publishedAfter", RFC3339toString(QDateTime::currentDateTimeUtc().addSecs(
+                                                 -60 * 60 * 24 * 30)));
         break;
     }
 
     if (searchParams->publishedAfter()) {
-        q.addQueryItem("publishedAfter", RFC3339toString(QDateTime::fromTime_t(searchParams->publishedAfter()).toUTC()));
+        q.addQueryItem(
+                "publishedAfter",
+                RFC3339toString(QDateTime::fromTime_t(searchParams->publishedAfter()).toUTC()));
     }
 
     switch (searchParams->quality()) {
@@ -144,7 +148,7 @@ void YTSearch::parseResults(QByteArray data) {
     if (aborted) return;
 
     YT3ListParser parser(data);
-    const QList<Video*> &videos = parser.getVideos();
+    const QVector<Video *> &videos = parser.getVideos();
     suggestions = parser.getSuggestions();
 
     bool tryingWithNewToken = setPageToken(parser.getNextPageToken());
@@ -168,7 +172,7 @@ void YTSearch::abort() {
     aborted = true;
 }
 
-const QStringList & YTSearch::getSuggestions() {
+const QStringList &YTSearch::getSuggestions() {
     return suggestions;
 }
 
@@ -215,21 +219,20 @@ QTime YTSearch::videoTimestampFromUrl(const QString &url) {
         if (!ok) continue;
         char unit = str.at(str.length() - 1).toLatin1();
 
-        switch (unit)
-        {
-            case 'h':
-                value *= 60 * 60; // hours -> seconds
-                break;
+        switch (unit) {
+        case 'h':
+            value *= 60 * 60; // hours -> seconds
+            break;
 
-            case 'm':
-                value *= 60; // minutes -> seconds
-                break;
+        case 'm':
+            value *= 60; // minutes -> seconds
+            break;
 
-            case 's':
-                break;
+        case 's':
+            break;
 
-            default:
-                continue;
+        default:
+            continue;
         }
 
         res = res.addSecs(value);
@@ -238,10 +241,12 @@ QTime YTSearch::videoTimestampFromUrl(const QString &url) {
     return res;
 }
 
-QList<QAction*> YTSearch::getActions() {
-    QList<QAction*> channelActions;
-    if (searchParams->channelId().isEmpty())
-        return channelActions;
-    channelActions << MainWindow::instance()->getActionMap().value("subscribe-channel");
+const QList<QAction *> &YTSearch::getActions() {
+    static const QList<QAction *> channelActions = {
+            MainWindow::instance()->getActionMap().value("subscribe-channel")};
+    if (searchParams->channelId().isEmpty()) {
+        static const QList<QAction *> noActions;
+        return noActions;
+    }
     return channelActions;
 }

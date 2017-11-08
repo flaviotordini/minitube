@@ -62,7 +62,7 @@ public slots:
     void removeChannel(QObject *obj);
 
 private:
-    QList<YTChannel*> channels;
+    QVector<YTChannel*> channels;
     int hoveredRow;
     QSqlError sqlError;
 

@@ -85,7 +85,7 @@ public:
 public slots:
     void searchMore();
     void searchNeeded();
-    void addVideos(QList<Video*> newVideos);
+    void addVideos(const QVector<Video *> &newVideos);
     void searchFinished(int total);
     void searchError(const QString &message);
     void updateVideoSender();
@@ -102,7 +102,7 @@ public slots:
 
 signals:
     void activeRowChanged(int);
-    void needSelectionFor(QList<Video*>);
+    void needSelectionFor(const QVector<Video*> &videos);
     void haveSuggestions(const QStringList &suggestions);
 
 private:
@@ -114,7 +114,7 @@ private:
     bool canSearchMore;
     bool firstSearch;
 
-    QList<Video*> videos;
+    QVector<Video*> videos;
     int startIndex;
     int max;
 

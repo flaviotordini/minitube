@@ -48,13 +48,13 @@ protected:
     void paintEvent(QPaintEvent *event);
     
 private slots:
-    void layoutCategories(const QList<YTCategory> &categories);
+    void layoutCategories(const QVector<YTCategory> &categories);
     void selectWorldwideRegion();
     void selectLocalRegion();
 
 private:
     void addVideoSourceWidget(VideoSource *videoSource);
-    QList<YTStandardFeed*> getMainFeeds();
+    QVector<YTStandardFeed*> getMainFeeds();
     YTStandardFeed* buildStandardFeed(const QString &feedId, const QString &label, QString time = QString());
     QGridLayout *layout;
     

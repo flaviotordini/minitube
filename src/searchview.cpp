@@ -153,7 +153,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 
     youtubeSuggest = new YTSuggester(this);
     channelSuggest = new ChannelSuggest(this);
-    connect(channelSuggest, SIGNAL(ready(QList<Suggestion*>)), SLOT(onChannelSuggestions(QList<Suggestion*>)));
+    connect(channelSuggest, SIGNAL(ready(QVector<Suggestion*>)), SLOT(onChannelSuggestions(QVector<Suggestion*>)));
     searchTypeChanged(0);
 
     searchLayout->addWidget(queryEdit->toWidget(), 0, Qt::AlignBaseline);
@@ -438,6 +438,6 @@ void SearchView::screenChanged() {
     logo->setPixmap(IconUtils::pixmap(":/images/app.png"));
 }
 
-void SearchView::onChannelSuggestions(const QList<Suggestion *> &suggestions) {
+void SearchView::onChannelSuggestions(const QVector<Suggestion *> &suggestions) {
     lastChannelSuggestions = suggestions;
 }

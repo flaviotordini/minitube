@@ -164,15 +164,14 @@ Video* PlaylistModel::activeVideo() const {
 void PlaylistModel::setVideoSource(VideoSource *videoSource) {
     beginResetModel();
     while (!videos.isEmpty()) delete videos.takeFirst();
-    videos.clear();
     m_activeVideo = 0;
     m_activeRow = -1;
     startIndex = 1;
     endResetModel();
 
     this->videoSource = videoSource;
-    connect(videoSource, SIGNAL(gotVideos(QList<Video*>)),
-            SLOT(addVideos(QList<Video*>)), Qt::UniqueConnection);
+    connect(videoSource, SIGNAL(gotVideos(QVector<Video*>)),
+            SLOT(addVideos(QVector<Video*>)), Qt::UniqueConnection);
     connect(videoSource, SIGNAL(finished(int)),
             SLOT(searchFinished(int)), Qt::UniqueConnection);
     connect(videoSource, SIGNAL(error(QString)),
@@ -208,6 +207,7 @@ void PlaylistModel::abortSearch() {
     // while (!videos.isEmpty()) delete videos.takeFirst();
     // if (videoSource) videoSource->abort();
     videos.clear();
+    videos.squeeze();
     searching = false;
     m_activeRow = -1;
     m_activeVideo = 0;
@@ -236,8 +236,9 @@ void PlaylistModel::searchError(const QString &message) {
     emit dataChanged( createIndex( maxItems, 0 ), createIndex( maxItems, columnCount() - 1 ) );
 }
 
-void PlaylistModel::addVideos(QList<Video*> newVideos) {
+void PlaylistModel::addVideos(const QVector<Video*> &newVideos) {
     if (newVideos.isEmpty()) return;
+    videos.reserve(videos.size() + newVideos.size());
     beginInsertRows(QModelIndex(), videos.size(), videos.size() + newVideos.size() - 2);
     videos.append(newVideos);
     endInsertRows();
@@ -245,7 +246,6 @@ void PlaylistModel::addVideos(QList<Video*> newVideos) {
         connect(video, SIGNAL(gotThumbnail()),
                 SLOT(updateVideoSender()), Qt::UniqueConnection);
         video->loadThumbnail();
-        qApp->processEvents();
     }
 }
 
@@ -336,8 +336,9 @@ bool PlaylistModel::removeRows(int position, int rows, const QModelIndex & /*par
 }
 
 void PlaylistModel::removeIndexes(QModelIndexList &indexes) {
-    QList<Video*> originalList(videos);
-    QList<Video*> delitems;
+    QVector<Video*> originalList(videos);
+    QVector<Video*> delitems;
+    delitems.reserve(indexes.size());
     foreach (const QModelIndex &index, indexes) {
         if (index.row() >= originalList.size()) continue;
         Video* video = originalList.at(index.row());
@@ -349,9 +350,8 @@ void PlaylistModel::removeIndexes(QModelIndexList &indexes) {
             endRemoveRows();
         }
     }
-
     qDeleteAll(delitems);
-
+    videos.squeeze();
 }
 
 // --- Sturm und drang ---
@@ -417,7 +417,7 @@ bool PlaylistModel::dropMimeData(const QMimeData *data,
     const VideoMimeData* videoMimeData = qobject_cast<const VideoMimeData*>( data );
     if(!videoMimeData ) return false;
 
-    QList<Video*> droppedVideos = videoMimeData->videos();
+    QVector<Video*> droppedVideos = videoMimeData->videos();
     foreach( Video *video, droppedVideos) {
         
         // remove videos
@@ -460,7 +460,7 @@ QModelIndex PlaylistModel::indexForVideo(Video* video) {
 }
 
 void PlaylistModel::move(QModelIndexList &indexes, bool up) {
-    QList<Video*> movedVideos;
+    QVector<Video*> movedVideos;
 
     foreach (const QModelIndex &index, indexes) {
         int row = index.row();

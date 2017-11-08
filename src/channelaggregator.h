@@ -49,7 +49,7 @@ signals:
     void unwatchedCountChanged(int count);
 
 private slots:
-    void videosLoaded(const QList<Video*> &videos);
+    void videosLoaded(const QVector<Video*> &videos);
     void processNextChannel();
     void checkWebPage(YTChannel *channel);
     void parseWebPage(const QByteArray &bytes);
@@ -67,7 +67,7 @@ private:
     bool running;
 
     int newVideoCount;
-    QList<YTChannel*> updatedChannels;
+    QVector<YTChannel*> updatedChannels;
 
     QTimer *timer;
     bool stopped;

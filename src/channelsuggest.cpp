@@ -38,8 +38,11 @@ void ChannelSuggest::suggest(const QString &query) {
 }
 
 void ChannelSuggest::handleNetworkData(QByteArray data) {
+    const int maxSuggestions = 10;
     QStringList choices;
-    QList<Suggestion*> suggestions;
+    choices.reserve(maxSuggestions);
+    QVector<Suggestion*> suggestions;
+    suggestions.reserve(maxSuggestions);
 
     QString html = QString::fromUtf8(data);
     QRegExp re("/(?:user|channel)/[a-zA-Z0-9]+[^>]+data-ytid=[\"']([^\"']+)[\"'][^>]+>([a-zA-Z0-9 ]+)</a>");
@@ -52,7 +55,7 @@ void ChannelSuggest::handleNetworkData(QByteArray data) {
             QString channelId = re.cap(1);
             suggestions << new Suggestion(choice, "channel", channelId);
             choices << choice;
-            if (choices.size() == 10) break;
+            if (choices.size() == maxSuggestions) break;
         }
         pos += re.matchedLength();
     }

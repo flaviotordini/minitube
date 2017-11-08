@@ -45,7 +45,8 @@ void YTSuggester::suggest(const QString &query) {
 }
 
 void YTSuggester::handleNetworkData(QByteArray response) {
-    QList<Suggestion*> suggestions;
+    QVector<Suggestion*> suggestions;
+    suggestions.reserve(10);
     QXmlStreamReader xml(response);
     while (!xml.atEnd()) {
         xml.readNext();

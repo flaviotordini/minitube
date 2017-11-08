@@ -9,14 +9,14 @@ class YT3ListParser : public QObject {
 
 public:
     YT3ListParser(const QByteArray &bytes);
-    const QList<Video*> &getVideos() { return videos; }
+    const QVector<Video*> &getVideos() { return videos; }
     const QStringList &getSuggestions() { return suggestions; }
     const QString &getNextPageToken() { return nextPageToken; }
 
 private:
     void parseItem(const QJsonObject &item);
 
-    QList<Video*> videos;
+    QVector<Video*> videos;
     QStringList suggestions;
     QString nextPageToken;
 };

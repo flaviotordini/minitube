@@ -34,14 +34,14 @@ public:
     virtual QStringList formats() const;
     virtual bool hasFormat( const QString &mimeType ) const;
 
-    QList<Video*> videos() const { return m_videos; }
+    QVector<Video*> videos() const { return m_videos; }
 
     void addVideo(Video *video) {
         m_videos << video;
     }
 
 private:
-    QList<Video*> m_videos;
+    QVector<Video*> m_videos;
 
 };
 

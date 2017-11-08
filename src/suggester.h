@@ -62,7 +62,7 @@ public:
     virtual void suggest(const QString &query) = 0;
 
 signals:
-    void ready(const QList<Suggestion*> &suggestions);
+    void ready(const QVector<Suggestion*> &suggestions);
 
 };
 

@@ -46,7 +46,7 @@ bool PaginatedVideoSource::maybeReloadToken(int max, int startIndex) {
 
     if (nextPageToken.isEmpty()) {
         // previous request did not return a page token. Game over.
-        // emit gotVideos(QList<Video*>());
+        // emit gotVideos(QVector<Video*>());
         emit finished(0);
         return true;
     }
@@ -87,7 +87,7 @@ void PaginatedVideoSource::reloadToken() {
     connect(reply, SIGNAL(error(QString)), SLOT(requestError(QString)));
 }
 
-void PaginatedVideoSource::loadVideoDetails(const QList<Video*> &videos) {
+void PaginatedVideoSource::loadVideoDetails(const QVector<Video*> &videos) {
     QString videoIds;
     videoIds.reserve(videos.size()*12);
     videoMap.reserve(videos.size());

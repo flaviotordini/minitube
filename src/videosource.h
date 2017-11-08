@@ -21,33 +21,34 @@ $END_LICENSE */
 #ifndef VIDEOSOURCE_H
 #define VIDEOSOURCE_H
 
-#include <QtCore>
 #include <QAction>
+#include <QtCore>
 
 class Video;
 
 class VideoSource : public QObject {
-
     Q_OBJECT
 
 public:
-    VideoSource(QObject *parent = 0) : QObject(parent) { }
+    VideoSource(QObject *parent = 0) : QObject(parent) {}
     virtual void loadVideos(int max, int startIndex) = 0;
     virtual bool hasMoreVideos() { return true; }
     virtual void abort() = 0;
-    virtual const QStringList & getSuggestions() = 0;
+    virtual const QStringList &getSuggestions() = 0;
     virtual QString getName() = 0;
-    virtual QList<QAction*> getActions() { return QList<QAction*>(); }
+    virtual const QList<QAction *> &getActions() {
+        static const QList<QAction *> noActions;
+        return noActions;
+    }
 
 public slots:
     void setParam(const QString &name, const QVariant &value);
 
 signals:
-    void gotVideos(QList<Video*> videos);
+    void gotVideos(const QVector<Video *> &videos);
     void finished(int total);
     void error(QString message);
     void nameChanged(QString name);
-
 };
 
 #endif // VIDEOSOURCE_H

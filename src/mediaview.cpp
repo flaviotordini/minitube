@@ -83,8 +83,8 @@ void MediaView::initialize() {
     connect(playlistModel, SIGNAL(activeRowChanged(int)),
             SLOT(activeRowChanged(int)));
     // needed to restore the selection after dragndrop
-    connect(playlistModel, SIGNAL(needSelectionFor(QList<Video*>)),
-            SLOT(selectVideos(QList<Video*>)));
+    connect(playlistModel, SIGNAL(needSelectionFor(QVector<Video*>)),
+            SLOT(selectVideos(QVector<Video*>)));
     playlistView->setModel(playlistModel);
 
     connect(playlistView->selectionModel(),
@@ -736,7 +736,7 @@ void MediaView::removeSelected() {
     playlistModel->removeIndexes(indexes);
 }
 
-void MediaView::selectVideos(QList<Video*> videos) {
+void MediaView::selectVideos(const QVector<Video *> &videos) {
     foreach (Video *video, videos) {
         QModelIndex index = playlistModel->indexForVideo(video);
         playlistView->selectionModel()->select(index, QItemSelectionModel::Select);
@@ -1102,7 +1102,7 @@ void MediaView::updateSubscriptionAction(Video *video, bool subscribed) {
 #ifdef APP_LINUX_NO
         static QIcon tintedIcon;
         if (tintedIcon.isNull()) {
-            QList<QSize> sizes;
+            QVector<QSize> sizes;
             sizes << QSize(16, 16);
             tintedIcon = IconUtils::tintedIcon("bookmark-new", QColor(254, 240, 0), sizes);
         }

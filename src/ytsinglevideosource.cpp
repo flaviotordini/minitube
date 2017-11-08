@@ -41,7 +41,7 @@ void YTSingleVideoSource::loadVideos(int max, int startIndex) {
     if (startIndex == 1) {
 
         if (video) {
-            QList<Video*> videos;
+            QVector<Video*> videos;
             videos << video->clone();
             if (name.isEmpty()) {
                 name = videos.first()->title();
@@ -84,7 +84,7 @@ void YTSingleVideoSource::parseResults(QByteArray data) {
     if (aborted) return;
 
     YT3ListParser parser(data);
-    const QList<Video*> &videos = parser.getVideos();
+    const QVector<Video*> &videos = parser.getVideos();
 
     bool tryingWithNewToken = setPageToken(parser.getNextPageToken());
     if (tryingWithNewToken) return;

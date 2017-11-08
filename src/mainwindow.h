@@ -178,7 +178,7 @@ private:
     // view mechanism
     QStackedWidget *views;
     QStack<QWidget*> history;
-    // QList<QAction*> viewActions;
+    // QVector<QAction*> viewActions;
 
     // view widgets
     HomeView *homeView;

@@ -21,7 +21,7 @@ $END_LICENSE */
 #include "temporary.h"
 #include "constants.h"
 
-static QList<QString> paths;
+static QVector<QString> paths;
 #ifdef APP_LINUX
 static QString userName;
 #endif

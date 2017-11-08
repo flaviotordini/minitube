@@ -42,7 +42,7 @@ void VideoSourceWidget::activate() {
     emit activated(videoSource);
 }
 
-void VideoSourceWidget::previewVideo(const QList<Video *> &videos) {
+void VideoSourceWidget::previewVideo(const QVector<Video *> &videos) {
     videoSource->disconnect();
     if (videos.isEmpty()) return;
     Video *video = videos.first();
@@ -62,8 +62,8 @@ void VideoSourceWidget::setPixmapData(const QByteArray &bytes) {
 }
 
 void VideoSourceWidget::loadPreview() {
-    connect(videoSource, SIGNAL(gotVideos(QList<Video*>)),
-            SLOT(previewVideo(QList<Video*>)), Qt::UniqueConnection);
+    connect(videoSource, SIGNAL(gotVideos(QVector<Video*>)),
+            SLOT(previewVideo(QVector<Video*>)), Qt::UniqueConnection);
     videoSource->loadVideos(1, 1);
 }
 

@@ -24,28 +24,26 @@ $END_LICENSE */
 #include <QtCore>
 
 class VideoDefinition {
-
 public:
-    static const QList<VideoDefinition>& getDefinitions();
-    static const VideoDefinition& getDefinitionFor(const QString& name);
-    static const VideoDefinition& getDefinitionFor(int code);
+    static const QVector<VideoDefinition> &getDefinitions();
+    static const VideoDefinition &getDefinitionFor(const QString &name);
+    static const VideoDefinition &getDefinitionFor(int code);
 
-    VideoDefinition(const QString& name, int code);
-    VideoDefinition(const VideoDefinition& other);
+    VideoDefinition(const QString &name, int code);
 
-    const QString& getName() const { return m_name; }
+    const QString &getName() const { return m_name; }
     int getCode() const { return m_code; }
     bool isEmpty() const;
 
-    VideoDefinition& operator=(const VideoDefinition&);
+    VideoDefinition &operator=(const VideoDefinition &);
 
 private:
     const QString m_name;
     const int m_code;
 };
 
-inline bool operator==(const VideoDefinition& lhs, const VideoDefinition& rhs) {
-    return lhs.getCode() == rhs.getCode() && lhs.getName() == rhs.getName();
+inline bool operator==(const VideoDefinition &lhs, const VideoDefinition &rhs) {
+    return lhs.getCode() == rhs.getCode();
 }
 
 #endif // VIDEODEFINITION_H

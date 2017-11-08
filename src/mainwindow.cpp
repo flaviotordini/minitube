@@ -1651,7 +1651,7 @@ void MainWindow::setDefinitionMode(const QString &definitionName) {
 
 void MainWindow::toggleDefinitionMode() {
     const QString definitionName = QSettings().value("definition").toString();
-    const QList<VideoDefinition>& definitions = VideoDefinition::getDefinitions();
+    const QVector<VideoDefinition>& definitions = VideoDefinition::getDefinitions();
     const VideoDefinition& currentDefinition = VideoDefinition::getDefinitionFor(definitionName);
     if (currentDefinition.isEmpty()) {
         setDefinitionMode(definitions.first().getName());

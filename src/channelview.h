@@ -72,7 +72,7 @@ private:
 
     ChannelListView *listView;
     ChannelModel *channelsModel;
-    QList<QAction*> statusActions;
+    QVector<QAction*> statusActions;
     bool showUpdated;
     SortBy sortBy;
     QAction *markAsWatchedAction;

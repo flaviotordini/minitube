@@ -37,7 +37,7 @@ public:
     void abort();
     const QStringList & getSuggestions();
     QString getName();
-    QList<QAction*> getActions();
+    const QList<QAction *> &getActions();
     SearchParams* getSearchParams() const { return searchParams; }
     static QString videoIdFromUrl(const QString &url);
     static QTime videoTimestampFromUrl(const QString &url);

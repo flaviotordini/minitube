@@ -264,7 +264,7 @@ void Video::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
         urlMap.insert(format, url);
     }
 
-    const QList<VideoDefinition>& definitions = VideoDefinition::getDefinitions();
+    const QVector<VideoDefinition>& definitions = VideoDefinition::getDefinitions();
     int previousIndex = std::max(definitions.indexOf(definition) - 1, 0);
     for (; previousIndex >= 0; previousIndex--) {
         const VideoDefinition& previousDefinition = definitions.at(previousIndex);

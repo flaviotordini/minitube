@@ -39,7 +39,7 @@ public:
     virtual const QString &getDescription() { return nullString; }
     virtual void appear() {}
     virtual void disappear() {}
-    // QList<QAction*> getViewActions() { return QList<QAction*>(); }
+    // QVector<QAction*> getViewActions() { return QVector<QAction*>(); }
 };
 
 #endif // VIEW_H

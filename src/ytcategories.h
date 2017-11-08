@@ -37,7 +37,7 @@ public:
     void loadCategories(QString language = QString());
     
 signals:
-    void categoriesLoaded(const QList<YTCategory> &);
+    void categoriesLoaded(const QVector<YTCategory> &);
     void error(QString message);
 
 private slots:

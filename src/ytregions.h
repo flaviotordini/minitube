@@ -36,7 +36,7 @@ class YTRegions : public QObject {
     Q_OBJECT
 
 public:
-    static const QList<YTRegion> & list();
+    static const QVector<YTRegion> & list();
     static const YTRegion & localRegion();
     static const YTRegion & worldwideRegion();
     static void setRegion(const QString &regionId);

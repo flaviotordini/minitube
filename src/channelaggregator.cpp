@@ -79,6 +79,7 @@ void ChannelAggregator::run() {
     running = true;
     newVideoCount = 0;
     updatedChannels.clear();
+    updatedChannels.squeeze();
 
     if (!Database::instance().getConnection().transaction())
         qWarning() << "Transaction failed" << __PRETTY_FUNCTION__;
@@ -140,7 +141,7 @@ void ChannelAggregator::reallyProcessChannel(YTChannel *channel) {
     params->setTransient(true);
     params->setPublishedAfter(channel->getChecked());
     YTSearch *videoSource = new YTSearch(params, this);
-    connect(videoSource, SIGNAL(gotVideos(QList<Video*>)), SLOT(videosLoaded(QList<Video*>)));
+    connect(videoSource, SIGNAL(gotVideos(QVector<Video*>)), SLOT(videosLoaded(QVector<Video*>)));
     videoSource->loadVideos(50, 1);
 
     channel->updateChecked();
@@ -189,7 +190,7 @@ void ChannelAggregator::finish() {
     running = false;
 }
 
-void ChannelAggregator::videosLoaded(const QList<Video*> &videos) {
+void ChannelAggregator::videosLoaded(const QVector<Video*> &videos) {
     sender()->deleteLater();
 
     foreach (Video* video, videos) {

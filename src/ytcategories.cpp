@@ -52,7 +52,7 @@ void YTCategories::loadCategories(QString language) {
 }
 
 void YTCategories::parseCategories(QByteArray bytes) {
-    QList<YTCategory> categories;
+    QVector<YTCategory> categories;
 
     QJsonDocument doc = QJsonDocument::fromJson(bytes);
     QJsonObject obj = doc.object();

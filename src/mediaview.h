@@ -57,7 +57,7 @@ public:
 #ifdef APP_PHONON
     void setMediaObject(Phonon::MediaObject *mediaObject);
 #endif
-    const QList<VideoSource*> & getHistory() { return history; }
+    const QVector<VideoSource*> & getHistory() { return history; }
     int getHistoryIndex();
     PlaylistModel* getPlaylistModel() { return playlistModel; }
     const QString &getCurrentVideoId();
@@ -108,7 +108,7 @@ private slots:
     void itemActivated(const QModelIndex &index);
     void selectionChanged (const QItemSelection & selected, const QItemSelection & deselected);
     void activeRowChanged(int);
-    void selectVideos(QList<Video*> videos);
+    void selectVideos(const QVector<Video*> &videos);
     void gotStreamUrl(QUrl streamUrl);
     void handleError(const QString &message);
     // phonon
@@ -155,8 +155,8 @@ private:
 #endif
 
     DownloadItem *downloadItem;
-    QList<VideoSource*> history;
-    QList<QAction*> currentVideoActions;
+    QVector<VideoSource*> history;
+    QVector<QAction*> currentVideoActions;
 
     qint64 currentVideoSize;
 

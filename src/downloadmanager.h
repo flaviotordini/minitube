@@ -35,7 +35,7 @@ public:
     static DownloadManager* instance();
     void clear();
     void addItem(Video *video);
-    const QList<DownloadItem*> getItems() { return items; }
+    const QVector<DownloadItem*> getItems() { return items; }
     DownloadModel* getModel() { return downloadModel; }
     DownloadItem* itemForVideo(Video *video);
     int activeItems();
@@ -54,7 +54,7 @@ private slots:
 private:
     DownloadManager(QWidget *parent = 0);
 
-    QList<DownloadItem*> items;
+    QVector<DownloadItem*> items;
     DownloadModel *downloadModel;
 
 };

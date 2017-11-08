@@ -53,12 +53,12 @@ private slots:
     void suggest();
     void itemEntered(QListWidgetItem *item);
     void currentItemChanged(QListWidgetItem *item);
-    void suggestionsReady(const QList<Suggestion*> &suggestions);
+    void suggestionsReady(const QVector<Suggestion*> &suggestions);
     void adjustPosition();
     void enableItemHovering();
 
 private:
-    void showSuggestions(const QList<Suggestion*> &suggestions);
+    void showSuggestions(const QVector<Suggestion*> &suggestions);
     void hideSuggestions();
 
     SearchWidget *buddy;
@@ -68,7 +68,7 @@ private:
     QTimer *timer;
     bool enabled;
     Suggester *suggester;
-    QList<Suggestion*> suggestions;
+    QVector<Suggestion*> suggestions;
     bool itemHovering;
 };
 

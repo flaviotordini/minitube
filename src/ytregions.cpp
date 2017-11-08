@@ -22,8 +22,8 @@ $END_LICENSE */
 
 YTRegions::YTRegions() : QObject() { }
 
-const QList<YTRegion> & YTRegions::list() {
-    static QList<YTRegion> list;
+const QVector<YTRegion> & YTRegions::list() {
+    static QVector<YTRegion> list;
     if (list.isEmpty()) {
         list << r(tr("Algeria"), "DZ")
              << r(tr("Argentina"), "AR")

@@ -36,7 +36,7 @@ public:
     bool isPageTokenExpired();
     void reloadToken();
     void setAsyncDetails(bool value) { asyncDetails = value; }
-    void loadVideoDetails(const QList<Video*> &videos);
+    void loadVideoDetails(const QVector<Video*> &videos);
 
 signals:
     void gotDetails();
@@ -51,7 +51,7 @@ protected:
     int currentMax;
     int currentStartIndex;
     bool reloadingToken;
-    QList<Video*> videos;
+    QVector<Video*> videos;
     QHash<QString, Video*> videoMap;
     bool asyncDetails;
 

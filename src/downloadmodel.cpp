@@ -41,7 +41,7 @@ QVariant DownloadModel::data(const QModelIndex &index, int role) const {
     int row = index.row();
     if (row < 0 || row >= rowCount()) return QVariant();
 
-    QList<DownloadItem*> items = downloadManager->getItems();
+    QVector<DownloadItem*> items = downloadManager->getItems();
     if (items.isEmpty()) return QVariant();
 
     switch (role) {

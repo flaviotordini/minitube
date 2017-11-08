@@ -48,8 +48,8 @@ StandardFeedsView::StandardFeedsView(QWidget *parent) : View(parent),
 void StandardFeedsView::load() {
     setUpdatesEnabled(false);
     YTCategories *youTubeCategories = new YTCategories(this);
-    connect(youTubeCategories, SIGNAL(categoriesLoaded(const QList<YTCategory> &)),
-            SLOT(layoutCategories(const QList<YTCategory> &)));
+    connect(youTubeCategories, SIGNAL(categoriesLoaded(const QVector<YTCategory> &)),
+            SLOT(layoutCategories(const QVector<YTCategory> &)));
     youTubeCategories->loadCategories();
 
     if (layout) {
@@ -64,7 +64,7 @@ void StandardFeedsView::load() {
     layout->setMargin(0);
     layout->setSpacing(1);
 
-    QList<YTStandardFeed*> feeds = getMainFeeds();
+    QVector<YTStandardFeed*> feeds = getMainFeeds();
     foreach(YTStandardFeed *feed, feeds)
         addVideoSourceWidget(feed);
 
@@ -74,7 +74,7 @@ void StandardFeedsView::load() {
     regionAction->setIcon(YTRegions::iconForRegionId(region.id));
 }
 
-void StandardFeedsView::layoutCategories(const QList<YTCategory> &categories) {
+void StandardFeedsView::layoutCategories(const QVector<YTCategory> &categories) {
     QString regionId = YTRegions::currentRegionId();
     foreach(YTCategory category, categories) {
         // assign a parent to this VideoSource  so it won't be deleted by MediaView
@@ -97,8 +97,8 @@ void StandardFeedsView::addVideoSourceWidget(VideoSource *videoSource) {
     layout->addWidget(w, i / cols, i % cols);
 }
 
-QList<YTStandardFeed*> StandardFeedsView::getMainFeeds() {
-    QList<YTStandardFeed*> feeds;
+QVector<YTStandardFeed*> StandardFeedsView::getMainFeeds() {
+    QVector<YTStandardFeed*> feeds;
 
     feeds << buildStandardFeed("most_popular", tr("Most Popular"));
           // << buildStandardFeed("recently_featured", tr("Featured"))
