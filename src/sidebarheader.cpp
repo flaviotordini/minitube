@@ -64,7 +64,7 @@ QSize SidebarHeader::minimumSizeHint() const {
 void SidebarHeader::updateInfo() {
     setup();
 
-    QList<VideoSource*> history = MediaView::instance()->getHistory();
+    const QList<VideoSource*> &history = MediaView::instance()->getHistory();
     int currentIndex = MediaView::instance()->getHistoryIndex();
 
     bool canGoForward = MediaView::instance()->canGoForward();
