@@ -217,7 +217,7 @@ void MainWindow::lazyInit() {
     View* view = qobject_cast<View *> (views->currentWidget());
     if (view == homeView) {
         QMetaObject::invokeMethod(views->currentWidget(), "appear");
-        QString desc = view->metadata().value("description").toString();
+        const QString &desc = view->getDescription();
         if (!desc.isEmpty()) showMessage(desc);
     }
 
@@ -1022,9 +1022,8 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
     View* newView = qobject_cast<View *> (widget);
     if (newView) {
         widget->setEnabled(true);
-        QHash<QString,QVariant> metadata = newView->metadata();
 
-        QString title = metadata.value("title").toString();
+        QString title = newView->getTitle();
         if (title.isEmpty()) title = Constants::NAME;
         else title += QLatin1String(" - ") + Constants::NAME;
         setWindowTitle(title);
@@ -1032,11 +1031,13 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
         statusToolBar->setUpdatesEnabled(false);
 
         // dynamic view actions
+        /* Not currently used by any view
         foreach (QAction* action, viewActions)
             showActionInStatusBar(action, false);
         viewActions = newView->getViewActions();
         foreach (QAction* action, viewActions)
             showActionInStatusBar(action, true);
+        */
 
         adjustStatusBarVisibility();
         messageLabel->hide();

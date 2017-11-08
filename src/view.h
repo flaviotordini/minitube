@@ -21,22 +21,25 @@ $END_LICENSE */
 #ifndef VIEW_H
 #define VIEW_H
 
-#include <QWidget>
 #include <QHash>
 #include <QString>
 #include <QVariant>
+#include <QWidget>
+
+namespace {
+static const QString nullString;
+}
 
 class View : public QWidget {
-
     Q_OBJECT
 
 public:
-    View(QWidget *parent = 0) : QWidget(parent) { }
-    virtual QHash<QString, QVariant> metadata() { return QHash<QString, QVariant>(); }
+    View(QWidget *parent = 0) : QWidget(parent) {}
+    virtual const QString &getTitle() { return nullString; }
+    virtual const QString &getDescription() { return nullString; }
     virtual void appear() {}
     virtual void disappear() {}
-    QList<QAction*> getViewActions() { return QList<QAction*>(); }
-
+    // QList<QAction*> getViewActions() { return QList<QAction*>(); }
 };
 
 #endif // VIEW_H

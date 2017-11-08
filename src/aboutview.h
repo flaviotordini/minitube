@@ -23,22 +23,20 @@ $END_LICENSE */
 
 #include <QtWidgets>
 
-#include "view.h"
 #include "constants.h"
+#include "view.h"
 
 class ClickableLabel;
 
 class AboutView : public View {
-
     Q_OBJECT
 
 public:
     AboutView(QWidget *parent);
     void appear();
-    QHash<QString, QVariant> metadata() {
-        QHash<QString, QVariant> metadata;
-        metadata.insert("title", tr("About"));
-        return metadata;
+    const QString &getTitle() {
+        static const QString s = tr("About");
+        return s;
     }
 
 protected:
@@ -50,6 +48,5 @@ private slots:
 private:
     ClickableLabel *logo;
     QPushButton *closeButton;
-
 };
 #endif

@@ -31,17 +31,15 @@ class DownloadListView;
 class DownloadSettings;
 
 class DownloadView : public View {
-
     Q_OBJECT
 
 public:
     DownloadView(QWidget *parent);
     void appear();
     void disappear();
-    QHash<QString, QVariant> metadata() {
-        QHash<QString, QVariant> metadata;
-        metadata.insert("title", tr("Downloads"));
-        return metadata;
+    const QString &getTitle() {
+        static const QString s = tr("Downloads");
+        return s;
     }
 
 public slots:
@@ -54,7 +52,6 @@ private:
     DownloadModel *listModel;
     QTimer *updateTimer;
     DownloadSettings *downloadSettings;
-
 };
 
 #endif // DOWNLOADVIEW_H

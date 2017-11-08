@@ -30,22 +30,20 @@ class SearchView;
 class StandardFeedsView;
 class ChannelView;
 
-class HomeView : public View  {
-
+class HomeView : public View {
     Q_OBJECT
 
 public:
     HomeView(QWidget *parent = 0);
     void disappear();
-    QHash<QString, QVariant> metadata() {
-        QHash<QString, QVariant> metadata;
-        metadata.insert("description", tr("Make yourself comfortable"));
-        return metadata;
+    const QString &getDescription() {
+        static const QString s = tr("Make yourself comfortable");
+        return s;
     }
     void showWidget(QWidget *widget);
     QWidget *currentWidget() { return stackedWidget->currentWidget(); }
-    SearchView* getSearchView() { return searchView; }
-    StandardFeedsView* getStandardFeedsView() { return standardFeedsView; }
+    SearchView *getSearchView() { return searchView; }
+    StandardFeedsView *getStandardFeedsView() { return standardFeedsView; }
 
 public slots:
     void showSearch();
@@ -63,10 +61,9 @@ private:
 
     SearchView *searchView;
     StandardFeedsView *standardFeedsView;
-    ChannelView* channelsView;
+    ChannelView *channelsView;
 
     QAction *subscriptionsAction;
-
 };
 
 #endif // HOMEVIEW_H
