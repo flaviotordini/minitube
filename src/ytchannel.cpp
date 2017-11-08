@@ -43,8 +43,8 @@ QHash<QString, YTChannel*> YTChannel::cache;
 YTChannel* YTChannel::forId(const QString &channelId) {
     if (channelId.isEmpty()) return 0;
 
-    if (cache.contains(channelId))
-        return cache.value(channelId);
+    auto i = cache.constFind(channelId);
+    if (i != cache.constEnd()) return i.value();
 
     QSqlDatabase db = Database::instance().getConnection();
     QSqlQuery query(db);
