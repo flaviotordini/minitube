@@ -57,6 +57,7 @@ void YTCategories::parseCategories(QByteArray bytes) {
     QJsonDocument doc = QJsonDocument::fromJson(bytes);
     QJsonObject obj = doc.object();
     QJsonArray items = obj["items"].toArray();
+    categories.reserve(items.size());
     foreach (const QJsonValue &v, items) {
         QJsonObject item = v.toObject();
         QJsonObject snippet = item["snippet"].toObject();

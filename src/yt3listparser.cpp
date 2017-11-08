@@ -1,14 +1,14 @@
 #include "yt3listparser.h"
-#include "video.h"
 #include "datautils.h"
+#include "video.h"
 
 YT3ListParser::YT3ListParser(const QByteArray &bytes) {
     QJsonDocument doc = QJsonDocument::fromJson(bytes);
     QJsonObject obj = doc.object();
 
-    nextPageToken = obj["nextPageToken"].toString();
+    nextPageToken = obj[QLatin1String("nextPageToken")].toString();
 
-    QJsonArray items = obj["items"].toArray();
+    QJsonArray items = obj[QLatin1String("items")].toArray();
     videos.reserve(items.size());
     foreach (const QJsonValue &v, items) {
         QJsonObject item = v.toObject();
@@ -21,49 +21,52 @@ YT3ListParser::YT3ListParser(const QByteArray &bytes) {
 void YT3ListParser::parseItem(const QJsonObject &item) {
     Video *video = new Video();
 
-    QJsonValue id = item["id"];
-    if (id.isString()) video->setId(id.toString());
+    QJsonValue id = item[QLatin1String("id")];
+    if (id.isString())
+        video->setId(id.toString());
     else {
-        QString videoId = id.toObject()["videoId"].toString();
+        QString videoId = id.toObject()[QLatin1String("videoId")].toString();
         video->setId(videoId);
     }
 
-    QJsonObject snippet = item["snippet"].toObject();
+    QJsonObject snippet = item[QLatin1String("snippet")].toObject();
 
-    bool isLiveBroadcastContent = snippet["liveBroadcastContent"].toString() != QLatin1String("none");
+    bool isLiveBroadcastContent =
+            snippet[QLatin1String("liveBroadcastContent")].toString() != QLatin1String("none");
     if (isLiveBroadcastContent) {
         delete video;
         return;
     }
 
-    QString publishedAt = snippet["publishedAt"].toString();
+    QString publishedAt = snippet[QLatin1String("publishedAt")].toString();
     QDateTime publishedDateTime = QDateTime::fromString(publishedAt, Qt::ISODate);
     video->setPublished(publishedDateTime);
 
-    video->setChannelId(snippet["channelId"].toString());
+    video->setChannelId(snippet[QLatin1String("channelId")].toString());
 
-    video->setTitle(snippet["title"].toString());
-    video->setDescription(snippet["description"].toString());
+    video->setTitle(snippet[QLatin1String("title")].toString());
+    video->setDescription(snippet[QLatin1String("description")].toString());
 
-    QJsonObject thumbnails = snippet["thumbnails"].toObject();
-    video->setThumbnailUrl(thumbnails["medium"].toObject()["url"].toString());
-    video->setMediumThumbnailUrl(thumbnails["high"].toObject()["url"].toString());
-    video->setLargeThumbnailUrl(thumbnails["standard"].toObject()["url"].toString());
+    QJsonObject thumbnails = snippet[QLatin1String("thumbnails")].toObject();
+    QLatin1String url("url");
+    video->setThumbnailUrl(thumbnails[QLatin1String("medium")].toObject()[url].toString());
+    video->setMediumThumbnailUrl(thumbnails[QLatin1String("high")].toObject()[url].toString());
+    video->setLargeThumbnailUrl(thumbnails[QLatin1String("standard")].toObject()[url].toString());
 
-    video->setChannelTitle(snippet["channelTitle"].toString());
+    video->setChannelTitle(snippet[QLatin1String("channelTitle")].toString());
 
     // These are only for "videos" requests
 
-    QJsonValue contentDetails = item["contentDetails"];
+    QJsonValue contentDetails = item[QLatin1String("contentDetails")];
     if (contentDetails.isObject()) {
-        QString isoPeriod = contentDetails.toObject()["duration"].toString();
+        QString isoPeriod = contentDetails.toObject()[QLatin1String("duration")].toString();
         int duration = DataUtils::parseIsoPeriod(isoPeriod);
         video->setDuration(duration);
     }
 
-    QJsonValue statistics = item["statistics"];
+    QJsonValue statistics = item[QLatin1String("statistics")];
     if (statistics.isObject()) {
-        int viewCount = statistics.toObject()["viewCount"].toString().toInt();
+        int viewCount = statistics.toObject()[QLatin1String("viewCount")].toString().toInt();
         video->setViewCount(viewCount);
     }
 

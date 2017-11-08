@@ -53,6 +53,7 @@ void AggregateVideoSource::loadVideos(int max, int startIndex) {
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
     QList<Video*> videos;
+    videos.reserve(query.size());
     while (query.next()) {
         Video *video = new Video();
         video->setId(query.value(0).toString());

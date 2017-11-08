@@ -84,7 +84,7 @@ void YTSingleVideoSource::parseResults(QByteArray data) {
     if (aborted) return;
 
     YT3ListParser parser(data);
-    QList<Video*> videos = parser.getVideos();
+    const QList<Video*> &videos = parser.getVideos();
 
     bool tryingWithNewToken = setPageToken(parser.getNextPageToken());
     if (tryingWithNewToken) return;

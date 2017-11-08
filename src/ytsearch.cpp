@@ -144,7 +144,7 @@ void YTSearch::parseResults(QByteArray data) {
     if (aborted) return;
 
     YT3ListParser parser(data);
-    QList<Video*> videos = parser.getVideos();
+    const QList<Video*> &videos = parser.getVideos();
     suggestions = parser.getSuggestions();
 
     bool tryingWithNewToken = setPageToken(parser.getNextPageToken());

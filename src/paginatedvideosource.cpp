@@ -89,9 +89,11 @@ void PaginatedVideoSource::reloadToken() {
 
 void PaginatedVideoSource::loadVideoDetails(const QList<Video*> &videos) {
     QString videoIds;
+    videoIds.reserve(videos.size()*12);
+    videoMap.reserve(videos.size());
     foreach (Video *video, videos) {
         // TODO get video details from cache
-        if (!videoIds.isEmpty()) videoIds += ",";
+        if (!videoIds.isEmpty()) videoIds += QLatin1Char(',');
         videoIds += video->id();
         this->videos = videos;
         videoMap.insert(video->id(), video);
@@ -107,8 +109,8 @@ void PaginatedVideoSource::loadVideoDetails(const QList<Video*> &videos) {
 
     QUrl url = YT3::instance().method("videos");
     QUrlQuery q(url);
-    q.addQueryItem("part", "contentDetails,statistics");
-    q.addQueryItem("id", videoIds);
+    q.addQueryItem(QStringLiteral("part"), QStringLiteral("contentDetails,statistics"));
+    q.addQueryItem(QStringLiteral("id"), videoIds);
     url.setQuery(q);
 
     QObject *reply = HttpUtils::yt().get(url);

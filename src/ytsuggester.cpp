@@ -27,13 +27,9 @@ YTSuggester::YTSuggester(QObject *parent) : Suggester(parent) {
 }
 
 void YTSuggester::suggest(const QString &query) {
-    if (query.startsWith("http")) return;
+    if (query.startsWith(QLatin1String("http"))) return;
 
-#if QT_VERSION >= 0x040800
     QString locale = QLocale::system().uiLanguages().first();
-#else
-    QString locale = QLocale::system().name().replace("_", "-");
-#endif
 
     // case for system locales such as "C"
     if (locale.length() < 2) {
@@ -41,7 +37,7 @@ void YTSuggester::suggest(const QString &query) {
     }
 
     QString url =
-            QString("https://suggestqueries.google.com/complete/search?ds=yt&output=toolbar&hl=%1&q=%2")
+            QStringLiteral("https://suggestqueries.google.com/complete/search?ds=yt&output=toolbar&hl=%1&q=%2")
             .arg(locale, query);
 
     QObject *reply = HttpUtils::yt().get(url);
@@ -55,7 +51,7 @@ void YTSuggester::handleNetworkData(QByteArray response) {
         xml.readNext();
         if (xml.tokenType() == QXmlStreamReader::StartElement) {
             if (xml.name() == QLatin1String("suggestion")) {
-                QStringRef str = xml.attributes().value("data");
+                QStringRef str = xml.attributes().value(QLatin1String("data"));
                 QString value = str.toString();
                 suggestions << new Suggestion(value);
             }
