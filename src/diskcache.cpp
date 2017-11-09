@@ -25,7 +25,8 @@ DiskCache::DiskCache(QObject *parent) : QNetworkDiskCache(parent) { }
 
 QIODevice* DiskCache::prepare(const QNetworkCacheMetaData &metaData) {
     QString mime;
-    for (const QNetworkCacheMetaData::RawHeader &header : metaData.rawHeaders()) {
+    const auto headers = metaData.rawHeaders();
+    for (const QNetworkCacheMetaData::RawHeader &header : headers) {
         // qDebug() << header.first << header.second;
         if (header.first.constData() == QLatin1String("Content-Type")) {
             mime = header.second;

@@ -208,7 +208,8 @@ QTime YTSearch::videoTimestampFromUrl(const QString &url) {
         return res;
     }
 
-    for (const QString &str : re.capturedTexts()) {
+    const auto captured = re.capturedTexts();
+    for (const QString &str : captured) {
         if (str.length() <= 1) continue;
 
         QString truncated = str;

@@ -61,7 +61,7 @@ public:
 
     QString latestVideoId();
 
-    static QList<YTChannel*> getCachedChannels() { return cache.values(); }
+    static const QHash<QString, YTChannel*> &getCachedChannels() { return cache; }
 
 public slots:
     void updateWatched();

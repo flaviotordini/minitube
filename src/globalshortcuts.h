@@ -39,7 +39,7 @@ public:
         QAction* action;
     };
 
-    QMap<QString, Shortcut> shortcuts() const { return shortcuts_; }
+    const QMap<QString, Shortcut> &shortcuts() const { return shortcuts_; }
     void setBackend(GlobalShortcutBackend* backend) {
         this->backend = backend;
         reload();

@@ -76,7 +76,8 @@ void HomeView::setupBar() {
     connect(ChannelAggregator::instance(), SIGNAL(unwatchedCountChanged(int)),
             SLOT(unwatchedCountChanged(int)));
 
-    for (QAction* action : bar->actions()) {
+    const auto a = bar->actions();
+    for (QAction* action : a) {
         addAction(action);
         IconUtils::setupAction(action);
     }

@@ -296,7 +296,8 @@ void ChannelAggregator::markAllAsWatched() {
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
     unwatchedCount = 0;
 
-    for (YTChannel *channel : YTChannel::getCachedChannels()) {
+    const auto &channels = YTChannel::getCachedChannels();
+    for (YTChannel *channel : channels) {
         channel->setWatched(now);
         channel->setNotifyCount(0);
     }

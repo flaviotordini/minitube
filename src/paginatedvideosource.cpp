@@ -124,7 +124,8 @@ void PaginatedVideoSource::parseVideoDetails(const QByteArray &bytes) {
 
     QJsonValue items = obj["items"];
     if (items.isArray()) {
-        for (const QJsonValue &v : items.toArray()) {
+        const auto array = items.toArray();
+        for (const QJsonValue &v : array) {
             if (!v.isObject()) continue;
 
             QJsonObject item = v.toObject();

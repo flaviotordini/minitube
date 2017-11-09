@@ -27,7 +27,8 @@ static const VideoDefinition kEmptyDefinition(QString(), kEmptyDefinitionCode);
 
 template <typename T, T (VideoDefinition::*Getter)() const>
 const VideoDefinition &getDefinitionForImpl(T matchValue) {
-    for (const VideoDefinition &def : VideoDefinition::getDefinitions()) {
+    const auto &defs = VideoDefinition::getDefinitions();
+    for (const VideoDefinition &def : defs) {
         if ((def.*Getter)() == matchValue) return def;
     }
     return kEmptyDefinition;
