@@ -47,7 +47,7 @@ void SidebarHeader::setup() {
     connect(forwardAction, SIGNAL(triggered()), MediaView::instance(), SLOT(goForward()));
     addAction(forwardAction);
 
-    foreach (QAction* action, actions()) {
+    for (QAction* action : actions()) {
         window()->addAction(action);
         IconUtils::setupAction(action);
     }

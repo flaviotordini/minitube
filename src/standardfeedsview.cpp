@@ -58,7 +58,7 @@ void StandardFeedsView::load() {
 
 void StandardFeedsView::layoutCategories(const QVector<YTCategory> &categories) {
     QString regionId = YTRegions::currentRegionId();
-    foreach (const YTCategory &category, categories) {
+    for (const YTCategory &category : categories) {
         // assign a parent to this VideoSource  so it won't be deleted by MediaView
         YTStandardFeed *feed = new YTStandardFeed(this);
         feed->setCategory(category.term);

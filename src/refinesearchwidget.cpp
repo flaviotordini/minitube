@@ -49,13 +49,13 @@ void RefineSearchWidget::setup() {
     setupLabel(tr("Sort by"), layout, paramName);
     QToolBar *sortBar = setupBar(paramName);
     QActionGroup* sortGroup = new QActionGroup(this);
-    QStringList sortOptions = QStringList()
+    const QStringList sortOptions = QStringList()
             << tr("Relevance")
             << tr("Date")
             << tr("View Count")
             << tr("Rating");
     int i = 0;
-    foreach (const QString &actionName, sortOptions) {
+    for (const QString &actionName : sortOptions) {
         QAction *action = new QAction(actionName, sortBar);
         action->setCheckable(true);
         action->setProperty("paramValue", i);
@@ -69,13 +69,13 @@ void RefineSearchWidget::setup() {
     setupLabel(tr("Date"), layout, paramName);
     QToolBar *timeBar = setupBar(paramName);
     QActionGroup* timeGroup = new QActionGroup(this);
-    QStringList timeSpans = QStringList()
+    const QStringList timeSpans = QStringList()
             << tr("Anytime")
             << tr("Today")
             << tr("7 Days")
             << tr("30 Days");
     i = 0;
-    foreach (const QString &actionName, timeSpans) {
+    for (const QString &actionName : timeSpans) {
         QAction *action = new QAction(actionName, timeBar);
         action->setCheckable(true);
         action->setProperty("paramValue", i);
@@ -89,7 +89,7 @@ void RefineSearchWidget::setup() {
     setupLabel(tr("Duration"), layout, paramName);
     QToolBar *lengthBar = setupBar(paramName);
     QActionGroup* lengthGroup = new QActionGroup(this);
-    QStringList lengthOptions = QStringList()
+    const QStringList lengthOptions = QStringList()
             << tr("All")
             << tr("Short")
             << tr("Medium")
@@ -100,7 +100,7 @@ void RefineSearchWidget::setup() {
             << tr("Between 4 and 20 minutes")
             << tr("Longer than 20 minutes");
     i = 0;
-    foreach (const QString &actionName, lengthOptions) {
+    for (const QString &actionName : lengthOptions) {
         QAction *action = new QAction(actionName, timeBar);
         action->setStatusTip(tips.at(i));
         action->setCheckable(true);
@@ -115,14 +115,14 @@ void RefineSearchWidget::setup() {
     setupLabel(tr("Quality"), layout, paramName);
     QToolBar *qualityBar = setupBar(paramName);
     QActionGroup* qualityGroup = new QActionGroup(this);
-    QStringList qualityOptions = QStringList()
+    const QStringList qualityOptions = QStringList()
             << tr("All")
             << tr("High Definition");
     tips = QStringList()
             << ""
             << tr("720p or higher");
     i = 0;
-    foreach (const QString &actionName, qualityOptions) {
+    for (const QString &actionName : qualityOptions) {
         QAction *action = new QAction(actionName, timeBar);
         action->setStatusTip(tips.at(i));
         action->setCheckable(true);

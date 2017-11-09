@@ -193,7 +193,7 @@ void ChannelAggregator::finish() {
 void ChannelAggregator::videosLoaded(const QVector<Video*> &videos) {
     sender()->deleteLater();
 
-    foreach (Video* video, videos) {
+    for (Video* video : videos) {
         addVideo(video);
         qApp->processEvents();
     }
@@ -296,7 +296,7 @@ void ChannelAggregator::markAllAsWatched() {
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
     unwatchedCount = 0;
 
-    foreach (YTChannel *channel, YTChannel::getCachedChannels()) {
+    for (YTChannel *channel : YTChannel::getCachedChannels()) {
         channel->setWatched(now);
         channel->setNotifyCount(0);
     }

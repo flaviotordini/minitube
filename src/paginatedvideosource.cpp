@@ -91,7 +91,7 @@ void PaginatedVideoSource::loadVideoDetails(const QVector<Video*> &videos) {
     QString videoIds;
     videoIds.reserve(videos.size()*12);
     videoMap.reserve(videos.size());
-    foreach (Video *video, videos) {
+    for (Video *video : videos) {
         // TODO get video details from cache
         if (!videoIds.isEmpty()) videoIds += QLatin1Char(',');
         videoIds += video->getId();
@@ -124,7 +124,7 @@ void PaginatedVideoSource::parseVideoDetails(const QByteArray &bytes) {
 
     QJsonValue items = obj["items"];
     if (items.isArray()) {
-        foreach (const QJsonValue &v, items.toArray()) {
+        for (const QJsonValue &v : items.toArray()) {
             if (!v.isObject()) continue;
 
             QJsonObject item = v.toObject();

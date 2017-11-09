@@ -10,7 +10,7 @@ YT3ListParser::YT3ListParser(const QByteArray &bytes) {
 
     QJsonArray items = obj[QLatin1String("items")].toArray();
     videos.reserve(items.size());
-    foreach (const QJsonValue &v, items) {
+    for (const QJsonValue &v : items) {
         QJsonObject item = v.toObject();
         parseItem(item);
     }

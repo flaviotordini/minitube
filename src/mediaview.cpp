@@ -741,7 +741,7 @@ void MediaView::removeSelected() {
 }
 
 void MediaView::selectVideos(const QVector<Video *> &videos) {
-    foreach (Video *video, videos) {
+    for (Video *video : videos) {
         QModelIndex index = playlistModel->indexForVideo(video);
         playlistView->selectionModel()->select(index, QItemSelectionModel::Select);
         playlistView->scrollTo(index, QAbstractItemView::EnsureVisible);

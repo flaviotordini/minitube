@@ -54,11 +54,11 @@ void YTCategories::loadCategories(QString language) {
 void YTCategories::parseCategories(const QByteArray &bytes) {
     QJsonDocument doc = QJsonDocument::fromJson(bytes);
     QJsonObject obj = doc.object();
-    QJsonArray items = obj["items"].toArray();
+    const QJsonArray items = obj["items"].toArray();
 
     QVector<YTCategory> categories;
     categories.reserve(items.size());
-    foreach (const QJsonValue &v, items) {
+    for (const QJsonValue &v : items) {
         QJsonObject item = v.toObject();
         QJsonObject snippet = item["snippet"].toObject();
         bool isAssignable = snippet["assignable"].toBool();

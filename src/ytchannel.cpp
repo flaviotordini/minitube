@@ -101,7 +101,7 @@ void YTChannel::parseResponse(const QByteArray &bytes) {
     QJsonDocument doc = QJsonDocument::fromJson(bytes);
     QJsonObject obj = doc.object();
     QJsonArray items = obj["items"].toArray();
-    foreach (const QJsonValue &v, items) {
+    for (const QJsonValue &v : items) {
         QJsonObject item = v.toObject();
         QJsonObject snippet = item["snippet"].toObject();
         displayName = snippet["title"].toString();

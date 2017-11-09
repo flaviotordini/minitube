@@ -241,7 +241,7 @@ void Database::drop() {
 }
 
 void Database::closeConnections() {
-    foreach(QSqlDatabase connection, connections.values()) {
+    foreach(QSqlDatabase connection, connections) {
         // qDebug() << "Closing connection" << connection;
         connection.close();
     }

@@ -53,14 +53,14 @@ void DownloadManager::clear() {
 
 int DownloadManager::activeItems() {
     int num = 0;
-    foreach (DownloadItem *item, items) {
+    for (DownloadItem *item : items) {
         if (item->status() == Downloading || item->status() == Starting) num++;
     }
     return num;
 }
 
 DownloadItem* DownloadManager::itemForVideo(Video* video) {
-    foreach (DownloadItem *item, items) {
+    for (DownloadItem *item : items) {
         if (item->getVideo()->getId() == video->getId()) return item;
     }
     return 0;

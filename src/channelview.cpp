@@ -139,7 +139,7 @@ void ChannelView::setupActions() {
     connect(showUpdatedAction, SIGNAL(toggled(bool)), SLOT(toggleShowUpdated(bool)));
     statusActions << showUpdatedAction;
 
-    foreach (QAction *action, statusActions) {
+    for (QAction *action : statusActions) {
         window()->addAction(action);
         IconUtils::setupAction(action);
     }

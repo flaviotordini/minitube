@@ -171,7 +171,7 @@ QAction *SegmentedControl::findHoveredAction(const QPoint& pos) const {
 int SegmentedControl::calculateButtonWidth() const {
     QFontMetrics fontMetrics(font());
     int tmpItemWidth, itemWidth = 0;
-    foreach (QAction *action, actionList) {
+    for (QAction *action : actionList) {
         tmpItemWidth = fontMetrics.width(action->text());
         if (itemWidth < tmpItemWidth) itemWidth = tmpItemWidth;
     }

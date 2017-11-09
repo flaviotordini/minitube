@@ -111,7 +111,7 @@ void YTVideo::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
     qDebug() << "fmtUrlMap" << fmtUrlMap;
     const QVector<QStringRef> formatUrls = fmtUrlMap.splitRef(',', QString::SkipEmptyParts);
     QMap<int, QString> urlMap;
-    foreach (const QStringRef &formatUrl, formatUrls) {
+    for (const QStringRef &formatUrl : formatUrls) {
         // qDebug() << "formatUrl" << formatUrl;
         const QVector<QStringRef> urlParams = formatUrl.split('&', QString::SkipEmptyParts);
         // qDebug() << "urlParams" << urlParams;
@@ -119,7 +119,7 @@ void YTVideo::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
         int format = -1;
         QString url;
         QString sig;
-        foreach (const QStringRef &urlParam, urlParams) {
+        for (const QStringRef &urlParam : urlParams) {
             // qWarning() << urlParam;
             if (urlParam.startsWith(QLatin1String("itag="))) {
                 int separator = urlParam.indexOf('=');
@@ -384,11 +384,11 @@ QString YTVideo::decryptSignature(const QString &s) {
     qDebug() << "decryptSignature" << sigFuncName << sigFunctions << sigObjects;
     if (sigFuncName.isEmpty()) return QString();
     QJSEngine engine;
-    foreach (const QString &f, sigObjects.values()) {
+    for (const QString &f : sigObjects) {
         QJSValue value = engine.evaluate(f);
         if (value.isError()) qWarning() << "Error in" << f << value.toString();
     }
-    foreach (const QString &f, sigFunctions.values()) {
+    for (const QString &f : sigFunctions) {
         QJSValue value = engine.evaluate(f);
         if (value.isError()) qWarning() << "Error in" << f << value.toString();
     }

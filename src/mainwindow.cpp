@@ -473,13 +473,6 @@ void MainWindow::createActions() {
     QAction *definitionAct = new QAction(this);
     definitionAct->setIcon(IconUtils::icon("video-display"));
     definitionAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_D));
-    /*
-    QMenu *definitionMenu = new QMenu(this);
-    foreach (QString definition, VideoDefinition::getDefinitionNames()) {
-        definitionMenu->addAction(definition);
-    }
-    definitionAct->setMenu(definitionMenu);
-    */
     actionMap.insert("definition", definitionAct);
     connect(definitionAct, SIGNAL(triggered()), SLOT(toggleDefinitionMode()));
     addAction(definitionAct);
@@ -629,7 +622,7 @@ void MainWindow::createActions() {
 #endif
 
     // common action properties
-    foreach (QAction *action, actionMap.values()) {
+    for (QAction *action : actionMap) {
         // add actions to the MainWindow so that they work
         // when the menu is hidden
         addAction(action);

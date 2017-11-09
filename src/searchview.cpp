@@ -260,7 +260,7 @@ void SearchView::updateRecentKeywords() {
     recentKeywordsLabel->setVisible(!keywords.isEmpty());
     MainWindow::instance()->getActionMap().value("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
 
-    foreach (const QString &keyword, keywords) {
+    for (const QString &keyword : keywords) {
         QString link = keyword;
         QString display = keyword;
         if (keyword.startsWith(QLatin1String("http://")) || keyword.startsWith(QLatin1String("https://"))) {
@@ -311,7 +311,7 @@ void SearchView::updateRecentChannels() {
     recentChannelsLabel->setVisible(!keywords.isEmpty());
     // TODO MainWindow::instance()->getActionMap().value("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
 
-    foreach (const QString &keyword, keywords) {
+    for (const QString &keyword : keywords) {
         QString link = keyword;
         QString display = keyword;
         int separator = keyword.indexOf('|');

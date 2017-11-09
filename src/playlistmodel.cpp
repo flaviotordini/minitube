@@ -242,7 +242,7 @@ void PlaylistModel::addVideos(const QVector<Video*> &newVideos) {
     beginInsertRows(QModelIndex(), videos.size(), videos.size() + newVideos.size() - 2);
     videos.append(newVideos);
     endInsertRows();
-    foreach (Video* video, newVideos) {
+    for (Video* video : newVideos) {
         connect(video, SIGNAL(gotThumbnail()),
                 SLOT(updateVideoSender()), Qt::UniqueConnection);
         video->loadThumbnail();
@@ -339,7 +339,7 @@ void PlaylistModel::removeIndexes(QModelIndexList &indexes) {
     QVector<Video*> originalList(videos);
     QVector<Video*> delitems;
     delitems.reserve(indexes.size());
-    foreach (const QModelIndex &index, indexes) {
+    for (const QModelIndex &index : indexes) {
         if (index.row() >= originalList.size()) continue;
         Video* video = originalList.at(index.row());
         int idx = videos.indexOf(video);
@@ -462,7 +462,7 @@ QModelIndex PlaylistModel::indexForVideo(Video* video) {
 void PlaylistModel::move(QModelIndexList &indexes, bool up) {
     QVector<Video*> movedVideos;
 
-    foreach (const QModelIndex &index, indexes) {
+    for (const QModelIndex &index : indexes) {
         int row = index.row();
         if (row >= videos.size()) continue;
         // qDebug() << "index row" << row;
@@ -471,7 +471,7 @@ void PlaylistModel::move(QModelIndexList &indexes, bool up) {
     }
 
     int end=up ? -1 : rowCount()-1, mod=up ? -1 : 1;
-    foreach (Video *video, movedVideos) {
+    for (Video *video : movedVideos) {
 
         int row = rowForVideo(video);
         if (row+mod==end) { end=row; continue; }
