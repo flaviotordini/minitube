@@ -7,7 +7,6 @@
  * @brief Not thread-safe
  */
 class LocalCache {
-
 public:
     static LocalCache *instance(const QString &name);
     ~LocalCache();
@@ -40,7 +39,6 @@ private:
     uint hits;
     uint misses;
 #endif
-
 };
 
 #endif // LOCALCACHE_H

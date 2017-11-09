@@ -6,7 +6,6 @@
 class LocalCache;
 
 class CachedHttp : public Http {
-
 public:
     CachedHttp(Http &http = Http::instance(), const QString &name = "http");
     void setMaxSeconds(uint seconds);
@@ -21,7 +20,6 @@ private:
 };
 
 class CachedHttpReply : public HttpReply {
-
     Q_OBJECT
 
 public:
@@ -40,7 +38,6 @@ private:
 };
 
 class WrappedHttpReply : public QObject {
-
     Q_OBJECT
 
 public:
@@ -58,7 +55,6 @@ private:
     LocalCache *cache;
     QString key;
     QObject *httpReply;
-
 };
 
 #endif // CACHEDHTTP_H

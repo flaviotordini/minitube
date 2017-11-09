@@ -7,25 +7,19 @@ QElapsedTimer initElapsedTimer() {
     timer.start();
     return timer;
 }
-
 }
 
-ThrottledHttp::ThrottledHttp(Http &http) : http(http),
-    elapsedTimer(initElapsedTimer()) { }
+ThrottledHttp::ThrottledHttp(Http &http) : http(http), elapsedTimer(initElapsedTimer()) {}
 
-QObject* ThrottledHttp::request(const HttpRequest &req) {
+QObject *ThrottledHttp::request(const HttpRequest &req) {
     return new ThrottledHttpReply(http, req, milliseconds, elapsedTimer);
 }
 
 ThrottledHttpReply::ThrottledHttpReply(Http &http,
                                        const HttpRequest &req,
                                        int milliseconds,
-                                       QElapsedTimer &elapsedTimer) :
-    http(http),
-    req(req),
-    milliseconds(milliseconds),
-    elapsedTimer(elapsedTimer),
-    timer(0) {
+                                       QElapsedTimer &elapsedTimer)
+    : http(http), req(req), milliseconds(milliseconds), elapsedTimer(elapsedTimer), timer(0) {
     checkElapsed();
 }
 
@@ -43,7 +37,8 @@ void ThrottledHttpReply::checkElapsed() {
             timer->setTimerType(Qt::PreciseTimer);
             connect(timer, SIGNAL(timeout()), SLOT(checkElapsed()));
         }
-        qDebug() << "Throttling" << req.url << QString("%1ms").arg(milliseconds - elapsedSinceLastRequest);
+        qDebug() << "Throttling" << req.url
+                 << QString("%1ms").arg(milliseconds - elapsedSinceLastRequest);
         timer->setInterval(milliseconds - elapsedSinceLastRequest);
         timer->start();
         return;
@@ -53,7 +48,7 @@ void ThrottledHttpReply::checkElapsed() {
 }
 
 void ThrottledHttpReply::doRequest() {
-    QObject* reply = http.request(req);
+    QObject *reply = http.request(req);
     connect(reply, SIGNAL(data(QByteArray)), SIGNAL(data(QByteArray)));
     connect(reply, SIGNAL(error(QString)), SIGNAL(error(QString)));
     connect(reply, SIGNAL(finished(HttpReply)), SIGNAL(finished(HttpReply)));
