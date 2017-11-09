@@ -69,7 +69,7 @@ public:
     QString formattedDuration() const;
 
     int getViewCount() const { return viewCount; }
-    void setViewCount(int viewCount) { viewCount = viewCount; }
+    void setViewCount(int value) { viewCount = value; }
 
     const QDateTime &getPublished() const { return published; }
     void setPublished(const QDateTime &value) { published = value; }
