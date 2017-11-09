@@ -41,7 +41,7 @@ signals:
     void error(QString message);
 
 private slots:
-    void parseCategories(QByteArray bytes);
+    void parseCategories(const QByteArray &bytes);
     void requestError(const QString &message);
 
 private:

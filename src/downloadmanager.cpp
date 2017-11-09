@@ -61,7 +61,7 @@ int DownloadManager::activeItems() {
 
 DownloadItem* DownloadManager::itemForVideo(Video* video) {
     foreach (DownloadItem *item, items) {
-        if (item->getVideo()->id() == video->id()) return item;
+        if (item->getVideo()->getId() == video->getId()) return item;
     }
     return 0;
 }
@@ -72,10 +72,10 @@ void DownloadManager::addItem(Video *video) {
     DownloadItem *item = itemForVideo(video);
     if (item != 0) {
         if (item->status() == Failed || item->status() == Idle) {
-            qDebug() << "Restarting download" << video->title();
+            qDebug() << "Restarting download" << video->getTitle();
             item->tryAgain();
         } else {
-            qDebug() << "Already downloading video" << video->title();
+            qDebug() << "Already downloading video" << video->getTitle();
         }
         return;
     }
@@ -98,8 +98,8 @@ void DownloadManager::gotStreamUrl(QUrl url) {
 
     video->disconnect(this);
 
-    QString basename = DataUtils::stringToFilename(video->title());
-    if (basename.isEmpty()) basename = video->id();
+    QString basename = DataUtils::stringToFilename(video->getTitle());
+    if (basename.isEmpty()) basename = video->getId();
 
     QString filename = currentDownloadFolder() + "/" + basename + ".mp4";
 
@@ -130,7 +130,7 @@ void DownloadManager::itemFinished() {
     QString stats = tr("%1 downloaded in %2").arg(
                 DownloadItem::formattedFilesize(item->bytesTotal()),
                 DownloadItem::formattedTime(item->totalTime(), false));
-    Extra::notify(tr("Download finished"), video->title(), stats);
+    Extra::notify(tr("Download finished"), video->getTitle(), stats);
 #endif
 }
 

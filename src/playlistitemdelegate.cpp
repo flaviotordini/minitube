@@ -141,12 +141,12 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
     // separator
     painter->setPen(option.palette.color(QPalette::Midlight));
     painter->drawLine(THUMB_WIDTH, THUMB_HEIGHT, option.rect.width(), THUMB_HEIGHT);
-    if (!video->thumbnail().isNull())
+    if (!video->getThumbnail().isNull())
         painter->setPen(Qt::black);
     painter->drawLine(0, THUMB_HEIGHT, THUMB_WIDTH-1, THUMB_HEIGHT);
 
     // thumb
-    painter->drawPixmap(0, 0, video->thumbnail());
+    painter->drawPixmap(0, 0, video->getThumbnail());
 
     const bool thumbsOnly = line.width() <= THUMB_WIDTH + 60;
     const bool isHovered = index.data(HoveredItemRole).toBool();
@@ -156,7 +156,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
         painter->drawPixmap(0, 0, playIcon);
 
     // time
-    if (video->duration() > 0)
+    if (video->getDuration() > 0)
         drawTime(painter, video->formattedDuration(), line);
 
     if (!thumbsOnly) {
@@ -168,7 +168,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
             painter->setPen(QPen(option.palette.text(), 0));
 
         // title
-        QString videoTitle = video->title();
+        QString videoTitle = video->getTitle();
         QString v = videoTitle;
         const int flags = Qt::AlignTop | Qt::TextWordWrap;
         QRect textBox = line.adjusted(PADDING+THUMB_WIDTH, PADDING, 0, 0);
@@ -184,7 +184,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
         painter->setOpacity(.7);
 
         // published date
-        QString publishedString = DataUtils::formatDateTime(video->published());
+        QString publishedString = DataUtils::formatDateTime(video->getPublished());
         QSize stringSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, publishedString ) );
         QPoint textLoc(PADDING+THUMB_WIDTH, PADDING*2 + textBox.height());
         QRect publishedTextBox(textLoc , stringSize);
@@ -200,7 +200,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
                 if (authorHovered)
                     painter->setPen(QPen(option.palette.brush(QPalette::Highlight), 0));
             }
-            const QString &authorString = video->channelTitle();
+            const QString &authorString = video->getChannelTitle();
             textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
             stringSize = QSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, authorString ) );
             QRect authorTextBox(textLoc , stringSize);
@@ -211,9 +211,9 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
         }
 
         // view count
-        if (video->viewCount() > 0) {
+        if (video->getViewCount() > 0) {
             QLocale locale;
-            QString viewCountString = tr("%1 views").arg(locale.toString(video->viewCount()));
+            QString viewCountString = tr("%1 views").arg(locale.toString(video->getViewCount()));
             textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
             stringSize = QSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, viewCountString ) );
             QRect viewCountTextBox(textLoc , stringSize);
@@ -234,7 +234,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
         if (isHovered) {
             painter->setFont(smallerFont);
             painter->setPen(Qt::white);
-            QString videoTitle = video->title();
+            QString videoTitle = video->getTitle();
             QString v = videoTitle;
             const int flags = Qt::AlignTop | Qt::TextWordWrap;
             QRect textBox(PADDING, PADDING, THUMB_WIDTH - PADDING*2, THUMB_HEIGHT - PADDING*2);

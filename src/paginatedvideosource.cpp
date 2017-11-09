@@ -94,9 +94,9 @@ void PaginatedVideoSource::loadVideoDetails(const QVector<Video*> &videos) {
     foreach (Video *video, videos) {
         // TODO get video details from cache
         if (!videoIds.isEmpty()) videoIds += QLatin1Char(',');
-        videoIds += video->id();
+        videoIds += video->getId();
         this->videos = videos;
-        videoMap.insert(video->id(), video);
+        videoMap.insert(video->getId(), video);
     }
 
     if (videoIds.isEmpty()) {

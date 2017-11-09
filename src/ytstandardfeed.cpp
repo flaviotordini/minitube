@@ -55,6 +55,7 @@ void YTStandardFeed::loadVideos(int max, int startIndex) {
     url.setQuery(q);
 
     QObject *reply = HttpUtils::yt().get(url);
+    qDebug() << url;
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResults(QByteArray)));
     connect(reply, SIGNAL(error(QString)), SLOT(requestError(QString)));
 }

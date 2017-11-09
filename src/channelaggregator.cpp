@@ -199,7 +199,7 @@ void ChannelAggregator::videosLoaded(const QVector<Video*> &videos) {
     }
 
     if (!videos.isEmpty()) {
-        YTChannel *channel = YTChannel::forId(videos.first()->channelId());
+        YTChannel *channel = YTChannel::forId(videos.first()->getChannelId());
         channel->updateNotifyCount();
         emit channelChanged(channel);
         updateUnwatchedCount();
@@ -229,7 +229,7 @@ void ChannelAggregator::addVideo(Video *video) {
 
     QSqlQuery query(db);
     query.prepare("select count(*) from subscriptions_videos where video_id=?");
-    query.bindValue(0, video->id());
+    query.bindValue(0, video->getId());
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
     if (!query.next()) return;
@@ -238,9 +238,9 @@ void ChannelAggregator::addVideo(Video *video) {
 
     // qDebug() << "Inserting" << video->author() << video->title();
 
-    YTChannel *channel = YTChannel::forId(video->channelId());
+    YTChannel *channel = YTChannel::forId(video->getChannelId());
     if (!channel) {
-        qWarning() << "channelId not present in db" << video->channelId() << video->channelTitle();
+        qWarning() << "channelId not present in db" << video->getChannelId() << video->getChannelTitle();
         return;
     }
 
@@ -248,7 +248,7 @@ void ChannelAggregator::addVideo(Video *video) {
         updatedChannels << channel;
 
     uint now = QDateTime::currentDateTimeUtc().toTime_t();
-    uint published = video->published().toTime_t();
+    uint published = video->getPublished().toTime_t();
     if (published > now) {
         qDebug() << "fixing publish time";
         published = now;
@@ -259,19 +259,19 @@ void ChannelAggregator::addVideo(Video *video) {
                   "(video_id,channel_id,published,added,watched,"
                   "title,author,user_id,description,url,thumb_url,views,duration) "
                   "values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
-    query.bindValue(0, video->id());
+    query.bindValue(0, video->getId());
     query.bindValue(1, channel->getId());
     query.bindValue(2, published);
     query.bindValue(3, now);
     query.bindValue(4, 0);
-    query.bindValue(5, video->title());
-    query.bindValue(6, video->channelTitle());
-    query.bindValue(7, video->channelId());
-    query.bindValue(8, video->description());
-    query.bindValue(9, video->webpage());
-    query.bindValue(10, video->thumbnailUrl());
-    query.bindValue(11, video->viewCount());
-    query.bindValue(12, video->duration());
+    query.bindValue(5, video->getTitle());
+    query.bindValue(6, video->getChannelTitle());
+    query.bindValue(7, video->getChannelId());
+    query.bindValue(8, video->getDescription());
+    query.bindValue(9, video->getWebpage());
+    query.bindValue(10, video->getThumbnailUrl());
+    query.bindValue(11, video->getViewCount());
+    query.bindValue(12, video->getDuration());
     success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
 
@@ -310,11 +310,11 @@ void ChannelAggregator::videoWatched(Video *video) {
     QSqlQuery query(db);
     query.prepare("update subscriptions_videos set watched=? where video_id=?");
     query.bindValue(0, QDateTime::currentDateTimeUtc().toTime_t());
-    query.bindValue(1, video->id());
+    query.bindValue(1, video->getId());
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
     if (query.numRowsAffected() > 0) {
-        YTChannel *channel = YTChannel::forId(video->channelId());
+        YTChannel *channel = YTChannel::forId(video->getChannelId());
         channel->updateNotifyCount();
     }
 }

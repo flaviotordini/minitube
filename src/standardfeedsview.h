@@ -28,9 +28,9 @@ $END_LICENSE */
 class VideoSource;
 struct YTCategory;
 class YTStandardFeed;
+class VideoSourceWidget;
 
 class StandardFeedsView : public View {
-
     Q_OBJECT
 
 public:
@@ -46,18 +46,19 @@ public slots:
 
 protected:
     void paintEvent(QPaintEvent *event);
-    
+
 private slots:
     void layoutCategories(const QVector<YTCategory> &categories);
     void selectWorldwideRegion();
     void selectLocalRegion();
+    void removeVideoSourceWidget(VideoSourceWidget *videoSourceWidget);
 
 private:
+    void resetLayout();
     void addVideoSourceWidget(VideoSource *videoSource);
-    QVector<YTStandardFeed*> getMainFeeds();
-    YTStandardFeed* buildStandardFeed(const QString &feedId, const QString &label, QString time = QString());
+    YTStandardFeed *
+    buildStandardFeed(const QString &feedId, const QString &label, QString time = QString());
     QGridLayout *layout;
-    
 };
 
 #endif // CATEGORIESVIEW_H

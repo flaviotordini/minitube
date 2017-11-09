@@ -100,7 +100,7 @@ QVariant PlaylistModel::data(const QModelIndex &index, int role) const {
     case ActiveTrackRole:
         return video == m_activeVideo;
     case Qt::DisplayRole:
-        return video->title();
+        return video->getTitle();
     case HoveredItemRole:
         return hoveredRow == index.row();
     case AuthorHoveredRole:
@@ -204,8 +204,8 @@ void PlaylistModel::searchNeeded() {
 void PlaylistModel::abortSearch() {
     QMutexLocker locker(&mutex);
     beginResetModel();
-    // while (!videos.isEmpty()) delete videos.takeFirst();
     // if (videoSource) videoSource->abort();
+    qDeleteAll(videos);
     videos.clear();
     videos.squeeze();
     searching = false;
@@ -278,7 +278,7 @@ void PlaylistModel::handleFirstVideo(Video *video) {
         if (!query.isEmpty() && !searchParams->isTransient()) {
             if (query.startsWith("http://")) {
                 // Save the video title
-                query += "|" + videos.first()->title();
+                query += "|" + videos.first()->getTitle();
             }
             QStringList keywords = settings.value(recentKeywordsKey).toStringList();
             keywords.removeAll(query);
@@ -292,9 +292,9 @@ void PlaylistModel::handleFirstVideo(Video *video) {
         QString channelId = searchParams->channelId();
         if (!channelId.isEmpty() && !searchParams->isTransient()) {
             QString value;
-            if (!video->channelId().isEmpty() && video->channelId() != video->channelTitle())
-                value = video->channelId() + "|" + video->channelTitle();
-            else value = video->channelTitle();
+            if (!video->getChannelId().isEmpty() && video->getChannelId() != video->getChannelTitle())
+                value = video->getChannelId() + "|" + video->getChannelTitle();
+            else value = video->getChannelTitle();
             QStringList channels = settings.value(recentChannelsKey).toStringList();
             channels.removeAll(value);
             channels.removeAll(channelId);
@@ -446,7 +446,7 @@ int PlaylistModel::rowForCloneVideo(const QString &videoId) const {
     for (int i = 0; i < videos.size(); ++i) {
         Video *v = videos.at(i);
         // qDebug() << "Comparing" << v->id() << videoId;
-        if (v->id() == videoId) return i;
+        if (v->getId() == videoId) return i;
     }
     return -1;
 }

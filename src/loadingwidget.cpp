@@ -64,7 +64,7 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
 void LoadingWidget::setVideo(Video *video) {
     adjustFontSize();
 
-    QString title = video->title();
+    QString title = video->getTitle();
     // enhance legibility by splitting the title
     title.replace(QLatin1String(" - "), QLatin1String("<p>"));
     title.replace(QLatin1String(" | "), QLatin1String("<p>"));
@@ -77,7 +77,7 @@ void LoadingWidget::setVideo(Video *video) {
     titleLabel->setVisible(window()->height() > 100);
 
     static const int maxDescLength = 400;
-    QString videoDesc = video->description();
+    QString videoDesc = video->getDescription();
     if (videoDesc.length() > maxDescLength) {
         videoDesc.truncate(maxDescLength);
         videoDesc = videoDesc.trimmed();

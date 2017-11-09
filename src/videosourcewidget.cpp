@@ -30,7 +30,7 @@ VideoSourceWidget::VideoSourceWidget(VideoSource *videoSource, QWidget *parent)
     : GridWidget(parent),
       videoSource(videoSource),
       lastPixelRatio(0) {
-
+    videoSource->setParent(this);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     loadPreview();
@@ -44,12 +44,15 @@ void VideoSourceWidget::activate() {
 
 void VideoSourceWidget::previewVideo(const QVector<Video *> &videos) {
     videoSource->disconnect();
-    if (videos.isEmpty()) return;
+    if (videos.isEmpty()) {
+        emit unavailable(this);
+        return;
+    }
     Video *video = videos.first();
     lastPixelRatio = window()->devicePixelRatio();
     bool needLargeThumb = lastPixelRatio > 1.0 || window()->width() > 1000;
-    QString url =  needLargeThumb ? video->largeThumbnailUrl() : video->mediumThumbnailUrl();
-    if (url.isEmpty()) url = video->mediumThumbnailUrl();
+    QString url =  needLargeThumb ? video->getLargeThumbnailUrl() : video->getMediumThumbnailUrl();
+    if (url.isEmpty()) url = video->getMediumThumbnailUrl();
     video->deleteLater();
     QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(setPixmapData(QByteArray)));

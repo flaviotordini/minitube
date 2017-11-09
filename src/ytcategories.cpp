@@ -51,12 +51,12 @@ void YTCategories::loadCategories(QString language) {
     connect(reply, SIGNAL(error(QString)), SLOT(requestError(QString)));
 }
 
-void YTCategories::parseCategories(QByteArray bytes) {
-    QVector<YTCategory> categories;
-
+void YTCategories::parseCategories(const QByteArray &bytes) {
     QJsonDocument doc = QJsonDocument::fromJson(bytes);
     QJsonObject obj = doc.object();
     QJsonArray items = obj["items"].toArray();
+
+    QVector<YTCategory> categories;
     categories.reserve(items.size());
     foreach (const QJsonValue &v, items) {
         QJsonObject item = v.toObject();
@@ -67,7 +67,7 @@ void YTCategories::parseCategories(QByteArray bytes) {
         YTCategory category;
         category.term = item["id"].toString();
         category.label = snippet["title"].toString();
-        if (category.label.startsWith(QLatin1String("News"))) continue;
+        // if (category.label.startsWith(QLatin1String("News"))) continue;
         categories << category;
     }
 

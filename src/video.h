@@ -21,71 +21,69 @@ $END_LICENSE */
 #ifndef VIDEO_H
 #define VIDEO_H
 
-#include <QtWidgets>
-#include <QtNetwork>
+#include <QtCore>
+#include <QtGui>
 
-class VideoDefinition;
+class YTVideo;
 
 class Video : public QObject {
-
     Q_OBJECT
 
 public:
     Video();
-    Video* clone();
+    ~Video();
+    Video *clone();
 
-    enum License {
-        LicenseYouTube = 1,
-        LicenseCC
-    };
+    enum License { LicenseYouTube = 1, LicenseCC };
+    Q_ENUM(License)
 
-    const QString &title() const { return m_title; }
-    void setTitle(const QString &value) { m_title = value; }
+    const QString &getTitle() const { return title; }
+    void setTitle(const QString &value) { title = value; }
 
-    const QString &description() const { return m_description; }
-    void setDescription(const QString &value) { m_description = value; }
+    const QString &getDescription() const { return description; }
+    void setDescription(const QString &value) { description = value; }
 
-    const QString &channelTitle() const { return m_channelTitle; }
-    void setChannelTitle(const QString &value) { m_channelTitle = value; }
+    const QString &getChannelTitle() const { return channelTitle; }
+    void setChannelTitle(const QString &value) { channelTitle = value; }
 
-    const QString &channelId() const { return m_channelId; }
-    void setChannelId(const QString &value ) { m_channelId = value; }
+    const QString &getChannelId() const { return channelId; }
+    void setChannelId(const QString &value) { channelId = value; }
 
-    const QString &webpage();
+    const QString &getWebpage();
     void setWebpage(const QString &value);
 
     void loadThumbnail();
-    const QPixmap &thumbnail() const { return m_thumbnail; }
+    const QPixmap &getThumbnail() const { return thumbnail; }
 
-    const QString &thumbnailUrl() { return m_thumbnailUrl; }
-    void setThumbnailUrl(const QString &value) { m_thumbnailUrl = value; }
+    const QString &getThumbnailUrl() const { return thumbnailUrl; }
+    void setThumbnailUrl(const QString &value) { thumbnailUrl = value; }
 
-    const QString &mediumThumbnailUrl() { return m_mediumThumbnailUrl; }
-    void setMediumThumbnailUrl(const QString &value) { m_mediumThumbnailUrl = value; }
+    const QString &getMediumThumbnailUrl() const { return mediumThumbnailUrl; }
+    void setMediumThumbnailUrl(const QString &value) { mediumThumbnailUrl = value; }
 
-    const QString &largeThumbnailUrl() { return m_largeThumbnailUrl; }
-    void setLargeThumbnailUrl(const QString &value) { m_largeThumbnailUrl = value; }
+    const QString &getLargeThumbnailUrl() const { return largeThumbnailUrl; }
+    void setLargeThumbnailUrl(const QString &value) { largeThumbnailUrl = value; }
 
-    int duration() const { return m_duration; }
-    void setDuration(int value) { m_duration = value; }
+    int getDuration() const { return duration; }
+    void setDuration(int value) { duration = value; }
     QString formattedDuration() const;
 
-    int viewCount() const { return m_viewCount; }
-    void setViewCount(int viewCount) { m_viewCount = viewCount; }
+    int getViewCount() const { return viewCount; }
+    void setViewCount(int viewCount) { viewCount = viewCount; }
 
-    const QDateTime &published() const { return m_published; }
-    void setPublished(const QDateTime &value) { m_published = value; }
+    const QDateTime &getPublished() const { return published; }
+    void setPublished(const QDateTime &value) { published = value; }
 
     int getDefinitionCode() const { return definitionCode; }
 
     void loadStreamUrl();
-    const QUrl &getStreamUrl() { return m_streamUrl; }
+    const QUrl &getStreamUrl() { return streamUrl; }
 
-    void setId(const QString &value) { videoId = value; }
-    const QString &id() const { return videoId; }
+    const QString &getId() const { return id; }
+    void setId(const QString &value) { id = value; }
 
-    void setLicense(License value) { m_license = value; }
-    License license() const { return m_license; }
+    License getLicense() const { return license; }
+    void setLicense(License value) { license = value; }
 
 signals:
     void gotThumbnail();
@@ -96,53 +94,29 @@ signals:
 
 private slots:
     void setThumbnail(const QByteArray &bytes);
-    void gotVideoInfo(const QByteArray &bytes);
-    void errorVideoInfo(const QString &message);
-    void scrapeWebPage(const QByteArray &bytes);
-    void parseJsPlayer(const QByteArray &bytes);
-    void parseDashManifest(const QByteArray &bytes);
+    void streamUrlLoaded(const QUrl &streamUrl);
 
 private:
-    void getVideoInfo();
-    void parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage = false);
-    void captureFunction(const QString &name, const QString &js);
-    void captureObject(const QString &name, const QString &js);
-    QString decryptSignature(const QString &s);
-    void saveDefinitionForUrl(const QString &url, const VideoDefinition &definition);
-
-    QString m_title;
-    QString m_description;
-    QString m_channelTitle;
-    QString m_channelId;
-    QString m_webpage;
-    QUrl m_streamUrl;
-    QPixmap m_thumbnail;
-    QString m_thumbnailUrl;
-    QString m_mediumThumbnailUrl;
-    QString m_largeThumbnailUrl;
-    int m_duration;
-    QDateTime m_published;
-    int m_viewCount;
-    License m_license;
-    QString videoId;
-    QString videoToken;
+    QString title;
+    QString description;
+    QString channelTitle;
+    QString channelId;
+    QString webpage;
+    QUrl streamUrl;
+    QPixmap thumbnail;
+    QString thumbnailUrl;
+    QString mediumThumbnailUrl;
+    QString largeThumbnailUrl;
+    int duration;
+    QDateTime published;
+    int viewCount;
+    License license;
+    QString id;
     int definitionCode;
 
-    // current index for the elTypes list
-    // needed to iterate on elTypes
-    int elIndex;
-    bool ageGate;
-    
-    bool loadingStreamUrl;
     bool loadingThumbnail;
 
-    QString fmtUrlMap;
-    QString sigFuncName;
-    QHash<QString, QString> sigFunctions;
-    QHash<QString, QString> sigObjects;
-
-    QString dashManifestUrl;
-    QString jsPlayer;
+    YTVideo *ytVideo;
 };
 
 // This is required in order to use QPointer<Video> as a QVariant

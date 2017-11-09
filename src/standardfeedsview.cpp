@@ -19,15 +19,14 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "standardfeedsview.h"
-#include "videosourcewidget.h"
-#include "ytcategories.h"
-#include "ytstandardfeed.h"
-#include "ytregions.h"
 #include "mainwindow.h"
 #include "painterutils.h"
+#include "videosourcewidget.h"
+#include "ytcategories.h"
+#include "ytregions.h"
+#include "ytstandardfeed.h"
 
-StandardFeedsView::StandardFeedsView(QWidget *parent) : View(parent),
-    layout(0) {
+StandardFeedsView::StandardFeedsView(QWidget *parent) : View(parent), layout(0) {
     QPalette p = palette();
     p.setBrush(QPalette::Window, Qt::black);
     setPalette(p);
@@ -38,11 +37,6 @@ StandardFeedsView::StandardFeedsView(QWidget *parent) : View(parent),
 
     connect(MainWindow::instance()->getActionMap().value("local-region"), SIGNAL(triggered()),
             SLOT(selectLocalRegion()));
-
-    /*
-    QAction *regionAction = MainWindow::instance()->getRegionAction();
-    connect(regionAction, SIGNAL(changed()), SLOT(load()));
-    */
 }
 
 void StandardFeedsView::load() {
@@ -52,21 +46,9 @@ void StandardFeedsView::load() {
             SLOT(layoutCategories(const QVector<YTCategory> &)));
     youTubeCategories->loadCategories();
 
-    if (layout) {
-        while (QLayoutItem *item = layout->takeAt(0)) {
-            delete item->widget();
-            delete item;
-        }
-        delete layout;
-    }
+    resetLayout();
 
-    layout = new QGridLayout(this);
-    layout->setMargin(0);
-    layout->setSpacing(1);
-
-    QVector<YTStandardFeed*> feeds = getMainFeeds();
-    foreach(YTStandardFeed *feed, feeds)
-        addVideoSourceWidget(feed);
+    addVideoSourceWidget(buildStandardFeed("most_popular", tr("Most Popular")));
 
     YTRegion region = YTRegions::currentRegion();
     QAction *regionAction = MainWindow::instance()->getRegionAction();
@@ -76,7 +58,7 @@ void StandardFeedsView::load() {
 
 void StandardFeedsView::layoutCategories(const QVector<YTCategory> &categories) {
     QString regionId = YTRegions::currentRegionId();
-    foreach(YTCategory category, categories) {
+    foreach (const YTCategory &category, categories) {
         // assign a parent to this VideoSource  so it won't be deleted by MediaView
         YTStandardFeed *feed = new YTStandardFeed(this);
         feed->setCategory(category.term);
@@ -90,27 +72,53 @@ void StandardFeedsView::layoutCategories(const QVector<YTCategory> &categories) 
 
 void StandardFeedsView::addVideoSourceWidget(VideoSource *videoSource) {
     VideoSourceWidget *w = new VideoSourceWidget(videoSource);
-    connect(w, SIGNAL(activated(VideoSource*)),
-            SIGNAL(activated(VideoSource*)));
+    connect(w, SIGNAL(activated(VideoSource *)), SIGNAL(activated(VideoSource *)));
+    connect(w, SIGNAL(unavailable(VideoSourceWidget *)),
+            SLOT(removeVideoSourceWidget(VideoSourceWidget *)));
     int i = layout->count();
     const int cols = 5;
     layout->addWidget(w, i / cols, i % cols);
 }
 
-QVector<YTStandardFeed*> StandardFeedsView::getMainFeeds() {
-    QVector<YTStandardFeed*> feeds;
+void StandardFeedsView::removeVideoSourceWidget(VideoSourceWidget *videoSourceWidget) {
+    qDebug() << videoSourceWidget->getVideoSource()->getName();
+    layout->removeWidget(videoSourceWidget);
+    videoSourceWidget->deleteLater();
 
-    feeds << buildStandardFeed("most_popular", tr("Most Popular"));
-          // << buildStandardFeed("recently_featured", tr("Featured"))
-          // << buildStandardFeed("most_shared", tr("Most Shared"))
-          // << buildStandardFeed("most_discussed", tr("Most Discussed"))
-          // << buildStandardFeed("top_rated", tr("Top Rated"))
-          // << buildStandardFeed("most_popular", tr("All Time Popular"), "all_time");
+    const int layoutCount = layout->count();
+    QVector<QLayoutItem *> items;
+    items.reserve(layoutCount);
 
-    return feeds;
+    for (int i = layoutCount - 1; i >= 0; i--) {
+        QLayoutItem *item = layout->takeAt(i);
+        if (item && item->widget()) items.append(item);
+    }
+
+    const int itemCount = items.size();
+    const int cols = itemCount / 3;
+    for (int i = itemCount - 1; i >= 0; i--) {
+        QLayoutItem *item = items.at(i);
+        int index = itemCount - 1 - i;
+        layout->addItem(item, index / cols, index % cols);
+    }
 }
 
-YTStandardFeed* StandardFeedsView::buildStandardFeed(const QString &feedId, const QString &label, QString time) {
+void StandardFeedsView::resetLayout() {
+    if (layout) {
+        while (QLayoutItem *item = layout->takeAt(0)) {
+            delete item->widget();
+            delete item;
+        }
+        delete layout;
+    }
+
+    layout = new QGridLayout(this);
+    layout->setMargin(0);
+    layout->setSpacing(1);
+}
+
+YTStandardFeed *
+StandardFeedsView::buildStandardFeed(const QString &feedId, const QString &label, QString time) {
     YTStandardFeed *feed = new YTStandardFeed(this);
     feed->setFeedId(feedId);
     feed->setLabel(label);
@@ -147,4 +155,3 @@ void StandardFeedsView::selectLocalRegion() {
 void StandardFeedsView::paintEvent(QPaintEvent *event) {
     QWidget::paintEvent(event);
 }
-

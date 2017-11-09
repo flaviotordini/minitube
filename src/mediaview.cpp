@@ -292,7 +292,7 @@ void MediaView::appear() {
     Video *currentVideo = playlistModel->activeVideo();
     if (currentVideo) {
         MainWindow::instance()->setWindowTitle(
-                    currentVideo->title() + " - " + Constants::NAME);
+                    currentVideo->getTitle() + " - " + Constants::NAME);
     }
 
     playlistView->setFocus();
@@ -362,7 +362,10 @@ void MediaView::stop() {
 
     while (!history.isEmpty()) {
         VideoSource *videoSource = history.takeFirst();
-        if (!videoSource->parent()) delete videoSource;
+        // Don't delete videoSource in the Browse view
+        if (!videoSource->parent()) {
+            videoSource->deleteLater();
+        }
     }
 
     playlistModel->abortSearch();
@@ -391,6 +394,7 @@ void MediaView::stop() {
 
 #ifdef APP_PHONON
     mediaObject->stop();
+    mediaObject->clear();
 #endif
     currentVideoId.clear();
 
@@ -444,7 +448,7 @@ void MediaView::activeRowChanged(int row) {
     video->loadStreamUrl();
 
     // video title in titlebar
-    MainWindow::instance()->setWindowTitle(video->title() + " - " + Constants::NAME);
+    MainWindow::instance()->setWindowTitle(video->getTitle() + " - " + Constants::NAME);
 
     // ensure active item is visible
     if (row != -1) {
@@ -459,7 +463,7 @@ void MediaView::activeRowChanged(int row) {
     MainWindow::instance()->getActionMap().value("stopafterthis")->setEnabled(true);
     MainWindow::instance()->getActionMap().value("related-videos")->setEnabled(true);
 
-    bool enableDownload = video->license() == Video::LicenseCC;
+    bool enableDownload = video->getLicense() == Video::LicenseCC;
 #ifdef APP_ACTIVATION
     enableDownload = enableDownload || Activation::instance().isLegacy();
 #endif
@@ -470,7 +474,7 @@ void MediaView::activeRowChanged(int row) {
     a->setEnabled(enableDownload);
     a->setVisible(enableDownload);
 
-    updateSubscriptionAction(video, YTChannel::isSubscribed(video->channelId()));
+    updateSubscriptionAction(video, YTChannel::isSubscribed(video->getChannelId()));
 
     foreach (QAction *action, currentVideoActions)
         action->setEnabled(true);
@@ -506,7 +510,7 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
     }
     video->disconnect(this);
 
-    currentVideoId = video->id();
+    currentVideoId = video->getId();
 
 #ifdef APP_PHONON_SEEK
     mediaObject->setCurrentSource(streamUrl);
@@ -533,7 +537,7 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
 #endif
 
 #ifdef APP_EXTRA
-    Extra::notify(video->title(), video->channelTitle(), video->formattedDuration());
+    Extra::notify(video->getTitle(), video->getChannelTitle(), video->formattedDuration());
 #endif
 
     ChannelAggregator::instance()->videoWatched(video);
@@ -699,14 +703,14 @@ void MediaView::openWebPage() {
 #ifdef APP_PHONON
     mediaObject->pause();
 #endif
-    QString url = video->webpage() + QLatin1String("&t=") + QString::number(mediaObject->currentTime() / 1000);
+    QString url = video->getWebpage() + QLatin1String("&t=") + QString::number(mediaObject->currentTime() / 1000);
     QDesktopServices::openUrl(url);
 }
 
 void MediaView::copyWebPage() {
     Video* video = playlistModel->activeVideo();
     if (!video) return;
-    QString address = video->webpage();
+    QString address = video->getWebpage();
     QApplication::clipboard()->setText(address);
     QString message = tr("You can now paste the YouTube link into another application");
     MainWindow::instance()->showMessage(message);
@@ -816,7 +820,7 @@ void MediaView::downloadVideo() {
     if (!video) return;
     DownloadManager::instance()->addItem(video);
     MainWindow::instance()->showActionInStatusBar(MainWindow::instance()->getActionMap().value("downloads"), true);
-    QString message = tr("Downloading %1").arg(video->title());
+    QString message = tr("Downloading %1").arg(video->getTitle());
     MainWindow::instance()->showMessage(message);
 }
 
@@ -840,8 +844,8 @@ void MediaView::snapshot() {
     QString location = SnapshotSettings::getCurrentLocation();
     QDir dir(location);
     if (!dir.exists()) dir.mkpath(location);
-    QString basename = video->title();
-    QString format = video->duration() > 3600 ? "h_mm_ss" : "m_ss";
+    QString basename = video->getTitle();
+    QString format = video->getDuration() > 3600 ? "h_mm_ss" : "m_ss";
     basename += " (" + QTime().addSecs(currentTime).toString(format) + ")";
     basename = DataUtils::stringToFilename(basename);
     QString filename = location + "/" + basename + ".png";
@@ -946,7 +950,7 @@ void MediaView::findVideoParts() {
     Video* video = playlistModel->activeVideo();
     if (!video) return;
 
-    QString query = video->title();
+    QString query = video->getTitle();
 
     static QString optionalSpace = "\\s*";
     static QString staticCounterSeparators = "[\\/\\-]";
@@ -986,7 +990,7 @@ void MediaView::findVideoParts() {
     SearchParams *searchParams = new SearchParams();
     searchParams->setTransient(true);
     searchParams->setKeywords(query);
-    searchParams->setChannelId(video->channelId());
+    searchParams->setChannelId(video->getChannelId());
 
     /*
     if (!numberAsWords) {
@@ -1017,8 +1021,8 @@ void MediaView::shareViaTwitter() {
     QUrl url("https://twitter.com/intent/tweet");
     QUrlQuery q;
     q.addQueryItem("via", "minitubeapp");
-    q.addQueryItem("text", video->title());
-    q.addQueryItem("url", video->webpage());
+    q.addQueryItem("text", video->getTitle());
+    q.addQueryItem("url", video->getWebpage());
     url.setQuery(q);
     QDesktopServices::openUrl(url);
 }
@@ -1028,8 +1032,8 @@ void MediaView::shareViaFacebook() {
     if (!video) return;
     QUrl url("https://www.facebook.com/sharer.php");
     QUrlQuery q;
-    q.addQueryItem("t", video->title());
-    q.addQueryItem("u", video->webpage());
+    q.addQueryItem("t", video->getTitle());
+    q.addQueryItem("u", video->getWebpage());
     url.setQuery(q);
     QDesktopServices::openUrl(url);
 }
@@ -1040,9 +1044,9 @@ void MediaView::shareViaBuffer() {
     QUrl url("http://bufferapp.com/add");
     QUrlQuery q;
     q.addQueryItem("via", "minitubeapp");
-    q.addQueryItem("text", video->title());
-    q.addQueryItem("url", video->webpage());
-    q.addQueryItem("picture", video->thumbnailUrl());
+    q.addQueryItem("text", video->getTitle());
+    q.addQueryItem("url", video->getWebpage());
+    q.addQueryItem("picture", video->getThumbnailUrl());
     url.setQuery(q);
     QDesktopServices::openUrl(url);
 }
@@ -1052,9 +1056,9 @@ void MediaView::shareViaEmail() {
     if (!video) return;
     QUrl url("mailto:");
     QUrlQuery q;
-    q.addQueryItem("subject", video->title());
-    const QString body = video->title() + "\n" +
-            video->webpage() + "\n\n" +
+    q.addQueryItem("subject", video->getTitle());
+    const QString body = video->getTitle() + "\n" +
+            video->getWebpage() + "\n\n" +
             tr("Sent from %1").arg(Constants::NAME) + "\n" +
             Constants::WEBSITE;
     q.addQueryItem("body", body);
@@ -1066,7 +1070,7 @@ void MediaView::authorPushed(QModelIndex index) {
     Video* video = playlistModel->videoAt(index.row());
     if (!video) return;
 
-    QString channelId = video->channelId();
+    QString channelId = video->getChannelId();
     // if (channelId.isEmpty()) channelId = video->channelTitle();
     if (channelId.isEmpty()) return;
 
@@ -1087,11 +1091,11 @@ void MediaView::updateSubscriptionAction(Video *video, bool subscribed) {
         subscribeText = subscribeAction->property("originalText").toString();
         subscribeAction->setEnabled(false);
     } else if (subscribed) {
-        subscribeText = tr("Unsubscribe from %1").arg(video->channelTitle());
+        subscribeText = tr("Unsubscribe from %1").arg(video->getChannelTitle());
         subscribeTip = subscribeText;
         subscribeAction->setEnabled(true);
     } else {
-        subscribeText = tr("Subscribe to %1").arg(video->channelTitle());
+        subscribeText = tr("Subscribe to %1").arg(video->getChannelTitle());
         subscribeTip = subscribeText;
         subscribeAction->setEnabled(true);
     }
@@ -1120,15 +1124,15 @@ void MediaView::updateSubscriptionAction(Video *video, bool subscribed) {
 void MediaView::toggleSubscription() {
     Video *video = playlistModel->activeVideo();
     if (!video) return;
-    QString userId = video->channelId();
+    QString userId = video->getChannelId();
     if (userId.isEmpty()) return;
     bool subscribed = YTChannel::isSubscribed(userId);
     if (subscribed) {
         YTChannel::unsubscribe(userId);
-        MainWindow::instance()->showMessage(tr("Unsubscribed from %1").arg(video->channelTitle()));
+        MainWindow::instance()->showMessage(tr("Unsubscribed from %1").arg(video->getChannelTitle()));
     } else {
         YTChannel::subscribe(userId);
-        MainWindow::instance()->showMessage(tr("Subscribed to %1").arg(video->channelTitle()));
+        MainWindow::instance()->showMessage(tr("Subscribed to %1").arg(video->getChannelTitle()));
     }
     updateSubscriptionAction(video, !subscribed);
 }

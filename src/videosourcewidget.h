@@ -34,9 +34,11 @@ class VideoSourceWidget : public GridWidget {
 
 public:
     VideoSourceWidget(VideoSource *videoSource, QWidget *parent = 0);
+    VideoSource *getVideoSource() { return videoSource; }
 
 signals:
     void activated(VideoSource *videoSource);
+    void unavailable(VideoSourceWidget *videoSourceWidget);
 
 protected:
     void paintEvent(QPaintEvent *event);
