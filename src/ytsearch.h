@@ -47,7 +47,7 @@ public:
     }
 
 private slots:
-    void parseResults(QByteArray data);
+    void parseResults(const QByteArray &data);
     void requestError(const QString &message);
 
 private:

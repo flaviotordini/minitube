@@ -144,7 +144,7 @@ void YTSearch::loadVideos(int max, int startIndex) {
     connect(reply, SIGNAL(error(QString)), SLOT(requestError(QString)));
 }
 
-void YTSearch::parseResults(QByteArray data) {
+void YTSearch::parseResults(const QByteArray &data) {
     if (aborted) return;
 
     YT3ListParser parser(data);
