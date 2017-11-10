@@ -244,7 +244,7 @@ QTime YTSearch::videoTimestampFromUrl(const QString &url) {
 
 const QList<QAction *> &YTSearch::getActions() {
     static const QList<QAction *> channelActions = {
-            MainWindow::instance()->getActionMap().value("subscribe-channel")};
+            MainWindow::instance()->getAction("subscribe-channel")};
     if (searchParams->channelId().isEmpty()) {
         static const QList<QAction *> noActions;
         return noActions;

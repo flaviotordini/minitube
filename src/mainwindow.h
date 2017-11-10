@@ -64,8 +64,10 @@ public:
     QAction* getRegionAction() { return regionAction; }
     SearchLineEdit *getToolbarSearch() { return toolbarSearch; }
 
-    QHash<QString, QAction*> &getActionMap() { return actionMap; }
-    QHash<QString, QMenu*> &getMenuMap() { return menuMap; }
+    QAction *getAction(const char *name);
+    void addNamedAction(const QByteArray &name, QAction *action);
+
+    QMenu *getMenu(const char *name);
 
     void showActionInStatusBar(QAction*, bool show);
     void setStatusBarVisibility(bool show);
@@ -172,8 +174,8 @@ private:
 
     UpdateChecker *updateChecker;
 
-    QHash<QString, QAction*> actionMap;
-    QHash<QString, QMenu*> menuMap;
+    QHash<QByteArray, QAction*> actionMap;
+    QHash<QByteArray, QMenu*> menuMap;
 
     // view mechanism
     QStackedWidget *views;

@@ -214,9 +214,9 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 
 void SearchView::appear() {
     MainWindow *w = MainWindow::instance();
-    w->showActionInStatusBar(w->getActionMap().value("manualplay"), true);
-    w->showActionInStatusBar(w->getActionMap().value("safeSearch"), true);
-    w->showActionInStatusBar(w->getActionMap().value("definition"), true);
+    w->showActionInStatusBar(w->getAction("manualplay"), true);
+    w->showActionInStatusBar(w->getAction("safeSearch"), true);
+    w->showActionInStatusBar(w->getAction("definition"), true);
 
     updateRecentKeywords();
     updateRecentChannels();
@@ -238,15 +238,15 @@ void SearchView::appear() {
 
 void SearchView::disappear() {
     MainWindow *w = MainWindow::instance();
-    w->showActionInStatusBar(w->getActionMap().value("safeSearch"), false);
-    w->showActionInStatusBar(w->getActionMap().value("definition"), false);
-    w->showActionInStatusBar(w->getActionMap().value("manualplay"), false);
+    w->showActionInStatusBar(w->getAction("safeSearch"), false);
+    w->showActionInStatusBar(w->getAction("definition"), false);
+    w->showActionInStatusBar(w->getAction("manualplay"), false);
 }
 
 void SearchView::updateRecentKeywords() {
     // load
     QSettings settings;
-    QStringList keywords = settings.value(recentKeywordsKey).toStringList();
+    const QStringList keywords = settings.value(recentKeywordsKey).toStringList();
     if (keywords == recentKeywords) return;
     recentKeywords = keywords;
 
@@ -258,7 +258,7 @@ void SearchView::updateRecentKeywords() {
     }
 
     recentKeywordsLabel->setVisible(!keywords.isEmpty());
-    MainWindow::instance()->getActionMap().value("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
+    MainWindow::instance()->getAction("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
 
     for (const QString &keyword : keywords) {
         QString link = keyword;
@@ -297,7 +297,7 @@ void SearchView::updateRecentKeywords() {
 void SearchView::updateRecentChannels() {
     // load
     QSettings settings;
-    QStringList keywords = settings.value(recentChannelsKey).toStringList();
+    const QStringList keywords = settings.value(recentChannelsKey).toStringList();
     if (keywords == recentChannels) return;
     recentChannels = keywords;
 
@@ -309,7 +309,7 @@ void SearchView::updateRecentChannels() {
     }
 
     recentChannelsLabel->setVisible(!keywords.isEmpty());
-    // TODO MainWindow::instance()->getActionMap().value("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
+    // TODO MainWindow::instance()->getAction("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
 
     for (const QString &keyword : keywords) {
         QString link = keyword;

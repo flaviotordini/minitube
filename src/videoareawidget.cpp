@@ -140,6 +140,6 @@ void VideoAreaWidget::dropEvent(QDropEvent *event) {
 }
 
 void VideoAreaWidget::showContextMenu(const QPoint &point) {
-    QMenu *menu = MainWindow::instance()->getMenuMap().value("video");
+    QMenu *menu = MainWindow::instance()->getMenu("video");
     menu->exec(mapToGlobal(point));
 }

@@ -1915,6 +1915,18 @@ void MainWindow::printHelp() {
     std::cout << msg.toLocal8Bit().data();
 }
 
+QAction *MainWindow::getAction(const char *name) {
+    return actionMap.value(QByteArray::fromRawData(name, strlen(name)));
+}
+
+void MainWindow::addNamedAction(const QByteArray &name, QAction *action) {
+    actionMap.insert(name, action);
+}
+
+QMenu *MainWindow::getMenu(const char *name) {
+    return menuMap.value(QByteArray::fromRawData(name, strlen(name)));
+}
+
 void MainWindow::showMessage(const QString &message) {
     if (!isVisible()) return;
 #ifdef APP_MAC
