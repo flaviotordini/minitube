@@ -41,12 +41,12 @@ public:
     static const YTRegion & worldwideRegion();
     static void setRegion(const QString &regionId);
     static QString currentRegionId();
-    static YTRegion currentRegion();
+    static const YTRegion &currentRegion();
     static QIcon iconForRegionId(const QString &regionId);
 
 private:
     static YTRegion r(const QString &name, const QString &id);
-    static YTRegion regionById(const QString &id);
+    static const YTRegion &regionById(const QString &id);
     YTRegions();
 
 };
