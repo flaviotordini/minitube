@@ -9,7 +9,7 @@ class YTVideo : public QObject {
     Q_OBJECT
 
 public:
-    YTVideo(const QString &videoId);
+    YTVideo(const QString &videoId, QObject *parent);
     void loadStreamUrl();
     int getDefinitionCode() const { return definitionCode; }
 

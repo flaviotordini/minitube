@@ -110,7 +110,7 @@ void Video::loadStreamUrl() {
         qDebug() << "Already loading" << id;
         return;
     }
-    ytVideo = new YTVideo(id);
+    ytVideo = new YTVideo(id, this);
     connect(ytVideo, &YTVideo::gotStreamUrl, this, &Video::streamUrlLoaded);
     connect(ytVideo, &YTVideo::errorStreamUrl, this, &Video::errorStreamUrl);
     connect(ytVideo, &YTVideo::errorStreamUrl, ytVideo, &QObject::deleteLater);

@@ -15,8 +15,9 @@ namespace {
 static const QString jsNameChars = "a-zA-Z0-9\\$_";
 }
 
-YTVideo::YTVideo(const QString &videoId)
-    : videoId(videoId), definitionCode(0), elIndex(0), ageGate(false), loadingStreamUrl(false) {}
+YTVideo::YTVideo(const QString &videoId, QObject *parent)
+    : QObject(parent), videoId(videoId), definitionCode(0), elIndex(0), ageGate(false),
+      loadingStreamUrl(false) {}
 
 void YTVideo::loadStreamUrl() {
     if (loadingStreamUrl) {
@@ -265,7 +266,8 @@ void YTVideo::parseJsPlayer(const QByteArray &bytes) {
     // qDebug() << "jsPlayer" << jsPlayer;
 
     // QRegExp funcNameRe("[\"']signature[\"']\\s*,\\s*([" + jsNameChars + "]+)\\(");
-    static const QRegExp funcNameRe(JsFunctions::instance()->signatureFunctionNameRE().arg(jsNameChars));
+    static const QRegExp funcNameRe(
+            JsFunctions::instance()->signatureFunctionNameRE().arg(jsNameChars));
 
     if (funcNameRe.indexIn(jsPlayer) == -1) {
         qWarning() << "Cannot capture signature function name" << jsPlayer;
