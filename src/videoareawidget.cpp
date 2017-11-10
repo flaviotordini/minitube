@@ -129,7 +129,7 @@ void VideoAreaWidget::dropEvent(QDropEvent *event) {
     const VideoMimeData* videoMimeData = qobject_cast<const VideoMimeData*>( event->mimeData() );
     if(!videoMimeData ) return;
     
-    QVector<Video*> droppedVideos = videoMimeData->videos();
+    QVector<Video*> droppedVideos = videoMimeData->getVideos();
     if (droppedVideos.isEmpty())
         return;
     Video *video = droppedVideos.first();

@@ -21,28 +21,23 @@ $END_LICENSE */
 #ifndef VIDEOMIMEDATA_H
 #define VIDEOMIMEDATA_H
 
-#include <QMimeData>
 #include "video.h"
+#include <QMimeData>
 
 class VideoMimeData : public QMimeData {
-
     Q_OBJECT
 
 public:
     VideoMimeData();
 
     virtual QStringList formats() const;
-    virtual bool hasFormat( const QString &mimeType ) const;
+    virtual bool hasFormat(const QString &mimeType) const;
 
-    QVector<Video*> videos() const { return m_videos; }
-
-    void addVideo(Video *video) {
-        m_videos << video;
-    }
+    const QVector<Video *> &getVideos() const { return videos; }
+    void addVideo(Video *video) { videos << video; }
 
 private:
-    QVector<Video*> m_videos;
-
+    QVector<Video *> videos;
 };
 
 #endif // VIDEOMIMEDATA_H

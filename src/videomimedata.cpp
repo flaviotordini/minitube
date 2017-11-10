@@ -23,11 +23,11 @@ $END_LICENSE */
 VideoMimeData::VideoMimeData() {}
 
 QStringList VideoMimeData::formats() const {
-    QStringList formats( QMimeData::formats() );
+    QStringList formats(QMimeData::formats());
     formats.append("application/x-minitube-video");
     return formats;
 }
 
-bool VideoMimeData::hasFormat( const QString &mimeType ) const {
+bool VideoMimeData::hasFormat(const QString &mimeType) const {
     return mimeType == QLatin1String("application/x-minitube-video");
 }
