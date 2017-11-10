@@ -152,14 +152,14 @@ QString ChannelView::noSubscriptionsMessage() {
 
 void ChannelView::appear() {
     updateQuery();
-    foreach (QAction* action, statusActions)
+    for (QAction* action : statusActions)
         MainWindow::instance()->showActionInStatusBar(action, true);
     setFocus();
     ChannelAggregator::instance()->start();
 }
 
 void ChannelView::disappear() {
-    foreach (QAction* action, statusActions)
+    for (QAction* action : statusActions)
         MainWindow::instance()->showActionInStatusBar(action, false);
 }
 

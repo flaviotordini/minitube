@@ -385,7 +385,7 @@ void MediaView::stop() {
     demoTimer->stop();
 #endif
 
-    foreach (QAction *action, currentVideoActions)
+    for (QAction *action : currentVideoActions)
         action->setEnabled(false);
 
     QAction *a = MainWindow::instance()->getActionMap().value("download");
@@ -476,7 +476,7 @@ void MediaView::activeRowChanged(int row) {
 
     updateSubscriptionAction(video, YTChannel::isSubscribed(video->getChannelId()));
 
-    foreach (QAction *action, currentVideoActions)
+    for (QAction *action : currentVideoActions)
         action->setEnabled(true);
 
 #ifndef APP_PHONON_SEEK

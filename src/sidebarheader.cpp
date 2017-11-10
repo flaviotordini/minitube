@@ -111,7 +111,7 @@ void SidebarHeader::setTitle(const QString &title) {
     QVector<VideoSource*> history = MediaView::instance()->getHistory();
     int currentIndex = MediaView::instance()->getHistoryIndex();
     VideoSource *currentVideoSource = history.at(currentIndex);
-    foreach (QAction* action, videoSourceActions)
+    for (QAction* action : videoSourceActions)
         removeAction(action);
     videoSourceActions = currentVideoSource->getActions();
     addActions(videoSourceActions);
