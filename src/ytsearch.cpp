@@ -156,7 +156,7 @@ void YTSearch::parseResults(const QByteArray &data) {
 
     if (name.isEmpty() && !searchParams->channelId().isEmpty()) {
         if (!videos.isEmpty()) {
-            name = videos.first()->getChannelTitle();
+            name = videos.at(0)->getChannelTitle();
         }
         emit nameChanged(name);
     }

@@ -29,7 +29,7 @@ YTCategories::YTCategories(QObject *parent) : QObject(parent) { }
 
 void YTCategories::loadCategories(QString language) {
     if (language.isEmpty()) {
-        language = QLocale::system().uiLanguages().first();
+        language = QLocale::system().uiLanguages().at(0);
         int index = language.indexOf('-');
         if (index > 0) language = language.mid(0, index);
     }

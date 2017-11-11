@@ -29,7 +29,7 @@ YTSuggester::YTSuggester(QObject *parent) : Suggester(parent) {
 void YTSuggester::suggest(const QString &query) {
     if (query.startsWith(QLatin1String("http"))) return;
 
-    QString locale = QLocale::system().uiLanguages().first();
+    QString locale = QLocale::system().uiLanguages().at(0);
 
     // case for system locales such as "C"
     if (locale.length() < 2) {

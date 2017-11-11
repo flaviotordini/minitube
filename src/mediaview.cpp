@@ -764,7 +764,7 @@ void MediaView::moveUpSelected() {
     playlistModel->move(indexes, true);
 
     // set current index after row moves to something more intuitive
-    int row = indexes.first().row();
+    int row = indexes.at(0).row();
     playlistView->selectionModel()->setCurrentIndex(playlistModel->index(row>1?row:1),
                                                     QItemSelectionModel::NoUpdate);
 }
@@ -778,7 +778,7 @@ void MediaView::moveDownSelected() {
 
     // set current index after row moves to something more intuitive
     // (respect 1 static item on bottom)
-    int row = indexes.first().row()+1, max = playlistModel->rowCount() - 2;
+    int row = indexes.at(0).row()+1, max = playlistModel->rowCount() - 2;
     playlistView->selectionModel()->setCurrentIndex(
                 playlistModel->index(row>max?max:row), QItemSelectionModel::NoUpdate);
 }

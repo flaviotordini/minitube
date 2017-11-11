@@ -132,7 +132,7 @@ void VideoAreaWidget::dropEvent(QDropEvent *event) {
     QVector<Video*> droppedVideos = videoMimeData->getVideos();
     if (droppedVideos.isEmpty())
         return;
-    Video *video = droppedVideos.first();
+    Video *video = droppedVideos.at(0);
     int row = listModel->rowForVideo(video);
     if (row != -1)
         listModel->setActiveRow(row);

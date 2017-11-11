@@ -178,7 +178,7 @@ void ChannelAggregator::videosLoaded(const QVector<Video *> &videos) {
     }
 
     if (!videos.isEmpty()) {
-        YTChannel *channel = YTChannel::forId(videos.first()->getChannelId());
+        YTChannel *channel = YTChannel::forId(videos.at(0)->getChannelId());
         channel->updateNotifyCount();
         emit channelChanged(channel);
         updateUnwatchedCount();

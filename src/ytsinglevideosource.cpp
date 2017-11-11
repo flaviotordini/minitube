@@ -44,7 +44,7 @@ void YTSingleVideoSource::loadVideos(int max, int startIndex) {
             QVector<Video*> videos;
             videos << video->clone();
             if (name.isEmpty()) {
-                name = videos.first()->getTitle();
+                name = videos.at(0)->getTitle();
                 qDebug() << "Emitting name changed" << name;
                 emit nameChanged(name);
             }

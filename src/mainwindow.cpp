@@ -895,7 +895,7 @@ void MainWindow::showActionInStatusBar(QAction* action, bool show) {
         if (statusToolBar->actions().isEmpty()) {
             statusToolBar->addAction(action);
         } else {
-            statusToolBar->insertAction(statusToolBar->actions().first(), action);
+            statusToolBar->insertAction(statusToolBar->actions().at(0), action);
         }
         if (statusBar()->isHidden() && !fullScreenActive)
             setStatusBarVisibility(true);
@@ -948,7 +948,7 @@ void MainWindow::readSettings() {
                         desktopSize)
                     );
     }
-    const VideoDefinition& firstDefinition = VideoDefinition::getDefinitions().first();
+    const VideoDefinition& firstDefinition = VideoDefinition::getDefinitions().at(0);
     setDefinitionMode(settings.value("definition", firstDefinition.getName()).toString());
     actionMap.value("manualplay")->setChecked(settings.value("manualplay", false).toBool());
     actionMap.value("safeSearch")->setChecked(settings.value("safeSearch", false).toBool());
@@ -1647,7 +1647,7 @@ void MainWindow::toggleDefinitionMode() {
     const QVector<VideoDefinition>& definitions = VideoDefinition::getDefinitions();
     const VideoDefinition& currentDefinition = VideoDefinition::getDefinitionFor(definitionName);
     if (currentDefinition.isEmpty()) {
-        setDefinitionMode(definitions.first().getName());
+        setDefinitionMode(definitions.at(0).getName());
         return;
     }
 
@@ -1728,7 +1728,7 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *e) {
     if (e->mimeData()->hasFormat("text/uri-list")) {
         QList<QUrl> urls = e->mimeData()->urls();
         if (urls.isEmpty()) return;
-        QUrl url = urls.first();
+        const QUrl &url = urls.at(0);
         QString videoId = YTSearch::videoIdFromUrl(url.toString());
         if (!videoId.isEmpty())
             e->acceptProposedAction();
@@ -1741,7 +1741,7 @@ void MainWindow::dropEvent(QDropEvent *e) {
     QList<QUrl> urls = e->mimeData()->urls();
     if (urls.isEmpty())
         return;
-    QUrl url = urls.first();
+    const QUrl &url = urls.at(0);
     QString videoId = YTSearch::videoIdFromUrl(url.toString());
     if (!videoId.isEmpty()) {
         setWindowTitle(url.toString());

@@ -219,7 +219,7 @@ void PlaylistModel::searchFinished(int total) {
     if (!videoSource->getSuggestions().isEmpty())
         emit haveSuggestions(videoSource->getSuggestions());
 
-    if (firstSearch && !videos.isEmpty()) handleFirstVideo(videos.first());
+    if (firstSearch && !videos.isEmpty()) handleFirstVideo(videos.at(0));
 }
 
 void PlaylistModel::searchError(const QString &message) {
@@ -269,7 +269,7 @@ void PlaylistModel::handleFirstVideo(Video *video) {
         if (!query.isEmpty() && !searchParams->isTransient()) {
             if (query.startsWith("http://")) {
                 // Save the video title
-                query += "|" + videos.first()->getTitle();
+                query += "|" + videos.at(0)->getTitle();
             }
             QStringList keywords = settings.value(recentKeywordsKey).toStringList();
             keywords.removeAll(query);

@@ -358,7 +358,7 @@ void SearchView::watch(const QString &query) {
         if (lastChannelSuggestions.isEmpty())
             MainWindow::instance()->showMessage(tr("Pick a channel from the suggestions"));
         else
-            suggestionAccepted(lastChannelSuggestions.first());
+            suggestionAccepted(lastChannelSuggestions.at(0));
         return;
     }
 

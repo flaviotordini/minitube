@@ -48,7 +48,7 @@ void VideoSourceWidget::previewVideo(const QVector<Video *> &videos) {
         emit unavailable(this);
         return;
     }
-    Video *video = videos.first();
+    Video *video = videos.at(0);
     lastPixelRatio = window()->devicePixelRatio();
     bool needLargeThumb = lastPixelRatio > 1.0 || window()->width() > 1000;
     QString url =  needLargeThumb ? video->getLargeThumbnailUrl() : video->getMediumThumbnailUrl();
