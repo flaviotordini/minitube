@@ -1,19 +1,19 @@
 #include "localcache.h"
 
-LocalCache *LocalCache::instance(const QString &name) {
-    static QMap<QString, LocalCache *> instances;
-    QMap<QString, LocalCache *>::const_iterator i = instances.constFind(name);
+LocalCache *LocalCache::instance(const char *name) {
+    static QMap<QByteArray, LocalCache *> instances;
+    auto i = instances.constFind(QByteArray::fromRawData(name, strlen(name)));
     if (i != instances.constEnd()) return i.value();
     LocalCache *instance = new LocalCache(name);
-    instances.insert(name, instance);
+    instances.insert(instance->getName(), instance);
     return instance;
 }
 
-LocalCache::LocalCache(const QString &name)
+LocalCache::LocalCache(const QByteArray &name)
     : name(name), maxSeconds(86400 * 30), maxSize(1024 * 1024 * 100), size(0), expiring(false),
       insertCount(0) {
     directory = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QLatin1Char('/') +
-                name + QLatin1Char('/');
+                QLatin1String(name) + QLatin1Char('/');
 #ifndef QT_NO_DEBUG_OUTPUT
     hits = 0;
     misses = 0;
@@ -26,17 +26,22 @@ LocalCache::~LocalCache() {
 #endif
 }
 
-QString LocalCache::hash(const QString &s) {
+QByteArray LocalCache::hash(const QByteArray &s) {
     QCryptographicHash hash(QCryptographicHash::Sha1);
-    hash.addData(s.toUtf8());
-    QString h = QString::number(*(qlonglong *)hash.result().constData(), 36);
-    static const QLatin1Char sep('/');
-    QString p = h.at(0) + sep + h.at(1) + sep;
-    return p.append(h.midRef(2));
+    hash.addData(s);
+    const QByteArray h = QByteArray::number(*(qlonglong *)hash.result().constData(), 36);
+    static const char sep('/');
+    QByteArray p;
+    p.reserve(h.length() + 2);
+    p.append(h.at(0));
+    p.append(sep);
+    p.append(h.at(1));
+    p.append(sep);
+    p.append(h.constData() + 2, strlen(h.constData()) - 2); // p.append(h.mid(2));
+    return p;
 }
 
-bool LocalCache::isCached(const QString &key) {
-    QString path = cachePath(key);
+bool LocalCache::isCached(const QString &path) {
     bool cached = (QFile::exists(path) &&
                    (maxSeconds == 0 ||
                     QDateTime::currentDateTime().toTime_t() - QFileInfo(path).created().toTime_t() <
@@ -47,8 +52,10 @@ bool LocalCache::isCached(const QString &key) {
     return cached;
 }
 
-QByteArray LocalCache::value(const QString &key) {
-    QString path = cachePath(key);
+QByteArray LocalCache::value(const QByteArray &key) {
+    const QString path = cachePath(key);
+    if (!isCached(path)) return QByteArray();
+
     QFile file(path);
     if (!file.open(QIODevice::ReadOnly)) {
         qWarning() << __PRETTY_FUNCTION__ << file.fileName() << file.errorString();
@@ -63,24 +70,29 @@ QByteArray LocalCache::value(const QString &key) {
     return file.readAll();
 }
 
-void LocalCache::insert(const QString &key, const QByteArray &value) {
-    QString path = cachePath(key);
-    QFileInfo info(path);
-    if (!info.exists()) QDir().mkpath(info.absolutePath());
-    QFile file(path);
-    file.open(QIODevice::WriteOnly);
-    file.write(value);
-    file.close();
-
-    // expire cache every n inserts
-    if (maxSize > 0 && ++insertCount % 100 == 0) {
-        if (size == 0)
-            size = expire();
-        else {
-            size += value.size();
-            if (size > maxSize) size = expire();
+void LocalCache::insert(const QByteArray &key, const QByteArray &value) {
+    insertQueue.append(QPair<QByteArray, QByteArray>(key, value));
+    QTimer::singleShot(0, [this]() {
+        if (insertQueue.isEmpty()) return;
+        for (const auto &pair : insertQueue) {
+            const QByteArray &key = pair.first;
+            const QByteArray &value = pair.second;
+            QString path = cachePath(key);
+            QFileInfo info(path);
+            if (!info.exists()) QDir().mkpath(info.absolutePath());
+            QFile file(path);
+            file.open(QIODevice::WriteOnly);
+            file.write(value);
+            file.close();
+            if (size > 0) size += value.size();
         }
-    }
+        insertQueue.clear();
+
+        // expire cache every n inserts
+        if (maxSize > 0 && ++insertCount % 100 == 0) {
+            if (size == 0 || size > maxSize) size = expire();
+        }
+    });
 }
 
 bool LocalCache::clear() {
@@ -93,8 +105,8 @@ bool LocalCache::clear() {
     return QDir(directory).removeRecursively();
 }
 
-QString LocalCache::cachePath(const QString &key) const {
-    return directory + key;
+QString LocalCache::cachePath(const QByteArray &key) const {
+    return directory + QLatin1String(key.constData());
 }
 
 qint64 LocalCache::expire() {

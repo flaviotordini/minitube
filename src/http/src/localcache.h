@@ -8,32 +8,36 @@
  */
 class LocalCache {
 public:
-    static LocalCache *instance(const QString &name);
+    static LocalCache *instance(const char *name);
     ~LocalCache();
-    static QString hash(const QString &s);
+    static QByteArray hash(const QByteArray &s);
+
+    const QByteArray &getName() const { return name; }
 
     void setMaxSeconds(uint value) { maxSeconds = value; }
     void setMaxSize(uint value) { maxSize = value; }
-    bool isCached(const QString &key);
-    QByteArray value(const QString &key);
-    void insert(const QString &key, const QByteArray &value);
+
+    QByteArray value(const QByteArray &key);
+    void insert(const QByteArray &key, const QByteArray &value);
     bool clear();
 
 private:
-    LocalCache(const QString &name);
-    QString cachePath(const QString &key) const;
+    LocalCache(const QByteArray &name);
+    QString cachePath(const QByteArray &key) const;
+    bool isCached(const QString &path);
     qint64 expire();
 #ifndef QT_NO_DEBUG_OUTPUT
     void debugStats();
 #endif
 
-    QString name;
+    QByteArray name;
     QString directory;
     uint maxSeconds;
     qint64 maxSize;
     qint64 size;
     bool expiring;
     uint insertCount;
+    QVector<QPair<QByteArray, QByteArray>> insertQueue;
 
 #ifndef QT_NO_DEBUG_OUTPUT
     uint hits;

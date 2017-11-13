@@ -7,7 +7,7 @@ class LocalCache;
 
 class CachedHttp : public Http {
 public:
-    CachedHttp(Http &http = Http::instance(), const QString &name = "http");
+    CachedHttp(Http &http = Http::instance(), const char *name = "http");
     void setMaxSeconds(uint seconds);
     void setMaxSize(uint maxSize);
     void setCachePostRequests(bool value) { cachePostRequests = value; }
@@ -23,7 +23,7 @@ class CachedHttpReply : public HttpReply {
     Q_OBJECT
 
 public:
-    CachedHttpReply(LocalCache *cache, const QString &key, const HttpRequest &req);
+    CachedHttpReply(const QByteArray &body, const HttpRequest &req);
     QUrl url() const { return req.url; }
     int statusCode() const { return 200; }
     QByteArray body() const;
@@ -32,8 +32,7 @@ private slots:
     void emitSignals();
 
 private:
-    LocalCache *cache;
-    QString key;
+    const QByteArray bytes;
     const HttpRequest &req;
 };
 
@@ -41,7 +40,7 @@ class WrappedHttpReply : public QObject {
     Q_OBJECT
 
 public:
-    WrappedHttpReply(LocalCache *cache, const QString &key, QObject *httpReply);
+    WrappedHttpReply(LocalCache *cache, const QByteArray &key, QObject *httpReply);
 
 signals:
     void data(const QByteArray &bytes);
@@ -53,7 +52,7 @@ private slots:
 
 private:
     LocalCache *cache;
-    QString key;
+    QByteArray key;
     QObject *httpReply;
 };
 
