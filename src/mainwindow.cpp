@@ -158,7 +158,7 @@ MainWindow::MainWindow() :
     showHome();
 #endif
 
-    QTimer::singleShot(0, this, SLOT(lazyInit()));
+    QTimer::singleShot(100, this, &MainWindow::lazyInit);
 }
 
 void MainWindow::lazyInit() {
