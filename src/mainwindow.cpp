@@ -294,6 +294,19 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
         // kill tooltips
         return true;
     }
+
+    if (t == QEvent::Show && obj == toolbarMenu) {
+#ifdef APP_MAC
+        int x = width() - toolbarMenu->sizeHint().width();
+        int y = views->y();
+#else
+        int x = toolbarMenuButton->x() + toolbarMenuButton->width() - toolbarMenu->sizeHint().width();
+        int y = toolbarMenuButton->y() + toolbarMenuButton->height();
+#endif
+        QPoint p(x, y);
+        toolbarMenu->move(mapToGlobal(p));
+    }
+
     // standard event processing
     return QMainWindow::eventFilter(obj, e);
 }
@@ -611,6 +624,10 @@ void MainWindow::createActions() {
     connect(action, SIGNAL(triggered()), SLOT(toggleMenuVisibilityWithMessage()));
     actionMap.insert("toggle-menu", action);
 
+    action = new QAction(IconUtils::icon("view-more"), tr("Menu"), this);
+    connect(action, SIGNAL(triggered()), SLOT(showToolbarMenu()));
+    actionMap.insert("toolbar-menu", action);
+
 #ifdef APP_MAC_STORE
     action = new QAction(tr("&Love %1? Rate it!").arg(Constants::NAME), this);
     actionMap.insert("app-store", action);
@@ -720,6 +737,28 @@ void MainWindow::createMenus() {
     helpMenu->addSeparator();
     helpMenu->addAction(actionMap.value("app-store"));
 #endif
+
+    // toolbarMenu
+    toolbarMenu = new QMenu(this);
+    toolbarMenu->addAction(actionMap.value("stopafterthis"));
+    toolbarMenu->addSeparator();
+#ifdef APP_SNAPSHOT
+    toolbarMenu->addAction(actionMap.value("snapshot"));
+#endif
+    toolbarMenu->addAction(actionMap.value("findVideoParts"));
+    toolbarMenu->addSeparator();
+    toolbarMenu->addAction(actionMap.value("compactView"));
+    toolbarMenu->addAction(actionMap.value("ontop"));
+    toolbarMenu->addSeparator();
+    toolbarMenu->addMenu(shareMenu);
+    toolbarMenu->addSeparator();
+    toolbarMenu->addAction(clearAct);
+#ifndef APP_MAC
+    toolbarMenu->addSeparator();
+    toolbarMenu->addAction(actionMap.value("toggle-menu"));
+#endif
+    toolbarMenu->addSeparator();
+    toolbarMenu->addMenu(helpMenu);
 }
 
 void MainWindow::createToolBars() {
@@ -844,7 +883,11 @@ void MainWindow::createToolBars() {
     mainToolBar->addWidget(searchWrapper);
 #else
     mainToolBar->addWidget(toolbarSearch);
-    mainToolBar->addWidget(new Spacer(this, 10));
+    mainToolBar->addWidget(new Spacer(this, toolbarSearch->height() / 2));
+
+    QAction *toolbarMenuAction = actionMap.value("toolbar-menu");
+    mainToolBar->addAction(toolbarMenuAction);
+    toolbarMenuButton = qobject_cast<QToolButton*>(mainToolBar->widgetForAction(toolbarMenuAction));
 #endif
 
     addToolBar(mainToolBar);
@@ -953,7 +996,7 @@ void MainWindow::readSettings() {
     actionMap.value("manualplay")->setChecked(settings.value("manualplay", false).toBool());
     actionMap.value("safeSearch")->setChecked(settings.value("safeSearch", false).toBool());
 #ifndef APP_MAC
-    menuBar()->setVisible(settings.value("menuBar", true).toBool());
+    menuBar()->setVisible(settings.value("menuBar", false).toBool());
 #endif
 }
 
@@ -1244,7 +1287,8 @@ void MainWindow::resizeEvent(QResizeEvent *e) {
     }
 #endif
 #ifdef APP_MAC_QMACTOOLBAR
-    toolbarSearch->move(width() - toolbarSearch->width() - 7, -38);
+    int moreButtonWidth = 40;
+    toolbarSearch->move(width() - toolbarSearch->width() - moreButtonWidth - 7, -38);
 #endif
     hideMessage();
 }
@@ -1373,7 +1417,7 @@ void MainWindow::updateUIForFullscreen() {
     }
 
 #ifdef Q_OS_MAC
-    MacSupport::fullScreenActions(actionMap.values(), fullScreenActive);
+    MacSupport::fullScreenActions(actionMap, fullScreenActive);
 #endif
 
     if (views->currentWidget() == mediaView)
@@ -1501,6 +1545,11 @@ void MainWindow::compactView(bool enable) {
         menuBar()->setVisible(menuVisibleBeforeCompactMode);
     }
 #endif
+}
+
+void MainWindow::showToolbarMenu() {
+    if (toolbarMenu->isVisible()) toolbarMenu->hide();
+    else toolbarMenu->show();
 }
 
 void MainWindow::searchFocus() {

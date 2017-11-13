@@ -152,6 +152,7 @@ private slots:
 
     void toggleMenuVisibility();
     void toggleMenuVisibilityWithMessage();
+    void showToolbarMenu();
 
 #ifdef APP_MAC_STORE
     void rateOnAppStore();
@@ -254,6 +255,9 @@ private:
 
     QLabel *messageLabel;
     QTimer *messageTimer;
+
+    QMenu *toolbarMenu;
+    QToolButton *toolbarMenuButton;
 };
 
 #endif
