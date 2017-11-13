@@ -945,21 +945,19 @@ qint64 MediaView::offsetToTime(qint64 offset) {
 }
 
 void MediaView::findVideoParts() {
-
-    // parts
     Video* video = playlistModel->activeVideo();
     if (!video) return;
 
     QString query = video->getTitle();
 
-    static QString optionalSpace = "\\s*";
-    static QString staticCounterSeparators = "[\\/\\-]";
-    QString counterSeparators = "( of | " +
+    const QLatin1String optionalSpace("\\s*");
+    const QLatin1String staticCounterSeparators("[\\/\\-]");
+    const QString counterSeparators = QLatin1String("( of | ") +
             tr("of", "Used in video parts, as in '2 of 3'") +
-            " |" + staticCounterSeparators + ")";
+            QLatin1String(" |") + staticCounterSeparators + QLatin1String(")");
 
     // numbers from 1 to 15
-    static QString counterNumber = "([1-9]|1[0-5])";
+    const QLatin1String counterNumber("([1-9]|1[0-5])");
 
     // query.remove(QRegExp(counterSeparators + optionalSpace + counterNumber));
     query.remove(QRegExp(counterNumber + optionalSpace +
