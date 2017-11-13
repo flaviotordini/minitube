@@ -130,5 +130,13 @@
         <file>images/safesearch@2x.png</file>
         <file>images/view-more.png</file>
         <file>images/view-more@2x.png</file>
+        <file>images/email.png</file>
+        <file>images/email@2x.png</file>
+        <file>images/facebook.png</file>
+        <file>images/facebook@2x.png</file>
+        <file>images/link.png</file>
+        <file>images/link@2x.png</file>
+        <file>images/twitter.png</file>
+        <file>images/twitter@2x.png</file>
     </qresource>
 </RCC>

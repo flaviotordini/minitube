@@ -74,6 +74,7 @@ $END_LICENSE */
 #include "yt3.h"
 #include "httputils.h"
 #include "sidebarwidget.h"
+#include "sharemenutoolbar.h"
 
 namespace {
 static MainWindow *singleton = 0;
@@ -383,7 +384,7 @@ void MainWindow::createActions() {
     actionMap.insert("pagelink", copyPageAct);
     connect(copyPageAct, SIGNAL(triggered()), mediaView, SLOT(copyWebPage()));
 
-    copyLinkAct = new QAction(tr("Copy the Video Stream &URL"), this);
+    copyLinkAct = new QAction(IconUtils::icon("link"), tr("Copy the Video Stream &URL"), this);
     copyLinkAct->setStatusTip(tr("Copy the current video stream URL to the clipboard"));
     copyLinkAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_U));
     copyLinkAct->setEnabled(false);
@@ -535,13 +536,13 @@ void MainWindow::createActions() {
 
     QString shareTip = tr("Share the current video using %1");
 
-    action = new QAction("&Twitter", this);
+    action = new QAction(IconUtils::icon("twitter"), "&Twitter", this);
     action->setStatusTip(shareTip.arg("Twitter"));
     action->setEnabled(false);
     actionMap.insert("twitter", action);
     connect(action, SIGNAL(triggered()), mediaView, SLOT(shareViaTwitter()));
 
-    action = new QAction("&Facebook", this);
+    action = new QAction(IconUtils::icon("facebook"), "&Facebook", this);
     action->setStatusTip(shareTip.arg("Facebook"));
     action->setEnabled(false);
     actionMap.insert("facebook", action);
@@ -553,7 +554,7 @@ void MainWindow::createActions() {
     actionMap.insert("buffer", action);
     connect(action, SIGNAL(triggered()), mediaView, SLOT(shareViaBuffer()));
 
-    action = new QAction(tr("&Email"), this);
+    action = new QAction(IconUtils::icon("email"), tr("&Email"), this);
     action->setStatusTip(shareTip.arg(tr("Email")));
     action->setEnabled(false);
     actionMap.insert("email", action);
@@ -747,10 +748,17 @@ void MainWindow::createMenus() {
 #endif
     toolbarMenu->addAction(actionMap.value("findVideoParts"));
     toolbarMenu->addSeparator();
+    toolbarMenu->addAction(webPageAct);
+    toolbarMenu->addAction(copyLinkAct);
+    toolbarMenu->addAction(actionMap.value("open-in-browser"));
+    toolbarMenu->addAction(actionMap.value("download"));
+    toolbarMenu->addSeparator();
     toolbarMenu->addAction(actionMap.value("compactView"));
     toolbarMenu->addAction(actionMap.value("ontop"));
     toolbarMenu->addSeparator();
-    toolbarMenu->addMenu(shareMenu);
+    QWidgetAction *widgetAction = new QWidgetAction(this);
+    widgetAction->setDefaultWidget(new ShareMenuToolbar());
+    toolbarMenu->addAction(widgetAction);
     toolbarMenu->addSeparator();
     toolbarMenu->addAction(clearAct);
 #ifndef APP_MAC
