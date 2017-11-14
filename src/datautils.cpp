@@ -15,8 +15,7 @@ QString DataUtils::stringToFilename(const QString &s) {
     f.replace('*', ' ');
     f = f.simplified();
 
-    if (!f.isEmpty() && f.at(0) == '.')
-        f = f.midRef(1).trimmed().toString();
+    if (!f.isEmpty() && f.at(0) == '.') f = f.midRef(1).trimmed().toString();
 
     return f;
 }
@@ -35,30 +34,22 @@ QString DataUtils::systemRegioneCode() {
 uint DataUtils::parseIsoPeriod(const QString &isoPeriod) {
     uint days = 0, hours = 0, minutes = 0, seconds = 0;
 
-    QByteArray ba = isoPeriod.toLocal8Bit();
-    const char *ptr = ba.data();
-    
-    while (*ptr) {
-        if(*ptr == 'P' || *ptr == 'T') {
-            ptr++;
-            continue;
+    const int len = isoPeriod.length();
+    int digitStart = -1;
+    for (int i = 0; i < len; ++i) {
+        const QChar c = isoPeriod.at(i);
+        if (c.isDigit()) {
+            if (digitStart == -1) digitStart = i;
+        } else if (digitStart != -1) {
+            if (c == 'H') {
+                hours = QStringRef(&isoPeriod, digitStart, i - digitStart).toUInt();
+            } else if (c == 'M') {
+                minutes = QStringRef(&isoPeriod, digitStart, i - digitStart).toUInt();
+            } else if (c == 'S') {
+                seconds = QStringRef(&isoPeriod, digitStart, i - digitStart).toUInt();
+            }
+            digitStart = -1;
         }
-
-        int value, charsRead;
-        char type;
-        if (sscanf(ptr, "%d%c%n", &value, &type, &charsRead) != 2)
-            continue;
-
-        if (type == 'D')
-            days = value;
-        else if (type == 'H')
-            hours = value;
-        else if (type == 'M')
-            minutes = value;
-        else if (type == 'S')
-            seconds = value;
-
-        ptr += charsRead;
     }
 
     uint period = ((days * 24 + hours) * 60 + minutes) * 60 + seconds;
@@ -74,16 +65,16 @@ QString DataUtils::formatDateTime(const QDateTime &dt) {
     } else if (seconds < (f *= 60)) {
         s = QCoreApplication::translate("DataUtils", "%n minute(s) ago", Q_NULLPTR, seconds / 60);
     } else if (seconds < (f *= 24)) {
-        int n = seconds / (60*60);
+        int n = seconds / (60 * 60);
         s = QCoreApplication::translate("DataUtils", "%n hour(s) ago", Q_NULLPTR, n);
     } else if (seconds < (f *= 7)) {
-        int n = seconds / (60*60*24);
+        int n = seconds / (60 * 60 * 24);
         s = QCoreApplication::translate("DataUtils", "%n day(s) ago", Q_NULLPTR, n);
-    } else if (seconds < (f = 60*60*24*30)) {
-        int n = seconds / (60*60*24*7);
+    } else if (seconds < (f = 60 * 60 * 24 * 30)) {
+        int n = seconds / (60 * 60 * 24 * 7);
         s = QCoreApplication::translate("DataUtils", "%n weeks(s) ago", Q_NULLPTR, n);
-    } else if (seconds < (f = 60*60*24*365)) {
-        int n = seconds / (60*60*24*30);
+    } else if (seconds < (f = 60 * 60 * 24 * 365)) {
+        int n = seconds / (60 * 60 * 24 * 30);
         s = QCoreApplication::translate("DataUtils", "%n month(s) ago", Q_NULLPTR, n);
     } else {
         s = dt.date().toString(Qt::DefaultLocaleShortDate);
@@ -99,7 +90,6 @@ QString DataUtils::formatDuration(uint secs) {
     uint minutes = d % 60;
     d /= 60;
     uint hours = d % 24;
-    if (hours == 0)
-        return res.sprintf("%d:%02d", minutes, seconds);
+    if (hours == 0) return res.sprintf("%d:%02d", minutes, seconds);
     return res.sprintf("%d:%02d:%02d", hours, minutes, seconds);
 }
