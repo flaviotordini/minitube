@@ -105,7 +105,8 @@ HEADERS += src/video.h \
     src/httputils.h \
     src/appwidget.h \
     src/clickablelabel.h \
-    src/ytvideo.h
+    src/ytvideo.h \
+    src/sharemenutoolbar.h
 SOURCES += src/main.cpp \
     src/searchlineedit.cpp \
     src/spacer.cpp \
@@ -177,7 +178,8 @@ SOURCES += src/main.cpp \
     src/httputils.cpp \
     src/appwidget.cpp \
     src/clickablelabel.cpp \
-    src/ytvideo.cpp
+    src/ytvideo.cpp \
+    src/sharemenutoolbar.cpp
 RESOURCES += resources.qrc
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/
