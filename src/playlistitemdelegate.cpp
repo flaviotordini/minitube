@@ -184,7 +184,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
         painter->setOpacity(.7);
 
         // published date
-        QString publishedString = DataUtils::formatDateTime(video->getPublished());
+        const QString &publishedString = video->getFormattedPublished();
         QSize stringSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, publishedString ) );
         QPoint textLoc(PADDING+THUMB_WIDTH, PADDING*2 + textBox.height());
         QRect publishedTextBox(textLoc , stringSize);

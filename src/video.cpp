@@ -48,6 +48,7 @@ Video *Video::clone() {
     clone->duration = duration;
     clone->formattedDuration = formattedDuration;
     clone->published = published;
+    clone->formattedPublished = formattedPublished;
     clone->viewCount = viewCount;
     clone->id = id;
     clone->definitionCode = definitionCode;
@@ -86,6 +87,11 @@ void Video::loadThumbnail() {
 void Video::setDuration(int value) {
     duration = value;
     formattedDuration = DataUtils::formatDuration(duration);
+}
+
+void Video::setPublished(const QDateTime &value) {
+    published = value;
+    formattedPublished = DataUtils::formatDateTime(published);
 }
 
 void Video::setThumbnail(const QByteArray &bytes) {
