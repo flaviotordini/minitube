@@ -121,14 +121,7 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
 }
 
 void AboutView::appear() {
-#ifdef APP_MAC
-    mac::uncloseWindow(window()->winId());
-#ifdef APP_ACTIVATION
-    mac::CheckForUpdates();
-#endif
-#endif
     closeButton->setFocus();
-
     connect(window()->windowHandle(), SIGNAL(screenChanged(QScreen*)), SLOT(screenChanged()), Qt::UniqueConnection);
 }
 

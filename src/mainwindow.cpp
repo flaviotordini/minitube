@@ -1095,6 +1095,7 @@ void MainWindow::showWidget(QWidget* widget, bool transition) {
 #ifdef APP_MAC
     // Workaround cursor bug on macOS
     unsetCursor();
+    mac::uncloseWindow(winId());
 #endif
 
     history.push(widget);
@@ -1887,7 +1888,7 @@ void MainWindow::floatOnTop(bool onTop, bool showAction) {
 
 void MainWindow::restore() {
 #ifdef APP_MAC
-    mac::uncloseWindow(window()->winId());
+    mac::uncloseWindow(winId());
 #endif
 }
 
