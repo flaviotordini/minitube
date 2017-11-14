@@ -8,7 +8,7 @@ YT3ListParser::YT3ListParser(const QByteArray &bytes) {
 
     nextPageToken = obj[QLatin1String("nextPageToken")].toString();
 
-    QJsonArray items = obj[QLatin1String("items")].toArray();
+    const QJsonArray items = obj[QLatin1String("items")].toArray();
     videos.reserve(items.size());
     for (const QJsonValue &v : items) {
         QJsonObject item = v.toObject();
