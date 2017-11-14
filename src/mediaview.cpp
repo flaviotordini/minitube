@@ -528,7 +528,7 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
 #endif
 
 #ifdef APP_EXTRA
-    Extra::notify(video->getTitle(), video->getChannelTitle(), video->formattedDuration());
+    Extra::notify(video->getTitle(), video->getChannelTitle(), video->getFormattedDuration());
 #endif
 
     ChannelAggregator::instance()->videoWatched(video);

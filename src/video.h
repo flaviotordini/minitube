@@ -65,8 +65,8 @@ public:
     void setLargeThumbnailUrl(const QString &value) { largeThumbnailUrl = value; }
 
     int getDuration() const { return duration; }
-    void setDuration(int value) { duration = value; }
-    QString formattedDuration() const;
+    void setDuration(int value);
+    const QString &getFormattedDuration() const { return formattedDuration; }
 
     int getViewCount() const { return viewCount; }
     void setViewCount(int value) { viewCount = value; }
@@ -108,6 +108,8 @@ private:
     QString mediumThumbnailUrl;
     QString largeThumbnailUrl;
     int duration;
+    QString formattedDuration;
+
     QDateTime published;
     int viewCount;
     License license;

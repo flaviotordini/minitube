@@ -157,7 +157,7 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
 
     // time
     if (video->getDuration() > 0)
-        drawTime(painter, video->formattedDuration(), line);
+        drawTime(painter, video->getFormattedDuration(), line);
 
     if (!thumbsOnly) {
 

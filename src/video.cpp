@@ -46,6 +46,7 @@ Video *Video::clone() {
     clone->thumbnailUrl = thumbnailUrl;
     clone->mediumThumbnailUrl = mediumThumbnailUrl;
     clone->duration = duration;
+    clone->formattedDuration = formattedDuration;
     clone->published = published;
     clone->viewCount = viewCount;
     clone->id = id;
@@ -82,6 +83,11 @@ void Video::loadThumbnail() {
     connect(reply, SIGNAL(data(QByteArray)), SLOT(setThumbnail(QByteArray)));
 }
 
+void Video::setDuration(int value) {
+    duration = value;
+    formattedDuration = DataUtils::formatDuration(duration);
+}
+
 void Video::setThumbnail(const QByteArray &bytes) {
     qreal ratio = qApp->devicePixelRatio();
     thumbnail.loadFromData(bytes);
@@ -99,10 +105,6 @@ void Video::streamUrlLoaded(const QUrl &streamUrl) {
     emit gotStreamUrl(this->streamUrl);
     delete ytVideo;
     ytVideo = 0;
-}
-
-QString Video::formattedDuration() const {
-    return DataUtils::formatDuration(duration);
 }
 
 void Video::loadStreamUrl() {
