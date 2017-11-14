@@ -703,7 +703,6 @@ void MainWindow::createMenus() {
     shareMenu->addSeparator();
     shareMenu->addAction(actionMap.value("twitter"));
     shareMenu->addAction(actionMap.value("facebook"));
-    shareMenu->addAction(actionMap.value("buffer"));
     shareMenu->addSeparator();
     shareMenu->addAction(actionMap.value("email"));
 
