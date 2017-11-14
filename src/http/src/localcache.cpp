@@ -71,17 +71,22 @@ QByteArray LocalCache::value(const QByteArray &key) {
 }
 
 void LocalCache::insert(const QByteArray &key, const QByteArray &value) {
-    insertQueue.append(QPair<QByteArray, QByteArray>(key, value));
+    insertQueue.append(QPair<const QByteArray, const QByteArray>(key, value));
     QTimer::singleShot(0, [this]() {
         if (insertQueue.isEmpty()) return;
         for (const auto &pair : insertQueue) {
             const QByteArray &key = pair.first;
             const QByteArray &value = pair.second;
-            QString path = cachePath(key);
-            QFileInfo info(path);
-            if (!info.exists()) QDir().mkpath(info.absolutePath());
+            const QString path = cachePath(key);
+            const QString parentDir = path.left(path.lastIndexOf('/'));
+            if (!QFile::exists(parentDir)) {
+                QDir().mkpath(parentDir);
+            }
             QFile file(path);
-            file.open(QIODevice::WriteOnly);
+            if (!file.open(QIODevice::WriteOnly)) {
+                qWarning() << "Cannot create" << path;
+                continue;
+            }
             file.write(value);
             file.close();
             if (size > 0) size += value.size();
