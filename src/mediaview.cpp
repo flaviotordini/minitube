@@ -162,7 +162,6 @@ void MediaView::initialize() {
             << MainWindow::instance()->getAction("refine-search")
             << MainWindow::instance()->getAction("twitter")
             << MainWindow::instance()->getAction("facebook")
-            << MainWindow::instance()->getAction("buffer")
             << MainWindow::instance()->getAction("email");
 
 #ifndef APP_PHONON_SEEK
