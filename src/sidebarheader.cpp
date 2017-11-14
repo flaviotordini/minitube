@@ -128,7 +128,7 @@ void SidebarHeader::paintEvent(QPaintEvent *event) {
     QString t = title;
     QRect textBox = p.boundingRect(r, Qt::AlignCenter, t);
     int i = 1;
-    const int margin = forwardAction->isVisible() ? 45 : 20;
+    const int margin = forwardAction->isVisible() ? 50 : 25;
     while (textBox.width() > r.width() - margin*2 && t.length() > 3) {
         t = t.left(t.length() - i).trimmed() + QStringLiteral("\u2026");
         textBox = p.boundingRect(r, Qt::AlignCenter, t);
