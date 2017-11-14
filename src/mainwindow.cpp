@@ -747,12 +747,12 @@ void MainWindow::createMenus() {
     toolbarMenu->addAction(actionMap.value("open-in-browser"));
     toolbarMenu->addAction(actionMap.value("download"));
     toolbarMenu->addSeparator();
-    toolbarMenu->addAction(actionMap.value("compactView"));
-    toolbarMenu->addAction(actionMap.value("ontop"));
-    toolbarMenu->addSeparator();
     QWidgetAction *widgetAction = new QWidgetAction(this);
     widgetAction->setDefaultWidget(new ShareMenuToolbar());
     toolbarMenu->addAction(widgetAction);
+    toolbarMenu->addSeparator();
+    toolbarMenu->addAction(actionMap.value("compactView"));
+    toolbarMenu->addAction(actionMap.value("ontop"));
     toolbarMenu->addSeparator();
     toolbarMenu->addAction(clearAct);
 #ifndef APP_MAC
