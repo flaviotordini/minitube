@@ -1036,19 +1036,6 @@ void MediaView::shareViaFacebook() {
     QDesktopServices::openUrl(url);
 }
 
-void MediaView::shareViaBuffer() {
-    Video* video = playlistModel->activeVideo();
-    if (!video) return;
-    QUrl url("http://bufferapp.com/add");
-    QUrlQuery q;
-    q.addQueryItem("via", "minitubeapp");
-    q.addQueryItem("text", video->getTitle());
-    q.addQueryItem("url", video->getWebpage());
-    q.addQueryItem("picture", video->getThumbnailUrl());
-    url.setQuery(q);
-    QDesktopServices::openUrl(url);
-}
-
 void MediaView::shareViaEmail() {
     Video* video = playlistModel->activeVideo();
     if (!video) return;

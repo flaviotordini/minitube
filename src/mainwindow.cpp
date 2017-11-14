@@ -548,12 +548,6 @@ void MainWindow::createActions() {
     actionMap.insert("facebook", action);
     connect(action, SIGNAL(triggered()), mediaView, SLOT(shareViaFacebook()));
 
-    action = new QAction("&Buffer", this);
-    action->setStatusTip(shareTip.arg("Buffer"));
-    action->setEnabled(false);
-    actionMap.insert("buffer", action);
-    connect(action, SIGNAL(triggered()), mediaView, SLOT(shareViaBuffer()));
-
     action = new QAction(IconUtils::icon("email"), tr("&Email"), this);
     action->setStatusTip(shareTip.arg(tr("Email")));
     action->setEnabled(false);

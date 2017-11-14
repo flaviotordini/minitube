@@ -78,7 +78,6 @@ public slots:
     void openInBrowser();
     void shareViaTwitter();
     void shareViaFacebook();
-    void shareViaBuffer();
     void shareViaEmail();
     void removeSelected();
     void moveUpSelected();
