@@ -1,6 +1,7 @@
 CONFIG += release c++11
+CONFIG -= rtti exceptions
 TEMPLATE = app
-VERSION = 2.8
+VERSION = 2.9
 DEFINES += APP_VERSION="$$VERSION"
 
 APP_NAME = Minitube
