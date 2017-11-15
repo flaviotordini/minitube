@@ -74,7 +74,8 @@ $END_LICENSE */
 #include "yt3.h"
 #include "httputils.h"
 #include "sidebarwidget.h"
-#include "sharemenutoolbar.h"
+#include "sharetoolbar.h"
+#include "toolbarmenu.h"
 
 namespace {
 static MainWindow *singleton = 0;
@@ -96,7 +97,8 @@ MainWindow::MainWindow() :
     #endif
     fullScreenActive(false),
     compactModeActive(false),
-    initialized(false) {
+    initialized(false),
+    toolbarMenu(0) {
 
     singleton = this;
 
@@ -377,14 +379,14 @@ void MainWindow::createActions() {
     actionMap.insert("webpage", webPageAct);
     connect(webPageAct, SIGNAL(triggered()), mediaView, SLOT(openWebPage()));
 
-    copyPageAct = new QAction(tr("Copy the YouTube &Link"), this);
+    copyPageAct = new QAction(IconUtils::icon("link"), tr("Copy the YouTube &Link"), this);
     copyPageAct->setStatusTip(tr("Copy the current video YouTube link to the clipboard"));
     copyPageAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_L));
     copyPageAct->setEnabled(false);
     actionMap.insert("pagelink", copyPageAct);
     connect(copyPageAct, SIGNAL(triggered()), mediaView, SLOT(copyWebPage()));
 
-    copyLinkAct = new QAction(IconUtils::icon("link"), tr("Copy the Video Stream &URL"), this);
+    copyLinkAct = new QAction(tr("Copy the Video Stream &URL"), this);
     copyLinkAct->setStatusTip(tr("Copy the current video stream URL to the clipboard"));
     copyLinkAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_U));
     copyLinkAct->setEnabled(false);
@@ -620,7 +622,7 @@ void MainWindow::createActions() {
     actionMap.insert("toggle-menu", action);
 
     action = new QAction(IconUtils::icon("view-more"), tr("Menu"), this);
-    connect(action, SIGNAL(triggered()), SLOT(showToolbarMenu()));
+    connect(action, SIGNAL(triggered()), SLOT(toggleToolbarMenu()));
     actionMap.insert("toolbar-menu", action);
 
 #ifdef APP_MAC_STORE
@@ -720,6 +722,7 @@ void MainWindow::createMenus() {
 #endif
 
     helpMenu = menuBar()->addMenu(tr("&Help"));
+    menuMap.insert("help", helpMenu);
     helpMenu->addAction(siteAct);
 #if !defined(APP_MAC) && !defined(APP_WIN)
     helpMenu->addAction(donateAct);
@@ -731,35 +734,6 @@ void MainWindow::createMenus() {
     helpMenu->addSeparator();
     helpMenu->addAction(actionMap.value("app-store"));
 #endif
-
-    // toolbarMenu
-    toolbarMenu = new QMenu(this);
-    toolbarMenu->addAction(actionMap.value("stopafterthis"));
-    toolbarMenu->addSeparator();
-#ifdef APP_SNAPSHOT
-    toolbarMenu->addAction(actionMap.value("snapshot"));
-#endif
-    toolbarMenu->addAction(actionMap.value("findVideoParts"));
-    toolbarMenu->addSeparator();
-    toolbarMenu->addAction(webPageAct);
-    toolbarMenu->addAction(copyLinkAct);
-    toolbarMenu->addAction(actionMap.value("open-in-browser"));
-    toolbarMenu->addAction(actionMap.value("download"));
-    toolbarMenu->addSeparator();
-    QWidgetAction *widgetAction = new QWidgetAction(this);
-    widgetAction->setDefaultWidget(new ShareMenuToolbar());
-    toolbarMenu->addAction(widgetAction);
-    toolbarMenu->addSeparator();
-    toolbarMenu->addAction(actionMap.value("compactView"));
-    toolbarMenu->addAction(actionMap.value("ontop"));
-    toolbarMenu->addSeparator();
-    toolbarMenu->addAction(clearAct);
-#ifndef APP_MAC
-    toolbarMenu->addSeparator();
-    toolbarMenu->addAction(actionMap.value("toggle-menu"));
-#endif
-    toolbarMenu->addSeparator();
-    toolbarMenu->addMenu(helpMenu);
 }
 
 void MainWindow::createToolBars() {
@@ -1549,7 +1523,8 @@ void MainWindow::compactView(bool enable) {
 #endif
 }
 
-void MainWindow::showToolbarMenu() {
+void MainWindow::toggleToolbarMenu() {
+    if (!toolbarMenu) toolbarMenu = new ToolbarMenu(this);
     if (toolbarMenu->isVisible()) toolbarMenu->hide();
     else toolbarMenu->show();
 }

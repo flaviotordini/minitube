@@ -37,6 +37,7 @@ class UpdateChecker;
 class SearchParams;
 class VideoSource;
 class Suggestion;
+class ToolbarMenu;
 
 class MainWindow : public QMainWindow {
 
@@ -152,7 +153,7 @@ private slots:
 
     void toggleMenuVisibility();
     void toggleMenuVisibilityWithMessage();
-    void showToolbarMenu();
+    void toggleToolbarMenu();
 
 #ifdef APP_MAC_STORE
     void rateOnAppStore();
@@ -256,7 +257,7 @@ private:
     QLabel *messageLabel;
     QTimer *messageTimer;
 
-    QMenu *toolbarMenu;
+    ToolbarMenu *toolbarMenu;
     QToolButton *toolbarMenuButton;
 };
 
