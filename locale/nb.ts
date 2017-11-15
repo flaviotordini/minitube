@@ -15,11 +15,11 @@
     </message>
     <message>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 er fri programvare, men utviklingen tar dyrebar tid.</translation>
+        <translation>%1 er fri programvare, men utviklingen tar dyrbar tid.</translation>
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>Vennligst &lt;a href=&apos;%1&apos;&gt;doner&lt;/a&gt; for og støtte videre utvikling av %2.</translation>
+        <translation>Vennligst &lt;a href=&apos;%1&apos;&gt;donér&lt;/a&gt; for å støtte videre utvikling av %2.</translation>
     </message>
     <message>
         <source>Translate %1 to your native language using %2</source>
@@ -35,7 +35,7 @@
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Steng</translation>
+        <translation>&amp;Avslutt</translation>
     </message>
     <message>
         <source>About</source>
@@ -46,7 +46,7 @@
     <name>ActivationDialog</name>
     <message>
         <source>Enter your License Details</source>
-        <translation>Angi lisensdetaljer</translation>
+        <translation>Skriv inn lisensdetaljer</translation>
     </message>
     <message>
         <source>&amp;Email:</source>
@@ -69,11 +69,11 @@
     </message>
     <message>
         <source>The full version allows you to watch videos without interruptions.</source>
-        <translation type="unfinished"/>
+        <translation>Den fulle versjonen tillater deg å se videoer uten avbrudd.</translation>
     </message>
     <message>
         <source>Without a license, the application will expire in %1 days.</source>
-        <translation>Uten lisens, vil programmet utløper i %1 dager.</translation>
+        <translation>Uten lisens, vil programmet utløpe om %1 dager.</translation>
     </message>
     <message>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
@@ -103,7 +103,7 @@
     <name>ChannelAggregator</name>
     <message>
         <source>By %1</source>
-        <translation type="unfinished"/>
+        <translation>Ved %1</translation>
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
@@ -114,34 +114,34 @@
     <name>ChannelItemDelegate</name>
     <message>
         <source>All Videos</source>
-        <translation type="unfinished"/>
+        <translation>Alle Videoer</translation>
     </message>
     <message>
         <source>Unwatched Videos</source>
-        <translation type="unfinished"/>
+        <translation>Usette Videoer</translation>
     </message>
 </context>
 <context>
     <name>ChannelView</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Navn</translation>
     </message>
     <message>
         <source>Last Updated</source>
-        <translation type="unfinished"/>
+        <translation>Sist Oppdatert</translation>
     </message>
     <message>
         <source>Last Added</source>
-        <translation type="unfinished"/>
+        <translation>Sist Lagt Til</translation>
     </message>
     <message>
         <source>Last Watched</source>
-        <translation type="unfinished"/>
+        <translation>Sist Sett</translation>
     </message>
     <message>
         <source>Most Watched</source>
-        <translation type="unfinished"/>
+        <translation>Mest Sett</translation>
     </message>
     <message>
         <source>Sort by</source>
@@ -149,35 +149,35 @@
     </message>
     <message>
         <source>Mark all as watched</source>
-        <translation type="unfinished"/>
+        <translation>Marker alle som sett</translation>
     </message>
     <message>
         <source>Show Updated</source>
-        <translation type="unfinished"/>
+        <translation>Program Oppdatert</translation>
     </message>
     <message>
         <source>All Videos</source>
-        <translation type="unfinished"/>
+        <translation>Alle Videoer</translation>
     </message>
     <message>
         <source>Unwatched Videos</source>
-        <translation type="unfinished"/>
+        <translation>Usette Videoer</translation>
     </message>
     <message>
         <source>Mark as Watched</source>
-        <translation type="unfinished"/>
+        <translation>Marker som Sett</translation>
     </message>
     <message>
         <source>Unsubscribe</source>
-        <translation type="unfinished"/>
+        <translation>Avslutte Abonnement</translation>
     </message>
     <message>
         <source>There are no updated subscriptions at this time.</source>
-        <translation type="unfinished"/>
+        <translation>Det er ingen oppdaterte abonnement for øyeblikket</translation>
     </message>
     <message>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation type="unfinished"/>
+        <translation>Du har ingen abonnement. Bruk stjernesymbolet for å abonnemere på kanaler.</translation>
     </message>
 </context>
 <context>
@@ -191,7 +191,7 @@
     <name>DataUtils</name>
     <message>
         <source>Just now</source>
-        <translation type="unfinished"/>
+        <translation>Akkurat nå</translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
@@ -269,7 +269,7 @@
     </message>
     <message>
         <source>%1 downloaded in %2</source>
-        <translation>%1 nedlastet i %2</translation>
+        <translation>%1 nedlastet på %2</translation>
     </message>
     <message>
         <source>Download finished</source>
@@ -400,15 +400,15 @@
     </message>
     <message>
         <source>Subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>Abonnement</translation>
     </message>
     <message>
         <source>Channel subscriptions</source>
-        <translation type="unfinished"/>
+        <translation>Kanalabonnementer</translation>
     </message>
     <message>
         <source>Make yourself comfortable</source>
-        <translation>Gjøre deg komfortabel</translation>
+        <translation>Gjør deg komfortabel</translation>
     </message>
 </context>
 <context>
@@ -606,11 +606,11 @@
     </message>
     <message>
         <source>Take &amp;Snapshot</source>
-        <translation type="unfinished"/>
+        <translation>Ta &amp;Skjermdump</translation>
     </message>
     <message>
         <source>&amp;Subscribe to Channel</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Abonner på Kanal</translation>
     </message>
     <message>
         <source>Share the current video using %1</source>
@@ -618,11 +618,11 @@
     </message>
     <message>
         <source>&amp;Email</source>
-        <translation>&amp;Epost</translation>
+        <translation>&amp;E-post</translation>
     </message>
     <message>
         <source>Email</source>
-        <translation>Epost</translation>
+        <translation>E-post</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -634,7 +634,7 @@
     </message>
     <message>
         <source>&amp;Adjust Window Size</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Tilpass Vindusstørrelse</translation>
     </message>
     <message>
         <source>&amp;Stop After This Video</source>
@@ -662,19 +662,19 @@
     </message>
     <message>
         <source>Open in &amp;Browser...</source>
-        <translation type="unfinished"/>
+        <translation>Åpne i &amp;Nettleser</translation>
     </message>
     <message>
         <source>Restricted Mode</source>
-        <translation type="unfinished"/>
+        <translation>Begrenset Modus</translation>
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
-        <translation type="unfinished"/>
+        <translation>Skjul videoer som kan inneholde upassende innhold</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
-        <translation>&amp;Liker %1? Ranger den!</translation>
+        <translation>&amp;Liker du %1? Ranger den!</translation>
     </message>
     <message>
         <source>Buy %1...</source>
@@ -726,7 +726,7 @@
     </message>
     <message>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation>Vis du stenger %1 nå, vil nedlastingen bli avbrutt</translation>
+        <translation>Hvis du stenger %1 nå, vil nedlastingen bli avbrutt</translation>
     </message>
     <message>
         <source>Close and cancel download</source>
@@ -754,7 +754,7 @@
     </message>
     <message>
         <source>Leave &amp;Full Screen</source>
-        <translation>Forlat &amp;Full Skjerm</translation>
+        <translation>Forlat &amp;Fullskjerm</translation>
     </message>
     <message>
         <source>Remaining time: %1</source>
@@ -774,11 +774,11 @@
     </message>
     <message>
         <source>Maximum video definition set to %1</source>
-        <translation>Maksimum video definisjon innstilling til %1</translation>
+        <translation>Maksimal videodefinisjon satt til %1</translation>
     </message>
     <message>
         <source>Your privacy is now safe</source>
-        <translation>Ditt privatliv er nå sikkert</translation>
+        <translation>Ditt personvern er nå sikkert</translation>
     </message>
     <message>
         <source>Downloads complete</source>
@@ -805,7 +805,7 @@
     </message>
     <message>
         <source>You can now paste the video stream URL into another application</source>
-        <translation>Du kan nå lime inn video stream URL i et annet applikasjon</translation>
+        <translation>Du kan nå lime inn video stream URL i en annen applikasjon</translation>
     </message>
     <message>
         <source>The link will be valid only for a limited time.</source>
@@ -852,19 +852,19 @@
     </message>
     <message>
         <source>Unsubscribe from %1</source>
-        <translation type="unfinished"/>
+        <translation>Meld deg ut fra %1</translation>
     </message>
     <message>
         <source>Subscribe to %1</source>
-        <translation type="unfinished"/>
+        <translation>Abonnér på %1</translation>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
-        <translation type="unfinished"/>
+        <translation>Du er utmeldt fra %1</translation>
     </message>
     <message>
         <source>Subscribed to %1</source>
-        <translation type="unfinished"/>
+        <translation>Abonnert på %1</translation>
     </message>
 </context>
 <context>
@@ -887,7 +887,7 @@
     </message>
     <message>
         <source>Remind Me Later</source>
-        <translation>Minn Meg Senere</translation>
+        <translation>Minn meg på det senere</translation>
     </message>
     <message>
         <source>Install Update</source>
@@ -898,7 +898,7 @@
     <name>PasteLineEdit</name>
     <message>
         <source>Paste</source>
-        <translation>Lim</translation>
+        <translation>Lim inn</translation>
     </message>
 </context>
 <context>
@@ -929,7 +929,7 @@
     </message>
     <message>
         <source>Stop downloading</source>
-        <translation>Stoppe nedlastingen</translation>
+        <translation>Stopp nedlastingen</translation>
     </message>
     <message>
         <source>Show in %1</source>
@@ -937,11 +937,11 @@
     </message>
     <message>
         <source>Open parent folder</source>
-        <translation>Åpen foreldre mappe</translation>
+        <translation>Åpen den overordnede mappen</translation>
     </message>
     <message>
         <source>Restart downloading</source>
-        <translation>Omstart nedlasting</translation>
+        <translation>Start nedlastning på nytt</translation>
     </message>
 </context>
 <context>
@@ -971,7 +971,7 @@
     </message>
     <message>
         <source>Relevance</source>
-        <translation>Relevans</translation>
+        <translation>Relevanse</translation>
     </message>
     <message>
         <source>Date</source>
@@ -1031,7 +1031,7 @@
     </message>
     <message>
         <source>Longer than 20 minutes</source>
-        <translation>Lenger en 20 minutter</translation>
+        <translation>Lengre enn 20 minutter</translation>
     </message>
     <message>
         <source>Quality</source>
@@ -1043,7 +1043,7 @@
     </message>
     <message>
         <source>720p or higher</source>
-        <translation>720p eller høyer</translation>
+        <translation>720p eller høyere</translation>
     </message>
     <message>
         <source>Done</source>
@@ -1093,15 +1093,15 @@
     </message>
     <message>
         <source>Recent keywords</source>
-        <translation>Seneste søkeord</translation>
+        <translation>Nylige søkeord</translation>
     </message>
     <message>
         <source>Recent channels</source>
-        <translation>Seneste kanaler</translation>
+        <translation>Nylige kanaler</translation>
     </message>
     <message>
         <source>Get the full version</source>
-        <translation>Kjøpfullversjon</translation>
+        <translation>Kjøp fullversjon</translation>
     </message>
 </context>
 <context>
@@ -1138,11 +1138,11 @@
     </message>
     <message>
         <source>Snapshot saved to %1</source>
-        <translation type="unfinished"/>
+        <translation>Skjermdump lagret på %1</translation>
     </message>
     <message>
         <source>Snapshots location changed.</source>
-        <translation type="unfinished"/>
+        <translation>Plassering av øyeblikksbilder er endret.</translation>
     </message>
 </context>
 <context>
@@ -1160,7 +1160,7 @@
     </message>
     <message>
         <source>Downloading %1...</source>
-        <translation>Lasater ned %1...</translation>
+        <translation>Laster ned %1...</translation>
     </message>
 </context>
 <context>
@@ -1206,7 +1206,7 @@
     </message>
     <message>
         <source>Czech Republic</source>
-        <translation>Czech Republic</translation>
+        <translation>Den Tsjekkiske Republikk</translation>
     </message>
     <message>
         <source>Egypt</source>
@@ -1214,7 +1214,7 @@
     </message>
     <message>
         <source>France</source>
-        <translation>France</translation>
+        <translation>Frankrike</translation>
     </message>
     <message>
         <source>Germany</source>
@@ -1234,7 +1234,7 @@
     </message>
     <message>
         <source>Hungary</source>
-        <translation>Hungary</translation>
+        <translation>Ungarn</translation>
     </message>
     <message>
         <source>India</source>
@@ -1362,7 +1362,7 @@
     </message>
     <message>
         <source>Worldwide</source>
-        <translation>Over heile verda</translation>
+        <translation>Over hele verden</translation>
     </message>
 </context>
 </TS>
