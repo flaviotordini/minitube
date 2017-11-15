@@ -462,13 +462,13 @@ void MainWindow::createActions() {
 
     volumeUpAct = new QAction(this);
     volumeUpAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_Plus));
-    actionMap.insert("volume-up", volumeUpAct);
+    actionMap.insert("volumeUp", volumeUpAct);
     connect(volumeUpAct, SIGNAL(triggered()), this, SLOT(volumeUp()));
     addAction(volumeUpAct);
 
     volumeDownAct = new QAction(this);
     volumeDownAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_Minus));
-    actionMap.insert("volume-down", volumeDownAct);
+    actionMap.insert("volumeDown", volumeDownAct);
     connect(volumeDownAct, SIGNAL(triggered()), this, SLOT(volumeDown()));
     addAction(volumeDownAct);
 
@@ -476,7 +476,7 @@ void MainWindow::createActions() {
     volumeMuteAct->setIcon(IconUtils::icon("audio-volume-high"));
     volumeMuteAct->setStatusTip(tr("Mute volume"));
     volumeMuteAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_K));
-    actionMap.insert("volume-mute", volumeMuteAct);
+    actionMap.insert("volumeMute", volumeMuteAct);
     connect(volumeMuteAct, SIGNAL(triggered()), SLOT(volumeMute()));
     addAction(volumeMuteAct);
 
@@ -528,7 +528,7 @@ void MainWindow::createActions() {
     action->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
     action->setEnabled(false);
     connect(action, SIGNAL(triggered()), mediaView, SLOT(toggleSubscription()));
-    actionMap.insert("subscribe-channel", action);
+    actionMap.insert("subscribeChannel", action);
     mediaView->updateSubscriptionAction(0, false);
 
     QString shareTip = tr("Share the current video using %1");
@@ -575,23 +575,23 @@ void MainWindow::createActions() {
     connect(action, SIGNAL(toggled(bool)), SLOT(showStopAfterThisInStatusBar(bool)));
 
     action = new QAction(tr("&Report an Issue..."), this);
-    actionMap.insert("report-issue", action);
+    actionMap.insert("reportIssue", action);
     connect(action, SIGNAL(triggered()), SLOT(reportIssue()));
 
     action = new QAction(tr("&Refine Search..."), this);
     action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_E));
     action->setCheckable(true);
     action->setEnabled(false);
-    actionMap.insert("refine-search", action);
+    actionMap.insert("refineSearch", action);
 
     action = new QAction(YTRegions::worldwideRegion().name, this);
-    actionMap.insert("worldwide-region", action);
+    actionMap.insert("worldwideRegion", action);
 
     action = new QAction(YTRegions::localRegion().name, this);
-    actionMap.insert("local-region", action);
+    actionMap.insert("localRegion", action);
 
     action = new QAction(tr("More..."), this);
-    actionMap.insert("more-region", action);
+    actionMap.insert("moreRegion", action);
 
     action = new QAction(IconUtils::icon("view-list"), tr("&Related Videos"), this);
     action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_R));
@@ -599,12 +599,12 @@ void MainWindow::createActions() {
     action->setEnabled(false);
     action->setPriority(QAction::LowPriority);
     connect(action, SIGNAL(triggered()), mediaView, SLOT(relatedVideos()));
-    actionMap.insert("related-videos", action);
+    actionMap.insert("relatedVideos", action);
 
     action = new QAction(tr("Open in &Browser..."), this);
     action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_B));
     action->setEnabled(false);
-    actionMap.insert("open-in-browser", action);
+    actionMap.insert("openInBrowser", action);
     connect(action, SIGNAL(triggered()), mediaView, SLOT(openInBrowser()));
 
     action = new QAction(IconUtils::icon("safesearch"), tr("Restricted Mode"), this);
@@ -615,15 +615,15 @@ void MainWindow::createActions() {
 
     action = new QAction(tr("Toggle &Menu Bar"), this);
     connect(action, SIGNAL(triggered()), SLOT(toggleMenuVisibilityWithMessage()));
-    actionMap.insert("toggle-menu", action);
+    actionMap.insert("toggleMenu", action);
 
     action = new QAction(IconUtils::icon("view-more"), tr("Menu"), this);
     connect(action, SIGNAL(triggered()), SLOT(toggleToolbarMenu()));
-    actionMap.insert("toolbar-menu", action);
+    actionMap.insert("toolbarMenu", action);
 
 #ifdef APP_MAC_STORE
     action = new QAction(tr("&Love %1? Rate it!").arg(Constants::NAME), this);
-    actionMap.insert("app-store", action);
+    actionMap.insert("appStore", action);
     connect(action, SIGNAL(triggered()), SLOT(rateOnAppStore()));
 #endif
 
@@ -676,14 +676,14 @@ void MainWindow::createMenus() {
     playlistMenu->addAction(moveUpAct);
     playlistMenu->addAction(moveDownAct);
     playlistMenu->addSeparator();
-    playlistMenu->addAction(getAction("refine-search"));
+    playlistMenu->addAction(getAction("refineSearch"));
 
     QMenu *videoMenu = menuBar()->addMenu(tr("&Video"));
     menuMap.insert("video", videoMenu);
-    videoMenu->addAction(getAction("related-videos"));
+    videoMenu->addAction(getAction("relatedVideos"));
     videoMenu->addAction(findVideoPartsAct);
     videoMenu->addSeparator();
-    videoMenu->addAction(getAction("subscribe-channel"));
+    videoMenu->addAction(getAction("subscribeChannel"));
 #ifdef APP_SNAPSHOT
     videoMenu->addSeparator();
     videoMenu->addAction(getAction("snapshot"));
@@ -691,7 +691,7 @@ void MainWindow::createMenus() {
     videoMenu->addSeparator();
     videoMenu->addAction(webPageAct);
     videoMenu->addAction(copyLinkAct);
-    videoMenu->addAction(getAction("open-in-browser"));
+    videoMenu->addAction(getAction("openInBrowser"));
     videoMenu->addAction(getAction("download"));
 
     QMenu *shareMenu = menuBar()->addMenu(tr("&Share"));
@@ -709,7 +709,7 @@ void MainWindow::createMenus() {
     viewMenu->addAction(compactViewAct);
 #ifndef APP_MAC
     viewMenu->addAction(fullscreenAct);
-    viewMenu->addAction(getAction("toggle-menu"));
+    viewMenu->addAction(getAction("toggleMenu"));
 #endif
 
 #ifdef APP_MAC
@@ -722,12 +722,12 @@ void MainWindow::createMenus() {
 #if !defined(APP_MAC) && !defined(APP_WIN)
     helpMenu->addAction(donateAct);
 #endif
-    helpMenu->addAction(getAction("report-issue"));
+    helpMenu->addAction(getAction("reportIssue"));
     helpMenu->addAction(aboutAct);
 
 #ifdef APP_MAC_STORE
     helpMenu->addSeparator();
-    helpMenu->addAction(getAction("app-store"));
+    helpMenu->addAction(getAction("appStore"));
 #endif
 }
 
@@ -814,7 +814,7 @@ void MainWindow::createToolBars() {
     }
     mainToolBar->addAction(pauseAct);
     mainToolBar->addAction(skipAct);
-    mainToolBar->addAction(getAction("related-videos"));
+    mainToolBar->addAction(getAction("relatedVideos"));
 
     bool addFullScreenAct = true;
 #ifdef Q_OS_MAC
@@ -859,7 +859,7 @@ void MainWindow::createToolBars() {
     mainToolBar->addWidget(toolbarSearch);
     mainToolBar->addWidget(new Spacer(this, toolbarSearch->height() / 2));
 
-    QAction *toolbarMenuAction = getAction("toolbar-menu");
+    QAction *toolbarMenuAction = getAction("toolbarMenu");
     mainToolBar->addAction(toolbarMenuAction);
     toolbarMenuButton =
             qobject_cast<QToolButton *>(mainToolBar->widgetForAction(toolbarMenuAction));
@@ -876,13 +876,13 @@ void MainWindow::createStatusBar() {
     regionAction = new QAction(this);
     regionAction->setStatusTip(tr("Choose your content location"));
 
-    QAction *localAction = getAction("local-region");
+    QAction *localAction = getAction("localRegion");
     if (!localAction->text().isEmpty()) {
         QMenu *regionMenu = new QMenu(this);
-        regionMenu->addAction(getAction("worldwide-region"));
+        regionMenu->addAction(getAction("worldwideRegion"));
         regionMenu->addAction(localAction);
         regionMenu->addSeparator();
-        QAction *moreRegionsAction = getAction("more-region");
+        QAction *moreRegionsAction = getAction("moreRegion");
         regionMenu->addAction(moreRegionsAction);
         connect(moreRegionsAction, SIGNAL(triggered()), SLOT(showRegionsView()));
         regionAction->setMenu(regionMenu);

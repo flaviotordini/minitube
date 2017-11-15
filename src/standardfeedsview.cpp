@@ -32,10 +32,10 @@ StandardFeedsView::StandardFeedsView(QWidget *parent) : View(parent), layout(0) 
     setPalette(p);
     setAutoFillBackground(true);
 
-    connect(MainWindow::instance()->getAction("worldwide-region"), SIGNAL(triggered()),
+    connect(MainWindow::instance()->getAction("worldwideRegion"), SIGNAL(triggered()),
             SLOT(selectWorldwideRegion()));
 
-    connect(MainWindow::instance()->getAction("local-region"), SIGNAL(triggered()),
+    connect(MainWindow::instance()->getAction("localRegion"), SIGNAL(triggered()),
             SLOT(selectLocalRegion()));
 }
 

@@ -86,7 +86,7 @@ void SidebarWidget::setPlaylist(QListView *playlist) {
 
 void SidebarWidget::showPlaylist() {
     stackedWidget->setCurrentWidget(playlist);
-    MainWindow::instance()->getAction("refine-search")->setChecked(false);
+    MainWindow::instance()->getAction("refineSearch")->setChecked(false);
 }
 
 void SidebarWidget::showRefineSearchWidget() {
@@ -100,7 +100,7 @@ void SidebarWidget::showRefineSearchWidget() {
     Extra::fadeInWidget(playlist, refineSearchWidget);
 #endif
     refineSearchButton->hide();
-    MainWindow::instance()->getAction("refine-search")->setChecked(true);
+    MainWindow::instance()->getAction("refineSearch")->setChecked(true);
 }
 
 void SidebarWidget::hideRefineSearchWidget() {
@@ -111,7 +111,7 @@ void SidebarWidget::hideRefineSearchWidget() {
 #ifdef APP_EXTRA
     Extra::fadeInWidget(refineSearchWidget, playlist);
 #endif
-    MainWindow::instance()->getAction("refine-search")->setChecked(false);
+    MainWindow::instance()->getAction("refineSearch")->setChecked(false);
 }
 
 void SidebarWidget::toggleRefineSearch(bool show) {

@@ -142,15 +142,15 @@ void MediaView::initialize() {
     connect(videoAreaWidget, SIGNAL(doubleClicked()), mainWindow->getAction("fullscreen"),
             SLOT(trigger()));
 
-    QAction *refineSearchAction = mainWindow->getAction("refine-search");
+    QAction *refineSearchAction = mainWindow->getAction("refineSearch");
     connect(refineSearchAction, SIGNAL(toggled(bool)), sidebar, SLOT(toggleRefineSearch(bool)));
 
     const QVector<const char *> videoActionNames = {
 #ifdef APP_SNAPSHOT
             "snapshot",
 #endif
-            "webpage",  "pagelink", "videolink",     "open-in-browser", "findVideoParts",
-            "skip",     "previous", "stopafterthis", "related-videos",  "refine-search",
+            "webpage",  "pagelink", "videolink",     "openInBrowser", "findVideoParts",
+            "skip",     "previous", "stopafterthis", "relatedVideos",  "refineSearch",
             "twitter",  "facebook", "email"};
     currentVideoActions.reserve(videoActionNames.size());
     for (auto *name : videoActionNames) {
@@ -371,7 +371,7 @@ void MediaView::stop() {
         downloadItem = 0;
         currentVideoSize = 0;
     }
-    MainWindow::instance()->getAction("refine-search")->setChecked(false);
+    MainWindow::instance()->getAction("refineSearch")->setChecked(false);
     updateSubscriptionAction(0, false);
 #ifdef APP_ACTIVATION
     demoTimer->stop();
@@ -452,7 +452,7 @@ void MediaView::activeRowChanged(int row) {
             ->setEnabled(DownloadManager::instance()->itemForVideo(video) == 0);
     MainWindow::instance()->getAction("previous")->setEnabled(row > 0);
     MainWindow::instance()->getAction("stopafterthis")->setEnabled(true);
-    MainWindow::instance()->getAction("related-videos")->setEnabled(true);
+    MainWindow::instance()->getAction("relatedVideos")->setEnabled(true);
 
     bool enableDownload = video->getLicense() == Video::LicenseCC;
 #ifdef APP_ACTIVATION
@@ -999,7 +999,7 @@ void MediaView::relatedVideos() {
     singleVideoSource->setVideo(video->clone());
     singleVideoSource->setAsyncDetails(true);
     setVideoSource(singleVideoSource);
-    MainWindow::instance()->getAction("related-videos")->setEnabled(false);
+    MainWindow::instance()->getAction("relatedVideos")->setEnabled(false);
 }
 
 void MediaView::shareViaTwitter() {
@@ -1055,7 +1055,7 @@ void MediaView::authorPushed(QModelIndex index) {
 }
 
 void MediaView::updateSubscriptionAction(Video *video, bool subscribed) {
-    QAction *subscribeAction = MainWindow::instance()->getAction("subscribe-channel");
+    QAction *subscribeAction = MainWindow::instance()->getAction("subscribeChannel");
 
     QString subscribeTip;
     QString subscribeText;

@@ -206,7 +206,7 @@ void RefineSearchWidget::actionTriggered(QAction *action) {
 void RefineSearchWidget::setSearchParams(SearchParams *params) {
     setup();
 
-    MainWindow::instance()->getAction("refine-search")->setEnabled(params);
+    MainWindow::instance()->getAction("refineSearch")->setEnabled(params);
     setEnabled(params);
 
     if (!params) return;

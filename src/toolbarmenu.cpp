@@ -13,7 +13,7 @@ ToolbarMenu::ToolbarMenu(QWidget *parent) : QMenu(parent) {
     addSeparator();
     addAction(w->getAction("webpage"));
     addAction(w->getAction("videolink"));
-    addAction(w->getAction("open-in-browser"));
+    addAction(w->getAction("openInBrowser"));
     addAction(w->getAction("download"));
     addSeparator();
     QWidgetAction *widgetAction = new QWidgetAction(this);
@@ -28,7 +28,7 @@ ToolbarMenu::ToolbarMenu(QWidget *parent) : QMenu(parent) {
     addAction(w->getAction("clearRecentKeywords"));
 #ifndef APP_MAC
     addSeparator();
-    addAction(w->getAction("toggle-menu"));
+    addAction(w->getAction("toggleMenu"));
 #endif
     addSeparator();
     addMenu(w->getMenu("help"));
