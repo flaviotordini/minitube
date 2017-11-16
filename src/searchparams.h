@@ -67,10 +67,10 @@ public:
 
     SearchParams(QObject *parent = 0);
 
-    const QString keywords() const { return m_keywords; }
+    const QString &keywords() const { return m_keywords; }
     void setKeywords(const QString &keywords) { m_keywords = keywords; }
 
-    const QString channelId() const { return m_channelId; }
+    const QString &channelId() const { return m_channelId; }
     void setChannelId(const QString &value) { m_channelId = value; }
 
     int sortBy() const { return m_sortBy; }

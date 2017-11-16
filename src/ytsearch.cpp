@@ -34,7 +34,7 @@ $END_LICENSE */
 namespace {
 
 QString RFC3339toString(const QDateTime &dt) {
-    return dt.toString("yyyy-MM-ddThh:mm:ssZ");
+    return dt.toString(QStringLiteral("yyyy-MM-ddThh:mm:ssZ"));
 }
 }
 
