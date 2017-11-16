@@ -48,7 +48,6 @@ PlaylistItemDelegate::PlaylistItemDelegate(QObject* parent, bool downloadInfo)
 
     listView = qobject_cast<PlaylistView*>(parent);
 
-    boldFont.setBold(true);
     smallerBoldFont = FontUtils::smallBold();
     smallerFont = FontUtils::small();
 

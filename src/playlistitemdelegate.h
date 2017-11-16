@@ -52,7 +52,6 @@ private:
     static const int PADDING;
 
     QPixmap playIcon;
-    QFont boldFont;
     QFont smallerFont;
     QFont smallerBoldFont;
 
