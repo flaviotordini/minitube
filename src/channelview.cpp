@@ -25,7 +25,6 @@ $END_LICENSE */
 #include "channelmodel.h"
 #include "channelitemdelegate.h"
 #include "database.h"
-#include "ytsearch.h"
 #include "channelaggregator.h"
 #include "aggregatevideosource.h"
 #include "mainwindow.h"
@@ -35,8 +34,10 @@ $END_LICENSE */
 #endif
 #include "channellistview.h"
 
-static const char *sortByKey = "subscriptionsSortBy";
-static const char *showUpdatedKey = "subscriptionsShowUpdated";
+namespace {
+static const QString sortByKey = "subscriptionsSortBy";
+static const QString showUpdatedKey = "subscriptionsShowUpdated";
+}
 
 ChannelView::ChannelView(QWidget *parent) : View(parent),
     showUpdated(false),
