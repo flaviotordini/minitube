@@ -88,6 +88,7 @@ void PaginatedVideoSource::reloadToken() {
 }
 
 void PaginatedVideoSource::loadVideoDetails(const QVector<Video*> &videos) {
+    this->videos = videos;
     QString videoIds;
     videoIds.reserve(videos.size()*12);
     videoMap.reserve(videos.size());
@@ -95,7 +96,6 @@ void PaginatedVideoSource::loadVideoDetails(const QVector<Video*> &videos) {
         // TODO get video details from cache
         if (!videoIds.isEmpty()) videoIds += QLatin1Char(',');
         videoIds += video->getId();
-        this->videos = videos;
         videoMap.insert(video->getId(), video);
     }
 
