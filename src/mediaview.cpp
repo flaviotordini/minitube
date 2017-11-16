@@ -198,7 +198,7 @@ void MediaView::search(SearchParams *searchParams) {
             }
         }
     }
-    YTSearch *ytSearch = new YTSearch(searchParams, this);
+    YTSearch *ytSearch = new YTSearch(searchParams);
     ytSearch->setAsyncDetails(true);
     connect(ytSearch, SIGNAL(gotDetails()), playlistModel, SLOT(emitDataChanged()));
     setVideoSource(ytSearch);

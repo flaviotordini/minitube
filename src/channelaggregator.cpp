@@ -137,7 +137,7 @@ void ChannelAggregator::reallyProcessChannel(YTChannel *channel) {
     params->setSortBy(SearchParams::SortByNewest);
     params->setTransient(true);
     params->setPublishedAfter(channel->getChecked());
-    YTSearch *videoSource = new YTSearch(params, this);
+    YTSearch *videoSource = new YTSearch(params);
     connect(videoSource, SIGNAL(gotVideos(QVector<Video *>)), SLOT(videosLoaded(QVector<Video *>)));
     videoSource->loadVideos(50, 1);
 

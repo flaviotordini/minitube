@@ -171,16 +171,16 @@ void ChannelView::itemActivated(const QModelIndex &index) {
         params->setChannelId(channel->getChannelId());
         params->setSortBy(SearchParams::SortByNewest);
         params->setTransient(true);
-        YTSearch *videoSource = new YTSearch(params, this);
+        YTSearch *videoSource = new YTSearch(params);
         videoSource->setAsyncDetails(true);
         emit activated(videoSource);
         channel->updateWatched();
     } else if (itemType == ChannelModel::ItemAggregate) {
-        AggregateVideoSource *videoSource = new AggregateVideoSource(this);
+        AggregateVideoSource *videoSource = new AggregateVideoSource();
         videoSource->setName(tr("All Videos"));
         emit activated(videoSource);
     } else if (itemType == ChannelModel::ItemUnwatched) {
-        AggregateVideoSource *videoSource = new AggregateVideoSource(this);
+        AggregateVideoSource *videoSource = new AggregateVideoSource();
         videoSource->setName(tr("Unwatched Videos"));
         videoSource->setUnwatched(true);
         emit activated(videoSource);
