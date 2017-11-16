@@ -48,7 +48,6 @@ public:
 
     void loadVideos(int max, int startIndex);
     void abort();
-    const QStringList & getSuggestions();
     QString getName() { return label; }
 
 private slots:

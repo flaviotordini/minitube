@@ -14,8 +14,6 @@ YT3ListParser::YT3ListParser(const QByteArray &bytes) {
         QJsonObject item = v.toObject();
         parseItem(item);
     }
-
-    // TODO suggestions!
 }
 
 void YT3ListParser::parseItem(const QJsonObject &item) {

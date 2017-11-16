@@ -32,7 +32,6 @@ public:
     YTSingleVideoSource(QObject *parent = 0);
     void loadVideos(int max, int startIndex);
     void abort();
-    const QStringList & getSuggestions();
     QString getName();
 
     void setVideoId(const QString &value) { videoId = value; }

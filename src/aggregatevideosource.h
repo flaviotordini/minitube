@@ -33,7 +33,6 @@ public:
     void loadVideos(int max, int startIndex);
     bool hasMoreVideos();
     virtual void abort();
-    virtual const QStringList & getSuggestions();
     QString getName() { return name; }
     void setName(const QString &value) { name = value; }
     void setUnwatched(bool enable) { unwatched = enable; }

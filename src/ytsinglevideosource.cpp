@@ -101,11 +101,6 @@ void YTSingleVideoSource::abort() {
     aborted = true;
 }
 
-const QStringList & YTSingleVideoSource::getSuggestions() {
-    static const QStringList l;
-    return l;
-}
-
 QString YTSingleVideoSource::getName() {
     return name;
 }

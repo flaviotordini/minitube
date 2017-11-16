@@ -216,9 +216,6 @@ void PlaylistModel::searchFinished(int total) {
     // update the message item
     emit dataChanged(createIndex(maxItems, 0), createIndex(maxItems, columnCount() - 1));
 
-    if (!videoSource->getSuggestions().isEmpty())
-        emit haveSuggestions(videoSource->getSuggestions());
-
     if (firstSearch && !videos.isEmpty()) handleFirstVideo(videos.at(0));
 }
 

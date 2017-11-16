@@ -84,11 +84,6 @@ void YTStandardFeed::abort() {
     aborted = true;
 }
 
-const QStringList & YTStandardFeed::getSuggestions() {
-    static const QStringList l;
-    return l;
-}
-
 void YTStandardFeed::requestError(const QString &message) {
     emit error(message);
 }

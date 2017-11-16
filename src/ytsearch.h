@@ -21,30 +21,26 @@ $END_LICENSE */
 #ifndef YTSEARCH_H
 #define YTSEARCH_H
 
-#include <QtNetwork>
 #include "paginatedvideosource.h"
+#include <QtNetwork>
 
 class SearchParams;
 class Video;
 
 class YTSearch : public PaginatedVideoSource {
-
     Q_OBJECT
 
 public:
     YTSearch(SearchParams *params, QObject *parent = 0);
     void loadVideos(int max, int startIndex);
     void abort();
-    const QStringList & getSuggestions();
     QString getName();
     const QList<QAction *> &getActions();
-    SearchParams* getSearchParams() const { return searchParams; }
+    SearchParams *getSearchParams() const { return searchParams; }
     static QString videoIdFromUrl(const QString &url);
     static QTime videoTimestampFromUrl(const QString &url);
 
-    bool operator==(const YTSearch &other) const {
-        return searchParams == other.getSearchParams();
-    }
+    bool operator==(const YTSearch &other) const { return searchParams == other.getSearchParams(); }
 
 private slots:
     void parseResults(const QByteArray &data);
@@ -53,7 +49,6 @@ private slots:
 private:
     SearchParams *searchParams;
     bool aborted;
-    QStringList suggestions;
     QString name;
 };
 

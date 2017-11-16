@@ -149,7 +149,6 @@ void YTSearch::parseResults(const QByteArray &data) {
 
     YT3ListParser parser(data);
     const QVector<Video *> &videos = parser.getVideos();
-    suggestions = parser.getSuggestions();
 
     bool tryingWithNewToken = setPageToken(parser.getNextPageToken());
     if (tryingWithNewToken) return;
@@ -173,10 +172,6 @@ void YTSearch::parseResults(const QByteArray &data) {
 
 void YTSearch::abort() {
     aborted = true;
-}
-
-const QStringList &YTSearch::getSuggestions() {
-    return suggestions;
 }
 
 QString YTSearch::getName() {
