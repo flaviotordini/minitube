@@ -32,6 +32,7 @@ $END_LICENSE */
 class HomeView;
 class MediaView;
 class DownloadView;
+
 class SearchLineEdit;
 class UpdateChecker;
 class SearchParams;

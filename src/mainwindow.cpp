@@ -19,16 +19,20 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "mainwindow.h"
+
 #include "aboutview.h"
-#include "constants.h"
 #include "downloadview.h"
+#include "homeview.h"
+#include "mediaview.h"
+#include "regionsview.h"
+#include "searchview.h"
+#include "standardfeedsview.h"
+
+#include "constants.h"
 #include "fontutils.h"
 #include "globalshortcuts.h"
-#include "homeview.h"
 #include "iconutils.h"
-#include "mediaview.h"
 #include "searchparams.h"
-#include "searchview.h"
 #include "spacer.h"
 #include "videodefinition.h"
 #include "videosource.h"
@@ -67,21 +71,19 @@ $END_LICENSE */
 #include "database.h"
 #include "httputils.h"
 #include "jsfunctions.h"
-#include "regionsview.h"
 #include "seekslider.h"
 #include "sidebarwidget.h"
-#include "standardfeedsview.h"
 #include "toolbarmenu.h"
 #include "videoareawidget.h"
 #include "yt3.h"
 #include "ytregions.h"
 
 namespace {
-static MainWindow *singleton = 0;
+static MainWindow *mainWindowInstance;
 }
 
 MainWindow *MainWindow::instance() {
-    return singleton;
+    return mainWindowInstance;
 }
 
 MainWindow::MainWindow()
@@ -91,7 +93,7 @@ MainWindow::MainWindow()
 #endif
       fullScreenActive(false), compactModeActive(false), initialized(false), toolbarMenu(0) {
 
-    singleton = this;
+    mainWindowInstance = this;
 
     // views mechanism
     views = new QStackedWidget();
@@ -1750,8 +1752,8 @@ void MainWindow::suggestionAccepted(Suggestion *suggestion) {
 }
 
 void MainWindow::search(const QString &query) {
-    QString q = query.trimmed();
-    if (q.length() == 0) return;
+    QString q = query.simplified();
+    if (q.isEmpty()) return;
     SearchParams *searchParams = new SearchParams();
     searchParams->setKeywords(q);
     showMedia(searchParams);
