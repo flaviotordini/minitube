@@ -98,7 +98,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     welcomeLabel->setFont(FontUtils::light(welcomeLabel->font().pointSize() * 1.25));
     layout->addWidget(welcomeLabel);
 
-    layout->addSpacing(padding);
+    layout->addSpacing(padding / 2);
 
     QBoxLayout *tipLayout = new QHBoxLayout();
     tipLayout->setAlignment(Qt::AlignLeft);
@@ -109,12 +109,22 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 #endif
 
     //: "Enter", as in "type". The whole phrase says: "Enter a keyword to start watching videos"
-    QLabel *tipLabel = new QLabel(tr("Enter"), this);
+    // QLabel *tipLabel = new QLabel(tr("Enter"), this);
+
+    QString tip;
+    if (qApp->layoutDirection() == Qt::RightToLeft) {
+        tip = tr("to start watching videos.") + " " + tr("a keyword") + " " + tr("Enter");
+    } else {
+        tip = tr("Enter") + " " + tr("a keyword") + " " + tr("to start watching videos.");
+    }
+    QLabel *tipLabel = new QLabel(tip);
+
 #ifndef APP_MAC
     tipLabel->setFont(biggerFont);
 #endif
     tipLayout->addWidget(tipLabel);
 
+    /*
     typeCombo = new QComboBox(this);
     typeCombo->addItem(tr("a keyword"));
     typeCombo->addItem(tr("a channel"));
@@ -129,6 +139,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     tipLabel->setFont(biggerFont);
 #endif
     tipLayout->addWidget(tipLabel);
+    */
     layout->addLayout(tipLayout);
 
     layout->addSpacing(padding / 2);
@@ -346,28 +357,28 @@ void SearchView::watch(const QString &query) {
     QString q = query.simplified();
 
     // check for empty query
-    if (q.length() == 0) {
+    if (q.isEmpty()) {
         queryEdit->toWidget()->setFocus(Qt::OtherFocusReason);
         return;
     }
 
-    SearchParams *searchParams = new SearchParams();
-    if (typeCombo->currentIndex() == 0)
-        searchParams->setKeywords(q);
-    else {
-        if (lastChannelSuggestions.isEmpty())
-            MainWindow::instance()->showMessage(tr("Pick a channel from the suggestions"));
-        else
-            suggestionAccepted(lastChannelSuggestions.at(0));
+    /*
+    if (typeCombo->currentIndex() == 1) {
+        // Channel search
+        MainWindow::instance()->channelSearch(q);
         return;
     }
+    */
+
+    SearchParams *searchParams = new SearchParams();
+    searchParams->setKeywords(q);
 
     // go!
     emit search(searchParams);
 }
 
 void SearchView::watchChannel(const QString &channelId) {
-    if (channelId.length() == 0) {
+    if (channelId.isEmpty()) {
         queryEdit->toWidget()->setFocus(Qt::OtherFocusReason);
         return;
     }
@@ -375,7 +386,8 @@ void SearchView::watchChannel(const QString &channelId) {
     QString id = channelId;
 
     // Fix old settings
-    if (!id.startsWith("UC")) id = "UC" + id;
+    const QLatin1String uc("UC");
+    if (!id.startsWith(uc)) id = uc + id;
 
     SearchParams *searchParams = new SearchParams();
     searchParams->setChannelId(id);
@@ -389,15 +401,15 @@ void SearchView::watchKeywords(const QString &query) {
     QString q = query.simplified();
 
     // check for empty query
-    if (query.length() == 0) {
+    if (q.isEmpty()) {
         queryEdit->toWidget()->setFocus(Qt::OtherFocusReason);
         return;
     }
 
-    if (typeCombo->currentIndex() == 0) {
+    // if (typeCombo->currentIndex() == 0) {
         queryEdit->setText(q);
         watchButton->setEnabled(true);
-    }
+    // }
 
     SearchParams *searchParams = new SearchParams();
     searchParams->setKeywords(q);
