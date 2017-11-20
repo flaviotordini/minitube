@@ -841,7 +841,7 @@ void MediaView::snapshot() {
     if (!dir.exists()) dir.mkpath(location);
     QString basename = video->getTitle();
     QString format = video->getDuration() > 3600 ? "h_mm_ss" : "m_ss";
-    basename += " (" + QTime().addSecs(currentTime).toString(format) + ")";
+    basename += " (" + QTime(0,0,0).addSecs(currentTime).toString(format) + ")";
     basename = DataUtils::stringToFilename(basename);
     QString filename = location + "/" + basename + ".png";
     qDebug() << filename;
