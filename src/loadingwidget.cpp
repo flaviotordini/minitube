@@ -52,7 +52,6 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
     progressBar = new QProgressBar(this);
     progressBar->setAutoFillBackground(false);
     progressBar->setPalette(p);
-    // progressBar->hide();
     progressBar->setStyleSheet("QProgressBar {max-height:3px; background:black; border:0} "
                                "QProgressBar::chunk {background:white}");
     progressBar->setTextVisible(false);
@@ -93,7 +92,6 @@ void LoadingWidget::setVideo(Video *video) {
         titleLabel->setAlignment(Qt::AlignHCenter | Qt::AlignBottom);
     descriptionLabel->setVisible(!hiddenDesc);
 
-    // progressBar->hide();
     progressBar->setValue(0);
     startTime.start();
 }
@@ -101,22 +99,11 @@ void LoadingWidget::setVideo(Video *video) {
 void LoadingWidget::setError(const QString &message) {
     titleLabel->setText(tr("Error"));
     descriptionLabel->setText(message);
-    // progressBar->hide();
     progressBar->setValue(0);
 }
 
 void LoadingWidget::bufferStatus(int percent) {
-    /*
-    if (progressBar->isHidden() && percent > 0) {
-        progressBar->show();
-        QPropertyAnimation *animation = new QPropertyAnimation(progressBar, "opacity");
-        animation->setDuration(1000);
-        animation->setStartValue(0.0);
-        animation->setEndValue(1.0);
-        animation->start();
-    }*/
     if (startTime.elapsed() < 2000 || percent <= progressBar->value()) return;
-    // progressBar->setShown(percent > 0);
     progressBar->setValue(percent);
 }
 
@@ -138,7 +125,6 @@ void LoadingWidget::adjustFontSize() {
 void LoadingWidget::clear() {
     titleLabel->clear();
     descriptionLabel->clear();
-    // progressBar->hide();
     progressBar->setValue(0);
 }
 
