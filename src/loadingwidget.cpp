@@ -32,7 +32,7 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
 
     QBoxLayout *layout = new QVBoxLayout(this);
 
-    titleLabel = new QLabel(this);
+    titleLabel = new QLabel();
     titleLabel->setPalette(p);
     titleLabel->setAlignment(Qt::AlignHCenter | Qt::AlignBottom);
     titleLabel->setWordWrap(true);
@@ -40,7 +40,7 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
     titleLabel->setFont(FontUtils::light(titleLabel->font().pointSize()));
     layout->addWidget(titleLabel);
 
-    descriptionLabel = new QLabel(this);
+    descriptionLabel = new QLabel();
     descriptionLabel->setPalette(p);
     descriptionLabel->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
     descriptionLabel->setWordWrap(true);
@@ -49,9 +49,7 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
     descriptionLabel->setOpenExternalLinks(true);
     layout->addWidget(descriptionLabel);
 
-    progressBar = new QProgressBar(this);
-    progressBar->setAutoFillBackground(false);
-    progressBar->setPalette(p);
+    progressBar = new QProgressBar();
     progressBar->setStyleSheet("QProgressBar {max-height:3px; background:black; border:0} "
                                "QProgressBar::chunk {background:white}");
     progressBar->setTextVisible(false);
@@ -73,7 +71,7 @@ void LoadingWidget::setVideo(Video *video) {
     titleLabel->setText(title);
     titleLabel->setVisible(window()->height() > 100);
 
-    static const int maxDescLength = 400;
+    const int maxDescLength = 400;
     QString videoDesc = video->getDescription();
     if (videoDesc.length() > maxDescLength) {
         videoDesc.truncate(maxDescLength);
@@ -103,8 +101,8 @@ void LoadingWidget::setError(const QString &message) {
 }
 
 void LoadingWidget::bufferStatus(int percent) {
-    if (startTime.elapsed() < 2000 || percent <= progressBar->value()) return;
-    progressBar->setValue(percent);
+    if (startTime.elapsed() > 2000 && percent > progressBar->value())
+        progressBar->setValue(percent);
 }
 
 void LoadingWidget::adjustFontSize() {
