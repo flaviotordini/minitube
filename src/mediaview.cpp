@@ -233,6 +233,11 @@ void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory, bool
 
     playlistModel->setVideoSource(videoSource);
 
+    QSettings settings;
+    if (settings.value("manualplay", false).toBool()) {
+        videoAreaWidget->showPickMessage();
+    }
+
     sidebar->showPlaylist();
     sidebar->getRefineSearchWidget()->setSearchParams(getSearchParams());
     sidebar->hideSuggestions();

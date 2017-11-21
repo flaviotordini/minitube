@@ -39,6 +39,7 @@ public:
     void showLoading(Video* video);
     void showVideo();
     void showError(const QString &message);
+    void showPickMessage();
     void clear();
     void setListModel(PlaylistModel *listModel) {
         this->listModel = listModel;
@@ -74,6 +75,8 @@ private:
 
     PlaylistModel *listModel;
     QLabel *messageLabel;
+
+    QWidget *messageWidget;
 
     QPoint dragPosition;
 };

@@ -28,8 +28,42 @@ $END_LICENSE */
 #include "macutils.h"
 #endif
 #include "snapshotpreview.h"
+#include "fontutils.h"
 
-VideoAreaWidget::VideoAreaWidget(QWidget *parent) : QWidget(parent), videoWidget(0) {
+namespace {
+
+class MessageWidget : public QWidget {
+public:
+    MessageWidget(QWidget *parent = nullptr) : QWidget(parent) {
+        QPalette p = palette();
+        p.setColor(QPalette::Window, Qt::black);
+        p.setColor(QPalette::WindowText, Qt::darkGray);
+        p.setColor(QPalette::Base, Qt::black);
+        p.setColor(QPalette::Text, Qt::darkGray);
+        setPalette(p);
+        setAutoFillBackground(true);
+
+        QBoxLayout *l = new QHBoxLayout(this);
+        l->setMargin(32);
+        l->setSpacing(32);
+        l->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+
+        QLabel *arrowLabel = new QLabel("←");
+        arrowLabel->setFont(FontUtils::light(64));
+        arrowLabel->setPalette(p);
+        l->addWidget(arrowLabel);
+
+        QLabel *msgLabel = new QLabel(tr("Pick a video"));
+        msgLabel->setFont(FontUtils::light(32));
+        msgLabel->setPalette(p);
+        l->addWidget(msgLabel);
+    }
+};
+}
+
+VideoAreaWidget::VideoAreaWidget(QWidget *parent)
+    : QWidget(parent), videoWidget(0), messageWidget(0) {
+
     QBoxLayout *vLayout = new QVBoxLayout(this);
     vLayout->setMargin(0);
     vLayout->setSpacing(0);
@@ -82,6 +116,14 @@ void VideoAreaWidget::showError(const QString &message) {
     messageLabel->setText(message);
     messageLabel->show();
     stackedLayout->setCurrentWidget(loadingWidget);
+}
+
+void VideoAreaWidget::showPickMessage() {
+    if (!messageWidget) {
+        messageWidget = new MessageWidget();
+        stackedLayout->addWidget(messageWidget);
+    }
+    stackedLayout->setCurrentWidget(messageWidget);
 }
 
 void VideoAreaWidget::showLoading(Video *video) {
