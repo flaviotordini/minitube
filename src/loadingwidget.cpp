@@ -108,8 +108,6 @@ void LoadingWidget::setError(const QString &message) {
 }
 
 void LoadingWidget::bufferStatus(int percent) {
-    // qDebug() << percent;
-
     /*
     if (progressBar->isHidden() && percent > 0) {
         progressBar->show();
@@ -119,9 +117,8 @@ void LoadingWidget::bufferStatus(int percent) {
         animation->setEndValue(1.0);
         animation->start();
     }*/
+    if (startTime.elapsed() < 2000 || percent <= progressBar->value()) return;
     // progressBar->setShown(percent > 0);
-    if (startTime.elapsed() < 1000) return;
-    if (progressBar->value() == 0 && percent > 80) return;
     progressBar->setValue(percent);
 }
 

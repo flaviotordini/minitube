@@ -171,6 +171,7 @@ void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
     connect(mediaObject, SIGNAL(stateChanged(Phonon::State, Phonon::State)),
             SLOT(stateChanged(Phonon::State, Phonon::State)));
     connect(mediaObject, SIGNAL(aboutToFinish()), SLOT(aboutToFinish()));
+    connect(mediaObject, SIGNAL(bufferStatus(int)), loadingWidget, SLOT(bufferStatus(int)));
 }
 #endif
 
