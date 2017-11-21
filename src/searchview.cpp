@@ -100,10 +100,6 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 
     layout->addSpacing(padding / 2);
 
-    QBoxLayout *tipLayout = new QHBoxLayout();
-    tipLayout->setAlignment(Qt::AlignLeft);
-    tipLayout->setSpacing(10);
-
 #ifndef APP_MAC
     const QFont &biggerFont = FontUtils::big();
 #endif
@@ -122,7 +118,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 #ifndef APP_MAC
     tipLabel->setFont(biggerFont);
 #endif
-    tipLayout->addWidget(tipLabel);
+    layout->addWidget(tipLabel);
 
     /*
     typeCombo = new QComboBox(this);
@@ -140,7 +136,6 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 #endif
     tipLayout->addWidget(tipLabel);
     */
-    layout->addLayout(tipLayout);
 
     layout->addSpacing(padding / 2);
 
@@ -170,7 +165,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     searchLayout->addWidget(queryEdit->toWidget(), 0, Qt::AlignBaseline);
     searchLayout->addSpacing(padding);
 
-    watchButton = new QPushButton(tr("Watch"), this);
+    watchButton = new QPushButton(tr("Watch"));
 #ifndef APP_MAC
     watchButton->setFont(biggerFont);
 #endif
@@ -185,30 +180,29 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     layout->addSpacing(padding);
 
     QHBoxLayout *recentLayout = new QHBoxLayout();
-    recentLayout->setMargin(5);
+    recentLayout->setMargin(0);
     recentLayout->setSpacing(10);
 
     recentKeywordsLayout = new QVBoxLayout();
     recentKeywordsLayout->setMargin(0);
     recentKeywordsLayout->setSpacing(0);
     recentKeywordsLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-    recentKeywordsLabel = new QLabel(tr("Recent keywords"), this);
+    recentKeywordsLabel = new QLabel(tr("Recent keywords"));
+    recentKeywordsLabel->setEnabled(false);
     recentKeywordsLabel->setProperty("recentHeader", true);
     recentKeywordsLabel->hide();
     recentKeywordsLayout->addWidget(recentKeywordsLabel);
-
     recentLayout->addLayout(recentKeywordsLayout);
 
-    // recent channels
     recentChannelsLayout = new QVBoxLayout();
     recentChannelsLayout->setMargin(0);
     recentChannelsLayout->setSpacing(0);
     recentChannelsLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-    recentChannelsLabel = new QLabel(tr("Recent channels"), this);
+    recentChannelsLabel = new QLabel(tr("Recent channels"));
+    recentChannelsLabel->setEnabled(false);
     recentChannelsLabel->setProperty("recentHeader", true);
     recentChannelsLabel->hide();
     recentChannelsLayout->addWidget(recentChannelsLabel);
-
     recentLayout->addLayout(recentChannelsLayout);
 
     layout->addLayout(recentLayout);
@@ -231,9 +225,9 @@ void SearchView::appear() {
 
     updateRecentKeywords();
     updateRecentChannels();
+
     queryEdit->selectAll();
     queryEdit->enableSuggest();
-
     if (!queryEdit->toWidget()->hasFocus()) queryEdit->toWidget()->setFocus();
 
     connect(window()->windowHandle(), SIGNAL(screenChanged(QScreen*)), SLOT(screenChanged()), Qt::UniqueConnection);
@@ -271,6 +265,8 @@ void SearchView::updateRecentKeywords() {
     recentKeywordsLabel->setVisible(!keywords.isEmpty());
     MainWindow::instance()->getAction("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
 
+    const int maxDisplayLength = 25;
+
     for (const QString &keyword : keywords) {
         QString link = keyword;
         QString display = keyword;
@@ -282,7 +278,6 @@ void SearchView::updateRecentKeywords() {
             }
         }
         bool needStatusTip = false;
-        const int maxDisplayLength = 25;
         if (display.length() > maxDisplayLength) {
             display.truncate(maxDisplayLength);
             display.append(QStringLiteral("\u2026"));

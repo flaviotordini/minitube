@@ -76,8 +76,7 @@ SidebarHeader QComboBox::drop-down {
 }
 
 SearchView QLabel[recentHeader="true"] {
-    color: #808080;
-    margin-left: 2px;
+    margin-left: -3px;
     margin-bottom: 4px;
     padding: 0;
 }
