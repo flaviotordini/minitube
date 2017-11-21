@@ -264,22 +264,6 @@
 <context>
     <name>DownloadManager</name>
     <message>
-        <source>This is just the demo version of %1.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Continue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Get the full version</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>%1 downloaded in %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -763,10 +747,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Volume at %1%</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Volume is muted</source>
         <translation type="unfinished"></translation>
     </message>
@@ -814,6 +794,10 @@
         <source>&amp;Minimize</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Menu</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MediaView</name>
@@ -827,22 +811,6 @@
     </message>
     <message>
         <source>The link will be valid only for a limited time.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This is just the demo version of %1.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>It allows you to test the application and see if it works for you.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Get the full version</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Continue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -909,6 +877,10 @@
     </message>
     <message>
         <source>Install Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pick a video</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1090,15 +1062,10 @@
     </message>
     <message>
         <source>Enter</source>
-        <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole phrase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>a keyword</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>a channel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1178,13 +1145,6 @@
     </message>
     <message>
         <source>Downloading %1...</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Video</name>
-    <message>
-        <source>Cannot get video stream for %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1380,6 +1340,13 @@
     </message>
     <message>
         <source>Worldwide</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>YTVideo</name>
+    <message>
+        <source>Cannot get video stream for %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
