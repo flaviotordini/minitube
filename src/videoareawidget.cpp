@@ -19,11 +19,11 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "videoareawidget.h"
-#include "video.h"
 #include "loadingwidget.h"
-#include "playlistmodel.h"
-#include "videomimedata.h"
 #include "mainwindow.h"
+#include "playlistmodel.h"
+#include "video.h"
+#include "videomimedata.h"
 #ifdef Q_OS_MAC
 #include "macutils.h"
 #endif
@@ -63,10 +63,11 @@ public:
 
 VideoAreaWidget::VideoAreaWidget(QWidget *parent)
     : QWidget(parent), videoWidget(0), messageWidget(0) {
+    setAttribute(Qt::WA_OpaquePaintEvent);
 
-    QBoxLayout *vLayout = new QVBoxLayout(this);
-    vLayout->setMargin(0);
-    vLayout->setSpacing(0);
+    QBoxLayout *layout = new QVBoxLayout(this);
+    layout->setMargin(0);
+    layout->setSpacing(0);
 
     // hidden message widget
     messageLabel = new QLabel(this);
@@ -77,10 +78,10 @@ VideoAreaWidget::VideoAreaWidget(QWidget *parent)
     messageLabel->setAutoFillBackground(true);
     messageLabel->setWordWrap(true);
     messageLabel->hide();
-    vLayout->addWidget(messageLabel);
+    layout->addWidget(messageLabel);
 
     stackedLayout = new QStackedLayout();
-    vLayout->addLayout(stackedLayout);
+    layout->addLayout(stackedLayout);
 
 #ifdef APP_SNAPSHOT
     snapshotPreview = new SnapshotPreview();
@@ -107,8 +108,7 @@ void VideoAreaWidget::setLoadingWidget(LoadingWidget *loadingWidget) {
 }
 
 void VideoAreaWidget::showVideo() {
-    if (videoWidget)
-        stackedLayout->setCurrentWidget(videoWidget);
+    if (videoWidget) stackedLayout->setCurrentWidget(videoWidget);
     loadingWidget->clear();
 }
 
@@ -142,9 +142,7 @@ void VideoAreaWidget::showSnapshotPreview(const QPixmap &pixmap) {
     snapshotPreview->start(videoWidget, pixmap, soundOnly);
 }
 
-void VideoAreaWidget::hideSnapshotPreview() {
-
-}
+void VideoAreaWidget::hideSnapshotPreview() {}
 #endif
 
 void VideoAreaWidget::clear() {
@@ -155,8 +153,7 @@ void VideoAreaWidget::clear() {
 }
 
 void VideoAreaWidget::mouseDoubleClickEvent(QMouseEvent *event) {
-    if (event->button() == Qt::LeftButton)
-        emit doubleClicked();
+    if (event->button() == Qt::LeftButton) emit doubleClicked();
 }
 
 void VideoAreaWidget::dragEnterEvent(QDragEnterEvent *event) {
@@ -167,17 +164,14 @@ void VideoAreaWidget::dragEnterEvent(QDragEnterEvent *event) {
 }
 
 void VideoAreaWidget::dropEvent(QDropEvent *event) {
-    
-    const VideoMimeData* videoMimeData = qobject_cast<const VideoMimeData*>( event->mimeData() );
-    if(!videoMimeData ) return;
-    
-    QVector<Video*> droppedVideos = videoMimeData->getVideos();
-    if (droppedVideos.isEmpty())
-        return;
+    const VideoMimeData *videoMimeData = qobject_cast<const VideoMimeData *>(event->mimeData());
+    if (!videoMimeData) return;
+
+    QVector<Video *> droppedVideos = videoMimeData->getVideos();
+    if (droppedVideos.isEmpty()) return;
     Video *video = droppedVideos.at(0);
     int row = listModel->rowForVideo(video);
-    if (row != -1)
-        listModel->setActiveRow(row);
+    if (row != -1) listModel->setActiveRow(row);
     event->acceptProposedAction();
 }
 

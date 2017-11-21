@@ -238,21 +238,12 @@ void PlaylistModel::addVideos(const QVector<Video *> &newVideos) {
 }
 
 void PlaylistModel::handleFirstVideo(Video *video) {
+    QSettings settings;
     int currentVideoRow = rowForCloneVideo(MediaView::instance()->getCurrentVideoId());
     if (currentVideoRow != -1)
         setActiveRow(currentVideoRow, false);
     else {
-        QSettings settings;
         if (!settings.value("manualplay", false).toBool()) setActiveRow(0);
-    }
-
-    QSettings settings;
-    if (!settings.value("manualplay", false).toBool()) {
-        int newActiveRow = rowForCloneVideo(MediaView::instance()->getCurrentVideoId());
-        if (newActiveRow != -1)
-            setActiveRow(newActiveRow, false);
-        else
-            setActiveRow(0);
     }
 
     if (videoSource->metaObject()->className() == QLatin1String("YTSearch")) {

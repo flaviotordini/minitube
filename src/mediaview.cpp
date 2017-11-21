@@ -150,7 +150,7 @@ void MediaView::initialize() {
             "snapshot",
 #endif
             "webpage",  "pagelink", "videolink",     "openInBrowser", "findVideoParts",
-            "skip",     "previous", "stopafterthis", "relatedVideos",  "refineSearch",
+            "skip",     "previous", "stopafterthis", "relatedVideos", "refineSearch",
             "twitter",  "facebook", "email"};
     currentVideoActions.reserve(videoActionNames.size());
     for (auto *name : videoActionNames) {
@@ -444,7 +444,8 @@ void MediaView::activeRowChanged(int row) {
     video->loadStreamUrl();
 
     // video title in titlebar
-    MainWindow::instance()->setWindowTitle(video->getTitle() + " - " + Constants::NAME);
+    MainWindow::instance()->setWindowTitle(video->getTitle() + QLatin1String(" - ") +
+                                           QLatin1String(Constants::NAME));
 
     // ensure active item is visible
     if (row != -1) {
@@ -847,7 +848,7 @@ void MediaView::snapshot() {
     if (!dir.exists()) dir.mkpath(location);
     QString basename = video->getTitle();
     QString format = video->getDuration() > 3600 ? "h_mm_ss" : "m_ss";
-    basename += " (" + QTime(0,0,0).addSecs(currentTime).toString(format) + ")";
+    basename += " (" + QTime(0, 0, 0).addSecs(currentTime).toString(format) + ")";
     basename = DataUtils::stringToFilename(basename);
     QString filename = location + "/" + basename + ".png";
     qDebug() << filename;

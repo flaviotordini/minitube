@@ -22,29 +22,27 @@ $END_LICENSE */
 #include "fontutils.h"
 
 LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
-
     QPalette p = palette();
-    p.setBrush(backgroundRole(), Qt::black);
-    p.setBrush(QPalette::Text, Qt::white);
+    p.setColor(QPalette::Window, Qt::black);
+    p.setColor(QPalette::WindowText, Qt::white);
+    p.setColor(QPalette::Base, Qt::black);
+    p.setColor(QPalette::Text, Qt::white);
     setPalette(p);
-
     setAutoFillBackground(true);
 
     QBoxLayout *layout = new QVBoxLayout(this);
 
     titleLabel = new QLabel(this);
-    titleLabel->setAlignment(Qt::AlignHCenter | Qt::AlignBottom);
     titleLabel->setPalette(p);
-    titleLabel->setForegroundRole(QPalette::Text);
+    titleLabel->setAlignment(Qt::AlignHCenter | Qt::AlignBottom);
     titleLabel->setWordWrap(true);
     titleLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     titleLabel->setFont(FontUtils::light(titleLabel->font().pointSize()));
     layout->addWidget(titleLabel);
 
     descriptionLabel = new QLabel(this);
-    descriptionLabel->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
     descriptionLabel->setPalette(p);
-    descriptionLabel->setForegroundRole(QPalette::Text);
+    descriptionLabel->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
     descriptionLabel->setWordWrap(true);
     descriptionLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Expanding);
     descriptionLabel->setTextFormat(Qt::RichText);
@@ -53,10 +51,10 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
 
     progressBar = new QProgressBar(this);
     progressBar->setAutoFillBackground(false);
-    progressBar->setBackgroundRole(QPalette::Window);
     progressBar->setPalette(p);
     // progressBar->hide();
-    progressBar->setStyleSheet("QProgressBar {max-height:3px; background:black; border:0} QProgressBar::chunk {background:white}");
+    progressBar->setStyleSheet("QProgressBar {max-height:3px; background:black; border:0} "
+                               "QProgressBar::chunk {background:white}");
     progressBar->setTextVisible(false);
     layout->addWidget(progressBar);
 }
@@ -123,19 +121,18 @@ void LoadingWidget::bufferStatus(int percent) {
 }
 
 void LoadingWidget::adjustFontSize() {
-    QFont titleFont = titleLabel->font();
+    QFont f = titleLabel->font();
     int smallerDimension = qMin(height(), width());
-    titleFont.setPixelSize(smallerDimension / 12);
-    QFontMetrics fm(titleFont);
+    f.setPixelSize(smallerDimension / 12);
+    QFontMetrics fm(f);
     int textHeightInPixels = fm.height();
     int spacing = textHeightInPixels / 2;
     layout()->setSpacing(spacing);
     layout()->setMargin(spacing);
-    titleLabel->setFont(titleFont);
+    titleLabel->setFont(f);
 
-    QFont descFont(titleFont);
-    descFont.setPixelSize(descFont.pixelSize() / 2);
-    descriptionLabel->setFont(descFont);
+    f.setPixelSize(f.pixelSize() / 2);
+    descriptionLabel->setFont(f);
 }
 
 void LoadingWidget::clear() {
