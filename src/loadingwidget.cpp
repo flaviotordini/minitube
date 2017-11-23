@@ -64,6 +64,8 @@ void LoadingWidget::setVideo(Video *video) {
     title.replace(QLatin1String(" - "), QLatin1String("<p>"));
     title.replace(QLatin1String(" | "), QLatin1String("<p>"));
     title.replace(QLatin1String(" — "), QLatin1String("<p>"));
+    title.replace(QLatin1String(": "), QLatin1String("<p>"));
+    title.replace(QLatin1String("; "), QLatin1String("<p>"));
     title.replace(QLatin1String("] "), QLatin1String("]<p>"));
     title.replace(QLatin1String(" ["), QLatin1String("<p>["));
     title.replace(QLatin1String(" ("), QLatin1String("<p>("));
