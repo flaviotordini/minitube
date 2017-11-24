@@ -26,30 +26,32 @@ $END_LICENSE */
 class PlaylistView;
 
 class PlaylistItemDelegate : public QStyledItemDelegate {
-
     Q_OBJECT
 
 public:
-    PlaylistItemDelegate(QObject* parent, bool downloadInfo = false);
+    PlaylistItemDelegate(QObject *parent, bool downloadInfo = false);
     ~PlaylistItemDelegate();
 
-    QSize sizeHint( const QStyleOptionViewItem&, const QModelIndex& ) const;
-    void paint( QPainter*, const QStyleOptionViewItem&, const QModelIndex& ) const;
+    QSize sizeHint(const QStyleOptionViewItem &, const QModelIndex &) const;
+    void
+    paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     QRect downloadButtonRect(const QRect &line) const;
-    QRect authorRect(const QModelIndex& index) const;
+    QRect authorRect(const QModelIndex &index) const;
 
 private:
     void createPlayIcon();
-    void paintBody( QPainter*, const QStyleOptionViewItem&, const QModelIndex& ) const;
-    void paintDownloadInfo( QPainter* painter,
-                                        const QStyleOptionViewItem& option,
-                                        const QModelIndex& index ) const;
-    void paintActiveOverlay(QPainter *painter, const QStyleOptionViewItem& option, const QRect &line) const;
+    void paintBody(QPainter *, const QStyleOptionViewItem &, const QModelIndex &) const;
+    void paintDownloadInfo(QPainter *painter,
+                           const QStyleOptionViewItem &option,
+                           const QModelIndex &index) const;
+    void paintActiveOverlay(QPainter *painter,
+                            const QStyleOptionViewItem &option,
+                            const QRect &line) const;
     void drawTime(QPainter *painter, const QString &time, const QRect &line) const;
 
-    static const int THUMB_WIDTH;
-    static const int THUMB_HEIGHT;
-    static const int PADDING;
+    static const int thumbWidth;
+    static const int thumbHeight;
+    static const int padding;
 
     QPixmap playIcon;
     QFont smallerFont;

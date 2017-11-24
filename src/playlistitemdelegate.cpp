@@ -19,34 +19,32 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "playlistitemdelegate.h"
+#include "datautils.h"
+#include "downloaditem.h"
+#include "fontutils.h"
+#include "iconutils.h"
 #include "playlistmodel.h"
 #include "playlistview.h"
-#include "fontutils.h"
-#include "downloaditem.h"
-#include "iconutils.h"
-#include "videodefinition.h"
 #include "video.h"
-#include "datautils.h"
+#include "videodefinition.h"
 
-const int PlaylistItemDelegate::THUMB_HEIGHT = 90;
-const int PlaylistItemDelegate::THUMB_WIDTH = 160;
-const int PlaylistItemDelegate::PADDING = 10;
+const int PlaylistItemDelegate::thumbHeight = 90;
+const int PlaylistItemDelegate::thumbWidth = 160;
+const int PlaylistItemDelegate::padding = 8;
 
 namespace {
 
-void drawElidedText(QPainter *painter, const QRect &textBox, const int flags, const QString &text) {
-    QString elidedText = QFontMetrics(painter->font()).elidedText(text, Qt::ElideRight, textBox.width(), flags);
+bool drawElidedText(QPainter *painter, const QRect &textBox, const int flags, const QString &text) {
+    QString elidedText =
+            painter->fontMetrics().elidedText(text, Qt::ElideRight, textBox.width(), flags);
     painter->drawText(textBox, 0, elidedText);
+    return elidedText.length() < text.length();
+}
 }
 
-}
-
-PlaylistItemDelegate::PlaylistItemDelegate(QObject* parent, bool downloadInfo)
-    : QStyledItemDelegate(parent),
-      downloadInfo(downloadInfo),
-      progressBar(0) {
-
-    listView = qobject_cast<PlaylistView*>(parent);
+PlaylistItemDelegate::PlaylistItemDelegate(QObject *parent, bool downloadInfo)
+    : QStyledItemDelegate(parent), downloadInfo(downloadInfo), progressBar(0) {
+    listView = qobject_cast<PlaylistView *>(parent);
 
     smallerBoldFont = FontUtils::smallBold();
     smallerFont = FontUtils::small();
@@ -58,7 +56,8 @@ PlaylistItemDelegate::PlaylistItemDelegate(QObject* parent, bool downloadInfo)
         progressBar->setPalette(palette);
         progressBar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
         progressBar->hide();
-    } else createPlayIcon();
+    } else
+        createPlayIcon();
 }
 
 PlaylistItemDelegate::~PlaylistItemDelegate() {
@@ -67,27 +66,26 @@ PlaylistItemDelegate::~PlaylistItemDelegate() {
 
 void PlaylistItemDelegate::createPlayIcon() {
     qreal maxRatio = IconUtils::maxSupportedPixelRatio();
-    playIcon = QPixmap(THUMB_WIDTH * maxRatio, THUMB_HEIGHT * maxRatio);
+    playIcon = QPixmap(thumbWidth * maxRatio, thumbHeight * maxRatio);
     playIcon.setDevicePixelRatio(maxRatio);
     playIcon.fill(Qt::transparent);
 
-    QPixmap tempPixmap(THUMB_WIDTH * maxRatio, THUMB_HEIGHT * maxRatio);
+    QPixmap tempPixmap(thumbWidth * maxRatio, thumbHeight * maxRatio);
     tempPixmap.setDevicePixelRatio(maxRatio);
     tempPixmap.fill(Qt::transparent);
     QPainter painter(&tempPixmap);
     painter.setRenderHints(QPainter::Antialiasing, true);
 
-    const int hPadding = PADDING*6;
-    const int vPadding = PADDING*2;
+    const int hPadding = padding * 6;
+    const int vPadding = padding * 2;
 
     QPolygon polygon;
-    polygon << QPoint(hPadding, vPadding)
-            << QPoint(THUMB_WIDTH-hPadding, THUMB_HEIGHT/2)
-            << QPoint(hPadding, THUMB_HEIGHT-vPadding);
+    polygon << QPoint(hPadding, vPadding) << QPoint(thumbWidth - hPadding, thumbHeight / 2)
+            << QPoint(hPadding, thumbHeight - vPadding);
     painter.setBrush(Qt::white);
     QPen pen;
     pen.setColor(Qt::white);
-    pen.setWidth(PADDING);
+    pen.setWidth(padding);
     pen.setJoinStyle(Qt::RoundJoin);
     pen.setCapStyle(Qt::RoundCap);
     painter.setPen(pen);
@@ -99,13 +97,14 @@ void PlaylistItemDelegate::createPlayIcon() {
     painter2.drawPixmap(0, 0, tempPixmap);
 }
 
-QSize PlaylistItemDelegate::sizeHint( const QStyleOptionViewItem& /*option*/, const QModelIndex& /*index*/ ) const {
-    return QSize(THUMB_WIDTH, THUMB_HEIGHT + 1);
+QSize PlaylistItemDelegate::sizeHint(const QStyleOptionViewItem & /*option*/,
+                                     const QModelIndex & /*index*/) const {
+    return QSize(thumbWidth, thumbHeight + 1);
 }
 
-void PlaylistItemDelegate::paint( QPainter* painter,
-                                  const QStyleOptionViewItem& option, const QModelIndex& index ) const {
-
+void PlaylistItemDelegate::paint(QPainter *painter,
+                                 const QStyleOptionViewItem &option,
+                                 const QModelIndex &index) const {
     int itemType = index.data(ItemTypeRole).toInt();
     if (itemType == ItemTypeVideo) {
         QStyleOptionViewItem opt = QStyleOptionViewItem(option);
@@ -114,52 +113,46 @@ void PlaylistItemDelegate::paint( QPainter* painter,
         opt.widget->style()->drawControl(QStyle::CE_ItemViewItem, &opt, painter, opt.widget);
         paintBody(painter, opt, index);
     } else
-        QStyledItemDelegate::paint( painter, option, index );
-
+        QStyledItemDelegate::paint(painter, option, index);
 }
 
-void PlaylistItemDelegate::paintBody( QPainter* painter,
-                                      const QStyleOptionViewItem& option,
-                                      const QModelIndex& index ) const {
+void PlaylistItemDelegate::paintBody(QPainter *painter,
+                                     const QStyleOptionViewItem &option,
+                                     const QModelIndex &index) const {
     painter->save();
-    painter->translate( option.rect.topLeft() );
+    painter->translate(option.rect.topLeft());
 
     QRect line(0, 0, option.rect.width(), option.rect.height());
     if (downloadInfo) line.setWidth(line.width() / 2);
 
-    const bool isActive = index.data( ActiveTrackRole ).toBool();
+    const bool isActive = index.data(ActiveTrackRole).toBool();
     const bool isSelected = option.state & QStyle::State_Selected;
 
     // get the video metadata
     const Video *video = index.data(VideoRole).value<VideoPointer>().data();
 
     // draw the "current track" highlight underneath the text
-    if (isActive && !isSelected)
-        paintActiveOverlay(painter, option, line);
+    if (isActive && !isSelected) paintActiveOverlay(painter, option, line);
 
     // separator
     painter->setPen(option.palette.color(QPalette::Midlight));
-    painter->drawLine(THUMB_WIDTH, THUMB_HEIGHT, option.rect.width(), THUMB_HEIGHT);
-    if (!video->getThumbnail().isNull())
-        painter->setPen(Qt::black);
-    painter->drawLine(0, THUMB_HEIGHT, THUMB_WIDTH-1, THUMB_HEIGHT);
+    painter->drawLine(thumbWidth, thumbHeight, option.rect.width(), thumbHeight);
+    if (!video->getThumbnail().isNull()) painter->setPen(Qt::black);
+    painter->drawLine(0, thumbHeight, thumbWidth - 1, thumbHeight);
 
     // thumb
     painter->drawPixmap(0, 0, video->getThumbnail());
 
-    const bool thumbsOnly = line.width() <= THUMB_WIDTH + 60;
+    const bool thumbsOnly = line.width() <= thumbWidth + 60;
     const bool isHovered = index.data(HoveredItemRole).toBool();
 
     // play icon overlayed on the thumb
-    if (isActive && (!isHovered && thumbsOnly))
-        painter->drawPixmap(0, 0, playIcon);
+    if (isActive && (!isHovered && thumbsOnly)) painter->drawPixmap(0, 0, playIcon);
 
     // time
-    if (video->getDuration() > 0)
-        drawTime(painter, video->getFormattedDuration(), line);
+    if (video->getDuration() > 0) drawTime(painter, video->getFormattedDuration(), line);
 
     if (!thumbsOnly) {
-
         // text color
         if (isSelected)
             painter->setPen(QPen(option.palette.highlightedText(), 0));
@@ -167,27 +160,31 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
             painter->setPen(QPen(option.palette.text(), 0));
 
         // title
-        QString videoTitle = video->getTitle();
-        QString v = videoTitle;
-        const int flags = Qt::AlignTop | Qt::TextWordWrap;
-        QRect textBox = line.adjusted(PADDING+THUMB_WIDTH, PADDING, 0, 0);
-        textBox = painter->boundingRect(textBox, flags, v);
-        while (textBox.height() > 55 && v.length() > 10) {
-            videoTitle.chop(1);
-            v = videoTitle.trimmed().append(QStringLiteral("…"));
-            textBox = painter->boundingRect(textBox, flags, v);
+        QStringRef title(&video->getTitle());
+        QString elidedTitle = video->getTitle();
+        static const int titleFlags = Qt::AlignTop | Qt::TextWordWrap;
+        QRect textBox = line.adjusted(padding + thumbWidth, padding, 0, 0);
+        textBox = painter->boundingRect(textBox, titleFlags, elidedTitle);
+        while (textBox.height() > 55 && elidedTitle.length() > 10) {
+            title.truncate(title.length() - 1);
+            elidedTitle = title.trimmed() + QStringLiteral("…");
+            textBox = painter->boundingRect(textBox, titleFlags, elidedTitle);
         }
-        painter->drawText(textBox, flags, v);
+        painter->drawText(textBox, titleFlags, elidedTitle);
 
         painter->setFont(smallerFont);
-        painter->setOpacity(.7);
+        painter->setOpacity(.5);
+        QFontMetrics fontMetrics = painter->fontMetrics();
+        static const int flags = Qt::AlignLeft | Qt::AlignTop;
 
         // published date
-        const QString &publishedString = video->getFormattedPublished();
-        QSize stringSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, publishedString ) );
-        QPoint textLoc(PADDING+THUMB_WIDTH, PADDING*2 + textBox.height());
-        QRect publishedTextBox(textLoc , stringSize);
-        painter->drawText(publishedTextBox, Qt::AlignLeft | Qt::AlignTop, publishedString);
+        const QString &published = video->getFormattedPublished();
+        QSize textSize(fontMetrics.size(Qt::TextSingleLine, published));
+        QPoint textPoint(padding + thumbWidth, padding * 2 + textBox.height());
+        textBox = QRect(textPoint, textSize);
+        painter->drawText(textBox, flags, published);
+
+        bool elided = false;
 
         // author
         if (!listView || listView->isClickableAuthors()) {
@@ -199,76 +196,88 @@ void PlaylistItemDelegate::paintBody( QPainter* painter,
                 if (authorHovered)
                     painter->setPen(QPen(option.palette.brush(QPalette::Highlight), 0));
             }
-            const QString &authorString = video->getChannelTitle();
-            textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
-            stringSize = QSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, authorString ) );
-            QRect authorTextBox(textLoc , stringSize);
-            authorRects.insert(index.row(), authorTextBox);
-            if (authorTextBox.right() > line.width()) authorTextBox.setRight(line.width());
-            drawElidedText(painter, authorTextBox, Qt::AlignLeft | Qt::AlignTop, authorString);
+            const QString &author = video->getChannelTitle();
+            textPoint.setX(textBox.right() + padding);
+            textSize = QSize(painter->fontMetrics().size(Qt::TextSingleLine, author));
+            textBox = QRect(textPoint, textSize);
+            authorRects.insert(index.row(), textBox);
+            if (textBox.right() > line.width()) {
+                textBox.setRight(line.width());
+                elided = drawElidedText(painter, textBox, flags, author);
+            } else {
+                painter->drawText(textBox, flags, author);
+            }
             painter->restore();
         }
 
         // view count
         if (video->getViewCount() > 0) {
             QLocale locale;
-            QString viewCountString = tr("%1 views").arg(locale.toString(video->getViewCount()));
-            textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
-            stringSize = QSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, viewCountString ) );
-            QRect viewCountTextBox(textLoc , stringSize);
-            if (viewCountTextBox.right() > line.width()) viewCountTextBox.setRight(line.width());
-            drawElidedText(painter, viewCountTextBox, Qt::AlignLeft | Qt::AlignBottom, viewCountString);
+            const QString viewCount = tr("%1 views").arg(locale.toString(video->getViewCount()));
+            textPoint.setX(textBox.right() + padding);
+            textSize = QSize(fontMetrics.size(Qt::TextSingleLine, viewCount));
+            if (elided || textPoint.x() + textSize.width() > line.width()) {
+                textPoint.setX(thumbWidth + padding);
+                textPoint.setY(textPoint.y() + textSize.height() + padding);
+            }
+            textBox = QRect(textPoint, textSize);
+            if (textBox.bottom() <= line.height()) {
+                painter->drawText(textBox, flags, viewCount);
+            }
         }
 
         if (downloadInfo) {
-            const QString definitionString = VideoDefinition::getDefinitionFor(video->getDefinitionCode()).getName();
-            textLoc.setX(textLoc.x() + stringSize.width() + PADDING);
-            stringSize = QSize(QFontMetrics(painter->font()).size( Qt::TextSingleLine, definitionString ) );
-            QRect viewCountTextBox(textLoc , stringSize);
-            painter->drawText(viewCountTextBox, Qt::AlignLeft | Qt::AlignBottom, definitionString);
+            const QString &def = VideoDefinition::forCode(video->getDefinitionCode()).getName();
+            textPoint.setX(textBox.right() + padding);
+            textSize = QSize(fontMetrics.size(Qt::TextSingleLine, def));
+            textBox = QRect(textPoint, textSize);
+            painter->drawText(textBox, flags, def);
         }
 
     } else {
-
+        // thumbs only
         if (isHovered) {
             painter->setFont(smallerFont);
             painter->setPen(Qt::white);
-            QString videoTitle = video->getTitle();
-            QString v = videoTitle;
-            const int flags = Qt::AlignTop | Qt::TextWordWrap;
-            QRect textBox(PADDING, PADDING, THUMB_WIDTH - PADDING*2, THUMB_HEIGHT - PADDING*2);
-            textBox = painter->boundingRect(textBox, flags, v);
-            while (textBox.height() > THUMB_HEIGHT && v.length() > 10) {
-                videoTitle.chop(1);
-                v = videoTitle.trimmed().append(QStringLiteral("…"));
-                textBox = painter->boundingRect(textBox, flags, v);
+            QStringRef title(&video->getTitle());
+            QString elidedTitle = video->getTitle();
+            static const int titleFlags = Qt::AlignTop | Qt::TextWordWrap;
+            QRect textBox(padding, padding, thumbWidth - padding * 2, thumbHeight - padding * 2);
+            textBox = painter->boundingRect(textBox, titleFlags, elidedTitle);
+            while (textBox.height() > 55 && elidedTitle.length() > 10) {
+                title.truncate(title.length() - 1);
+                elidedTitle = title.trimmed() + QStringLiteral("…");
+                textBox = painter->boundingRect(textBox, titleFlags, elidedTitle);
             }
-            painter->fillRect(QRect(0, 0, THUMB_WIDTH, textBox.height() + PADDING*2), QColor(0, 0, 0, 128));
-            painter->drawText(textBox, flags, v);
+            painter->fillRect(QRect(0, 0, thumbWidth, textBox.height() + padding * 2),
+                              QColor(0, 0, 0, 128));
+            painter->drawText(textBox, titleFlags, elidedTitle);
         }
-
     }
 
     painter->restore();
 
     if (downloadInfo) paintDownloadInfo(painter, option, index);
-
 }
 
-void PlaylistItemDelegate::paintActiveOverlay(QPainter *painter, const QStyleOptionViewItem& option, const QRect &line) const {
+void PlaylistItemDelegate::paintActiveOverlay(QPainter *painter,
+                                              const QStyleOptionViewItem &option,
+                                              const QRect &line) const {
     painter->save();
     painter->setOpacity(.2);
     painter->fillRect(line, option.palette.highlight());
     painter->restore();
 }
 
-void PlaylistItemDelegate::drawTime(QPainter *painter, const QString &time, const QRect &line) const {
+void PlaylistItemDelegate::drawTime(QPainter *painter,
+                                    const QString &time,
+                                    const QRect &line) const {
     static const int timePadding = 4;
     QRect textBox = painter->boundingRect(line, Qt::AlignLeft | Qt::AlignTop, time);
     // add padding
     textBox.adjust(0, 0, timePadding, 0);
     // move to bottom right corner of the thumb
-    textBox.translate(THUMB_WIDTH - textBox.width(), THUMB_HEIGHT - textBox.height());
+    textBox.translate(thumbWidth - textBox.width(), thumbHeight - textBox.height());
 
     painter->save();
     painter->setPen(Qt::NoPen);
@@ -283,12 +292,12 @@ void PlaylistItemDelegate::drawTime(QPainter *painter, const QString &time, cons
     painter->restore();
 }
 
-void PlaylistItemDelegate::paintDownloadInfo( QPainter* painter,
-                                              const QStyleOptionViewItem& option,
-                                              const QModelIndex& index ) const {
-
+void PlaylistItemDelegate::paintDownloadInfo(QPainter *painter,
+                                             const QStyleOptionViewItem &option,
+                                             const QModelIndex &index) const {
     // get the video metadata
-    const DownloadItemPointer downloadItemPointer = index.data(DownloadItemRole).value<DownloadItemPointer>();
+    const DownloadItemPointer downloadItemPointer =
+            index.data(DownloadItemRole).value<DownloadItemPointer>();
     const DownloadItem *downloadItem = downloadItemPointer.data();
 
     painter->save();
@@ -307,12 +316,7 @@ void PlaylistItemDelegate::paintDownloadInfo( QPainter* painter,
         QString speed = DownloadItem::formattedSpeed(downloadItem->currentSpeed());
         QString eta = DownloadItem::formattedTime(downloadItem->remainingTime());
 
-        message = tr("%1 of %2 (%3) — %4").arg(
-                    downloaded,
-                    total,
-                    speed,
-                    eta
-                    );
+        message = tr("%1 of %2 (%3) — %4").arg(downloaded, total, speed, eta);
     } else if (status == Starting) {
         message = tr("Preparing");
     } else if (status == Failed) {
@@ -335,11 +339,11 @@ void PlaylistItemDelegate::paintDownloadInfo( QPainter* painter,
         progressBar->setEnabled(false);
     }
 
-    int progressBarWidth = line.width() - PADDING*4 - 16;
+    int progressBarWidth = line.width() - padding * 4 - 16;
     progressBar->setMaximumWidth(progressBarWidth);
     progressBar->setMinimumWidth(progressBarWidth);
     painter->save();
-    painter->translate(PADDING, PADDING);
+    painter->translate(padding, padding);
     progressBar->render(painter);
     painter->restore();
 
@@ -351,9 +355,12 @@ void PlaylistItemDelegate::paintDownloadInfo( QPainter* painter,
         downloadButtonPressed = index.data(DownloadButtonPressedRole).toBool();
     }
     QIcon::Mode iconMode;
-    if (downloadButtonPressed) iconMode = QIcon::Selected;
-    else if (downloadButtonHovered) iconMode = QIcon::Active;
-    else iconMode = QIcon::Normal;
+    if (downloadButtonPressed)
+        iconMode = QIcon::Selected;
+    else if (downloadButtonHovered)
+        iconMode = QIcon::Active;
+    else
+        iconMode = QIcon::Normal;
 
     if (status != Finished && status != Failed && status != Idle) {
         if (downloadButtonHovered) message = tr("Stop downloading");
@@ -384,21 +391,20 @@ void PlaylistItemDelegate::paintDownloadInfo( QPainter* painter,
         painter->restore();
     }
 
-    QRect textBox = line.adjusted(PADDING, PADDING*2 + progressBar->sizeHint().height(), -2 * PADDING, -PADDING);
-    textBox = painter->boundingRect( textBox, Qt::AlignLeft | Qt::AlignTop | Qt::TextWordWrap, message);
+    QRect textBox = line.adjusted(padding, padding * 2 + progressBar->sizeHint().height(),
+                                  -2 * padding, -padding);
+    textBox = painter->boundingRect(textBox, Qt::AlignLeft | Qt::AlignTop | Qt::TextWordWrap,
+                                    message);
     painter->drawText(textBox, Qt::AlignLeft | Qt::AlignTop | Qt::TextWordWrap, message);
 
     painter->restore();
 }
 
 QRect PlaylistItemDelegate::downloadButtonRect(const QRect &line) const {
-    return QRect(
-                line.width() - PADDING*2 - 16,
-                PADDING + progressBar->sizeHint().height() / 2 - 8,
-                16,
-                16);
+    return QRect(line.width() - padding * 2 - 16,
+                 padding + progressBar->sizeHint().height() / 2 - 8, 16, 16);
 }
 
-QRect PlaylistItemDelegate::authorRect(const QModelIndex& index) const {
+QRect PlaylistItemDelegate::authorRect(const QModelIndex &index) const {
     return authorRects.value(index.row());
 }
