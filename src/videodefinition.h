@@ -26,8 +26,8 @@ $END_LICENSE */
 class VideoDefinition {
 public:
     static const QVector<VideoDefinition> &getDefinitions();
-    static const VideoDefinition &getDefinitionFor(const QString &name);
-    static const VideoDefinition &getDefinitionFor(int code);
+    static const VideoDefinition &forName(const QString &name);
+    static const VideoDefinition &forCode(int code);
 
     VideoDefinition(const QString &name, int code);
 

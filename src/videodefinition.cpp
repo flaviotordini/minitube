@@ -44,12 +44,12 @@ const QVector<VideoDefinition> &VideoDefinition::getDefinitions() {
 }
 
 // static
-const VideoDefinition &VideoDefinition::getDefinitionFor(const QString &name) {
+const VideoDefinition &VideoDefinition::forName(const QString &name) {
     return getDefinitionForImpl<const QString &, &VideoDefinition::getName>(name);
 }
 
 // static
-const VideoDefinition &VideoDefinition::getDefinitionFor(int code) {
+const VideoDefinition &VideoDefinition::forCode(int code) {
     return getDefinitionForImpl<int, &VideoDefinition::getCode>(code);
 }
 
