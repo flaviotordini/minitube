@@ -37,6 +37,7 @@ LoadingWidget::LoadingWidget(QWidget *parent) : QWidget(parent) {
     titleLabel->setAlignment(Qt::AlignHCenter | Qt::AlignBottom);
     titleLabel->setWordWrap(true);
     titleLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    titleLabel->setTextFormat(Qt::RichText);
     titleLabel->setFont(FontUtils::light(titleLabel->font().pointSize()));
     layout->addWidget(titleLabel);
 
@@ -61,11 +62,12 @@ void LoadingWidget::setVideo(Video *video) {
 
     QString title = video->getTitle();
     // enhance legibility by splitting the title
-    title.replace(QLatin1String(" - "), QLatin1String("<p>"));
-    title.replace(QLatin1String(" | "), QLatin1String("<p>"));
-    title.replace(QLatin1String(" — "), QLatin1String("<p>"));
-    title.replace(QLatin1String(": "), QLatin1String("<p>"));
-    title.replace(QLatin1String("; "), QLatin1String("<p>"));
+    static const QLatin1String p("<p>");
+    title.replace(QLatin1String(" - "), p);
+    title.replace(QLatin1String(" | "), p);
+    title.replace(QLatin1String(" — "), p);
+    title.replace(QLatin1String(": "), p);
+    title.replace(QLatin1String("; "), p);
     title.replace(QLatin1String("] "), QLatin1String("]<p>"));
     title.replace(QLatin1String(" ["), QLatin1String("<p>["));
     title.replace(QLatin1String(" ("), QLatin1String("<p>("));
@@ -74,6 +76,7 @@ void LoadingWidget::setVideo(Video *video) {
     titleLabel->setVisible(window()->height() > 100);
 
     const int maxDescLength = 400;
+
     QString videoDesc = video->getDescription();
     if (videoDesc.length() > maxDescLength) {
         videoDesc.truncate(maxDescLength);
@@ -83,7 +86,8 @@ void LoadingWidget::setVideo(Video *video) {
         videoDesc = videoDesc.left(videoDesc.length() - 4);
         videoDesc.append("…");
     }
-    videoDesc.replace(QRegExp("(https?://\\S+)"), "<a style='color:white' href=\"\\1\">\\1</a>");
+    static const QRegExp linkRE("(https?://\\S+)");
+    videoDesc.replace(linkRE, QStringLiteral("<a style='color:white' href=\"\\1\">\\1</a>"));
     descriptionLabel->setText(videoDesc);
     bool hiddenDesc = height() < 400;
     if (hiddenDesc)
