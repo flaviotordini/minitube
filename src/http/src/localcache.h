@@ -37,7 +37,11 @@ private:
     qint64 size;
     bool expiring;
     uint insertCount;
-    QVector<QPair<const QByteArray, const QByteArray>> insertQueue;
+    struct QueueItem {
+        QByteArray key;
+        QByteArray value;
+    };
+    QVector<QueueItem> insertQueue;
 
 #ifndef QT_NO_DEBUG_OUTPUT
     uint hits;
