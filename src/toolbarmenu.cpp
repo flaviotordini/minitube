@@ -40,5 +40,9 @@ void ToolbarMenu::showEvent(QShowEvent *e) {
     QStyleOptionMenuItem option;
     initStyleOption(&option, a);
     int leftMargin = option.maxIconWidth;
+#ifndef APP_MAC
+    // On Win & Linux the value is wrong
+    leftMargin *= 1.5;
+#endif
     emit leftMarginChanged(leftMargin);
 }
