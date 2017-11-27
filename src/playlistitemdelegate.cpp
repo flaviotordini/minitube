@@ -166,7 +166,13 @@ void PlaylistItemDelegate::paintBody(QPainter *painter,
         QRect textBox = line.adjusted(padding + thumbWidth, padding, 0, 0);
         textBox = painter->boundingRect(textBox, titleFlags, elidedTitle);
         while (textBox.height() > 55 && elidedTitle.length() > 10) {
+#if QT_VERSION < QT_VERSION_CHECK(5, 6, 0)
+            title = title.left(title.length() - 1);
+#elif QT_VERSION < QT_VERSION_CHECK(5, 8, 0)
             title.truncate(title.length() - 1);
+#else
+            title.chop(1);
+#endif
             elidedTitle = title.trimmed() + QStringLiteral("…");
             textBox = painter->boundingRect(textBox, titleFlags, elidedTitle);
         }
@@ -245,7 +251,13 @@ void PlaylistItemDelegate::paintBody(QPainter *painter,
             QRect textBox(padding, padding, thumbWidth - padding * 2, thumbHeight - padding * 2);
             textBox = painter->boundingRect(textBox, titleFlags, elidedTitle);
             while (textBox.height() > 55 && elidedTitle.length() > 10) {
+#if QT_VERSION < QT_VERSION_CHECK(5, 6, 0)
+                title = title.left(title.length() - 1);
+#elif QT_VERSION < QT_VERSION_CHECK(5, 8, 0)
                 title.truncate(title.length() - 1);
+#else
+                title.chop(1);
+#endif
                 elidedTitle = title.trimmed() + QStringLiteral("…");
                 textBox = painter->boundingRect(textBox, titleFlags, elidedTitle);
             }
