@@ -1092,7 +1092,7 @@ void MainWindow::donate() {
 }
 
 void MainWindow::reportIssue() {
-    QUrl url("http://flavio.tordini.org/forums/forum/minitube-forums/minitube-troubleshooting");
+    QUrl url("https://flavio.tordini.org/forums/forum/minitube-forums/minitube-troubleshooting");
     QDesktopServices::openUrl(url);
 }
 
