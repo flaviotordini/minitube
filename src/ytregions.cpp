@@ -89,7 +89,7 @@ const YTRegion &YTRegions::localRegion() {
         for (const YTRegion &r : list()) {
             if (r.id == country) return r;
         }
-        return YTRegion();
+        YTRegion();
     }();
     return region;
 }
