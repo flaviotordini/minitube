@@ -4,11 +4,11 @@
   <metadata_license>CC0-1.0</metadata_license>
   <license>GPL-3.0+</license>
   <summary>YouTube app</summary>
-  <description>
-    <p>
-      Minitube is a YouTube desktop application.
-    </p>
-  </description>
+  <summary xml:lang="pt_BR">YouTube</summary>
+  <summary xml:lang="es">YouTube</summary>
+  <description><p>Minitube is a YouTube desktop application.</p></description>
+  <description xml:lang="pt_BR"><p>Veja vídeos do YouTube em seu computador com o aplicativo do MiniTube.</p><description>
+    <description xml:lang="es"><p>Ver vídeos de YouTube en tu ordenador con la aplicación de MiniTube.</p><description>
   <url type="homepage">http://flavio.tordini.org/minitube</url>
   <screenshots>
     <screenshot type="default">http://flavio.tordini.org/files/minitube/minitube-04.jpg</screenshot>
