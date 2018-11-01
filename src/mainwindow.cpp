@@ -1418,6 +1418,9 @@ bool MainWindow::isReallyFullScreen() {
 }
 
 void MainWindow::missingKeyWarning() {
+    static bool shown = false;
+    if (shown) return;
+    shown = true;
     QMessageBox msgBox(this);
     msgBox.setIconPixmap(IconUtils::pixmap(":/images/64x64/app.png"));
     msgBox.setText(QString("%1 was built without a Google API key.").arg(Constants::NAME));
@@ -1426,15 +1429,18 @@ void MainWindow::missingKeyWarning() {
                                       .arg(Constants::NAME));
     msgBox.setModal(true);
     msgBox.setWindowModality(Qt::WindowModal);
+    msgBox.addButton(QMessageBox::Close);
     QPushButton *enterKeyButton =
             msgBox.addButton(QString("Enter API key..."), QMessageBox::AcceptRole);
     QPushButton *devButton = msgBox.addButton(QString("Get from %1").arg(Constants::WEBSITE),
                                               QMessageBox::AcceptRole);
     QPushButton *helpButton = msgBox.addButton(QMessageBox::Help);
+
     msgBox.exec();
+
     if (msgBox.clickedButton() == helpButton) {
-        QDesktopServices::openUrl(QUrl(
-                "https://github.com/flaviotordini/minitube/blob/master/README.md#google-api-key"));
+        QDesktopServices::openUrl(QUrl("https://github.com/flaviotordini/minitube/blob/master/"
+                                       "README.md#google-api-key"));
     } else if (msgBox.clickedButton() == enterKeyButton) {
         bool ok;
         QString text = QInputDialog::getText(this, QString(), "Google API key:", QLineEdit::Normal,
@@ -1447,6 +1453,7 @@ void MainWindow::missingKeyWarning() {
     } else if (msgBox.clickedButton() == devButton) {
         QDesktopServices::openUrl(QUrl(Constants::WEBSITE));
     }
+    shown = false;
 }
 
 void MainWindow::compactView(bool enable) {
