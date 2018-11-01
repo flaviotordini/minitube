@@ -1,6 +1,6 @@
 build/
 Makefile*
-minitube.pro.user
+minitube.pro.user*
 .settings/
 .DS_Store
 .cproject
