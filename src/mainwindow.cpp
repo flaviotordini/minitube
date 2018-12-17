@@ -310,8 +310,8 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
 void MainWindow::createActions() {
     stopAct = new QAction(IconUtils::icon("media-playback-stop"), tr("&Stop"), this);
     stopAct->setStatusTip(tr("Stop playback and go back to the search view"));
-    stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape)
-                                                << QKeySequence(Qt::Key_MediaStop));
+    stopAct->setShortcuts(QList<QKeySequence>()
+                          << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
     stopAct->setEnabled(false);
     actionMap.insert("stop", stopAct);
     connect(stopAct, SIGNAL(triggered()), SLOT(stop()));
@@ -333,8 +333,8 @@ void MainWindow::createActions() {
 
     pauseAct = new QAction(IconUtils::icon("media-playback-start"), tr("&Play"), this);
     pauseAct->setStatusTip(tr("Resume playback"));
-    pauseAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Space)
-                                                 << QKeySequence(Qt::Key_MediaPlay));
+    pauseAct->setShortcuts(QList<QKeySequence>()
+                           << QKeySequence(Qt::Key_Space) << QKeySequence(Qt::Key_MediaPlay));
     pauseAct->setEnabled(false);
     actionMap.insert("pause", pauseAct);
     connect(pauseAct, SIGNAL(triggered()), mediaView, SLOT(pause()));
@@ -396,8 +396,8 @@ void MainWindow::createActions() {
 
     removeAct = new QAction(tr("&Remove"), this);
     removeAct->setStatusTip(tr("Remove the selected videos from the playlist"));
-    removeAct->setShortcuts(QList<QKeySequence>() << QKeySequence("Del")
-                                                  << QKeySequence("Backspace"));
+    removeAct->setShortcuts(QList<QKeySequence>()
+                            << QKeySequence("Del") << QKeySequence("Backspace"));
     removeAct->setEnabled(false);
     actionMap.insert("remove", removeAct);
     connect(removeAct, SIGNAL(triggered()), mediaView, SLOT(removeSelected()));
@@ -787,7 +787,7 @@ void MainWindow::createToolBars() {
             SLOT(suggestionAccepted(Suggestion *)));
     toolbarSearch->setStatusTip(searchFocusAct->statusTip());
 
-// Add widgets to toolbar
+    // Add widgets to toolbar
 
 #ifdef APP_MAC_QMACTOOLBAR
     currentTimeLabel->hide();
@@ -1320,7 +1320,7 @@ void MainWindow::toggleFullscreen() {
 #endif
 
     } else {
-// Exit full screen
+        // Exit full screen
 
 #ifdef APP_MAC
         MacSupport::exitFullScreen(this, views);
@@ -1387,8 +1387,8 @@ void MainWindow::updateUIForFullscreen() {
     if (fullScreenActive) {
         stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_MediaStop));
     } else {
-        stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape)
-                                                    << QKeySequence(Qt::Key_MediaStop));
+        stopAct->setShortcuts(QList<QKeySequence>()
+                              << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
     }
 
 #ifdef Q_OS_MAC
@@ -1740,8 +1740,8 @@ void MainWindow::toggleDownloads(bool show) {
     } else {
         getAction("downloads")
                 ->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_J));
-        stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_Escape)
-                                                    << QKeySequence(Qt::Key_MediaStop));
+        stopAct->setShortcuts(QList<QKeySequence>()
+                              << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
     }
 
     if (!downloadView) {
