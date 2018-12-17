@@ -18,14 +18,14 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 
 $END_LICENSE */
 
-#include <QtWidgets>
 #include <QtNetwork>
+#include <QtWidgets>
 
-#include <qtsingleapplication.h>
 #include "constants.h"
+#include "iconutils.h"
 #include "mainwindow.h"
 #include "searchparams.h"
-#include "iconutils.h"
+#include <qtsingleapplication.h>
 #ifdef APP_EXTRA
 #include "extra.h"
 #endif
@@ -42,7 +42,7 @@ void showWindow(QtSingleApplication &app, const QString &dataDir) {
         appIcon = IconUtils::icon(Constants::UNIX_NAME);
     } else {
         QString dataDir = qApp->applicationDirPath() + "/data";
-        const int iconSizes [] = { 16, 22, 32, 48, 64, 128, 256, 512 };
+        const int iconSizes[] = {16, 22, 32, 48, 64, 128, 256, 512};
         for (int i = 0; i < 8; i++) {
             QString size = QString::number(iconSizes[i]);
             QString png = dataDir + "/" + size + "x" + size + "/" + Constants::UNIX_NAME + ".png";
@@ -53,8 +53,8 @@ void showWindow(QtSingleApplication &app, const QString &dataDir) {
     mainWin->setWindowIcon(appIcon);
 #endif
 
-    mainWin->connect(&app, SIGNAL(messageReceived(const QString &)),
-                    mainWin, SLOT(messageReceived(const QString &)));
+    mainWin->connect(&app, SIGNAL(messageReceived(const QString &)), mainWin,
+                     SLOT(messageReceived(const QString &)));
     app.setActivationWindow(mainWin, true);
 
     mainWin->show();
@@ -73,13 +73,15 @@ int main(int argc, char **argv) {
 #endif
 
     QtSingleApplication app(argc, argv);
-    QString message = app.arguments().size() > 1 ? app.arguments().at(1) : QString();
-    if (message == QLatin1String("--help")) {
-        MainWindow::printHelp();
-        return 0;
+    QString message;
+    if (app.arguments().size() > 1) {
+        message = app.arguments().at(1);
+        if (message == QLatin1String("--help")) {
+            MainWindow::printHelp();
+            return 0;
+        }
     }
-    if (app.sendMessage(message))
-        return 0;
+    if (app.sendMessage(message)) return 0;
 
     app.setApplicationName(Constants::NAME);
     app.setOrganizationName(Constants::ORG_NAME);
