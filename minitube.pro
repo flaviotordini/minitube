@@ -29,9 +29,13 @@ TARGET = $${APP_UNIX_NAME}
 
 QT += widgets network sql qml
 
+include(lib/http/http.pri)
+include(lib/idle/idle.pri)
+
+DEFINES += MEDIA_QTAV
+include(lib/media/media.pri)
+
 include(src/qtsingleapplication/qtsingleapplication.pri)
-include(src/http/http.pri)
-include(src/idle/idle.pri)
 
 HEADERS += src/video.h \
     src/searchlineedit.h \
