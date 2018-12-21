@@ -56,6 +56,7 @@ public:
     QAction *getRegionAction() { return regionAction; }
     SearchLineEdit *getToolbarSearch() { return toolbarSearch; }
 
+    void setupAction(QAction *action);
     QAction *getAction(const char *name);
     void addNamedAction(const QByteArray &name, QAction *action);
 

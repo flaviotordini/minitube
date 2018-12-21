@@ -27,17 +27,16 @@ $END_LICENSE */
 #include "activation.h"
 #endif
 #ifdef APP_MAC
-#include "macutils.h"
 #include "mac_startup.h"
+#include "macutils.h"
 #endif
-#include "fontutils.h"
-#include "iconutils.h"
 #include "appwidget.h"
 #include "clickablelabel.h"
+#include "fontutils.h"
+#include "iconutils.h"
 #include "mainwindow.h"
 
 AboutView::AboutView(QWidget *parent) : View(parent) {
-
     const int padding = 30;
     const char *buildYear = __DATE__ + 7;
 
@@ -56,7 +55,7 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
     aboutlayout->setSpacing(padding);
 
     logo = new ClickableLabel();
-    logo->setPixmap(IconUtils::pixmap(":/images/app.png"));
+    logo->setPixmap(IconUtils::pixmap(":/images/app.png", devicePixelRatioF()));
     connect(logo, &ClickableLabel::clicked, MainWindow::instance(), &MainWindow::visitSite);
     aboutlayout->addWidget(logo, 0, Qt::AlignTop);
 
@@ -65,39 +64,56 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
     layout->setSpacing(padding);
     aboutlayout->addLayout(layout);
 
-    QString css = "a { color: palette(text); text-decoration: none; font-weight: bold } h1 { font-weight: 300 }";
+    QString css = "a { color: palette(text); text-decoration: none; font-weight: bold } h1 { "
+                  "font-weight: 300 }";
 
-    QString info = "<html><style>" + css + "</style><body>"
-            "<h1>" + QString(Constants::NAME) + "</h1>"
-            "<p>" + tr("There's life outside the browser!") + "</p>"
-            "<p>" + tr("Version %1").arg(Constants::VERSION) + "</p>"
-            + QString("<p><a href=\"%1/\">%1</a></p>").arg(Constants::WEBSITE);
+    QString info = "<html><style>" + css +
+                   "</style><body>"
+                   "<h1>" +
+                   QString(Constants::NAME) +
+                   "</h1>"
+                   "<p>" +
+                   tr("There's life outside the browser!") +
+                   "</p>"
+                   "<p>" +
+                   tr("Version %1").arg(Constants::VERSION) + "</p>" +
+                   QString("<p><a href=\"%1/\">%1</a></p>").arg(Constants::WEBSITE);
 
 #ifdef APP_ACTIVATION
     QString email = Activation::instance().getEmail();
-    if (!email.isEmpty())
-        info += "<p>" + tr("Licensed to: %1").arg("<b>" + email + "</b>");
+    if (!email.isEmpty()) info += "<p>" + tr("Licensed to: %1").arg("<b>" + email + "</b>");
 #endif
 
 #ifndef APP_EXTRA
-    info += "<p>" +  tr("%1 is Free Software but its development takes precious time.").arg(Constants::NAME) + "<br/>"
-            + tr("Please <a href='%1'>donate</a> to support the continued development of %2.")
-            .arg(QString(Constants::WEBSITE).append("#donate"), Constants::NAME) + "</p>";
+    info += "<p>" +
+            tr("%1 is Free Software but its development takes precious time.")
+                    .arg(Constants::NAME) +
+            "<br/>" +
+            tr("Please <a href='%1'>donate</a> to support the continued development of %2.")
+                    .arg(QString(Constants::WEBSITE).append("#donate"), Constants::NAME) +
+            "</p>";
 #endif
 
-    info += "<p>" + tr("Translate %1 to your native language using %2").arg(Constants::NAME)
-            .arg("<a href='http://www.transifex.net/projects/p/" + QString(Constants::UNIX_NAME) + "/'>Transifex</a>")
-            + "</p>"
+    info += "<p>" +
+            tr("Translate %1 to your native language using %2")
+                    .arg(Constants::NAME)
+                    .arg("<a href='http://www.transifex.net/projects/p/" +
+                         QString(Constants::UNIX_NAME) + "/'>Transifex</a>") +
+            "</p>"
 
-            "<p>"
-            + tr("Icon designed by %1.").arg("<a href='http://www.kolorguild.co.za/'>David Nel</a>")
-            + "</p>"
+            "<p>" +
+            tr("Icon designed by %1.").arg("<a href='http://www.kolorguild.co.za/'>David Nel</a>") +
+            "</p>"
 
-        #ifndef APP_EXTRA
-            "<p>" + tr("Released under the <a href='%1'>GNU General Public License</a>")
-            .arg("http://www.gnu.org/licenses/gpl.html") + "</p>"
-        #endif
-            "<p>&copy; " + buildYear + " " + Constants::ORG_NAME + "</p>"
+#ifndef APP_EXTRA
+            "<p>" +
+            tr("Released under the <a href='%1'>GNU General Public License</a>")
+                    .arg("http://www.gnu.org/licenses/gpl.html") +
+            "</p>"
+#endif
+            "<p>&copy; " +
+            buildYear + " " + Constants::ORG_NAME +
+            "</p>"
             "</body></html>";
 
     QLabel *infoLabel = new QLabel(info, this);
@@ -122,7 +138,8 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
 
 void AboutView::appear() {
     closeButton->setFocus();
-    connect(window()->windowHandle(), SIGNAL(screenChanged(QScreen*)), SLOT(screenChanged()), Qt::UniqueConnection);
+    connect(window()->windowHandle(), SIGNAL(screenChanged(QScreen *)), SLOT(screenChanged()),
+            Qt::UniqueConnection);
 }
 
 void AboutView::paintEvent(QPaintEvent *event) {
@@ -139,5 +156,5 @@ void AboutView::paintEvent(QPaintEvent *event) {
 }
 
 void AboutView::screenChanged() {
-    logo->setPixmap(IconUtils::pixmap(":/images/app.png"));
+    logo->setPixmap(IconUtils::pixmap(":/images/app.png", devicePixelRatioF()));
 }

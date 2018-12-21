@@ -1,11 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>images/app.png</file>
-        <file>images/refine-search.png</file>
-        <file>images/search-time.png</file>
-        <file>images/search-sortBy.png</file>
-        <file>images/search-quality.png</file>
-        <file>images/search-duration.png</file>
         <file>flags/dz.png</file>
         <file>flags/ar.png</file>
         <file>flags/au.png</file>
@@ -54,89 +49,9 @@
         <file>flags/gb.png</file>
         <file>flags/ye.png</file>
         <file>style.css</file>
-        <file>images/worldwide.png</file>
-        <file>images/show-updated.png</file>
-        <file>images/sort.png</file>
-        <file>images/mark-watched.png</file>
-        <file>images/channels.png</file>
-        <file>images/unwatched.png</file>
         <file>sounds/snapshot.wav</file>
         <file>images/app@2x.png</file>
-        <file>images/sort@2x.png</file>
-        <file>images/unwatched@2x.png</file>
-        <file>images/channels@2x.png</file>
-        <file>images/mark-watched@2x.png</file>
-        <file>images/show-updated@2x.png</file>
-        <file>images/worldwide@2x.png</file>
-        <file>images/refine-search@2x.png</file>
-        <file>images/search-duration@2x.png</file>
-        <file>images/search-quality@2x.png</file>
-        <file>images/search-time@2x.png</file>
-        <file>images/search-sortBy@2x.png</file>
-        <file>images/audio-volume-high.png</file>
-        <file>images/audio-volume-high@2x.png</file>
-        <file>images/audio-volume-muted.png</file>
-        <file>images/audio-volume-muted@2x.png</file>
-        <file>images/bookmark-new.png</file>
-        <file>images/bookmark-new@2x.png</file>
-        <file>images/bookmark-new_active.png</file>
-        <file>images/bookmark-new_active@2x.png</file>
-        <file>images/bookmark-remove.png</file>
-        <file>images/bookmark-remove@2x.png</file>
-        <file>images/content-loading.png</file>
-        <file>images/content-loading@2x.png</file>
-        <file>images/document-save.png</file>
-        <file>images/document-save@2x.png</file>
-        <file>images/edit-clear.png</file>
-        <file>images/edit-find.png</file>
-        <file>images/go-next.png</file>
-        <file>images/go-next@2x.png</file>
-        <file>images/go-next_active.png</file>
-        <file>images/go-next_active@2x.png</file>
-        <file>images/go-previous.png</file>
-        <file>images/go-previous@2x.png</file>
-        <file>images/go-previous_active.png</file>
-        <file>images/go-previous_active@2x.png</file>
-        <file>images/go-top.png</file>
-        <file>images/go-top@2x.png</file>
-        <file>images/media-playback-pause.png</file>
-        <file>images/media-playback-pause@2x.png</file>
-        <file>images/media-playback-start.png</file>
-        <file>images/media-playback-start@2x.png</file>
-        <file>images/media-playback-stop.png</file>
-        <file>images/media-playback-stop@2x.png</file>
-        <file>images/media-skip-forward.png</file>
-        <file>images/media-skip-forward@2x.png</file>
-        <file>images/system-search.png</file>
-        <file>images/system-search_active.png</file>
-        <file>images/system-search_selected.png</file>
-        <file>images/video-display.png</file>
-        <file>images/video-display@2x.png</file>
-        <file>images/view-fullscreen.png</file>
-        <file>images/view-fullscreen@2x.png</file>
-        <file>images/view-list.png</file>
-        <file>images/view-list@2x.png</file>
-        <file>images/view-refresh.png</file>
-        <file>images/view-refresh_active.png</file>
-        <file>images/view-refresh_selected.png</file>
-        <file>images/view-restore.png</file>
-        <file>images/view-restore@2x.png</file>
-        <file>images/window-close.png</file>
-        <file>images/window-close_active.png</file>
-        <file>images/window-close_selected.png</file>
         <file>images/64x64/app.png</file>
         <file>images/64x64/app@2x.png</file>
-        <file>images/safesearch.png</file>
-        <file>images/safesearch@2x.png</file>
-        <file>images/view-more.png</file>
-        <file>images/view-more@2x.png</file>
-        <file>images/email.png</file>
-        <file>images/email@2x.png</file>
-        <file>images/facebook.png</file>
-        <file>images/facebook@2x.png</file>
-        <file>images/link.png</file>
-        <file>images/link@2x.png</file>
-        <file>images/twitter.png</file>
-        <file>images/twitter@2x.png</file>
     </qresource>
 </RCC>

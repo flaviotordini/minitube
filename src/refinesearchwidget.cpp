@@ -26,8 +26,7 @@ $END_LICENSE */
 #include "iconutils.h"
 #include "mainwindow.h"
 
-RefineSearchWidget::RefineSearchWidget(QWidget *parent) :
-    QWidget(parent) {
+RefineSearchWidget::RefineSearchWidget(QWidget *parent) : QWidget(parent) {
     dirty = false;
     // Fixes background painting in fullscreen
     setAutoFillBackground(true);
@@ -48,12 +47,9 @@ void RefineSearchWidget::setup() {
     QString paramName = "sortBy";
     setupLabel(tr("Sort by"), layout, paramName);
     QToolBar *sortBar = setupBar(paramName);
-    QActionGroup* sortGroup = new QActionGroup(this);
-    const QStringList sortOptions = QStringList()
-            << tr("Relevance")
-            << tr("Date")
-            << tr("View Count")
-            << tr("Rating");
+    QActionGroup *sortGroup = new QActionGroup(this);
+    const QStringList sortOptions = QStringList() << tr("Relevance") << tr("Date")
+                                                  << tr("View Count") << tr("Rating");
     int i = 0;
     for (const QString &actionName : sortOptions) {
         QAction *action = new QAction(actionName, sortBar);
@@ -68,12 +64,9 @@ void RefineSearchWidget::setup() {
     layout->addSpacing(spacing);
     setupLabel(tr("Date"), layout, paramName);
     QToolBar *timeBar = setupBar(paramName);
-    QActionGroup* timeGroup = new QActionGroup(this);
+    QActionGroup *timeGroup = new QActionGroup(this);
     const QStringList timeSpans = QStringList()
-            << tr("Anytime")
-            << tr("Today")
-            << tr("7 Days")
-            << tr("30 Days");
+                                  << tr("Anytime") << tr("Today") << tr("7 Days") << tr("30 Days");
     i = 0;
     for (const QString &actionName : timeSpans) {
         QAction *action = new QAction(actionName, timeBar);
@@ -88,17 +81,12 @@ void RefineSearchWidget::setup() {
     layout->addSpacing(spacing);
     setupLabel(tr("Duration"), layout, paramName);
     QToolBar *lengthBar = setupBar(paramName);
-    QActionGroup* lengthGroup = new QActionGroup(this);
+    QActionGroup *lengthGroup = new QActionGroup(this);
     const QStringList lengthOptions = QStringList()
-            << tr("All")
-            << tr("Short")
-            << tr("Medium")
-            << tr("Long");
+                                      << tr("All") << tr("Short") << tr("Medium") << tr("Long");
     QStringList tips = QStringList()
-            << ""
-            << tr("Less than 4 minutes")
-            << tr("Between 4 and 20 minutes")
-            << tr("Longer than 20 minutes");
+                       << "" << tr("Less than 4 minutes") << tr("Between 4 and 20 minutes")
+                       << tr("Longer than 20 minutes");
     i = 0;
     for (const QString &actionName : lengthOptions) {
         QAction *action = new QAction(actionName, timeBar);
@@ -114,13 +102,9 @@ void RefineSearchWidget::setup() {
     layout->addSpacing(spacing);
     setupLabel(tr("Quality"), layout, paramName);
     QToolBar *qualityBar = setupBar(paramName);
-    QActionGroup* qualityGroup = new QActionGroup(this);
-    const QStringList qualityOptions = QStringList()
-            << tr("All")
-            << tr("High Definition");
-    tips = QStringList()
-            << ""
-            << tr("720p or higher");
+    QActionGroup *qualityGroup = new QActionGroup(this);
+    const QStringList qualityOptions = QStringList() << tr("All") << tr("High Definition");
+    tips = QStringList() << "" << tr("720p or higher");
     i = 0;
     for (const QString &actionName : qualityOptions) {
         QAction *action = new QAction(actionName, timeBar);
@@ -146,8 +130,10 @@ void RefineSearchWidget::setup() {
     layout->addWidget(doneButton, 0, Qt::AlignLeft);
 }
 
-void RefineSearchWidget::setupLabel(const QString &text, QBoxLayout *layout, const QString &paramName) {
-    QBoxLayout* hLayout = new QHBoxLayout();
+void RefineSearchWidget::setupLabel(const QString &text,
+                                    QBoxLayout *layout,
+                                    const QString &paramName) {
+    QBoxLayout *hLayout = new QHBoxLayout();
     hLayout->setSpacing(8);
     hLayout->setMargin(0);
     hLayout->setAlignment(Qt::AlignVCenter);
@@ -155,7 +141,7 @@ void RefineSearchWidget::setupLabel(const QString &text, QBoxLayout *layout, con
     QLabel *icon = new QLabel(this);
     icon->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     QString resource = paramName;
-    QPixmap pixmap = IconUtils::pixmap(":/images/search-" + resource + ".png");
+    QPixmap pixmap = IconUtils::icon("search-" + resource).pixmap(16, 16);
     /*
     QPixmap translucentPixmap(pixmap.size());
     translucentPixmap.fill(Qt::transparent);
@@ -176,12 +162,12 @@ void RefineSearchWidget::setupLabel(const QString &text, QBoxLayout *layout, con
     layout->addLayout(hLayout);
 }
 
-QToolBar* RefineSearchWidget::setupBar(const QString &paramName) {
-    QToolBar* bar = new QToolBar(this);
+QToolBar *RefineSearchWidget::setupBar(const QString &paramName) {
+    QToolBar *bar = new QToolBar(this);
     bar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     // bar->setProperty("segmented", true);
     bar->setProperty("paramName", paramName);
-    connect(bar, SIGNAL(actionTriggered(QAction*)), SLOT(actionTriggered(QAction*)));
+    connect(bar, SIGNAL(actionTriggered(QAction *)), SLOT(actionTriggered(QAction *)));
     bars.insert(paramName, bar);
     layout()->addWidget(bar);
     return bar;
@@ -211,8 +197,8 @@ void RefineSearchWidget::setSearchParams(SearchParams *params) {
 
     if (!params) return;
 
-    QToolBar* bar;
-    QAction* action;
+    QToolBar *bar;
+    QAction *action;
 
     bar = bars.value("sortBy");
     action = bar->actions().at(params->sortBy());
@@ -230,10 +216,9 @@ void RefineSearchWidget::setSearchParams(SearchParams *params) {
     action = bar->actions().at(params->quality());
     if (action) action->setChecked(true);
 
-    disconnect(SIGNAL(paramChanged(QString,QVariant)));
-    connect(this, SIGNAL(paramChanged(QString,QVariant)),
-            params, SLOT(setParam(QString,QVariant)),
-            Qt::UniqueConnection);
+    disconnect(SIGNAL(paramChanged(QString, QVariant)));
+    connect(this, SIGNAL(paramChanged(QString, QVariant)), params,
+            SLOT(setParam(QString, QVariant)), Qt::UniqueConnection);
 
     dirty = false;
 

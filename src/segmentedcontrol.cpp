@@ -19,12 +19,12 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "segmentedcontrol.h"
-#include "mainwindow.h"
 #include "fontutils.h"
 #include "iconutils.h"
+#include "mainwindow.h"
 #include "painterutils.h"
 
-SegmentedControl::SegmentedControl (QWidget *parent) : QWidget(parent) {
+SegmentedControl::SegmentedControl(QWidget *parent) : QWidget(parent) {
     setAttribute(Qt::WA_OpaquePaintEvent);
 
     setMouseTracking(true);
@@ -57,7 +57,7 @@ bool SegmentedControl::setCheckedAction(int index) {
         checkedAction = 0;
         return true;
     }
-    QAction* newCheckedAction = actionList.at(index);
+    QAction *newCheckedAction = actionList.at(index);
     return setCheckedAction(newCheckedAction);
 }
 
@@ -65,20 +65,19 @@ bool SegmentedControl::setCheckedAction(QAction *action) {
     if (checkedAction == action) {
         return false;
     }
-    if (checkedAction)
-        checkedAction->setChecked(false);
+    if (checkedAction) checkedAction->setChecked(false);
     checkedAction = action;
     checkedAction->setChecked(true);
     update();
     return true;
 }
 
-QSize SegmentedControl::minimumSizeHint (void) const {
+QSize SegmentedControl::minimumSizeHint(void) const {
     int itemsWidth = calculateButtonWidth() * actionList.size() * 1.2;
-    return(QSize(itemsWidth, QFontMetrics(font()).height() * 1.8));
+    return (QSize(itemsWidth, QFontMetrics(font()).height() * 1.8));
 }
 
-void SegmentedControl::paintEvent (QPaintEvent * /*event*/) {
+void SegmentedControl::paintEvent(QPaintEvent * /*event*/) {
     const int height = rect().height();
     const int width = rect().width();
 
@@ -87,7 +86,7 @@ void SegmentedControl::paintEvent (QPaintEvent * /*event*/) {
     // Calculate Buttons Size & Location
     const int buttonWidth = width / actionList.size();
 
-    const qreal pixelRatio = IconUtils::pixelRatio();
+    const qreal pixelRatio = devicePixelRatioF();
 
     QPen pen(borderColor);
     const qreal penWidth = 1. / pixelRatio;
@@ -101,7 +100,7 @@ void SegmentedControl::paintEvent (QPaintEvent * /*event*/) {
         QAction *action = actionList.at(i);
         if (i + 1 == actionCount) {
             // last button
-            rect.setWidth(width - buttonWidth * (actionCount-1));
+            rect.setWidth(width - buttonWidth * (actionCount - 1));
             paintButton(&p, rect, action);
         } else {
             paintButton(&p, rect, action);
@@ -112,7 +111,7 @@ void SegmentedControl::paintEvent (QPaintEvent * /*event*/) {
     p.drawLine(QPointF(0, y), QPointF(width, y));
 }
 
-void SegmentedControl::mouseMoveEvent (QMouseEvent *event) {
+void SegmentedControl::mouseMoveEvent(QMouseEvent *event) {
     QAction *action = findHoveredAction(event->pos());
 
     if (!action && hoveredAction) {
@@ -154,17 +153,15 @@ void SegmentedControl::leaveEvent(QEvent *event) {
     update();
 }
 
-QAction *SegmentedControl::findHoveredAction(const QPoint& pos) const {
+QAction *SegmentedControl::findHoveredAction(const QPoint &pos) const {
     const int w = width();
-    if (pos.y() <= 0 || pos.x() >= w || pos.y() >= height())
-        return 0;
+    if (pos.y() <= 0 || pos.x() >= w || pos.y() >= height()) return 0;
 
     int buttonWidth = w / actionList.size();
 
     int buttonIndex = pos.x() / buttonWidth;
 
-    if (buttonIndex >= actionList.size())
-        return 0;
+    if (buttonIndex >= actionList.size()) return 0;
     return actionList[buttonIndex];
 }
 
@@ -178,7 +175,7 @@ int SegmentedControl::calculateButtonWidth() const {
     return itemWidth;
 }
 
-void SegmentedControl::paintButton(QPainter *painter, const QRect& rect, const QAction *action) {
+void SegmentedControl::paintButton(QPainter *painter, const QRect &rect, const QAction *action) {
     painter->save();
     painter->translate(rect.topLeft());
 
@@ -203,11 +200,10 @@ void SegmentedControl::paintButton(QPainter *painter, const QRect& rect, const Q
     painter->drawText(0, 0, width, height, Qt::AlignCenter, text);
 
     if (action->property("notifyCount").isValid()) {
-        QRect textBox = painter->boundingRect(rect,
-                                              Qt::AlignCenter,
-                                              text);
+        QRect textBox = painter->boundingRect(rect, Qt::AlignCenter, text);
         painter->translate((width + textBox.width()) / 2 + 10, (height - textBox.height()) / 2);
-        PainterUtils::paintBadge(painter, action->property("notifyCount").toString(), false, QColor(0,0,0,64));
+        PainterUtils::paintBadge(painter, action->property("notifyCount").toString(), false,
+                                 QColor(0, 0, 0, 64));
     }
 
     painter->restore();

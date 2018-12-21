@@ -19,11 +19,11 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "searchview.h"
+#include "channelsuggest.h"
 #include "constants.h"
 #include "fontutils.h"
 #include "searchparams.h"
 #include "ytsuggester.h"
-#include "channelsuggest.h"
 #ifdef APP_MAC_SEARCHFIELD
 #include "searchlineedit_mac.h"
 #else
@@ -36,15 +36,15 @@ $END_LICENSE */
 #include "activation.h"
 #include "activationview.h"
 #endif
+#include "clickablelabel.h"
+#include "iconutils.h"
 #include "mainwindow.h"
 #include "painterutils.h"
-#include "iconutils.h"
-#include "clickablelabel.h"
 
 namespace {
 static const QString recentKeywordsKey = "recentKeywords";
 static const QString recentChannelsKey = "recentChannels";
-}
+} // namespace
 
 SearchView::SearchView(QWidget *parent) : View(parent) {
     const int padding = 30;
@@ -72,7 +72,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     hLayout->addStretch();
 
     logo = new ClickableLabel(this);
-    logo->setPixmap(IconUtils::pixmap(":/images/app.png"));
+    logo->setPixmap(IconUtils::pixmap(":/images/app.png", devicePixelRatioF()));
     connect(logo, &ClickableLabel::clicked, MainWindow::instance(), &MainWindow::visitSite);
     hLayout->addWidget(logo, 0, Qt::AlignTop);
     hLayout->addSpacing(padding);
@@ -83,16 +83,16 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 
     QColor titleColor = palette().color(QPalette::WindowText);
     titleColor.setAlphaF(.75);
-    int r,g,b,a;
-    titleColor.getRgb(&r,&g,&b,&a);
+    int r, g, b, a;
+    titleColor.getRgb(&r, &g, &b, &a);
     QString cssColor = QString::asprintf("rgba(%d,%d,%d,%d)", r, g, b, a);
 
-    QLabel *welcomeLabel =
-            new QLabel(QString("<h1 style='font-weight:300;color:%1'>").arg(cssColor) +
-                       tr("Welcome to <a href='%1'>%2</a>,")
-                       .replace("<a ", "<a style='text-decoration:none; color:palette(text)' ")
-                       .arg(Constants::WEBSITE, Constants::NAME)
-                       + "</h1>");
+    QLabel *welcomeLabel = new QLabel(
+            QString("<h1 style='font-weight:300;color:%1'>").arg(cssColor) +
+            tr("Welcome to <a href='%1'>%2</a>,")
+                    .replace("<a ", "<a style='text-decoration:none; color:palette(text)' ")
+                    .arg(Constants::WEBSITE, Constants::NAME) +
+            "</h1>");
     welcomeLabel->setOpenExternalLinks(true);
     welcomeLabel->setProperty("heading", true);
     welcomeLabel->setFont(FontUtils::light(welcomeLabel->font().pointSize() * 1.25));
@@ -152,14 +152,18 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     queryEdit = sle;
 #endif
 
-    connect(queryEdit->toWidget(), SIGNAL(search(const QString&)), SLOT(watch(const QString&)));
-    connect(queryEdit->toWidget(), SIGNAL(textChanged(const QString &)), SLOT(textChanged(const QString &)));
-    connect(queryEdit->toWidget(), SIGNAL(textEdited(const QString &)), SLOT(textChanged(const QString &)));
-    connect(queryEdit->toWidget(), SIGNAL(suggestionAccepted(Suggestion*)), SLOT(suggestionAccepted(Suggestion*)));
+    connect(queryEdit->toWidget(), SIGNAL(search(const QString &)), SLOT(watch(const QString &)));
+    connect(queryEdit->toWidget(), SIGNAL(textChanged(const QString &)),
+            SLOT(textChanged(const QString &)));
+    connect(queryEdit->toWidget(), SIGNAL(textEdited(const QString &)),
+            SLOT(textChanged(const QString &)));
+    connect(queryEdit->toWidget(), SIGNAL(suggestionAccepted(Suggestion *)),
+            SLOT(suggestionAccepted(Suggestion *)));
 
     youtubeSuggest = new YTSuggester(this);
     channelSuggest = new ChannelSuggest(this);
-    connect(channelSuggest, SIGNAL(ready(QVector<Suggestion*>)), SLOT(onChannelSuggestions(QVector<Suggestion*>)));
+    connect(channelSuggest, SIGNAL(ready(QVector<Suggestion *>)),
+            SLOT(onChannelSuggestions(QVector<Suggestion *>)));
     searchTypeChanged(0);
 
     searchLayout->addWidget(queryEdit->toWidget(), 0, Qt::AlignBaseline);
@@ -213,7 +217,8 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 
 #ifdef APP_ACTIVATION
     if (!Activation::instance().isActivated())
-        vLayout->addWidget(ActivationView::buyButton(tr("Get the full version")), 0, Qt::AlignRight);
+        vLayout->addWidget(ActivationView::buyButton(tr("Get the full version")), 0,
+                           Qt::AlignRight);
 #endif
 }
 
@@ -230,7 +235,8 @@ void SearchView::appear() {
     queryEdit->enableSuggest();
     if (!queryEdit->toWidget()->hasFocus()) queryEdit->toWidget()->setFocus();
 
-    connect(window()->windowHandle(), SIGNAL(screenChanged(QScreen*)), SLOT(screenChanged()), Qt::UniqueConnection);
+    connect(window()->windowHandle(), SIGNAL(screenChanged(QScreen *)), SLOT(screenChanged()),
+            Qt::UniqueConnection);
 
     qApp->processEvents();
     update();
@@ -270,11 +276,12 @@ void SearchView::updateRecentKeywords() {
     for (const QString &keyword : keywords) {
         QString link = keyword;
         QString display = keyword;
-        if (keyword.startsWith(QLatin1String("http://")) || keyword.startsWith(QLatin1String("https://"))) {
+        if (keyword.startsWith(QLatin1String("http://")) ||
+            keyword.startsWith(QLatin1String("https://"))) {
             int separator = keyword.indexOf('|');
             if (separator > 0 && separator + 1 < keyword.length()) {
                 link = keyword.left(separator);
-                display = keyword.mid(separator+1);
+                display = keyword.mid(separator + 1);
             }
         }
         bool needStatusTip = false;
@@ -289,15 +296,11 @@ void SearchView::updateRecentKeywords() {
         itemButton->setCursor(Qt::PointingHandCursor);
         itemButton->setFocusPolicy(Qt::TabFocus);
         itemButton->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
-        if (needStatusTip)
-            itemButton->setStatusTip(link);
-        connect(itemButton, &QPushButton::clicked, [this,link]() {
-            watchKeywords(link);
-        });
+        if (needStatusTip) itemButton->setStatusTip(link);
+        connect(itemButton, &QPushButton::clicked, [this, link]() { watchKeywords(link); });
 
         recentKeywordsLayout->addWidget(itemButton);
     }
-
 }
 
 void SearchView::updateRecentChannels() {
@@ -315,7 +318,8 @@ void SearchView::updateRecentChannels() {
     }
 
     recentChannelsLabel->setVisible(!keywords.isEmpty());
-    // TODO MainWindow::instance()->getAction("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
+    // TODO
+    // MainWindow::instance()->getAction("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
 
     for (const QString &keyword : keywords) {
         QString link = keyword;
@@ -323,7 +327,7 @@ void SearchView::updateRecentChannels() {
         int separator = keyword.indexOf('|');
         if (separator > 0 && separator + 1 < keyword.length()) {
             link = keyword.left(separator);
-            display = keyword.mid(separator+1);
+            display = keyword.mid(separator + 1);
         }
         QPushButton *itemButton = new QPushButton(display);
         itemButton->setAttribute(Qt::WA_DeleteOnClose);
@@ -331,9 +335,7 @@ void SearchView::updateRecentChannels() {
         itemButton->setCursor(Qt::PointingHandCursor);
         itemButton->setFocusPolicy(Qt::TabFocus);
         itemButton->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
-        connect(itemButton, &QPushButton::clicked, [this,link]() {
-            watchChannel(link);
-        });
+        connect(itemButton, &QPushButton::clicked, [this, link]() { watchChannel(link); });
         recentChannelsLayout->addWidget(itemButton);
     }
 }
@@ -402,8 +404,8 @@ void SearchView::watchKeywords(const QString &query) {
     }
 
     // if (typeCombo->currentIndex() == 0) {
-        queryEdit->setText(q);
-        watchButton->setEnabled(true);
+    queryEdit->setText(q);
+    watchButton->setEnabled(true);
     // }
 
     SearchParams *searchParams = new SearchParams();
@@ -438,11 +440,12 @@ void SearchView::searchTypeChanged(int index) {
 void SearchView::suggestionAccepted(Suggestion *suggestion) {
     if (suggestion->type == QLatin1String("channel")) {
         watchChannel(suggestion->userData);
-    } else watch(suggestion->value);
+    } else
+        watch(suggestion->value);
 }
 
 void SearchView::screenChanged() {
-    logo->setPixmap(IconUtils::pixmap(":/images/app.png"));
+    logo->setPixmap(IconUtils::pixmap(":/images/app.png", devicePixelRatioF()));
 }
 
 void SearchView::onChannelSuggestions(const QVector<Suggestion *> &suggestions) {

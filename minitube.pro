@@ -185,7 +185,10 @@ SOURCES += src/main.cpp \
     src/ytvideo.cpp \
     src/toolbarmenu.cpp \
     src/sharetoolbar.cpp
+
 RESOURCES += resources.qrc
+RESOURCES += $$files(icons/*.png, true)
+
 DESTDIR = build/target/
 OBJECTS_DIR = build/obj/
 MOC_DIR = build/moc/

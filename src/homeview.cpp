@@ -19,23 +19,20 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "homeview.h"
-#include "segmentedcontrol.h"
-#include "searchview.h"
-#include "standardfeedsview.h"
+#include "channelaggregator.h"
 #include "channelview.h"
+#include "iconutils.h"
 #include "mainwindow.h"
 #include "mediaview.h"
+#include "searchview.h"
+#include "segmentedcontrol.h"
+#include "standardfeedsview.h"
 #include "ytstandardfeed.h"
-#include "iconutils.h"
-#include "channelaggregator.h"
 #ifdef APP_MAC
 #include "macutils.h"
 #endif
 
-HomeView::HomeView(QWidget *parent) : View(parent),
-    standardFeedsView(0),
-    channelsView(0) {
-
+HomeView::HomeView(QWidget *parent) : View(parent), standardFeedsView(0), channelsView(0) {
     QBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
     layout->setSpacing(0);
@@ -47,8 +44,8 @@ HomeView::HomeView(QWidget *parent) : View(parent),
     layout->addWidget(stackedWidget);
 
     searchView = new SearchView(this);
-    connect(searchView, SIGNAL(search(SearchParams*)),
-            MainWindow::instance(), SLOT(showMedia(SearchParams*)));
+    connect(searchView, SIGNAL(search(SearchParams *)), MainWindow::instance(),
+            SLOT(showMedia(SearchParams *)));
     stackedWidget->addWidget(searchView);
 }
 
@@ -77,14 +74,14 @@ void HomeView::setupBar() {
             SLOT(unwatchedCountChanged(int)));
 
     const auto a = bar->actions();
-    for (QAction* action : a) {
+    for (QAction *action : a) {
         addAction(action);
-        IconUtils::setupAction(action);
+        MainWindow::instance()->setupAction(action);
     }
 }
 
 void HomeView::showWidget(QWidget *widget) {
-    QWidget* currentWidget = stackedWidget->currentWidget();
+    QWidget *currentWidget = stackedWidget->currentWidget();
     if (currentWidget == widget) return;
     QMetaObject::invokeMethod(currentWidget, "disappear");
     currentWidget->setEnabled(false);
@@ -115,9 +112,8 @@ void HomeView::showSearch() {
 void HomeView::showStandardFeeds() {
     if (!standardFeedsView) {
         standardFeedsView = new StandardFeedsView();
-        connect(standardFeedsView, SIGNAL(activated(VideoSource*)),
-                MainWindow::instance(),
-                SLOT(showMedia(VideoSource*)));
+        connect(standardFeedsView, SIGNAL(activated(VideoSource *)), MainWindow::instance(),
+                SLOT(showMedia(VideoSource *)));
         stackedWidget->addWidget(standardFeedsView);
     }
     showWidget(standardFeedsView);
@@ -127,9 +123,8 @@ void HomeView::showStandardFeeds() {
 void HomeView::showChannels() {
     if (!channelsView) {
         channelsView = new ChannelView();
-        connect(channelsView, SIGNAL(activated(VideoSource*)),
-                MainWindow::instance(),
-                SLOT(showMedia(VideoSource*)));
+        connect(channelsView, SIGNAL(activated(VideoSource *)), MainWindow::instance(),
+                SLOT(showMedia(VideoSource *)));
         stackedWidget->addWidget(channelsView);
     }
     showWidget(channelsView);

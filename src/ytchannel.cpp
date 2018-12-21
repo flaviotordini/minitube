@@ -19,28 +19,22 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "ytchannel.h"
+#include "database.h"
 #include "http.h"
 #include "httputils.h"
-#include "database.h"
 #include <QtSql>
 
 #include "yt3.h"
 
 #include "iconutils.h"
 
-YTChannel::YTChannel(const QString &channelId, QObject *parent) : QObject(parent),
-    id(0),
-    channelId(channelId),
-    loadingThumbnail(false),
-    notifyCount(0),
-    checked(0),
-    watched(0),
-    loaded(0),
-    loading(false) { }
+YTChannel::YTChannel(const QString &channelId, QObject *parent)
+    : QObject(parent), id(0), channelId(channelId), loadingThumbnail(false), notifyCount(0),
+      checked(0), watched(0), loaded(0), loading(false) {}
 
-QHash<QString, YTChannel*> YTChannel::cache;
+QHash<QString, YTChannel *> YTChannel::cache;
 
-YTChannel* YTChannel::forId(const QString &channelId) {
+YTChannel *YTChannel::forId(const QString &channelId) {
     if (channelId.isEmpty()) return 0;
 
     auto i = cache.constFind(channelId);
@@ -54,7 +48,7 @@ YTChannel* YTChannel::forId(const QString &channelId) {
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
 
-    YTChannel* channel = 0;
+    YTChannel *channel = 0;
     if (query.next()) {
         // Change userId to ChannelId
 
@@ -68,7 +62,7 @@ YTChannel* YTChannel::forId(const QString &channelId) {
         channel->checked = query.value(6).toUInt();
         channel->loaded = query.value(7).toUInt();
         channel->thumbnail = QPixmap(channel->getThumbnailLocation());
-        channel->thumbnail.setDevicePixelRatio(IconUtils::maxSupportedPixelRatio());
+        channel->thumbnail.setDevicePixelRatio(2.0);
         channel->maybeLoadfromAPI();
         cache.insert(channelId, channel);
     }
@@ -127,8 +121,9 @@ void YTChannel::loadThumbnail() {
     connect(reply, SIGNAL(error(QString)), SLOT(requestError(QString)));
 }
 
-const QString & YTChannel::getThumbnailDir() {
-    static const QString thumbDir = QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + "/channels/";
+const QString &YTChannel::getThumbnailDir() {
+    static const QString thumbDir =
+            QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + "/channels/";
     return thumbDir;
 }
 
@@ -139,7 +134,8 @@ QString YTChannel::getThumbnailLocation() {
 QString YTChannel::latestVideoId() {
     QSqlDatabase db = Database::instance().getConnection();
     QSqlQuery query(db);
-    query.prepare("select video_id from subscriptions_videos where user_id=? order by published desc limit 1");
+    query.prepare("select video_id from subscriptions_videos where user_id=? order by published "
+                  "desc limit 1");
     query.bindValue(0, channelId);
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
@@ -153,7 +149,7 @@ void YTChannel::unsubscribe() {
 
 void YTChannel::storeThumbnail(const QByteArray &bytes) {
     thumbnail.loadFromData(bytes);
-    qreal maxRatio = IconUtils::maxSupportedPixelRatio();
+    qreal maxRatio = 2.0;
     thumbnail.setDevicePixelRatio(maxRatio);
     const int maxWidth = 88 * maxRatio;
 
@@ -251,8 +247,7 @@ bool YTChannel::isSubscribed(const QString &channelId) {
     query.bindValue(0, channelId);
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
-    if (query.next())
-        return query.value(0).toInt() > 0;
+    if (query.next()) return query.value(0).toInt() > 0;
     return false;
 }
 
@@ -281,7 +276,8 @@ void YTChannel::updateWatched() {
 
     QSqlDatabase db = Database::instance().getConnection();
     QSqlQuery query(db);
-    query.prepare("update subscriptions set watched=?, notify_count=0, views=views+1 where user_id=?");
+    query.prepare(
+            "update subscriptions set watched=?, notify_count=0, views=views+1 where user_id=?");
     query.bindValue(0, now);
     query.bindValue(1, channelId);
     bool success = query.exec();
@@ -289,8 +285,7 @@ void YTChannel::updateWatched() {
 }
 
 void YTChannel::storeNotifyCount(int count) {
-    if (notifyCount != count)
-        emit notifyCountChanged();
+    if (notifyCount != count) emit notifyCountChanged();
     notifyCount = count;
 
     QSqlDatabase db = Database::instance().getConnection();

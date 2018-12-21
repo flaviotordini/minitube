@@ -21,9 +21,7 @@ $END_LICENSE */
 #include "refinesearchbutton.h"
 #include "iconutils.h"
 
-RefineSearchButton::RefineSearchButton(QWidget *parent) :
-    QPushButton(parent) {
-
+RefineSearchButton::RefineSearchButton(QWidget *parent) : QPushButton(parent) {
     hovered = false;
 
     const int refineButtonSize = 48;
@@ -32,23 +30,19 @@ RefineSearchButton::RefineSearchButton(QWidget *parent) :
     setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 }
 
-void RefineSearchButton::paintBackground() const {
-
-}
+void RefineSearchButton::paintBackground() const {}
 
 void RefineSearchButton::paintEvent(QPaintEvent *) {
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing, true);
     painter.setPen(Qt::NoPen);
-    painter.setBrush(QColor(0,0,0, hovered ? 192 : 170));
-    painter.drawEllipse(QPoint(width(), height()), width()-2, height()-2);
+    painter.setBrush(QColor(0, 0, 0, hovered ? 192 : 170));
+    painter.drawEllipse(QPoint(width(), height()), width() - 2, height() - 2);
 
-    QPixmap pixmap = IconUtils::pixmap(":/images/refine-search.png");
+    QPixmap pixmap = IconUtils::icon("refine-search").pixmap(24, 24);
     int pw = pixmap.width() / pixmap.devicePixelRatio();
     int ph = pixmap.height() / pixmap.devicePixelRatio();
-    painter.drawPixmap(width() - pw - 6, height() - ph - 6,
-                       pw, ph,
-                       pixmap);
+    painter.drawPixmap(width() - pw - 6, height() - ph - 6, pw, ph, pixmap);
 }
 
 void RefineSearchButton::enterEvent(QEvent *) {

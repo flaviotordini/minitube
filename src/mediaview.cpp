@@ -927,7 +927,7 @@ void MediaView::updateSubscriptionAction(Video *video, bool subscribed) {
         subscribeAction->setIcon(IconUtils::icon("bookmark-new"));
     }
 
-    IconUtils::setupAction(subscribeAction);
+    MainWindow::instance()->setupAction(subscribeAction);
 }
 
 void MediaView::toggleSubscription() {

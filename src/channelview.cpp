@@ -19,16 +19,16 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "channelview.h"
+#include "aggregatevideosource.h"
+#include "channelaggregator.h"
+#include "channelitemdelegate.h"
+#include "channelmodel.h"
+#include "database.h"
+#include "iconutils.h"
+#include "mainwindow.h"
+#include "searchparams.h"
 #include "ytchannel.h"
 #include "ytsearch.h"
-#include "searchparams.h"
-#include "channelmodel.h"
-#include "channelitemdelegate.h"
-#include "database.h"
-#include "channelaggregator.h"
-#include "aggregatevideosource.h"
-#include "mainwindow.h"
-#include "iconutils.h"
 #ifdef APP_EXTRA
 #include "extra.h"
 #endif
@@ -37,12 +37,9 @@ $END_LICENSE */
 namespace {
 static const QString sortByKey = "subscriptionsSortBy";
 static const QString showUpdatedKey = "subscriptionsShowUpdated";
-}
+} // namespace
 
-ChannelView::ChannelView(QWidget *parent) : View(parent),
-    showUpdated(false),
-    sortBy(SortByName) {
-
+ChannelView::ChannelView(QWidget *parent) : View(parent), showUpdated(false), sortBy(SortByName) {
     QBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
     layout->setSpacing(0);
@@ -53,7 +50,8 @@ ChannelView::ChannelView(QWidget *parent) : View(parent),
     channelsModel = new ChannelModel(this);
     listView->setModel(channelsModel);
 
-    connect(listView, SIGNAL(clicked(const QModelIndex &)), SLOT(itemActivated(const QModelIndex &)));
+    connect(listView, SIGNAL(clicked(const QModelIndex &)),
+            SLOT(itemActivated(const QModelIndex &)));
     connect(listView, SIGNAL(contextMenu(QPoint)), SLOT(showContextMenu(QPoint)));
     connect(listView, SIGNAL(viewportEntered()), channelsModel, SLOT(clearHover()));
 
@@ -61,8 +59,8 @@ ChannelView::ChannelView(QWidget *parent) : View(parent),
 
     setupActions();
 
-    connect(ChannelAggregator::instance(), SIGNAL(channelChanged(YTChannel*)),
-            channelsModel, SLOT(updateChannel(YTChannel*)));
+    connect(ChannelAggregator::instance(), SIGNAL(channelChanged(YTChannel *)), channelsModel,
+            SLOT(updateChannel(YTChannel *)));
     connect(ChannelAggregator::instance(), SIGNAL(unwatchedCountChanged(int)),
             SLOT(unwatchedCountChanged(int)));
 
@@ -124,16 +122,16 @@ void ChannelView::setupActions() {
     widgetAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_O));
     statusActions << widgetAction;
 
-    markAsWatchedAction = new QAction(
-                IconUtils::icon("mark-watched"), tr("Mark all as watched"), this);
+    markAsWatchedAction =
+            new QAction(IconUtils::icon("mark-watched"), tr("Mark all as watched"), this);
     markAsWatchedAction->setEnabled(false);
     markAsWatchedAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_W));
     connect(markAsWatchedAction, SIGNAL(triggered()), SLOT(markAllAsWatched()));
     statusActions << markAsWatchedAction;
 
     showUpdated = settings.value(showUpdatedKey, false).toBool();
-    QAction *showUpdatedAction = new QAction(
-                IconUtils::icon("show-updated"), tr("Show Updated"), this);
+    QAction *showUpdatedAction =
+            new QAction(IconUtils::icon("show-updated"), tr("Show Updated"), this);
     showUpdatedAction->setCheckable(true);
     showUpdatedAction->setChecked(showUpdated);
     showUpdatedAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_U));
@@ -142,25 +140,25 @@ void ChannelView::setupActions() {
 
     for (QAction *action : statusActions) {
         window()->addAction(action);
-        IconUtils::setupAction(action);
+        MainWindow::instance()->setupAction(action);
     }
 }
 
 QString ChannelView::noSubscriptionsMessage() {
     return tr("You have no subscriptions. "
-                    "Use the star symbol to subscribe to channels.");
+              "Use the star symbol to subscribe to channels.");
 }
 
 void ChannelView::appear() {
     updateQuery();
-    for (QAction* action : statusActions)
+    for (QAction *action : statusActions)
         MainWindow::instance()->showActionInStatusBar(action, true);
     setFocus();
     ChannelAggregator::instance()->start();
 }
 
 void ChannelView::disappear() {
-    for (QAction* action : statusActions)
+    for (QAction *action : statusActions)
         MainWindow::instance()->showActionInStatusBar(action, false);
 }
 
@@ -200,22 +198,23 @@ void ChannelView::showContextMenu(const QPoint &point) {
     QMenu menu;
 
     if (channel->getNotifyCount() > 0) {
-        QAction *markAsWatchedAction = menu.addAction(tr("Mark as Watched"), channel, SLOT(updateWatched()));
-        connect(markAsWatchedAction, SIGNAL(triggered()),
-                ChannelAggregator::instance(), SLOT(updateUnwatchedCount()));
+        QAction *markAsWatchedAction =
+                menu.addAction(tr("Mark as Watched"), channel, SLOT(updateWatched()));
+        connect(markAsWatchedAction, SIGNAL(triggered()), ChannelAggregator::instance(),
+                SLOT(updateUnwatchedCount()));
         menu.addSeparator();
     }
 
     /*
     // TODO
-    QAction *notificationsAction = menu.addAction(tr("Receive Notifications"), user, SLOT(unsubscribe()));
-    notificationsAction->setCheckable(true);
+    QAction *notificationsAction = menu.addAction(tr("Receive Notifications"), user,
+    SLOT(unsubscribe())); notificationsAction->setCheckable(true);
     notificationsAction->setChecked(true);
     */
 
     QAction *unsubscribeAction = menu.addAction(tr("Unsubscribe"), channel, SLOT(unsubscribe()));
-    connect(unsubscribeAction, SIGNAL(triggered()),
-            ChannelAggregator::instance(), SLOT(updateUnwatchedCount()));
+    connect(unsubscribeAction, SIGNAL(triggered()), ChannelAggregator::instance(),
+            SLOT(updateUnwatchedCount()));
 
     menu.exec(mapToGlobal(point));
 }
@@ -237,8 +236,7 @@ void ChannelView::updateQuery(bool transition) {
     }
 
     QString sql = "select user_id from subscriptions";
-    if (showUpdated)
-        sql += " where notify_count>0";
+    if (showUpdated) sql += " where notify_count>0";
 
     switch (sortBy) {
     case SortByUpdated:
@@ -259,8 +257,7 @@ void ChannelView::updateQuery(bool transition) {
     }
 
 #ifdef APP_EXTRA
-    if (transition)
-        Extra::fadeInWidget(this, this);
+    if (transition) Extra::fadeInWidget(this, this);
 #endif
 
     channelsModel->setQuery(sql, Database::instance().getConnection());

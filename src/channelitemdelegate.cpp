@@ -19,30 +19,28 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "channelitemdelegate.h"
-#include "channelmodel.h"
-#include "ytchannel.h"
-#include "fontutils.h"
 #include "channelaggregator.h"
-#include "painterutils.h"
+#include "channelmodel.h"
+#include "fontutils.h"
 #include "iconutils.h"
+#include "painterutils.h"
+#include "ytchannel.h"
 
 static const int ITEM_WIDTH = 150;
 static const int ITEM_HEIGHT = 150;
 static const int THUMB_WIDTH = 88;
 static const int THUMB_HEIGHT = 88;
 
-ChannelItemDelegate::ChannelItemDelegate(QObject *parent) : QStyledItemDelegate(parent) {
+ChannelItemDelegate::ChannelItemDelegate(QObject *parent) : QStyledItemDelegate(parent) {}
 
-}
-
-QSize ChannelItemDelegate::sizeHint(const QStyleOptionViewItem& /*option*/,
-                                     const QModelIndex& /*index*/ ) const {
+QSize ChannelItemDelegate::sizeHint(const QStyleOptionViewItem & /*option*/,
+                                    const QModelIndex & /*index*/) const {
     return QSize(ITEM_WIDTH, ITEM_HEIGHT);
 }
 
-void ChannelItemDelegate::paint( QPainter* painter,
-                                  const QStyleOptionViewItem& option,
-                                  const QModelIndex& index ) const {
+void ChannelItemDelegate::paint(QPainter *painter,
+                                const QStyleOptionViewItem &option,
+                                const QModelIndex &index) const {
     const int itemType = index.data(ChannelModel::ItemTypeRole).toInt();
     if (itemType == ChannelModel::ItemChannel)
         paintChannel(painter, option, index);
@@ -54,16 +52,16 @@ void ChannelItemDelegate::paint( QPainter* painter,
         QStyledItemDelegate::paint(painter, option, index);
 }
 
-void ChannelItemDelegate::paintAggregate(QPainter* painter,
-                                          const QStyleOptionViewItem& option,
-                                          const QModelIndex& index) const {
+void ChannelItemDelegate::paintAggregate(QPainter *painter,
+                                         const QStyleOptionViewItem &option,
+                                         const QModelIndex &index) const {
     Q_UNUSED(index);
     painter->save();
 
     painter->translate(option.rect.topLeft());
     const QRect line(0, 0, option.rect.width(), option.rect.height());
 
-    static const QPixmap thumbnail = IconUtils::pixmap(":/images/channels.png");
+    static const QPixmap thumbnail = IconUtils::icon("channels").pixmap(88, 88);
 
     QString name = tr("All Videos");
 
@@ -72,16 +70,16 @@ void ChannelItemDelegate::paintAggregate(QPainter* painter,
     painter->restore();
 }
 
-void ChannelItemDelegate::paintUnwatched(QPainter* painter,
-                                          const QStyleOptionViewItem& option,
-                                          const QModelIndex& index) const {
+void ChannelItemDelegate::paintUnwatched(QPainter *painter,
+                                         const QStyleOptionViewItem &option,
+                                         const QModelIndex &index) const {
     Q_UNUSED(index);
     painter->save();
 
     painter->translate(option.rect.topLeft());
     const QRect line(0, 0, option.rect.width(), option.rect.height());
 
-    static const QPixmap thumbnail = IconUtils::pixmap(":/images/unwatched.png");
+    static const QPixmap thumbnail = IconUtils::icon("unwatched").pixmap(88, 88);
 
     QString name = tr("Unwatched Videos");
 
@@ -94,9 +92,9 @@ void ChannelItemDelegate::paintUnwatched(QPainter* painter,
     painter->restore();
 }
 
-void ChannelItemDelegate::paintChannel(QPainter* painter,
-                                        const QStyleOptionViewItem& option,
-                                        const QModelIndex& index) const {
+void ChannelItemDelegate::paintChannel(QPainter *painter,
+                                       const QStyleOptionViewItem &option,
+                                       const QModelIndex &index) const {
     YTChannel *channel = index.data(ChannelModel::DataObjectRole).value<YTChannelPointer>().data();
     if (!channel) return;
 
@@ -120,16 +118,15 @@ void ChannelItemDelegate::paintChannel(QPainter* painter,
     drawItem(painter, line, thumbnail, name);
 
     int notifyCount = channel->getNotifyCount();
-    if (notifyCount > 0)
-        paintBadge(painter, line, QString::number(notifyCount));
+    if (notifyCount > 0) paintBadge(painter, line, QString::number(notifyCount));
 
     painter->restore();
 }
 
 void ChannelItemDelegate::drawItem(QPainter *painter,
-                                    const QRect &line,
-                                    const QPixmap &thumbnail,
-                                    const QString &name) const {
+                                   const QRect &line,
+                                   const QPixmap &thumbnail,
+                                   const QString &name) const {
     painter->drawPixmap((line.width() - THUMB_WIDTH) / 2, 8, thumbnail);
 
     QRect nameBox = line;
@@ -138,12 +135,10 @@ void ChannelItemDelegate::drawItem(QPainter *painter,
     bool tooBig = false;
 
     QRect textBox = painter->boundingRect(nameBox,
-                                          Qt::AlignTop | Qt::AlignHCenter | Qt::TextWordWrap,
-                                          name);
+                                          Qt::AlignTop | Qt::AlignHCenter | Qt::TextWordWrap, name);
     if (textBox.height() > nameBox.height() || textBox.width() > nameBox.width()) {
         painter->setFont(FontUtils::small());
-        textBox = painter->boundingRect(nameBox,
-                                        Qt::AlignTop | Qt::AlignHCenter | Qt::TextWordWrap,
+        textBox = painter->boundingRect(nameBox, Qt::AlignTop | Qt::AlignHCenter | Qt::TextWordWrap,
                                         name);
         if (textBox.height() > nameBox.height()) {
             painter->setClipRect(nameBox);
@@ -157,8 +152,8 @@ void ChannelItemDelegate::drawItem(QPainter *painter,
 }
 
 void ChannelItemDelegate::paintBadge(QPainter *painter,
-                                              const QRect &line,
-                                              const QString &text) const {
+                                     const QRect &line,
+                                     const QString &text) const {
     const int topLeft = (line.width() + THUMB_WIDTH) / 2;
     painter->save();
     painter->translate(topLeft, 0);

@@ -631,7 +631,7 @@ void MainWindow::createActions() {
         // add actions to the MainWindow so that they work
         // when the menu is hidden
         addAction(action);
-        IconUtils::setupAction(action);
+        MainWindow::instance()->setupAction(action);
     }
 }
 
@@ -1106,7 +1106,7 @@ void MainWindow::showEvent(QShowEvent *e) {
 bool MainWindow::confirmQuit() {
     if (DownloadManager::instance()->activeItems() > 0) {
         QMessageBox msgBox(this);
-        msgBox.setIconPixmap(IconUtils::pixmap(":/images/64x64/app.png"));
+        msgBox.setIconPixmap(IconUtils::pixmap(":/images/64x64/app.png", devicePixelRatioF()));
         msgBox.setText(
                 tr("Do you want to exit %1 with a download in progress?").arg(Constants::NAME));
         msgBox.setInformativeText(
@@ -1382,7 +1382,7 @@ void MainWindow::missingKeyWarning() {
     if (shown) return;
     shown = true;
     QMessageBox msgBox(this);
-    msgBox.setIconPixmap(IconUtils::pixmap(":/images/64x64/app.png"));
+    msgBox.setIconPixmap(IconUtils::pixmap(":/images/64x64/app.png", devicePixelRatioF()));
     msgBox.setText(QString("%1 was built without a Google API key.").arg(Constants::NAME));
     msgBox.setInformativeText(QString("It won't work unless you enter one."
                                       "<p>In alternative you can get %1 from the developer site.")
@@ -1789,7 +1789,7 @@ void MainWindow::gotNewVersion(const QString &version) {
 
 void MainWindow::simpleUpdateDialog(const QString &version) {
     QMessageBox msgBox(this);
-    msgBox.setIconPixmap(IconUtils::pixmap(":/images/64x64/app.png"));
+    msgBox.setIconPixmap(IconUtils::pixmap(":/images/64x64/app.png", devicePixelRatioF()));
     msgBox.setText(tr("%1 version %2 is now available.").arg(Constants::NAME, version));
     msgBox.setModal(true);
     msgBox.setWindowModality(Qt::WindowModal);
@@ -1908,6 +1908,18 @@ void MainWindow::printHelp() {
     msg += "  --stop-after-this\t";
     msg += "Stop playback at the end of the video.\n";
     std::cout << msg.toLocal8Bit().data();
+}
+
+void MainWindow::setupAction(QAction *action) {
+    // never autorepeat.
+    // unexperienced users tend to keep keys pressed for a "long" time
+    action->setAutoRepeat(false);
+
+    // show keyboard shortcuts in the status bar
+    if (!action->shortcut().isEmpty())
+        action->setStatusTip(action->statusTip() + QLatin1String(" (") +
+                             action->shortcut().toString(QKeySequence::NativeText) +
+                             QLatin1String(")"));
 }
 
 QAction *MainWindow::getAction(const char *name) {

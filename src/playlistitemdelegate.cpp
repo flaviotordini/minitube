@@ -40,7 +40,7 @@ bool drawElidedText(QPainter *painter, const QRect &textBox, const int flags, co
     painter->drawText(textBox, 0, elidedText);
     return elidedText.length() < text.length();
 }
-}
+} // namespace
 
 PlaylistItemDelegate::PlaylistItemDelegate(QObject *parent, bool downloadInfo)
     : QStyledItemDelegate(parent), downloadInfo(downloadInfo), progressBar(0) {
@@ -65,7 +65,7 @@ PlaylistItemDelegate::~PlaylistItemDelegate() {
 }
 
 void PlaylistItemDelegate::createPlayIcon() {
-    qreal maxRatio = IconUtils::maxSupportedPixelRatio();
+    qreal maxRatio = 2.0;
     playIcon = QPixmap(thumbWidth * maxRatio, thumbHeight * maxRatio);
     playIcon.setDevicePixelRatio(maxRatio);
     playIcon.fill(Qt::transparent);

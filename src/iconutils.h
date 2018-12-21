@@ -24,26 +24,35 @@ $END_LICENSE */
 #include <QtGui>
 
 class IconUtils {
-
 public:
     static QIcon fromTheme(const QString &name);
     static QIcon fromResources(const QString &name);
+
+    template <class T> static void setIcon(T *obj, const QString &name) {
+        QIcon i = icon(name);
+        obj->setIcon(i);
+        obj->connect(qApp, &QGuiApplication::paletteChanged, obj, [obj, name] {
+            QIcon i = icon(name);
+            obj->setIcon(i);
+        });
+    }
     static QIcon icon(const QString &name);
     static QIcon icon(const QStringList &names);
-    static QIcon tintedIcon(const QString &name, const QColor &color,
-                            QList<QSize> sizes = QList<QSize>());
+    static QIcon tintedIcon(const QString &name, const QColor &color, const QVector<QSize> &sizes);
     static QIcon tintedIcon(const QString &name, const QColor &color, const QSize &size);
-    static void setupAction(QAction *action);
 
     // HiDPI stuff
-    static QPixmap pixmap(const QString &name);
-    static qreal maxSupportedPixelRatio() { return 2.0; }
-    static qreal pixelRatio();
+    static QPixmap pixmap(const QString &name, const qreal pixelRatio);
+
+    static void tint(QPixmap &pixmap,
+                     const QColor &color,
+                     QPainter::CompositionMode mode = QPainter::CompositionMode_SourceIn);
 
 private:
-    IconUtils() { }
+    IconUtils() {}
     static QImage grayscaled(const QImage &image);
-    static QImage tinted(const QImage &image, const QColor &color,
+    static QImage tinted(const QImage &image,
+                         const QColor &color,
                          QPainter::CompositionMode mode = QPainter::CompositionMode_Screen);
 };
 

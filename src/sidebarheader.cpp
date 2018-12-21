@@ -19,12 +19,13 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "sidebarheader.h"
+#include "fontutils.h"
 #include "iconutils.h"
+#include "mainwindow.h"
 #include "mediaview.h"
 #include "videosource.h"
-#include "fontutils.h"
 
-SidebarHeader::SidebarHeader(QWidget *parent) : QToolBar(parent) { }
+SidebarHeader::SidebarHeader(QWidget *parent) : QToolBar(parent) {}
 
 void SidebarHeader::setup() {
     static bool isSetup = false;
@@ -33,24 +34,20 @@ void SidebarHeader::setup() {
 
     setIconSize(QSize(16, 16));
 
-    backAction = new QAction(
-                IconUtils::icon("go-previous"),
-                tr("&Back"), this);
+    backAction = new QAction(IconUtils::icon("go-previous"), tr("&Back"), this);
     backAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Left));
     connect(backAction, SIGNAL(triggered()), MediaView::instance(), SLOT(goBack()));
     addAction(backAction);
 
-    forwardAction = new QAction(
-                IconUtils::icon("go-next"),
-                tr("&Back"), this);
+    forwardAction = new QAction(IconUtils::icon("go-next"), tr("&Back"), this);
     forwardAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Right));
     connect(forwardAction, SIGNAL(triggered()), MediaView::instance(), SLOT(goForward()));
     addAction(forwardAction);
 
     const auto a = actions();
-    for (QAction* action : a) {
+    for (QAction *action : a) {
         window()->addAction(action);
-        IconUtils::setupAction(action);
+        MainWindow::instance()->setupAction(action);
     }
 
     QWidget *spacerWidget = new QWidget(this);
@@ -65,7 +62,7 @@ QSize SidebarHeader::minimumSizeHint() const {
 void SidebarHeader::updateInfo() {
     setup();
 
-    const QVector<VideoSource*> &history = MediaView::instance()->getHistory();
+    const QVector<VideoSource *> &history = MediaView::instance()->getHistory();
     int currentIndex = MediaView::instance()->getHistoryIndex();
 
     bool canGoForward = MediaView::instance()->canGoForward();
@@ -73,11 +70,9 @@ void SidebarHeader::updateInfo() {
     forwardAction->setEnabled(canGoForward);
     if (canGoForward) {
         VideoSource *nextVideoSource = history.at(currentIndex + 1);
-        forwardAction->setStatusTip(
-                    tr("Forward to %1")
-                    .arg(nextVideoSource->getName())
-                    + " (" + forwardAction->shortcut().toString(QKeySequence::NativeText) + ")"
-                    );
+        forwardAction->setStatusTip(tr("Forward to %1").arg(nextVideoSource->getName()) + " (" +
+                                    forwardAction->shortcut().toString(QKeySequence::NativeText) +
+                                    ")");
     }
 
     bool canGoBack = MediaView::instance()->canGoBack();
@@ -86,16 +81,13 @@ void SidebarHeader::updateInfo() {
     backAction->setEnabled(canGoBack);
     if (canGoBack) {
         VideoSource *previousVideoSource = history.at(currentIndex - 1);
-        backAction->setStatusTip(
-                    tr("Back to %1")
-                    .arg(previousVideoSource->getName())
-                    + " (" + backAction->shortcut().toString(QKeySequence::NativeText) + ")"
-                    );
+        backAction->setStatusTip(tr("Back to %1").arg(previousVideoSource->getName()) + " (" +
+                                 backAction->shortcut().toString(QKeySequence::NativeText) + ")");
     }
 
     VideoSource *currentVideoSource = history.at(currentIndex);
-    connect(currentVideoSource, SIGNAL(nameChanged(QString)),
-            SLOT(updateTitle(QString)), Qt::UniqueConnection);
+    connect(currentVideoSource, SIGNAL(nameChanged(QString)), SLOT(updateTitle(QString)),
+            Qt::UniqueConnection);
     setTitle(currentVideoSource->getName());
 }
 
@@ -108,10 +100,10 @@ void SidebarHeader::setTitle(const QString &title) {
     this->title = title;
     update();
 
-    QVector<VideoSource*> history = MediaView::instance()->getHistory();
+    QVector<VideoSource *> history = MediaView::instance()->getHistory();
     int currentIndex = MediaView::instance()->getHistoryIndex();
     VideoSource *currentVideoSource = history.at(currentIndex);
-    for (QAction* action : videoSourceActions)
+    for (QAction *action : videoSourceActions)
         removeAction(action);
     videoSourceActions = currentVideoSource->getActions();
     addActions(videoSourceActions);
@@ -129,12 +121,10 @@ void SidebarHeader::paintEvent(QPaintEvent *event) {
     QRect textBox = p.boundingRect(r, Qt::AlignCenter, t);
     int i = 1;
     const int margin = forwardAction->isVisible() ? 50 : 25;
-    while (textBox.width() > r.width() - margin*2 && t.length() > 3) {
+    while (textBox.width() > r.width() - margin * 2 && t.length() > 3) {
         t = t.left(t.length() - i).trimmed() + QStringLiteral("\u2026");
         textBox = p.boundingRect(r, Qt::AlignCenter, t);
         i++;
     }
     p.drawText(r, Qt::AlignCenter, t);
-
-
 }
