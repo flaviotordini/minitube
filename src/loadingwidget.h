@@ -26,7 +26,6 @@ $END_LICENSE */
 #include "video.h"
 
 class LoadingWidget : public QWidget {
-
     Q_OBJECT
 
 public:
@@ -39,7 +38,7 @@ protected:
     void resizeEvent(QResizeEvent *e);
 
 public slots:
-    void bufferStatus(int);
+    void bufferStatus(qreal value);
 
 private:
     void adjustFontSize();
@@ -48,7 +47,6 @@ private:
     QLabel *descriptionLabel;
     QProgressBar *progressBar;
     QTime startTime;
-
 };
 
 #endif // LOADINGWIDGET_H

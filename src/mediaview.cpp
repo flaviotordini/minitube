@@ -103,11 +103,6 @@ void MediaView::initialize() {
     splitter->addWidget(sidebar);
 
     videoAreaWidget = new VideoAreaWidget(this);
-
-#ifdef APP_PHONON
-    videoWidget = new Phonon::VideoWidget(this);
-    videoAreaWidget->setVideoWidget(videoWidget);
-#endif
     videoAreaWidget->setListModel(playlistModel);
 
     loadingWidget = new LoadingWidget(this);
@@ -156,24 +151,20 @@ void MediaView::initialize() {
     for (auto *name : videoActionNames) {
         currentVideoActions.append(mainWindow->getAction(name));
     }
-
-#ifndef APP_PHONON_SEEK
-    QSlider *slider = mainWindow->getSlider();
-    connect(slider, SIGNAL(valueChanged(int)), SLOT(sliderMoved(int)));
-#endif
 }
 
-#ifdef APP_PHONON
-void MediaView::setMediaObject(Phonon::MediaObject *mediaObject) {
-    this->mediaObject = mediaObject;
-    Phonon::createPath(mediaObject, videoWidget);
-    connect(mediaObject, SIGNAL(finished()), SLOT(playbackFinished()));
-    connect(mediaObject, SIGNAL(stateChanged(Phonon::State, Phonon::State)),
-            SLOT(stateChanged(Phonon::State, Phonon::State)));
-    connect(mediaObject, SIGNAL(aboutToFinish()), SLOT(aboutToFinish()));
-    connect(mediaObject, SIGNAL(bufferStatus(int)), loadingWidget, SLOT(bufferStatus(int)));
+void MediaView::setMedia(Media *media) {
+    this->media = media;
+
+    videoWidget = media->videoWidget();
+    qDebug() << "videoWidget" << videoWidget;
+    videoAreaWidget->setVideoWidget(videoWidget);
+
+    connect(media, &Media::finished, this, &MediaView::playbackFinished);
+    connect(media, &Media::stateChanged, this, &MediaView::stateChanged);
+    connect(media, &Media::aboutToFinish, this, &MediaView::aboutToFinish);
+    connect(media, &Media::bufferStatus, loadingWidget, &LoadingWidget::bufferStatus);
 }
-#endif
 
 SearchParams *MediaView::getSearchParams() {
     VideoSource *videoSource = playlistModel->getVideoSource();
@@ -301,41 +292,34 @@ void MediaView::disappear() {
 
 void MediaView::handleError(const QString &message) {
     qWarning() << __PRETTY_FUNCTION__ << message;
-#ifdef APP_PHONON_SEEK
-    mediaObject->play();
-#else
-    QTimer::singleShot(500, this, SLOT(startPlaying()));
-#endif
+    media->play();
 }
 
-#ifdef APP_PHONON
-void MediaView::stateChanged(Phonon::State newState, Phonon::State oldState) {
-    if (pauseTime > 0 && (newState == Phonon::PlayingState || newState == Phonon::BufferingState)) {
-        mediaObject->seek(pauseTime);
+void MediaView::stateChanged(Media::State state) {
+    if (pauseTime > 0 && (state == Media::PlayingState || state == Media::BufferingState)) {
+        qDebug() << "Seeking to" << pauseTime;
+        media->seek(pauseTime);
         pauseTime = 0;
     }
-    if (newState == Phonon::PlayingState) {
+    if (state == Media::PlayingState) {
         videoAreaWidget->showVideo();
-    } else if (newState == Phonon::ErrorState) {
-        qWarning() << "Phonon error:" << mediaObject->errorString() << mediaObject->errorType();
-        if (mediaObject->errorType() == Phonon::FatalError) handleError(mediaObject->errorString());
+    } else if (state == Media::ErrorState) {
+        handleError(media->errorString());
     }
 
-    if (newState == Phonon::PlayingState) {
+    if (state == Media::PlayingState) {
         bool res = Idle::preventDisplaySleep(QString("%1 is playing").arg(Constants::NAME));
         if (!res) qWarning() << "Error disabling idle display sleep" << Idle::displayErrorMessage();
-    } else if (oldState == Phonon::PlayingState) {
+    } else if (state == Media::PausedState || state == Media::StoppedState) {
         bool res = Idle::allowDisplaySleep();
         if (!res) qWarning() << "Error enabling idle display sleep" << Idle::displayErrorMessage();
     }
 }
-#endif
 
 void MediaView::pause() {
-#ifdef APP_PHONON
-    switch (mediaObject->state()) {
-    case Phonon::PlayingState:
-        mediaObject->pause();
+    switch (media->state()) {
+    case Media::PlayingState:
+        media->pause();
         pauseTimer.start();
         break;
     default:
@@ -345,10 +329,9 @@ void MediaView::pause() {
                     SLOT(resumeWithNewStreamUrl(QUrl)));
             playlistModel->activeVideo()->loadStreamUrl();
         } else
-            mediaObject->play();
+            media->play();
         break;
     }
-#endif
 }
 
 QRegExp MediaView::wordRE(const QString &s) {
@@ -390,19 +373,9 @@ void MediaView::stop() {
     a->setEnabled(false);
     a->setVisible(false);
 
-#ifdef APP_PHONON
-    mediaObject->stop();
-    mediaObject->clear();
-#endif
+    media->stop();
+    media->clearQueue();
     currentVideoId.clear();
-
-#ifndef APP_PHONON_SEEK
-    QSlider *slider = MainWindow::instance()->getSlider();
-    slider->setEnabled(false);
-    slider->setValue(0);
-#else
-// Phonon::SeekSlider *slider = MainWindow::instance()->getSeekSlider();
-#endif
 
 #ifdef APP_SNAPSHOT
     if (snapshotSettings) {
@@ -421,9 +394,8 @@ void MediaView::activeRowChanged(int row) {
 
     errorTimer->stop();
 
-#ifdef APP_PHONON
-    mediaObject->stop();
-#endif
+    media->stop();
+
     if (downloadItem) {
         downloadItem->stop();
         delete downloadItem;
@@ -477,12 +449,6 @@ void MediaView::activeRowChanged(int row) {
     for (QAction *action : currentVideoActions)
         action->setEnabled(true);
 
-#ifndef APP_PHONON_SEEK
-    QSlider *slider = MainWindow::instance()->getSlider();
-    slider->setEnabled(false);
-    slider->setValue(0);
-#endif
-
 #ifdef APP_SNAPSHOT
     if (snapshotSettings) {
         delete snapshotSettings;
@@ -510,12 +476,7 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
 
     currentVideoId = video->getId();
 
-#ifdef APP_PHONON_SEEK
-    mediaObject->setCurrentSource(streamUrl);
-    mediaObject->play();
-#else
-    startDownloading();
-#endif
+    media->play(streamUrl.toString());
 
     // ensure we always have videos ahead
     playlistModel->searchNeeded();
@@ -541,79 +502,13 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
     ChannelAggregator::instance()->videoWatched(video);
 }
 
-void MediaView::downloadStatusChanged() {
-    // qDebug() << __PRETTY_FUNCTION__;
-    switch (downloadItem->status()) {
-    case Downloading:
-        // qDebug() << "Downloading";
-        if (downloadItem->offset() == 0)
-            startPlaying();
-        else {
-#ifdef APP_PHONON
-            // qDebug() << "Seeking to" << downloadItem->offset();
-            mediaObject->seek(offsetToTime(downloadItem->offset()));
-            mediaObject->play();
-#endif
-        }
-        break;
-    case Starting:
-        // qDebug() << "Starting";
-        break;
-    case Finished:
-// qDebug() << "Finished" << mediaObject->state();
-#ifdef APP_PHONON_SEEK
-        MainWindow::instance()->getSeekSlider()->setEnabled(mediaObject->isSeekable());
-#endif
-        break;
-    case Failed:
-        // qDebug() << "Failed";
-        skip();
-        break;
-    case Idle:
-        // qDebug() << "Idle";
-        break;
-    }
-}
-
-void MediaView::startPlaying() {
-    // qDebug() << __PRETTY_FUNCTION__;
-    if (stopped) return;
-    if (!downloadItem) {
-        skip();
-        return;
-    }
-
-    if (downloadItem->offset() == 0) {
-        currentVideoSize = downloadItem->bytesTotal();
-        // qDebug() << "currentVideoSize" << currentVideoSize;
-    }
-
-    // go!
-    QString source = downloadItem->currentFilename();
-    qDebug() << "Playing" << source << QFile::exists(source);
-#ifdef APP_PHONON
-    mediaObject->setCurrentSource(QUrl::fromLocalFile(source));
-    mediaObject->play();
-#endif
-#ifdef APP_PHONON_SEEK
-    MainWindow::instance()->getSeekSlider()->setEnabled(false);
-#else
-    QSlider *slider = MainWindow::instance()->getSlider();
-    slider->setEnabled(true);
-#endif
-}
-
 void MediaView::itemActivated(const QModelIndex &index) {
     if (playlistModel->rowExists(index.row())) {
         // if it's the current video, just rewind and play
         Video *activeVideo = playlistModel->activeVideo();
         Video *video = playlistModel->videoAt(index.row());
         if (activeVideo && video && activeVideo == video) {
-            // mediaObject->seek(0);
-            sliderMoved(0);
-#ifdef APP_PHONON
-            mediaObject->play();
-#endif
+            media->play();
         } else
             playlistModel->setActiveRow(index.row());
 
@@ -653,24 +548,21 @@ void MediaView::skipBackward() {
 }
 
 void MediaView::aboutToFinish() {
-#ifdef APP_PHONON
-    qint64 currentTime = mediaObject->currentTime();
-    qint64 totalTime = mediaObject->totalTime();
+    qint64 currentTime = media->position();
+    qint64 totalTime = media->duration();
     // qDebug() << __PRETTY_FUNCTION__ << currentTime << totalTime;
     if (totalTime < 1 || currentTime + 10000 < totalTime) {
         // QTimer::singleShot(500, this, SLOT(playbackResume()));
-        mediaObject->seek(currentTime);
-        mediaObject->play();
+        media->seek(currentTime);
+        media->play();
     }
-#endif
 }
 
 void MediaView::playbackFinished() {
     if (stopped) return;
 
-#ifdef APP_PHONON
-    const qint64 totalTime = mediaObject->totalTime();
-    const qint64 currentTime = mediaObject->currentTime();
+    const qint64 totalTime = media->duration();
+    const qint64 currentTime = media->position();
     // qDebug() << __PRETTY_FUNCTION__ << mediaObject->currentTime() << totalTime;
     // add 10 secs for imprecise Phonon backends (VLC, Xine)
     if (currentTime > 0 && currentTime + 10000 < totalTime) {
@@ -683,27 +575,22 @@ void MediaView::playbackFinished() {
         } else
             skip();
     }
-#endif
 }
 
 void MediaView::playbackResume() {
     if (stopped) return;
-#ifdef APP_PHONON
-    const qint64 currentTime = mediaObject->currentTime();
+    const qint64 currentTime = media->position();
     // qDebug() << __PRETTY_FUNCTION__ << currentTime;
-    if (currentTime > 0) mediaObject->seek(currentTime);
-    mediaObject->play();
-#endif
+    if (currentTime > 0) media->seek(currentTime);
+    media->play();
 }
 
 void MediaView::openWebPage() {
     Video *video = playlistModel->activeVideo();
     if (!video) return;
-#ifdef APP_PHONON
-    mediaObject->pause();
-#endif
-    QString url = video->getWebpage() + QLatin1String("&t=") +
-                  QString::number(mediaObject->currentTime() / 1000);
+    media->pause();
+    QString url =
+            video->getWebpage() + QLatin1String("&t=") + QString::number(media->position() / 1000);
     QDesktopServices::openUrl(url);
 }
 
@@ -728,9 +615,7 @@ void MediaView::copyVideoLink() {
 void MediaView::openInBrowser() {
     Video *video = playlistModel->activeVideo();
     if (!video) return;
-#ifdef APP_PHONON
-    mediaObject->pause();
-#endif
+    media->pause();
     QDesktopServices::openUrl(video->getStreamUrl());
 }
 
@@ -827,76 +712,58 @@ void MediaView::downloadVideo() {
 
 #ifdef APP_SNAPSHOT
 void MediaView::snapshot() {
-    qint64 currentTime = mediaObject->currentTime() / 1000;
+    qint64 currentTime = media->position() / 1000;
 
-    QImage image = videoWidget->snapshot();
-    if (image.isNull()) {
-        qWarning() << "Null snapshot";
-        return;
-    }
+    connect(media, &Media::snapshotReady, this,
+            [this, currentTime](const QImage &image) {
+                if (image.isNull()) {
+                    qWarning() << "Null snapshot";
+                    return;
+                }
 
-    // QPixmap pixmap = QPixmap::grabWindow(videoWidget->winId());
-    QPixmap pixmap = QPixmap::fromImage(
-            image.scaled(videoWidget->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    videoAreaWidget->showSnapshotPreview(pixmap);
+                QPixmap pixmap = QPixmap::fromImage(image.scaled(
+                        videoWidget->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+                videoAreaWidget->showSnapshotPreview(pixmap);
 
-    Video *video = playlistModel->activeVideo();
-    if (!video) return;
+                Video *video = playlistModel->activeVideo();
+                if (!video) return;
 
-    QString location = SnapshotSettings::getCurrentLocation();
-    QDir dir(location);
-    if (!dir.exists()) dir.mkpath(location);
-    QString basename = video->getTitle();
-    QString format = video->getDuration() > 3600 ? "h_mm_ss" : "m_ss";
-    basename += " (" + QTime(0, 0, 0).addSecs(currentTime).toString(format) + ")";
-    basename = DataUtils::stringToFilename(basename);
-    QString filename = location + "/" + basename + ".png";
-    qDebug() << filename;
-    image.save(filename, "PNG");
+                QString location = SnapshotSettings::getCurrentLocation();
+                QDir dir(location);
+                if (!dir.exists()) dir.mkpath(location);
+                QString basename = video->getTitle();
+                QString format = video->getDuration() > 3600 ? "h_mm_ss" : "m_ss";
+                basename += " (" + QTime(0, 0, 0).addSecs(currentTime).toString(format) + ")";
+                basename = DataUtils::stringToFilename(basename);
+                QString filename = location + "/" + basename + ".png";
+                qDebug() << filename;
+                image.save(filename, "PNG");
 
-    if (snapshotSettings) delete snapshotSettings;
-    snapshotSettings = new SnapshotSettings(videoWidget);
-    snapshotSettings->setSnapshot(pixmap, filename);
-    QStatusBar *statusBar = MainWindow::instance()->statusBar();
+                if (snapshotSettings) delete snapshotSettings;
+                snapshotSettings = new SnapshotSettings(videoWidget);
+                snapshotSettings->setSnapshot(pixmap, filename);
+                QStatusBar *statusBar = MainWindow::instance()->statusBar();
 #ifdef APP_EXTRA
-    Extra::fadeInWidget(statusBar, statusBar);
+                Extra::fadeInWidget(statusBar, statusBar);
 #endif
-    statusBar->insertPermanentWidget(0, snapshotSettings);
-    snapshotSettings->show();
-    MainWindow::instance()->setStatusBarVisibility(true);
+                statusBar->insertPermanentWidget(0, snapshotSettings);
+                snapshotSettings->show();
+                MainWindow::instance()->setStatusBarVisibility(true);
+            }
+#endif
+    );
+
+    media->snapshot();
 }
-#endif
 
 void MediaView::fullscreen() {
     videoAreaWidget->setParent(0);
     videoAreaWidget->showFullScreen();
 }
 
-void MediaView::startDownloading() {
-    Video *video = playlistModel->activeVideo();
-    if (!video) return;
-    Video *videoCopy = video->clone();
-    if (downloadItem) {
-        downloadItem->stop();
-        delete downloadItem;
-    }
-    QString tempFile = Temporary::filename();
-    downloadItem = new DownloadItem(videoCopy, video->getStreamUrl(), tempFile, this);
-    connect(downloadItem, SIGNAL(statusChanged()), SLOT(downloadStatusChanged()),
-            Qt::UniqueConnection);
-    connect(downloadItem, SIGNAL(bufferProgress(int)), loadingWidget, SLOT(bufferStatus(int)),
-            Qt::UniqueConnection);
-    // connect(downloadItem, SIGNAL(finished()), SLOT(itemFinished()));
-    connect(video, SIGNAL(errorStreamUrl(QString)), SLOT(handleError(QString)),
-            Qt::UniqueConnection);
-    connect(downloadItem, SIGNAL(error(QString)), SLOT(handleError(QString)), Qt::UniqueConnection);
-    downloadItem->start();
-}
-
 void MediaView::resumeWithNewStreamUrl(const QUrl &streamUrl) {
-    pauseTime = mediaObject->currentTime();
-    mediaObject->setCurrentSource(streamUrl);
-    mediaObject->play();
+    pauseTime = media->position();
+    media->play(streamUrl.toString());
 
     Video *video = static_cast<Video *>(sender());
     if (!video) {
@@ -904,43 +771,6 @@ void MediaView::resumeWithNewStreamUrl(const QUrl &streamUrl) {
         return;
     }
     video->disconnect(this);
-}
-
-void MediaView::sliderMoved(int value) {
-    Q_UNUSED(value);
-#ifdef APP_PHONON
-#ifndef APP_PHONON_SEEK
-
-    if (currentVideoSize <= 0 || !downloadItem || !mediaObject->isSeekable()) return;
-
-    QSlider *slider = MainWindow::instance()->getSlider();
-    if (slider->isSliderDown()) return;
-
-    qint64 offset = (currentVideoSize * value) / slider->maximum();
-
-    bool needsDownload = downloadItem->needsDownload(offset);
-    if (needsDownload) {
-        if (downloadItem->isBuffered(offset)) {
-            qint64 realOffset = downloadItem->blankAtOffset(offset);
-            if (offset < currentVideoSize) downloadItem->seekTo(realOffset, false);
-            mediaObject->seek(offsetToTime(offset));
-        } else {
-            mediaObject->pause();
-            downloadItem->seekTo(offset);
-        }
-    } else {
-        // qDebug() << "simple seek";
-        mediaObject->seek(offsetToTime(offset));
-    }
-#endif
-#endif
-}
-
-qint64 MediaView::offsetToTime(qint64 offset) {
-#ifdef APP_PHONON
-    const qint64 totalTime = mediaObject->totalTime();
-    return ((offset * totalTime) / currentVideoSize);
-#endif
 }
 
 void MediaView::findVideoParts() {
@@ -1091,7 +921,7 @@ void MediaView::updateSubscriptionAction(Video *video, bool subscribed) {
         }
         subscribeAction->setIcon(tintedIcon);
 #else
-        subscribeAction->setIcon(IconUtils::icon("bookmark-remove"));
+            subscribeAction->setIcon(IconUtils::icon("bookmark-remove"));
 #endif
     } else {
         subscribeAction->setIcon(IconUtils::icon("bookmark-new"));

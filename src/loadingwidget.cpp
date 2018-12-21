@@ -106,8 +106,9 @@ void LoadingWidget::setError(const QString &message) {
     progressBar->setValue(0);
 }
 
-void LoadingWidget::bufferStatus(int percent) {
-    if (startTime.elapsed() > 2000 && percent > progressBar->value())
+void LoadingWidget::bufferStatus(qreal value) {
+    int percent = value * 100.;
+    if (startTime.elapsed() > 1000 && percent > progressBar->value())
         progressBar->setValue(percent);
 }
 

@@ -22,12 +22,8 @@ $END_LICENSE */
 #define MAINWINDOW_H
 
 #include <QtWidgets>
-#ifdef APP_PHONON
-#include <phonon/audiooutput.h>
-#include <phonon/volumeslider.h>
-#include <phonon/mediaobject.h>
-#include <phonon/seekslider.h>
-#endif
+
+#include "media.h"
 
 class HomeView;
 class MediaView;
@@ -41,29 +37,23 @@ class Suggestion;
 class ToolbarMenu;
 
 class MainWindow : public QMainWindow {
-
     Q_OBJECT
 
 public:
-    static MainWindow* instance();
+    static MainWindow *instance();
     MainWindow();
-#ifdef APP_PHONON_SEEK
-    Phonon::SeekSlider* getSeekSlider() { return seekSlider; }
-#else
-    QSlider* getSlider() { return slider; }
-#endif
-#ifdef APP_PHONON
-    Phonon::AudioOutput* getAudioOutput() { return audioOutput; }
-    Phonon::VolumeSlider *getVolumeSlider() { return volumeSlider; }
-#endif
+
+    QSlider *getSeekSlider() { return seekSlider; }
+    QSlider *getVolumeSlider() { return volumeSlider; }
+
     QLabel *getCurrentTimeLabel() { return currentTimeLabel; }
     void readSettings();
     void writeSettings();
     static void printHelp();
     QStackedWidget *getViews() { return views; }
-    MediaView* getMediaView() { return mediaView; }
-    HomeView* getHomeView() { return homeView; }
-    QAction* getRegionAction() { return regionAction; }
+    MediaView *getMediaView() { return mediaView; }
+    HomeView *getHomeView() { return homeView; }
+    QAction *getRegionAction() { return regionAction; }
     SearchLineEdit *getToolbarSearch() { return toolbarSearch; }
 
     QAction *getAction(const char *name);
@@ -71,7 +61,7 @@ public:
 
     QMenu *getMenu(const char *name);
 
-    void showActionInStatusBar(QAction*, bool show);
+    void showActionInStatusBar(QAction *, bool show);
     void setStatusBarVisibility(bool show);
     void adjustStatusBarVisibility();
 
@@ -96,6 +86,7 @@ public slots:
     void goBack();
     void showMessage(const QString &message);
     void hideMessage();
+    void handleError(const QString &message);
     bool isReallyFullScreen();
     bool isCompact() { return compactModeActive; }
     void missingKeyWarning();
@@ -128,19 +119,19 @@ private slots:
     void updateUIForFullscreen();
     void compactView(bool enable);
     void stop();
-#ifdef APP_PHONON
-    void stateChanged(Phonon::State newState, Phonon::State oldState);
-#endif
     void searchFocus();
-    void tick(qint64 time);
-    void totalTimeChanged(qint64 time);
     void setDefinitionMode(const QString &definitionName);
     void toggleDefinitionMode();
     void clearRecentKeywords();
 
+    // media
+    void stateChanged(Media::State state);
+    void tick(qint64 time);
+
     void volumeUp();
     void volumeDown();
     void volumeMute();
+    void volumeChanged(qreal newVolume);
     void volumeMutedChanged(bool muted);
 
     void updateDownloadMessage(const QString &);
@@ -161,14 +152,12 @@ private slots:
 #endif
 
 private:
-#ifdef APP_PHONON
-    void initPhonon();
-#endif
+    void initMedia();
     void createActions();
     void createMenus();
     void createToolBars();
     void createStatusBar();
-    void showWidget(QWidget*, bool transition = true);
+    void showWidget(QWidget *, bool transition = true);
     static QString formatTime(qint64 duration);
     bool confirmQuit();
     void simpleUpdateDialog(const QString &version);
@@ -177,12 +166,12 @@ private:
 
     UpdateChecker *updateChecker;
 
-    QHash<QByteArray, QAction*> actionMap;
-    QHash<QByteArray, QMenu*> menuMap;
+    QHash<QByteArray, QAction *> actionMap;
+    QHash<QByteArray, QMenu *> menuMap;
 
     // view mechanism
     QStackedWidget *views;
-    QStack<QWidget*> history;
+    QStack<QWidget *> history;
     // QVector<QAction*> viewActions;
 
     // view widgets
@@ -233,18 +222,8 @@ private:
     SearchLineEdit *toolbarSearch;
     QToolBar *statusToolBar;
     QAction *regionAction;
-
-    // phonon
-#ifdef APP_PHONON
-#ifdef APP_PHONON_SEEK
-    Phonon::SeekSlider *seekSlider;
-#else
-    QSlider *slider;
-#endif
-    Phonon::VolumeSlider *volumeSlider;
-    Phonon::MediaObject *mediaObject;
-    Phonon::AudioOutput *audioOutput;
-#endif
+    QSlider *seekSlider;
+    QSlider *volumeSlider;
     QLabel *currentTimeLabel;
 
     bool fullScreenActive;
@@ -260,6 +239,8 @@ private:
 
     ToolbarMenu *toolbarMenu;
     QToolButton *toolbarMenuButton;
+
+    Media *media;
 };
 
 #endif

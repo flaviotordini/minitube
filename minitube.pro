@@ -10,8 +10,6 @@ DEFINES += APP_NAME="$$APP_NAME"
 APP_UNIX_NAME = minitube
 DEFINES += APP_UNIX_NAME="$$APP_UNIX_NAME"
 
-DEFINES += APP_PHONON
-DEFINES += APP_PHONON_SEEK
 DEFINES += APP_SNAPSHOT
 
 message(Building $${APP_NAME} $${VERSION})
@@ -202,8 +200,6 @@ include(locale/locale.pri)
 DISTFILES += CHANGES COPYING
 unix:!mac {
     DEFINES += APP_LINUX
-    LIBS += -lphonon4qt5
-    INCLUDEPATH += /usr/include/phonon4qt5
     QT += dbus
     HEADERS += src/gnomeglobalshortcutbackend.h
     SOURCES += src/gnomeglobalshortcutbackend.cpp

@@ -21,12 +21,11 @@ $END_LICENSE */
 #include "snapshotpreview.h"
 #include "mainwindow.h"
 
-SnapshotPreview::SnapshotPreview(QWidget *parent) : QWidget(parent),
-#ifdef APP_PHONON
-    mediaObject(0),
-    audioOutput(0)
+#ifdef MEDIA_QTAV
+#include "mediaqtav.h"
 #endif
-    {
+
+SnapshotPreview::SnapshotPreview(QWidget *parent) : QWidget(parent), mediaObject(0) {
     setAttribute(Qt::WA_ShowWithoutActivating);
     setWindowFlags(Qt::FramelessWindowHint | Qt::WindowDoesNotAcceptFocus);
     setAttribute(Qt::WA_StaticContents);
@@ -49,15 +48,17 @@ SnapshotPreview::SnapshotPreview(QWidget *parent) : QWidget(parent),
 }
 
 void SnapshotPreview::start(QWidget *widget, const QPixmap &pixmap, bool soundOnly) {
-#ifdef APP_PHONON
+#ifdef MEDIA_QTAV
     if (!mediaObject) {
-        mediaObject = new Phonon::MediaObject(this);
-        audioOutput = new Phonon::AudioOutput(Phonon::NotificationCategory, this);
-        Phonon::createPath(mediaObject, audioOutput);
+        mediaObject = new MediaQtAV(this);
+        mediaObject->setAudioOnly(true);
+        mediaObject->init();
+        mediaObject->setBufferMilliseconds(500);
     }
-    mediaObject->setCurrentSource(QUrl("qrc:///sounds/snapshot.wav"));
-    mediaObject->play();
+#else
+    qFatal("No media backend defined");
 #endif
+    mediaObject->play("qrc:///sounds/snapshot.wav");
     if (soundOnly) return;
 
     resize(pixmap.size());
@@ -79,8 +80,10 @@ void SnapshotPreview::start(QWidget *widget, const QPixmap &pixmap, bool soundOn
     timeLine->start();
 #endif
     timer->start();
-    if (isVisible()) update();
-    else show();
+    if (isVisible())
+        update();
+    else
+        show();
 }
 
 void SnapshotPreview::paintEvent(QPaintEvent *e) {

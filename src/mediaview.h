@@ -21,13 +21,11 @@ $END_LICENSE */
 #ifndef __MEDIAVIEW_H__
 #define __MEDIAVIEW_H__
 
-#include <QtWidgets>
 #include <QtNetwork>
-#ifdef APP_PHONON
-#include <phonon/mediaobject.h>
-#include <phonon/videowidget.h>
-#include <phonon/seekslider.h>
-#endif
+#include <QtWidgets>
+
+#include "media.h"
+
 #include "view.h"
 
 class Video;
@@ -44,25 +42,22 @@ class SnapshotSettings;
 #endif
 
 class MediaView : public View {
-
     Q_OBJECT
 
 public:
-    static MediaView* instance();
+    static MediaView *instance();
     void initialize();
 
     void appear();
     void disappear();
 
-#ifdef APP_PHONON
-    void setMediaObject(Phonon::MediaObject *mediaObject);
-#endif
-    const QVector<VideoSource*> & getHistory() { return history; }
+    void setMedia(Media *media);
+    const QVector<VideoSource *> &getHistory() { return history; }
     int getHistoryIndex();
-    PlaylistModel* getPlaylistModel() { return playlistModel; }
+    PlaylistModel *getPlaylistModel() { return playlistModel; }
     const QString &getCurrentVideoId();
     void updateSubscriptionAction(Video *video, bool subscribed);
-    VideoAreaWidget* getVideoArea() { return videoAreaWidget; }
+    VideoAreaWidget *getVideoArea() { return videoAreaWidget; }
 
 public slots:
     void search(SearchParams *searchParams);
@@ -105,30 +100,22 @@ public slots:
 private slots:
     // list/model
     void itemActivated(const QModelIndex &index);
-    void selectionChanged (const QItemSelection & selected, const QItemSelection & deselected);
+    void selectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
     void activeRowChanged(int);
-    void selectVideos(const QVector<Video*> &videos);
+    void selectVideos(const QVector<Video *> &videos);
     void gotStreamUrl(QUrl streamUrl);
     void handleError(const QString &message);
-    // phonon
-#ifdef APP_PHONON
-    void stateChanged(Phonon::State newState, Phonon::State oldState);
-#endif
+    void stateChanged(Media::State state);
     void aboutToFinish();
-    void startPlaying();
-    void downloadStatusChanged();
     void playbackFinished();
     void playbackResume();
     void authorPushed(QModelIndex);
     void searchAgain();
-    void sliderMoved(int value);
-    qint64 offsetToTime(qint64 offset);
-    void startDownloading();
     void resumeWithNewStreamUrl(const QUrl &streamUrl);
 
 private:
     MediaView(QWidget *parent = 0);
-    SearchParams* getSearchParams();
+    SearchParams *getSearchParams();
 
     static QRegExp wordRE(const QString &s);
 
@@ -139,10 +126,8 @@ private:
     VideoAreaWidget *videoAreaWidget;
     LoadingWidget *loadingWidget;
 
-#ifdef APP_PHONON
-    Phonon::MediaObject *mediaObject;
-    Phonon::VideoWidget *videoWidget;
-#endif
+    Media *media;
+    QWidget *videoWidget;
 
     bool stopped;
     QTimer *errorTimer;
@@ -153,9 +138,11 @@ private:
     QTimer *demoTimer;
 #endif
 
+    // TODO remove
     DownloadItem *downloadItem;
-    QVector<VideoSource*> history;
-    QVector<QAction*> currentVideoActions;
+
+    QVector<VideoSource *> history;
+    QVector<QAction *> currentVideoActions;
 
     qint64 currentVideoSize;
 

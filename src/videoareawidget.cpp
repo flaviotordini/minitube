@@ -27,8 +27,8 @@ $END_LICENSE */
 #ifdef Q_OS_MAC
 #include "macutils.h"
 #endif
-#include "snapshotpreview.h"
 #include "fontutils.h"
+#include "snapshotpreview.h"
 
 namespace {
 
@@ -59,7 +59,7 @@ public:
         l->addWidget(msgLabel);
     }
 };
-}
+} // namespace
 
 VideoAreaWidget::VideoAreaWidget(QWidget *parent)
     : QWidget(parent), videoWidget(0), messageWidget(0) {

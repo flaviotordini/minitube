@@ -23,14 +23,9 @@ $END_LICENSE */
 
 #include <QtWidgets>
 
-#ifdef APP_PHONON
-#include <phonon/audiooutput.h>
-#include <phonon/mediaobject.h>
-#include <phonon/videowidget.h>
-#endif
+#include "media.h"
 
 class SnapshotPreview : public QWidget {
-
     Q_OBJECT
 
 public:
@@ -51,10 +46,7 @@ private:
     QTimeLine *timeLine;
     QPoint offset;
     QTimer *timer;
-#ifdef APP_PHONON
-    Phonon::MediaObject *mediaObject;
-    Phonon::AudioOutput *audioOutput;
-#endif
+    Media *mediaObject;
 };
 
 #endif // SNAPSHOTPREVIEW_H
