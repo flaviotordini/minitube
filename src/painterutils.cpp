@@ -22,22 +22,23 @@ $END_LICENSE */
 #include "fontutils.h"
 #include "iconutils.h"
 
-PainterUtils::PainterUtils() { }
+PainterUtils::PainterUtils() {}
 
-void PainterUtils::centeredMessage(const QString &message, QWidget* widget) {
+void PainterUtils::centeredMessage(const QString &message, QWidget *widget) {
     QPainter painter(widget);
     painter.setFont(FontUtils::big());
     QSize textSize(QFontMetrics(painter.font()).size(Qt::TextSingleLine, message));
-    QPoint topLeft(
-                (widget->width()-textSize.width())/2,
-                ((widget->height()-textSize.height())/2)
-                );
+    QPoint topLeft((widget->width() - textSize.width()) / 2,
+                   ((widget->height() - textSize.height()) / 2));
     QRect rect(topLeft, textSize);
     painter.setOpacity(.5);
     painter.drawText(rect, Qt::AlignCenter, message);
 }
 
-void PainterUtils::paintBadge(QPainter *painter, const QString &text, bool center, QColor backgroundColor) {
+void PainterUtils::paintBadge(QPainter *painter,
+                              const QString &text,
+                              bool center,
+                              QColor backgroundColor) {
     painter->save();
 
     QRect textBox = painter->boundingRect(QRect(), Qt::AlignCenter, text);
@@ -50,7 +51,7 @@ void PainterUtils::paintBadge(QPainter *painter, const QString &text, bool cente
     painter->setPen(Qt::NoPen);
     painter->setBrush(backgroundColor);
     painter->setRenderHint(QPainter::Antialiasing);
-    qreal borderRadius = rect.height()/2.;
+    qreal borderRadius = rect.height() / 2.;
     painter->drawRoundedRect(rect, borderRadius, borderRadius);
 
     painter->setPen(Qt::white);

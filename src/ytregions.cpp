@@ -19,6 +19,7 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "ytregions.h"
+#include "iconutils.h"
 
 YTRegions::YTRegions() : QObject() {}
 
@@ -122,6 +123,6 @@ const YTRegion &YTRegions::regionById(const QString &id) {
 }
 
 QIcon YTRegions::iconForRegionId(const QString &regionId) {
-    if (regionId.isEmpty()) return QIcon(":images/worldwide.png");
+    if (regionId.isEmpty()) return IconUtils::icon("worldwide");
     return QIcon(":flags/" + regionId.toLower() + ".png");
 }

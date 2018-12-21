@@ -141,7 +141,10 @@ void RefineSearchWidget::setupLabel(const QString &text,
     QLabel *icon = new QLabel(this);
     icon->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     QString resource = paramName;
-    QPixmap pixmap = IconUtils::icon("search-" + resource).pixmap(16, 16);
+    QByteArray iconName = QByteArrayLiteral("search-") + resource.toLatin1();
+    QPixmap pixmap = IconUtils::iconPixmap(iconName.constData(), 16, palette().window().color(),
+                                           devicePixelRatioF());
+
     /*
     QPixmap translucentPixmap(pixmap.size());
     translucentPixmap.fill(Qt::transparent);

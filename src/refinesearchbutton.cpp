@@ -33,13 +33,17 @@ RefineSearchButton::RefineSearchButton(QWidget *parent) : QPushButton(parent) {
 void RefineSearchButton::paintBackground() const {}
 
 void RefineSearchButton::paintEvent(QPaintEvent *) {
+    QColor backgroundColor = palette().windowText().color();
+    backgroundColor.setAlpha(hovered ? 192 : 170);
+
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing, true);
     painter.setPen(Qt::NoPen);
-    painter.setBrush(QColor(0, 0, 0, hovered ? 192 : 170));
+    painter.setBrush(backgroundColor);
     painter.drawEllipse(QPoint(width(), height()), width() - 2, height() - 2);
 
-    QPixmap pixmap = IconUtils::icon("refine-search").pixmap(24, 24);
+    QPixmap pixmap =
+            IconUtils::iconPixmap("refine-search", 24, backgroundColor, devicePixelRatioF());
     int pw = pixmap.width() / pixmap.devicePixelRatio();
     int ph = pixmap.height() / pixmap.devicePixelRatio();
     painter.drawPixmap(width() - pw - 6, height() - ph - 6, pw, ph, pixmap);

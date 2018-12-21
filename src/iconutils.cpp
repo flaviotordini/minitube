@@ -43,11 +43,12 @@ QIcon IconUtils::fromTheme(const QString &name) {
     return icon;
 }
 
-QIcon IconUtils::fromResources(const QString &name) {
-    QLatin1String active("_active");
-    QLatin1String selected("_selected");
-    QLatin1String disabled("_disabled");
-    QLatin1String checked("_checked");
+QIcon IconUtils::fromResources(const char *name) {
+    static const QLatin1String active("_active");
+    static const QLatin1String selected("_selected");
+    static const QLatin1String disabled("_disabled");
+    static const QLatin1String checked("_checked");
+    static const QLatin1String ext(".png");
 
     QString path(":/icons/");
 
@@ -56,12 +57,10 @@ QIcon IconUtils::fromResources(const QString &name) {
     else
         path += "dark/";
 
-    QLatin1String ext(".png");
-
     QIcon icon;
 
     // WARN keep these sizes updated with what we really use
-    for (int size : {16, 32}) {
+    for (int size : {16, 24, 32, 88}) {
         const QString pathAndName = path + QString::number(size) + '/' + name;
         // const QString pathAndName = path + name;
         QString iconFilename = pathAndName + ext;
@@ -76,7 +75,7 @@ QIcon IconUtils::fromResources(const QString &name) {
     return icon;
 }
 
-QIcon IconUtils::icon(const QString &name) {
+QIcon IconUtils::icon(const char *name) {
 #ifdef APP_LINUX
     QIcon icon = fromTheme(name);
     if (icon.isNull()) icon = fromResources(name);
@@ -86,16 +85,29 @@ QIcon IconUtils::icon(const QString &name) {
 #endif
 }
 
-QIcon IconUtils::icon(const QStringList &names) {
+QIcon IconUtils::icon(const QVector<const char *> &names) {
     QIcon icon;
-    for (const QString &name : names) {
+    for (auto name : names) {
         icon = IconUtils::icon(name);
         if (!icon.availableSizes().isEmpty()) break;
     }
     return icon;
 }
 
-QIcon IconUtils::tintedIcon(const QString &name, const QColor &color, const QVector<QSize> &sizes) {
+QPixmap IconUtils::iconPixmap(const char *name,
+                              int size,
+                              const QColor &background,
+                              const qreal pixelRatio) {
+    QString path(":/icons/");
+    if (background.value() > 128)
+        path += "light/";
+    else
+        path += "dark/";
+    path += QString::number(size) + '/' + name + QLatin1String(".png");
+    return IconUtils::pixmap(path, pixelRatio);
+}
+
+QIcon IconUtils::tintedIcon(const char *name, const QColor &color, const QVector<QSize> &sizes) {
     QIcon i = IconUtils::icon(name);
     QIcon t;
     // if (sizes.isEmpty()) sizes = i.availableSizes();
@@ -107,7 +119,7 @@ QIcon IconUtils::tintedIcon(const QString &name, const QColor &color, const QVec
     return t;
 }
 
-QIcon IconUtils::tintedIcon(const QString &name, const QColor &color, const QSize &size) {
+QIcon IconUtils::tintedIcon(const char *name, const QColor &color, const QSize &size) {
     return IconUtils::tintedIcon(name, color, QVector<QSize>() << size);
 }
 
@@ -139,12 +151,12 @@ void IconUtils::tint(QPixmap &pixmap, const QColor &color, QPainter::Composition
     painter.fillRect(pixmap.rect(), color);
 }
 
-QPixmap IconUtils::pixmap(const QString &name, const qreal pixelRatio) {
+QPixmap IconUtils::pixmap(const QString &filename, const qreal pixelRatio) {
     // Check if a "@2x" file exists
     if (pixelRatio > 1.0) {
-        int dotIndex = name.lastIndexOf(QLatin1Char('.'));
+        int dotIndex = filename.lastIndexOf(QLatin1Char('.'));
         if (dotIndex != -1) {
-            QString at2xfileName = name;
+            QString at2xfileName = filename;
             at2xfileName.insert(dotIndex, QLatin1String("@2x"));
             if (QFile::exists(at2xfileName)) {
                 QPixmap pixmap(at2xfileName);
@@ -153,5 +165,5 @@ QPixmap IconUtils::pixmap(const QString &name, const qreal pixelRatio) {
             }
         }
     }
-    return QPixmap(name);
+    return QPixmap(filename);
 }
