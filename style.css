@@ -17,7 +17,7 @@ QStatusBar QToolButton::menu-indicator {
 
 AppsWidget {
     background-color: palette(window);
-    border-top: 1px solid #808080;
+    border-top: 1px solid palette(mid);
 }
 
 RegionsView QPushButton[regionId] {
@@ -94,7 +94,7 @@ SearchView QPushButton[recentItem="true"]:hover {
 
 SearchView QPushButton[recentItem="true"]:pressed {
     background: palette(highlight);
-    color: white; /* SHOULD BE color: palette(highlightText); */
+    color: palette(highlight-text);
 }
 
 SearchView QPushButton[recentItem="true"]:focus {
