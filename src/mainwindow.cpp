@@ -1150,7 +1150,7 @@ void MainWindow::showMedia(VideoSource *videoSource) {
 void MainWindow::stateChanged(Media::State newState) {
     qDebug() << newState;
 
-    seekSlider->setEnabled(newState == Media::PlayingState || newState == Media::PausedState);
+    seekSlider->setEnabled(newState != Media::StoppedState);
 
     switch (newState) {
     case Media::ErrorState:
