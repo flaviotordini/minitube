@@ -60,6 +60,7 @@ $END_LICENSE */
 #endif
 #include <iostream>
 #ifdef APP_EXTRA
+#include "compositefader.h"
 #include "extra.h"
 #include "updatedialog.h"
 #endif
@@ -961,7 +962,9 @@ void MainWindow::goBack() {
 }
 
 void MainWindow::showWidget(QWidget *widget, bool transition) {
-    Q_UNUSED(transition);
+#ifdef APP_MAC
+    if (transition && !history.isEmpty()) CompositeFader::go(this, this->grab());
+#endif
 
     setUpdatesEnabled(false);
 
