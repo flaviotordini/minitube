@@ -1526,18 +1526,17 @@ void MainWindow::initMedia() {
     connect(media, &Media::positionChanged, this, &MainWindow::tick);
 
     connect(seekSlider, &QSlider::sliderMoved, this, [this](int value) {
-        // if (media->state() != Media::PlayingState) return;
         // value : maxValue = posit ion : duration
         qint64 ms = (value * media->duration()) / seekSlider->maximum();
         qDebug() << "Seeking to" << ms;
         media->seek(ms);
+        if (media->state() == Media::PausedState) media->play();
     });
     connect(seekSlider, &QSlider::sliderPressed, this, [this]() {
-        // if (media->state() != Media::PlayingState) return;
         // value : maxValue = position : duration
         qint64 ms = (seekSlider->value() * media->duration()) / seekSlider->maximum();
-        if (media->state() == Media::PausedState) media->pause();
         media->seek(ms);
+        if (media->state() == Media::PausedState) media->play();
     });
     connect(media, &Media::started, this, [this]() { seekSlider->setValue(0); });
 
