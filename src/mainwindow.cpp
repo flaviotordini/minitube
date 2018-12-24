@@ -104,8 +104,9 @@ MainWindow::MainWindow()
 #endif
 
     messageLabel = new QLabel();
-    messageLabel->setWindowFlags(Qt::ToolTip | Qt::FramelessWindowHint);
-    messageLabel->setStyleSheet("padding:5px;border:1px solid #808080;background:palette(window)");
+    messageLabel->setWindowFlags(Qt::ToolTip | Qt::FramelessWindowHint |
+                                 Qt::NoDropShadowWindowHint);
+    messageLabel->setStyleSheet("padding:5px;border:0;background:palette(window)");
     messageLabel->hide();
     adjustMessageLabelPosition();
     messageTimer = new QTimer(this);
