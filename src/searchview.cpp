@@ -29,6 +29,9 @@ $END_LICENSE */
 #else
 #include "searchlineedit.h"
 #endif
+#ifdef APP_MAC
+#include "macutils.h"
+#endif
 #ifdef APP_EXTRA
 #include "extra.h"
 #endif
@@ -47,6 +50,12 @@ static const QString recentChannelsKey = "recentChannels";
 } // namespace
 
 SearchView::SearchView(QWidget *parent) : View(parent) {
+#ifdef APP_MAC
+    QPalette p = palette();
+    p.setColor(QPalette::Highlight, mac::accentColor());
+    setPalette(p);
+#endif
+
     const int padding = 30;
 
     // speedup painting since we'll paint the whole background
@@ -192,7 +201,6 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     recentKeywordsLayout->setSpacing(0);
     recentKeywordsLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     recentKeywordsLabel = new QLabel(tr("Recent keywords"));
-    recentKeywordsLabel->setEnabled(false);
     recentKeywordsLabel->setProperty("recentHeader", true);
     recentKeywordsLabel->hide();
     recentKeywordsLayout->addWidget(recentKeywordsLabel);
@@ -203,7 +211,6 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     recentChannelsLayout->setSpacing(0);
     recentChannelsLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     recentChannelsLabel = new QLabel(tr("Recent channels"));
-    recentChannelsLabel->setEnabled(false);
     recentChannelsLabel->setProperty("recentHeader", true);
     recentChannelsLabel->hide();
     recentChannelsLayout->addWidget(recentChannelsLabel);
@@ -223,6 +230,8 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 }
 
 void SearchView::appear() {
+    setUpdatesEnabled(false);
+
     MainWindow *w = MainWindow::instance();
     w->showActionInStatusBar(w->getAction("manualplay"), true);
     w->showActionInStatusBar(w->getAction("safeSearch"), true);
@@ -238,20 +247,18 @@ void SearchView::appear() {
     connect(window()->windowHandle(), SIGNAL(screenChanged(QScreen *)), SLOT(screenChanged()),
             Qt::UniqueConnection);
 
-    qApp->processEvents();
-    update();
-
-#ifdef APP_MAC
-    // Workaround cursor bug on macOS
-    window()->unsetCursor();
-#endif
+    setUpdatesEnabled(true);
 }
 
 void SearchView::disappear() {
+    setUpdatesEnabled(false);
+
     MainWindow *w = MainWindow::instance();
     w->showActionInStatusBar(w->getAction("safeSearch"), false);
     w->showActionInStatusBar(w->getAction("definition"), false);
     w->showActionInStatusBar(w->getAction("manualplay"), false);
+
+    setUpdatesEnabled(true);
 }
 
 void SearchView::updateRecentKeywords() {
@@ -263,7 +270,7 @@ void SearchView::updateRecentKeywords() {
 
     // cleanup
     QLayoutItem *item;
-    while ((item = recentKeywordsLayout->takeAt(1)) != 0) {
+    while ((item = recentKeywordsLayout->takeAt(1)) != nullptr) {
         item->widget()->close();
         delete item;
     }
@@ -284,22 +291,20 @@ void SearchView::updateRecentKeywords() {
                 display = keyword.mid(separator + 1);
             }
         }
-        bool needStatusTip = false;
-        if (display.length() > maxDisplayLength) {
+        bool needStatusTip = display.length() > maxDisplayLength;
+        if (needStatusTip) {
             display.truncate(maxDisplayLength);
             display.append(QStringLiteral("\u2026"));
-            needStatusTip = true;
         }
-        QPushButton *itemButton = new QPushButton(display);
-        itemButton->setAttribute(Qt::WA_DeleteOnClose);
-        itemButton->setProperty("recentItem", true);
-        itemButton->setCursor(Qt::PointingHandCursor);
-        itemButton->setFocusPolicy(Qt::TabFocus);
-        itemButton->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
-        if (needStatusTip) itemButton->setStatusTip(link);
-        connect(itemButton, &QPushButton::clicked, [this, link]() { watchKeywords(link); });
 
-        recentKeywordsLayout->addWidget(itemButton);
+        ClickableLabel *item = new ClickableLabel(display);
+        item->setAttribute(Qt::WA_DeleteOnClose);
+        item->setProperty("recentItem", true);
+        item->setFocusPolicy(Qt::TabFocus);
+        if (needStatusTip) item->setStatusTip(link);
+        connect(item, &ClickableLabel::clicked, [this, link]() { watchKeywords(link); });
+
+        recentKeywordsLayout->addWidget(item);
     }
 }
 
@@ -312,7 +317,7 @@ void SearchView::updateRecentChannels() {
 
     // cleanup
     QLayoutItem *item;
-    while ((item = recentChannelsLayout->takeAt(1)) != 0) {
+    while ((item = recentChannelsLayout->takeAt(1)) != nullptr) {
         item->widget()->close();
         delete item;
     }
@@ -329,14 +334,14 @@ void SearchView::updateRecentChannels() {
             link = keyword.left(separator);
             display = keyword.mid(separator + 1);
         }
-        QPushButton *itemButton = new QPushButton(display);
-        itemButton->setAttribute(Qt::WA_DeleteOnClose);
-        itemButton->setProperty("recentItem", true);
-        itemButton->setCursor(Qt::PointingHandCursor);
-        itemButton->setFocusPolicy(Qt::TabFocus);
-        itemButton->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
-        connect(itemButton, &QPushButton::clicked, [this, link]() { watchChannel(link); });
-        recentChannelsLayout->addWidget(itemButton);
+
+        ClickableLabel *item = new ClickableLabel(display);
+        item->setAttribute(Qt::WA_DeleteOnClose);
+        item->setProperty("recentItem", true);
+        item->setFocusPolicy(Qt::TabFocus);
+        connect(item, &ClickableLabel::clicked, [this, link]() { watchChannel(link); });
+
+        recentChannelsLayout->addWidget(item);
     }
 }
 

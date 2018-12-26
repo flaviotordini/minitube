@@ -75,29 +75,27 @@ SidebarHeader QComboBox::drop-down {
     border-style: none;
 }
 
-SearchView QLabel[recentHeader="true"] {
-    margin-left: -3px;
-    margin-bottom: 4px;
-    padding: 0;
-}
-
-SearchView QPushButton[recentItem="true"] {
+SearchView *[recentHeader="true"] {
     border: 0;
-    padding: 4px;
-    text-align: left;
-    outline: 0;
+    padding: 4px 0;
+    color: palette(mid);
 }
 
-SearchView QPushButton[recentItem="true"]:hover {
-    background: rgba(0,0,0,16);
+SearchView *[recentItem="true"] {
+    border: 0;
+    padding: 4px 0;
 }
 
-SearchView QPushButton[recentItem="true"]:pressed {
+SearchView *[recentItem="true"]:hover {
+    color: palette(highlight);
+}
+
+SearchView *[recentItem="true"]:pressed {
     background: palette(highlight);
     color: palette(highlight-text);
 }
 
-SearchView QPushButton[recentItem="true"]:focus {
+SearchView *[recentItem="true"]:focus {
     outline: 1px solid palette(highlight);
     outline-offset: 4px;
 }
