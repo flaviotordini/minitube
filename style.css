@@ -29,12 +29,8 @@ RegionsView QPushButton[regionId] {
     border-radius: 3px;
 }
 
-RegionsView QPushButton[regionId=""] {
-
-}
-
 RegionsView QPushButton[regionId]:hover {
-    background: rgba(0,0,0,16);
+    background: palette(mid);
 }
 
 RegionsView QPushButton[regionId]:focus {
@@ -44,7 +40,7 @@ RegionsView QPushButton[regionId]:focus {
 }
 
 RegionsView QPushButton[regionId]:checked {
-    background: rgba(0,0,0,32)
+    background: palette(mid);
 }
 
 SidebarHeader {

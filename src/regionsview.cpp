@@ -19,8 +19,8 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "regionsview.h"
-#include "ytregions.h"
 #include "mainwindow.h"
+#include "ytregions.h"
 
 RegionsView::RegionsView(QWidget *parent) : View(parent) {
     QBoxLayout *l = new QVBoxLayout(this);
@@ -33,7 +33,7 @@ RegionsView::RegionsView(QWidget *parent) : View(parent) {
     l->addLayout(layout);
 
     addRegion(YTRegions::worldwideRegion());
-    foreach(YTRegion region, YTRegions::list())
+    foreach (YTRegion region, YTRegions::list())
         addRegion(region);
 
     doneButton = new QPushButton(tr("Done"));
@@ -67,7 +67,7 @@ void RegionsView::appear() {
     QString currentRegionId = YTRegions::currentRegionId();
     for (int i = 0; i < layout->count(); i++) {
         QLayoutItem *item = layout->itemAt(i);
-        QPushButton *b = static_cast<QPushButton*>(item->widget());
+        QPushButton *b = static_cast<QPushButton *>(item->widget());
         QString regionId = b->property("regionId").toString();
         b->setChecked(currentRegionId == regionId);
     }
@@ -77,7 +77,7 @@ void RegionsView::paintEvent(QPaintEvent *e) {
     QWidget::paintEvent(e);
     QBrush brush;
     if (window()->isActiveWindow()) {
-        brush = Qt::white;
+        brush = palette().base();
     } else {
         brush = palette().window();
     }
@@ -87,7 +87,7 @@ void RegionsView::paintEvent(QPaintEvent *e) {
 }
 
 void RegionsView::buttonClicked() {
-    QObject* o = sender();
+    QObject *o = sender();
     QString regionId = o->property("regionId").toString();
     YTRegions::setRegion(regionId);
     emit regionChanged();
