@@ -212,8 +212,7 @@ void PlaylistItemDelegate::paintBody(QPainter *painter,
 
         // view count
         if (video->getViewCount() > 0) {
-            QLocale locale;
-            const QString viewCount = tr("%1 views").arg(locale.toString(video->getViewCount()));
+            const QString &viewCount = video->getFormattedViewCount();
             textPoint.setX(textBox.right() + padding);
             textSize = QSize(fontMetrics.size(Qt::TextSingleLine, viewCount));
             if (elided || textPoint.x() + textSize.width() > line.width() - padding) {
