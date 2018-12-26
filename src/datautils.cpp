@@ -93,3 +93,27 @@ QString DataUtils::formatDuration(uint secs) {
     if (hours == 0) return res.sprintf("%d:%02d", minutes, seconds);
     return res.sprintf("%d:%02d:%02d", hours, minutes, seconds);
 }
+
+QString DataUtils::formatCount(int c) {
+    QString s;
+    int f = 1;
+    if (c < 1) {
+        return s;
+    } else if (c < (f *= 1000)) {
+        s = QString::number(c);
+    } else if (c < (f *= 1000)) {
+        int n = c / 1000;
+        s = QString::number(n) +
+            QCoreApplication::translate("DataUtils", "K", "K as in Kilo, i.e. thousands");
+    } else if (c < (f *= 1000)) {
+        int n = c / (1000 * 1000);
+        s = QString::number(n) +
+            QCoreApplication::translate("DataUtils", "M", "M stands for Millions");
+    } else {
+        int n = c / (1000 * 1000 * 1000);
+        s = QString::number(n) +
+            QCoreApplication::translate("DataUtils", "B", "B stands for Billions");
+    }
+
+    return QCoreApplication::translate("DataUtils", "%1 views").arg(s);
+}

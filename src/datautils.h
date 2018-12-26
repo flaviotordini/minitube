@@ -4,7 +4,6 @@
 #include <QtCore>
 
 class DataUtils {
-
 public:
     static QString stringToFilename(const QString &s);
     static QString regioneCode(const QLocale &locale);
@@ -12,10 +11,10 @@ public:
     static uint parseIsoPeriod(const QString &isoPeriod);
     static QString formatDateTime(const QDateTime &dt);
     static QString formatDuration(uint secs);
+    static QString formatCount(int c);
 
 private:
-    DataUtils() { }
-
+    DataUtils() {}
 };
 
 #endif // DATAUTILS_H

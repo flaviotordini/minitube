@@ -69,7 +69,8 @@ public:
     const QString &getFormattedDuration() const { return formattedDuration; }
 
     int getViewCount() const { return viewCount; }
-    void setViewCount(int value) { viewCount = value; }
+    void setViewCount(int value);
+    const QString &getFormattedViewCount() const { return formattedViewCount; }
 
     const QDateTime &getPublished() const { return published; }
     void setPublished(const QDateTime &value);
@@ -114,6 +115,7 @@ private:
     QDateTime published;
     QString formattedPublished;
     int viewCount;
+    QString formattedViewCount;
     License license;
     QString id;
     int definitionCode;
