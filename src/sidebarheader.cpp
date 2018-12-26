@@ -39,7 +39,7 @@ void SidebarHeader::setup() {
     connect(backAction, SIGNAL(triggered()), MediaView::instance(), SLOT(goBack()));
     addAction(backAction);
 
-    forwardAction = new QAction(IconUtils::icon("go-next"), tr("&Back"), this);
+    forwardAction = new QAction(IconUtils::icon("go-next"), tr("&Forward"), this);
     forwardAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Right));
     connect(forwardAction, SIGNAL(triggered()), MediaView::instance(), SLOT(goForward()));
     addAction(forwardAction);
