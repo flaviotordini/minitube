@@ -157,7 +157,7 @@ void PlaylistItemDelegate::paintBody(QPainter *painter,
         QStringRef title(&video->getTitle());
         QString elidedTitle = video->getTitle();
         static const int titleFlags = Qt::AlignTop | Qt::TextWordWrap;
-        QRect textBox = line.adjusted(padding + thumbWidth, padding, 0, 0);
+        QRect textBox = line.adjusted(padding + thumbWidth, padding, -padding, 0);
         textBox = painter->boundingRect(textBox, titleFlags, elidedTitle);
         while (textBox.height() > 55 && elidedTitle.length() > 10) {
 #if QT_VERSION < QT_VERSION_CHECK(5, 6, 0)
@@ -201,7 +201,7 @@ void PlaylistItemDelegate::paintBody(QPainter *painter,
             textSize = QSize(painter->fontMetrics().size(Qt::TextSingleLine, author));
             textBox = QRect(textPoint, textSize);
             authorRects.insert(index.row(), textBox);
-            if (textBox.right() > line.width()) {
+            if (textBox.right() > line.width() - padding) {
                 textBox.setRight(line.width());
                 elided = drawElidedText(painter, textBox, flags, author);
             } else {
