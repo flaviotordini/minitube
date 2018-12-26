@@ -99,7 +99,7 @@ void PlaylistItemDelegate::createPlayIcon() {
 
 QSize PlaylistItemDelegate::sizeHint(const QStyleOptionViewItem & /*option*/,
                                      const QModelIndex & /*index*/) const {
-    return QSize(thumbWidth, thumbHeight + 1);
+    return QSize(thumbWidth, thumbHeight);
 }
 
 void PlaylistItemDelegate::paint(QPainter *painter,
@@ -133,12 +133,6 @@ void PlaylistItemDelegate::paintBody(QPainter *painter,
 
     // draw the "current track" highlight underneath the text
     if (isActive && !isSelected) paintActiveOverlay(painter, option, line);
-
-    // separator
-    painter->setPen(option.palette.color(QPalette::Midlight));
-    painter->drawLine(thumbWidth, thumbHeight, option.rect.width(), thumbHeight);
-    if (!video->getThumbnail().isNull()) painter->setPen(Qt::black);
-    painter->drawLine(0, thumbHeight, thumbWidth - 1, thumbHeight);
 
     // thumb
     painter->drawPixmap(0, 0, video->getThumbnail());
