@@ -894,9 +894,11 @@ void MainWindow::showActionInStatusBar(QAction *action, bool show) {
 }
 
 void MainWindow::setStatusBarVisibility(bool show) {
-    statusBar()->setVisible(show);
-    if (views->currentWidget() == mediaView)
-        QTimer::singleShot(0, mediaView, SLOT(adjustWindowSize()));
+    if (statusBar()->isVisible() != show) {
+        statusBar()->setVisible(show);
+        if (views->currentWidget() == mediaView)
+            QTimer::singleShot(0, mediaView, SLOT(adjustWindowSize()));
+    }
 }
 
 void MainWindow::adjustStatusBarVisibility() {
