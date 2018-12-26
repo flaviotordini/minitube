@@ -55,7 +55,12 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
     aboutlayout->setSpacing(padding);
 
     logo = new ClickableLabel();
-    logo->setPixmap(IconUtils::pixmap(":/images/app.png", devicePixelRatioF()));
+    auto setLogoPixmap = [this] {
+        logo->setPixmap(IconUtils::pixmap(":/images/app.png", logo->devicePixelRatioF()));
+    };
+    setLogoPixmap();
+    connect(window()->windowHandle(), &QWindow::screenChanged, this, setLogoPixmap);
+
     connect(logo, &ClickableLabel::clicked, MainWindow::instance(), &MainWindow::visitSite);
     aboutlayout->addWidget(logo, 0, Qt::AlignTop);
 
@@ -64,20 +69,34 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
     layout->setSpacing(padding);
     aboutlayout->addLayout(layout);
 
-    QString css = "a { color: palette(text); text-decoration: none; font-weight: bold } h1 { "
-                  "font-weight: 300 }";
+    QColor lightTextColor = palette().text().color();
+#ifdef APP_MAC
+    lightTextColor.setAlphaF(.75);
+#endif
+#ifdef APP_MAC
+    QColor linkColor = mac::accentColor();
+#else
+    QColor linkColor = palette().highlight().color();
+#endif
 
-    QString info = "<html><style>" + css +
-                   "</style><body>"
-                   "<h1>" +
-                   QString(Constants::NAME) +
-                   "</h1>"
-                   "<p>" +
-                   tr("There's life outside the browser!") +
-                   "</p>"
-                   "<p>" +
-                   tr("Version %1").arg(Constants::VERSION) + "</p>" +
-                   QString("<p><a href=\"%1/\">%1</a></p>").arg(Constants::WEBSITE);
+    QString info = "<html><style>"
+                   "body { color: " +
+                   lightTextColor.name(QColor::HexArgb) +
+                   "; } "
+                   "h1 { color: palette(text); font-weight: 100; } "
+                   "a { color: " +
+                   linkColor.name(QColor::HexArgb) +
+                   "; text-decoration: none; font-weight: normal; }"
+                   "</style><body>";
+
+    info += "<h1>" + QString(Constants::NAME) +
+            "</h1>"
+            "<p>" +
+            tr("There's life outside the browser!") +
+            "</p>"
+            "<p>" +
+            tr("Version %1").arg(Constants::VERSION) + "</p>" +
+            QString("<p><a href=\"%1/\">%1</a></p>").arg(Constants::WEBSITE);
 
 #ifdef APP_ACTIVATION
     QString email = Activation::instance().getEmail();
@@ -99,9 +118,15 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
                     .arg(Constants::NAME)
                     .arg("<a href='http://www.transifex.net/projects/p/" +
                          QString(Constants::UNIX_NAME) + "/'>Transifex</a>") +
-            "</p>"
+            "</p>";
 
-            "<p>" +
+    info += "<p>" +
+            tr("Powered by %1")
+                    .arg("<a href='https://" + QLatin1String(Constants::ORG_DOMAIN) +
+                         "/opensource'>" + tr("Open-source software") + "</a>") +
+            "</p>";
+
+    info += "<p>" +
             tr("Icon designed by %1.").arg("<a href='http://www.kolorguild.co.za/'>David Nel</a>") +
             "</p>"
 
@@ -138,8 +163,6 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
 
 void AboutView::appear() {
     closeButton->setFocus();
-    connect(window()->windowHandle(), SIGNAL(screenChanged(QScreen *)), SLOT(screenChanged()),
-            Qt::UniqueConnection);
 }
 
 void AboutView::paintEvent(QPaintEvent *event) {
@@ -153,8 +176,4 @@ void AboutView::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     painter.fillRect(0, 0, width(), height(), brush);
     painter.end();
-}
-
-void AboutView::screenChanged() {
-    logo->setPixmap(IconUtils::pixmap(":/images/app.png", devicePixelRatioF()));
 }
