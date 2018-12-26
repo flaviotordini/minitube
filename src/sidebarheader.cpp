@@ -110,10 +110,9 @@ void SidebarHeader::setTitle(const QString &title) {
 }
 
 void SidebarHeader::paintEvent(QPaintEvent *event) {
-    QToolBar::paintEvent(event);
     if (title.isEmpty()) return;
     QPainter p(this);
-    p.setPen(Qt::white);
+    p.setPen(palette().windowText().color());
 
     const QRect r = rect();
 
