@@ -96,6 +96,7 @@ void MediaView::initialize() {
 
     sidebar = new SidebarWidget(this);
     sidebar->setPlaylist(playlistView);
+    sidebar->setMaximumWidth(playlistView->minimumWidth() * 3);
     connect(sidebar->getRefineSearchWidget(), SIGNAL(searchRefined()), SLOT(searchAgain()));
     connect(playlistModel, SIGNAL(haveSuggestions(const QStringList &)), sidebar,
             SLOT(showSuggestions(const QStringList &)));
