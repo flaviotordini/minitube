@@ -158,7 +158,7 @@ private:
     void createMenus();
     void createToolBars();
     void createStatusBar();
-    void showWidget(QWidget *, bool transition = true);
+    void showWidget(QWidget *, bool transition = false);
     static QString formatTime(qint64 duration);
     bool confirmQuit();
     void simpleUpdateDialog(const QString &version);
