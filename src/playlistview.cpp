@@ -19,12 +19,11 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "playlistview.h"
-#include "playlistmodel.h"
-#include "playlistitemdelegate.h"
 #include "painterutils.h"
+#include "playlistitemdelegate.h"
+#include "playlistmodel.h"
 
-PlaylistView::PlaylistView(QWidget *parent) : QListView(parent),
-    clickableAuthors(true) {
+PlaylistView::PlaylistView(QWidget *parent) : QListView(parent), clickableAuthors(true) {
     setItemDelegate(new PlaylistItemDelegate(this));
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
@@ -49,8 +48,7 @@ PlaylistView::PlaylistView(QWidget *parent) : QListView(parent),
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setUniformItemSizes(true);
 
-    connect(this, SIGNAL(entered(const QModelIndex &)),
-            SLOT(itemEntered(const QModelIndex &)));
+    connect(this, SIGNAL(entered(const QModelIndex &)), SLOT(itemEntered(const QModelIndex &)));
     setMouseTracking(true);
 }
 
@@ -92,7 +90,7 @@ void PlaylistView::mousePressEvent(QMouseEvent *event) {
 void PlaylistView::mouseReleaseEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
         QMetaObject::invokeMethod(model(), "exitAuthorPressed");
-        const QModelIndex index =  indexAt(event->pos());
+        const QModelIndex index = indexAt(event->pos());
         if (isHoveringThumbnail(event)) {
             emit activated(index);
             unsetCursor();
@@ -136,6 +134,5 @@ bool PlaylistView::isHoveringThumbnail(QMouseEvent *event) {
 }
 
 bool PlaylistView::isShowMoreItem(const QModelIndex &index) {
-    return model()->rowCount() > 1 &&
-            model()->rowCount() == index.row() + 1;
+    return model()->rowCount() > 1 && model()->rowCount() == index.row() + 1;
 }
