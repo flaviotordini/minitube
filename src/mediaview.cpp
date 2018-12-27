@@ -958,6 +958,7 @@ void MediaView::adjustWindowSize() {
         const double h = (double)videoAreaWidget->height();
         const double currentVideoRatio = w / h;
         if (currentVideoRatio != ratio) {
+            qDebug() << "Adjust size";
             int newHeight = std::round((window->height() - h) + (w / ratio));
             window->resize(window->width(), newHeight);
         }
