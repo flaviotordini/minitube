@@ -1032,8 +1032,6 @@ void MainWindow::showWidget(QWidget *widget, bool transition) {
         */
     }
 
-    setUpdatesEnabled(true);
-
 #ifdef APP_MAC
     // Workaround cursor bug on macOS
     unsetCursor();
@@ -1042,6 +1040,8 @@ void MainWindow::showWidget(QWidget *widget, bool transition) {
 
     history.push(widget);
     emit viewChanged();
+
+    setUpdatesEnabled(true);
 }
 
 void MainWindow::about() {
