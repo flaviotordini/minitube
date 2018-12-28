@@ -1,3 +1,7 @@
+<p align="center">
+<img src="https://flavio.tordini.org/files/products/minitube.png">
+</p>
+
 # Minitube
 Minitube is a YouTube desktop application. It is written in C++ using the Qt framework. Contributing is welcome, especially in the Linux desktop integration area.
 
@@ -13,26 +17,28 @@ The key must be specified at compile time as shown below.
 Alternatively Minitube can read an API key from the GOOGLE_API_KEY environment variable.
 
 ## Build instructions
-To compile Minitube you need at least Qt 5.0. The following Qt modules are needed: core, gui, widgets, network, sql (using the Sqlite plugin), declarative, dbus.
+To compile Minitube you need at least Qt 5.6. The following Qt modules are needed: core, gui, widgets, network, sql (using the Sqlite plugin), declarative, dbus.
 
 To be able to build on a Debian (or derivative) system:
 
-    $ sudo apt-get install build-essential qttools5-dev-tools qt5-qmake  qtdeclarative5-dev libphonon4qt5-dev libqt5sql5-sqlite qt5-default
+    sudo apt install build-essential qttools5-dev-tools qt5-qmake  qtdeclarative5-dev libqt5sql5-sqlite qt5-default libqtav-dev
+
+Clone from Github:
+
+    git clone --recursive https://github.com/flaviotordini/minitube.git
 
 Compiling:
 
-    $ qmake "DEFINES += APP_GOOGLE_API_KEY=YourAPIKeyHere"
-    $ make
-
-Beware of the Qt 4 version of qmake!
+    qmake "DEFINES += APP_GOOGLE_API_KEY=YourAPIKeyHere"
+    make
 
 Running:
 
-	$ build/target/minitube
+    build/target/minitube
 	
 Installing on Linux:
 
-    $ sudo make install
+    sudo make install
 
 This is for packagers. End users should not install applications in this way.
 
