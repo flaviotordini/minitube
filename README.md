@@ -35,16 +35,12 @@ Compiling:
 Running:
 
     build/target/minitube
-	
+
 Installing on Linux:
 
     sudo make install
 
 This is for packagers. End users should not install applications in this way.
-
-## A word about Phonon on Linux
-To be able to actually watch videos you need a working Phonon setup.
-Please don't report bugs about this, ask for help on your distribution support channels.
 
 ## Legal Stuff
 Copyright (C) Flavio Tordini
