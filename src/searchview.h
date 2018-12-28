@@ -33,7 +33,6 @@ class Suggestion;
 class ClickableLabel;
 
 class SearchView : public View {
-
     Q_OBJECT
 
 public:
@@ -49,7 +48,7 @@ public slots:
     void watchKeywords(const QString &query);
 
 signals:
-    void search(SearchParams*);
+    void search(SearchParams *);
 
 protected:
     void paintEvent(QPaintEvent *);
@@ -59,8 +58,7 @@ private slots:
     void textChanged(const QString &text);
     void searchTypeChanged(int index);
     void suggestionAccepted(Suggestion *suggestion);
-    void screenChanged();
-    void onChannelSuggestions(const QVector<Suggestion*> &suggestions);
+    void onChannelSuggestions(const QVector<Suggestion *> &suggestions);
 
 private:
     YTSuggester *youtubeSuggest;
@@ -78,7 +76,7 @@ private:
     QStringList recentKeywords;
     QStringList recentChannels;
 
-    QVector<Suggestion*> lastChannelSuggestions;
+    QVector<Suggestion *> lastChannelSuggestions;
 
     ClickableLabel *logo;
 };

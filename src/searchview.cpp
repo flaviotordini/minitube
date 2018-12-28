@@ -80,8 +80,12 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 
     hLayout->addStretch();
 
-    logo = new ClickableLabel(this);
-    logo->setPixmap(IconUtils::pixmap(":/images/app.png", devicePixelRatioF()));
+    logo = new ClickableLabel();
+    auto setLogoPixmap = [this] {
+        logo->setPixmap(IconUtils::pixmap(":/images/app.png", logo->devicePixelRatioF()));
+    };
+    setLogoPixmap();
+    connect(window()->windowHandle(), &QWindow::screenChanged, this, setLogoPixmap);
     connect(logo, &ClickableLabel::clicked, MainWindow::instance(), &MainWindow::visitSite);
     hLayout->addWidget(logo, 0, Qt::AlignTop);
     hLayout->addSpacing(padding);
@@ -447,10 +451,6 @@ void SearchView::suggestionAccepted(Suggestion *suggestion) {
         watchChannel(suggestion->userData);
     } else
         watch(suggestion->value);
-}
-
-void SearchView::screenChanged() {
-    logo->setPixmap(IconUtils::pixmap(":/images/app.png", devicePixelRatioF()));
 }
 
 void SearchView::onChannelSuggestions(const QVector<Suggestion *> &suggestions) {
