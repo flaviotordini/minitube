@@ -75,7 +75,7 @@ void LoadingWidget::setVideo(Video *video) {
     titleLabel->setText(title);
     titleLabel->setVisible(window()->height() > 100);
 
-    const int maxDescLength = 400;
+    const int maxDescLength = 500;
 
     QString videoDesc = video->getDescription();
     if (videoDesc.length() > maxDescLength) {
