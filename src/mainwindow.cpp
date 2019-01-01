@@ -947,7 +947,7 @@ void MainWindow::writeSettings() {
 
     if (!isReallyFullScreen()) {
         settings.setValue("geometry", saveGeometry());
-        mediaView->saveSplitterState();
+        if (mediaView) mediaView->saveSplitterState();
     }
 
     settings.setValue("manualplay", getAction("manualplay")->isChecked());
