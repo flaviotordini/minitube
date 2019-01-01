@@ -923,8 +923,9 @@ void MainWindow::showToolbar() {
 
 void MainWindow::readSettings() {
     QSettings settings;
-    if (settings.contains("geometry")) {
-        restoreGeometry(settings.value("geometry").toByteArray());
+    QByteArray geometrySettings = settings.value("geometry").toByteArray();
+    if (!geometrySettings.isEmpty()) {
+        restoreGeometry(geometrySettings);
     } else {
         const QRect desktopSize = qApp->desktop()->availableGeometry();
         int w = desktopSize.width() * .9;
