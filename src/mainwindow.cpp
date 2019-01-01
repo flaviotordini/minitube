@@ -1026,11 +1026,6 @@ void MainWindow::showWidget(QWidget *widget, bool transition) {
         newView->appear();
 
         statusToolBar->setUpdatesEnabled(true);
-
-        /*
-        QString desc = metadata.value("description").toString();
-        if (!desc.isEmpty()) showMessage(desc);
-        */
     }
 
 #ifdef APP_MAC
