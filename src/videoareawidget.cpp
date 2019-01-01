@@ -129,8 +129,8 @@ void VideoAreaWidget::showPickMessage() {
 void VideoAreaWidget::showLoading(Video *video) {
     messageLabel->hide();
     messageLabel->clear();
-    stackedLayout->setCurrentWidget(loadingWidget);
     loadingWidget->setVideo(video);
+    stackedLayout->setCurrentWidget(loadingWidget);
 }
 
 #ifdef APP_SNAPSHOT
