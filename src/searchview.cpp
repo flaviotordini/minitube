@@ -248,9 +248,6 @@ void SearchView::appear() {
     queryEdit->enableSuggest();
     if (!queryEdit->toWidget()->hasFocus()) queryEdit->toWidget()->setFocus();
 
-    connect(window()->windowHandle(), SIGNAL(screenChanged(QScreen *)), SLOT(screenChanged()),
-            Qt::UniqueConnection);
-
     setUpdatesEnabled(true);
 }
 
