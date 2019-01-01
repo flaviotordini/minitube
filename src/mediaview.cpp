@@ -58,10 +58,10 @@ MediaView *MediaView::instance() {
 }
 
 MediaView::MediaView(QWidget *parent)
-    : View(parent), stopped(false), downloadItem(0)
+    : View(parent), splitter(nullptr), stopped(false), downloadItem(nullptr)
 #ifdef APP_SNAPSHOT
       ,
-      snapshotSettings(0)
+      snapshotSettings(nullptr)
 #endif
       ,
       pauseTime(0) {
@@ -698,7 +698,7 @@ bool MediaView::isSidebarVisible() {
 
 void MediaView::saveSplitterState() {
     QSettings settings;
-    settings.setValue("splitter", splitter->saveState());
+    if (splitter) settings.setValue("splitter", splitter->saveState());
 }
 
 void MediaView::downloadVideo() {
@@ -949,6 +949,7 @@ void MediaView::toggleSubscription() {
 }
 
 void MediaView::adjustWindowSize() {
+    qDebug() << "Adjusting window size";
     Video *video = playlistModel->activeVideo();
     if (!video) return;
     QWidget *window = this->window();
