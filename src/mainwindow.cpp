@@ -1523,6 +1523,7 @@ void MainWindow::initMedia() {
     media->setRenderer("opengl");
     media->init();
     media->setBufferMilliseconds(10000);
+    media->setUserAgent(HttpUtils::stealthUserAgent());
 
     connect(media, &Media::error, this, &MainWindow::handleError);
     connect(media, &Media::stateChanged, this, &MainWindow::stateChanged);
