@@ -1231,7 +1231,7 @@ void MainWindow::resizeEvent(QResizeEvent *e) {
 #endif
 #ifdef APP_MAC_QMACTOOLBAR
     int moreButtonWidth = 40;
-    toolbarSearch->move(width() - toolbarSearch->width() - moreButtonWidth - 7, -38);
+    toolbarSearch->move(width() - toolbarSearch->width() - moreButtonWidth - 7, -34);
 #endif
     hideMessage();
 }
