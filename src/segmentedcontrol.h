@@ -24,18 +24,17 @@ $END_LICENSE */
 #include <QtWidgets>
 
 class SegmentedControl : public QWidget {
-
     Q_OBJECT
 
 public:
-    SegmentedControl(QWidget *parent = 0);
+    SegmentedControl(QWidget *parent = nullptr);
     QAction *addAction(QAction *action);
     bool setCheckedAction(int index);
     bool setCheckedAction(QAction *action);
     QSize minimumSizeHint(void) const;
 
 signals:
-    void checkedActionChanged(QAction & action);
+    void checkedActionChanged(QAction &action);
 
 protected:
     void paintEvent(QPaintEvent *event);
@@ -44,11 +43,12 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event);
     void leaveEvent(QEvent *event);
 
+private slots:
+    void setupColors();
+
 private:
-    void paintButton(QPainter *painter,
-                    const QRect& rect,
-                    const QAction *action);
-    QAction *findHoveredAction(const QPoint& pos) const;
+    void paintButton(QPainter *painter, const QRect &rect, const QAction *action);
+    QAction *findHoveredAction(const QPoint &pos) const;
     int calculateButtonWidth() const;
 
     QVector<QAction *> actionList;
@@ -61,7 +61,6 @@ private:
     QColor selectedColor;
     QColor hoveredColor;
     QColor pressedColor;
-
 };
 
 #endif /* !SEGMENTEDCONTROL_H */

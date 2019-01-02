@@ -29,20 +29,15 @@ SegmentedControl::SegmentedControl(QWidget *parent) : QWidget(parent) {
 
     setMouseTracking(true);
 
-    hoveredAction = 0;
-    checkedAction = 0;
-    pressedAction = 0;
+    hoveredAction = nullptr;
+    checkedAction = nullptr;
+    pressedAction = nullptr;
 
-#ifdef APP_WIN
-    selectedColor = palette().color(QPalette::Base);
-#else
-    selectedColor = palette().color(QPalette::Window);
-#endif
-    int darkerFactor = 105;
-    backgroundColor = selectedColor.darker(darkerFactor);
-    borderColor = backgroundColor;
-    hoveredColor = backgroundColor.darker(darkerFactor);
-    pressedColor = hoveredColor.darker(darkerFactor);
+    setupColors();
+    connect(qApp, &QGuiApplication::paletteChanged, this, [this] {
+        setupColors();
+        update();
+    });
 }
 
 QAction *SegmentedControl::addAction(QAction *action) {
@@ -54,7 +49,7 @@ QAction *SegmentedControl::addAction(QAction *action) {
 
 bool SegmentedControl::setCheckedAction(int index) {
     if (index < 0) {
-        checkedAction = 0;
+        checkedAction = nullptr;
         return true;
     }
     QAction *newCheckedAction = actionList.at(index);
@@ -72,7 +67,7 @@ bool SegmentedControl::setCheckedAction(QAction *action) {
     return true;
 }
 
-QSize SegmentedControl::minimumSizeHint(void) const {
+QSize SegmentedControl::minimumSizeHint() const {
     int itemsWidth = calculateButtonWidth() * actionList.size() * 1.2;
     return (QSize(itemsWidth, QFontMetrics(font()).height() * 1.8));
 }
@@ -87,7 +82,6 @@ void SegmentedControl::paintEvent(QPaintEvent * /*event*/) {
     const int buttonWidth = width / actionList.size();
 
     const qreal pixelRatio = devicePixelRatioF();
-
     QPen pen(borderColor);
     const qreal penWidth = 1. / pixelRatio;
     pen.setWidthF(penWidth);
@@ -115,7 +109,7 @@ void SegmentedControl::mouseMoveEvent(QMouseEvent *event) {
     QAction *action = findHoveredAction(event->pos());
 
     if (!action && hoveredAction) {
-        hoveredAction = 0;
+        hoveredAction = nullptr;
         update();
     } else if (action && action != hoveredAction) {
         hoveredAction = action;
@@ -137,7 +131,7 @@ void SegmentedControl::mousePressEvent(QMouseEvent *event) {
 
 void SegmentedControl::mouseReleaseEvent(QMouseEvent *event) {
     QWidget::mouseReleaseEvent(event);
-    pressedAction = 0;
+    pressedAction = nullptr;
     if (hoveredAction) {
         bool changed = setCheckedAction(hoveredAction);
         if (changed) hoveredAction->trigger();
@@ -148,20 +142,33 @@ void SegmentedControl::leaveEvent(QEvent *event) {
     QWidget::leaveEvent(event);
     // status tip
     MainWindow::instance()->statusBar()->clearMessage();
-    hoveredAction = 0;
-    pressedAction = 0;
+    hoveredAction = nullptr;
+    pressedAction = nullptr;
     update();
+}
+
+void SegmentedControl::setupColors() {
+#ifdef APP_WIN
+    selectedColor = palette().color(QPalette::Base);
+#else
+    selectedColor = palette().color(QPalette::Window);
+#endif
+    int darkerFactor = 105;
+    backgroundColor = selectedColor.darker(darkerFactor);
+    borderColor = backgroundColor;
+    hoveredColor = backgroundColor.darker(darkerFactor);
+    pressedColor = hoveredColor.darker(darkerFactor);
 }
 
 QAction *SegmentedControl::findHoveredAction(const QPoint &pos) const {
     const int w = width();
-    if (pos.y() <= 0 || pos.x() >= w || pos.y() >= height()) return 0;
+    if (pos.y() <= 0 || pos.x() >= w || pos.y() >= height()) return nullptr;
 
     int buttonWidth = w / actionList.size();
 
     int buttonIndex = pos.x() / buttonWidth;
 
-    if (buttonIndex >= actionList.size()) return 0;
+    if (buttonIndex >= actionList.size()) return nullptr;
     return actionList[buttonIndex];
 }
 
