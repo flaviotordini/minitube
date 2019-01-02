@@ -971,11 +971,11 @@ void MainWindow::goBack() {
 }
 
 void MainWindow::showWidget(QWidget *widget, bool transition) {
+    setUpdatesEnabled(false);
+
 #ifdef APP_MAC
     if (transition && !history.isEmpty()) CompositeFader::go(this, this->grab());
 #endif
-
-    setUpdatesEnabled(false);
 
     if (compactViewAct->isChecked()) compactViewAct->toggle();
 
@@ -1025,7 +1025,6 @@ void MainWindow::showWidget(QWidget *widget, bool transition) {
             showActionInStatusBar(action, true);
         */
 
-        adjustStatusBarVisibility();
         messageLabel->hide();
 
         newView->appear();
@@ -1041,6 +1040,8 @@ void MainWindow::showWidget(QWidget *widget, bool transition) {
 
     history.push(widget);
     emit viewChanged();
+
+    adjustStatusBarVisibility();
 
     setUpdatesEnabled(true);
 }
