@@ -298,6 +298,11 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
         toolbarMenu->move(mapToGlobal(p));
     }
 
+    if (t == QEvent::StyleChange) {
+        qApp->paletteChanged(qApp->palette());
+        return false;
+    }
+
     // standard event processing
     return QMainWindow::eventFilter(obj, e);
 }
