@@ -37,15 +37,6 @@ ChannelListView::ChannelListView() {
     setFrameShape(QFrame::NoFrame);
     setAttribute(Qt::WA_MacShowFocusRect, false);
 
-    QPalette p = palette();
-    /*
-    p.setColor(QPalette::Base, p.window().color());
-    p.setColor(QPalette::Text, p.windowText().color());
-    */
-    p.setColor(QPalette::Disabled, QPalette::Base, p.base().color());
-    p.setColor(QPalette::Disabled, QPalette::Text, p.text().color());
-    setPalette(p);
-
     verticalScrollBar()->setPageStep(3);
     verticalScrollBar()->setSingleStep(1);
 
