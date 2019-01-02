@@ -23,8 +23,7 @@ $END_LICENSE */
 
 #include <QtWidgets>
 
-class RefineSearchButton : public QPushButton
-{
+class RefineSearchButton : public QPushButton {
     Q_OBJECT
 public:
     RefineSearchButton(QWidget *parent = 0);
@@ -33,11 +32,9 @@ protected:
     void paintEvent(QPaintEvent *);
     void enterEvent(QEvent *);
     void leaveEvent(QEvent *);
-    
-private:
-    void paintBackground() const;
-    bool hovered;
 
+private:
+    bool hovered;
 };
 
 #endif // REFINESEARCHBUTTON_H

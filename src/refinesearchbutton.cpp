@@ -30,8 +30,6 @@ RefineSearchButton::RefineSearchButton(QWidget *parent) : QPushButton(parent) {
     setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 }
 
-void RefineSearchButton::paintBackground() const {}
-
 void RefineSearchButton::paintEvent(QPaintEvent *) {
     QColor backgroundColor = palette().windowText().color();
     backgroundColor.setAlpha(hovered ? 192 : 170);
