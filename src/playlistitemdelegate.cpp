@@ -107,11 +107,11 @@ void PlaylistItemDelegate::paint(QPainter *painter,
                                  const QModelIndex &index) const {
     int itemType = index.data(ItemTypeRole).toInt();
     if (itemType == ItemTypeVideo) {
-        QStyleOptionViewItem opt = QStyleOptionViewItem(option);
-        initStyleOption(&opt, index);
-        opt.text.clear();
-        opt.widget->style()->drawControl(QStyle::CE_ItemViewItem, &opt, painter, opt.widget);
-        paintBody(painter, opt, index);
+        // QStyleOptionViewItem opt = QStyleOptionViewItem(option);
+        // initStyleOption(&opt, index);
+        // opt.text.clear();
+        // opt.widget->style()->drawControl(QStyle::CE_ItemViewItem, &opt, painter, opt.widget);
+        paintBody(painter, option, index);
     } else
         QStyledItemDelegate::paint(painter, option, index);
 }
@@ -119,6 +119,10 @@ void PlaylistItemDelegate::paint(QPainter *painter,
 void PlaylistItemDelegate::paintBody(QPainter *painter,
                                      const QStyleOptionViewItem &option,
                                      const QModelIndex &index) const {
+    const bool isSelected = option.state & QStyle::State_Selected;
+    if (isSelected)
+        QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter);
+
     painter->save();
     painter->translate(option.rect.topLeft());
 
@@ -126,7 +130,6 @@ void PlaylistItemDelegate::paintBody(QPainter *painter,
     if (downloadInfo) line.setWidth(line.width() / 2);
 
     const bool isActive = index.data(ActiveTrackRole).toBool();
-    const bool isSelected = option.state & QStyle::State_Selected;
 
     // get the video metadata
     const Video *video = index.data(VideoRole).value<VideoPointer>().data();
