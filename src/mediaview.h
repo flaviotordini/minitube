@@ -33,7 +33,6 @@ class PlaylistModel;
 class SearchParams;
 class LoadingWidget;
 class VideoAreaWidget;
-class DownloadItem;
 class PlaylistView;
 class SidebarWidget;
 class VideoSource;
@@ -137,9 +136,6 @@ private:
 #ifdef APP_ACTIVATION
     QTimer *demoTimer;
 #endif
-
-    // TODO remove
-    DownloadItem *downloadItem;
 
     QVector<VideoSource *> history;
     QVector<QAction *> currentVideoActions;

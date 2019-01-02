@@ -20,7 +20,6 @@ $END_LICENSE */
 
 #include "mediaview.h"
 #include "constants.h"
-#include "downloaditem.h"
 #include "downloadmanager.h"
 #include "http.h"
 #include "loadingwidget.h"
@@ -58,7 +57,7 @@ MediaView *MediaView::instance() {
 }
 
 MediaView::MediaView(QWidget *parent)
-    : View(parent), splitter(nullptr), stopped(false), downloadItem(nullptr)
+    : View(parent), splitter(nullptr), stopped(false)
 #ifdef APP_SNAPSHOT
       ,
       snapshotSettings(nullptr)
@@ -355,12 +354,7 @@ void MediaView::stop() {
     videoAreaWidget->update();
     errorTimer->stop();
     playlistView->selectionModel()->clearSelection();
-    if (downloadItem) {
-        downloadItem->stop();
-        delete downloadItem;
-        downloadItem = 0;
-        currentVideoSize = 0;
-    }
+
     MainWindow::instance()->getAction("refineSearch")->setChecked(false);
     updateSubscriptionAction(0, false);
 #ifdef APP_ACTIVATION
@@ -396,13 +390,6 @@ void MediaView::activeRowChanged(int row) {
     errorTimer->stop();
 
     media->stop();
-
-    if (downloadItem) {
-        downloadItem->stop();
-        delete downloadItem;
-        downloadItem = 0;
-        currentVideoSize = 0;
-    }
 
     Video *video = playlistModel->videoAt(row);
     if (!video) return;
