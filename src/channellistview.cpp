@@ -22,7 +22,6 @@ $END_LICENSE */
 #include "painterutils.h"
 
 ChannelListView::ChannelListView() {
-
     setSelectionMode(QAbstractItemView::NoSelection);
 
     // layout
@@ -51,7 +50,6 @@ ChannelListView::ChannelListView() {
     verticalScrollBar()->setSingleStep(1);
 
     setMouseTracking(true);
-
 }
 
 void ChannelListView::mousePressEvent(QMouseEvent *event) {
@@ -64,8 +62,10 @@ void ChannelListView::mousePressEvent(QMouseEvent *event) {
 void ChannelListView::mouseMoveEvent(QMouseEvent *event) {
     QWidget::mouseMoveEvent(event);
     const QModelIndex index = indexAt(event->pos());
-    if (index.isValid()) setCursor(Qt::PointingHandCursor);
-    else unsetCursor();
+    if (index.isValid())
+        setCursor(Qt::PointingHandCursor);
+    else
+        unsetCursor();
 }
 
 void ChannelListView::paintEvent(QPaintEvent *event) {
