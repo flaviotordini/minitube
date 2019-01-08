@@ -62,7 +62,7 @@ public:
 
     QMenu *getMenu(const char *name);
 
-    void showActionInStatusBar(QAction *, bool show);
+    void showActionsInStatusBar(const QVector<QAction *> &actions, bool show);
     void setStatusBarVisibility(bool show);
     void adjustStatusBarVisibility();
 

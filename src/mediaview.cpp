@@ -699,8 +699,8 @@ void MediaView::downloadVideo() {
     Video *video = playlistModel->activeVideo();
     if (!video) return;
     DownloadManager::instance()->addItem(video);
-    MainWindow::instance()->showActionInStatusBar(MainWindow::instance()->getAction("downloads"),
-                                                  true);
+    MainWindow::instance()->showActionsInStatusBar({MainWindow::instance()->getAction("downloads")},
+                                                   true);
     QString message = tr("Downloading %1").arg(video->getTitle());
     MainWindow::instance()->showMessage(message);
 }

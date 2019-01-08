@@ -151,15 +151,13 @@ QString ChannelView::noSubscriptionsMessage() {
 
 void ChannelView::appear() {
     updateQuery();
-    for (QAction *action : statusActions)
-        MainWindow::instance()->showActionInStatusBar(action, true);
+    MainWindow::instance()->showActionsInStatusBar(statusActions, true);
     setFocus();
     ChannelAggregator::instance()->start();
 }
 
 void ChannelView::disappear() {
-    for (QAction *action : statusActions)
-        MainWindow::instance()->showActionInStatusBar(action, false);
+    MainWindow::instance()->showActionsInStatusBar(statusActions, false);
 }
 
 void ChannelView::itemActivated(const QModelIndex &index) {

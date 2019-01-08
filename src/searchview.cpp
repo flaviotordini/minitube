@@ -238,13 +238,13 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 void SearchView::appear() {
     setUpdatesEnabled(false);
 
-    MainWindow *w = MainWindow::instance();
-    w->showActionInStatusBar(w->getAction("manualplay"), true);
-    w->showActionInStatusBar(w->getAction("safeSearch"), true);
-    w->showActionInStatusBar(w->getAction("definition"), true);
-
     updateRecentKeywords();
     updateRecentChannels();
+
+    MainWindow *w = MainWindow::instance();
+    w->showActionsInStatusBar(
+            {w->getAction("manualplay"), w->getAction("safeSearch"), w->getAction("definition")},
+            true);
 
     queryEdit->selectAll();
     queryEdit->enableSuggest();
@@ -257,9 +257,9 @@ void SearchView::disappear() {
     setUpdatesEnabled(false);
 
     MainWindow *w = MainWindow::instance();
-    w->showActionInStatusBar(w->getAction("safeSearch"), false);
-    w->showActionInStatusBar(w->getAction("definition"), false);
-    w->showActionInStatusBar(w->getAction("manualplay"), false);
+    w->showActionsInStatusBar(
+            {w->getAction("manualplay"), w->getAction("safeSearch"), w->getAction("definition")},
+            false);
 
     setUpdatesEnabled(true);
 }

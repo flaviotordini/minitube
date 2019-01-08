@@ -132,12 +132,12 @@ void StandardFeedsView::appear() {
         load();
     }
     QAction *regionAction = MainWindow::instance()->getRegionAction();
-    MainWindow::instance()->showActionInStatusBar(regionAction, true);
+    MainWindow::instance()->showActionsInStatusBar({regionAction}, true);
 }
 
 void StandardFeedsView::disappear() {
     QAction *regionAction = MainWindow::instance()->getRegionAction();
-    MainWindow::instance()->showActionInStatusBar(regionAction, false);
+    MainWindow::instance()->showActionsInStatusBar({regionAction}, false);
 }
 
 void StandardFeedsView::selectWorldwideRegion() {

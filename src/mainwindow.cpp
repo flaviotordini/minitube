@@ -892,24 +892,26 @@ void MainWindow::createStatusBar() {
 
 void MainWindow::showStopAfterThisInStatusBar(bool show) {
     QAction *action = getAction("stopafterthis");
-    showActionInStatusBar(action, show);
+    showActionsInStatusBar({action}, show);
 }
 
-void MainWindow::showActionInStatusBar(QAction *action, bool show) {
+void MainWindow::showActionsInStatusBar(const QVector<QAction *> &actions, bool show) {
 #ifdef APP_EXTRA
     Extra::fadeInWidget(statusBar(), statusBar());
 #endif
-    if (show) {
-        if (statusToolBar->actions().contains(action)) return;
-        if (statusToolBar->actions().isEmpty()) {
-            statusToolBar->addAction(action);
+    for (auto action : actions) {
+        if (show) {
+            if (statusToolBar->actions().contains(action)) return;
+            if (statusToolBar->actions().isEmpty()) {
+                statusToolBar->addAction(action);
+            } else {
+                statusToolBar->insertAction(statusToolBar->actions().at(0), action);
+            }
+            if (statusBar()->isHidden() && !fullScreenActive) setStatusBarVisibility(true);
         } else {
-            statusToolBar->insertAction(statusToolBar->actions().at(0), action);
+            statusToolBar->removeAction(action);
+            if (statusBar()->isVisible() && !needStatusBar()) setStatusBarVisibility(false);
         }
-        if (statusBar()->isHidden() && !fullScreenActive) setStatusBarVisibility(true);
-    } else {
-        statusToolBar->removeAction(action);
-        if (statusBar()->isVisible() && !needStatusBar()) setStatusBarVisibility(false);
     }
 }
 
@@ -1697,7 +1699,7 @@ void MainWindow::setManualPlay(bool enabled) {
     if (views->currentWidget() == homeView &&
         homeView->currentWidget() == homeView->getSearchView())
         return;
-    showActionInStatusBar(getAction("manualplay"), enabled);
+    showActionsInStatusBar({getAction("manualplay")}, enabled);
 }
 
 void MainWindow::updateDownloadMessage(const QString &message) {
@@ -1837,7 +1839,7 @@ void MainWindow::adjustMessageLabelPosition() {
 }
 
 void MainWindow::floatOnTop(bool onTop, bool showAction) {
-    if (showAction) showActionInStatusBar(getAction("ontop"), onTop);
+    if (showAction) showActionsInStatusBar({getAction("ontop")}, onTop);
 #ifdef APP_MAC
     mac::floatOnTop(winId(), onTop);
 #else
