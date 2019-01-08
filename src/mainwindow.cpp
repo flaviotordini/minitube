@@ -482,11 +482,26 @@ void MainWindow::createActions() {
     connect(volumeMuteAct, SIGNAL(triggered()), SLOT(volumeMute()));
     addAction(volumeMuteAct);
 
-    QAction *definitionAct = new QAction(this);
-    definitionAct->setIcon(IconUtils::icon("video-display"));
+    QToolButton *definitionButton = new QToolButton(this);
+    definitionButton->setText(VideoDefinition::preferred().getName());
+    definitionButton->setIcon(IconUtils::icon("video-display"));
+    definitionButton->setIconSize(QSize(16, 16));
+    definitionButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    definitionButton->setPopupMode(QToolButton::InstantPopup);
+    QMenu *definitionMenu = new QMenu(this);
+    for (auto defName : VideoDefinition::getDefinitionNames()) {
+        QAction *a = new QAction(defName);
+        connect(a, &QAction::triggered, this, [this, defName, definitionButton] {
+            setDefinitionMode(defName);
+            definitionButton->setText(defName);
+        });
+        definitionMenu->addAction(a);
+    }
+    definitionButton->setMenu(definitionMenu);
+    QWidgetAction *definitionAct = new QWidgetAction(this);
+    definitionAct->setDefaultWidget(definitionButton);
     definitionAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_D));
     actionMap.insert("definition", definitionAct);
-    connect(definitionAct, SIGNAL(triggered()), SLOT(toggleDefinitionMode()));
     addAction(definitionAct);
 
     QAction *action;
@@ -938,8 +953,8 @@ void MainWindow::readSettings() {
         setGeometry(
                 QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, QSize(w, h), desktopSize));
     }
-    const VideoDefinition &firstDefinition = VideoDefinition::getDefinitions().at(0);
-    setDefinitionMode(settings.value("definition", firstDefinition.getName()).toString());
+    setDefinitionMode(
+            settings.value("definition", VideoDefinition::preferred().getName()).toString());
     getAction("manualplay")->setChecked(settings.value("manualplay", false).toBool());
     getAction("safeSearch")->setChecked(settings.value("safeSearch", false).toBool());
 #ifndef APP_MAC
@@ -1647,18 +1662,12 @@ void MainWindow::setDefinitionMode(const QString &definitionName) {
             tr("Maximum video definition set to %1").arg(definitionAct->text()) + " (" +
             definitionAct->shortcut().toString(QKeySequence::NativeText) + ")");
     showMessage(definitionAct->statusTip());
-    QSettings settings;
-    settings.setValue("definition", definitionName);
+    VideoDefinition::savePreferred(definitionName);
 }
 
 void MainWindow::toggleDefinitionMode() {
-    const QString definitionName = QSettings().value("definition").toString();
     const QVector<VideoDefinition> &definitions = VideoDefinition::getDefinitions();
-    const VideoDefinition &currentDefinition = VideoDefinition::forName(definitionName);
-    if (currentDefinition.isEmpty()) {
-        setDefinitionMode(definitions.at(0).getName());
-        return;
-    }
+    const VideoDefinition &currentDefinition = VideoDefinition::preferred();
 
     int index = definitions.indexOf(currentDefinition);
     if (index != definitions.size() - 1) {
@@ -1666,7 +1675,6 @@ void MainWindow::toggleDefinitionMode() {
     } else {
         index = 0;
     }
-    // TODO: pass a VideoDefinition instead of QString.
     setDefinitionMode(definitions.at(index).getName());
 }
 

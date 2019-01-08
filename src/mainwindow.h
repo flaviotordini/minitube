@@ -92,6 +92,7 @@ public slots:
     bool isCompact() { return compactModeActive; }
     void missingKeyWarning();
     void visitSite();
+    void setDefinitionMode(const QString &definitionName);
 
 signals:
     void currentTimeChanged(const QString &s);
@@ -121,7 +122,6 @@ private slots:
     void compactView(bool enable);
     void stop();
     void searchFocus();
-    void setDefinitionMode(const QString &definitionName);
     void toggleDefinitionMode();
     void clearRecentKeywords();
 
