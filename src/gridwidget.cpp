@@ -20,10 +20,7 @@ $END_LICENSE */
 
 #include "gridwidget.h"
 
-GridWidget::GridWidget(QWidget *parent) :
-    QWidget(parent),
-    hovered(false),
-    pressed(false) {
+GridWidget::GridWidget(QWidget *parent) : QWidget(parent), hovered(false), pressed(false) {
     setCursor(Qt::PointingHandCursor);
     setFocusPolicy(Qt::StrongFocus);
 }
@@ -60,6 +57,5 @@ void GridWidget::enterEvent(QEvent *event) {
 }
 
 void GridWidget::keyReleaseEvent(QKeyEvent *event) {
-    if (event->key() == Qt::Key_Return)
-        emit activated();
+    if (event->key() == Qt::Key_Return) emit activated();
 }

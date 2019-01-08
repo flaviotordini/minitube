@@ -24,15 +24,14 @@ $END_LICENSE */
 #include <QtWidgets>
 
 class GridWidget : public QWidget {
-
     Q_OBJECT
 
 public:
-    GridWidget(QWidget *parent = 0);
-    
+    GridWidget(QWidget *parent = nullptr);
+
 signals:
     void activated();
-    
+
 protected:
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
@@ -40,7 +39,7 @@ protected:
     void enterEvent(QEvent *event);
     void leaveEvent(QEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
-    
+
     bool hovered;
     bool pressed;
 };

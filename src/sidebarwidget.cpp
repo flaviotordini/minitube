@@ -19,17 +19,16 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "sidebarwidget.h"
+#include "mainwindow.h"
 #include "refinesearchbutton.h"
 #include "refinesearchwidget.h"
 #include "sidebarheader.h"
-#include "mainwindow.h"
 #ifdef APP_EXTRA
 #include "extra.h"
 #endif
 
-SidebarWidget::SidebarWidget(QWidget *parent) :
-    QWidget(parent), playlistWidth(0) {
-    playlist = 0;
+SidebarWidget::SidebarWidget(QWidget *parent) : QWidget(parent), playlistWidth(0) {
+    playlist = nullptr;
 
     QBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
@@ -46,11 +45,9 @@ SidebarWidget::SidebarWidget(QWidget *parent) :
     messageLabel->setAutoFillBackground(true);
     messageLabel->setWordWrap(true);
     messageLabel->setTextFormat(Qt::RichText);
-    messageLabel->setTextInteractionFlags(
-                Qt::LinksAccessibleByKeyboard |
-                Qt::LinksAccessibleByMouse);
-    connect(messageLabel, SIGNAL(linkActivated(QString)),
-            SIGNAL(suggestionAccepted(QString)));
+    messageLabel->setTextInteractionFlags(Qt::LinksAccessibleByKeyboard |
+                                          Qt::LinksAccessibleByMouse);
+    connect(messageLabel, SIGNAL(linkActivated(QString)), SIGNAL(suggestionAccepted(QString)));
     messageLabel->hide();
     layout->addWidget(messageLabel);
 
@@ -62,8 +59,9 @@ SidebarWidget::SidebarWidget(QWidget *parent) :
 
 void SidebarWidget::setup() {
     refineSearchButton = new RefineSearchButton(this);
-    refineSearchButton->setStatusTip(tr("Refine Search")
-                                     + " (" + QKeySequence(Qt::CTRL + Qt::Key_R).toString(QKeySequence::NativeText) + ")");
+    refineSearchButton->setStatusTip(
+            tr("Refine Search") + " (" +
+            QKeySequence(Qt::CTRL + Qt::Key_R).toString(QKeySequence::NativeText) + ")");
     refineSearchButton->hide();
     connect(refineSearchButton, SIGNAL(clicked()), SLOT(showRefineSearchWidget()));
 
@@ -115,20 +113,20 @@ void SidebarWidget::hideRefineSearchWidget() {
 }
 
 void SidebarWidget::toggleRefineSearch(bool show) {
-    if (show) showRefineSearchWidget();
-    else hideRefineSearchWidget();
+    if (show)
+        showRefineSearchWidget();
+    else
+        hideRefineSearchWidget();
 }
 
 void SidebarWidget::resizeEvent(QResizeEvent *event) {
     QWidget::resizeEvent(event);
-    refineSearchButton->move(
-                playlist->viewport()->width() - refineSearchButton->minimumWidth(),
-                height() - refineSearchButton->minimumHeight());
+    refineSearchButton->move(playlist->viewport()->width() - refineSearchButton->minimumWidth(),
+                             height() - refineSearchButton->minimumHeight());
 }
 
 void SidebarWidget::enterEvent(QEvent *) {
-    if (stackedWidget->currentWidget() != refineSearchWidget)
-        showRefineSearchButton();
+    if (stackedWidget->currentWidget() != refineSearchWidget) showRefineSearchButton();
 }
 
 void SidebarWidget::leaveEvent(QEvent *) {
@@ -154,9 +152,8 @@ void SidebarWidget::handleMouseMove() {
 
 void SidebarWidget::showRefineSearchButton() {
     if (!refineSearchWidget->isEnabled()) return;
-    refineSearchButton->move(
-                playlist->viewport()->width() - refineSearchButton->minimumWidth(),
-                height() - refineSearchButton->minimumHeight());
+    refineSearchButton->move(playlist->viewport()->width() - refineSearchButton->minimumWidth(),
+                             height() - refineSearchButton->minimumHeight());
     refineSearchButton->show();
 }
 
@@ -169,13 +166,12 @@ void SidebarWidget::showSuggestions(const QStringList &suggestions) {
     }
     message = message.arg(suggestionLinks);
 
-    QString html =
-            "<html>"
-            "<style>"
-            "a { color: palette(text); text-decoration: none; font-weight: bold }"
-            "</style>"
-            "<body>%1</body>"
-            "</html>";
+    QString html = "<html>"
+                   "<style>"
+                   "a { color: palette(text); text-decoration: none; font-weight: bold }"
+                   "</style>"
+                   "<body>%1</body>"
+                   "</html>";
     html = html.arg(message);
     messageLabel->setText(html);
     messageLabel->show();

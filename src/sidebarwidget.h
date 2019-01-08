@@ -28,16 +28,15 @@ class RefineSearchWidget;
 class SidebarHeader;
 
 class SidebarWidget : public QWidget {
-
     Q_OBJECT
 
 public:
-    SidebarWidget(QWidget *parent = 0);
+    SidebarWidget(QWidget *parent = nullptr);
     QListView *getPlaylist() { return playlist; }
     void setPlaylist(QListView *playlist);
     void showPlaylist();
-    RefineSearchWidget* getRefineSearchWidget() { return refineSearchWidget; }
-    SidebarHeader* getHeader() { return sidebarHeader; }
+    RefineSearchWidget *getRefineSearchWidget() { return refineSearchWidget; }
+    SidebarHeader *getHeader() { return sidebarHeader; }
     void hideSuggestions();
 
 public slots:
