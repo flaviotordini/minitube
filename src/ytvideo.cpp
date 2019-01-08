@@ -106,12 +106,12 @@ void YTVideo::gotVideoInfo(const QByteArray &bytes) {
 }
 
 void YTVideo::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
-    const QString definitionName = QSettings().value("definition", "360p").toString();
-    const VideoDefinition &definition = VideoDefinition::forName(definitionName);
+    int videoFormat = 0;
+    const VideoDefinition &definition = VideoDefinition::preferred();
 
-    qDebug() << "fmtUrlMap" << fmtUrlMap;
+    // qDebug() << "fmtUrlMap" << fmtUrlMap;
     const QVector<QStringRef> formatUrls = fmtUrlMap.splitRef(',', QString::SkipEmptyParts);
-    QMap<int, QString> urlMap;
+
     for (const QStringRef &formatUrl : formatUrls) {
         // qDebug() << "formatUrl" << formatUrl;
         const QVector<QStringRef> urlParams = formatUrl.split('&', QString::SkipEmptyParts);
@@ -121,7 +121,7 @@ void YTVideo::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
         QString url;
         QString sig;
         for (const QStringRef &urlParam : urlParams) {
-            // qWarning() << urlParam;
+            // qWarning() << "urlParam" << urlParam;
             if (urlParam.startsWith(QLatin1String("itag="))) {
                 int separator = urlParam.indexOf('=');
                 format = urlParam.mid(separator + 1).toInt();
@@ -142,18 +142,7 @@ void YTVideo::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
                         if (sig.isEmpty()) sig = JsFunctions::instance()->decryptSignature(sig);
                     }
                 } else {
-                    QUrl url("https://www.youtube.com/watch");
-                    QUrlQuery q;
-                    q.addQueryItem("v", videoId);
-                    q.addQueryItem("gl", "US");
-                    q.addQueryItem("hl", "en");
-                    q.addQueryItem("has_verified", "1");
-                    url.setQuery(q);
-                    qDebug() << "Loading webpage" << url;
-                    QObject *reply = HttpUtils::yt().get(url);
-                    connect(reply, SIGNAL(data(QByteArray)), SLOT(scrapeWebPage(QByteArray)));
-                    connect(reply, SIGNAL(error(QString)), SLOT(errorVideoInfo(QString)));
-                    // see you in scrapWebPage(QByteArray)
+                    loadWebPage();
                     return;
                 }
             }
@@ -164,23 +153,38 @@ void YTVideo::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
 
         if (!url.contains(QLatin1String("ratebypass"))) url += QLatin1String("&ratebypass=yes");
 
-        qDebug() << url;
-
+        qDebug() << format;
         if (format == definition.getCode()) {
-            qDebug() << "Found format" << definitionCode;
-            saveDefinitionForUrl(url, definition);
-            return;
+            qDebug() << "Found format" << format;
+            if (definition.getAudioCode() == 0) {
+                // we found the exact match with an audio/video stream
+                saveDefinitionForUrl(url, definition);
+                return;
+            }
+            videoFormat = format;
         }
-
         urlMap.insert(format, url);
+    }
+
+    if (!fromWebPage) {
+        loadWebPage();
+        return;
+    }
+
+    if (videoFormat != 0) {
+        // exact match with video stream was found
+        const VideoDefinition &definition = VideoDefinition::forCode(videoFormat);
+        saveDefinitionForUrl(urlMap.value(videoFormat), definition);
+        return;
     }
 
     const QVector<VideoDefinition> &definitions = VideoDefinition::getDefinitions();
     int previousIndex = std::max(definitions.indexOf(definition) - 1, 0);
     for (; previousIndex >= 0; previousIndex--) {
         const VideoDefinition &previousDefinition = definitions.at(previousIndex);
+        qDebug() << "Testing format" << previousDefinition.getCode();
         if (urlMap.contains(previousDefinition.getCode())) {
-            // qDebug() << "Found format" << definitionCode;
+            qDebug() << "Found format" << previousDefinition.getCode();
             saveDefinitionForUrl(urlMap.value(previousDefinition.getCode()), previousDefinition);
             return;
         }
@@ -189,25 +193,55 @@ void YTVideo::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
     emit errorStreamUrl(tr("Cannot get video stream for %1").arg(videoId));
 }
 
+void YTVideo::loadWebPage() {
+    QUrl url("https://www.youtube.com/watch");
+    QUrlQuery q;
+    q.addQueryItem("v", videoId);
+    q.addQueryItem("gl", "US");
+    q.addQueryItem("hl", "en");
+    q.addQueryItem("has_verified", "1");
+    url.setQuery(q);
+    qDebug() << "Loading webpage" << url;
+    QObject *reply = HttpUtils::yt().get(url);
+    connect(reply, SIGNAL(data(QByteArray)), SLOT(scrapeWebPage(QByteArray)));
+    connect(reply, SIGNAL(error(QString)), SLOT(errorVideoInfo(QString)));
+    // see you in scrapWebPage(QByteArray)
+}
+
 void YTVideo::errorVideoInfo(const QString &message) {
     loadingStreamUrl = false;
     emit errorStreamUrl(message);
 }
 
 void YTVideo::scrapeWebPage(const QByteArray &bytes) {
+    qDebug() << "scrapeWebPage";
+
     const QString html = QString::fromUtf8(bytes);
 
     static const QRegExp ageGateRE(JsFunctions::instance()->ageGateRE());
     if (ageGateRE.indexIn(html) != -1) {
-        // qDebug() << "Found ageGate";
+        qDebug() << "Found ageGate";
         ageGate = true;
         elIndex = 4;
         getVideoInfo();
         return;
     }
 
+    // "\"url_encoded_fmt_stream_map\":\s*\"([^\"]+)\""
     static const QRegExp fmtMapRE(JsFunctions::instance()->webPageFmtMapRE());
-    if (fmtMapRE.indexIn(html) == -1) {
+    if (fmtMapRE.indexIn(html) != -1) {
+        fmtUrlMap = fmtMapRE.cap(1);
+        fmtUrlMap.replace("\\u0026", "&");
+    }
+
+    QRegExp adaptiveFormatsRE("\"adaptive_fmts\":\s*\"([^\"]+)\"");
+    if (adaptiveFormatsRE.indexIn(html) != -1) {
+        qDebug() << "Found adaptive_fmts";
+        if (!fmtUrlMap.isEmpty()) fmtUrlMap += ',';
+        fmtUrlMap += adaptiveFormatsRE.cap(1).replace("\\u0026", "&");
+    }
+
+    if (fmtUrlMap.isEmpty()) {
         qWarning() << "Error parsing video page";
         // emit errorStreamUrl("Error parsing video page");
         // loadingStreamUrl = false;
@@ -215,27 +249,26 @@ void YTVideo::scrapeWebPage(const QByteArray &bytes) {
         getVideoInfo();
         return;
     }
-    fmtUrlMap = fmtMapRE.cap(1);
-    fmtUrlMap.replace("\\u0026", "&");
-// parseFmtUrlMap(fmtUrlMap, true);
+
+    // parseFmtUrlMap(fmtUrlMap, true);
 
 #ifdef APP_DASH
     QSettings settings;
     QString definitionName = settings.value("definition", "360p").toString();
-    if (definitionName == QLatin1String("1080p")) {
+    if (definitionName != QLatin1String("360p")) {
         QRegExp dashManifestRe("\"dashmpd\":\\s*\"([^\"]+)\"");
         if (dashManifestRe.indexIn(html) != -1) {
             dashManifestUrl = dashManifestRe.cap(1);
             dashManifestUrl.remove('\\');
             qDebug() << "dashManifestUrl" << dashManifestUrl;
         } else {
-            qWarning() << "DASH manifest not found in webpage";
+            qWarning() << "DASH manifest not found in webpage" << html;
             if (dashManifestRe.indexIn(fmtUrlMap) != -1) {
                 dashManifestUrl = dashManifestRe.cap(1);
                 dashManifestUrl.remove('\\');
                 qDebug() << "dashManifestUrl" << dashManifestUrl;
             } else
-                qWarning() << "DASH manifest not found in fmtUrlMap" << fmtUrlMap;
+                qWarning() << "DASH manifest not found in fmtUrlMap";
         }
     }
 #endif
@@ -269,10 +302,19 @@ void YTVideo::parseJsPlayer(const QByteArray &bytes) {
     static const QRegExp funcNameRe(
             JsFunctions::instance()->signatureFunctionNameRE().arg(jsNameChars));
 
+    // qDebug() << "funcNameRe" << funcNameRe;
+
     if (funcNameRe.indexIn(jsPlayer) == -1) {
         qWarning() << "Cannot capture signature function name" << jsPlayer;
     } else {
         sigFuncName = funcNameRe.cap(1);
+
+        // qDebug() << "Captures" << funcNameRe.captureCount() << funcNameRe.capturedTexts();
+
+        if (sigFuncName.isEmpty()) {
+            qWarning() << "Empty signature function name" << jsPlayer;
+        }
+
         captureFunction(sigFuncName, jsPlayer);
         // qWarning() << sigFunctions << sigObjects;
     }
@@ -288,7 +330,8 @@ void YTVideo::parseJsPlayer(const QByteArray &bytes) {
             qWarning() << "dash manifest" << dashManifestUrl;
 
             if (true) {
-                // let phonon play the manifest
+                // let media engine play the manifest
+                qDebug() << "Playing DASH manifest" << dashManifestUrl;
                 m_streamUrl = dashManifestUrl;
                 this->definitionCode = 37;
                 emit gotStreamUrl(m_streamUrl);
@@ -308,6 +351,7 @@ void YTVideo::parseJsPlayer(const QByteArray &bytes) {
     parseFmtUrlMap(fmtUrlMap, true);
 }
 
+#ifdef APP_DASH
 void YTVideo::parseDashManifest(const QByteArray &bytes) {
     QFile file(Temporary::filename() + ".mpd");
     if (!file.open(QIODevice::WriteOnly)) qWarning() << file.errorString() << file.fileName();
@@ -319,6 +363,7 @@ void YTVideo::parseDashManifest(const QByteArray &bytes) {
     emit gotStreamUrl(m_streamUrl);
     loadingStreamUrl = false;
 }
+#endif
 
 void YTVideo::captureFunction(const QString &name, const QString &js) {
     qDebug() << __PRETTY_FUNCTION__ << name;
@@ -423,8 +468,26 @@ QString YTVideo::decryptSignature(const QString &s) {
 }
 
 void YTVideo::saveDefinitionForUrl(const QString &url, const VideoDefinition &definition) {
-    m_streamUrl = QUrl::fromEncoded(url.toUtf8(), QUrl::StrictMode);
+    qDebug() << "Selected video format" << definition.getCode() << definition.getName()
+             << definition.getAudioCode();
+    m_streamUrl = url;
     definitionCode = definition.getCode();
-    emit gotStreamUrl(m_streamUrl);
+
+    QString audioUrl;
+    if (definition.getAudioCode() != 0) {
+        qDebug() << "Finding audio format";
+        static const QVector<int> audioFormats({140, 171, 251});
+        for (int audioFormat : audioFormats) {
+            qDebug() << "Trying audio format" << audioFormat;
+            auto i = urlMap.constFind(audioFormat);
+            if (i != urlMap.constEnd()) {
+                qDebug() << "Found audio format" << i.value();
+                audioUrl = i.value();
+                break;
+            }
+        }
+    }
+
     loadingStreamUrl = false;
+    emit gotStreamUrl(url, audioUrl);
 }

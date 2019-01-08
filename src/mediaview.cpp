@@ -325,8 +325,8 @@ void MediaView::pause() {
     default:
         if (pauseTimer.hasExpired(60000)) {
             pauseTimer.invalidate();
-            connect(playlistModel->activeVideo(), SIGNAL(gotStreamUrl(QUrl)),
-                    SLOT(resumeWithNewStreamUrl(QUrl)));
+            connect(playlistModel->activeVideo(), &Video::gotStreamUrl, this,
+                    &MediaView::resumeWithNewStreamUrl);
             playlistModel->activeVideo()->loadStreamUrl();
         } else
             media->play();
@@ -399,7 +399,7 @@ void MediaView::activeRowChanged(int row) {
 
     videoAreaWidget->showLoading(video);
 
-    connect(video, SIGNAL(gotStreamUrl(QUrl)), SLOT(gotStreamUrl(QUrl)), Qt::UniqueConnection);
+    connect(video, &Video::gotStreamUrl, this, &MediaView::gotStreamUrl, Qt::UniqueConnection);
     connect(video, SIGNAL(errorStreamUrl(QString)), SLOT(skip()), Qt::UniqueConnection);
     video->loadStreamUrl();
 
@@ -448,9 +448,10 @@ void MediaView::activeRowChanged(int row) {
     // see you in gotStreamUrl...
 }
 
-void MediaView::gotStreamUrl(QUrl streamUrl) {
+void MediaView::gotStreamUrl(const QString &streamUrl, const QString &audioUrl) {
     if (stopped) return;
-    if (!streamUrl.isValid()) {
+    if (streamUrl.isEmpty()) {
+        qWarning() << "Empty stream url";
         skip();
         return;
     }
@@ -464,7 +465,13 @@ void MediaView::gotStreamUrl(QUrl streamUrl) {
 
     currentVideoId = video->getId();
 
-    media->play(streamUrl.toString());
+    if (audioUrl.isEmpty()) {
+        qDebug() << "Playing" << streamUrl;
+        media->play(streamUrl);
+    } else {
+        qDebug() << "Playing" << streamUrl << audioUrl;
+        media->playSeparateAudioAndVideo(streamUrl, audioUrl);
+    }
 
     // ensure we always have videos ahead
     playlistModel->searchNeeded();
@@ -594,7 +601,7 @@ void MediaView::copyWebPage() {
 void MediaView::copyVideoLink() {
     Video *video = playlistModel->activeVideo();
     if (!video) return;
-    QApplication::clipboard()->setText(video->getStreamUrl().toEncoded());
+    QApplication::clipboard()->setText(video->getStreamUrl());
     QString message = tr("You can now paste the video stream URL into another application") + ". " +
                       tr("The link will be valid only for a limited time.");
     MainWindow::instance()->showMessage(message);

@@ -79,7 +79,7 @@ public:
     int getDefinitionCode() const { return definitionCode; }
 
     void loadStreamUrl();
-    const QUrl &getStreamUrl() { return streamUrl; }
+    const QString &getStreamUrl() { return streamUrl; }
 
     const QString &getId() const { return id; }
     void setId(const QString &value) { id = value; }
@@ -91,12 +91,12 @@ signals:
     void gotThumbnail();
     void gotMediumThumbnail(const QByteArray &bytes);
     void gotLargeThumbnail(const QByteArray &bytes);
-    void gotStreamUrl(const QUrl &streamUrl);
+    void gotStreamUrl(const QString &videoUrl, const QString &audioUrl);
     void errorStreamUrl(const QString &message);
 
 private slots:
     void setThumbnail(const QByteArray &bytes);
-    void streamUrlLoaded(const QUrl &streamUrl);
+    void streamUrlLoaded(const QString &streamUrl, const QString &audioUrl);
 
 private:
     QString title;
@@ -104,7 +104,7 @@ private:
     QString channelTitle;
     QString channelId;
     QString webpage;
-    QUrl streamUrl;
+    QString streamUrl;
     QPixmap thumbnail;
     QString thumbnailUrl;
     QString mediumThumbnailUrl;

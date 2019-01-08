@@ -14,7 +14,7 @@ public:
     int getDefinitionCode() const { return definitionCode; }
 
 signals:
-    void gotStreamUrl(const QUrl &streamUrl);
+    void gotStreamUrl(const QString &videoUrl, const QString &audioUrl);
     void errorStreamUrl(const QString &message);
 
 private slots:
@@ -22,11 +22,14 @@ private slots:
     void errorVideoInfo(const QString &message);
     void scrapeWebPage(const QByteArray &bytes);
     void parseJsPlayer(const QByteArray &bytes);
+#ifdef APP_DASH
     void parseDashManifest(const QByteArray &bytes);
+#endif
 
 private:
     void getVideoInfo();
     void parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage = false);
+    void loadWebPage();
     void captureFunction(const QString &name, const QString &js);
     void captureObject(const QString &name, const QString &js);
     QString decryptSignature(const QString &s);
@@ -47,6 +50,7 @@ private:
     QHash<QString, QString> sigObjects;
     QString dashManifestUrl;
     QString jsPlayer;
+    QMap<int, QString> urlMap;
 };
 
 #endif // YTVIDEO_H

@@ -111,10 +111,11 @@ void Video::setThumbnail(const QByteArray &bytes) {
     loadingThumbnail = false;
 }
 
-void Video::streamUrlLoaded(const QUrl &streamUrl) {
+void Video::streamUrlLoaded(const QString &streamUrl, const QString &audioUrl) {
+    qDebug() << "Streams loaded";
     definitionCode = ytVideo->getDefinitionCode();
     this->streamUrl = streamUrl;
-    emit gotStreamUrl(this->streamUrl);
+    emit gotStreamUrl(streamUrl, audioUrl);
     delete ytVideo;
     ytVideo = 0;
 }

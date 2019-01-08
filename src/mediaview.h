@@ -102,7 +102,7 @@ private slots:
     void selectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
     void activeRowChanged(int);
     void selectVideos(const QVector<Video *> &videos);
-    void gotStreamUrl(QUrl streamUrl);
+    void gotStreamUrl(const QString &streamUrl, const QString &audioUrl);
     void handleError(const QString &message);
     void stateChanged(Media::State state);
     void aboutToFinish();
