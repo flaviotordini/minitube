@@ -982,12 +982,11 @@ void MainWindow::writeSettings() {
 void MainWindow::goBack() {
     if (history.size() > 1) {
         history.pop();
-        QWidget *widget = history.pop();
-        showWidget(widget);
+        showView(history.pop());
     }
 }
 
-void MainWindow::showWidget(QWidget *widget, bool transition) {
+void MainWindow::showView(View *view, bool transition) {
     setUpdatesEnabled(false);
 
 #ifdef APP_MAC
@@ -1000,54 +999,39 @@ void MainWindow::showWidget(QWidget *widget, bool transition) {
     View *oldView = qobject_cast<View *>(views->currentWidget());
     if (oldView) {
         oldView->disappear();
-        views->currentWidget()->setEnabled(false);
+        oldView->setEnabled(false);
+        oldView->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
     } else
-        qDebug() << "Cannot cast view";
+        qDebug() << "Cannot cast old view";
 
-    const bool isMediaView = widget == mediaView;
+    const bool isMediaView = view == mediaView;
 
     stopAct->setEnabled(isMediaView);
     compactViewAct->setEnabled(isMediaView);
-    toolbarSearch->setEnabled(widget == homeView || isMediaView || widget == downloadView);
+    toolbarSearch->setEnabled(view == homeView || isMediaView || view == downloadView);
+    aboutAct->setEnabled(view != aboutView);
+    getAction("downloads")->setChecked(view == downloadView);
 
-    aboutAct->setEnabled(widget != aboutView);
-    getAction("downloads")->setChecked(widget == downloadView);
+    views->setCurrentWidget(view);
+    view->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    view->setEnabled(true);
+    view->appear();
 
-    QWidget *oldWidget = views->currentWidget();
-    if (oldWidget) oldWidget->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+    QString title = view->getTitle();
+    if (title.isEmpty())
+        title = Constants::NAME;
+    else
+        title += QLatin1String(" - ") + Constants::NAME;
+    setWindowTitle(title);
 
-    views->setCurrentWidget(widget);
-    widget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    // dynamic view actions
+    /* Not currently used by any view
+    showActionsInStatusBar(viewActions, false);
+    viewActions = newView->getViewActions();
+    showActionsInStatusBar(viewActions, true);
+    */
 
-    // call show method on the new view
-    View *newView = qobject_cast<View *>(widget);
-    if (newView) {
-        widget->setEnabled(true);
-
-        QString title = newView->getTitle();
-        if (title.isEmpty())
-            title = Constants::NAME;
-        else
-            title += QLatin1String(" - ") + Constants::NAME;
-        setWindowTitle(title);
-
-        statusToolBar->setUpdatesEnabled(false);
-
-        // dynamic view actions
-        /* Not currently used by any view
-        foreach (QAction* action, viewActions)
-            showActionInStatusBar(action, false);
-        viewActions = newView->getViewActions();
-        foreach (QAction* action, viewActions)
-            showActionInStatusBar(action, true);
-        */
-
-        messageLabel->hide();
-
-        newView->appear();
-
-        statusToolBar->setUpdatesEnabled(true);
-    }
+    messageLabel->hide();
 
 #ifdef APP_MAC
     // Workaround cursor bug on macOS
@@ -1055,7 +1039,7 @@ void MainWindow::showWidget(QWidget *widget, bool transition) {
     mac::uncloseWindow(winId());
 #endif
 
-    history.push(widget);
+    history.push(view);
     emit viewChanged();
 
     adjustStatusBarVisibility();
@@ -1068,7 +1052,7 @@ void MainWindow::about() {
         aboutView = new AboutView(this);
         views->addWidget(aboutView);
     }
-    showWidget(aboutView);
+    showView(aboutView);
 }
 
 void MainWindow::visitSite() {
@@ -1154,12 +1138,12 @@ bool MainWindow::confirmQuit() {
 }
 
 void MainWindow::showHome() {
-    showWidget(homeView);
+    showView(homeView);
     currentTimeLabel->clear();
 }
 
 void MainWindow::showMedia(SearchParams *searchParams) {
-    showWidget(mediaView);
+    showView(mediaView);
     if (getAction("safeSearch")->isChecked())
         searchParams->setSafeSearch(SearchParams::Strict);
     else
@@ -1168,7 +1152,7 @@ void MainWindow::showMedia(SearchParams *searchParams) {
 }
 
 void MainWindow::showMedia(VideoSource *videoSource) {
-    showWidget(mediaView);
+    showView(mediaView);
     mediaView->setVideoSource(videoSource);
 }
 
@@ -1729,7 +1713,7 @@ void MainWindow::toggleDownloads(bool show) {
         views->addWidget(downloadView);
     }
     if (show)
-        showWidget(downloadView);
+        showView(downloadView);
     else
         goBack();
 }
@@ -1997,9 +1981,9 @@ void MainWindow::handleError(const QString &message) {
 
 #ifdef APP_ACTIVATION
 void MainWindow::showActivationView() {
-    QWidget *activationView = ActivationView::instance();
+    View *activationView = ActivationView::instance();
     views->addWidget(activationView);
-    if (views->currentWidget() != activationView) showWidget(activationView);
+    if (views->currentWidget() != activationView) showView(activationView);
 }
 #endif
 
@@ -2010,5 +1994,5 @@ void MainWindow::showRegionsView() {
                 SLOT(load()));
         views->addWidget(regionsView);
     }
-    showWidget(regionsView);
+    showView(regionsView);
 }

@@ -25,6 +25,7 @@ $END_LICENSE */
 
 #include "media.h"
 
+class View;
 class HomeView;
 class MediaView;
 class DownloadView;
@@ -158,7 +159,7 @@ private:
     void createMenus();
     void createToolBars();
     void createStatusBar();
-    void showWidget(QWidget *, bool transition = false);
+    void showView(View *view, bool transition = false);
     static QString formatTime(qint64 duration);
     bool confirmQuit();
     void simpleUpdateDialog(const QString &version);
@@ -172,14 +173,14 @@ private:
 
     // view mechanism
     QStackedWidget *views;
-    QStack<QWidget *> history;
+    QStack<View *> history;
 
     // view widgets
     HomeView *homeView;
     MediaView *mediaView;
-    QWidget *aboutView;
-    QWidget *downloadView;
-    QWidget *regionsView;
+    View *aboutView;
+    View *downloadView;
+    View *regionsView;
 
     // actions
     QAction *backAct;
