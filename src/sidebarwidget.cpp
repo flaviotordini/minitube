@@ -34,6 +34,9 @@ SidebarWidget::SidebarWidget(QWidget *parent) : QWidget(parent), playlistWidth(0
     layout->setSpacing(0);
     layout->setMargin(0);
 
+    setBackgroundRole(QPalette::Base);
+    setAutoFillBackground(true);
+
     sidebarHeader = new SidebarHeader();
     layout->addWidget(sidebarHeader);
 

@@ -207,6 +207,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     recentKeywordsLabel = new QLabel(tr("Recent keywords"));
     recentKeywordsLabel->setProperty("recentHeader", true);
     recentKeywordsLabel->hide();
+    recentKeywordsLabel->setEnabled(false);
     recentKeywordsLayout->addWidget(recentKeywordsLabel);
     recentLayout->addLayout(recentKeywordsLayout);
 
@@ -217,6 +218,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     recentChannelsLabel = new QLabel(tr("Recent channels"));
     recentChannelsLabel->setProperty("recentHeader", true);
     recentChannelsLabel->hide();
+    recentChannelsLabel->setEnabled(false);
     recentChannelsLayout->addWidget(recentChannelsLabel);
     recentLayout->addLayout(recentChannelsLayout);
 
@@ -281,6 +283,11 @@ void SearchView::updateRecentKeywords() {
 
     const int maxDisplayLength = 25;
 
+#ifdef APP_MAC
+    QPalette p = palette();
+    p.setColor(QPalette::Highlight, mac::accentColor());
+#endif
+
     for (const QString &keyword : keywords) {
         QString link = keyword;
         QString display = keyword;
@@ -299,6 +306,12 @@ void SearchView::updateRecentKeywords() {
         }
 
         ClickableLabel *item = new ClickableLabel(display);
+#ifdef APP_MAC
+        item->setPalette(p);
+#endif
+        connect(item, &ClickableLabel::hovered, item, [item](bool value) {
+            item->setForegroundRole(value ? QPalette::Highlight : QPalette::WindowText);
+        });
         item->setAttribute(Qt::WA_DeleteOnClose);
         item->setProperty("recentItem", true);
         item->setFocusPolicy(Qt::TabFocus);
@@ -327,6 +340,11 @@ void SearchView::updateRecentChannels() {
     // TODO
     // MainWindow::instance()->getAction("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
 
+#ifdef APP_MAC
+    QPalette p = palette();
+    p.setColor(QPalette::Highlight, mac::accentColor());
+#endif
+
     for (const QString &keyword : keywords) {
         QString link = keyword;
         QString display = keyword;
@@ -337,6 +355,12 @@ void SearchView::updateRecentChannels() {
         }
 
         ClickableLabel *item = new ClickableLabel(display);
+#ifdef APP_MAC
+        item->setPalette(p);
+#endif
+        connect(item, &ClickableLabel::hovered, item, [item](bool value) {
+            item->setForegroundRole(value ? QPalette::Highlight : QPalette::WindowText);
+        });
         item->setAttribute(Qt::WA_DeleteOnClose);
         item->setProperty("recentItem", true);
         item->setFocusPolicy(Qt::TabFocus);

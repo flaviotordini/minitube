@@ -69,24 +69,9 @@ SidebarHeader QComboBox::drop-down {
     border-style: none;
 }
 
-SearchView *[recentHeader="true"] {
+SearchView *[recentItem="true"], SearchView *[recentHeader="true"] {
     border: 0;
     padding: 4px 0;
-    color: palette(mid);
-}
-
-SearchView *[recentItem="true"] {
-    border: 0;
-    padding: 4px 0;
-}
-
-SearchView *[recentItem="true"]:hover {
-    color: palette(highlight);
-}
-
-SearchView *[recentItem="true"]:pressed {
-    background: palette(highlight);
-    color: palette(highlight-text);
 }
 
 SearchView *[recentItem="true"]:focus {

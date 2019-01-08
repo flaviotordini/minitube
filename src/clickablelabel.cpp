@@ -11,3 +11,13 @@ ClickableLabel::ClickableLabel(const QString &text, QWidget *parent) : QLabel(te
 void ClickableLabel::mouseReleaseEvent(QMouseEvent *e) {
     if (rect().contains(e->pos())) emit clicked();
 }
+
+void ClickableLabel::leaveEvent(QEvent *event) {
+    QLabel::leaveEvent(event);
+    emit hovered(false);
+}
+
+void ClickableLabel::enterEvent(QEvent *event) {
+    QLabel::enterEvent(event);
+    emit hovered(true);
+}

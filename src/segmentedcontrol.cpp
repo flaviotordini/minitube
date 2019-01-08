@@ -101,8 +101,6 @@ void SegmentedControl::paintEvent(QPaintEvent * /*event*/) {
             rect.moveLeft(rect.x() + rect.width());
         }
     }
-    const qreal y = height - penWidth;
-    p.drawLine(QPointF(0, y), QPointF(width, y));
 }
 
 void SegmentedControl::mouseMoveEvent(QMouseEvent *event) {
@@ -148,11 +146,7 @@ void SegmentedControl::leaveEvent(QEvent *event) {
 }
 
 void SegmentedControl::setupColors() {
-#ifdef APP_WIN
     selectedColor = palette().color(QPalette::Base);
-#else
-    selectedColor = palette().color(QPalette::Window);
-#endif
     int darkerFactor = 105;
     backgroundColor = selectedColor.darker(darkerFactor);
     borderColor = backgroundColor;

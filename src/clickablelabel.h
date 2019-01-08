@@ -12,9 +12,13 @@ public:
 
 signals:
     void clicked();
+    void hovered(bool value);
 
 protected:
     void mouseReleaseEvent(QMouseEvent *e);
+
+    void enterEvent(QEvent *event);
+    void leaveEvent(QEvent *event);
 };
 
 #endif // CLICKABLELABEL_H

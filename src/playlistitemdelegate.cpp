@@ -106,13 +106,9 @@ void PlaylistItemDelegate::paint(QPainter *painter,
                                  const QStyleOptionViewItem &option,
                                  const QModelIndex &index) const {
     int itemType = index.data(ItemTypeRole).toInt();
-    if (itemType == ItemTypeVideo) {
-        // QStyleOptionViewItem opt = QStyleOptionViewItem(option);
-        // initStyleOption(&opt, index);
-        // opt.text.clear();
-        // opt.widget->style()->drawControl(QStyle::CE_ItemViewItem, &opt, painter, opt.widget);
+    if (itemType == ItemTypeVideo)
         paintBody(painter, option, index);
-    } else
+    else
         QStyledItemDelegate::paint(painter, option, index);
 }
 

@@ -64,7 +64,7 @@ QVariant PlaylistModel::data(const QModelIndex &index, int role) const {
             return ItemTypeShowMore;
         case Qt::DisplayRole:
             if (!errorMessage.isEmpty()) return errorMessage;
-            if (searching) return tr("Searching...");
+            if (searching) return QString(); // tr("Searching...");
             if (canSearchMore) return tr("Show %1 More").arg("").simplified();
             if (videos.isEmpty())
                 return tr("No videos");

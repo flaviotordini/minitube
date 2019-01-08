@@ -27,9 +27,7 @@ $END_LICENSE */
 #include "ytstandardfeed.h"
 
 StandardFeedsView::StandardFeedsView(QWidget *parent) : View(parent), layout(0) {
-    QPalette p = palette();
-    p.setBrush(QPalette::Window, Qt::black);
-    setPalette(p);
+    setBackgroundRole(QPalette::Base);
     setAutoFillBackground(true);
 
     connect(MainWindow::instance()->getAction("worldwideRegion"), SIGNAL(triggered()),
@@ -95,7 +93,7 @@ void StandardFeedsView::removeVideoSourceWidget(VideoSourceWidget *videoSourceWi
     }
 
     const int itemCount = items.size();
-    const int cols = itemCount / 3;
+    const int cols = 4; // itemCount / 3;
     for (int i = itemCount - 1; i >= 0; i--) {
         QLayoutItem *item = items.at(i);
         int index = itemCount - 1 - i;
@@ -114,7 +112,7 @@ void StandardFeedsView::resetLayout() {
 
     layout = new QGridLayout(this);
     layout->setMargin(0);
-    layout->setSpacing(1);
+    layout->setSpacing(0);
 }
 
 YTStandardFeed *

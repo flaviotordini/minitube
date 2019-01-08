@@ -165,15 +165,9 @@ void AboutView::appear() {
     closeButton->setFocus();
 }
 
-void AboutView::paintEvent(QPaintEvent *event) {
-    QWidget::paintEvent(event);
-    QBrush brush;
-    if (window()->isActiveWindow()) {
-        brush = Qt::white;
-    } else {
-        brush = palette().window();
-    }
+void AboutView::paintEvent(QPaintEvent *e) {
+    Q_UNUSED(e);
     QPainter painter(this);
-    painter.fillRect(0, 0, width(), height(), brush);
-    painter.end();
+    QBrush brush = window()->isActiveWindow() ? palette().base() : palette().window();
+    painter.fillRect(rect(), brush);
 }
