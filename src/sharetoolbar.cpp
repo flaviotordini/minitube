@@ -13,6 +13,6 @@ ShareToolbar::ShareToolbar(QWidget *parent) : QToolBar(parent) {
 }
 
 void ShareToolbar::setLeftMargin(int value) {
-    setStyleSheet("border:0;margin-left:" + QString::number(value) + "px");
-    disconnect(sender(), 0, this, 0);
+    setStyleSheet("QToolButton {border:0;margin-left:" + QString::number(value) + "px}");
+    disconnect(sender(), nullptr, this, nullptr);
 }

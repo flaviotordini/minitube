@@ -7,7 +7,7 @@ class ToolbarMenu : public QMenu {
     Q_OBJECT
 
 public:
-    ToolbarMenu(QWidget *parent = 0);
+    ToolbarMenu(QWidget *parent = nullptr);
 
 signals:
     void leftMarginChanged(int value);
