@@ -925,6 +925,25 @@ void MediaView::updateSubscriptionAction(Video *video, bool subscribed) {
     MainWindow::instance()->setupAction(subscribeAction);
 }
 
+void MediaView::reloadCurrentVideo() {
+    Video *video = playlistModel->activeVideo();
+    if (!video) return;
+    connect(video, &Video::gotStreamUrl, this,
+            [this](const QString &videoUrl, const QString &audioUrl) {
+                QObject *context = new QObject();
+                const qint64 position = media->position();
+                gotStreamUrl(videoUrl, audioUrl);
+                connect(media, &Media::stateChanged, context,
+                        [position, this, context](Media::State state) {
+                            if (state == Media::PlayingState) {
+                                media->seek(position);
+                                context->deleteLater();
+                            }
+                        });
+            });
+    video->loadStreamUrl();
+}
+
 void MediaView::toggleSubscription() {
     Video *video = playlistModel->activeVideo();
     if (!video) return;

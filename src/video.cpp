@@ -117,7 +117,7 @@ void Video::streamUrlLoaded(const QString &streamUrl, const QString &audioUrl) {
     this->streamUrl = streamUrl;
     emit gotStreamUrl(streamUrl, audioUrl);
     delete ytVideo;
-    ytVideo = 0;
+    ytVideo = nullptr;
 }
 
 void Video::loadStreamUrl() {
@@ -127,7 +127,10 @@ void Video::loadStreamUrl() {
     }
     ytVideo = new YTVideo(id, this);
     connect(ytVideo, &YTVideo::gotStreamUrl, this, &Video::streamUrlLoaded);
-    connect(ytVideo, &YTVideo::errorStreamUrl, this, &Video::errorStreamUrl);
-    connect(ytVideo, &YTVideo::errorStreamUrl, ytVideo, &QObject::deleteLater);
+    connect(ytVideo, &YTVideo::errorStreamUrl, this, [this](const QString &msg) {
+        emit errorStreamUrl(msg);
+        ytVideo->deleteLater();
+        ytVideo = nullptr;
+    });
     ytVideo->loadStreamUrl();
 }

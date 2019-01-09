@@ -1648,6 +1648,9 @@ void MainWindow::setDefinitionMode(const QString &definitionName) {
             definitionAct->shortcut().toString(QKeySequence::NativeText) + ")");
     showMessage(definitionAct->statusTip());
     VideoDefinition::savePreferred(definitionName);
+    if (views->currentWidget() == mediaView) {
+        mediaView->reloadCurrentVideo();
+    }
 }
 
 void MainWindow::toggleDefinitionMode() {

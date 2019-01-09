@@ -57,6 +57,7 @@ public:
     const QString &getCurrentVideoId();
     void updateSubscriptionAction(Video *video, bool subscribed);
     VideoAreaWidget *getVideoArea() { return videoAreaWidget; }
+    void reloadCurrentVideo();
 
 public slots:
     void search(SearchParams *searchParams);
