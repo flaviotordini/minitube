@@ -224,9 +224,11 @@ void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory, bool
 
     playlistModel->setVideoSource(videoSource);
 
-    QSettings settings;
-    if (settings.value("manualplay", false).toBool()) {
-        videoAreaWidget->showPickMessage();
+    if (media->state() == Media::StoppedState) {
+        QSettings settings;
+        if (settings.value("manualplay", false).toBool()) {
+            videoAreaWidget->showPickMessage();
+        }
     }
 
     sidebar->showPlaylist();
