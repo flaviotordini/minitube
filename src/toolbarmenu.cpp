@@ -71,8 +71,7 @@ void ToolbarMenu::showEvent(QShowEvent *e) {
     QStyleOptionMenuItem option;
     initStyleOption(&option, a);
     int leftMargin = option.maxIconWidth;
-#ifndef APP_MAC
-    // On Win & Linux the value is wrong
+#ifdef APP_WIN
     leftMargin *= 1.5;
 #endif
     setStyleSheet("QToolBar > QToolButton[first] {margin-left:" + QString::number(leftMargin) +
