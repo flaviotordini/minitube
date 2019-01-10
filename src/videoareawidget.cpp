@@ -35,12 +35,6 @@ namespace {
 class MessageWidget : public QWidget {
 public:
     MessageWidget(QWidget *parent = nullptr) : QWidget(parent) {
-        QPalette p = palette();
-        p.setColor(QPalette::Window, Qt::black);
-        p.setColor(QPalette::WindowText, Qt::darkGray);
-        p.setColor(QPalette::Base, Qt::black);
-        p.setColor(QPalette::Text, Qt::darkGray);
-        setPalette(p);
         setAutoFillBackground(true);
 
         QBoxLayout *l = new QHBoxLayout(this);
@@ -50,35 +44,22 @@ public:
 
         QLabel *arrowLabel = new QLabel("←");
         arrowLabel->setFont(FontUtils::light(64));
-        arrowLabel->setPalette(p);
         l->addWidget(arrowLabel);
 
         QLabel *msgLabel = new QLabel(tr("Pick a video"));
         msgLabel->setFont(FontUtils::light(32));
-        msgLabel->setPalette(p);
         l->addWidget(msgLabel);
     }
 };
 } // namespace
 
 VideoAreaWidget::VideoAreaWidget(QWidget *parent)
-    : QWidget(parent), videoWidget(0), messageWidget(0) {
+    : QWidget(parent), videoWidget(nullptr), messageWidget(nullptr) {
     setAttribute(Qt::WA_OpaquePaintEvent);
 
     QBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
     layout->setSpacing(0);
-
-    // hidden message widget
-    messageLabel = new QLabel(this);
-    messageLabel->setOpenExternalLinks(true);
-    messageLabel->setMargin(7);
-    messageLabel->setBackgroundRole(QPalette::ToolTipBase);
-    messageLabel->setForegroundRole(QPalette::ToolTipText);
-    messageLabel->setAutoFillBackground(true);
-    messageLabel->setWordWrap(true);
-    messageLabel->hide();
-    layout->addWidget(messageLabel);
 
     stackedLayout = new QStackedLayout();
     layout->addLayout(stackedLayout);
@@ -112,12 +93,6 @@ void VideoAreaWidget::showVideo() {
     loadingWidget->clear();
 }
 
-void VideoAreaWidget::showError(const QString &message) {
-    messageLabel->setText(message);
-    messageLabel->show();
-    stackedLayout->setCurrentWidget(loadingWidget);
-}
-
 void VideoAreaWidget::showPickMessage() {
     if (!messageWidget) {
         messageWidget = new MessageWidget();
@@ -127,8 +102,6 @@ void VideoAreaWidget::showPickMessage() {
 }
 
 void VideoAreaWidget::showLoading(Video *video) {
-    messageLabel->hide();
-    messageLabel->clear();
     loadingWidget->setVideo(video);
     stackedLayout->setCurrentWidget(loadingWidget);
 }
@@ -147,8 +120,6 @@ void VideoAreaWidget::hideSnapshotPreview() {}
 
 void VideoAreaWidget::clear() {
     loadingWidget->clear();
-    messageLabel->hide();
-    messageLabel->clear();
     stackedLayout->setCurrentWidget(loadingWidget);
 }
 

@@ -29,21 +29,17 @@ class PlaylistModel;
 class SnapshotPreview;
 
 class VideoAreaWidget : public QWidget {
-
     Q_OBJECT
 
 public:
-    VideoAreaWidget(QWidget *parent = 0);
+    VideoAreaWidget(QWidget *parent = nullptr);
     void setVideoWidget(QWidget *videoWidget);
     void setLoadingWidget(LoadingWidget *loadingWidget);
-    void showLoading(Video* video);
+    void showLoading(Video *video);
     void showVideo();
-    void showError(const QString &message);
     void showPickMessage();
     void clear();
-    void setListModel(PlaylistModel *listModel) {
-        this->listModel = listModel;
-    }
+    void setListModel(PlaylistModel *listModel) { this->listModel = listModel; }
 #ifdef APP_SNAPSHOT
     void showSnapshotPreview(const QPixmap &pixmap);
 #endif
@@ -68,17 +64,11 @@ private:
     QStackedLayout *stackedLayout;
     QWidget *videoWidget;
     LoadingWidget *loadingWidget;
-
+    QWidget *messageWidget;
 #ifdef APP_SNAPSHOT
     SnapshotPreview *snapshotPreview;
 #endif
-
     PlaylistModel *listModel;
-    QLabel *messageLabel;
-
-    QWidget *messageWidget;
-
-    QPoint dragPosition;
 };
 
 #endif // VIDEOAREAWIDGET_H
