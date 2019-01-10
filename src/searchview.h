@@ -50,9 +50,6 @@ public slots:
 signals:
     void search(SearchParams *);
 
-protected:
-    void paintEvent(QPaintEvent *);
-
 private slots:
     void watch();
     void textChanged(const QString &text);

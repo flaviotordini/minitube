@@ -50,17 +50,10 @@ static const QString recentChannelsKey = "recentChannels";
 } // namespace
 
 SearchView::SearchView(QWidget *parent) : View(parent) {
-#ifdef APP_MAC
-    QPalette p = palette();
-    p.setColor(QPalette::Highlight, mac::accentColor());
-    setPalette(p);
-#endif
+    setBackgroundRole(QPalette::Base);
+    setAutoFillBackground(true);
 
     const int padding = 30;
-
-    // speedup painting since we'll paint the whole background
-    // by ourselves anyway in paintEvent()
-    setAttribute(Qt::WA_OpaquePaintEvent);
 
     QBoxLayout *vLayout = new QVBoxLayout(this);
     vLayout->setMargin(padding);
@@ -107,7 +100,6 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
                     .arg(Constants::WEBSITE, Constants::NAME) +
             "</h1>");
     welcomeLabel->setOpenExternalLinks(true);
-    welcomeLabel->setProperty("heading", true);
     welcomeLabel->setFont(FontUtils::light(welcomeLabel->font().pointSize() * 1.25));
     layout->addWidget(welcomeLabel);
 
@@ -443,18 +435,6 @@ void SearchView::watchKeywords(const QString &query) {
 
     // go!
     emit search(searchParams);
-}
-
-void SearchView::paintEvent(QPaintEvent *event) {
-    QWidget::paintEvent(event);
-    QBrush brush;
-    if (window()->isActiveWindow()) {
-        brush = palette().base();
-    } else {
-        brush = palette().window();
-    }
-    QPainter painter(this);
-    painter.fillRect(0, 0, width(), height(), brush);
 }
 
 void SearchView::searchTypeChanged(int index) {
