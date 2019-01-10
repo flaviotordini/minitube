@@ -837,12 +837,17 @@ void MainWindow::createToolBars() {
     mainToolBar->addWidget(new Spacer());
 
     mainToolBar->addAction(volumeMuteAct);
+#ifndef APP_MAC_QMACTOOLBAR
     QToolButton *volumeMuteButton =
             qobject_cast<QToolButton *>(mainToolBar->widgetForAction(volumeMuteAct));
     volumeMuteButton->setIconSize(QSize(16, 16));
-    volumeMuteButton->connect(
-            volumeMuteAct, &QAction::changed, volumeMuteButton,
-            [volumeMuteButton] { volumeMuteButton->setIcon(volumeMuteButton->icon().pixmap(16)); });
+    auto fixVolumeMuteIconSize = [volumeMuteButton] {
+        volumeMuteButton->setIcon(volumeMuteButton->icon().pixmap(16));
+    };
+    fixVolumeMuteIconSize();
+    volumeMuteButton->connect(volumeMuteAct, &QAction::changed, volumeMuteButton,
+                              fixVolumeMuteIconSize);
+#endif
 
     volumeSlider->setStatusTip(
             tr("Press %1 to raise the volume, %2 to lower it")
