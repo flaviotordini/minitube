@@ -907,17 +907,7 @@ void MediaView::updateSubscriptionAction(Video *video, bool subscribed) {
     subscribeAction->setStatusTip(subscribeTip);
 
     if (subscribed) {
-#ifdef APP_LINUX_NO
-        static QIcon tintedIcon;
-        if (tintedIcon.isNull()) {
-            QVector<QSize> sizes;
-            sizes << QSize(16, 16);
-            tintedIcon = IconUtils::tintedIcon("bookmark-new", QColor(254, 240, 0), sizes);
-        }
-        subscribeAction->setIcon(tintedIcon);
-#else
-            subscribeAction->setIcon(IconUtils::icon("bookmark-remove"));
-#endif
+        subscribeAction->setIcon(IconUtils::icon("bookmark-remove"));
     } else {
         subscribeAction->setIcon(IconUtils::icon("bookmark-new"));
     }
