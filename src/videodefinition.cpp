@@ -76,7 +76,7 @@ bool VideoDefinition::isEmpty() const {
 }
 
 const VideoDefinition VideoDefinition::preferred() {
-    const QString definitionName = QSettings().value("definition", "480p").toString();
+    const QString definitionName = QSettings().value("definition", "720p").toString();
     const VideoDefinition &definition = VideoDefinition::forName(definitionName);
     return definition;
 }
