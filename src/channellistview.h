@@ -24,7 +24,6 @@ $END_LICENSE */
 #include <QtWidgets>
 
 class ChannelListView : public QListView {
-
     Q_OBJECT
 
 public:
@@ -42,7 +41,6 @@ protected:
 
 private:
     QString errorMessage;
-
 };
 
 #endif // CHANNELLISTVIEW_H

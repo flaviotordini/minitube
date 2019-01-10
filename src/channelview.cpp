@@ -112,7 +112,7 @@ void ChannelView::setupActions() {
 
     QToolButton *sortButton = new QToolButton(this);
     sortButton->setText(tr("Sort by"));
-    sortButton->setIcon(IconUtils::icon("sort"));
+    IconUtils::setIcon(sortButton, "sort");
     sortButton->setIconSize(QSize(16, 16));
     sortButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     sortButton->setPopupMode(QToolButton::InstantPopup);
@@ -122,16 +122,16 @@ void ChannelView::setupActions() {
     widgetAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_O));
     statusActions << widgetAction;
 
-    markAsWatchedAction =
-            new QAction(IconUtils::icon("mark-watched"), tr("Mark all as watched"), this);
+    markAsWatchedAction = new QAction(tr("Mark all as watched"), this);
+    IconUtils::setIcon(markAsWatchedAction, "mark-watched");
     markAsWatchedAction->setEnabled(false);
     markAsWatchedAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_W));
     connect(markAsWatchedAction, SIGNAL(triggered()), SLOT(markAllAsWatched()));
     statusActions << markAsWatchedAction;
 
     showUpdated = settings.value(showUpdatedKey, false).toBool();
-    QAction *showUpdatedAction =
-            new QAction(IconUtils::icon("show-updated"), tr("Show Updated"), this);
+    QAction *showUpdatedAction = new QAction(tr("Show Updated"), this);
+    IconUtils::setIcon(showUpdatedAction, "show-updated");
     showUpdatedAction->setCheckable(true);
     showUpdatedAction->setChecked(showUpdated);
     showUpdatedAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_U));

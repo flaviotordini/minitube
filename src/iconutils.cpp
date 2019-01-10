@@ -36,7 +36,7 @@ void addIconFile(QIcon &icon,
 } // namespace
 
 QIcon IconUtils::fromTheme(const QString &name) {
-    const QLatin1String symbolic("-symbolic");
+    static const QLatin1String symbolic("-symbolic");
     if (name.endsWith(symbolic)) return QIcon::fromTheme(name);
     QIcon icon = QIcon::fromTheme(name + symbolic);
     if (icon.isNull()) return QIcon::fromTheme(name);
@@ -53,9 +53,9 @@ QIcon IconUtils::fromResources(const char *name) {
     QString path(":/icons/");
 
     if (MainWindow::instance()->palette().window().color().value() > 128)
-        path += "light/";
+        path += QLatin1String("light/");
     else
-        path += "dark/";
+        path += QLatin1String("dark/");
 
     QIcon icon;
 

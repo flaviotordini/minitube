@@ -57,16 +57,11 @@ void ChannelItemDelegate::paintAggregate(QPainter *painter,
                                          const QModelIndex &index) const {
     Q_UNUSED(index);
     painter->save();
-
     painter->translate(option.rect.topLeft());
     const QRect line(0, 0, option.rect.width(), option.rect.height());
-
-    static const QPixmap thumbnail = IconUtils::icon("channels").pixmap(88, 88);
-
+    const QPixmap thumbnail = IconUtils::icon("channels").pixmap(88, 88);
     QString name = tr("All Videos");
-
     drawItem(painter, line, thumbnail, name);
-
     painter->restore();
 }
 

@@ -34,12 +34,14 @@ void SidebarHeader::setup() {
 
     setIconSize(QSize(16, 16));
 
-    backAction = new QAction(IconUtils::icon("go-previous"), tr("&Back"), this);
+    backAction = new QAction(tr("&Back"), this);
+    IconUtils::setIcon(backAction, "go-previous");
     backAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Left));
     connect(backAction, SIGNAL(triggered()), MediaView::instance(), SLOT(goBack()));
     addAction(backAction);
 
-    forwardAction = new QAction(IconUtils::icon("go-next"), tr("&Forward"), this);
+    forwardAction = new QAction(tr("&Forward"), this);
+    IconUtils::setIcon(forwardAction, "go-next");
     forwardAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_Right));
     connect(forwardAction, SIGNAL(triggered()), MediaView::instance(), SLOT(goForward()));
     addAction(forwardAction);
