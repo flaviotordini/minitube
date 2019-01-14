@@ -43,7 +43,7 @@ bool drawElidedText(QPainter *painter, const QRect &textBox, const int flags, co
 } // namespace
 
 PlaylistItemDelegate::PlaylistItemDelegate(QObject *parent, bool downloadInfo)
-    : QStyledItemDelegate(parent), downloadInfo(downloadInfo), progressBar(0) {
+    : QStyledItemDelegate(parent), downloadInfo(downloadInfo), progressBar(nullptr) {
     listView = qobject_cast<PlaylistView *>(parent);
 
     smallerBoldFont = FontUtils::smallBold();

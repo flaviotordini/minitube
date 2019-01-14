@@ -116,7 +116,7 @@ void Video::streamUrlLoaded(const QString &streamUrl, const QString &audioUrl) {
     definitionCode = ytVideo->getDefinitionCode();
     this->streamUrl = streamUrl;
     emit gotStreamUrl(streamUrl, audioUrl);
-    delete ytVideo;
+    ytVideo->deleteLater();
     ytVideo = nullptr;
 }
 
