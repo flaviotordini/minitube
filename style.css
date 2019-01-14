@@ -76,5 +76,4 @@ SearchView *[recentItem="true"], SearchView *[recentHeader="true"] {
 
 SearchView *[recentItem="true"]:focus {
     outline: 1px solid palette(highlight);
-    outline-offset: 4px;
 }

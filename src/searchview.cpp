@@ -301,15 +301,14 @@ void SearchView::updateRecentKeywords() {
 #ifdef APP_MAC
         item->setPalette(p);
 #endif
-        connect(item, &ClickableLabel::hovered, item, [item](bool value) {
-            item->setForegroundRole(value ? QPalette::Highlight : QPalette::WindowText);
-        });
         item->setAttribute(Qt::WA_DeleteOnClose);
         item->setProperty("recentItem", true);
         item->setFocusPolicy(Qt::TabFocus);
         if (needStatusTip) item->setStatusTip(link);
         connect(item, &ClickableLabel::clicked, [this, link]() { watchKeywords(link); });
-
+        connect(item, &ClickableLabel::hovered, item, [item](bool value) {
+            item->setForegroundRole(value ? QPalette::Highlight : QPalette::WindowText);
+        });
         recentKeywordsLayout->addWidget(item);
     }
 }
@@ -350,14 +349,13 @@ void SearchView::updateRecentChannels() {
 #ifdef APP_MAC
         item->setPalette(p);
 #endif
-        connect(item, &ClickableLabel::hovered, item, [item](bool value) {
-            item->setForegroundRole(value ? QPalette::Highlight : QPalette::WindowText);
-        });
         item->setAttribute(Qt::WA_DeleteOnClose);
         item->setProperty("recentItem", true);
         item->setFocusPolicy(Qt::TabFocus);
         connect(item, &ClickableLabel::clicked, [this, link]() { watchChannel(link); });
-
+        connect(item, &ClickableLabel::hovered, item, [item](bool value) {
+            item->setForegroundRole(value ? QPalette::Highlight : QPalette::WindowText);
+        });
         recentChannelsLayout->addWidget(item);
     }
 }
