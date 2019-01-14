@@ -59,7 +59,11 @@ void ChannelItemDelegate::paintAggregate(QPainter *painter,
     painter->save();
     painter->translate(option.rect.topLeft());
     const QRect line(0, 0, option.rect.width(), option.rect.height());
-    const QPixmap thumbnail = IconUtils::icon("channels").pixmap(88, 88);
+
+    static QPixmap thumbnail = IconUtils::icon("channels").pixmap(88, 88);
+    connect(qApp, &QGuiApplication::paletteChanged, this,
+            [] { thumbnail = IconUtils::icon("channels").pixmap(88, 88); });
+
     QString name = tr("All Videos");
     drawItem(painter, line, thumbnail, name);
     painter->restore();
@@ -74,10 +78,11 @@ void ChannelItemDelegate::paintUnwatched(QPainter *painter,
     painter->translate(option.rect.topLeft());
     const QRect line(0, 0, option.rect.width(), option.rect.height());
 
-    static const QPixmap thumbnail = IconUtils::icon("unwatched").pixmap(88, 88);
+    static QPixmap thumbnail = IconUtils::icon("unwatched").pixmap(88, 88);
+    connect(qApp, &QGuiApplication::paletteChanged, this,
+            [] { thumbnail = IconUtils::icon("unwatched").pixmap(88, 88); });
 
     QString name = tr("Unwatched Videos");
-
     drawItem(painter, line, thumbnail, name);
 
     int notifyCount = ChannelAggregator::instance()->getUnwatchedCount();
