@@ -827,8 +827,6 @@ void MainWindow::createToolBars() {
     currentTimeLabel->setFont(FontUtils::small());
     mainToolBar->addWidget(currentTimeLabel);
 
-    mainToolBar->addWidget(new Spacer());
-
     seekSlider->setOrientation(Qt::Horizontal);
     seekSlider->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
     seekSlider->setFocusPolicy(Qt::NoFocus);
