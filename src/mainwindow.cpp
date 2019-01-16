@@ -1538,7 +1538,6 @@ void MainWindow::initMedia() {
 #else
     qFatal("No media backend defined");
 #endif
-    media->setRenderer("opengl");
     media->init();
     media->setUserAgent(HttpUtils::stealthUserAgent());
 
