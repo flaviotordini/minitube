@@ -1582,18 +1582,16 @@ void MainWindow::initMedia() {
 void MainWindow::tick(qint64 time) {
 #ifdef APP_MAC
     bool isDown = seekSlider->property("down").isValid();
-    if (!isDown) {
+#else
+    bool isDown = seekSlider->isSliderDown();
 #endif
-        if (media->state() == Media::PlayingState) {
-            // value : maxValue = position : duration
-            qint64 duration = media->duration();
-            if (duration <= 0) return;
-            int value = (seekSlider->maximum() * media->position()) / duration;
-            seekSlider->setValue(value);
-        }
-#ifdef APP_MAC
+    if (!isDown && media->state() == Media::PlayingState) {
+        // value : maxValue = position : duration
+        qint64 duration = media->duration();
+        if (duration <= 0) return;
+        int value = (seekSlider->maximum() * media->position()) / duration;
+        seekSlider->setValue(value);
     }
-#endif
 
     const QString s = formatTime(time);
     if (s != currentTimeLabel->text()) {
