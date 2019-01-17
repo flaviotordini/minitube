@@ -69,10 +69,10 @@ const VideoDefinition &VideoDefinition::forCode(int code) {
 }
 
 VideoDefinition::VideoDefinition(const QString &name, int code, int audioCode)
-    : m_name(name), m_code(code), audioCode(audioCode) {}
+    : name(name), code(code), audioCode(audioCode) {}
 
 bool VideoDefinition::isEmpty() const {
-    return m_code == kEmptyDefinitionCode && m_name.isEmpty();
+    return code == kEmptyDefinitionCode && name.isEmpty();
 }
 
 const VideoDefinition VideoDefinition::preferred() {

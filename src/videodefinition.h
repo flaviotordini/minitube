@@ -32,8 +32,8 @@ public:
 
     VideoDefinition(const QString &name, int code, int audioCode = 0);
 
-    const QString &getName() const { return m_name; }
-    int getCode() const { return m_code; }
+    const QString &getName() const { return name; }
+    int getCode() const { return code; }
     int getAudioCode() const { return audioCode; }
     bool isEmpty() const;
 
@@ -43,8 +43,8 @@ public:
     static void savePreferred(const QString &definitionName);
 
 private:
-    const QString m_name;
-    const int m_code;
+    const QString name;
+    const int code;
     const int audioCode;
 };
 
