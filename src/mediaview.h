@@ -101,7 +101,7 @@ private slots:
     // list/model
     void itemActivated(const QModelIndex &index);
     void selectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
-    void activeRowChanged(int);
+    void activeVideoChanged(Video *video, Video *previousVideo);
     void selectVideos(const QVector<Video *> &videos);
     void gotStreamUrl(const QString &streamUrl, const QString &audioUrl);
     void handleError(const QString &message);
@@ -114,7 +114,7 @@ private slots:
     void resumeWithNewStreamUrl(const QUrl &streamUrl);
 
 private:
-    MediaView(QWidget *parent = 0);
+    MediaView(QWidget *parent = nullptr);
     SearchParams *getSearchParams();
 
     static QRegExp wordRE(const QString &s);

@@ -118,6 +118,7 @@ QVariant PlaylistModel::data(const QModelIndex &index, int role) const {
 void PlaylistModel::setActiveRow(int row, bool notify) {
     if (rowExists(row)) {
         m_activeRow = row;
+        Video *previousVideo = m_activeVideo;
         m_activeVideo = videoAt(row);
 
         int oldactiverow = m_activeRow;
@@ -127,7 +128,7 @@ void PlaylistModel::setActiveRow(int row, bool notify) {
                              createIndex(oldactiverow, columnCount() - 1));
 
         emit dataChanged(createIndex(m_activeRow, 0), createIndex(m_activeRow, columnCount() - 1));
-        if (notify) emit activeRowChanged(row);
+        if (notify) emit activeVideoChanged(m_activeVideo, previousVideo);
 
     } else {
         m_activeRow = -1;

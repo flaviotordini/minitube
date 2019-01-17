@@ -80,6 +80,8 @@ public:
 
     void loadStreamUrl();
     const QString &getStreamUrl() { return streamUrl; }
+    bool isLoadingStreamUrl() const { return ytVideo != nullptr; }
+    void abortLoadStreamUrl();
 
     const QString &getId() const { return id; }
     void setId(const QString &value) { id = value; }

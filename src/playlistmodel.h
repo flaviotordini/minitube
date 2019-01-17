@@ -38,20 +38,19 @@ enum DataRoles {
     AuthorPressedRole
 };
 
-enum ItemTypes {
-    ItemTypeVideo = 1,
-    ItemTypeShowMore
-};
+enum ItemTypes { ItemTypeVideo = 1, ItemTypeShowMore };
 
 class PlaylistModel : public QAbstractListModel {
-
     Q_OBJECT
 
 public:
     PlaylistModel(QWidget *parent = 0);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    int columnCount( const QModelIndex& parent = QModelIndex() ) const { Q_UNUSED( parent ); return 4; }
+    int columnCount(const QModelIndex &parent = QModelIndex()) const {
+        Q_UNUSED(parent);
+        return 4;
+    }
     QVariant data(const QModelIndex &index, int role) const;
     bool removeRows(int position, int rows, const QModelIndex &parent);
 
@@ -59,26 +58,28 @@ public:
     QStringList mimeTypes() const;
     Qt::DropActions supportedDropActions() const;
     Qt::DropActions supportedDragActions() const;
-    QMimeData* mimeData( const QModelIndexList &indexes ) const;
+    QMimeData *mimeData(const QModelIndexList &indexes) const;
     bool dropMimeData(const QMimeData *data,
-                      Qt::DropAction action, int row, int column,
+                      Qt::DropAction action,
+                      int row,
+                      int column,
                       const QModelIndex &parent);
 
-    void setActiveRow(int row , bool notify = true);
-    bool rowExists( int row ) const { return (( row >= 0 ) && ( row < videos.size() ) ); }
+    void setActiveRow(int row, bool notify = true);
+    bool rowExists(int row) const { return ((row >= 0) && (row < videos.size())); }
     int activeRow() const { return m_activeRow; } // returns -1 if there is no active row
     int nextRow() const;
     int previousRow() const;
     void removeIndexes(QModelIndexList &indexes);
-    int rowForVideo(Video* video);
-    QModelIndex indexForVideo(Video* video);
+    int rowForVideo(Video *video);
+    QModelIndex indexForVideo(Video *video);
     void move(QModelIndexList &indexes, bool up);
 
-    Video* videoAt( int row ) const;
-    Video* activeVideo() const;
+    Video *videoAt(int row) const;
+    Video *activeVideo() const;
     int rowForCloneVideo(const QString &videoId) const;
 
-    VideoSource* getVideoSource() { return videoSource; }
+    VideoSource *getVideoSource() { return videoSource; }
     void setVideoSource(VideoSource *videoSource);
     void abortSearch();
 
@@ -101,12 +102,12 @@ public slots:
     void exitAuthorPressed();
 
 signals:
-    void activeRowChanged(int);
-    void needSelectionFor(const QVector<Video*> &videos);
+    void activeVideoChanged(Video *video, Video *previousVideo);
+    void needSelectionFor(const QVector<Video *> &videos);
     void haveSuggestions(const QStringList &suggestions);
 
 private:
-    void handleFirstVideo(Video* video);
+    void handleFirstVideo(Video *video);
     void searchMore(int max);
 
     VideoSource *videoSource;
@@ -114,7 +115,7 @@ private:
     bool canSearchMore;
     bool firstSearch;
 
-    QVector<Video*> videos;
+    QVector<Video *> videos;
     int startIndex;
     int max;
 

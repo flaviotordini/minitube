@@ -28,7 +28,7 @@ $END_LICENSE */
 
 Video::Video()
     : duration(0), viewCount(-1), license(LicenseYouTube), definitionCode(0),
-      loadingThumbnail(false), ytVideo(0) {}
+      loadingThumbnail(false), ytVideo(nullptr) {}
 
 Video::~Video() {
     qDebug() << "Deleting" << id;
@@ -133,4 +133,11 @@ void Video::loadStreamUrl() {
         ytVideo = nullptr;
     });
     ytVideo->loadStreamUrl();
+}
+
+void Video::abortLoadStreamUrl() {
+    if (ytVideo) {
+        ytVideo->disconnect(this);
+        ytVideo->deleteLater();
+    }
 }
