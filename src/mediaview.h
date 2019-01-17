@@ -18,8 +18,8 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 
 $END_LICENSE */
 
-#ifndef __MEDIAVIEW_H__
-#define __MEDIAVIEW_H__
+#ifndef MEDIAVIEW_H
+#define MEDIAVIEW_H
 
 #include <QtNetwork>
 #include <QtWidgets>
@@ -151,4 +151,4 @@ private:
     qint64 pauseTime;
 };
 
-#endif // __MEDIAVIEW_H__
+#endif // MEDIAVIEW_H
