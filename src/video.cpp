@@ -139,5 +139,6 @@ void Video::abortLoadStreamUrl() {
     if (ytVideo) {
         ytVideo->disconnect(this);
         ytVideo->deleteLater();
+        ytVideo = nullptr;
     }
 }
