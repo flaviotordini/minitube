@@ -31,11 +31,11 @@ static const QString recentKeywordsKey = "recentKeywords";
 static const QString recentChannelsKey = "recentChannels";
 
 PlaylistModel::PlaylistModel(QWidget *parent) : QAbstractListModel(parent) {
-    videoSource = 0;
+    videoSource = nullptr;
     searching = false;
     canSearchMore = true;
     firstSearch = false;
-    m_activeVideo = 0;
+    m_activeVideo = nullptr;
     m_activeRow = -1;
     startIndex = 1;
     max = 0;
@@ -132,7 +132,7 @@ void PlaylistModel::setActiveRow(int row, bool notify) {
 
     } else {
         m_activeRow = -1;
-        m_activeVideo = 0;
+        m_activeVideo = nullptr;
     }
 }
 
@@ -161,7 +161,7 @@ void PlaylistModel::setVideoSource(VideoSource *videoSource) {
     beginResetModel();
     while (!videos.isEmpty())
         delete videos.takeFirst();
-    m_activeVideo = 0;
+    m_activeVideo = nullptr;
     m_activeRow = -1;
     startIndex = 1;
     endResetModel();
@@ -204,7 +204,7 @@ void PlaylistModel::abortSearch() {
     videos.squeeze();
     searching = false;
     m_activeRow = -1;
-    m_activeVideo = 0;
+    m_activeVideo = nullptr;
     startIndex = 1;
     endResetModel();
 }
