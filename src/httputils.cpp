@@ -1,9 +1,9 @@
 #include "httputils.h"
+#include "cachedhttp.h"
 #include "constants.h"
 #include "http.h"
-#include "throttledhttp.h"
-#include "cachedhttp.h"
 #include "localcache.h"
+#include "throttledhttp.h"
 
 Http &HttpUtils::notCached() {
     static Http *h = [] {
@@ -47,9 +47,10 @@ void HttpUtils::clearCaches() {
 
 const QByteArray &HttpUtils::userAgent() {
     static const QByteArray ua = [] {
-        return QString(QLatin1String(Constants::NAME)
-                       + QLatin1Char('/') + QLatin1String(Constants::VERSION)
-                       + QLatin1String(" ( ") + Constants::WEBSITE + QLatin1String(" )")).toUtf8();
+        return QString(QLatin1String(Constants::NAME) + QLatin1Char('/') +
+                       QLatin1String(Constants::VERSION) + QLatin1String(" ( ") +
+                       Constants::WEBSITE + QLatin1String(" )"))
+                .toUtf8();
     }();
     return ua;
 }
