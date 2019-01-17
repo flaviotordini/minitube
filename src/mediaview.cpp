@@ -81,7 +81,8 @@ void MediaView::initialize() {
             SLOT(itemActivated(const QModelIndex &)));
 
     playlistModel = new PlaylistModel();
-    connect(playlistModel, SIGNAL(activeRowChanged(int)), SLOT(activeRowChanged(int)));
+    connect(playlistModel, &PlaylistModel::activeVideoChanged, this,
+            &MediaView::activeVideoChanged);
     // needed to restore the selection after dragndrop
     connect(playlistModel, SIGNAL(needSelectionFor(QVector<Video *>)),
             SLOT(selectVideos(QVector<Video *>)));
@@ -386,15 +387,16 @@ const QString &MediaView::getCurrentVideoId() {
     return currentVideoId;
 }
 
-void MediaView::activeRowChanged(int row) {
+void MediaView::activeVideoChanged(Video *video, Video *previousVideo) {
     if (stopped) return;
 
     errorTimer->stop();
 
     media->stop();
 
-    Video *video = playlistModel->videoAt(row);
-    if (!video) return;
+    if (previousVideo && previousVideo != video) {
+        if (previousVideo->isLoadingStreamUrl()) previousVideo->abortLoadStreamUrl();
+    }
 
     // optimize window for 16:9 video
     adjustWindowSize();
@@ -410,6 +412,7 @@ void MediaView::activeRowChanged(int row) {
                                            QLatin1String(Constants::NAME));
 
     // ensure active item is visible
+    int row = playlistModel->rowForVideo(video);
     if (row != -1) {
         QModelIndex index = playlistModel->index(row, 0, QModelIndex());
         playlistView->scrollTo(index, QAbstractItemView::EnsureVisible);
