@@ -22,9 +22,6 @@ private slots:
     void errorVideoInfo(const QString &message);
     void scrapeWebPage(const QByteArray &bytes);
     void parseJsPlayer(const QByteArray &bytes);
-#ifdef APP_DASH
-    void parseDashManifest(const QByteArray &bytes);
-#endif
 
 private:
     void getVideoInfo();
@@ -39,8 +36,6 @@ private:
     QUrl m_streamUrl;
     int definitionCode;
     bool loadingStreamUrl;
-    // current index for the elTypes list
-    // needed to iterate on elTypes
     int elIndex;
     bool ageGate;
     QString videoToken;

@@ -250,29 +250,6 @@ void YTVideo::scrapeWebPage(const QByteArray &bytes) {
         return;
     }
 
-    // parseFmtUrlMap(fmtUrlMap, true);
-
-#ifdef APP_DASH
-    QSettings settings;
-    QString definitionName = settings.value("definition", "360p").toString();
-    if (definitionName != QLatin1String("360p")) {
-        QRegExp dashManifestRe("\"dashmpd\":\\s*\"([^\"]+)\"");
-        if (dashManifestRe.indexIn(html) != -1) {
-            dashManifestUrl = dashManifestRe.cap(1);
-            dashManifestUrl.remove('\\');
-            qDebug() << "dashManifestUrl" << dashManifestUrl;
-        } else {
-            qWarning() << "DASH manifest not found in webpage" << html;
-            if (dashManifestRe.indexIn(fmtUrlMap) != -1) {
-                dashManifestUrl = dashManifestRe.cap(1);
-                dashManifestUrl.remove('\\');
-                qDebug() << "dashManifestUrl" << dashManifestUrl;
-            } else
-                qWarning() << "DASH manifest not found in fmtUrlMap";
-        }
-    }
-#endif
-
     static const QRegExp jsPlayerRe(JsFunctions::instance()->jsPlayerRE());
     if (jsPlayerRe.indexIn(html) != -1) {
         QString jsPlayerUrl = jsPlayerRe.cap(1);
@@ -319,51 +296,8 @@ void YTVideo::parseJsPlayer(const QByteArray &bytes) {
         // qWarning() << sigFunctions << sigObjects;
     }
 
-#ifdef APP_DASH
-    if (!dashManifestUrl.isEmpty()) {
-        QRegExp sigRe("/s/([\\w\\.]+)");
-        if (sigRe.indexIn(dashManifestUrl) != -1) {
-            qDebug() << "Decrypting signature for dash manifest";
-            QString sig = sigRe.cap(1);
-            sig = decryptSignature(sig);
-            dashManifestUrl.replace(sigRe, "/signature/" + sig);
-            qWarning() << "dash manifest" << dashManifestUrl;
-
-            if (true) {
-                // let media engine play the manifest
-                qDebug() << "Playing DASH manifest" << dashManifestUrl;
-                m_streamUrl = dashManifestUrl;
-                this->definitionCode = 37;
-                emit gotStreamUrl(m_streamUrl);
-                loadingStreamUrl = false;
-            } else {
-                // download the manifest
-                QObject *reply = HttpUtils::yt().get(QUrl::fromEncoded(dashManifestUrl.toUtf8()));
-                connect(reply, SIGNAL(data(QByteArray)), SLOT(parseDashManifest(QByteArray)));
-                connect(reply, SIGNAL(error(QString)), SLOT(errorVideoInfo(QString)));
-            }
-
-            return;
-        }
-    }
-#endif
-
     parseFmtUrlMap(fmtUrlMap, true);
 }
-
-#ifdef APP_DASH
-void YTVideo::parseDashManifest(const QByteArray &bytes) {
-    QFile file(Temporary::filename() + ".mpd");
-    if (!file.open(QIODevice::WriteOnly)) qWarning() << file.errorString() << file.fileName();
-    QDataStream stream(&file);
-    stream.writeRawData(bytes.constData(), bytes.size());
-
-    m_streamUrl = "file://" + file.fileName();
-    this->definitionCode = 37;
-    emit gotStreamUrl(m_streamUrl);
-    loadingStreamUrl = false;
-}
-#endif
 
 void YTVideo::captureFunction(const QString &name, const QString &js) {
     qDebug() << __PRETTY_FUNCTION__ << name;
