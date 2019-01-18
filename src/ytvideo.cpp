@@ -234,7 +234,7 @@ void YTVideo::scrapeWebPage(const QByteArray &bytes) {
         fmtUrlMap.replace("\\u0026", "&");
     }
 
-    QRegExp adaptiveFormatsRE("\"adaptive_fmts\":\s*\"([^\"]+)\"");
+    QRegExp adaptiveFormatsRE("\"adaptive_fmts\":\\s*\"([^\"]+)\"");
     if (adaptiveFormatsRE.indexIn(html) != -1) {
         qDebug() << "Found adaptive_fmts";
         if (!fmtUrlMap.isEmpty()) fmtUrlMap += ',';
