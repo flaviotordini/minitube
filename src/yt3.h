@@ -4,9 +4,9 @@
 #include <QtCore>
 
 class HttpReply;
+class VideoDefinition;
 
 class YT3 : public QObject {
-
     Q_OBJECT
 
 public:
@@ -17,6 +17,12 @@ public:
     void testApiKey();
     void addApiKey(QUrl &url);
     QUrl method(const QString &name);
+
+    const VideoDefinition &maxVideoDefinition();
+    void setMaxVideoDefinition(const QString &name);
+
+signals:
+    void maxVideoDefinitionChanged(const QString &name);
 
 private slots:
     void testResponse(const HttpReply &reply);

@@ -74,14 +74,3 @@ VideoDefinition::VideoDefinition(const QString &name, int code, int audioCode)
 bool VideoDefinition::isEmpty() const {
     return code == kEmptyDefinitionCode && name.isEmpty();
 }
-
-const VideoDefinition VideoDefinition::preferred() {
-    const QString definitionName = QSettings().value("definition", "720p").toString();
-    const VideoDefinition &definition = VideoDefinition::forName(definitionName);
-    return definition;
-}
-
-void VideoDefinition::savePreferred(const QString &definitionName) {
-    QSettings settings;
-    settings.setValue("definition", definitionName);
-}

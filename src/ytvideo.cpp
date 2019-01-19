@@ -6,6 +6,7 @@
 #include "jsfunctions.h"
 #include "temporary.h"
 #include "videodefinition.h"
+#include "yt3.h"
 
 #include <QJSEngine>
 #include <QJSValue>
@@ -107,7 +108,7 @@ void YTVideo::gotVideoInfo(const QByteArray &bytes) {
 
 void YTVideo::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
     int videoFormat = 0;
-    const VideoDefinition &definition = VideoDefinition::preferred();
+    const VideoDefinition &definition = YT3::instance().maxVideoDefinition();
 
     // qDebug() << "fmtUrlMap" << fmtUrlMap;
     const QVector<QStringRef> formatUrls = fmtUrlMap.splitRef(',', QString::SkipEmptyParts);

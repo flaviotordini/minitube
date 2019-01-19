@@ -39,9 +39,6 @@ public:
 
     VideoDefinition &operator=(const VideoDefinition &);
 
-    static const VideoDefinition preferred();
-    static void savePreferred(const QString &definitionName);
-
 private:
     const QString name;
     const int code;

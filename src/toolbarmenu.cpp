@@ -2,6 +2,7 @@
 #include "mainwindow.h"
 #include "sharetoolbar.h"
 #include "videodefinition.h"
+#include "yt3.h"
 
 ToolbarMenu::ToolbarMenu(QWidget *parent) : QMenu(parent) {
     MainWindow *w = MainWindow::instance();
@@ -33,7 +34,7 @@ ToolbarMenu::ToolbarMenu(QWidget *parent) : QMenu(parent) {
     definitionToolbar->setToolButtonStyle(Qt::ToolButtonTextOnly);
     definitionToolbar->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     QActionGroup *definitionGroup = new QActionGroup(this);
-    const VideoDefinition &preferredDefinition = VideoDefinition::preferred();
+    const VideoDefinition &preferredDefinition = YT3::instance().maxVideoDefinition();
     int counter = 0;
     for (auto defName : VideoDefinition::getDefinitionNames()) {
         QAction *a = new QAction(defName);

@@ -489,18 +489,26 @@ void MainWindow::createActions() {
     addAction(volumeMuteAct);
 
     QToolButton *definitionButton = new QToolButton(this);
-    definitionButton->setText(VideoDefinition::preferred().getName());
+    definitionButton->setText(YT3::instance().maxVideoDefinition().getName());
     IconUtils::setIcon(definitionButton, "video-display");
     definitionButton->setIconSize(QSize(16, 16));
     definitionButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     definitionButton->setPopupMode(QToolButton::InstantPopup);
     QMenu *definitionMenu = new QMenu(this);
-    for (auto defName : VideoDefinition::getDefinitionNames()) {
+    QActionGroup *group = new QActionGroup(this);
+    for (auto &defName : VideoDefinition::getDefinitionNames()) {
         QAction *a = new QAction(defName);
+        a->setCheckable(true);
+        a->setActionGroup(group);
+        a->setChecked(defName == YT3::instance().maxVideoDefinition().getName());
         connect(a, &QAction::triggered, this, [this, defName, definitionButton] {
             setDefinitionMode(defName);
             definitionButton->setText(defName);
         });
+        connect(&YT3::instance(), &YT3::maxVideoDefinitionChanged, this,
+                [defName, definitionButton](const QString &name) {
+                    if (defName == name) definitionButton->setChecked(true);
+                });
         definitionMenu->addAction(a);
     }
     definitionButton->setMenu(definitionMenu);
@@ -971,8 +979,8 @@ void MainWindow::readSettings() {
         setGeometry(
                 QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, QSize(w, h), desktopSize));
     }
-    setDefinitionMode(
-            settings.value("definition", VideoDefinition::preferred().getName()).toString());
+    setDefinitionMode(settings.value("definition", YT3::instance().maxVideoDefinition().getName())
+                              .toString());
     getAction("manualplay")->setChecked(settings.value("manualplay", false).toBool());
     getAction("safeSearch")->setChecked(settings.value("safeSearch", false).toBool());
 #ifndef APP_MAC
@@ -1660,7 +1668,7 @@ void MainWindow::setDefinitionMode(const QString &definitionName) {
             tr("Maximum video definition set to %1").arg(definitionAct->text()) + " (" +
             definitionAct->shortcut().toString(QKeySequence::NativeText) + ")");
     showMessage(definitionAct->statusTip());
-    VideoDefinition::savePreferred(definitionName);
+    YT3::instance().setMaxVideoDefinition(definitionName);
     if (views->currentWidget() == mediaView) {
         mediaView->reloadCurrentVideo();
     }
@@ -1668,7 +1676,7 @@ void MainWindow::setDefinitionMode(const QString &definitionName) {
 
 void MainWindow::toggleDefinitionMode() {
     const QVector<VideoDefinition> &definitions = VideoDefinition::getDefinitions();
-    const VideoDefinition &currentDefinition = VideoDefinition::preferred();
+    const VideoDefinition &currentDefinition = YT3::instance().maxVideoDefinition();
 
     int index = definitions.indexOf(currentDefinition);
     if (index != definitions.size() - 1) {
