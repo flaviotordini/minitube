@@ -140,7 +140,9 @@ void PlaylistItemDelegate::paintBody(QPainter *painter,
     const bool isHovered = index.data(HoveredItemRole).toBool();
 
     // play icon overlayed on the thumb
-    if (isActive && (!isHovered && thumbsOnly)) painter->drawPixmap(0, 0, playIcon);
+    bool needPlayIcon = isActive;
+    if (thumbsOnly) needPlayIcon = needPlayIcon && !isHovered;
+    if (needPlayIcon) painter->drawPixmap(0, 0, playIcon);
 
     // time
     if (video->getDuration() > 0) drawTime(painter, video->getFormattedDuration(), line);
