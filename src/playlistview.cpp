@@ -82,19 +82,21 @@ void PlaylistView::mousePressEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
         if (isHoveringAuthor(event)) {
             QMetaObject::invokeMethod(model(), "enterAuthorPressed");
+        } else if (isHoveringThumbnail(event)) {
+            const QModelIndex index = indexAt(event->pos());
+            emit activated(index);
+            unsetCursor();
+            return;
         }
+        QListView::mousePressEvent(event);
     }
-    QListView::mousePressEvent(event);
 }
 
 void PlaylistView::mouseReleaseEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
         QMetaObject::invokeMethod(model(), "exitAuthorPressed");
         const QModelIndex index = indexAt(event->pos());
-        if (isHoveringThumbnail(event)) {
-            emit activated(index);
-            unsetCursor();
-        } else if (isHoveringAuthor(event)) {
+        if (isHoveringAuthor(event)) {
             emit authorPushed(index);
         } else if (isShowMoreItem(index)) {
             PlaylistModel *listModel = qobject_cast<PlaylistModel *>(model());
