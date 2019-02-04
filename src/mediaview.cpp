@@ -295,7 +295,7 @@ void MediaView::disappear() {
 
 void MediaView::handleError(const QString &message) {
     qWarning() << __PRETTY_FUNCTION__ << message;
-    media->play();
+    MainWindow::instance()->showMessage(message);
 }
 
 void MediaView::stateChanged(Media::State state) {
