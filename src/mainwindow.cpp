@@ -78,7 +78,12 @@ $END_LICENSE */
 #include "yt3.h"
 #include "ytregions.h"
 
+#ifdef MEDIA_QTAV
 #include "mediaqtav.h"
+#endif
+#ifdef MEDIA_MPV
+#include "mediampv.h"
+#endif
 #include "seekslider.h"
 
 namespace {
@@ -1542,7 +1547,11 @@ void MainWindow::searchFocus() {
 
 void MainWindow::initMedia() {
 #ifdef MEDIA_QTAV
+    qFatal("QtAV has a showstopper bug. Audio stops randomly. See bug "
+           "https://github.com/wang-bin/QtAV/issues/1184");
     media = new MediaQtAV(this);
+#elif defined MEDIA_MPV
+    media = new MediaMPV();
 #else
     qFatal("No media backend defined");
 #endif
