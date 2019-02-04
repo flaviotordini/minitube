@@ -40,9 +40,9 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
     const int padding = 30;
     const char *buildYear = __DATE__ + 7;
 
-    // speedup painting since we'll paint the whole background
-    // by ourselves anyway in paintEvent()
-    setAttribute(Qt::WA_OpaquePaintEvent);
+    setBackgroundRole(QPalette::Base);
+    setForegroundRole(QPalette::Text);
+    setAutoFillBackground(true);
 
     QBoxLayout *verticalLayout = new QVBoxLayout(this);
     verticalLayout->setMargin(0);
@@ -163,11 +163,4 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
 
 void AboutView::appear() {
     closeButton->setFocus();
-}
-
-void AboutView::paintEvent(QPaintEvent *e) {
-    Q_UNUSED(e);
-    QPainter painter(this);
-    QBrush brush = window()->isActiveWindow() ? palette().base() : palette().window();
-    painter.fillRect(rect(), brush);
 }

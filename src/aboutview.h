@@ -39,9 +39,6 @@ public:
         return s;
     }
 
-protected:
-    void paintEvent(QPaintEvent *e);
-
 private:
     ClickableLabel *logo;
     QPushButton *closeButton;
