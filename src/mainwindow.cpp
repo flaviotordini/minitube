@@ -1207,7 +1207,6 @@ void MainWindow::stateChanged(Media::State newState) {
         pauseAct->setText(tr("&Pause"));
         pauseAct->setStatusTip(tr("Pause playback") + " (" +
                                pauseAct->shortcut().toString(QKeySequence::NativeText) + ")");
-        // stopAct->setEnabled(true);
         break;
 
     case Media::StoppedState:
@@ -1216,7 +1215,6 @@ void MainWindow::stateChanged(Media::State newState) {
         pauseAct->setText(tr("&Play"));
         pauseAct->setStatusTip(tr("Resume playback") + " (" +
                                pauseAct->shortcut().toString(QKeySequence::NativeText) + ")");
-        // stopAct->setEnabled(false);
         break;
 
     case Media::PausedState:
@@ -1225,7 +1223,6 @@ void MainWindow::stateChanged(Media::State newState) {
         pauseAct->setText(tr("&Play"));
         pauseAct->setStatusTip(tr("Resume playback") + " (" +
                                pauseAct->shortcut().toString(QKeySequence::NativeText) + ")");
-        // stopAct->setEnabled(true);
         break;
 
     case Media::BufferingState:
@@ -1238,8 +1235,6 @@ void MainWindow::stateChanged(Media::State newState) {
     case Media::LoadingState:
         pauseAct->setEnabled(false);
         currentTimeLabel->clear();
-        // totalTime->clear();
-        // stopAct->setEnabled(true);
         break;
 
     default:;
