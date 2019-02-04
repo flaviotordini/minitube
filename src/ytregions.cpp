@@ -85,7 +85,7 @@ YTRegion YTRegions::r(const QString &name, const QString &id) {
 }
 
 const YTRegion &YTRegions::localRegion() {
-    static const YTRegion region = [] {
+    static const YTRegion region = []() -> YTRegion {
         QString country = QLocale::system().name().right(2);
         for (const YTRegion &r : list()) {
             if (r.id == country) return r;
