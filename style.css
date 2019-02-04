@@ -1,5 +1,12 @@
 QMainWindow > QToolBar QToolButton::menu-indicator { image: none; }
 
+QStatusBar {
+    border: 0;
+    padding: 0;
+    background: palette(base);
+    color: palette(text);
+}
+
 QStatusBar QToolBar {
     padding:0;
     spacing:0;
@@ -8,7 +15,9 @@ QStatusBar QToolBar {
 }
 
 QStatusBar::item {
-    border:0;
+    border: 0;
+    padding: 0;
+    margin: 0;
 }
 
 QStatusBar QToolButton::menu-indicator {
