@@ -134,7 +134,11 @@ void PlaylistItemDelegate::paintBody(QPainter *painter,
     if (isActive && !isSelected) paintActiveOverlay(painter, option, line);
 
     // thumb
-    painter->drawPixmap(0, 0, video->getThumbnail());
+    const QPixmap &thumb = video->getThumbnail();
+    if (!thumb.isNull()) {
+        painter->drawPixmap(0, 0, thumb);
+        if (video->getDuration() > 0) drawTime(painter, video->getFormattedDuration(), line);
+    }
 
     const bool thumbsOnly = line.width() <= thumbWidth + 60;
     const bool isHovered = index.data(HoveredItemRole).toBool();
@@ -143,9 +147,6 @@ void PlaylistItemDelegate::paintBody(QPainter *painter,
     bool needPlayIcon = isActive;
     if (thumbsOnly) needPlayIcon = needPlayIcon && !isHovered;
     if (needPlayIcon) painter->drawPixmap(0, 0, playIcon);
-
-    // time
-    if (video->getDuration() > 0) drawTime(painter, video->getFormattedDuration(), line);
 
     if (!thumbsOnly) {
         // text color
