@@ -229,6 +229,12 @@ void MainWindow::changeEvent(QEvent *e) {
         getAction("minimize")->setEnabled(!isMinimized());
     }
 #endif
+    if (messageLabel->isVisible()) {
+        if (e->type() == QEvent::WindowStateChange || e->type() == QEvent::WindowDeactivate ||
+            e->type() == QEvent::ApplicationStateChange) {
+            hideMessage();
+        }
+    }
     QMainWindow::changeEvent(e);
 }
 
@@ -1980,10 +1986,10 @@ void MainWindow::showMessage(const QString &message) {
 #endif
     if (statusBar()->isVisible())
         statusBar()->showMessage(message, 60000);
-    else {
+    else if (isActiveWindow()) {
         messageLabel->setText(message);
         QSize size = messageLabel->sizeHint();
-        // round width to nearest 10 to avoid flicker with fast changing messages (e.g. volume
+        // round width to avoid flicker with fast changing messages (e.g. volume
         // changes)
         int w = size.width();
         const int multiple = 10;
