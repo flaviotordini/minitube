@@ -30,12 +30,11 @@ class ChannelModel;
 class ChannelListView;
 
 class ChannelView : public View {
-
     Q_OBJECT
 
 public:
-    ChannelView(QWidget *parent = 0);
-    
+    ChannelView(QWidget *parent = nullptr);
+
 signals:
     void activated(VideoSource *videoSource);
 
@@ -72,11 +71,10 @@ private:
 
     ChannelListView *listView;
     ChannelModel *channelsModel;
-    QVector<QAction*> statusActions;
+    QVector<QAction *> statusActions;
     bool showUpdated;
     SortBy sortBy;
     QAction *markAsWatchedAction;
-
 };
 
 #endif // CHANNELSVIEW_H

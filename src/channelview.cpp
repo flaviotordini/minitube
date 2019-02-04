@@ -35,8 +35,8 @@ $END_LICENSE */
 #include "channellistview.h"
 
 namespace {
-static const QString sortByKey = "subscriptionsSortBy";
-static const QString showUpdatedKey = "subscriptionsShowUpdated";
+const QString sortByKey = "subscriptionsSortBy";
+const QString showUpdatedKey = "subscriptionsShowUpdated";
 } // namespace
 
 ChannelView::ChannelView(QWidget *parent) : View(parent), showUpdated(false), sortBy(SortByName) {
