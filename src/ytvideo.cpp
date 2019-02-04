@@ -411,7 +411,7 @@ void YTVideo::saveDefinitionForUrl(const QString &url, const VideoDefinition &de
     QString audioUrl;
     if (definition.getAudioCode() != 0) {
         qDebug() << "Finding audio format";
-        static const QVector<int> audioFormats({140, 171, 251});
+        static const QVector<int> audioFormats({251, 171, 140});
         for (int audioFormat : audioFormats) {
             qDebug() << "Trying audio format" << audioFormat;
             auto i = urlMap.constFind(audioFormat);
