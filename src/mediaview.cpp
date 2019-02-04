@@ -173,7 +173,7 @@ SearchParams *MediaView::getSearchParams() {
         YTSearch *search = qobject_cast<YTSearch *>(videoSource);
         return search->getSearchParams();
     }
-    return 0;
+    return nullptr;
 }
 
 void MediaView::search(SearchParams *searchParams) {
@@ -378,7 +378,7 @@ void MediaView::stop() {
 #ifdef APP_SNAPSHOT
     if (snapshotSettings) {
         delete snapshotSettings;
-        snapshotSettings = 0;
+        snapshotSettings = nullptr;
     }
 #endif
 }
@@ -421,7 +421,7 @@ void MediaView::activeVideoChanged(Video *video, Video *previousVideo) {
     // enable/disable actions
     MainWindow::instance()
             ->getAction("download")
-            ->setEnabled(DownloadManager::instance()->itemForVideo(video) == 0);
+            ->setEnabled(DownloadManager::instance()->itemForVideo(video) == nullptr);
     MainWindow::instance()->getAction("previous")->setEnabled(row > 0);
     MainWindow::instance()->getAction("stopafterthis")->setEnabled(true);
     MainWindow::instance()->getAction("relatedVideos")->setEnabled(true);
@@ -445,7 +445,7 @@ void MediaView::activeVideoChanged(Video *video, Video *previousVideo) {
 #ifdef APP_SNAPSHOT
     if (snapshotSettings) {
         delete snapshotSettings;
-        snapshotSettings = 0;
+        snapshotSettings = nullptr;
         MainWindow::instance()->adjustStatusBarVisibility();
     }
 #endif
@@ -755,7 +755,7 @@ void MediaView::snapshot() {
 }
 
 void MediaView::fullscreen() {
-    videoAreaWidget->setParent(0);
+    videoAreaWidget->setParent(nullptr);
     videoAreaWidget->showFullScreen();
 }
 
