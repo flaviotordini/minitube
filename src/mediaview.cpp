@@ -390,9 +390,8 @@ const QString &MediaView::getCurrentVideoId() {
 void MediaView::activeVideoChanged(Video *video, Video *previousVideo) {
     if (stopped) return;
 
-    errorTimer->stop();
-
     media->stop();
+    errorTimer->stop();
 
     if (previousVideo && previousVideo != video) {
         if (previousVideo->isLoadingStreamUrl()) previousVideo->abortLoadStreamUrl();
