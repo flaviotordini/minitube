@@ -15,10 +15,9 @@ signals:
     void hovered(bool value);
 
 protected:
-    void mouseReleaseEvent(QMouseEvent *e);
-
-    void enterEvent(QEvent *event);
-    void leaveEvent(QEvent *event);
+    void mousePressEvent(QMouseEvent *e);
+    void enterEvent(QEvent *e);
+    void leaveEvent(QEvent *e);
 };
 
 #endif // CLICKABLELABEL_H

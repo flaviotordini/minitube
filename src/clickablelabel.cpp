@@ -8,16 +8,16 @@ ClickableLabel::ClickableLabel(const QString &text, QWidget *parent) : QLabel(te
     setCursor(Qt::PointingHandCursor);
 }
 
-void ClickableLabel::mouseReleaseEvent(QMouseEvent *e) {
+void ClickableLabel::mousePressEvent(QMouseEvent *e) {
     if (rect().contains(e->pos())) emit clicked();
 }
 
-void ClickableLabel::leaveEvent(QEvent *event) {
-    QLabel::leaveEvent(event);
+void ClickableLabel::leaveEvent(QEvent *e) {
     emit hovered(false);
+    QLabel::leaveEvent(e);
 }
 
-void ClickableLabel::enterEvent(QEvent *event) {
-    QLabel::enterEvent(event);
+void ClickableLabel::enterEvent(QEvent *e) {
     emit hovered(true);
+    QLabel::enterEvent(e);
 }
