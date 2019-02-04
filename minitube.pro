@@ -30,7 +30,7 @@ QT += widgets network sql qml
 include(lib/http/http.pri)
 include(lib/idle/idle.pri)
 
-DEFINES += MEDIA_QTAV
+DEFINES += MEDIA_MPV
 include(lib/media/media.pri)
 
 include(src/qtsingleapplication/qtsingleapplication.pri)
