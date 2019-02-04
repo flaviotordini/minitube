@@ -68,6 +68,14 @@ int main(int argc, char **argv) {
     // Seed random number generator
     qsrand(QDateTime::currentDateTime().toTime_t());
 
+#ifdef MEDIA_MPV
+    QSurfaceFormat format = QSurfaceFormat::defaultFormat();
+    format.setMajorVersion(4);
+    format.setMinorVersion(1);
+    format.setProfile(QSurfaceFormat::CoreProfile);
+    QSurfaceFormat::setDefaultFormat(format);
+#endif
+
 #ifdef Q_OS_MAC
     mac::MacMain();
 #endif
