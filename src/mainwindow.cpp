@@ -1992,7 +1992,7 @@ void MainWindow::showMessage(const QString &message) {
         // round width to avoid flicker with fast changing messages (e.g. volume
         // changes)
         int w = size.width();
-        const int multiple = 10;
+        const int multiple = 15;
         w = w + multiple / 2;
         w -= w % multiple;
         size.setWidth(w);
