@@ -1452,6 +1452,8 @@ void MainWindow::missingKeyWarning() {
 }
 
 void MainWindow::compactView(bool enable) {
+    setUpdatesEnabled(false);
+
     compactModeActive = enable;
 
     static QList<QKeySequence> compactShortcuts;
@@ -1494,12 +1496,14 @@ void MainWindow::compactView(bool enable) {
         mediaView->setFocus();
 
     } else {
+        settings.setValue(key, saveGeometry());
+
         // unset minimum size
         setMinimumSize(0, 0);
+
 #ifdef Q_OS_MAC
         mac::SetupFullScreenWindow(winId());
 #endif
-        settings.setValue(key, saveGeometry());
 #ifdef APP_MAC_QMACTOOLBAR
         mac::showToolBar(winId(), !enable);
 #else
@@ -1527,6 +1531,8 @@ void MainWindow::compactView(bool enable) {
         menuBar()->setVisible(menuVisibleBeforeCompactMode);
     }
 #endif
+
+    setUpdatesEnabled(true);
 }
 
 void MainWindow::toggleToolbarMenu() {
