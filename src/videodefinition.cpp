@@ -43,7 +43,7 @@ const VideoDefinition &getDefinitionForImpl(T matchValue) {
 // static
 const QVector<VideoDefinition> &VideoDefinition::getDefinitions() {
     static const QVector<VideoDefinition> definitions = {
-            VideoDefinition(QLatin1String("240p"), 133, 140),
+            // VideoDefinition(QLatin1String("240p"), 133, 140),
             VideoDefinition(QLatin1String("360p"), 396, 140),
             VideoDefinition(QLatin1String("360p"), 18),
             VideoDefinition(QLatin1String("480p"), 135, 140),
@@ -54,7 +54,7 @@ const QVector<VideoDefinition> &VideoDefinition::getDefinitions() {
 }
 
 const QVector<QString> &VideoDefinition::getDefinitionNames() {
-    static const QVector<QString> names = {"240p", "360p", "480p", "720p", "1080p"};
+    static const QVector<QString> names = {"360p", "480p", "720p", "1080p"};
     return names;
 }
 
