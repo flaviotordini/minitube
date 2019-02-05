@@ -45,7 +45,6 @@ HEADERS += src/video.h \
     src/searchparams.h \
     src/minisplitter.h \
     src/loadingwidget.h \
-    src/videoareawidget.h \
     src/autocomplete.h \
     src/videodefinition.h \
     src/fontutils.h \
@@ -110,7 +109,8 @@ HEADERS += src/video.h \
     src/clickablelabel.h \
     src/ytvideo.h \
     src/toolbarmenu.h \
-    src/sharetoolbar.h
+    src/sharetoolbar.h \
+    src/videoarea.h
 SOURCES += src/main.cpp \
     src/searchlineedit.cpp \
     src/spacer.cpp \
@@ -120,7 +120,6 @@ SOURCES += src/main.cpp \
     src/searchparams.cpp \
     src/minisplitter.cpp \
     src/loadingwidget.cpp \
-    src/videoareawidget.cpp \
     src/autocomplete.cpp \
     src/videodefinition.cpp \
     src/constants.cpp \
@@ -184,7 +183,8 @@ SOURCES += src/main.cpp \
     src/clickablelabel.cpp \
     src/ytvideo.cpp \
     src/toolbarmenu.cpp \
-    src/sharetoolbar.cpp
+    src/sharetoolbar.cpp \
+    src/videoarea.cpp
 
 RESOURCES += resources.qrc
 RESOURCES += $$files(icons/*.png, true)

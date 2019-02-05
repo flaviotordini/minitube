@@ -74,7 +74,7 @@ $END_LICENSE */
 #include "jsfunctions.h"
 #include "sidebarwidget.h"
 #include "toolbarmenu.h"
-#include "videoareawidget.h"
+#include "videoarea.h"
 #include "yt3.h"
 #include "ytregions.h"
 

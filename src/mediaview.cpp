@@ -31,7 +31,7 @@ $END_LICENSE */
 #include "sidebarheader.h"
 #include "sidebarwidget.h"
 #include "temporary.h"
-#include "videoareawidget.h"
+#include "videoarea.h"
 #ifdef APP_ACTIVATION
 #include "activation.h"
 #endif
@@ -103,7 +103,7 @@ void MediaView::initialize() {
     connect(sidebar, SIGNAL(suggestionAccepted(QString)), mainWindow, SLOT(search(QString)));
     splitter->addWidget(sidebar);
 
-    videoAreaWidget = new VideoAreaWidget(this);
+    videoAreaWidget = new VideoArea(this);
     videoAreaWidget->setListModel(playlistModel);
 
     loadingWidget = new LoadingWidget(this);

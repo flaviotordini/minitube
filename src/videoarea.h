@@ -28,11 +28,11 @@ class LoadingWidget;
 class PlaylistModel;
 class SnapshotPreview;
 
-class VideoAreaWidget : public QWidget {
+class VideoArea : public QWidget {
     Q_OBJECT
 
 public:
-    VideoAreaWidget(QWidget *parent = nullptr);
+    VideoArea(QWidget *parent = nullptr);
     void setVideoWidget(QWidget *videoWidget);
     void setLoadingWidget(LoadingWidget *loadingWidget);
     void showLoading(Video *video);

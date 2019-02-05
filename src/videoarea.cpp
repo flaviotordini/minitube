@@ -18,7 +18,7 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 
 $END_LICENSE */
 
-#include "videoareawidget.h"
+#include "videoarea.h"
 #include "loadingwidget.h"
 #include "mainwindow.h"
 #include "playlistmodel.h"
@@ -53,7 +53,7 @@ public:
 };
 } // namespace
 
-VideoAreaWidget::VideoAreaWidget(QWidget *parent)
+VideoArea::VideoArea(QWidget *parent)
     : QWidget(parent), videoWidget(nullptr), messageWidget(nullptr) {
     setAttribute(Qt::WA_OpaquePaintEvent);
 
@@ -77,23 +77,23 @@ VideoAreaWidget::VideoAreaWidget(QWidget *parent)
             SLOT(showContextMenu(const QPoint &)));
 }
 
-void VideoAreaWidget::setVideoWidget(QWidget *videoWidget) {
+void VideoArea::setVideoWidget(QWidget *videoWidget) {
     this->videoWidget = videoWidget;
     stackedLayout->addWidget(videoWidget);
 }
 
-void VideoAreaWidget::setLoadingWidget(LoadingWidget *loadingWidget) {
+void VideoArea::setLoadingWidget(LoadingWidget *loadingWidget) {
     this->loadingWidget = loadingWidget;
     stackedLayout->addWidget(loadingWidget);
     stackedLayout->setCurrentWidget(loadingWidget);
 }
 
-void VideoAreaWidget::showVideo() {
+void VideoArea::showVideo() {
     if (videoWidget) stackedLayout->setCurrentWidget(videoWidget);
     loadingWidget->clear();
 }
 
-void VideoAreaWidget::showPickMessage() {
+void VideoArea::showPickMessage() {
     if (!messageWidget) {
         messageWidget = new MessageWidget();
         stackedLayout->addWidget(messageWidget);
@@ -101,13 +101,13 @@ void VideoAreaWidget::showPickMessage() {
     stackedLayout->setCurrentWidget(messageWidget);
 }
 
-void VideoAreaWidget::showLoading(Video *video) {
+void VideoArea::showLoading(Video *video) {
     loadingWidget->setVideo(video);
     stackedLayout->setCurrentWidget(loadingWidget);
 }
 
 #ifdef APP_SNAPSHOT
-void VideoAreaWidget::showSnapshotPreview(const QPixmap &pixmap) {
+void VideoArea::showSnapshotPreview(const QPixmap &pixmap) {
     bool soundOnly = false;
 #ifdef APP_MAC
     soundOnly = MainWindow::instance()->isReallyFullScreen();
@@ -115,26 +115,26 @@ void VideoAreaWidget::showSnapshotPreview(const QPixmap &pixmap) {
     snapshotPreview->start(videoWidget, pixmap, soundOnly);
 }
 
-void VideoAreaWidget::hideSnapshotPreview() {}
+void VideoArea::hideSnapshotPreview() {}
 #endif
 
-void VideoAreaWidget::clear() {
+void VideoArea::clear() {
     loadingWidget->clear();
     stackedLayout->setCurrentWidget(loadingWidget);
 }
 
-void VideoAreaWidget::mouseDoubleClickEvent(QMouseEvent *event) {
+void VideoArea::mouseDoubleClickEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) emit doubleClicked();
 }
 
-void VideoAreaWidget::dragEnterEvent(QDragEnterEvent *event) {
+void VideoArea::dragEnterEvent(QDragEnterEvent *event) {
     // qDebug() << event->mimeData()->formats();
     if (event->mimeData()->hasFormat("application/x-minitube-video")) {
         event->acceptProposedAction();
     }
 }
 
-void VideoAreaWidget::dropEvent(QDropEvent *event) {
+void VideoArea::dropEvent(QDropEvent *event) {
     const VideoMimeData *videoMimeData = qobject_cast<const VideoMimeData *>(event->mimeData());
     if (!videoMimeData) return;
 
@@ -146,7 +146,7 @@ void VideoAreaWidget::dropEvent(QDropEvent *event) {
     event->acceptProposedAction();
 }
 
-void VideoAreaWidget::showContextMenu(const QPoint &point) {
+void VideoArea::showContextMenu(const QPoint &point) {
     QMenu *menu = MainWindow::instance()->getMenu("video");
     menu->exec(mapToGlobal(point));
 }

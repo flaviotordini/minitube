@@ -32,7 +32,7 @@ class Video;
 class PlaylistModel;
 class SearchParams;
 class LoadingWidget;
-class VideoAreaWidget;
+class VideoArea;
 class PlaylistView;
 class SidebarWidget;
 class VideoSource;
@@ -56,7 +56,7 @@ public:
     PlaylistModel *getPlaylistModel() { return playlistModel; }
     const QString &getCurrentVideoId();
     void updateSubscriptionAction(Video *video, bool subscribed);
-    VideoAreaWidget *getVideoArea() { return videoAreaWidget; }
+    VideoArea *getVideoArea() { return videoAreaWidget; }
     void reloadCurrentVideo();
 
 public slots:
@@ -123,7 +123,7 @@ private:
     SidebarWidget *sidebar;
     PlaylistView *playlistView;
     PlaylistModel *playlistModel;
-    VideoAreaWidget *videoAreaWidget;
+    VideoArea *videoAreaWidget;
     LoadingWidget *loadingWidget;
 
     Media *media;
