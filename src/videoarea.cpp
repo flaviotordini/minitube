@@ -32,9 +32,9 @@ $END_LICENSE */
 
 namespace {
 
-class MessageWidget : public QWidget {
+class PickMessage : public QWidget {
 public:
-    MessageWidget(QWidget *parent = nullptr) : QWidget(parent) {
+    PickMessage(QWidget *parent = nullptr) : QWidget(parent) {
         setAutoFillBackground(true);
 
         QBoxLayout *l = new QHBoxLayout(this);
@@ -95,7 +95,7 @@ void VideoArea::showVideo() {
 
 void VideoArea::showPickMessage() {
     if (!messageWidget) {
-        messageWidget = new MessageWidget();
+        messageWidget = new PickMessage();
         stackedLayout->addWidget(messageWidget);
     }
     stackedLayout->setCurrentWidget(messageWidget);
