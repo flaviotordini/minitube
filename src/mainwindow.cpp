@@ -371,11 +371,7 @@ void MainWindow::createActions() {
 
     compactViewAct = new QAction(tr("&Compact Mode"), this);
     compactViewAct->setStatusTip(tr("Hide the playlist and the toolbar"));
-#ifdef APP_MAC
-    compactViewAct->setShortcut(QKeySequence(Qt::CTRL + Qt::META + Qt::Key_C));
-#else
     compactViewAct->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_C));
-#endif
     compactViewAct->setCheckable(true);
     compactViewAct->setChecked(false);
     compactViewAct->setEnabled(false);
