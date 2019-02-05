@@ -23,6 +23,7 @@ $END_LICENSE */
 #include "http.h"
 #include "httputils.h"
 #include "jsfunctions.h"
+#include "playlistitemdelegate.h"
 #include "videodefinition.h"
 #include "ytvideo.h"
 
@@ -104,7 +105,7 @@ void Video::setThumbnail(const QByteArray &bytes) {
     qreal ratio = qApp->devicePixelRatio();
     thumbnail.loadFromData(bytes);
     thumbnail.setDevicePixelRatio(ratio);
-    const int thumbWidth = 160 * ratio;
+    const int thumbWidth = PlaylistItemDelegate::thumbWidth * ratio;
     if (thumbnail.width() > thumbWidth)
         thumbnail = thumbnail.scaledToWidth(thumbWidth, Qt::SmoothTransformation);
     emit gotThumbnail();

@@ -29,12 +29,6 @@ PlaylistView::PlaylistView(QWidget *parent) : QListView(parent), clickableAuthor
 
     setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Expanding);
 
-#if defined(APP_MAC)
-    setMinimumWidth(160);
-#else
-    setMinimumWidth(175);
-#endif
-
     // dragndrop
     setDragEnabled(true);
     setAcceptDrops(true);
@@ -50,6 +44,10 @@ PlaylistView::PlaylistView(QWidget *parent) : QListView(parent), clickableAuthor
 
     connect(this, SIGNAL(entered(const QModelIndex &)), SLOT(itemEntered(const QModelIndex &)));
     setMouseTracking(true);
+    setMinimumWidth(PlaylistItemDelegate::thumbWidth);
+#ifndef APP_MAC
+    setMinimumWidth(minimumWidth() + vScrollbar->width());
+#endif
 }
 
 void PlaylistView::itemEntered(const QModelIndex &index) {
@@ -129,7 +127,8 @@ bool PlaylistView::isHoveringAuthor(QMouseEvent *event) {
 bool PlaylistView::isHoveringThumbnail(QMouseEvent *event) {
     const QModelIndex index = indexAt(event->pos());
     const QRect itemRect = visualRect(index);
-    static const QRect thumbRect(0, 0, 160, 90);
+    static const QRect thumbRect(0, 0, PlaylistItemDelegate::thumbWidth,
+                                 PlaylistItemDelegate::thumbHeight);
     const int x = event->x() - itemRect.x() - thumbRect.x();
     const int y = event->y() - itemRect.y() - thumbRect.y();
     return x > 0 && x < thumbRect.width() && y > 0 && y < thumbRect.height();

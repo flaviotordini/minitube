@@ -38,6 +38,9 @@ public:
     QRect downloadButtonRect(const QRect &line) const;
     QRect authorRect(const QModelIndex &index) const;
 
+    static const int thumbWidth;
+    static const int thumbHeight;
+
 private:
     void createPlayIcon();
     void paintBody(QPainter *, const QStyleOptionViewItem &, const QModelIndex &) const;
@@ -49,8 +52,6 @@ private:
                             const QRect &line) const;
     void drawTime(QPainter *painter, const QString &time, const QRect &line) const;
 
-    static const int thumbWidth;
-    static const int thumbHeight;
     static const int padding;
 
     QPixmap playIcon;
