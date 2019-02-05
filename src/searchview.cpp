@@ -51,6 +51,7 @@ static const QString recentChannelsKey = "recentChannels";
 
 SearchView::SearchView(QWidget *parent) : View(parent) {
     setBackgroundRole(QPalette::Base);
+    setForegroundRole(QPalette::Text);
     setAutoFillBackground(true);
 
     const int padding = 30;
