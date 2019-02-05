@@ -44,6 +44,16 @@ PlaylistView::PlaylistView(QWidget *parent) : QListView(parent), clickableAuthor
 
     connect(this, SIGNAL(entered(const QModelIndex &)), SLOT(itemEntered(const QModelIndex &)));
     setMouseTracking(true);
+
+    QScrollBar *vScrollbar = verticalScrollBar();
+    connect(vScrollbar, &QAbstractSlider::valueChanged, this, [this, vScrollbar](int value) {
+        if (isVisible() && value == vScrollbar->maximum()) {
+            PlaylistModel *listModel = qobject_cast<PlaylistModel *>(model());
+            listModel->searchMore();
+        }
+    });
+    setMinimumHeight(PlaylistItemDelegate::thumbHeight * 4);
+
     setMinimumWidth(PlaylistItemDelegate::thumbWidth);
 #ifndef APP_MAC
     setMinimumWidth(minimumWidth() + vScrollbar->width());
