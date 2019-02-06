@@ -18,8 +18,8 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 
 $END_LICENSE */
 
-#ifndef __SEARCHVIEW_H__
-#define __SEARCHVIEW_H__
+#ifndef SEARCHVIEW_H
+#define SEARCHVIEW_H
 
 #include <QtWidgets>
 
@@ -36,7 +36,7 @@ class SearchView : public View {
     Q_OBJECT
 
 public:
-    SearchView(QWidget *parent = 0);
+    SearchView(QWidget *parent = nullptr);
     void updateRecentKeywords();
     void updateRecentChannels();
 
@@ -78,4 +78,4 @@ private:
     ClickableLabel *logo;
 };
 
-#endif // __SEARCHVIEW_H__
+#endif // SEARCHVIEW_H
