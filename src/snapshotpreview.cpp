@@ -24,6 +24,9 @@ $END_LICENSE */
 #ifdef MEDIA_QTAV
 #include "mediaqtav.h"
 #endif
+#ifdef MEDIA_MPV
+#include "mediampv.h"
+#endif
 
 SnapshotPreview::SnapshotPreview(QWidget *parent) : QWidget(parent), mediaObject(0) {
     setAttribute(Qt::WA_ShowWithoutActivating);
@@ -48,17 +51,21 @@ SnapshotPreview::SnapshotPreview(QWidget *parent) : QWidget(parent), mediaObject
 }
 
 void SnapshotPreview::start(QWidget *widget, const QPixmap &pixmap, bool soundOnly) {
-#ifdef MEDIA_QTAV
     if (!mediaObject) {
+#ifdef MEDIA_QTAV
         mediaObject = new MediaQtAV(this);
-        mediaObject->setAudioOnly(true);
-        mediaObject->init();
-        mediaObject->setBufferMilliseconds(500);
-    }
+#elif defined MEDIA_MPV
+        // mediaObject = new MediaMPV(this);
 #else
-    qFatal("No media backend defined");
+        qFatal("No media backend defined");
 #endif
-    mediaObject->play("qrc:///sounds/snapshot.wav");
+        if (mediaObject) {
+            mediaObject->setAudioOnly(true);
+            mediaObject->init();
+        }
+    }
+
+    if (mediaObject) mediaObject->play("qrc:///sounds/snapshot.wav");
     if (soundOnly) return;
 
     resize(pixmap.size());
