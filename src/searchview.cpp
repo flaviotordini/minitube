@@ -88,18 +88,23 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     layout->setAlignment(Qt::AlignCenter);
     hLayout->addLayout(layout);
 
-    QColor titleColor = palette().color(QPalette::WindowText);
-    titleColor.setAlphaF(.75);
-    int r, g, b, a;
-    titleColor.getRgb(&r, &g, &b, &a);
-    QString cssColor = QString::asprintf("rgba(%d,%d,%d,%d)", r, g, b, a);
-
-    QLabel *welcomeLabel = new QLabel(
-            QString("<h1 style='font-weight:300;color:%1'>").arg(cssColor) +
-            tr("Welcome to <a href='%1'>%2</a>,")
-                    .replace("<a ", "<a style='text-decoration:none; color:palette(text)' ")
-                    .arg(Constants::WEBSITE, Constants::NAME) +
-            "</h1>");
+    QLabel *welcomeLabel = new QLabel();
+    auto setupWelcomeLabel = [this, welcomeLabel] {
+        QColor titleColor = palette().color(QPalette::WindowText);
+        titleColor.setAlphaF(.75);
+        int r, g, b, a;
+        titleColor.getRgb(&r, &g, &b, &a);
+        QString cssColor = QString::asprintf("rgba(%d,%d,%d,%d)", r, g, b, a);
+        QString text =
+                QString("<h1 style='font-weight:300;color:%1'>").arg(cssColor) +
+                tr("Welcome to <a href='%1'>%2</a>,")
+                        .replace("<a ", "<a style='text-decoration:none; color:palette(text)' ")
+                        .arg(Constants::WEBSITE, Constants::NAME) +
+                "</h1>";
+        welcomeLabel->setText(text);
+    };
+    setupWelcomeLabel();
+    connect(qApp, &QGuiApplication::paletteChanged, this, setupWelcomeLabel);
     welcomeLabel->setOpenExternalLinks(true);
     welcomeLabel->setFont(FontUtils::light(welcomeLabel->font().pointSize() * 1.25));
     layout->addWidget(welcomeLabel);
