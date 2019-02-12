@@ -36,7 +36,6 @@ include(lib/media/media.pri)
 include(src/qtsingleapplication/qtsingleapplication.pri)
 
 HEADERS += src/video.h \
-    src/searchlineedit.h \
     src/spacer.h \
     src/constants.h \
     src/playlistitemdelegate.h \
@@ -102,7 +101,6 @@ HEADERS += src/video.h \
     src/yt3.h \
     src/paginatedvideosource.h \
     src/searchwidget.h \
-    src/exlineedit.h \
     src/channellistview.h \
     src/httputils.h \
     src/appwidget.h \
@@ -110,9 +108,9 @@ HEADERS += src/video.h \
     src/ytvideo.h \
     src/toolbarmenu.h \
     src/sharetoolbar.h \
-    src/videoarea.h
+    src/videoarea.h \
+    src/searchlineedit.h
 SOURCES += src/main.cpp \
-    src/searchlineedit.cpp \
     src/spacer.cpp \
     src/video.cpp \
     src/videomimedata.cpp \
@@ -176,7 +174,6 @@ SOURCES += src/main.cpp \
     src/ytchannel.cpp \
     src/yt3.cpp \
     src/paginatedvideosource.cpp \
-    src/exlineedit.cpp \
     src/channellistview.cpp \
     src/httputils.cpp \
     src/appwidget.cpp \
@@ -184,7 +181,8 @@ SOURCES += src/main.cpp \
     src/ytvideo.cpp \
     src/toolbarmenu.cpp \
     src/sharetoolbar.cpp \
-    src/videoarea.cpp
+    src/videoarea.cpp \
+    src/searchlineedit.cpp
 
 RESOURCES += resources.qrc
 RESOURCES += $$files(icons/*.png, true)
