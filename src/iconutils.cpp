@@ -29,7 +29,6 @@ void addIconFile(QIcon &icon,
                  QIcon::Mode mode = QIcon::Normal,
                  QIcon::State state = QIcon::Off) {
     if (QFile::exists(filename)) {
-        qDebug() << filename;
         icon.addFile(filename, QSize(size, size), mode, state);
     }
 }
@@ -62,7 +61,6 @@ QIcon IconUtils::fromResources(const char *name) {
     // WARN keep these sizes updated with what we really use
     for (int size : {16, 24, 32, 88}) {
         const QString pathAndName = path + QString::number(size) + '/' + name;
-        // const QString pathAndName = path + name;
         QString iconFilename = pathAndName + ext;
         if (QFile::exists(iconFilename)) {
             addIconFile(icon, iconFilename, size);
