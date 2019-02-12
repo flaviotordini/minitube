@@ -61,14 +61,12 @@ private:
     YTSuggester *youtubeSuggest;
     ChannelSuggest *channelSuggest;
 
-    QComboBox *typeCombo;
     SearchWidget *queryEdit;
     QLabel *recentKeywordsLabel;
     QBoxLayout *recentKeywordsLayout;
     QLabel *recentChannelsLabel;
     QBoxLayout *recentChannelsLayout;
     QLabel *message;
-    QPushButton *watchButton;
 
     QStringList recentKeywords;
     QStringList recentChannels;

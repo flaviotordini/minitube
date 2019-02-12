@@ -45,8 +45,8 @@ $END_LICENSE */
 #include "painterutils.h"
 
 namespace {
-static const QString recentKeywordsKey = "recentKeywords";
-static const QString recentChannelsKey = "recentChannels";
+const QString recentKeywordsKey = "recentKeywords";
+const QString recentChannelsKey = "recentChannels";
 } // namespace
 
 SearchView::SearchView(QWidget *parent) : View(parent) {
@@ -106,10 +106,6 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 
     layout->addSpacing(padding / 2);
 
-#ifndef APP_MAC
-    const QFont &biggerFont = FontUtils::big();
-#endif
-
     //: "Enter", as in "type". The whole phrase says: "Enter a keyword to start watching videos"
     // QLabel *tipLabel = new QLabel(tr("Enter"), this);
 
@@ -119,33 +115,10 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     } else {
         tip = tr("Enter") + " " + tr("a keyword") + " " + tr("to start watching videos.");
     }
-    QLabel *tipLabel = new QLabel(tip);
-
-#ifndef APP_MAC
-    tipLabel->setFont(biggerFont);
-#endif
-    layout->addWidget(tipLabel);
-
-    /*
-    typeCombo = new QComboBox(this);
-    typeCombo->addItem(tr("a keyword"));
-    typeCombo->addItem(tr("a channel"));
-#ifndef APP_MAC
-    typeCombo->setFont(biggerFont);
-#endif
-    connect(typeCombo, SIGNAL(currentIndexChanged(int)), SLOT(searchTypeChanged(int)));
-    tipLayout->addWidget(typeCombo);
-
-    tipLabel = new QLabel(tr("to start watching videos."), this);
-#ifndef APP_MAC
-    tipLabel->setFont(biggerFont);
-#endif
-    tipLayout->addWidget(tipLabel);
-    */
 
     layout->addSpacing(padding / 2);
 
-    QHBoxLayout *searchLayout = new QHBoxLayout();
+    QBoxLayout *searchLayout = new QHBoxLayout();
     searchLayout->setAlignment(Qt::AlignVCenter);
 
 #ifdef APP_MAC_SEARCHFIELD
@@ -154,7 +127,11 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     setFocusProxy(slem);
 #else
     SearchLineEdit *sle = new SearchLineEdit(this);
-    sle->setFont(biggerFont);
+#ifdef APP_MAC
+
+#endif
+    sle->setFont(FontUtils::medium());
+    sle->setMinimumWidth(sle->fontInfo().pixelSize() * 25);
     queryEdit = sle;
 #endif
 
@@ -165,6 +142,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
             SLOT(textChanged(const QString &)));
     connect(queryEdit->toWidget(), SIGNAL(suggestionAccepted(Suggestion *)),
             SLOT(suggestionAccepted(Suggestion *)));
+    queryEdit->setPlaceholderText(tip);
 
     youtubeSuggest = new YTSuggester(this);
     channelSuggest = new ChannelSuggest(this);
@@ -173,19 +151,8 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     searchTypeChanged(0);
 
     searchLayout->addWidget(queryEdit->toWidget(), 0, Qt::AlignBaseline);
-    searchLayout->addSpacing(padding);
 
-    watchButton = new QPushButton(tr("Watch"));
-#ifndef APP_MAC
-    watchButton->setFont(biggerFont);
-#endif
-    watchButton->setDefault(true);
-    watchButton->setEnabled(false);
-    watchButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    connect(watchButton, SIGNAL(clicked()), this, SLOT(watch()));
-    searchLayout->addWidget(watchButton, 0, Qt::AlignBaseline);
-
-    layout->addItem(searchLayout);
+    layout->addLayout(searchLayout);
 
     layout->addSpacing(padding);
 
@@ -241,7 +208,8 @@ void SearchView::appear() {
 
     queryEdit->selectAll();
     queryEdit->enableSuggest();
-    if (!queryEdit->toWidget()->hasFocus()) queryEdit->toWidget()->setFocus();
+    if (!queryEdit->toWidget()->hasFocus())
+        QTimer::singleShot(1, queryEdit->toWidget(), SLOT(setFocus()));
 
     setUpdatesEnabled(true);
 }
@@ -266,7 +234,8 @@ void SearchView::updateRecentKeywords() {
 
     // cleanup
     QLayoutItem *item;
-    while ((item = recentKeywordsLayout->takeAt(1)) != nullptr) {
+    while (recentKeywordsLayout->count() - 1 > recentKeywords.size() &&
+           (item = recentKeywordsLayout->takeAt(1)) != nullptr) {
         item->widget()->close();
         delete item;
     }
@@ -281,6 +250,7 @@ void SearchView::updateRecentKeywords() {
     p.setColor(QPalette::Highlight, mac::accentColor());
 #endif
 
+    int counter = 1;
     for (const QString &keyword : keywords) {
         QString link = keyword;
         QString display = keyword;
@@ -298,20 +268,45 @@ void SearchView::updateRecentKeywords() {
             display.append(QStringLiteral("\u2026"));
         }
 
-        ClickableLabel *item = new ClickableLabel(display);
+        ClickableLabel *item;
+        if (recentKeywordsLayout->count() - 1 >= counter) {
+            item = qobject_cast<ClickableLabel *>(recentKeywordsLayout->itemAt(counter)->widget());
+
+        } else {
+            item = new ClickableLabel();
 #ifdef APP_MAC
-        item->setPalette(p);
+            item->setPalette(p);
 #endif
-        item->setAttribute(Qt::WA_DeleteOnClose);
-        item->setProperty("recentItem", true);
-        item->setFocusPolicy(Qt::TabFocus);
-        if (needStatusTip) item->setStatusTip(link);
-        connect(item, &ClickableLabel::clicked, [this, link]() { watchKeywords(link); });
-        connect(item, &ClickableLabel::hovered, item, [item](bool value) {
-            item->setForegroundRole(value ? QPalette::Highlight : QPalette::WindowText);
-        });
-        recentKeywordsLayout->addWidget(item);
+            item->setAttribute(Qt::WA_DeleteOnClose);
+            item->setProperty("recentItem", true);
+            item->setFocusPolicy(Qt::TabFocus);
+            connect(item, &ClickableLabel::hovered, this, [item, this](bool value) {
+                item->setForegroundRole(value ? QPalette::Highlight : QPalette::WindowText);
+                if (value) {
+                    for (int i = 1; i < recentKeywordsLayout->count(); ++i) {
+                        QWidget *w = recentKeywordsLayout->itemAt(i)->widget();
+                        if (w != item) {
+                            w->setForegroundRole(QPalette::WindowText);
+                        }
+                    }
+                }
+            });
+            recentKeywordsLayout->addWidget(item);
+        }
+
+        item->setText(display);
+        if (needStatusTip)
+            item->setStatusTip(link);
+        else
+            item->setStatusTip(QString());
+
+        disconnect(item, &ClickableLabel::clicked, nullptr, nullptr);
+        connect(item, &ClickableLabel::clicked, this, [this, link]() { watchKeywords(link); });
+
+        counter++;
     }
+
+    update();
 }
 
 void SearchView::updateRecentChannels() {
@@ -329,8 +324,6 @@ void SearchView::updateRecentChannels() {
     }
 
     recentChannelsLabel->setVisible(!keywords.isEmpty());
-    // TODO
-    // MainWindow::instance()->getAction("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
 
 #ifdef APP_MAC
     QPalette p = palette();
@@ -367,7 +360,6 @@ void SearchView::watch() {
 }
 
 void SearchView::textChanged(const QString &text) {
-    watchButton->setEnabled(!text.simplified().isEmpty());
     lastChannelSuggestions.clear();
 }
 
@@ -379,14 +371,6 @@ void SearchView::watch(const QString &query) {
         queryEdit->toWidget()->setFocus(Qt::OtherFocusReason);
         return;
     }
-
-    /*
-    if (typeCombo->currentIndex() == 1) {
-        // Channel search
-        MainWindow::instance()->channelSearch(q);
-        return;
-    }
-    */
 
     SearchParams *searchParams = new SearchParams();
     searchParams->setKeywords(q);
@@ -424,10 +408,7 @@ void SearchView::watchKeywords(const QString &query) {
         return;
     }
 
-    // if (typeCombo->currentIndex() == 0) {
     queryEdit->setText(q);
-    watchButton->setEnabled(true);
-    // }
 
     SearchParams *searchParams = new SearchParams();
     searchParams->setKeywords(q);
