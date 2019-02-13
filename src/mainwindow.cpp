@@ -230,8 +230,8 @@ void MainWindow::changeEvent(QEvent *e) {
     }
 #endif
     if (messageLabel->isVisible()) {
-        if (e->type() == QEvent::WindowStateChange || e->type() == QEvent::WindowDeactivate ||
-            e->type() == QEvent::ApplicationStateChange) {
+        if (e->type() == QEvent::ActivationChange || e->type() == QEvent::WindowStateChange ||
+            e->type() == QEvent::WindowDeactivate || e->type() == QEvent::ApplicationStateChange) {
             hideMessage();
         }
     }
