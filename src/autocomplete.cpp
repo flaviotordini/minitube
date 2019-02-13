@@ -33,22 +33,25 @@ $END_LICENSE */
 
 #ifndef QT_NO_DEBUG_OUTPUT
 /// Gives human-readable event type information.
-QDebug operator<<(QDebug str, const QEvent * ev) {
+QDebug operator<<(QDebug str, const QEvent *ev) {
     static int eventEnumIndex = QEvent::staticMetaObject.indexOfEnumerator("Type");
     str << "QEvent";
     if (ev) {
         QString name = QEvent::staticMetaObject.enumerator(eventEnumIndex).valueToKey(ev->type());
-        if (!name.isEmpty()) str << name; else str << ev->type();
+        if (!name.isEmpty())
+            str << name;
+        else
+            str << ev->type();
     } else {
-        str << (void*)ev;
+        str << (void *)ev;
     }
     return str.maybeSpace();
 }
 #endif
 
-AutoComplete::AutoComplete(SearchWidget *buddy, QLineEdit *lineEdit):
-    QObject(lineEdit), buddy(buddy), lineEdit(lineEdit), enabled(true), suggester(0), itemHovering(false) {
-
+AutoComplete::AutoComplete(SearchWidget *buddy, QLineEdit *lineEdit)
+    : QObject(lineEdit), buddy(buddy), lineEdit(lineEdit), enabled(true), suggester(0),
+      itemHovering(false) {
     popup = new QListWidget();
     popup->setWindowFlags(Qt::Popup);
     popup->setFocusProxy(buddy->toWidget());
@@ -62,10 +65,10 @@ AutoComplete::AutoComplete(SearchWidget *buddy, QLineEdit *lineEdit):
     popup->setWindowOpacity(.9);
     popup->setProperty("suggest", true);
 
-    connect(popup, SIGNAL(itemClicked(QListWidgetItem*)), SLOT(acceptSuggestion()));
-    connect(popup, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)),
-            SLOT(currentItemChanged(QListWidgetItem*)));
-    connect(popup, SIGNAL(itemEntered(QListWidgetItem*)), SLOT(itemEntered(QListWidgetItem *)));
+    connect(popup, SIGNAL(itemClicked(QListWidgetItem *)), SLOT(acceptSuggestion()));
+    connect(popup, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
+            SLOT(currentItemChanged(QListWidgetItem *)));
+    connect(popup, SIGNAL(itemEntered(QListWidgetItem *)), SLOT(itemEntered(QListWidgetItem *)));
 
     timer = new QTimer(this);
     timer->setSingleShot(true);
@@ -75,7 +78,6 @@ AutoComplete::AutoComplete(SearchWidget *buddy, QLineEdit *lineEdit):
 }
 
 bool AutoComplete::eventFilter(QObject *obj, QEvent *ev) {
-
     if (obj != popup) {
         switch (ev->type()) {
         case QEvent::Move:
@@ -104,7 +106,7 @@ bool AutoComplete::eventFilter(QObject *obj, QEvent *ev) {
 
     if (ev->type() == QEvent::KeyPress) {
         bool consumed = false;
-        QKeyEvent *keyEvent = static_cast<QKeyEvent*>(ev);
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(ev);
         // qWarning() << keyEvent->text();
         switch (keyEvent->key()) {
         case Qt::Key_Enter:
@@ -165,10 +167,9 @@ void AutoComplete::showSuggestions(const QVector<Suggestion *> &suggestions) {
         QListWidgetItem *item = new QListWidgetItem(popup);
         Suggestion *s = suggestions[i];
         item->setText(s->value);
-        if (!s->type.isEmpty())
-            item->setIcon(QIcon(":/images/" + s->type + ".png"));
+        if (!s->type.isEmpty()) item->setIcon(QIcon(":/images/" + s->type + ".png"));
     }
-    popup->setCurrentItem(0);
+    popup->setCurrentItem(nullptr);
     int h = popup->frameWidth() * 2;
     for (int i = 0; i < suggestions.count(); ++i)
         h += popup->sizeHintForRow(i);
@@ -187,13 +188,14 @@ void AutoComplete::showSuggestions(const QVector<Suggestion *> &suggestions) {
 void AutoComplete::acceptSuggestion() {
     int index = popup->currentIndex().row();
     if (index >= 0 && index < suggestions.size()) {
-        Suggestion* suggestion = suggestions.at(index);
+        Suggestion *suggestion = suggestions.at(index);
         buddy->setText(suggestion->value);
         emit suggestionAccepted(suggestion);
         emit suggestionAccepted(suggestion->value);
         originalText.clear();
         hideSuggestions();
-    } else qWarning() << "No suggestion for index" << index;
+    } else
+        qWarning() << "No suggestion for index" << index;
 }
 
 void AutoComplete::preventSuggest() {
@@ -206,16 +208,17 @@ void AutoComplete::enableSuggest() {
     enabled = true;
 }
 
-void AutoComplete::setSuggester(Suggester* suggester) {
+void AutoComplete::setSuggester(Suggester *suggester) {
     if (this->suggester) this->suggester->disconnect();
     this->suggester = suggester;
-    connect(suggester, SIGNAL(ready(QVector<Suggestion*>)), SLOT(suggestionsReady(QVector<Suggestion*>)));
+    connect(suggester, SIGNAL(ready(QVector<Suggestion *>)),
+            SLOT(suggestionsReady(QVector<Suggestion *>)));
 }
 
 void AutoComplete::suggest() {
     if (!enabled) return;
 
-    popup->setCurrentItem(0);
+    popup->setCurrentItem(nullptr);
     popup->clearSelection();
 
     originalText = buddy->text();
