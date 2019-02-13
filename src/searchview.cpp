@@ -106,14 +106,13 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     setupWelcomeLabel();
     connect(qApp, &QGuiApplication::paletteChanged, this, setupWelcomeLabel);
     welcomeLabel->setOpenExternalLinks(true);
-    welcomeLabel->setFont(FontUtils::light(welcomeLabel->font().pointSize() * 1.25));
+    welcomeLabel->setFont(FontUtils::light(welcomeLabel->font().pointSize()));
     layout->addWidget(welcomeLabel);
 
     layout->addSpacing(padding / 2);
 
     //: "Enter", as in "type". The whole phrase says: "Enter a keyword to start watching videos"
     // QLabel *tipLabel = new QLabel(tr("Enter"), this);
-
     QString tip;
     if (qApp->layoutDirection() == Qt::RightToLeft) {
         tip = tr("to start watching videos.") + " " + tr("a keyword") + " " + tr("Enter");
@@ -132,11 +131,10 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     setFocusProxy(slem);
 #else
     SearchLineEdit *sle = new SearchLineEdit(this);
-#ifdef APP_MAC
-
-#endif
     sle->setFont(FontUtils::medium());
-    sle->setMinimumWidth(sle->fontInfo().pixelSize() * 25);
+    int tipWidth = sle->fontMetrics().size(Qt::TextSingleLine, tip).width();
+    sle->setMinimumWidth(tipWidth + sle->fontMetrics().width('m') * 6);
+    sle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
     queryEdit = sle;
 #endif
 
