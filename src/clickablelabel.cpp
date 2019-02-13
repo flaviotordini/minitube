@@ -8,8 +8,8 @@ ClickableLabel::ClickableLabel(const QString &text, QWidget *parent) : QLabel(te
     setCursor(Qt::PointingHandCursor);
 }
 
-void ClickableLabel::mousePressEvent(QMouseEvent *e) {
-    if (rect().contains(e->pos())) emit clicked();
+void ClickableLabel::mouseReleaseEvent(QMouseEvent *e) {
+    if (e->button() == Qt::LeftButton && rect().contains(e->pos())) emit clicked();
 }
 
 void ClickableLabel::leaveEvent(QEvent *e) {

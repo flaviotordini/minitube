@@ -15,7 +15,7 @@ signals:
     void hovered(bool value);
 
 protected:
-    void mousePressEvent(QMouseEvent *e);
+    void mouseReleaseEvent(QMouseEvent *e);
     void enterEvent(QEvent *e);
     void leaveEvent(QEvent *e);
 };
