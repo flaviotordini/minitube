@@ -38,9 +38,9 @@ Running:
 
 Installing on Linux:
 
-    sudo make install
-
 This is for packagers. End users should not install applications in this way.
+
+    sudo make install
 
 ## Legal Stuff
 Copyright (C) Flavio Tordini
