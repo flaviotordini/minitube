@@ -21,7 +21,7 @@ To compile Minitube you need at least Qt 5.6. The following Qt modules are neede
 
 To be able to build on a Debian (or derivative) system:
 
-    sudo apt install build-essential qttools5-dev-tools qt5-qmake  qtdeclarative5-dev libqt5sql5-sqlite qt5-default libqtav-dev
+    sudo apt install build-essential qttools5-dev-tools qt5-qmake  qtdeclarative5-dev libqt5sql5-sqlite qt5-default libmpv-dev
 
 Clone from Github:
 
