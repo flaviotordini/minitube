@@ -50,6 +50,7 @@ $END_LICENSE */
 #endif
 #include "datautils.h"
 #include "idle.h"
+#include "videodefinition.h"
 
 MediaView *MediaView::instance() {
     static MediaView *i = new MediaView();
@@ -922,18 +923,35 @@ void MediaView::updateSubscriptionAction(Video *video, bool subscribed) {
 void MediaView::reloadCurrentVideo() {
     Video *video = playlistModel->activeVideo();
     if (!video) return;
-    connect(video, &Video::gotStreamUrl, this,
-            [this](const QString &videoUrl, const QString &audioUrl) {
-                QObject *context = new QObject();
+
+    int oldFormat = video->getDefinitionCode();
+
+    QObject *context = new QObject();
+    connect(video, &Video::gotStreamUrl, context,
+            [this, oldFormat, video, context](const QString &videoUrl, const QString &audioUrl) {
+                context->deleteLater();
+                if (oldFormat == video->getDefinitionCode()) return;
+                QObject *context2 = new QObject();
                 const qint64 position = media->position();
-                gotStreamUrl(videoUrl, audioUrl);
-                connect(media, &Media::stateChanged, context,
-                        [position, this, context](Media::State state) {
+                connect(media, &Media::stateChanged, context2,
+                        [position, this, context2](Media::State state) {
                             if (state == Media::PlayingState) {
                                 media->seek(position);
-                                context->deleteLater();
+                                context2->deleteLater();
+                                Video *video = playlistModel->activeVideo();
+                                QString msg = tr("Switched to %1")
+                                                      .arg(VideoDefinition::forCode(
+                                                                   video->getDefinitionCode())
+                                                                   .getName());
+                                MainWindow::instance()->showMessage(msg);
                             }
                         });
+
+                if (audioUrl.isEmpty()) {
+                    media->play(videoUrl);
+                } else {
+                    media->playSeparateAudioAndVideo(videoUrl, audioUrl);
+                }
             });
     video->loadStreamUrl();
 }
