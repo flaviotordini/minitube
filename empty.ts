@@ -28,6 +28,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Powered by %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open-source software</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Icon designed by %1.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -160,6 +168,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>All Videos</source>
         <translation type="unfinished"></translation>
     </message>
@@ -177,17 +189,6 @@
     </message>
     <message>
         <source>There are no updated subscriptions at this time.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ClearButton</name>
-    <message>
-        <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -220,6 +221,25 @@
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
+    </message>
+    <message>
+        <source>K</source>
+        <comment>K as in Kilo, i.e. thousands</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>M</source>
+        <comment>M stands for Millions</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>B</source>
+        <comment>B stands for Billions</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 views</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -418,6 +438,14 @@
 </context>
 <context>
     <name>MainWindow</name>
+    <message>
+        <source>&amp;Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Minimize</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>&amp;Stop</source>
         <translation type="unfinished"></translation>
@@ -659,6 +687,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Toggle &amp;Menu Bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>&amp;Love %1? Rate it!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -747,6 +783,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Volume at %1%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Volume is muted</source>
         <translation type="unfinished"></translation>
     </message>
@@ -779,23 +819,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Toggle &amp;Menu Bar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>You can still access the menu bar by pressing the ALT key</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Window</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Minimize</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Menu</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -845,6 +869,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Switched to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Unsubscribed from %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -879,10 +907,6 @@
         <source>Install Update</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Pick a video</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>PasteLineEdit</name>
@@ -892,11 +916,14 @@
     </message>
 </context>
 <context>
-    <name>PlaylistItemDelegate</name>
+    <name>PickMessage</name>
     <message>
-        <source>%1 views</source>
+        <source>Pick a video</source>
         <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>PlaylistItemDelegate</name>
     <message>
         <source>%1 of %2 (%3) — %4</source>
         <translation type="unfinished"></translation>
@@ -936,10 +963,6 @@
 </context>
 <context>
     <name>PlaylistModel</name>
-    <message>
-        <source>Searching...</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Show %1 More</source>
         <translation type="unfinished"></translation>
@@ -1061,7 +1084,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enter</source>
+        <source>to start watching videos.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1069,11 +1092,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>to start watching videos.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Watch</source>
+        <source>Enter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1093,6 +1112,10 @@
     <name>SidebarHeader</name>
     <message>
         <source>&amp;Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Forward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
