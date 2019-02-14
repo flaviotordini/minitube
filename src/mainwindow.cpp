@@ -752,8 +752,10 @@ void MainWindow::createMenus() {
     menuMap.insert("view", viewMenu);
     viewMenu->addAction(getAction("ontop"));
     viewMenu->addAction(compactViewAct);
-#ifndef APP_MAC
+    viewMenu->addSeparator();
     viewMenu->addAction(fullscreenAct);
+#ifndef APP_MAC
+    viewMenu->addSeparator();
     viewMenu->addAction(getAction("toggleMenu"));
 #endif
 
