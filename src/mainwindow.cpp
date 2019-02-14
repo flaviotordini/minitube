@@ -1018,6 +1018,11 @@ void MainWindow::goBack() {
 }
 
 void MainWindow::showView(View *view, bool transition) {
+    if (!history.isEmpty() && view == history.top()) {
+        qDebug() << "Attempting to show same view" << view;
+        return;
+    }
+
     setUpdatesEnabled(false);
 
 #ifdef APP_MAC
