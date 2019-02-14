@@ -5,8 +5,8 @@
 # Minitube
 Minitube is a YouTube desktop application. It is written in C++ using the Qt framework. Contributing is welcome, especially in the Linux desktop integration area.
 
-## Translating Minitube to your language
-Translations are done at https://www.transifex.com/projects/p/minitube/
+## Translating to your language
+Translations are done at https://www.transifex.com/flaviotordini/minitube/
 Just register and apply for a language team. Please don't request translation merges on GitHub.
 
 ## Google API Key
@@ -21,7 +21,7 @@ To compile Minitube you need at least Qt 5.6. The following Qt modules are neede
 
 To be able to build on a Debian (or derivative) system:
 
-    sudo apt install build-essential qttools5-dev-tools qt5-qmake  qtdeclarative5-dev libqt5sql5-sqlite qt5-default libqtav-dev
+    sudo apt install build-essential qttools5-dev-tools qt5-qmake  qtdeclarative5-dev libqt5sql5-sqlite qt5-default libmpv-dev
 
 Clone from Github:
 
