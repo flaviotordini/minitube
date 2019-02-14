@@ -5,8 +5,8 @@
 # Minitube
 Minitube is a YouTube desktop application. It is written in C++ using the Qt framework. Contributing is welcome, especially in the Linux desktop integration area.
 
-## Translating Minitube to your language
-Translations are done at https://www.transifex.com/projects/p/minitube/
+## Translating to your language
+Translations are done at https://www.transifex.com/flaviotordini/minitube/
 Just register and apply for a language team. Please don't request translation merges on GitHub.
 
 ## Google API Key
