@@ -153,7 +153,7 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
 
     closeButton->setDefault(true);
     closeButton->setFocus();
-    connect(closeButton, SIGNAL(clicked()), parent, SLOT(goBack()));
+    connect(closeButton, SIGNAL(clicked()), MainWindow::instance(), SLOT(goBack()));
     buttonLayout->addWidget(closeButton);
 
     layout->addLayout(buttonLayout);
