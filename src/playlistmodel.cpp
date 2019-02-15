@@ -26,9 +26,11 @@ $END_LICENSE */
 #include "videosource.h"
 #include "ytsearch.h"
 
-static const int maxItems = 50;
-static const QString recentKeywordsKey = "recentKeywords";
-static const QString recentChannelsKey = "recentChannels";
+namespace {
+const int maxItems = 50;
+const QString recentKeywordsKey = "recentKeywords";
+const QString recentChannelsKey = "recentChannels";
+} // namespace
 
 PlaylistModel::PlaylistModel(QWidget *parent) : QAbstractListModel(parent) {
     videoSource = nullptr;
@@ -150,7 +152,7 @@ int PlaylistModel::previousRow() const {
 
 Video *PlaylistModel::videoAt(int row) const {
     if (rowExists(row)) return videos.at(row);
-    return 0;
+    return nullptr;
 }
 
 Video *PlaylistModel::activeVideo() const {
