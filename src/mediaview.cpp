@@ -362,7 +362,7 @@ void MediaView::stop() {
     playlistView->selectionModel()->clearSelection();
 
     MainWindow::instance()->getAction("refineSearch")->setChecked(false);
-    updateSubscriptionAction(0, false);
+    updateSubscriptionAction(nullptr, false);
 #ifdef APP_ACTIVATION
     demoTimer->stop();
 #endif
