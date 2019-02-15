@@ -1119,6 +1119,9 @@ void MainWindow::quit() {
 #endif
     // do not save geometry when in full screen or in compact mode
     if (!fullScreenActive && !compactViewAct->isChecked()) {
+#ifdef APP_MAC
+        hideToolbar();
+#endif
         writeSettings();
     }
     // mediaView->stop();
