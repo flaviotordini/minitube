@@ -95,8 +95,9 @@ MainWindow *MainWindow::instance() {
 }
 
 MainWindow::MainWindow()
-    : updateChecker(0), aboutView(0), downloadView(0), regionsView(0), mainToolBar(0), media(0),
-      fullScreenActive(false), compactModeActive(false), initialized(false), toolbarMenu(0) {
+    : aboutView(nullptr), downloadView(nullptr), regionsView(nullptr), mainToolBar(nullptr),
+      fullScreenActive(false), compactModeActive(false), initialized(false), toolbarMenu(nullptr),
+      media(nullptr) {
     mainWindowInstance = this;
 
     // views mechanism
@@ -1814,31 +1815,24 @@ void MainWindow::checkForUpdate() {
     if (secondsSinceLastCheck < 86400) return;
 
     // check it out
-    if (updateChecker) delete updateChecker;
-    updateChecker = new UpdateChecker();
-    connect(updateChecker, SIGNAL(newVersion(QString)), this, SLOT(gotNewVersion(QString)));
-    updateChecker->checkForUpdate();
-    settings.setValue(updateCheckKey, unixTime);
-}
-
-void MainWindow::gotNewVersion(const QString &version) {
-    if (updateChecker) {
-        delete updateChecker;
-        updateChecker = 0;
-    }
-
-    QSettings settings;
-    QString checkedVersion = settings.value("checkedVersion").toString();
-    if (checkedVersion == version) return;
-
+    UpdateChecker *updateChecker = new UpdateChecker();
+    connect(updateChecker, &UpdateChecker::newVersion, this,
+            [updateChecker](const QString &version) {
+                updateChecker->deleteLater();
+                QSettings settings;
+                QString checkedVersion = settings.value("checkedVersion").toString();
+                if (checkedVersion == version) return;
 #ifdef APP_EXTRA
 #ifndef APP_MAC
-    UpdateDialog *dialog = new UpdateDialog(version, this);
-    dialog->show();
+                UpdateDialog *dialog = new UpdateDialog(version, this);
+                dialog->show();
 #endif
 #else
-    simpleUpdateDialog(version);
+                simpleUpdateDialog(version);
 #endif
+            });
+    updateChecker->checkForUpdate();
+    settings.setValue(updateCheckKey, unixTime);
 }
 
 void MainWindow::simpleUpdateDialog(const QString &version) {

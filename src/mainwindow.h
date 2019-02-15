@@ -31,7 +31,6 @@ class MediaView;
 class DownloadView;
 
 class SearchLineEdit;
-class UpdateChecker;
 class SearchParams;
 class VideoSource;
 class Suggestion;
@@ -114,7 +113,6 @@ protected:
 private slots:
     void lazyInit();
     void checkForUpdate();
-    void gotNewVersion(const QString &version);
     void donate();
     void reportIssue();
     void about();
@@ -165,8 +163,6 @@ private:
     void simpleUpdateDialog(const QString &version);
     bool needStatusBar();
     void adjustMessageLabelPosition();
-
-    UpdateChecker *updateChecker;
 
     QHash<QByteArray, QAction *> actionMap;
     QHash<QByteArray, QMenu *> menuMap;
