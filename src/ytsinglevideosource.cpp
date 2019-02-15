@@ -26,10 +26,8 @@ $END_LICENSE */
 #include "yt3.h"
 #include "yt3listparser.h"
 
-YTSingleVideoSource::YTSingleVideoSource(QObject *parent) : PaginatedVideoSource(parent),
-    video(0),
-    startIndex(0),
-    max(0) { }
+YTSingleVideoSource::YTSingleVideoSource(QObject *parent)
+    : PaginatedVideoSource(parent), video(nullptr), startIndex(0), max(0) {}
 
 void YTSingleVideoSource::loadVideos(int max, int startIndex) {
     aborted = false;
@@ -39,9 +37,8 @@ void YTSingleVideoSource::loadVideos(int max, int startIndex) {
     QUrl url;
 
     if (startIndex == 1) {
-
         if (video) {
-            QVector<Video*> videos;
+            QVector<Video *> videos;
             videos << video->clone();
             if (name.isEmpty()) {
                 name = videos.at(0)->getTitle();
@@ -84,15 +81,17 @@ void YTSingleVideoSource::parseResults(QByteArray data) {
     if (aborted) return;
 
     YT3ListParser parser(data);
-    const QVector<Video*> &videos = parser.getVideos();
+    const QVector<Video *> &videos = parser.getVideos();
 
     bool tryingWithNewToken = setPageToken(parser.getNextPageToken());
     if (tryingWithNewToken) return;
 
     if (asyncDetails) {
         emit gotVideos(videos);
-        if (startIndex == 2) emit finished(videos.size() + 1);
-        else emit finished(videos.size());
+        if (startIndex == 2)
+            emit finished(videos.size() + 1);
+        else
+            emit finished(videos.size());
     }
     loadVideoDetails(videos);
 }
