@@ -171,19 +171,24 @@ void PlaylistModel::setVideoSource(VideoSource *videoSource) {
             Qt::UniqueConnection);
     connect(videoSource, SIGNAL(finished(int)), SLOT(searchFinished(int)), Qt::UniqueConnection);
     connect(videoSource, SIGNAL(error(QString)), SLOT(searchError(QString)), Qt::UniqueConnection);
-    connect(videoSource, &QObject::destroyed, this, [this] { this->videoSource = nullptr; },
+    connect(videoSource, &QObject::destroyed, this,
+            [this, videoSource] {
+                if (this->videoSource == videoSource) {
+                    this->videoSource = nullptr;
+                }
+            },
             Qt::UniqueConnection);
 
     searchMore();
 }
 
 void PlaylistModel::searchMore(int max) {
-    if (searching) return;
+    if (videoSource == nullptr || searching) return;
     searching = true;
     firstSearch = startIndex == 1;
     this->max = max;
     errorMessage.clear();
-    if (videoSource) videoSource->loadVideos(max, startIndex);
+    videoSource->loadVideos(max, startIndex);
     startIndex += max;
 }
 

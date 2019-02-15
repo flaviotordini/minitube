@@ -212,7 +212,7 @@ void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory, bool
                 VideoSource *vs = history.takeLast();
                 if (!vs->parent()) {
                     qDebug() << "Deleting VideoSource" << vs->getName() << vs;
-                    delete vs;
+                    vs->deleteLater();
                 }
             }
         }
