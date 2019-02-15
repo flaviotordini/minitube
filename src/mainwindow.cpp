@@ -796,6 +796,7 @@ void MainWindow::createToolBars() {
     toolbarSearch = new SearchLineEdit(this);
 #endif
     toolbarSearch->setMinimumWidth(toolbarSearch->fontInfo().pixelSize() * 15);
+    toolbarSearch->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
     toolbarSearch->setSuggester(new YTSuggester(this));
     connect(toolbarSearch, SIGNAL(search(const QString &)), SLOT(search(const QString &)));
     connect(toolbarSearch, SIGNAL(suggestionAccepted(Suggestion *)),
