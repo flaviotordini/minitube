@@ -11,7 +11,7 @@ Just register and apply for a language team. Please don't request translation me
 
 ## Google API Key
 Google is now requiring an API key in order to access YouTube Data web services.
-Create a "Browser Key" at https://console.developers.google.com
+Create a "Browser Key" at https://console.developers.google.com and enable the Youtube Data API.
 
 The key must be specified at compile time as shown below.
 Alternatively Minitube can read an API key from the GOOGLE_API_KEY environment variable.
