@@ -19,17 +19,18 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "jsfunctions.h"
-#include "http.h"
 #include "constants.h"
+#include "http.h"
 
 #include <QJSValueIterator>
 
-JsFunctions* JsFunctions::instance() {
+JsFunctions *JsFunctions::instance() {
     static JsFunctions *i = new JsFunctions(QLatin1String(Constants::WEBSITE) + "-ws/functions.js");
     return i;
 }
 
-JsFunctions::JsFunctions(const QString &url, QObject *parent) : QObject(parent), url(url), engine(0) {
+JsFunctions::JsFunctions(const QString &url, QObject *parent)
+    : QObject(parent), url(url), engine(nullptr) {
     QFile file(jsPath());
     if (file.exists()) {
         if (file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -37,7 +38,8 @@ JsFunctions::JsFunctions(const QString &url, QObject *parent) : QObject(parent),
         else
             qWarning() << "Cannot open" << file.errorString() << file.fileName();
         QFileInfo info(file);
-        bool stale = info.size() == 0 || info.lastModified().toTime_t() < QDateTime::currentDateTime().toTime_t() - 1800;
+        bool stale = info.size() == 0 || info.lastModified().toTime_t() <
+                                                 QDateTime::currentDateTime().toTime_t() - 1800;
         if (stale) loadJs();
     } else {
         QFile resFile(QLatin1String(":/") + jsFilename());
@@ -73,7 +75,7 @@ void JsFunctions::loadJs() {
     QUrlQuery q;
     q.addQueryItem("v", Constants::VERSION);
     url.setQuery(q);
-    QObject* reply = Http::instance().get(url);
+    QObject *reply = Http::instance().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(gotJs(QByteArray)));
     connect(reply, SIGNAL(error(QString)), SLOT(errorJs(QString)));
 }
@@ -101,10 +103,8 @@ void JsFunctions::errorJs(const QString &message) {
 QJSValue JsFunctions::evaluate(const QString &js) {
     if (!engine) return QString();
     QJSValue value = engine->evaluate(js);
-    if (value.isUndefined())
-        qWarning() << "Undefined result for" << js;
-    if (value.isError())
-        qWarning() << "Error in" << js << value.toString();
+    if (value.isUndefined()) qWarning() << "Undefined result for" << js;
+    if (value.isError()) qWarning() << "Error in" << js << value.toString();
 
     return value;
 }
