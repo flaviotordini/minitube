@@ -1817,7 +1817,7 @@ void MainWindow::checkForUpdate() {
     // check it out
     UpdateChecker *updateChecker = new UpdateChecker();
     connect(updateChecker, &UpdateChecker::newVersion, this,
-            [updateChecker](const QString &version) {
+            [this, updateChecker](const QString &version) {
                 updateChecker->deleteLater();
                 QSettings settings;
                 QString checkedVersion = settings.value("checkedVersion").toString();
