@@ -163,6 +163,10 @@ QString JsFunctions::signatureFunctionNameRE() {
     return string("signatureFunctionNameRE()");
 }
 
+QStringList JsFunctions::signatureFunctionNameREs() {
+    return stringArray("signatureFunctionNameREs()");
+}
+
 QStringList JsFunctions::apiKeys() {
     return stringArray("apiKeys()");
 }

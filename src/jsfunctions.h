@@ -47,6 +47,7 @@ public:
     QString ageGateRE();
     QString jsPlayerRE();
     QString signatureFunctionNameRE();
+    QStringList signatureFunctionNameREs();
     QStringList apiKeys();
 
 signals:

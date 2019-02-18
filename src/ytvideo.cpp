@@ -277,25 +277,30 @@ void YTVideo::parseJsPlayer(const QByteArray &bytes) {
     // qDebug() << "jsPlayer" << jsPlayer;
 
     // QRegExp funcNameRe("[\"']signature[\"']\\s*,\\s*([" + jsNameChars + "]+)\\(");
-    static const QRegExp funcNameRe(
-            JsFunctions::instance()->signatureFunctionNameRE().arg(jsNameChars));
-
-    // qDebug() << "funcNameRe" << funcNameRe;
-
-    if (funcNameRe.indexIn(jsPlayer) == -1) {
-        qWarning() << "Cannot capture signature function name" << jsPlayer;
-    } else {
-        sigFuncName = funcNameRe.cap(1);
-
-        // qDebug() << "Captures" << funcNameRe.captureCount() << funcNameRe.capturedTexts();
-
-        if (sigFuncName.isEmpty()) {
-            qWarning() << "Empty signature function name" << jsPlayer;
+    static const QVector<QRegExp> funcNameRes = [] {
+        QVector<QRegExp> res;
+        for (const QString &s : JsFunctions::instance()->signatureFunctionNameREs()) {
+            res << QRegExp(s.arg(jsNameChars));
         }
-
-        captureFunction(sigFuncName, jsPlayer);
-        // qWarning() << sigFunctions << sigObjects;
+        return res;
+    }();
+    for (const QRegExp &funcNameRe : funcNameRes) {
+        if (funcNameRe.indexIn(jsPlayer) == -1) {
+            qWarning() << "Cannot capture signature function name" << funcNameRe;
+            continue;
+        } else {
+            sigFuncName = funcNameRe.cap(1);
+            // qDebug() << "Captures" << funcNameRe.captureCount() << funcNameRe.capturedTexts();
+            if (sigFuncName.isEmpty()) {
+                qDebug() << "Empty capture for" << funcNameRe;
+                continue;
+            }
+            captureFunction(sigFuncName, jsPlayer);
+            // qWarning() << sigFunctions << sigObjects;
+            break;
+        }
     }
+    if (sigFuncName.isEmpty()) qDebug() << "Empty signature function name";
 
     parseFmtUrlMap(fmtUrlMap, true);
 }
