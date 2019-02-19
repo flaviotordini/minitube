@@ -1,9 +1,12 @@
-[submodule "lib/http"]
-	path = lib/http
-	url = https://github.com/flaviotordini/http
 [submodule "lib/idle"]
 	path = lib/idle
 	url = https://github.com/flaviotordini/idle
+	branch = master
 [submodule "lib/media"]
 	path = lib/media
 	url = https://github.com/flaviotordini/media
+	branch = master
+[submodule "lib/http"]
+	path = lib/http
+	url = https://github.com/flaviotordini/http
+	branch = master
