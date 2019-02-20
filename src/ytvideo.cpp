@@ -153,7 +153,7 @@ void YTVideo::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
         qDebug() << format;
         if (format == definition.getCode()) {
             qDebug() << "Found format" << format;
-            if (definition.getAudioCode() == 0) {
+            if (definition.hasAudio()) {
                 // we found the exact match with an audio/video stream
                 saveDefinitionForUrl(url, definition);
                 return;
@@ -404,12 +404,12 @@ QString YTVideo::decryptSignature(const QString &s) {
 
 void YTVideo::saveDefinitionForUrl(const QString &url, const VideoDefinition &definition) {
     qDebug() << "Selected video format" << definition.getCode() << definition.getName()
-             << definition.getAudioCode();
+             << definition.hasAudio();
     m_streamUrl = url;
     definitionCode = definition.getCode();
 
     QString audioUrl;
-    if (definition.getAudioCode() != 0) {
+    if (!definition.hasAudio()) {
         qDebug() << "Finding audio format";
         static const QVector<int> audioFormats({251, 171, 140});
         for (int audioFormat : audioFormats) {
