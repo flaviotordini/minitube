@@ -37,7 +37,7 @@ void YTVideo::getVideoInfo() {
 
     QUrl url;
     if (elIndex == elTypes.size()) {
-        // qDebug() << "Trying special embedded el param";
+        qDebug() << "Trying special embedded el param";
         url = QUrl("https://www.youtube.com/get_video_info");
         QUrlQuery q;
         q.addQueryItem("video_id", videoId);
@@ -136,12 +136,8 @@ void YTVideo::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
                 if (fromWebPage || ageGate) {
                     int separator = urlParam.indexOf('=');
                     sig = QByteArray::fromPercentEncoding(urlParam.mid(separator + 1).toUtf8());
-                    if (ageGate)
-                        sig = JsFunctions::instance()->decryptAgeSignature(sig);
-                    else {
-                        sig = decryptSignature(sig);
-                        if (sig.isEmpty()) sig = JsFunctions::instance()->decryptSignature(sig);
-                    }
+                    sig = decryptSignature(sig);
+                    if (sig.isEmpty()) sig = JsFunctions::instance()->decryptSignature(sig);
                 } else {
                     loadWebPage();
                     return;
@@ -167,7 +163,7 @@ void YTVideo::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
         urlMap.insert(format, url);
     }
 
-    if (!fromWebPage) {
+    if (!fromWebPage && !ageGate) {
         loadWebPage();
         return;
     }
@@ -201,6 +197,7 @@ void YTVideo::loadWebPage() {
     q.addQueryItem("gl", "US");
     q.addQueryItem("hl", "en");
     q.addQueryItem("has_verified", "1");
+    q.addQueryItem("bpctr", "9999999999");
     url.setQuery(q);
     qDebug() << "Loading webpage" << url;
     QObject *reply = HttpUtils::yt().get(url);
@@ -243,9 +240,7 @@ void YTVideo::scrapeWebPage(const QByteArray &bytes) {
     }
 
     if (fmtUrlMap.isEmpty()) {
-        qWarning() << "Error parsing video page";
-        // emit errorStreamUrl("Error parsing video page");
-        // loadingStreamUrl = false;
+        qWarning() << "Cannot get fmtUrlMap from video page. Trying next el";
         elIndex++;
         getVideoInfo();
         return;
