@@ -56,7 +56,6 @@ const QByteArray &HttpUtils::userAgent() {
 }
 
 const QByteArray &HttpUtils::stealthUserAgent() {
-    static const QByteArray ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                                 "(KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36";
+    static const QByteArray ua = "curl/7.37.0";
     return ua;
 }
