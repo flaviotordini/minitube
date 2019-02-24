@@ -79,7 +79,7 @@ void MediaView::initialize() {
     playlistView = new PlaylistView();
     playlistView->setParent(this);
     connect(playlistView, SIGNAL(activated(const QModelIndex &)),
-            SLOT(itemActivated(const QModelIndex &)));
+            SLOT(onItemActivated(const QModelIndex &)));
 
     playlistModel = new PlaylistModel();
     connect(playlistModel, &PlaylistModel::activeVideoChanged, this,
@@ -93,7 +93,7 @@ void MediaView::initialize() {
             SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
             SLOT(selectionChanged(const QItemSelection &, const QItemSelection &)));
 
-    connect(playlistView, SIGNAL(authorPushed(QModelIndex)), SLOT(authorPushed(QModelIndex)));
+    connect(playlistView, SIGNAL(authorPushed(QModelIndex)), SLOT(onAuthorPushed(QModelIndex)));
 
     sidebar = new SidebarWidget(this);
     sidebar->setPlaylist(playlistView);
@@ -162,9 +162,9 @@ void MediaView::setMedia(Media *media) {
     qDebug() << "videoWidget" << videoWidget;
     videoAreaWidget->setVideoWidget(videoWidget);
 
-    connect(media, &Media::finished, this, &MediaView::playbackFinished);
-    connect(media, &Media::stateChanged, this, &MediaView::stateChanged);
-    connect(media, &Media::aboutToFinish, this, &MediaView::aboutToFinish);
+    connect(media, &Media::finished, this, &MediaView::onPlaybackFinished);
+    connect(media, &Media::stateChanged, this, &MediaView::mediaStateChanged);
+    connect(media, &Media::aboutToFinish, this, &MediaView::onAboutToFinish);
     connect(media, &Media::bufferStatus, loadingWidget, &LoadingWidget::bufferStatus);
 }
 
@@ -301,7 +301,7 @@ void MediaView::handleError(const QString &message) {
 #endif
 }
 
-void MediaView::stateChanged(Media::State state) {
+void MediaView::mediaStateChanged(Media::State state) {
     if (pauseTime > 0 && (state == Media::PlayingState || state == Media::BufferingState)) {
         qDebug() << "Seeking to" << pauseTime;
         media->seek(pauseTime);
@@ -504,7 +504,7 @@ void MediaView::gotStreamUrl(const QString &streamUrl, const QString &audioUrl) 
     ChannelAggregator::instance()->videoWatched(video);
 }
 
-void MediaView::itemActivated(const QModelIndex &index) {
+void MediaView::onItemActivated(const QModelIndex &index) {
     if (playlistModel->rowExists(index.row())) {
         // if it's the current video, just rewind and play
         Video *activeVideo = playlistModel->activeVideo();
@@ -549,7 +549,7 @@ void MediaView::skipBackward() {
     playlistModel->setActiveRow(prevRow);
 }
 
-void MediaView::aboutToFinish() {
+void MediaView::onAboutToFinish() {
     qint64 currentTime = media->position();
     qint64 totalTime = media->duration();
     // qDebug() << __PRETTY_FUNCTION__ << currentTime << totalTime;
@@ -560,7 +560,7 @@ void MediaView::aboutToFinish() {
     }
 }
 
-void MediaView::playbackFinished() {
+void MediaView::onPlaybackFinished() {
     if (stopped) return;
 
     const qint64 totalTime = media->duration();
@@ -569,7 +569,7 @@ void MediaView::playbackFinished() {
     // add 10 secs for imprecise Phonon backends (VLC, Xine)
     if (currentTime > 0 && currentTime + 10000 < totalTime) {
         // mediaObject->seek(currentTime);
-        QTimer::singleShot(500, this, SLOT(playbackResume()));
+        QTimer::singleShot(500, this, SLOT(resumePlayback()));
     } else {
         QAction *stopAfterThisAction = MainWindow::instance()->getAction("stopafterthis");
         if (stopAfterThisAction->isChecked()) {
@@ -579,7 +579,7 @@ void MediaView::playbackFinished() {
     }
 }
 
-void MediaView::playbackResume() {
+void MediaView::resumePlayback() {
     if (stopped) return;
     const qint64 currentTime = media->position();
     // qDebug() << __PRETTY_FUNCTION__ << currentTime;
@@ -875,7 +875,7 @@ void MediaView::shareViaEmail() {
     QDesktopServices::openUrl(url);
 }
 
-void MediaView::authorPushed(QModelIndex index) {
+void MediaView::onAuthorPushed(QModelIndex index) {
     Video *video = playlistModel->videoAt(index.row());
     if (!video) return;
 

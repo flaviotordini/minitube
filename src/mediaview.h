@@ -98,18 +98,17 @@ public slots:
     void adjustWindowSize();
 
 private slots:
-    // list/model
-    void itemActivated(const QModelIndex &index);
+    void onItemActivated(const QModelIndex &index);
     void selectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
     void activeVideoChanged(Video *video, Video *previousVideo);
     void selectVideos(const QVector<Video *> &videos);
     void gotStreamUrl(const QString &streamUrl, const QString &audioUrl);
     void handleError(const QString &message);
-    void stateChanged(Media::State state);
-    void aboutToFinish();
-    void playbackFinished();
-    void playbackResume();
-    void authorPushed(QModelIndex);
+    void mediaStateChanged(Media::State state);
+    void onAboutToFinish();
+    void onPlaybackFinished();
+    void resumePlayback();
+    void onAuthorPushed(QModelIndex);
     void searchAgain();
     void resumeWithNewStreamUrl(const QUrl &streamUrl);
 
