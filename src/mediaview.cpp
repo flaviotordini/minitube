@@ -714,8 +714,11 @@ void MediaView::downloadVideo() {
 void MediaView::snapshot() {
     qint64 currentTime = media->position() / 1000;
 
-    connect(media, &Media::snapshotReady, this,
-            [this, currentTime](const QImage &image) {
+    QObject *context = new QObject();
+    connect(media, &Media::snapshotReady, context,
+            [this, currentTime, context](const QImage &image) {
+                context->deleteLater();
+
                 if (image.isNull()) {
                     qWarning() << "Null snapshot";
                     return;
