@@ -108,10 +108,7 @@ void VideoArea::showLoading(Video *video) {
 
 #ifdef APP_SNAPSHOT
 void VideoArea::showSnapshotPreview(const QPixmap &pixmap) {
-    bool soundOnly = false;
-#ifdef APP_MAC
-    soundOnly = MainWindow::instance()->isReallyFullScreen();
-#endif
+    bool soundOnly = MainWindow::instance()->isReallyFullScreen();
     snapshotPreview->start(videoWidget, pixmap, soundOnly);
 }
 #endif
