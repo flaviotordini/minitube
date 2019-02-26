@@ -114,7 +114,9 @@ MainWindow::MainWindow()
     messageLabel->setWindowFlags(Qt::ToolTip | Qt::FramelessWindowHint |
                                  Qt::NoDropShadowWindowHint | Qt::WindowTransparentForInput |
                                  Qt::WindowDoesNotAcceptFocus);
+    messageLabel->setAttribute(Qt::WA_ShowWithoutActivating);
     messageLabel->setStyleSheet("padding:5px;border:0;background:palette(window)");
+    messageLabel->setAlignment(Qt::AlignCenter);
     messageLabel->hide();
     adjustMessageLabelPosition();
     messageTimer = new QTimer(this);
