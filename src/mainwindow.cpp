@@ -1578,6 +1578,10 @@ void MainWindow::initMedia() {
     media->init();
     media->setUserAgent(HttpUtils::stealthUserAgent());
 
+    QSettings settings;
+    qreal volume = settings.value("volume", 1.).toReal();
+    media->setVolume(volume);
+
     connect(media, &Media::error, this, &MainWindow::handleError);
     connect(media, &Media::stateChanged, this, &MainWindow::stateChanged);
     connect(media, &Media::positionChanged, this, &MainWindow::tick);
@@ -1607,10 +1611,6 @@ void MainWindow::initMedia() {
         qreal volume = (qreal)volumeSlider->value() / volumeSlider->maximum();
         media->setVolume(volume);
     });
-
-    QSettings settings;
-    qreal volume = settings.value("volume", 1.).toReal();
-    media->setVolume(volume);
 
     mediaView->setMedia(media);
 }
