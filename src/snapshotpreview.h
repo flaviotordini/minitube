@@ -29,7 +29,7 @@ class SnapshotPreview : public QWidget {
     Q_OBJECT
 
 public:
-    SnapshotPreview(QWidget *parent = 0);
+    SnapshotPreview(QWidget *parent = nullptr);
     void start(QWidget *widget, const QPixmap &pixmap, bool soundOnly);
 
 signals:

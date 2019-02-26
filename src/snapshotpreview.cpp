@@ -28,7 +28,7 @@ $END_LICENSE */
 #include "mediampv.h"
 #endif
 
-SnapshotPreview::SnapshotPreview(QWidget *parent) : QWidget(parent), mediaObject(0) {
+SnapshotPreview::SnapshotPreview(QWidget *parent) : QWidget(parent), mediaObject(nullptr) {
     setAttribute(Qt::WA_ShowWithoutActivating);
     setWindowFlags(Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint |
                    Qt::WindowTransparentForInput | Qt::WindowDoesNotAcceptFocus);
