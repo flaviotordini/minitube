@@ -30,7 +30,8 @@ $END_LICENSE */
 
 SnapshotPreview::SnapshotPreview(QWidget *parent) : QWidget(parent), mediaObject(0) {
     setAttribute(Qt::WA_ShowWithoutActivating);
-    setWindowFlags(Qt::FramelessWindowHint | Qt::WindowDoesNotAcceptFocus);
+    setWindowFlags(Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint |
+                   Qt::WindowTransparentForInput | Qt::WindowDoesNotAcceptFocus);
     setAttribute(Qt::WA_StaticContents);
     setAttribute(Qt::WA_OpaquePaintEvent);
     setAttribute(Qt::WA_NoSystemBackground);
