@@ -495,7 +495,7 @@ void MainWindow::createActions() {
     volumeMuteAct = new QAction(this);
     IconUtils::setIcon(volumeMuteAct, "audio-volume-high");
     volumeMuteAct->setStatusTip(tr("Mute volume"));
-    volumeMuteAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_K));
+    volumeMuteAct->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_M));
     actionMap.insert("volumeMute", volumeMuteAct);
     connect(volumeMuteAct, SIGNAL(triggered()), SLOT(volumeMute()));
     addAction(volumeMuteAct);
