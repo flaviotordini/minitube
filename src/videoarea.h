@@ -56,9 +56,6 @@ protected:
 
 private slots:
     void showContextMenu(const QPoint &point);
-#ifdef APP_SNAPSHOT
-    void hideSnapshotPreview();
-#endif
 
 private:
     QStackedLayout *stackedLayout;

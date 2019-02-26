@@ -114,8 +114,6 @@ void VideoArea::showSnapshotPreview(const QPixmap &pixmap) {
 #endif
     snapshotPreview->start(videoWidget, pixmap, soundOnly);
 }
-
-void VideoArea::hideSnapshotPreview() {}
 #endif
 
 void VideoArea::clear() {
