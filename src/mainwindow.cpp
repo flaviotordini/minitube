@@ -112,7 +112,8 @@ MainWindow::MainWindow()
     messageLabel = new QLabel();
     messageLabel->setWordWrap(false);
     messageLabel->setWindowFlags(Qt::ToolTip | Qt::FramelessWindowHint |
-                                 Qt::NoDropShadowWindowHint);
+                                 Qt::NoDropShadowWindowHint | Qt::WindowTransparentForInput |
+                                 Qt::WindowDoesNotAcceptFocus);
     messageLabel->setStyleSheet("padding:5px;border:0;background:palette(window)");
     messageLabel->hide();
     adjustMessageLabelPosition();
