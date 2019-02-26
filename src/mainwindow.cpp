@@ -1185,6 +1185,7 @@ bool MainWindow::confirmQuit() {
 void MainWindow::showHome() {
     showView(homeView);
     currentTimeLabel->clear();
+    seekSlider->setValue(0);
 }
 
 void MainWindow::showMedia(SearchParams *searchParams) {
