@@ -56,7 +56,7 @@ void SnapshotPreview::start(QWidget *widget, const QPixmap &pixmap, bool soundOn
 #ifdef MEDIA_QTAV
         mediaObject = new MediaQtAV(this);
 #elif defined MEDIA_MPV
-        // mediaObject = new MediaMPV(this);
+        mediaObject = new MediaMPV(this);
 #else
         qFatal("No media backend defined");
 #endif
@@ -66,7 +66,15 @@ void SnapshotPreview::start(QWidget *widget, const QPixmap &pixmap, bool soundOn
         }
     }
 
-    if (mediaObject) mediaObject->play("qrc:///sounds/snapshot.wav");
+#ifdef APP_MAC
+    QString soundPath = QCoreApplication::applicationDirPath() + "/../Resources";
+#elif defined PKGDATADIR
+    QString soundPath = QLatin1String(PKGDATADIR) + "/sounds";
+#else
+    QString soundPath = QCoreApplication::applicationDirPath() + "/sounds";
+#endif
+
+    if (mediaObject) mediaObject->play(soundPath + "/snapshot.wav");
     if (soundOnly) return;
 
     resize(pixmap.size());
