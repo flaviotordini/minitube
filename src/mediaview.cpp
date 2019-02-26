@@ -159,7 +159,6 @@ void MediaView::setMedia(Media *media) {
     this->media = media;
 
     videoWidget = media->videoWidget();
-    qDebug() << "videoWidget" << videoWidget;
     videoAreaWidget->setVideoWidget(videoWidget);
 
     connect(media, &Media::finished, this, &MediaView::onPlaybackFinished);
