@@ -72,6 +72,7 @@ $END_LICENSE */
 #include "database.h"
 #include "httputils.h"
 #include "jsfunctions.h"
+#include "seekslider.h"
 #include "sidebarwidget.h"
 #include "toolbarmenu.h"
 #include "videoarea.h"
@@ -84,10 +85,9 @@ $END_LICENSE */
 #ifdef MEDIA_MPV
 #include "mediampv.h"
 #endif
-#include "seekslider.h"
 
 namespace {
-static MainWindow *mainWindowInstance;
+MainWindow *mainWindowInstance;
 }
 
 MainWindow *MainWindow::instance() {
