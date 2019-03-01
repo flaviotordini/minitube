@@ -801,7 +801,7 @@ void MainWindow::createToolBars() {
     toolbarSearch = new SearchLineEdit(this);
 #endif
     toolbarSearch->setMinimumWidth(toolbarSearch->fontInfo().pixelSize() * 15);
-    toolbarSearch->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
+    toolbarSearch->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     toolbarSearch->setSuggester(new YTSuggester(this));
     connect(toolbarSearch, SIGNAL(search(const QString &)), SLOT(search(const QString &)));
     connect(toolbarSearch, SIGNAL(suggestionAccepted(Suggestion *)),
@@ -851,7 +851,7 @@ void MainWindow::createToolBars() {
     mainToolBar->addWidget(currentTimeLabel);
 
     seekSlider->setOrientation(Qt::Horizontal);
-    seekSlider->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
+    seekSlider->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
     seekSlider->setFocusPolicy(Qt::NoFocus);
     mainToolBar->addWidget(seekSlider);
 
