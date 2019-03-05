@@ -32,7 +32,8 @@ $END_LICENSE */
 #include "macutils.h"
 #endif
 
-HomeView::HomeView(QWidget *parent) : View(parent), standardFeedsView(0), channelsView(0) {
+HomeView::HomeView(QWidget *parent)
+    : View(parent), searchView(nullptr), standardFeedsView(nullptr), channelsView(nullptr) {
     QBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
     layout->setSpacing(0);
@@ -42,11 +43,6 @@ HomeView::HomeView(QWidget *parent) : View(parent), standardFeedsView(0), channe
 
     stackedWidget = new QStackedWidget();
     layout->addWidget(stackedWidget);
-
-    searchView = new SearchView(this);
-    connect(searchView, SIGNAL(search(SearchParams *)), MainWindow::instance(),
-            SLOT(showMedia(SearchParams *)));
-    stackedWidget->addWidget(searchView);
 }
 
 void HomeView::setupBar() {
@@ -82,17 +78,20 @@ void HomeView::setupBar() {
 
 void HomeView::showWidget(QWidget *widget) {
     QWidget *currentWidget = stackedWidget->currentWidget();
-    if (currentWidget == widget) return;
-    QMetaObject::invokeMethod(currentWidget, "disappear");
-    currentWidget->setEnabled(false);
+    if (currentWidget && currentWidget != widget) {
+        QMetaObject::invokeMethod(currentWidget, "disappear");
+        currentWidget->setEnabled(false);
+    }
     stackedWidget->setCurrentWidget(widget);
     widget->setEnabled(true);
-    QMetaObject::invokeMethod(widget, "appear");
-    QTimer::singleShot(0, widget, SLOT(setFocus()));
+    QMetaObject::invokeMethod(widget, "appear", Qt::QueuedConnection);
 }
 
 void HomeView::appear() {
-    QMetaObject::invokeMethod(stackedWidget->currentWidget(), "appear", Qt::QueuedConnection);
+    if (stackedWidget->count() == 0)
+        showSearch();
+    else
+        QMetaObject::invokeMethod(stackedWidget->currentWidget(), "appear", Qt::QueuedConnection);
 }
 
 void HomeView::disappear() {
@@ -100,6 +99,12 @@ void HomeView::disappear() {
 }
 
 void HomeView::showSearch() {
+    if (!searchView) {
+        searchView = new SearchView(this);
+        connect(searchView, SIGNAL(search(SearchParams *)), MainWindow::instance(),
+                SLOT(showMedia(SearchParams *)));
+        stackedWidget->addWidget(searchView);
+    }
     showWidget(searchView);
     bar->setCheckedAction(0);
 }
