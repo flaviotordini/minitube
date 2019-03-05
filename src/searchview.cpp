@@ -199,33 +199,24 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 }
 
 void SearchView::appear() {
-    setUpdatesEnabled(false);
-
-    updateRecentKeywords();
-    updateRecentChannels();
-
     MainWindow *w = MainWindow::instance();
     w->showActionsInStatusBar(
             {w->getAction("manualplay"), w->getAction("safeSearch"), w->getAction("definition")},
             true);
 
+    updateRecentKeywords();
+    updateRecentChannels();
+
     queryEdit->selectAll();
     queryEdit->enableSuggest();
-    if (!queryEdit->toWidget()->hasFocus())
-        QTimer::singleShot(1, queryEdit->toWidget(), SLOT(setFocus()));
-
-    setUpdatesEnabled(true);
+    QTimer::singleShot(0, queryEdit->toWidget(), SLOT(setFocus()));
 }
 
 void SearchView::disappear() {
-    setUpdatesEnabled(false);
-
     MainWindow *w = MainWindow::instance();
     w->showActionsInStatusBar(
             {w->getAction("manualplay"), w->getAction("safeSearch"), w->getAction("definition")},
             false);
-
-    setUpdatesEnabled(true);
 }
 
 void SearchView::updateRecentKeywords() {
@@ -308,8 +299,6 @@ void SearchView::updateRecentKeywords() {
 
         counter++;
     }
-
-    update();
 }
 
 void SearchView::updateRecentChannels() {
