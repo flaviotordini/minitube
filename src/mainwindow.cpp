@@ -852,6 +852,10 @@ void MainWindow::createToolBars() {
     currentTimeLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     mainToolBar->addWidget(currentTimeLabel);
 
+#ifdef APP_WIN
+    mainToolBar->addWidget(new Spacer(nullptr, 10));
+#endif
+
     seekSlider->setOrientation(Qt::Horizontal);
     seekSlider->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
     seekSlider->setFocusPolicy(Qt::NoFocus);
