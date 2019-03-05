@@ -24,9 +24,8 @@ $END_LICENSE */
 #include <QtWidgets>
 
 class Spacer : public QWidget {
-
 public:
-    Spacer(QWidget *parent = 0, int minWidth = 60);
+    Spacer(QWidget *parent = nullptr, int minWidth = 60);
 
 protected:
     QSize sizeHint() const;
