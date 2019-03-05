@@ -1078,12 +1078,6 @@ void MainWindow::showView(View *view, bool transition) {
 
     messageLabel->hide();
 
-#ifdef APP_MAC
-    // Workaround cursor bug on macOS
-    unsetCursor();
-    mac::uncloseWindow(winId());
-#endif
-
     history.push(view);
     emit viewChanged();
 
