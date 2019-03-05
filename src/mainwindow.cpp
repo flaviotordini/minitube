@@ -918,9 +918,8 @@ void MainWindow::createStatusBar() {
         regionMenu->addAction(moreRegionsAction);
         connect(moreRegionsAction, SIGNAL(triggered()), SLOT(showRegionsView()));
         regionAction->setMenu(regionMenu);
-    } else {
-        connect(regionAction, SIGNAL(triggered()), SLOT(showRegionsView()));
     }
+    connect(regionAction, SIGNAL(triggered()), SLOT(showRegionsView()));
 
     /* Stupid code that generates the QRC items
     foreach(YTRegion r, YTRegions::list())
