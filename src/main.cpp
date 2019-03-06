@@ -70,8 +70,10 @@ int main(int argc, char **argv) {
 
 #ifdef MEDIA_MPV
     QSurfaceFormat format = QSurfaceFormat::defaultFormat();
+#ifdef APP_MAC
     format.setMajorVersion(4);
     format.setMinorVersion(1);
+#endif
     format.setProfile(QSurfaceFormat::CoreProfile);
     QSurfaceFormat::setDefaultFormat(format);
 #endif
