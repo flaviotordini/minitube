@@ -109,12 +109,8 @@ MainWindow::MainWindow()
     Extra::windowSetup(this);
 #endif
 
-    messageLabel = new QLabel();
+    messageLabel = new QLabel(this);
     messageLabel->setWordWrap(false);
-    messageLabel->setWindowFlags(Qt::ToolTip | Qt::FramelessWindowHint |
-                                 Qt::NoDropShadowWindowHint | Qt::WindowTransparentForInput |
-                                 Qt::WindowDoesNotAcceptFocus);
-    messageLabel->setAttribute(Qt::WA_ShowWithoutActivating);
     messageLabel->setStyleSheet("padding:5px;border:0;background:palette(window)");
     messageLabel->setAlignment(Qt::AlignCenter);
     messageLabel->hide();
@@ -1277,11 +1273,6 @@ void MainWindow::resizeEvent(QResizeEvent *e) {
     int moreButtonWidth = 40;
     toolbarSearch->move(width() - toolbarSearch->width() - moreButtonWidth - 7, -34);
 #endif
-    hideMessage();
-}
-
-void MainWindow::moveEvent(QMoveEvent *e) {
-    Q_UNUSED(e);
     hideMessage();
 }
 

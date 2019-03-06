@@ -106,7 +106,6 @@ protected:
     void dragEnterEvent(QDragEnterEvent *e);
     void dropEvent(QDropEvent *e);
     void resizeEvent(QResizeEvent *e);
-    void moveEvent(QMoveEvent *e);
     void leaveEvent(QEvent *e);
     void enterEvent(QEvent *e);
 
