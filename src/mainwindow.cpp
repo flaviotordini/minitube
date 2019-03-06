@@ -102,7 +102,6 @@ MainWindow::MainWindow()
 
     // views mechanism
     views = new QStackedWidget();
-    views->hide();
     setCentralWidget(views);
 
 #ifdef APP_EXTRA
@@ -151,8 +150,6 @@ MainWindow::MainWindow()
     for (int i = 0; i < views->count(); i++)
         views->widget(i)->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
     setMinimumWidth(0);
-
-    views->show();
 
 #ifdef APP_ACTIVATION
     Activation::instance().initialCheck();
