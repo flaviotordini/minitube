@@ -1033,8 +1033,6 @@ void MainWindow::showView(View *view, bool transition) {
         return;
     }
 
-    setUpdatesEnabled(false);
-
 #ifdef APP_MAC
     if (transition && !history.isEmpty()) CompositeFader::go(this, this->grab());
 #endif
@@ -1050,17 +1048,9 @@ void MainWindow::showView(View *view, bool transition) {
     } else
         qDebug() << "Cannot cast old view";
 
-    const bool isMediaView = view == mediaView;
-
-    stopAct->setEnabled(isMediaView);
-    compactViewAct->setEnabled(isMediaView);
-    toolbarSearch->setEnabled(view == homeView || isMediaView || view == downloadView);
-    aboutAct->setEnabled(view != aboutView);
-    getAction("downloads")->setChecked(view == downloadView);
-
-    views->setCurrentWidget(view);
     view->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     view->setEnabled(true);
+    views->setCurrentWidget(view);
     view->appear();
 
     QString title = view->getTitle();
@@ -1069,6 +1059,13 @@ void MainWindow::showView(View *view, bool transition) {
     else
         title += QLatin1String(" - ") + Constants::NAME;
     setWindowTitle(title);
+
+    const bool isMediaView = view == mediaView;
+    stopAct->setEnabled(isMediaView);
+    compactViewAct->setEnabled(isMediaView);
+    toolbarSearch->setEnabled(isMediaView);
+    aboutAct->setEnabled(view != aboutView);
+    getAction("downloads")->setChecked(view == downloadView);
 
     // dynamic view actions
     /* Not currently used by any view
@@ -1081,10 +1078,6 @@ void MainWindow::showView(View *view, bool transition) {
 
     history.push(view);
     emit viewChanged();
-
-    adjustStatusBarVisibility();
-
-    setUpdatesEnabled(true);
 }
 
 void MainWindow::about() {
