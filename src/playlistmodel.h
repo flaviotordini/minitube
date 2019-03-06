@@ -116,6 +116,7 @@ private:
     bool firstSearch;
 
     QVector<Video *> videos;
+    QVector<Video *> deletedVideos;
     int startIndex;
     int max;
 

@@ -161,8 +161,13 @@ Video *PlaylistModel::activeVideo() const {
 
 void PlaylistModel::setVideoSource(VideoSource *videoSource) {
     beginResetModel();
-    while (!videos.isEmpty())
-        delete videos.takeFirst();
+
+    qDeleteAll(videos);
+    videos.clear();
+
+    qDeleteAll(deletedVideos);
+    deletedVideos.clear();
+
     m_activeVideo = nullptr;
     m_activeRow = -1;
     startIndex = 1;
@@ -325,21 +330,21 @@ bool PlaylistModel::removeRows(int position, int rows, const QModelIndex & /*par
 
 void PlaylistModel::removeIndexes(QModelIndexList &indexes) {
     QVector<Video *> originalList(videos);
-    QVector<Video *> delitems;
-    delitems.reserve(indexes.size());
     for (const QModelIndex &index : indexes) {
         if (index.row() >= originalList.size()) continue;
         Video *video = originalList.at(index.row());
         int idx = videos.indexOf(video);
         if (idx != -1) {
             beginRemoveRows(QModelIndex(), idx, idx);
-            delitems.append(video);
+            deletedVideos.append(video);
+            if (m_activeVideo == video) {
+                m_activeVideo = nullptr;
+                m_activeRow = -1;
+            }
             videos.removeAll(video);
-            video->deleteLater();
             endRemoveRows();
         }
     }
-    qDeleteAll(delitems);
     videos.squeeze();
 }
 
