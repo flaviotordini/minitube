@@ -279,7 +279,7 @@ int MediaView::getHistoryIndex() {
 }
 
 void MediaView::appear() {
-    QTimer::singleShot(0, this, [] { MainWindow::instance()->showToolbar(); });
+    MainWindow::instance()->showToolbar();
 
     Video *currentVideo = playlistModel->activeVideo();
     if (currentVideo) {
@@ -290,7 +290,7 @@ void MediaView::appear() {
 }
 
 void MediaView::disappear() {
-    QTimer::singleShot(0, this, [] { MainWindow::instance()->hideToolbar(); });
+    MainWindow::instance()->hideToolbar();
 }
 
 void MediaView::handleError(const QString &message) {
