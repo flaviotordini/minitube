@@ -938,17 +938,21 @@ void MainWindow::showActionsInStatusBar(const QVector<QAction *> &actions, bool 
 #endif
     for (auto action : actions) {
         if (show) {
-            if (statusToolBar->actions().contains(action)) return;
+            if (statusToolBar->actions().contains(action)) continue;
             if (statusToolBar->actions().isEmpty()) {
                 statusToolBar->addAction(action);
             } else {
                 statusToolBar->insertAction(statusToolBar->actions().at(0), action);
             }
-            if (statusBar()->isHidden() && !fullScreenActive) setStatusBarVisibility(true);
         } else {
             statusToolBar->removeAction(action);
-            if (statusBar()->isVisible() && !needStatusBar()) setStatusBarVisibility(false);
         }
+    }
+
+    if (show) {
+        if (statusBar()->isHidden() && !fullScreenActive) setStatusBarVisibility(true);
+    } else {
+        if (statusBar()->isVisible() && !needStatusBar()) setStatusBarVisibility(false);
     }
 }
 
