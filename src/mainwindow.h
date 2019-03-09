@@ -154,7 +154,7 @@ private:
     void initMedia();
     void createActions();
     void createMenus();
-    void createToolBars();
+    void createToolBar();
     void createStatusBar();
     void showView(View *view, bool transition = false);
     static QString formatTime(qint64 duration);

@@ -131,7 +131,7 @@ MainWindow::MainWindow()
     // build ui
     createActions();
     createMenus();
-    createToolBars();
+    createToolBar();
     hideToolbar();
     createStatusBar();
 
@@ -776,7 +776,7 @@ void MainWindow::createMenus() {
 #endif
 }
 
-void MainWindow::createToolBars() {
+void MainWindow::createToolBar() {
     // Create widgets
     currentTimeLabel = new QLabel("00:00", this);
 
