@@ -26,8 +26,6 @@ $END_LICENSE */
 #include "constants.h"
 #include "view.h"
 
-class ClickableLabel;
-
 class AboutView : public View {
     Q_OBJECT
 
@@ -40,7 +38,6 @@ public:
     }
 
 private:
-    ClickableLabel *logo;
     QPushButton *closeButton;
 };
 #endif
