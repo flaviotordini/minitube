@@ -490,7 +490,7 @@ void MainWindow::createActions() {
     volumeMuteAct->setStatusTip(tr("Mute volume"));
     volumeMuteAct->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_M));
     actionMap.insert("volumeMute", volumeMuteAct);
-    connect(volumeMuteAct, SIGNAL(triggered()), SLOT(volumeMute()));
+    connect(volumeMuteAct, SIGNAL(triggered()), SLOT(toggleVolumeMute()));
     addAction(volumeMuteAct);
 
     QToolButton *definitionButton = new QToolButton(this);
@@ -1648,7 +1648,7 @@ void MainWindow::volumeDown() {
     media->setVolume(newVolume);
 }
 
-void MainWindow::volumeMute() {
+void MainWindow::toggleVolumeMute() {
     bool muted = media->volumeMuted();
     media->setVolumeMuted(!muted);
 }

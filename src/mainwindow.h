@@ -129,7 +129,7 @@ private slots:
 
     void volumeUp();
     void volumeDown();
-    void volumeMute();
+    void toggleVolumeMute();
     void volumeChanged(qreal newVolume);
     void volumeMutedChanged(bool muted);
 
