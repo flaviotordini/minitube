@@ -1,52 +1,52 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ca" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt_PT" version="2.1">
 <context>
     <name>AboutView</name>
     <message>
         <source>There&apos;s life outside the browser!</source>
-        <translation>Hi ha vida fora del navegador!</translation>
+        <translation>Existe vida para além do browser!</translation>
     </message>
     <message>
         <source>Version %1</source>
-        <translation>Versió %1</translation>
+        <translation>Versão %1</translation>
     </message>
     <message>
         <source>Licensed to: %1</source>
-        <translation>Llicenciat a: %1</translation>
+        <translation>Licenciado a:</translation>
     </message>
     <message>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 és programari lliure, però el seu desenvolupament pren un temps preciós.</translation>
+        <translation>%1 é Software Gratuito mas o seu desenvolvimento leva tempo precioso.</translation>
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>Siusplau &lt;a href=&apos;%1&apos;&gt;dóna&lt;/a&gt; per ajudar al desenvolupament continuat del %2.</translation>
+        <translation>Por favor &lt;a href=&apos;%1&apos;&gt;doe&lt;/a&gt; para suportar o desenvolvimento continuado do %2.</translation>
     </message>
     <message>
         <source>Translate %1 to your native language using %2</source>
-        <translation>Traduïu el %1 al vostre idioma natal utilitzant %2</translation>
+        <translation>Traduza %1 para a sua língua utilizando %2</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
-        <translation>Icona dissenyada per %1.</translation>
+        <translation>Ícone desenhado por %1.</translation>
     </message>
     <message>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
-        <translation>Alliberat sota la &lt;a href=&apos;%1&apos;&gt;Llicència Pública General de GNU&lt;/a&gt;</translation>
+        <translation>Lançado nos termos da &lt;a href=&apos;&quot;%1&apos;&gt;GNU General Public License&lt;/a&gt;</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Tanca</translation>
+        <translation>&amp;Fechar</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>Quant a</translation>
+        <translation>Sobre</translation>
     </message>
 </context>
 <context>
     <name>ActivationDialog</name>
     <message>
         <source>Enter your License Details</source>
-        <translation>Entra els detalls de la teva llicència</translation>
+        <translation>Introduza os detalhes da sua Licença</translation>
     </message>
     <message>
         <source>&amp;Email:</source>
@@ -54,56 +54,56 @@
     </message>
     <message>
         <source>&amp;Code:</source>
-        <translation>&amp;Codi:</translation>
+        <translation>&amp;Código:</translation>
     </message>
 </context>
 <context>
     <name>ActivationView</name>
     <message>
         <source>Please license %1</source>
-        <translation>Si us plau, llicencia el %1</translation>
+        <translation>Por favor licencie %1</translation>
     </message>
     <message>
         <source>This demo has expired.</source>
-        <translation>Aquesta demo ha expirat.</translation>
+        <translation>Esta demonstração expirou.</translation>
     </message>
     <message>
         <source>The full version allows you to watch videos without interruptions.</source>
-        <translation>La versió completa permet visualitzar videos sense interrupcions.</translation>
+        <translation>A versão completa permite-lhe ver vídeos sem interrupções. </translation>
     </message>
     <message>
         <source>Without a license, the application will expire in %1 days.</source>
-        <translation>Sense llicència, l&apos;aplicació caducarà en %1 dies</translation>
+        <translation>Sem uma licença, a aplicação irá expirar em %1 dias.</translation>
     </message>
     <message>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
-        <translation>Comprant la versió completa, també donarà suport al dur treball que he posat en la creació del %1.</translation>
+        <translation>Ao comprar a versão completa, também irá apoiar o trabalho árduo que pus  %1.</translation>
     </message>
     <message>
         <source>Use Demo</source>
-        <translation>Utilitza la demo</translation>
+        <translation>Usar Demo</translation>
     </message>
     <message>
         <source>Enter License</source>
-        <translation>Entra la lliçència </translation>
+        <translation>Introduzir Licença</translation>
     </message>
     <message>
         <source>Buy License</source>
-        <translation>Comprar llicència</translation>
+        <translation>Comprar Licença</translation>
     </message>
 </context>
 <context>
     <name>AppWidget</name>
     <message>
         <source>Download</source>
-        <translation>Descarrega</translation>
+        <translation>Descarregar</translation>
     </message>
 </context>
 <context>
     <name>ChannelAggregator</name>
     <message>
         <source>By %1</source>
-        <translation>Per %1</translation>
+        <translation>Por %1</translation>
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
@@ -114,84 +114,84 @@
     <name>ChannelItemDelegate</name>
     <message>
         <source>All Videos</source>
-        <translation>Tots els vídeos</translation>
+        <translation>Todos os Vídeos</translation>
     </message>
     <message>
         <source>Unwatched Videos</source>
-        <translation>Vídeos no vists</translation>
+        <translation>Vídeos não visualizados</translation>
     </message>
 </context>
 <context>
     <name>ChannelView</name>
     <message>
         <source>Name</source>
-        <translation>Nom</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <source>Last Updated</source>
-        <translation>Últim actualitzat</translation>
+        <translation>Actualizado ultimamente</translation>
     </message>
     <message>
         <source>Last Added</source>
-        <translation>Últim afegit</translation>
+        <translation>Adicionado ultimamente</translation>
     </message>
     <message>
         <source>Last Watched</source>
-        <translation>Últim vist</translation>
+        <translation>Visualizado ultimamente</translation>
     </message>
     <message>
         <source>Most Watched</source>
-        <translation>Més vistos</translation>
+        <translation>Mais visualizados</translation>
     </message>
     <message>
         <source>Sort by</source>
-        <translation>Ordena per</translation>
+        <translation>Ordenar por</translation>
     </message>
     <message>
         <source>Mark all as watched</source>
-        <translation>Marca-ho tot vist</translation>
+        <translation>Marcar todos com vistos</translation>
     </message>
     <message>
         <source>Show Updated</source>
-        <translation>Mostra actualitzats</translation>
+        <translation>Mostrar actualizados</translation>
     </message>
     <message>
         <source>All Videos</source>
-        <translation>Tots els vídeos</translation>
+        <translation>Todos os Vídeos</translation>
     </message>
     <message>
         <source>Unwatched Videos</source>
-        <translation>Vídeos no vistos</translation>
+        <translation>Vídeos não visualizados</translation>
     </message>
     <message>
         <source>Mark as Watched</source>
-        <translation>Marca com a Visualitzat</translation>
+        <translation>Marcar como visto</translation>
     </message>
     <message>
         <source>Unsubscribe</source>
-        <translation>Donar-se de baixa</translation>
+        <translation>Anular subscrição</translation>
     </message>
     <message>
         <source>There are no updated subscriptions at this time.</source>
-        <translation>No hi han subscripcions actualitzades.</translation>
+        <translation>Não há subscrições actualizadas de momento.</translation>
     </message>
     <message>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation>No teniu subscripcions. Feu servir el símbol de l&apos;estrella per subscríure-us als canals.</translation>
+        <translation>Você não tem subscrições. Use o símbolo estrela para subscrever canais.</translation>
     </message>
 </context>
 <context>
     <name>ClearButton</name>
     <message>
         <source>Clear</source>
-        <translation>Neteja</translation>
+        <translation>Limpar</translation>
     </message>
 </context>
 <context>
     <name>DataUtils</name>
     <message>
         <source>Just now</source>
-        <translation>Ara mateix</translation>
+        <translation>Agora mesmo</translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
@@ -226,54 +226,54 @@
     </message>
     <message>
         <source>bytes/sec</source>
-        <translation>bytes/s</translation>
+        <translation>bytes/seg</translation>
     </message>
     <message>
         <source>KB/sec</source>
-        <translation>KB/s</translation>
+        <translation>KB/seg</translation>
     </message>
     <message>
         <source>MB/sec</source>
-        <translation>MB/s</translation>
+        <translation>MB/seg</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation>segons</translation>
+        <translation>segundos</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation>minuts</translation>
+        <translation>minutos</translation>
     </message>
     <message>
         <source>%4 %5 remaining</source>
-        <translation>%4 %5 restant</translation>
+        <translation>%4 %5 restante</translation>
     </message>
 </context>
 <context>
     <name>DownloadManager</name>
     <message>
         <source>This is just the demo version of %1.</source>
-        <translation>Aquesta només és la versió de demostració del %1.</translation>
+        <translation>Isto é apenas uma versão de demonstração de %1.</translation>
     </message>
     <message>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation>Només pot baixar vídeos de menys de %1 minuts per tal que en pugui provar aquesta funció.</translation>
+        <translation>Apenas pode transferir vídeos mais curtos que %1 minuto(s) de forma a testar a funcionalidade de transferência.</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation>Continua</translation>
+        <translation>Continuar</translation>
     </message>
     <message>
         <source>Get the full version</source>
-        <translation>Aconsegueix la versió completa</translation>
+        <translation>Obtenha a versão completa</translation>
     </message>
     <message>
         <source>%1 downloaded in %2</source>
-        <translation>%1 descarregat en %2</translation>
+        <translation>%1 transferido em %2</translation>
     </message>
     <message>
         <source>Download finished</source>
-        <translation>Descàrrega completada</translation>
+        <translation>Transferência concluída</translation>
     </message>
     <message numerus="yes">
         <source>%n Download(s)</source>
@@ -284,289 +284,289 @@
     <name>DownloadSettings</name>
     <message>
         <source>Change location...</source>
-        <translation>Canvia la ubicació...</translation>
+        <translation>Mudar local...</translation>
     </message>
     <message>
         <source>Choose the download location</source>
-        <translation>Escull la ubicació de les baixades</translation>
+        <translation>Escolha o local de downloads</translation>
     </message>
     <message>
         <source>Download location changed.</source>
-        <translation>Ubicació de baixades canviada.</translation>
+        <translation>Local de downloads mudado</translation>
     </message>
     <message>
         <source>Current downloads will still go in the previous location.</source>
-        <translation>Les baixades actuals encara aniran a la ubicació prèvia.</translation>
+        <translation>Transferências actuais ainda irão para o local prévio</translation>
     </message>
     <message>
         <source>Downloading to: %1</source>
-        <translation>Baixant a: %1</translation>
+        <translation>A transferir para: %1</translation>
     </message>
 </context>
 <context>
     <name>DownloadView</name>
     <message>
         <source>Downloads</source>
-        <translation>Baixades</translation>
+        <translation>Transferências</translation>
     </message>
 </context>
 <context>
     <name>Extra</name>
     <message>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation>El fitxer executable ha estat manipulat, potser per un virus.</translation>
+        <translation>O ficheiro executável foi alterado ilegalmente, provavelmente por um vírus.</translation>
     </message>
     <message>
         <source>%1 will not run. Try installing again.</source>
-        <translation>%1 no funcionarà. Proveu tornar a instalar</translation>
+        <translation>%1 não irá correr. Tente instalar outra vez.</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation>Surt</translation>
+        <translation>Sair</translation>
     </message>
     <message>
         <source>Reinstall</source>
-        <translation>Reinstala</translation>
+        <translation>Reinstalar</translation>
     </message>
 </context>
 <context>
     <name>GlobalShortcuts</name>
     <message>
         <source>Play</source>
-        <translation>Reprodueix</translation>
+        <translation>Reproduzir</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Posa en pausa</translation>
+        <translation>Pausa</translation>
     </message>
     <message>
         <source>Play/Pause</source>
-        <translation>Reprodueix/posa en pausa</translation>
+        <translation>Reproduzir/Pausa</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation>Atura</translation>
+        <translation>Parar</translation>
     </message>
     <message>
         <source>Stop playing after current track</source>
-        <translation>Atura en acabar la peça actual</translation>
+        <translation>Parar reprodução após faixa actual</translation>
     </message>
     <message>
         <source>Next track</source>
-        <translation>Peça següent</translation>
+        <translation>Próxima faixa</translation>
     </message>
     <message>
         <source>Previous track</source>
-        <translation>Peça prèvia</translation>
+        <translation>Faixa anterior</translation>
     </message>
     <message>
         <source>Increase volume</source>
-        <translation>Augmenta el volum</translation>
+        <translation>Aumentar volume</translation>
     </message>
     <message>
         <source>Decrease volume</source>
-        <translation>Disminuex el volum</translation>
+        <translation>Baixar volume</translation>
     </message>
     <message>
         <source>Mute</source>
-        <translation>Silencia</translation>
+        <translation>Desactivar som</translation>
     </message>
     <message>
         <source>Seek forward</source>
-        <translation>Cerca endavant</translation>
+        <translation>Avançar</translation>
     </message>
     <message>
         <source>Seek backward</source>
-        <translation>Cerca enrere</translation>
+        <translation>Retroceder</translation>
     </message>
 </context>
 <context>
     <name>HomeView</name>
     <message>
         <source>Search</source>
-        <translation>Cerca</translation>
+        <translation>Pesquisar</translation>
     </message>
     <message>
         <source>Find videos and channels by keyword</source>
-        <translation>Troba vídeos i canals per paraula clau</translation>
+        <translation>Encontrar vídeos e canais por palavra-chave</translation>
     </message>
     <message>
         <source>Browse</source>
-        <translation>Explora</translation>
+        <translation>Navegar</translation>
     </message>
     <message>
         <source>Browse videos by category</source>
-        <translation>Explora vídeos per categoria</translation>
+        <translation>Navegar vídeos por categoria</translation>
     </message>
     <message>
         <source>Subscriptions</source>
-        <translation>Subscripcions</translation>
+        <translation>Subscrições</translation>
     </message>
     <message>
         <source>Channel subscriptions</source>
-        <translation>Subscripcions de canal</translation>
+        <translation>Subscrições de canais</translation>
     </message>
     <message>
         <source>Make yourself comfortable</source>
-        <translation>Poseu-vos còmodes</translation>
+        <translation>Sinta-se confortável</translation>
     </message>
 </context>
 <context>
     <name>LoadingWidget</name>
     <message>
         <source>Error</source>
-        <translation>Error</translation>
+        <translation>Erro</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>&amp;Window</source>
-        <translation>&amp;Finestra</translation>
+        <translation>&amp;Janela</translation>
     </message>
     <message>
         <source>&amp;Minimize</source>
-        <translation>&amp;Minimitza</translation>
+        <translation>&amp;Minimizar</translation>
     </message>
     <message>
         <source>&amp;Stop</source>
-        <translation>&amp;Atura</translation>
+        <translation>&amp;Parar</translation>
     </message>
     <message>
         <source>Stop playback and go back to the search view</source>
-        <translation>Atura la reproducció i torna a la vista de búsqueda</translation>
+        <translation>Parar reprodução e voltar para à vista de pesquisa</translation>
     </message>
     <message>
         <source>P&amp;revious</source>
-        <translation>P&amp;revi</translation>
+        <translation>A&amp;nterior</translation>
     </message>
     <message>
         <source>Go back to the previous track</source>
-        <translation>Torna a la pista anterior</translation>
+        <translation>Retroceder para a faixa anterior</translation>
     </message>
     <message>
         <source>S&amp;kip</source>
-        <translation>&amp;Salta</translation>
+        <translation>S&amp;altar</translation>
     </message>
     <message>
         <source>Skip to the next video</source>
-        <translation>Salta al vídeo següent</translation>
+        <translation>Saltar para o próximo vídeo</translation>
     </message>
     <message>
         <source>&amp;Play</source>
-        <translation>&amp;Reprodueix</translation>
+        <translation>&amp;Reproduzir</translation>
     </message>
     <message>
         <source>Resume playback</source>
-        <translation>Continua la reproducció</translation>
+        <translation>Retomar reprodução</translation>
     </message>
     <message>
         <source>&amp;Full Screen</source>
-        <translation>Pantalla &amp;completa</translation>
+        <translation>&amp;Ecrã Inteiro</translation>
     </message>
     <message>
         <source>Go full screen</source>
-        <translation>Passa a pantalla completa</translation>
+        <translation>Ir para ecrã inteiro</translation>
     </message>
     <message>
         <source>&amp;Compact Mode</source>
-        <translation>&amp;Mode compacte</translation>
+        <translation>&amp;Modo compacto</translation>
     </message>
     <message>
         <source>Hide the playlist and the toolbar</source>
-        <translation>Amaga la llista de reproducció i la barra d&apos;eines</translation>
+        <translation>Esconder a lista de reprodução e a barra de ferramentas</translation>
     </message>
     <message>
         <source>Open the &amp;YouTube Page</source>
-        <translation>Obre la pàgina de &amp;YouTube</translation>
+        <translation>Abrir a &amp;Página do YouTube</translation>
     </message>
     <message>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation>Ves a la pàgina del vídeo del YouTube i pausa la reproducció</translation>
+        <translation>Ir para a página de vídeos do YouTube e pausar reprodução</translation>
     </message>
     <message>
         <source>Copy the YouTube &amp;Link</source>
-        <translation>Copia l&apos;&amp;enllaç de YouTube</translation>
+        <translation>Copiar a &amp;ligação do YouTube</translation>
     </message>
     <message>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation>Copia l&apos;enllaç del vídeo actual del YouTube al porta-retalls</translation>
+        <translation>Copiar o URL do video actual do YouTube para a área de transferência</translation>
     </message>
     <message>
         <source>Copy the Video Stream &amp;URL</source>
-        <translation>Copia el &amp;URL del flux de vídeo</translation>
+        <translation>Copiar o &amp;URL da Stream do Vídeo</translation>
     </message>
     <message>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation>Copia el URL del flux de vídeo actual al porta-retalls</translation>
+        <translation>Copiar o URL da emissão de vídeo actual para a área de transferência</translation>
     </message>
     <message>
         <source>Find Video &amp;Parts</source>
-        <translation>Troba &amp;parts de vídeo</translation>
+        <translation>Encontrar &amp;Partes do Vídeo</translation>
     </message>
     <message>
         <source>Find other video parts hopefully in the right order</source>
-        <translation>Troba altres parts del vídeo, amb sort en l&apos;ordre correcte</translation>
+        <translation>Procurar outras partes do video, com esperança de estarem na ordenação correcta</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>&amp;Elimina</translation>
+        <translation>&amp;Remover</translation>
     </message>
     <message>
         <source>Remove the selected videos from the playlist</source>
-        <translation>Elimina els vídeos seleccionats de la llista de reproducció</translation>
+        <translation>Remover os vídeos selecionados da lista de reprodução</translation>
     </message>
     <message>
         <source>Move &amp;Up</source>
-        <translation>Mou &amp;amunt</translation>
+        <translation>Mover &amp;Para cima</translation>
     </message>
     <message>
         <source>Move up the selected videos in the playlist</source>
-        <translation>Mou amunt els vídeos seleccionats en la llista de reproducció</translation>
+        <translation>Mover para cima os vídeos selecionados na lista de reprodução</translation>
     </message>
     <message>
         <source>Move &amp;Down</source>
-        <translation>Mou a&amp;vall</translation>
+        <translation>Mover &amp;Para baixo</translation>
     </message>
     <message>
         <source>Move down the selected videos in the playlist</source>
-        <translation>Mou avall els vídeos seleccionats en la llista de reproducció</translation>
+        <translation>Mover para baixo os vídeos selecionados na lista de reprodução</translation>
     </message>
     <message>
         <source>&amp;Clear Recent Searches</source>
-        <translation>&amp;Neteja les búsquedes recents</translation>
+        <translation>&amp;Limpar as Pesquisas Recentes</translation>
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation>Neteja l&apos;historial de búsquedes. No es pot desfer.</translation>
+        <translation>Limpar o histórico de pesquisa. Não poderá ser desfeito.</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>&amp;Surt</translation>
+        <translation>&amp;Sair</translation>
     </message>
     <message>
         <source>Bye</source>
-        <translation>Adéu</translation>
+        <translation>Adeus</translation>
     </message>
     <message>
         <source>&amp;Website</source>
-        <translation>Pàgina &amp;web</translation>
+        <translation>&amp;Website</translation>
     </message>
     <message>
         <source>%1 on the Web</source>
-        <translation>%1 a la xarxa</translation>
+        <translation>%1 na Web</translation>
     </message>
     <message>
         <source>Make a &amp;Donation</source>
-        <translation>Fer una &amp;donació</translation>
+        <translation>Faça um &amp;Donativo</translation>
     </message>
     <message>
         <source>Please support the continued development of %1</source>
-        <translation>Siusplau ajuda al desenvolupament continuat del %1</translation>
+        <translation>Por favor apoie o desenvolvimento contínuo do %1</translation>
     </message>
     <message>
         <source>&amp;About</source>
-        <translation>&amp;Quant a</translation>
+        <translation>&amp;Sobre</translation>
     </message>
     <message>
         <source>Info about %1</source>
@@ -574,47 +574,47 @@
     </message>
     <message>
         <source>Search</source>
-        <translation>Cerca</translation>
+        <translation>Procurar</translation>
     </message>
     <message>
         <source>Mute volume</source>
-        <translation>Silencia el volum</translation>
+        <translation>Desactivar som</translation>
     </message>
     <message>
         <source>&amp;Manually Start Playing</source>
-        <translation>Reprodueix vídeos &amp;manualment</translation>
+        <translation>&amp;Começar a Reproduzir Manualmente</translation>
     </message>
     <message>
         <source>Manually start playing videos</source>
-        <translation>Comença a reproduir vídeos manualment</translation>
+        <translation>Manualmente começar a reproduzir vídeos</translation>
     </message>
     <message>
         <source>&amp;Downloads</source>
-        <translation>&amp;Baixades</translation>
+        <translation>&amp;Transferências</translation>
     </message>
     <message>
         <source>Show details about video downloads</source>
-        <translation>Mostra detalls de les descàrregues de vídeo</translation>
+        <translation>Mostrar detalhes sobre transferências de vídeos</translation>
     </message>
     <message>
         <source>&amp;Download</source>
-        <translation>&amp;Baixa</translation>
+        <translation>&amp;Download</translation>
     </message>
     <message>
         <source>Download the current video</source>
-        <translation>Baixa el vídeo actual</translation>
+        <translation>Transferir o vídeo actual</translation>
     </message>
     <message>
         <source>Take &amp;Snapshot</source>
-        <translation>Pren &amp;Instantània</translation>
+        <translation>&amp;Captura de ecrã</translation>
     </message>
     <message>
         <source>&amp;Subscribe to Channel</source>
-        <translation>&amp;Subscriu al canal</translation>
+        <translation>&amp;Subscrever ao Canal</translation>
     </message>
     <message>
         <source>Share the current video using %1</source>
-        <translation>Comparteix el vídeo actual fent servir %1</translation>
+        <translation>Partilhar o video actual usando %1</translation>
     </message>
     <message>
         <source>&amp;Email</source>
@@ -622,75 +622,75 @@
     </message>
     <message>
         <source>Email</source>
-        <translation>Correu electrònic</translation>
+        <translation>Email</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Tanca</translation>
+        <translation>&amp;Fechar</translation>
     </message>
     <message>
         <source>&amp;Float on Top</source>
-        <translation>Manté a &amp;sobre</translation>
+        <translation>&amp;Flutuar no Topo</translation>
     </message>
     <message>
         <source>&amp;Adjust Window Size</source>
-        <translation>&amp;Ajusta la mida de la finestra</translation>
+        <translation>&amp;Ajustar o Tamanho da Janela</translation>
     </message>
     <message>
         <source>&amp;Stop After This Video</source>
-        <translation>&amp;Atura després d&apos;aquest vídeo</translation>
+        <translation>&amp;Parar Após Este Vídeo</translation>
     </message>
     <message>
         <source>&amp;Report an Issue...</source>
-        <translation>&amp;Informa d&apos;un problema...</translation>
+        <translation>&amp;Comunicar um Problema...</translation>
     </message>
     <message>
         <source>&amp;Refine Search...</source>
-        <translation>&amp;Afina la Cerca...</translation>
+        <translation>&amp;Redefinir Pesquisa...</translation>
     </message>
     <message>
         <source>More...</source>
-        <translation>Més...</translation>
+        <translation>Mais...</translation>
     </message>
     <message>
         <source>&amp;Related Videos</source>
-        <translation>Vídeos &amp;Relacionats</translation>
+        <translation>&amp;Vídeos Relacionados</translation>
     </message>
     <message>
         <source>Watch videos related to the current one</source>
-        <translation>Visualitza vídeos relacionats amb l&apos;actual</translation>
+        <translation>Ver vídeos relacionados com o actual</translation>
     </message>
     <message>
         <source>Open in &amp;Browser...</source>
-        <translation>Obre al &amp;Navegador...</translation>
+        <translation>Abrir no &amp;Browser</translation>
     </message>
     <message>
         <source>Restricted Mode</source>
-        <translation>Mode restringit</translation>
+        <translation>Modo Restrito</translation>
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
-        <translation>Amaga vídeos amb contingut no apropiat</translation>
+        <translation>Ocultar vídeos que possam conter conteúdo inapropriado</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
-        <translation>T&apos;&amp;Agrada %1? Puntua&apos;l!</translation>
+        <translation>&amp;Gosta do %1? Classifique-o!</translation>
     </message>
     <message>
         <source>Buy %1...</source>
-        <translation>Compra %1...</translation>
+        <translation>Comprar %1...</translation>
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation>&amp;Aplicació</translation>
+        <translation>&amp;Aplicação</translation>
     </message>
     <message>
         <source>&amp;Playback</source>
-        <translation>&amp;Reproducció</translation>
+        <translation>&amp;Reprodução</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
-        <translation>&amp;Llista de reproducció</translation>
+        <translation>&amp;Lista de reprodução</translation>
     </message>
     <message>
         <source>&amp;Video</source>
@@ -698,138 +698,138 @@
     </message>
     <message>
         <source>&amp;Share</source>
-        <translation>&amp;Compartir</translation>
+        <translation>&amp;Partilhar</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;Vista</translation>
+        <translation>&amp;Visualizar</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>A&amp;juda</translation>
+        <translation>&amp;Ajuda</translation>
     </message>
     <message>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation>Premeu %1 per pujar el volum, %2 per baixar-lo</translation>
+        <translation>Pressione %1 para aumentar o volume, %2 para baixá-lo</translation>
     </message>
     <message>
         <source>Choose your content location</source>
-        <translation>Esculliu la ubicació del vostre contingut</translation>
+        <translation>Escolha o local do seu conteúdo</translation>
     </message>
     <message>
         <source>Opening %1</source>
-        <translation>Obrint %1</translation>
+        <translation>A abrir %1</translation>
     </message>
     <message>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation>Vol abandonar el %1 amb una baixada en curs?</translation>
+        <translation>Deseja sair %1 com uma transferência activa?</translation>
     </message>
     <message>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation>Si tanca el %1 ara, aquesta baixada es cancel·larà.</translation>
+        <translation>Se fechar %1 agora, a transferência será cancelada.</translation>
     </message>
     <message>
         <source>Close and cancel download</source>
-        <translation>Tanca i cancel·la la baixada</translation>
+        <translation>Fechar e cancelar transferência</translation>
     </message>
     <message>
         <source>Wait for download to finish</source>
-        <translation>Espera a acabar la baixada</translation>
+        <translation>Aguarde para que a transferência termine</translation>
     </message>
     <message>
         <source>Error: %1</source>
-        <translation>Error: %1</translation>
+        <translation>Erro: %1</translation>
     </message>
     <message>
         <source>&amp;Pause</source>
-        <translation>&amp;Pausa</translation>
+        <translation>&amp;Pausar</translation>
     </message>
     <message>
         <source>Pause playback</source>
-        <translation>Pausa la reproducció</translation>
+        <translation>Pausar reprodução</translation>
     </message>
     <message>
         <source>&amp;Loading...</source>
-        <translation>&amp;Carregant...</translation>
+        <translation>&amp;A carregar...</translation>
     </message>
     <message>
         <source>Leave &amp;Full Screen</source>
-        <translation>Abandona la Pantalla &amp;Completa</translation>
+        <translation>Sair do &amp;Ecrã Completo</translation>
     </message>
     <message>
         <source>Remaining time: %1</source>
-        <translation>Temps restant: %1</translation>
+        <translation>Tempo restante: %1</translation>
     </message>
     <message>
         <source>Volume at %1%</source>
-        <translation>Volum al %1%</translation>
+        <translation>Volume a %1%</translation>
     </message>
     <message>
         <source>Volume is muted</source>
-        <translation>El volum està silenciat</translation>
+        <translation>O volume está silenciado</translation>
     </message>
     <message>
         <source>Volume is unmuted</source>
-        <translation>El volum no està silenciat</translation>
+        <translation>O volume não está silenciado</translation>
     </message>
     <message>
         <source>Maximum video definition set to %1</source>
-        <translation>Resolució màxima de vídeo fixada a %1</translation>
+        <translation>Definição de vídeo máxima definida para %1</translation>
     </message>
     <message>
         <source>Your privacy is now safe</source>
-        <translation>La vostra privacitat ara és segura</translation>
+        <translation>A sua privacidade está agora segura</translation>
     </message>
     <message>
         <source>Downloads complete</source>
-        <translation>Baixades completes</translation>
+        <translation>Transferência completa</translation>
     </message>
     <message>
         <source>%1 version %2 is now available.</source>
-        <translation>%1 versió %2 ja està disponible.</translation>
+        <translation>%1 versão %2 está agora disponível.</translation>
     </message>
     <message>
         <source>Remind me later</source>
-        <translation>Recorda-m&apos;ho més tard</translation>
+        <translation>Relembrar-me mais tarde</translation>
     </message>
     <message>
         <source>Update</source>
-        <translation>Actualitza</translation>
+        <translation>Actualizar</translation>
     </message>
 </context>
 <context>
     <name>MediaView</name>
     <message>
         <source>You can now paste the YouTube link into another application</source>
-        <translation>Ja podeu enganxar l&apos;enllaç de YouTube en una altra aplicació</translation>
+        <translation>Pode agora colar a ligação do Youtube para outra aplicação</translation>
     </message>
     <message>
         <source>You can now paste the video stream URL into another application</source>
-        <translation>Ja pot enganxar el URL del flux de vídeo en una altra aplicació</translation>
+        <translation>Agora você pode colar o URL do vídeo noutra aplicação</translation>
     </message>
     <message>
         <source>The link will be valid only for a limited time.</source>
-        <translation>L&apos;enllaç només serà vàlid durant un temps limitat.</translation>
+        <translation>A ligação será válida apenas por um tempo limitado.</translation>
     </message>
     <message>
         <source>This is just the demo version of %1.</source>
-        <translation>Aquesta només és la versió de demostració del %1.</translation>
+        <translation>Isto é apenas uma versão de demonstração de %1.</translation>
     </message>
     <message>
         <source>It allows you to test the application and see if it works for you.</source>
-        <translation>Us permet probar l&apos;aplicació i veure si us va bé.</translation>
+        <translation>Permite-lhe que teste a aplicação e verificar se funciona para si.</translation>
     </message>
     <message>
         <source>Get the full version</source>
-        <translation>Aconseguiu la versió completa</translation>
+        <translation>Obter a versão completa</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation>Continua</translation>
+        <translation>Continuar</translation>
     </message>
     <message>
         <source>Downloading %1</source>
-        <translation>Baixant %1</translation>
+        <translation>A transferir %1</translation>
     </message>
     <message>
         <source>of</source>
@@ -839,73 +839,73 @@
     <message>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
-        <translation>part</translation>
+        <translation>parte</translation>
     </message>
     <message>
         <source>episode</source>
         <comment>This is for video parts, as in 'Cool series - episode 1'</comment>
-        <translation>episodi</translation>
+        <translation>episódio</translation>
     </message>
     <message>
         <source>Sent from %1</source>
-        <translation>Enviat des de %1</translation>
+        <translation>Enviado de %1</translation>
     </message>
     <message>
         <source>Unsubscribe from %1</source>
-        <translation>Cancel·la la subscripció a %1</translation>
+        <translation>Anular subscrição de %1</translation>
     </message>
     <message>
         <source>Subscribe to %1</source>
-        <translation>Subscriu-me a %1</translation>
+        <translation>Subscrever %1</translation>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
-        <translation>De-subscrit de %1 </translation>
+        <translation>Anular subscrição de %1</translation>
     </message>
     <message>
         <source>Subscribed to %1</source>
-        <translation>Subscrit a %1</translation>
+        <translation>Subscrito a %1</translation>
     </message>
 </context>
 <context>
     <name>MessageWidget</name>
     <message>
         <source>A new version of %1 is available!</source>
-        <translation>Una nova versió de %1 està disponible</translation>
+        <translation>Uma nova versão do %1 está disponível!</translation>
     </message>
     <message>
         <source>%1 %2 is now available. You have %3.</source>
-        <translation>%1 %2 està disponible. Tu tens %3.</translation>
+        <translation>%1 %2 está agora disponível. Você tem %3.</translation>
     </message>
     <message>
         <source>Would you like to download it now?</source>
-        <translation>T&apos;agradaria descarregar-ho ara?</translation>
+        <translation>Gostaria de descarregar agora?</translation>
     </message>
     <message>
         <source>Skip This Version</source>
-        <translation>Omet aquesta versió</translation>
+        <translation>Saltar Esta Versão</translation>
     </message>
     <message>
         <source>Remind Me Later</source>
-        <translation>Recorda-m&apos;ho després</translation>
+        <translation>Relembrar-me Mais Tarde</translation>
     </message>
     <message>
         <source>Install Update</source>
-        <translation>Instal·la l&apos;actualització</translation>
+        <translation>Instalar Actualização</translation>
     </message>
 </context>
 <context>
     <name>PasteLineEdit</name>
     <message>
         <source>Paste</source>
-        <translation>Enganxa</translation>
+        <translation>Colar</translation>
     </message>
 </context>
 <context>
     <name>PlaylistItemDelegate</name>
     <message>
         <source>%1 views</source>
-        <translation>%1 visualitzacions</translation>
+        <translation>%1 visualizações</translation>
     </message>
     <message>
         <source>%1 of %2 (%3) — %4</source>
@@ -913,65 +913,65 @@
     </message>
     <message>
         <source>Preparing</source>
-        <translation>Preparant</translation>
+        <translation>A preparar</translation>
     </message>
     <message>
         <source>Failed</source>
-        <translation>Fallit</translation>
+        <translation>Falhou</translation>
     </message>
     <message>
         <source>Completed</source>
-        <translation>Completat</translation>
+        <translation>Completado</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>Aturat</translation>
+        <translation>Parado</translation>
     </message>
     <message>
         <source>Stop downloading</source>
-        <translation>Atura la baixada</translation>
+        <translation>Parar de transferir</translation>
     </message>
     <message>
         <source>Show in %1</source>
-        <translation>Mostra en %1</translation>
+        <translation>Mostrar em %1</translation>
     </message>
     <message>
         <source>Open parent folder</source>
-        <translation>Obre el directori superior</translation>
+        <translation>Abrir a pasta-mãe</translation>
     </message>
     <message>
         <source>Restart downloading</source>
-        <translation>Recomença la baixada</translation>
+        <translation>Recomeçar a transferir</translation>
     </message>
 </context>
 <context>
     <name>PlaylistModel</name>
     <message>
         <source>Searching...</source>
-        <translation>Cercant...</translation>
+        <translation>A pesquisar...</translation>
     </message>
     <message>
         <source>Show %1 More</source>
-        <translation>Mostra %1 Més</translation>
+        <translation>Mostrar Mais %1</translation>
     </message>
     <message>
         <source>No videos</source>
-        <translation>Cap vídeo</translation>
+        <translation>Sem vídeos</translation>
     </message>
     <message>
         <source>No more videos</source>
-        <translation>Cap més vídeo</translation>
+        <translation>Sem mais vídeos</translation>
     </message>
 </context>
 <context>
     <name>RefineSearchWidget</name>
     <message>
         <source>Sort by</source>
-        <translation>Ordena per</translation>
+        <translation>Ordenar por</translation>
     </message>
     <message>
         <source>Relevance</source>
-        <translation>Rellevància</translation>
+        <translation>Relevância</translation>
     </message>
     <message>
         <source>Date</source>
@@ -979,202 +979,202 @@
     </message>
     <message>
         <source>View Count</source>
-        <translation>Nombre de vistes</translation>
+        <translation>Contador de visualizações</translation>
     </message>
     <message>
         <source>Rating</source>
-        <translation>Qualificació</translation>
+        <translation>Classificação</translation>
     </message>
     <message>
         <source>Anytime</source>
-        <translation>Qualsevol data</translation>
+        <translation>Qualquer altura</translation>
     </message>
     <message>
         <source>Today</source>
-        <translation>Avui</translation>
+        <translation>Hoje</translation>
     </message>
     <message>
         <source>7 Days</source>
-        <translation>7 dies</translation>
+        <translation>7 Dias</translation>
     </message>
     <message>
         <source>30 Days</source>
-        <translation>30 dies</translation>
+        <translation>30 Dias</translation>
     </message>
     <message>
         <source>Duration</source>
-        <translation>Duració</translation>
+        <translation>Duração</translation>
     </message>
     <message>
         <source>All</source>
-        <translation>Tot</translation>
+        <translation>Todos</translation>
     </message>
     <message>
         <source>Short</source>
-        <translation>Curt</translation>
+        <translation>Curto</translation>
     </message>
     <message>
         <source>Medium</source>
-        <translation>Mig</translation>
+        <translation>Médio</translation>
     </message>
     <message>
         <source>Long</source>
-        <translation>Llarg</translation>
+        <translation>Longo</translation>
     </message>
     <message>
         <source>Less than 4 minutes</source>
-        <translation>Menys de 4 minuts</translation>
+        <translation>Menos de 4 minutos</translation>
     </message>
     <message>
         <source>Between 4 and 20 minutes</source>
-        <translation>Entre 4 i 20 minuts</translation>
+        <translation>Entre 4 a 20 minutos</translation>
     </message>
     <message>
         <source>Longer than 20 minutes</source>
-        <translation>Més de 20 minuts</translation>
+        <translation>Mais de 20 minutos</translation>
     </message>
     <message>
         <source>Quality</source>
-        <translation>Qualitat</translation>
+        <translation>Qualidade</translation>
     </message>
     <message>
         <source>High Definition</source>
-        <translation>Alta Definició</translation>
+        <translation>Alta-Definição</translation>
     </message>
     <message>
         <source>720p or higher</source>
-        <translation>720p o major</translation>
+        <translation>720p ou mais alto</translation>
     </message>
     <message>
         <source>Done</source>
-        <translation>Fet</translation>
+        <translation>Feito</translation>
     </message>
 </context>
 <context>
     <name>RegionsView</name>
     <message>
         <source>Done</source>
-        <translation>Fet</translation>
+        <translation>Feito</translation>
     </message>
 </context>
 <context>
     <name>SearchLineEdit</name>
     <message>
         <source>Search</source>
-        <translation>Cerca</translation>
+        <translation>Pesquisar</translation>
     </message>
 </context>
 <context>
     <name>SearchView</name>
     <message>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
-        <translation>Benvinguts al &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
+        <translation>Bem-vindo ao &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
     </message>
     <message>
         <source>Enter</source>
         <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole phrase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation>Introdueix</translation>
+        <translation>Insira</translation>
     </message>
     <message>
         <source>a keyword</source>
-        <translation>una paraula</translation>
+        <translation>uma palava-chave</translation>
     </message>
     <message>
         <source>a channel</source>
-        <translation>un canal</translation>
+        <translation>um canal</translation>
     </message>
     <message>
         <source>to start watching videos.</source>
-        <translation>per comencar a veure vídeos.</translation>
+        <translation>para começar a ver vídeos.</translation>
     </message>
     <message>
         <source>Watch</source>
-        <translation>Veure</translation>
+        <translation>Visualizar</translation>
     </message>
     <message>
         <source>Recent keywords</source>
-        <translation>Búsquedes recents</translation>
+        <translation>Palavras-chave recentes</translation>
     </message>
     <message>
         <source>Recent channels</source>
-        <translation>Canals recents</translation>
+        <translation>Canais recentes</translation>
     </message>
     <message>
         <source>Get the full version</source>
-        <translation>Aconsegueix la versió completa</translation>
+        <translation>Obter a versão completa</translation>
     </message>
 </context>
 <context>
     <name>SidebarHeader</name>
     <message>
         <source>&amp;Back</source>
-        <translation>&amp;Enrere</translation>
+        <translation>&amp;Atrás</translation>
     </message>
     <message>
         <source>Forward to %1</source>
-        <translation>Avança a %1</translation>
+        <translation>Avançar até %1</translation>
     </message>
     <message>
         <source>Back to %1</source>
-        <translation>Retrocedeix a %1</translation>
+        <translation>Retroceder até %1</translation>
     </message>
 </context>
 <context>
     <name>SidebarWidget</name>
     <message>
         <source>Refine Search</source>
-        <translation>Afina la Cerca</translation>
+        <translation>Redefinir Pesquisa</translation>
     </message>
     <message>
         <source>Did you mean: %1</source>
-        <translation>Volieu dir: %1</translation>
+        <translation>Queria dizer: %1</translation>
     </message>
 </context>
 <context>
     <name>SnapshotSettings</name>
     <message>
         <source>Change location...</source>
-        <translation>Canvia la ubicació...</translation>
+        <translation>Mudar local...</translation>
     </message>
     <message>
         <source>Snapshot saved to %1</source>
-        <translation>Instantània desada a %1</translation>
+        <translation>Captura de ecrã guardada em %1</translation>
     </message>
     <message>
         <source>Snapshots location changed.</source>
-        <translation>La ubicació de les instantànies ha canviat. </translation>
+        <translation>Local de capturas de ecrã mudado.</translation>
     </message>
 </context>
 <context>
     <name>StandardFeedsView</name>
     <message>
         <source>Most Popular</source>
-        <translation>Més popular</translation>
+        <translation>Mais Popular</translation>
     </message>
 </context>
 <context>
     <name>UpdateDialog</name>
     <message>
         <source>Downloading update...</source>
-        <translation>Descarregant actualitzacions...</translation>
+        <translation>A transferir actualização...</translation>
     </message>
     <message>
         <source>Downloading %1...</source>
-        <translation>Descarregant %1...</translation>
+        <translation>A transferir %1...</translation>
     </message>
 </context>
 <context>
     <name>Video</name>
     <message>
         <source>Cannot get video stream for %1</source>
-        <translation>No es pot obtenir flux de vídeo per %1</translation>
+        <translation>Não é possível obter a stream do video para %1</translation>
     </message>
 </context>
 <context>
     <name>YTRegions</name>
     <message>
         <source>Algeria</source>
-        <translation>Algèria</translation>
+        <translation>Argélia</translation>
     </message>
     <message>
         <source>Argentina</source>
@@ -1182,35 +1182,35 @@
     </message>
     <message>
         <source>Australia</source>
-        <translation>Austràlia</translation>
+        <translation>Austrália</translation>
     </message>
     <message>
         <source>Belgium</source>
-        <translation>Bèlgica</translation>
+        <translation>Bélgica</translation>
     </message>
     <message>
         <source>Brazil</source>
-        <translation>Brazil</translation>
+        <translation>Brasil</translation>
     </message>
     <message>
         <source>Canada</source>
-        <translation>Canadà</translation>
+        <translation>Canadá</translation>
     </message>
     <message>
         <source>Chile</source>
-        <translation>Xile</translation>
+        <translation>Chile</translation>
     </message>
     <message>
         <source>Colombia</source>
-        <translation>Colòmbia</translation>
+        <translation>Colômbia</translation>
     </message>
     <message>
         <source>Czech Republic</source>
-        <translation>República Txeca</translation>
+        <translation>República Checa</translation>
     </message>
     <message>
         <source>Egypt</source>
-        <translation>Egipte</translation>
+        <translation>Egipto</translation>
     </message>
     <message>
         <source>France</source>
@@ -1218,15 +1218,15 @@
     </message>
     <message>
         <source>Germany</source>
-        <translation>Alemanya</translation>
+        <translation>Alemanha</translation>
     </message>
     <message>
         <source>Ghana</source>
-        <translation>Ghana</translation>
+        <translation>Gana</translation>
     </message>
     <message>
         <source>Greece</source>
-        <translation>Grècia</translation>
+        <translation>Grécia</translation>
     </message>
     <message>
         <source>Hong Kong</source>
@@ -1234,7 +1234,7 @@
     </message>
     <message>
         <source>Hungary</source>
-        <translation>Hongria</translation>
+        <translation>Hungria</translation>
     </message>
     <message>
         <source>India</source>
@@ -1242,7 +1242,7 @@
     </message>
     <message>
         <source>Indonesia</source>
-        <translation>Indonèsia</translation>
+        <translation>Indonésia</translation>
     </message>
     <message>
         <source>Ireland</source>
@@ -1254,31 +1254,31 @@
     </message>
     <message>
         <source>Italy</source>
-        <translation>Itàlia</translation>
+        <translation>Itália</translation>
     </message>
     <message>
         <source>Japan</source>
-        <translation>Japó</translation>
+        <translation>Japão</translation>
     </message>
     <message>
         <source>Jordan</source>
-        <translation>Jordània</translation>
+        <translation>Jordânia</translation>
     </message>
     <message>
         <source>Kenya</source>
-        <translation>Kenya</translation>
+        <translation>Quénia</translation>
     </message>
     <message>
         <source>Malaysia</source>
-        <translation>Malàisia</translation>
+        <translation>Malásia</translation>
     </message>
     <message>
         <source>Mexico</source>
-        <translation>Mèxic</translation>
+        <translation>México</translation>
     </message>
     <message>
         <source>Morocco</source>
-        <translation>Marroc</translation>
+        <translation>Marrocos</translation>
     </message>
     <message>
         <source>Netherlands</source>
@@ -1286,11 +1286,11 @@
     </message>
     <message>
         <source>New Zealand</source>
-        <translation>Nova Zelanda</translation>
+        <translation>Nova Zelândia</translation>
     </message>
     <message>
         <source>Nigeria</source>
-        <translation>Nigèria</translation>
+        <translation>Nigéria</translation>
     </message>
     <message>
         <source>Peru</source>
@@ -1298,43 +1298,43 @@
     </message>
     <message>
         <source>Philippines</source>
-        <translation>Filipines</translation>
+        <translation>Filipinas</translation>
     </message>
     <message>
         <source>Poland</source>
-        <translation>Polònia</translation>
+        <translation>Polónia</translation>
     </message>
     <message>
         <source>Russia</source>
-        <translation>Rússia</translation>
+        <translation>Rússia </translation>
     </message>
     <message>
         <source>Saudi Arabia</source>
-        <translation>Aràbia Saudita</translation>
+        <translation>Arábia Saudita</translation>
     </message>
     <message>
         <source>Singapore</source>
-        <translation>Singapur</translation>
+        <translation>Singapura</translation>
     </message>
     <message>
         <source>South Africa</source>
-        <translation>Sud-àfrica</translation>
+        <translation>África do Sul</translation>
     </message>
     <message>
         <source>South Korea</source>
-        <translation>Corea del Sud</translation>
+        <translation>Coreia do Sul</translation>
     </message>
     <message>
         <source>Spain</source>
-        <translation>Espanya</translation>
+        <translation>Espanha</translation>
     </message>
     <message>
         <source>Sweden</source>
-        <translation>Suècia</translation>
+        <translation>Suécia</translation>
     </message>
     <message>
         <source>Taiwan</source>
-        <translation>Taiwan</translation>
+        <translation>Ilha Formosa</translation>
     </message>
     <message>
         <source>Tunisia</source>
@@ -1350,19 +1350,19 @@
     </message>
     <message>
         <source>United Arab Emirates</source>
-        <translation>Emirats Àrabs Units</translation>
+        <translation>Emirados Árabes Unidos</translation>
     </message>
     <message>
         <source>United Kingdom</source>
-        <translation>Regne Unit</translation>
+        <translation>Reino Unido</translation>
     </message>
     <message>
         <source>Yemen</source>
-        <translation>Yemen</translation>
+        <translation>Iémen</translation>
     </message>
     <message>
         <source>Worldwide</source>
-        <translation>Global</translation>
+        <translation>Mundial</translation>
     </message>
 </context>
 </TS>

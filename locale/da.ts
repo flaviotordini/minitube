@@ -96,7 +96,7 @@
     <name>AppWidget</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished"/>
+        <translation>Hent</translation>
     </message>
 </context>
 <context>
@@ -667,11 +667,11 @@ Kopiér &amp;URL&apos;en til videostrømmen</translation>
     </message>
     <message>
         <source>Restricted Mode</source>
-        <translation type="unfinished"/>
+        <translation>Begrænset-Måde</translation>
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
-        <translation type="unfinished"/>
+        <translation>Gem videoer der muligvis indeholder stødene indhold.</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -1161,7 +1161,7 @@ Kopiér &amp;URL&apos;en til videostrømmen</translation>
     </message>
     <message>
         <source>Downloading %1...</source>
-        <translation type="unfinished"/>
+        <translation>Henter %1...</translation>
     </message>
 </context>
 <context>

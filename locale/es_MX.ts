@@ -54,7 +54,7 @@
     </message>
     <message>
         <source>&amp;Code:</source>
-        <translation>&amp;Códico</translation>
+        <translation>&amp;Código</translation>
     </message>
 </context>
 <context>
@@ -169,7 +169,7 @@
     </message>
     <message>
         <source>Unsubscribe</source>
-        <translation>Quitar suscripción</translation>
+        <translation>Cancelar suscripción</translation>
     </message>
     <message>
         <source>There are no updated subscriptions at this time.</source>
@@ -630,7 +630,7 @@
     </message>
     <message>
         <source>&amp;Float on Top</source>
-        <translation>%Mantener arriba</translation>
+        <translation>&amp;Mantener arriba</translation>
     </message>
     <message>
         <source>&amp;Adjust Window Size</source>

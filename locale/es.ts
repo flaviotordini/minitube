@@ -23,7 +23,7 @@
     </message>
     <message>
         <source>Translate %1 to your native language using %2</source>
-        <translation>Traduzca %1 a su idioma natal usando %2</translation>
+        <translation>Traduzca %1 a su idioma usando %2</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>

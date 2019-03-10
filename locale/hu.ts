@@ -96,7 +96,7 @@
     <name>AppWidget</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished"/>
+        <translation>Letöltés</translation>
     </message>
 </context>
 <context>
@@ -666,11 +666,11 @@
     </message>
     <message>
         <source>Restricted Mode</source>
-        <translation type="unfinished"/>
+        <translation>Korlátozott mód</translation>
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
-        <translation type="unfinished"/>
+        <translation>Esetleg nem megfelelő tartalmú videók elrejtése</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -1160,7 +1160,7 @@
     </message>
     <message>
         <source>Downloading %1...</source>
-        <translation type="unfinished"/>
+        <translation>Letöltés %1...</translation>
     </message>
 </context>
 <context>

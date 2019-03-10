@@ -96,7 +96,7 @@
     <name>AppWidget</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished"/>
+        <translation>Descarga</translation>
     </message>
 </context>
 <context>
@@ -191,7 +191,7 @@
     <name>DataUtils</name>
     <message>
         <source>Just now</source>
-        <translation type="unfinished"/>
+        <translation>Agora mesmo</translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
@@ -314,19 +314,19 @@
     <name>Extra</name>
     <message>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation type="unfinished"/>
+        <translation>O ficheiro executable foi manipulado, quizais por un virus.</translation>
     </message>
     <message>
         <source>%1 will not run. Try installing again.</source>
-        <translation type="unfinished"/>
+        <translation>%1 non se executará. Probe a instalalo de novo.</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Saír</translation>
     </message>
     <message>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>Volver instalar</translation>
     </message>
 </context>
 <context>
@@ -634,7 +634,7 @@
     </message>
     <message>
         <source>&amp;Adjust Window Size</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Axustar o tamaño da xanela</translation>
     </message>
     <message>
         <source>&amp;Stop After This Video</source>
@@ -666,11 +666,11 @@
     </message>
     <message>
         <source>Restricted Mode</source>
-        <translation type="unfinished"/>
+        <translation>Modo restrinxido</translation>
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
-        <translation type="unfinished"/>
+        <translation>Agochar os vídeos que poidan conter contido inadecuado</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -750,7 +750,7 @@
     </message>
     <message>
         <source>&amp;Loading...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Cargando...</translation>
     </message>
     <message>
         <source>Leave &amp;Full Screen</source>
@@ -860,11 +860,11 @@
     </message>
     <message>
         <source>Unsubscribed from %1</source>
-        <translation type="unfinished"/>
+        <translation>Non está subscrito a %1</translation>
     </message>
     <message>
         <source>Subscribed to %1</source>
-        <translation type="unfinished"/>
+        <translation>Subscrito a %1</translation>
     </message>
 </context>
 <context>
@@ -1160,7 +1160,7 @@
     </message>
     <message>
         <source>Downloading %1...</source>
-        <translation type="unfinished"/>
+        <translation>Descargando %1...</translation>
     </message>
 </context>
 <context>

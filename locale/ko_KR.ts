@@ -19,7 +19,7 @@
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>%2의 계속된 개발을 위해  &lt;a href=&apos;%1&apos;&gt;기부&lt;/a&gt;룰 해주요...</translation>
+        <translation>%2의 계속된 개발을 위해  &lt;a href=&apos;%1&apos;&gt;기부&lt;/a&gt;룰 해주세요.</translation>
     </message>
     <message>
         <source>Translate %1 to your native language using %2</source>
@@ -65,7 +65,7 @@
     </message>
     <message>
         <source>This demo has expired.</source>
-        <translation>데모 만료!</translation>
+        <translation>데모버전이 만료되었습니다!</translation>
     </message>
     <message>
         <source>The full version allows you to watch videos without interruptions.</source>
@@ -77,7 +77,7 @@
     </message>
     <message>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
-        <translation>구입하면, 제가 %1를 만드는데 드는 노력을 지원 합니다.</translation>
+        <translation>구입하면, 개발자가 %1를 만드는데 드는 소중한 노력을 지원 합니다.</translation>
     </message>
     <message>
         <source>Use Demo</source>
@@ -96,7 +96,7 @@
     <name>AppWidget</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished"/>
+        <translation>다운로드</translation>
     </message>
 </context>
 <context>
@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Unwatched Videos</source>
-        <translation>안 본 비디오</translation>
+        <translation>시청하지 않은 비디오</translation>
     </message>
 </context>
 <context>
@@ -149,7 +149,7 @@
     </message>
     <message>
         <source>Mark all as watched</source>
-        <translation>모두 본 걸로 표시</translation>
+        <translation>모두 시청함으로 표시</translation>
     </message>
     <message>
         <source>Show Updated</source>
@@ -161,11 +161,11 @@
     </message>
     <message>
         <source>Unwatched Videos</source>
-        <translation>안 본 비디오</translation>
+        <translation>시청하지 않은 비디오</translation>
     </message>
     <message>
         <source>Mark as Watched</source>
-        <translation>본 비디오로 마크</translation>
+        <translation>모두 시청함으로 표시</translation>
     </message>
     <message>
         <source>Unsubscribe</source>
@@ -191,7 +191,7 @@
     <name>DataUtils</name>
     <message>
         <source>Just now</source>
-        <translation type="unfinished"/>
+        <translation>지금</translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
@@ -257,7 +257,7 @@
     </message>
     <message>
         <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation>사용자가 다운로드 기능을 테스트 할수 있도록 %1보다 짧은 비디오만 다운로드 됩니다.</translation>
+        <translation>사용자가 다운로드 기능을 테스트 할 수 있도록 %1 분 보다 짧은 비디오만 다운로드 할 수 있습니다.</translation>
     </message>
     <message>
         <source>Continue</source>
@@ -314,19 +314,19 @@
     <name>Extra</name>
     <message>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation type="unfinished"/>
+        <translation>실행 파일이 바이러스 또는 다른 외부 원인에 의해 손상되었습니다.</translation>
     </message>
     <message>
         <source>%1 will not run. Try installing again.</source>
-        <translation type="unfinished"/>
+        <translation>%1을 실행할 수 없습니다. 다시 설치하시기 바랍니다.</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>종료</translation>
     </message>
     <message>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>재설치</translation>
     </message>
 </context>
 <context>
@@ -369,15 +369,15 @@
     </message>
     <message>
         <source>Mute</source>
-        <translation>무음</translation>
+        <translation>음소거</translation>
     </message>
     <message>
         <source>Seek forward</source>
-        <translation>앞으로찾기</translation>
+        <translation>되감기</translation>
     </message>
     <message>
         <source>Seek backward</source>
-        <translation>뒤로찾기</translation>
+        <translation>빨리감기</translation>
     </message>
 </context>
 <context>
@@ -422,11 +422,11 @@
     <name>MainWindow</name>
     <message>
         <source>&amp;Window</source>
-        <translation type="unfinished"/>
+        <translation>창 (&amp;W)</translation>
     </message>
     <message>
         <source>&amp;Minimize</source>
-        <translation type="unfinished"/>
+        <translation>최소화 (&amp;M)</translation>
     </message>
     <message>
         <source>&amp;Stop</source>
@@ -434,7 +434,7 @@
     </message>
     <message>
         <source>Stop playback and go back to the search view</source>
-        <translation>재생을 멈추고 검색 보기로 이동</translation>
+        <translation>재생을 멈추고 검색 창로 이동</translation>
     </message>
     <message>
         <source>P&amp;revious</source>
@@ -442,7 +442,7 @@
     </message>
     <message>
         <source>Go back to the previous track</source>
-        <translation>이전트랙으로 이동</translation>
+        <translation>이전 트랙으로 이동</translation>
     </message>
     <message>
         <source>S&amp;kip</source>
@@ -526,7 +526,7 @@
     </message>
     <message>
         <source>Move &amp;Down</source>
-        <translation>아래로이동(&amp;D)</translation>
+        <translation>아래로 이동(&amp;D)</translation>
     </message>
     <message>
         <source>Move down the selected videos in the playlist</source>
@@ -546,7 +546,7 @@
     </message>
     <message>
         <source>Bye</source>
-        <translation>안녕...</translation>
+        <translation>안녕히 가세요.</translation>
     </message>
     <message>
         <source>&amp;Website</source>
@@ -634,7 +634,7 @@
     </message>
     <message>
         <source>&amp;Adjust Window Size</source>
-        <translation type="unfinished"/>
+        <translation>창 크기 조정 (&amp;A)</translation>
     </message>
     <message>
         <source>&amp;Stop After This Video</source>
@@ -666,11 +666,11 @@
     </message>
     <message>
         <source>Restricted Mode</source>
-        <translation type="unfinished"/>
+        <translation>제한된 보기</translation>
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
-        <translation type="unfinished"/>
+        <translation>부적절한 내용을 포함한 동영상 숨기기</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -750,7 +750,7 @@
     </message>
     <message>
         <source>&amp;Loading...</source>
-        <translation type="unfinished"/>
+        <translation>로딩중 (&amp;L)</translation>
     </message>
     <message>
         <source>Leave &amp;Full Screen</source>
@@ -766,11 +766,11 @@
     </message>
     <message>
         <source>Volume is muted</source>
-        <translation>볼륨 소거됨</translation>
+        <translation>볼륨 음소거됨</translation>
     </message>
     <message>
         <source>Volume is unmuted</source>
-        <translation>볼륨 소거 해제됨</translation>
+        <translation>볼륨 응소거 해제됨</translation>
     </message>
     <message>
         <source>Maximum video definition set to %1</source>
@@ -834,7 +834,7 @@
     <message>
         <source>of</source>
         <comment>Used in video parts, as in '2 of 3'</comment>
-        <translation>/</translation>
+        <translation>of</translation>
     </message>
     <message>
         <source>part</source>
@@ -860,11 +860,11 @@
     </message>
     <message>
         <source>Unsubscribed from %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 구독 해지됨</translation>
     </message>
     <message>
         <source>Subscribed to %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 구독됨</translation>
     </message>
 </context>
 <context>
@@ -905,7 +905,7 @@
     <name>PlaylistItemDelegate</name>
     <message>
         <source>%1 views</source>
-        <translation>%1 views</translation>
+        <translation>%1 조회수</translation>
     </message>
     <message>
         <source>%1 of %2 (%3) — %4</source>
@@ -1160,7 +1160,7 @@
     </message>
     <message>
         <source>Downloading %1...</source>
-        <translation type="unfinished"/>
+        <translation>%1 다운로드중</translation>
     </message>
 </context>
 <context>
@@ -1362,7 +1362,7 @@
     </message>
     <message>
         <source>Worldwide</source>
-        <translation>전세계적</translation>
+        <translation>전세계</translation>
     </message>
 </context>
 </TS>

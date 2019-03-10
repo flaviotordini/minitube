@@ -326,7 +326,7 @@
     </message>
     <message>
         <source>Reinstall</source>
-        <translation>Reinstale</translation>
+        <translation>Reinstalar</translation>
     </message>
 </context>
 <context>
@@ -634,7 +634,7 @@
     </message>
     <message>
         <source>&amp;Adjust Window Size</source>
-        <translation>&amp;Ajuste o tamanho da janela</translation>
+        <translation>&amp;Ajustar Tamanho Da Janela</translation>
     </message>
     <message>
         <source>&amp;Stop After This Video</source>
@@ -670,7 +670,7 @@
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
-        <translation>Ocultar vídeos com conteúdo inapropriado</translation>
+        <translation>Ocultar vídeos que podem conter conteúdo inapropriado</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -860,7 +860,7 @@
     </message>
     <message>
         <source>Unsubscribed from %1</source>
-        <translation>Desinscrito de %1</translation>
+        <translation>Não subscrito de %1</translation>
     </message>
     <message>
         <source>Subscribed to %1</source>
