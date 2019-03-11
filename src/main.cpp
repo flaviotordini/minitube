@@ -33,19 +33,20 @@ $END_LICENSE */
 #include "mac_startup.h"
 #endif
 
-void showWindow(QtSingleApplication &app, const QString &dataDir) {
+void showWindow(QtSingleApplication &app, const QString &pkgDataDir) {
     MainWindow *mainWin = new MainWindow();
 
 #ifndef APP_MAC
     QIcon appIcon;
-    if (QDir(dataDir).exists()) {
+    if (!pkgDataDir.isEmpty()) {
         appIcon = IconUtils::icon(Constants::UNIX_NAME);
     } else {
         QString dataDir = qApp->applicationDirPath() + "/data";
         const int iconSizes[] = {16, 22, 32, 48, 64, 128, 256, 512};
         for (int i = 0; i < 8; i++) {
             QString size = QString::number(iconSizes[i]);
-            QString png = dataDir + "/" + size + "x" + size + "/" + Constants::UNIX_NAME + ".png";
+            QString png = dataDir + '/' + size + 'x' + size + '/' + Constants::UNIX_NAME +
+                          QLatin1String(".png");
             appIcon.addFile(png, QSize(iconSizes[i], iconSizes[i]));
         }
     }
@@ -108,6 +109,7 @@ int main(int argc, char **argv) {
     cssFile.open(QFile::ReadOnly);
     QString styleSheet = QLatin1String(cssFile.readAll());
     app.setStyleSheet(styleSheet);
+    cssFile.close();
 #endif
 
     // qt translations
@@ -116,28 +118,28 @@ int main(int argc, char **argv) {
                       QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     app.installTranslator(&qtTranslator);
 
-    // app translations
+    QString pkgDataDir;
 #ifdef PKGDATADIR
-    QString dataDir = QLatin1String(PKGDATADIR);
-#else
-    QString dataDir = "";
+    pkgDataDir = QLatin1String(PKGDATADIR);
 #endif
+
+    // app translations
 #ifdef APP_MAC
     QString localeDir = qApp->applicationDirPath() + QLatin1String("/../Resources/locale");
 #else
     QString localeDir = qApp->applicationDirPath() + QLatin1String("/locale");
 #endif
     if (!QDir(localeDir).exists()) {
-        localeDir = dataDir + QLatin1String("/locale");
+        localeDir = pkgDataDir + QLatin1String("/locale");
     }
-    // qDebug() << "Using locale dir" << localeDir << locale;
+    qDebug() << "Using locale dir" << localeDir << QLocale::system();
     QTranslator translator;
     translator.load(QLocale::system(), QString(), QString(), localeDir);
     app.installTranslator(&translator);
 
     QNetworkProxyFactory::setUseSystemConfiguration(true);
 
-    showWindow(app, dataDir);
+    showWindow(app, pkgDataDir);
 
     return app.exec();
 }
