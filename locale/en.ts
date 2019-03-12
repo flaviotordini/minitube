@@ -7,7 +7,7 @@
         <location filename="../src/channelaggregator.cpp" line="185"/>
         <source>You have %n new video(s)</source>
         <translation type="unfinished">
-            <numerusform>You have one new video</numerusform>
+            <numerusform>You have a new video</numerusform>
             <numerusform>You have %n new videos</numerusform>
         </translation>
     </message>
@@ -61,7 +61,7 @@
         <location filename="../src/downloadmanager.cpp" line="165"/>
         <source>%n Download(s)</source>
         <translation type="unfinished">
-            <numerusform>One Download</numerusform>
+            <numerusform>1 Download</numerusform>
             <numerusform>%n Downloads</numerusform>
         </translation>
     </message>

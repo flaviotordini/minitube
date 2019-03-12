@@ -72,7 +72,7 @@ QString DataUtils::formatDateTime(const QDateTime &dt) {
         s = QCoreApplication::translate("DataUtils", "%n day(s) ago", Q_NULLPTR, n);
     } else if (seconds < (f = 60 * 60 * 24 * 30)) {
         int n = seconds / (60 * 60 * 24 * 7);
-        s = QCoreApplication::translate("DataUtils", "%n weeks(s) ago", Q_NULLPTR, n);
+        s = QCoreApplication::translate("DataUtils", "%n week(s) ago", Q_NULLPTR, n);
     } else if (seconds < (f = 60 * 60 * 24 * 365)) {
         int n = seconds / (60 * 60 * 24 * 30);
         s = QCoreApplication::translate("DataUtils", "%n month(s) ago", Q_NULLPTR, n);

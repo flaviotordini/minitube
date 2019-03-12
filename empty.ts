@@ -118,7 +118,7 @@
     <message numerus="yes">
         <source>You have %n new video(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
+            <numerusform></numerusform><numerusform></numerusform>
         </translation>
     </message>
 </context>
@@ -201,25 +201,19 @@
     <message numerus="yes">
         <source>%n hour(s) ago</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
+            <numerusform></numerusform><numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>%n weeks(s) ago</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+            <numerusform></numerusform><numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
+            <numerusform></numerusform><numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -240,6 +234,12 @@
     <message>
         <source>%1 views</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n week(s) ago</source>
+        <translation type="unfinished">
+            <numerusform></numerusform><numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
@@ -294,7 +294,7 @@
     <message numerus="yes">
         <source>%n Download(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
+            <numerusform></numerusform><numerusform></numerusform>
         </translation>
     </message>
 </context>
