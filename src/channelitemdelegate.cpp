@@ -158,6 +158,6 @@ void ChannelItemDelegate::paintBadge(QPainter *painter,
     painter->save();
     painter->translate(topLeft, 0);
     painter->setClipping(false);
-    PainterUtils::paintBadge(painter, text, true);
+    PainterUtils::paintBadge(painter, text, true, QColor(230, 36, 41), true);
     painter->restore();
 }

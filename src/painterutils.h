@@ -24,15 +24,16 @@ $END_LICENSE */
 #include <QtWidgets>
 
 class PainterUtils {
-
 public:
-    static void centeredMessage(const QString &message, QWidget* widget);
-    static void paintBadge(QPainter *painter, const QString &text,
-                           bool center = false, QColor backgroundColor = QColor(230,36,41));
+    static void centeredMessage(const QString &message, QWidget *widget);
+    static void paintBadge(QPainter *painter,
+                           const QString &text,
+                           bool center,
+                           const QColor &backgroundColor,
+                           bool literalColor = false);
 
 private:
     PainterUtils();
-
 };
 
 #endif // PAINTERUTILS_H

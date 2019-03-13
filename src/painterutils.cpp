@@ -38,7 +38,8 @@ void PainterUtils::centeredMessage(const QString &message, QWidget *widget) {
 void PainterUtils::paintBadge(QPainter *painter,
                               const QString &text,
                               bool center,
-                              QColor backgroundColor) {
+                              const QColor &backgroundColor,
+                              bool literalColor) {
     painter->save();
 
     QRect textBox = painter->boundingRect(QRect(), Qt::AlignCenter, text);
@@ -49,11 +50,17 @@ void PainterUtils::paintBadge(QPainter *painter,
     if (rect.width() < rect.height() || text.length() == 1) rect.setWidth(rect.height());
 
     painter->setPen(Qt::NoPen);
-    painter->setBrush(backgroundColor);
+    QColor bg;
+    if (literalColor)
+        bg = backgroundColor;
+    else
+        bg = backgroundColor.value() > 128 ? QColor(0, 0, 0, 64) : QColor(255, 255, 255, 64);
+    painter->setBrush(bg);
     painter->setRenderHint(QPainter::Antialiasing);
     qreal borderRadius = rect.height() / 2.;
     painter->drawRoundedRect(rect, borderRadius, borderRadius);
 
+    painter->setFont(FontUtils::small());
     painter->setPen(Qt::white);
     painter->drawText(rect, Qt::AlignCenter, text);
 

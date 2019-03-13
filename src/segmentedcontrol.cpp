@@ -203,8 +203,7 @@ void SegmentedControl::paintButton(QPainter *painter, const QRect &rect, const Q
     if (action->property("notifyCount").isValid()) {
         QRect textBox = painter->boundingRect(rect, Qt::AlignCenter, text);
         painter->translate((width + textBox.width()) / 2 + 10, (height - textBox.height()) / 2);
-        PainterUtils::paintBadge(painter, action->property("notifyCount").toString(), false,
-                                 QColor(0, 0, 0, 64));
+        PainterUtils::paintBadge(painter, action->property("notifyCount").toString(), false, c);
     }
 
     painter->restore();
