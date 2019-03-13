@@ -1473,7 +1473,7 @@ void MainWindow::compactView(bool enable) {
         if (settings.contains(key))
             restoreGeometry(settings.value(key).toByteArray());
         else
-            resize(320, 180);
+            resize(480, 270);
 
 #ifdef APP_MAC_QMACTOOLBAR
         mac::showToolBar(winId(), !enable);
