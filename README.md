@@ -17,15 +17,15 @@ The key must be specified at compile time as shown below.
 Alternatively Minitube can read an API key from the GOOGLE_API_KEY environment variable.
 
 ## Build instructions
-To compile Minitube you need at least Qt 5.6. The following Qt modules are needed: core, gui, widgets, network, sql (using the Sqlite plugin), declarative, dbus, x11extras.
+Clone from Github:
+
+    git clone --recursive https://github.com/flaviotordini/minitube.git
+
+You need at least Qt 5.6. The following Qt modules are needed: core, gui, widgets, network, sql (using the Sqlite plugin), declarative, dbus, x11extras.
 
 To be able to build on a Debian (or derivative) system:
 
     sudo apt install build-essential qt5-default qttools5-dev-tools qt5-qmake qtdeclarative5-dev libqt5sql5-sqlite libqt5x11extras5-dev libmpv-dev
-
-Clone from Github:
-
-    git clone --recursive https://github.com/flaviotordini/minitube.git
 
 Compiling:
 
