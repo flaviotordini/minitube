@@ -147,11 +147,19 @@ void SegmentedControl::leaveEvent(QEvent *event) {
 
 void SegmentedControl::setupColors() {
     selectedColor = palette().color(QPalette::Base);
-    int darkerFactor = 105;
-    backgroundColor = selectedColor.darker(darkerFactor);
-    borderColor = backgroundColor;
-    hoveredColor = backgroundColor.darker(darkerFactor);
-    pressedColor = hoveredColor.darker(darkerFactor);
+    if (selectedColor.value() > 128) {
+        int factor = 105;
+        backgroundColor = selectedColor.darker(factor);
+        borderColor = backgroundColor;
+        hoveredColor = backgroundColor.darker(factor);
+        pressedColor = hoveredColor.darker(factor);
+    } else {
+        int factor = 130;
+        backgroundColor = selectedColor.lighter(factor);
+        borderColor = backgroundColor;
+        hoveredColor = backgroundColor.lighter(factor);
+        pressedColor = hoveredColor.lighter(factor);
+    }
 }
 
 QAction *SegmentedControl::findHoveredAction(const QPoint &pos) const {
