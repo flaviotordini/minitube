@@ -26,6 +26,14 @@
         <translation>Prevedite %1 v vaš jezik z uporabo programa %2</translation>
     </message>
     <message>
+        <source>Powered by %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Open-source software</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Icon designed by %1.</source>
         <translation>Ikone je izrisal %1.</translation>
     </message>
@@ -156,6 +164,10 @@
         <translation>Pokaži posodobitve</translation>
     </message>
     <message>
+        <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
+        <translation>Nimate naročnin. Uporabite zvezdo da se naročite na kanale.</translation>
+    </message>
+    <message>
         <source>All Videos</source>
         <translation>Vsi videoposnetki</translation>
     </message>
@@ -175,17 +187,6 @@
         <source>There are no updated subscriptions at this time.</source>
         <translation>Za zdaj ni nobenih novih posnetkov, na katere ste prijavljeni</translation>
     </message>
-    <message>
-        <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation>Nimate naročnin. Uporabite zvezdo da se naročite na kanale.</translation>
-    </message>
-</context>
-<context>
-    <name>ClearButton</name>
-    <message>
-        <source>Clear</source>
-        <translation>Počisti</translation>
-    </message>
 </context>
 <context>
     <name>DataUtils</name>
@@ -202,11 +203,30 @@
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
-        <source>%n weeks(s) ago</source>
+        <source>%n month(s) ago</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
+    <message>
+        <source>K</source>
+        <comment>K as in Kilo, i.e. thousands</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>M</source>
+        <comment>M stands for Millions</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>B</source>
+        <comment>B stands for Billions</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 views</source>
+        <translation>%1 predvajanj</translation>
+    </message>
     <message numerus="yes">
-        <source>%n month(s) ago</source>
+        <source>%n week(s) ago</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
@@ -251,22 +271,6 @@
 </context>
 <context>
     <name>DownloadManager</name>
-    <message>
-        <source>This is just the demo version of %1.</source>
-        <translation>To je samo preizkusna različica programa %1.</translation>
-    </message>
-    <message>
-        <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation>Prenese lahko samo posnetke krajše od %1 minut, da lahko preverite delovanje funkcije prenosa.</translation>
-    </message>
-    <message>
-        <source>Continue</source>
-        <translation>Nadaljuj</translation>
-    </message>
-    <message>
-        <source>Get the full version</source>
-        <translation>Pridobi popolno različico</translation>
-    </message>
     <message>
         <source>%1 downloaded in %2</source>
         <translation>%1 preneseno v %2</translation>
@@ -633,10 +637,6 @@
         <translation>Lebdeče na vrhu</translation>
     </message>
     <message>
-        <source>&amp;Adjust Window Size</source>
-        <translation>&amp;Prilagodi velikost okna</translation>
-    </message>
-    <message>
         <source>&amp;Stop After This Video</source>
         <translation>U&amp;stavi za tem posnetkom</translation>
     </message>
@@ -671,6 +671,14 @@
     <message>
         <source>Hide videos that may contain inappropriate content</source>
         <translation>Skriti videoposnetki lahko vsebujejo neprimerno vsebino.</translation>
+    </message>
+    <message>
+        <source>Toggle &amp;Menu Bar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -796,6 +804,10 @@
         <source>Update</source>
         <translation>Posodobitev</translation>
     </message>
+    <message>
+        <source>You can still access the menu bar by pressing the ALT key</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MediaView</name>
@@ -810,22 +822,6 @@
     <message>
         <source>The link will be valid only for a limited time.</source>
         <translation>Povezava bo delovala le za omejen čas.</translation>
-    </message>
-    <message>
-        <source>This is just the demo version of %1.</source>
-        <translation>To je samo demo različica programa %1.</translation>
-    </message>
-    <message>
-        <source>It allows you to test the application and see if it works for you.</source>
-        <translation>Dovoli vam testiranje aplikacije in preverjanje delovanja,</translation>
-    </message>
-    <message>
-        <source>Get the full version</source>
-        <translation>Pridobi celotno različico</translation>
-    </message>
-    <message>
-        <source>Continue</source>
-        <translation>Nadaljuj</translation>
     </message>
     <message>
         <source>Downloading %1</source>
@@ -857,6 +853,10 @@
     <message>
         <source>Subscribe to %1</source>
         <translation>Naroči se na %1</translation>
+    </message>
+    <message>
+        <source>Switched to %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
@@ -902,11 +902,14 @@
     </message>
 </context>
 <context>
-    <name>PlaylistItemDelegate</name>
+    <name>PickMessage</name>
     <message>
-        <source>%1 views</source>
-        <translation>%1 predvajanj</translation>
+        <source>Pick a video</source>
+        <translation type="unfinished"/>
     </message>
+</context>
+<context>
+    <name>PlaylistItemDelegate</name>
     <message>
         <source>%1 of %2 (%3) — %4</source>
         <translation>%1 od %2 (%3) — %4</translation>
@@ -946,10 +949,6 @@
 </context>
 <context>
     <name>PlaylistModel</name>
-    <message>
-        <source>Searching...</source>
-        <translation>Iskanje ...</translation>
-    </message>
     <message>
         <source>Show %1 More</source>
         <translation>Pokaži %1 več</translation>
@@ -1071,25 +1070,16 @@
         <translation>Pozdravljeni v &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
     </message>
     <message>
-        <source>Enter</source>
-        <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole phrase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation>Vnesite</translation>
+        <source>to start watching videos.</source>
+        <translation>in začnite gledati posnetke.</translation>
     </message>
     <message>
         <source>a keyword</source>
         <translation>ključno besedo</translation>
     </message>
     <message>
-        <source>a channel</source>
-        <translation>kanal</translation>
-    </message>
-    <message>
-        <source>to start watching videos.</source>
-        <translation>in začnite gledati posnetke.</translation>
-    </message>
-    <message>
-        <source>Watch</source>
-        <translation>Glejte</translation>
+        <source>Enter</source>
+        <translation>Vnesite</translation>
     </message>
     <message>
         <source>Recent keywords</source>
@@ -1109,6 +1099,10 @@
     <message>
         <source>&amp;Back</source>
         <translation>Na&amp;zaj</translation>
+    </message>
+    <message>
+        <source>&amp;Forward</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Forward to %1</source>
@@ -1161,13 +1155,6 @@
     <message>
         <source>Downloading %1...</source>
         <translation>Prenašanje %1 ...</translation>
-    </message>
-</context>
-<context>
-    <name>Video</name>
-    <message>
-        <source>Cannot get video stream for %1</source>
-        <translation>Za %1 ni mogoče pridobiti video pretoka</translation>
     </message>
 </context>
 <context>
@@ -1363,6 +1350,13 @@
     <message>
         <source>Worldwide</source>
         <translation>Svetovno</translation>
+    </message>
+</context>
+<context>
+    <name>YTVideo</name>
+    <message>
+        <source>Cannot get video stream for %1</source>
+        <translation>Za %1 ni mogoče pridobiti video pretoka</translation>
     </message>
 </context>
 </TS>

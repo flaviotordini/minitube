@@ -26,6 +26,14 @@
         <translation>使用 %2 翻譯 %1 介面成為您的本國語言</translation>
     </message>
     <message>
+        <source>Powered by %1</source>
+        <translation>威力本源 %1</translation>
+    </message>
+    <message>
+        <source>Open-source software</source>
+        <translation>開放原始碼軟體</translation>
+    </message>
+    <message>
         <source>Icon designed by %1.</source>
         <translation>圖示由 %1 所設計。 </translation>
     </message>
@@ -107,7 +115,7 @@
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>您有 %n 個新影片</numerusform></translation>
     </message>
 </context>
 <context>
@@ -156,6 +164,10 @@
         <translation>顯示更新</translation>
     </message>
     <message>
+        <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
+        <translation>您暫時沒有任何訂閱。使用星星符號訂閱頻道。</translation>
+    </message>
+    <message>
         <source>All Videos</source>
         <translation>全部影片</translation>
     </message>
@@ -175,17 +187,6 @@
         <source>There are no updated subscriptions at this time.</source>
         <translation>目前沒有更新的訂閱。</translation>
     </message>
-    <message>
-        <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation>您暫時沒有任何訂閱。使用星星符號訂閱頻道。</translation>
-    </message>
-</context>
-<context>
-    <name>ClearButton</name>
-    <message>
-        <source>Clear</source>
-        <translation>清除</translation>
-    </message>
 </context>
 <context>
     <name>DataUtils</name>
@@ -195,19 +196,38 @@
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 小時前</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n weeks(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 天前</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 個月前</numerusform></translation>
+    </message>
+    <message>
+        <source>K</source>
+        <comment>K as in Kilo, i.e. thousands</comment>
+        <translation>K</translation>
+    </message>
+    <message>
+        <source>M</source>
+        <comment>M stands for Millions</comment>
+        <translation>M</translation>
+    </message>
+    <message>
+        <source>B</source>
+        <comment>B stands for Billions</comment>
+        <translation>B</translation>
+    </message>
+    <message>
+        <source>%1 views</source>
+        <translation>瀏覽次數：%1 次</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n week(s) ago</source>
+        <translation><numerusform>%n 週前</numerusform></translation>
     </message>
 </context>
 <context>
@@ -252,22 +272,6 @@
 <context>
     <name>DownloadManager</name>
     <message>
-        <source>This is just the demo version of %1.</source>
-        <translation>這僅僅是展示版的  %1。</translation>
-    </message>
-    <message>
-        <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation>它只能下載影片少於 %1 分鐘，使您可以測試下載功能。</translation>
-    </message>
-    <message>
-        <source>Continue</source>
-        <translation>繼續</translation>
-    </message>
-    <message>
-        <source>Get the full version</source>
-        <translation>取得完整版</translation>
-    </message>
-    <message>
         <source>%1 downloaded in %2</source>
         <translation>%1 下載在 %2</translation>
     </message>
@@ -277,7 +281,7 @@
     </message>
     <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 次下載</numerusform></translation>
     </message>
 </context>
 <context>
@@ -633,10 +637,6 @@
         <translation>浮在上面(&amp;F)</translation>
     </message>
     <message>
-        <source>&amp;Adjust Window Size</source>
-        <translation>調整視窗大小 (&amp;A)</translation>
-    </message>
-    <message>
         <source>&amp;Stop After This Video</source>
         <translation>在這個影片播完之後停止(&amp;S)</translation>
     </message>
@@ -671,6 +671,14 @@
     <message>
         <source>Hide videos that may contain inappropriate content</source>
         <translation>隱藏可能包含不適當內容的影片</translation>
+    </message>
+    <message>
+        <source>Toggle &amp;Menu Bar</source>
+        <translation>切換選單列(&amp;M)</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>選單</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -796,6 +804,10 @@
         <source>Update</source>
         <translation>更新</translation>
     </message>
+    <message>
+        <source>You can still access the menu bar by pressing the ALT key</source>
+        <translation>您還是可以透過按下 ALT 鍵存取選單列</translation>
+    </message>
 </context>
 <context>
     <name>MediaView</name>
@@ -810,22 +822,6 @@
     <message>
         <source>The link will be valid only for a limited time.</source>
         <translation>這個連結將只在有限的時間內有效。</translation>
-    </message>
-    <message>
-        <source>This is just the demo version of %1.</source>
-        <translation>這僅僅是展示版的  %1。</translation>
-    </message>
-    <message>
-        <source>It allows you to test the application and see if it works for you.</source>
-        <translation>它可以讓您測試應用程式，看它是否適合您。</translation>
-    </message>
-    <message>
-        <source>Get the full version</source>
-        <translation>取得完整版</translation>
-    </message>
-    <message>
-        <source>Continue</source>
-        <translation>繼續</translation>
     </message>
     <message>
         <source>Downloading %1</source>
@@ -857,6 +853,10 @@
     <message>
         <source>Subscribe to %1</source>
         <translation>訂閱 %1</translation>
+    </message>
+    <message>
+        <source>Switched to %1</source>
+        <translation>切換至 %1</translation>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
@@ -902,11 +902,14 @@
     </message>
 </context>
 <context>
-    <name>PlaylistItemDelegate</name>
+    <name>PickMessage</name>
     <message>
-        <source>%1 views</source>
-        <translation>瀏覽次數：%1 次</translation>
+        <source>Pick a video</source>
+        <translation>挑選影片</translation>
     </message>
+</context>
+<context>
+    <name>PlaylistItemDelegate</name>
     <message>
         <source>%1 of %2 (%3) — %4</source>
         <translation>%1 / %2 (%3) — %4</translation>
@@ -946,10 +949,6 @@
 </context>
 <context>
     <name>PlaylistModel</name>
-    <message>
-        <source>Searching...</source>
-        <translation>搜尋中...</translation>
-    </message>
     <message>
         <source>Show %1 More</source>
         <translation>顯示再多 %1個影片</translation>
@@ -1071,25 +1070,16 @@
         <translation>歡迎使用 &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
     </message>
     <message>
-        <source>Enter</source>
-        <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole phrase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation>輸入</translation>
+        <source>to start watching videos.</source>
+        <translation>以開始觀看影片。</translation>
     </message>
     <message>
         <source>a keyword</source>
         <translation>一個關鍵字</translation>
     </message>
     <message>
-        <source>a channel</source>
-        <translation>一個頻道</translation>
-    </message>
-    <message>
-        <source>to start watching videos.</source>
-        <translation>以開始觀看影片。</translation>
-    </message>
-    <message>
-        <source>Watch</source>
-        <translation>觀看</translation>
+        <source>Enter</source>
+        <translation>輸入</translation>
     </message>
     <message>
         <source>Recent keywords</source>
@@ -1109,6 +1099,10 @@
     <message>
         <source>&amp;Back</source>
         <translation>後退(&amp;B)</translation>
+    </message>
+    <message>
+        <source>&amp;Forward</source>
+        <translation>前進(&amp;F)</translation>
     </message>
     <message>
         <source>Forward to %1</source>
@@ -1161,13 +1155,6 @@
     <message>
         <source>Downloading %1...</source>
         <translation>正在下載 %1...</translation>
-    </message>
-</context>
-<context>
-    <name>Video</name>
-    <message>
-        <source>Cannot get video stream for %1</source>
-        <translation>無法為 %1 獲得影片串流</translation>
     </message>
 </context>
 <context>
@@ -1363,6 +1350,13 @@
     <message>
         <source>Worldwide</source>
         <translation>全世界</translation>
+    </message>
+</context>
+<context>
+    <name>YTVideo</name>
+    <message>
+        <source>Cannot get video stream for %1</source>
+        <translation>無法為 %1 取得影片串流</translation>
     </message>
 </context>
 </TS>

@@ -27,6 +27,14 @@
         <translation>Perkthe %1 ne gjuhen e tuaj ame duke perdorur %2</translation>
     </message>
     <message>
+        <source>Powered by %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Open-source software</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Icon designed by %1.</source>
         <translation>Dizajnimi i ikones u be nga %1</translation>
     </message>
@@ -157,6 +165,10 @@
         <translation>Shfaq arrnimin</translation>
     </message>
     <message>
+        <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
+        <translation>Nuk keni abonime . Perdor simbolin yll për tu abonuar te kanalet</translation>
+    </message>
+    <message>
         <source>All Videos</source>
         <translation>T&apos;gjitha videot</translation>
     </message>
@@ -176,17 +188,6 @@
         <source>There are no updated subscriptions at this time.</source>
         <translation>Nuk ka abonime të freskuar për momentin</translation>
     </message>
-    <message>
-        <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation>Nuk keni abonime . Perdor simbolin yll për tu abonuar te kanalet</translation>
-    </message>
-</context>
-<context>
-    <name>ClearButton</name>
-    <message>
-        <source>Clear</source>
-        <translation>Paster</translation>
-    </message>
 </context>
 <context>
     <name>DataUtils</name>
@@ -203,11 +204,30 @@
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
-        <source>%n weeks(s) ago</source>
+        <source>%n month(s) ago</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
+    <message>
+        <source>K</source>
+        <comment>K as in Kilo, i.e. thousands</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>M</source>
+        <comment>M stands for Millions</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>B</source>
+        <comment>B stands for Billions</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 views</source>
+        <translation>%1 e shikimeve</translation>
+    </message>
     <message numerus="yes">
-        <source>%n month(s) ago</source>
+        <source>%n week(s) ago</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
@@ -252,22 +272,6 @@
 </context>
 <context>
     <name>DownloadManager</name>
-    <message>
-        <source>This is just the demo version of %1.</source>
-        <translation>Ky eshte vetem version per demonstrim i %1</translation>
-    </message>
-    <message>
-        <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation>Mund te shkarkoj vetem video me te shkurta se %1 minut ne menyr qe te testoni funksionimin e shkarkuesit. </translation>
-    </message>
-    <message>
-        <source>Continue</source>
-        <translation>Vazhdon</translation>
-    </message>
-    <message>
-        <source>Get the full version</source>
-        <translation>Merrni versionin e plote</translation>
-    </message>
     <message>
         <source>%1 downloaded in %2</source>
         <translation>%1 shkarkuar në %2</translation>
@@ -634,10 +638,6 @@
         <translation>&amp;Nxjerr ne Krye</translation>
     </message>
     <message>
-        <source>&amp;Adjust Window Size</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>&amp;Stop After This Video</source>
         <translation>&amp;Ndalo pas kesaj video</translation>
     </message>
@@ -671,6 +671,14 @@
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Toggle &amp;Menu Bar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Menu</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -797,6 +805,10 @@
         <source>Update</source>
         <translation>Arrnim</translation>
     </message>
+    <message>
+        <source>You can still access the menu bar by pressing the ALT key</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MediaView</name>
@@ -811,22 +823,6 @@
     <message>
         <source>The link will be valid only for a limited time.</source>
         <translation>Linku do te jet i vlefshem per nje kohe te kufizuar</translation>
-    </message>
-    <message>
-        <source>This is just the demo version of %1.</source>
-        <translation>Ky eshte version vetem per demonstrim i %1.</translation>
-    </message>
-    <message>
-        <source>It allows you to test the application and see if it works for you.</source>
-        <translation>Ju lejon qe te provoni programin dhe te shifni se a funksionon per ju .</translation>
-    </message>
-    <message>
-        <source>Get the full version</source>
-        <translation>Merrni versionin e plote</translation>
-    </message>
-    <message>
-        <source>Continue</source>
-        <translation>Vazhdim</translation>
     </message>
     <message>
         <source>Downloading %1</source>
@@ -858,6 +854,10 @@
     <message>
         <source>Subscribe to %1</source>
         <translation>Abonohu në %1</translation>
+    </message>
+    <message>
+        <source>Switched to %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
@@ -903,11 +903,14 @@
     </message>
 </context>
 <context>
-    <name>PlaylistItemDelegate</name>
+    <name>PickMessage</name>
     <message>
-        <source>%1 views</source>
-        <translation>%1 e shikimeve</translation>
+        <source>Pick a video</source>
+        <translation type="unfinished"/>
     </message>
+</context>
+<context>
+    <name>PlaylistItemDelegate</name>
     <message>
         <source>%1 of %2 (%3) — %4</source>
         <translation>%1 e %2 (%3)--%4</translation>
@@ -947,10 +950,6 @@
 </context>
 <context>
     <name>PlaylistModel</name>
-    <message>
-        <source>Searching...</source>
-        <translation>Duke kerkuar</translation>
-    </message>
     <message>
         <source>Show %1 More</source>
         <translation>Shfaq %1 më shumë</translation>
@@ -1072,25 +1071,16 @@
         <translation>Mire se erdhet ne &lt;h href=&quot;%1&quot;&gt;%2&lt;/a&gt;,</translation>
     </message>
     <message>
-        <source>Enter</source>
-        <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole phrase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation>Hyr</translation>
+        <source>to start watching videos.</source>
+        <translation>Per te filluar shikimin e videove.</translation>
     </message>
     <message>
         <source>a keyword</source>
         <translation>Nje fjal kyqe</translation>
     </message>
     <message>
-        <source>a channel</source>
-        <translation>Nje kanal </translation>
-    </message>
-    <message>
-        <source>to start watching videos.</source>
-        <translation>Per te filluar shikimin e videove.</translation>
-    </message>
-    <message>
-        <source>Watch</source>
-        <translation>Shiko</translation>
+        <source>Enter</source>
+        <translation>Hyr</translation>
     </message>
     <message>
         <source>Recent keywords</source>
@@ -1110,6 +1100,10 @@
     <message>
         <source>&amp;Back</source>
         <translation>Prapa</translation>
+    </message>
+    <message>
+        <source>&amp;Forward</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Forward to %1</source>
@@ -1162,13 +1156,6 @@
     <message>
         <source>Downloading %1...</source>
         <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>Video</name>
-    <message>
-        <source>Cannot get video stream for %1</source>
-        <translation>Nuk mund te merr rrjedhen e videos per %1</translation>
     </message>
 </context>
 <context>
@@ -1364,6 +1351,13 @@
     <message>
         <source>Worldwide</source>
         <translation>Mbar Bota</translation>
+    </message>
+</context>
+<context>
+    <name>YTVideo</name>
+    <message>
+        <source>Cannot get video stream for %1</source>
+        <translation>Nuk mund te merr rrjedhen e videos per %1</translation>
     </message>
 </context>
 </TS>

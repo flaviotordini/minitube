@@ -26,6 +26,14 @@
         <translation>Μεταφράστε το %1 στη γλώσσα σας με χρήση του %2</translation>
     </message>
     <message>
+        <source>Powered by %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Open-source software</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Icon designed by %1.</source>
         <translation>Σχεδιασμός εικονιδίου από %1.</translation>
     </message>
@@ -156,6 +164,10 @@
         <translation>Εμφάνιση ενημερωμένων</translation>
     </message>
     <message>
+        <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
+        <translation>Δεν έχετε συνδρομές. Χρησιμοποιήστε το αστέρι για να κάνετε συνδρομή σε κανάλια.</translation>
+    </message>
+    <message>
         <source>All Videos</source>
         <translation>Όλα τα βίντεο</translation>
     </message>
@@ -175,17 +187,6 @@
         <source>There are no updated subscriptions at this time.</source>
         <translation>Δεν υπάρχουν ενημερωμένες συδρομές αυτήν την στιγμή.</translation>
     </message>
-    <message>
-        <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation>Δεν έχετε συνδρομές. Χρησιμοποιήστε το αστέρι για να κάνετε συνδρομή σε κανάλια.</translation>
-    </message>
-</context>
-<context>
-    <name>ClearButton</name>
-    <message>
-        <source>Clear</source>
-        <translation>Εκκαθάριση</translation>
-    </message>
 </context>
 <context>
     <name>DataUtils</name>
@@ -202,11 +203,30 @@
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
-        <source>%n weeks(s) ago</source>
+        <source>%n month(s) ago</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
+    <message>
+        <source>K</source>
+        <comment>K as in Kilo, i.e. thousands</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>M</source>
+        <comment>M stands for Millions</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>B</source>
+        <comment>B stands for Billions</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 views</source>
+        <translation>%1 προβολές</translation>
+    </message>
     <message numerus="yes">
-        <source>%n month(s) ago</source>
+        <source>%n week(s) ago</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
@@ -251,22 +271,6 @@
 </context>
 <context>
     <name>DownloadManager</name>
-    <message>
-        <source>This is just the demo version of %1.</source>
-        <translation>Αυτή είναι απλά η δοκιμαστική έκδοση του %1.</translation>
-    </message>
-    <message>
-        <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation>Μπορεί να κάνει λήψη βίντεο μικρότερα από %1 λεπτά ώστε να δοκιμάσετε τη λειτουργία λήψης.</translation>
-    </message>
-    <message>
-        <source>Continue</source>
-        <translation>Συνέχεια</translation>
-    </message>
-    <message>
-        <source>Get the full version</source>
-        <translation>Αποκτήστε την πλήρη έκδοση</translation>
-    </message>
     <message>
         <source>%1 downloaded in %2</source>
         <translation>%1 λήφθηκε σε %2</translation>
@@ -633,10 +637,6 @@
         <translation>&amp;Διατήρηση στην κορυφή</translation>
     </message>
     <message>
-        <source>&amp;Adjust Window Size</source>
-        <translation>&amp;Προσαρμογή του μεγέθους του παραθύρου</translation>
-    </message>
-    <message>
         <source>&amp;Stop After This Video</source>
         <translation>&amp;Διακοπή μετά από αυτό το βίντεο</translation>
     </message>
@@ -670,6 +670,14 @@
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Toggle &amp;Menu Bar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Menu</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -796,6 +804,10 @@
         <source>Update</source>
         <translation>Ενημέρωση</translation>
     </message>
+    <message>
+        <source>You can still access the menu bar by pressing the ALT key</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MediaView</name>
@@ -810,22 +822,6 @@
     <message>
         <source>The link will be valid only for a limited time.</source>
         <translation>Ο σύνδεσμος θα είναι έγκυρος για περιορισμένο χρονικό διάστημα.</translation>
-    </message>
-    <message>
-        <source>This is just the demo version of %1.</source>
-        <translation>Αυτή είναι απλά μια δοκιμαστική έκδοση του %1.</translation>
-    </message>
-    <message>
-        <source>It allows you to test the application and see if it works for you.</source>
-        <translation>Σαε επιτρέπει να δοκιμάσετε την εφαρμογή και να δείτε αν σας κάνει.</translation>
-    </message>
-    <message>
-        <source>Get the full version</source>
-        <translation>Αποκτήστε τη πλήρη έκδοση</translation>
-    </message>
-    <message>
-        <source>Continue</source>
-        <translation>Συνέχεια</translation>
     </message>
     <message>
         <source>Downloading %1</source>
@@ -857,6 +853,10 @@
     <message>
         <source>Subscribe to %1</source>
         <translation>Εγγραφή στο %1</translation>
+    </message>
+    <message>
+        <source>Switched to %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
@@ -902,11 +902,14 @@
     </message>
 </context>
 <context>
-    <name>PlaylistItemDelegate</name>
+    <name>PickMessage</name>
     <message>
-        <source>%1 views</source>
-        <translation>%1 προβολές</translation>
+        <source>Pick a video</source>
+        <translation type="unfinished"/>
     </message>
+</context>
+<context>
+    <name>PlaylistItemDelegate</name>
     <message>
         <source>%1 of %2 (%3) — %4</source>
         <translation>%1 από %2 (%3) — %4</translation>
@@ -946,10 +949,6 @@
 </context>
 <context>
     <name>PlaylistModel</name>
-    <message>
-        <source>Searching...</source>
-        <translation>Αναζήτηση...</translation>
-    </message>
     <message>
         <source>Show %1 More</source>
         <translation>Εμφάνιση %1 ακόμα</translation>
@@ -1071,25 +1070,16 @@
         <translation>Καλωσορίσατε στο &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
     </message>
     <message>
-        <source>Enter</source>
-        <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole phrase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation>Εισάγετε</translation>
+        <source>to start watching videos.</source>
+        <translation>για να αρχίσετε να βλέπετε βίντεο.</translation>
     </message>
     <message>
         <source>a keyword</source>
         <translation>μια λέξη-κλειδί</translation>
     </message>
     <message>
-        <source>a channel</source>
-        <translation>ένα κανάλι</translation>
-    </message>
-    <message>
-        <source>to start watching videos.</source>
-        <translation>για να αρχίσετε να βλέπετε βίντεο.</translation>
-    </message>
-    <message>
-        <source>Watch</source>
-        <translation>Παρακολουθήστε</translation>
+        <source>Enter</source>
+        <translation>Εισάγετε</translation>
     </message>
     <message>
         <source>Recent keywords</source>
@@ -1109,6 +1099,10 @@
     <message>
         <source>&amp;Back</source>
         <translation>&amp;Επιστροφή</translation>
+    </message>
+    <message>
+        <source>&amp;Forward</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Forward to %1</source>
@@ -1161,13 +1155,6 @@
     <message>
         <source>Downloading %1...</source>
         <translation>Λήψη %1...</translation>
-    </message>
-</context>
-<context>
-    <name>Video</name>
-    <message>
-        <source>Cannot get video stream for %1</source>
-        <translation>Αδυναμία λήψης της ροής βίντεο για το %1</translation>
     </message>
 </context>
 <context>
@@ -1363,6 +1350,13 @@
     <message>
         <source>Worldwide</source>
         <translation>Παγκοσμίως</translation>
+    </message>
+</context>
+<context>
+    <name>YTVideo</name>
+    <message>
+        <source>Cannot get video stream for %1</source>
+        <translation>Αδυναμία λήψης της ροής βίντεο για το %1</translation>
     </message>
 </context>
 </TS>

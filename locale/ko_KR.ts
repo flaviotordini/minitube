@@ -26,6 +26,14 @@
         <translation>%2을(를) 사용해서 %1를 사용자의 언어로 번역 하세요.</translation>
     </message>
     <message>
+        <source>Powered by %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Open-source software</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Icon designed by %1.</source>
         <translation>아이콘 디자인: %1</translation>
     </message>
@@ -156,6 +164,10 @@
         <translation>업데이트 표시</translation>
     </message>
     <message>
+        <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
+        <translation>구독 항목이 없습니다. 채널을 구독 하려면 별 아이콘을 사용 하세요.</translation>
+    </message>
+    <message>
         <source>All Videos</source>
         <translation>모든 비디오</translation>
     </message>
@@ -175,17 +187,6 @@
         <source>There are no updated subscriptions at this time.</source>
         <translation>현재 업데이트된 구독이 없습니다.</translation>
     </message>
-    <message>
-        <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation>구독 항목이 없습니다. 채널을 구독 하려면 별 아이콘을 사용 하세요.</translation>
-    </message>
-</context>
-<context>
-    <name>ClearButton</name>
-    <message>
-        <source>Clear</source>
-        <translation>지우기</translation>
-    </message>
 </context>
 <context>
     <name>DataUtils</name>
@@ -202,11 +203,30 @@
         <translation type="unfinished"><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
-        <source>%n weeks(s) ago</source>
+        <source>%n month(s) ago</source>
         <translation type="unfinished"><numerusform></numerusform></translation>
     </message>
+    <message>
+        <source>K</source>
+        <comment>K as in Kilo, i.e. thousands</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>M</source>
+        <comment>M stands for Millions</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>B</source>
+        <comment>B stands for Billions</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 views</source>
+        <translation>%1 조회수</translation>
+    </message>
     <message numerus="yes">
-        <source>%n month(s) ago</source>
+        <source>%n week(s) ago</source>
         <translation type="unfinished"><numerusform></numerusform></translation>
     </message>
 </context>
@@ -251,22 +271,6 @@
 </context>
 <context>
     <name>DownloadManager</name>
-    <message>
-        <source>This is just the demo version of %1.</source>
-        <translation>%1의 데모 버전 입니다.</translation>
-    </message>
-    <message>
-        <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation>사용자가 다운로드 기능을 테스트 할 수 있도록 %1 분 보다 짧은 비디오만 다운로드 할 수 있습니다.</translation>
-    </message>
-    <message>
-        <source>Continue</source>
-        <translation>계속</translation>
-    </message>
-    <message>
-        <source>Get the full version</source>
-        <translation>풀 버전 구입</translation>
-    </message>
     <message>
         <source>%1 downloaded in %2</source>
         <translation>%1 downloaded in %2</translation>
@@ -633,10 +637,6 @@
         <translation>위에 떠있기(&amp;F)</translation>
     </message>
     <message>
-        <source>&amp;Adjust Window Size</source>
-        <translation>창 크기 조정 (&amp;A)</translation>
-    </message>
-    <message>
         <source>&amp;Stop After This Video</source>
         <translation>이 비디오 재생 후 정지(&amp;S)</translation>
     </message>
@@ -671,6 +671,14 @@
     <message>
         <source>Hide videos that may contain inappropriate content</source>
         <translation>부적절한 내용을 포함한 동영상 숨기기</translation>
+    </message>
+    <message>
+        <source>Toggle &amp;Menu Bar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -796,6 +804,10 @@
         <source>Update</source>
         <translation>업데이트</translation>
     </message>
+    <message>
+        <source>You can still access the menu bar by pressing the ALT key</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MediaView</name>
@@ -810,22 +822,6 @@
     <message>
         <source>The link will be valid only for a limited time.</source>
         <translation>해당 링크는 제한된 시간 동안만 유효 합니다.</translation>
-    </message>
-    <message>
-        <source>This is just the demo version of %1.</source>
-        <translation>%1의 데모 버전 입니다.%1의 데모 버전 입니다.</translation>
-    </message>
-    <message>
-        <source>It allows you to test the application and see if it works for you.</source>
-        <translation>이 버전으로 프로그램이 사용자 필요에 맞는지 테스트 할수 있습니다.</translation>
-    </message>
-    <message>
-        <source>Get the full version</source>
-        <translation>풀 버전 구입</translation>
-    </message>
-    <message>
-        <source>Continue</source>
-        <translation>계속</translation>
     </message>
     <message>
         <source>Downloading %1</source>
@@ -857,6 +853,10 @@
     <message>
         <source>Subscribe to %1</source>
         <translation>%1 구독</translation>
+    </message>
+    <message>
+        <source>Switched to %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
@@ -902,11 +902,14 @@
     </message>
 </context>
 <context>
-    <name>PlaylistItemDelegate</name>
+    <name>PickMessage</name>
     <message>
-        <source>%1 views</source>
-        <translation>%1 조회수</translation>
+        <source>Pick a video</source>
+        <translation type="unfinished"/>
     </message>
+</context>
+<context>
+    <name>PlaylistItemDelegate</name>
     <message>
         <source>%1 of %2 (%3) — %4</source>
         <translation>%1 of %2 (%3) — %4</translation>
@@ -946,10 +949,6 @@
 </context>
 <context>
     <name>PlaylistModel</name>
-    <message>
-        <source>Searching...</source>
-        <translation>검색중...</translation>
-    </message>
     <message>
         <source>Show %1 More</source>
         <translation>%1 추가 보기</translation>
@@ -1071,25 +1070,16 @@
         <translation>&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;에 오신걸 환영 합니다!</translation>
     </message>
     <message>
-        <source>Enter</source>
-        <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole phrase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation>언터</translation>
+        <source>to start watching videos.</source>
+        <translation>비디오 보기 시작</translation>
     </message>
     <message>
         <source>a keyword</source>
         <translation>키워드</translation>
     </message>
     <message>
-        <source>a channel</source>
-        <translation>채널</translation>
-    </message>
-    <message>
-        <source>to start watching videos.</source>
-        <translation>비디오 보기 시작</translation>
-    </message>
-    <message>
-        <source>Watch</source>
-        <translation>감상</translation>
+        <source>Enter</source>
+        <translation>언터</translation>
     </message>
     <message>
         <source>Recent keywords</source>
@@ -1109,6 +1099,10 @@
     <message>
         <source>&amp;Back</source>
         <translation>뒤로(&amp;B)</translation>
+    </message>
+    <message>
+        <source>&amp;Forward</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Forward to %1</source>
@@ -1161,13 +1155,6 @@
     <message>
         <source>Downloading %1...</source>
         <translation>%1 다운로드중</translation>
-    </message>
-</context>
-<context>
-    <name>Video</name>
-    <message>
-        <source>Cannot get video stream for %1</source>
-        <translation>%1의 비디오 가져올수 없음</translation>
     </message>
 </context>
 <context>
@@ -1363,6 +1350,13 @@
     <message>
         <source>Worldwide</source>
         <translation>전세계</translation>
+    </message>
+</context>
+<context>
+    <name>YTVideo</name>
+    <message>
+        <source>Cannot get video stream for %1</source>
+        <translation>%1의 비디오 가져올수 없음</translation>
     </message>
 </context>
 </TS>

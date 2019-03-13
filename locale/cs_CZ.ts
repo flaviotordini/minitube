@@ -26,6 +26,14 @@
         <translation>Přeložte %1 do vašeho mateřského jazyka pomocí %2</translation>
     </message>
     <message>
+        <source>Powered by %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Open-source software</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Icon designed by %1.</source>
         <translation>Autor ikony: %1.</translation>
     </message>
@@ -107,7 +115,7 @@
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
 <context>
@@ -156,6 +164,10 @@
         <translation>Zobrazit aktualizace</translation>
     </message>
     <message>
+        <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
+        <translation>Nemáte žádné odběry. Použijte hvězdičku k přihlásení odběru kanálů.</translation>
+    </message>
+    <message>
         <source>All Videos</source>
         <translation>Všechna videa</translation>
     </message>
@@ -175,17 +187,6 @@
         <source>There are no updated subscriptions at this time.</source>
         <translation>Nyní nejsou k dispozici žádné aktualizace odběrů.</translation>
     </message>
-    <message>
-        <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation>Nemáte žádné odběry. Použijte hvězdičku k přihlásení odběru kanálů.</translation>
-    </message>
-</context>
-<context>
-    <name>ClearButton</name>
-    <message>
-        <source>Clear</source>
-        <translation>Odstranit vše</translation>
-    </message>
 </context>
 <context>
     <name>DataUtils</name>
@@ -195,19 +196,38 @@
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
-    </message>
-    <message numerus="yes">
-        <source>%n weeks(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+    </message>
+    <message>
+        <source>K</source>
+        <comment>K as in Kilo, i.e. thousands</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>M</source>
+        <comment>M stands for Millions</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>B</source>
+        <comment>B stands for Billions</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 views</source>
+        <translation>%1 zobrazení</translation>
+    </message>
+    <message numerus="yes">
+        <source>%n week(s) ago</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
 <context>
@@ -252,22 +272,6 @@
 <context>
     <name>DownloadManager</name>
     <message>
-        <source>This is just the demo version of %1.</source>
-        <translation>Toto je pouze demoverze %1.</translation>
-    </message>
-    <message>
-        <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation>Umí stahovat pouze videa délky do %1 minut, abyste mohli funkci stahování vyzkoušet</translation>
-    </message>
-    <message>
-        <source>Continue</source>
-        <translation>Pokračovat</translation>
-    </message>
-    <message>
-        <source>Get the full version</source>
-        <translation>Získat plnou verzi</translation>
-    </message>
-    <message>
         <source>%1 downloaded in %2</source>
         <translation>%1 staženo v %2</translation>
     </message>
@@ -277,7 +281,7 @@
     </message>
     <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
 <context>
@@ -633,10 +637,6 @@
         <translation>&amp;Plovoucí navrchu</translation>
     </message>
     <message>
-        <source>&amp;Adjust Window Size</source>
-        <translation>&amp;Přizpůsobit velikost okna</translation>
-    </message>
-    <message>
         <source>&amp;Stop After This Video</source>
         <translation>&amp;Zastavit po tomto videu</translation>
     </message>
@@ -671,6 +671,14 @@
     <message>
         <source>Hide videos that may contain inappropriate content</source>
         <translation>Skrýt videa, která by mohla obsahovat nevhodný obsah</translation>
+    </message>
+    <message>
+        <source>Toggle &amp;Menu Bar</source>
+        <translation>Přepnout pruh s &amp;nabídkou</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Nabídka</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -796,6 +804,10 @@
         <source>Update</source>
         <translation>Aktualizovat</translation>
     </message>
+    <message>
+        <source>You can still access the menu bar by pressing the ALT key</source>
+        <translation>Stále ještě můžete přistupovat k pruhu s nabídkou stisknutím klávesy Alt</translation>
+    </message>
 </context>
 <context>
     <name>MediaView</name>
@@ -810,22 +822,6 @@
     <message>
         <source>The link will be valid only for a limited time.</source>
         <translation>Tento odkaz platí jen po omezenou dobu.</translation>
-    </message>
-    <message>
-        <source>This is just the demo version of %1.</source>
-        <translation>Toto je %1 -- demoverze.</translation>
-    </message>
-    <message>
-        <source>It allows you to test the application and see if it works for you.</source>
-        <translation>Umožňuje vyzkoušet aplikaci, abyste ověřili, jestli pro vás funguje.</translation>
-    </message>
-    <message>
-        <source>Get the full version</source>
-        <translation>Stáhnout plnou verzi</translation>
-    </message>
-    <message>
-        <source>Continue</source>
-        <translation>Pokračovat</translation>
     </message>
     <message>
         <source>Downloading %1</source>
@@ -857,6 +853,10 @@
     <message>
         <source>Subscribe to %1</source>
         <translation>Přihlásit k %1</translation>
+    </message>
+    <message>
+        <source>Switched to %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
@@ -902,11 +902,14 @@
     </message>
 </context>
 <context>
-    <name>PlaylistItemDelegate</name>
+    <name>PickMessage</name>
     <message>
-        <source>%1 views</source>
-        <translation>%1 zobrazení</translation>
+        <source>Pick a video</source>
+        <translation type="unfinished"/>
     </message>
+</context>
+<context>
+    <name>PlaylistItemDelegate</name>
     <message>
         <source>%1 of %2 (%3) — %4</source>
         <translation>%1 z %2 (%3) — %4</translation>
@@ -946,10 +949,6 @@
 </context>
 <context>
     <name>PlaylistModel</name>
-    <message>
-        <source>Searching...</source>
-        <translation>Hledá se...</translation>
-    </message>
     <message>
         <source>Show %1 More</source>
         <translation>Zobrazit dalších %1</translation>
@@ -1071,25 +1070,16 @@
         <translation>Vítejte v &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</translation>
     </message>
     <message>
-        <source>Enter</source>
-        <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole phrase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation>Vložit</translation>
+        <source>to start watching videos.</source>
+        <translation> pro sledování videí.</translation>
     </message>
     <message>
         <source>a keyword</source>
         <translation>klíčové slovo</translation>
     </message>
     <message>
-        <source>a channel</source>
-        <translation>kanál</translation>
-    </message>
-    <message>
-        <source>to start watching videos.</source>
-        <translation> pro sledování videí.</translation>
-    </message>
-    <message>
-        <source>Watch</source>
-        <translation>Sledovat</translation>
+        <source>Enter</source>
+        <translation>Vložit</translation>
     </message>
     <message>
         <source>Recent keywords</source>
@@ -1109,6 +1099,10 @@
     <message>
         <source>&amp;Back</source>
         <translation>&amp;Zpět</translation>
+    </message>
+    <message>
+        <source>&amp;Forward</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Forward to %1</source>
@@ -1161,13 +1155,6 @@
     <message>
         <source>Downloading %1...</source>
         <translation>Stahování %1...</translation>
-    </message>
-</context>
-<context>
-    <name>Video</name>
-    <message>
-        <source>Cannot get video stream for %1</source>
-        <translation>Nelze získat video stream pro %1</translation>
     </message>
 </context>
 <context>
@@ -1363,6 +1350,13 @@
     <message>
         <source>Worldwide</source>
         <translation>Celosvětově</translation>
+    </message>
+</context>
+<context>
+    <name>YTVideo</name>
+    <message>
+        <source>Cannot get video stream for %1</source>
+        <translation>Nelze získat video stream pro %1</translation>
     </message>
 </context>
 </TS>

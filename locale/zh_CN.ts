@@ -26,6 +26,14 @@
         <translation>使用 %2 将 %1 翻译为您的母语</translation>
     </message>
     <message>
+        <source>Powered by %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Open-source software</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Icon designed by %1.</source>
         <translation>图标设计：%1。</translation>
     </message>
@@ -156,6 +164,10 @@
         <translation>显示更新</translation>
     </message>
     <message>
+        <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
+        <translation>你没有任何订阅，使用星形符号订阅频道</translation>
+    </message>
+    <message>
         <source>All Videos</source>
         <translation>所有视频</translation>
     </message>
@@ -175,17 +187,6 @@
         <source>There are no updated subscriptions at this time.</source>
         <translation>当前没有订阅更新</translation>
     </message>
-    <message>
-        <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation>你没有任何订阅，使用星形符号订阅频道</translation>
-    </message>
-</context>
-<context>
-    <name>ClearButton</name>
-    <message>
-        <source>Clear</source>
-        <translation>清除</translation>
-    </message>
 </context>
 <context>
     <name>DataUtils</name>
@@ -202,11 +203,30 @@
         <translation type="unfinished"><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
-        <source>%n weeks(s) ago</source>
+        <source>%n month(s) ago</source>
         <translation type="unfinished"><numerusform></numerusform></translation>
     </message>
+    <message>
+        <source>K</source>
+        <comment>K as in Kilo, i.e. thousands</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>M</source>
+        <comment>M stands for Millions</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>B</source>
+        <comment>B stands for Billions</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 views</source>
+        <translation>%1 人次观看</translation>
+    </message>
     <message numerus="yes">
-        <source>%n month(s) ago</source>
+        <source>%n week(s) ago</source>
         <translation type="unfinished"><numerusform></numerusform></translation>
     </message>
 </context>
@@ -251,22 +271,6 @@
 </context>
 <context>
     <name>DownloadManager</name>
-    <message>
-        <source>This is just the demo version of %1.</source>
-        <translation>这只是 %1 的演示版。</translation>
-    </message>
-    <message>
-        <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation>本版本只能下载 %1 分钟以下的视频，仅用于测试下载功能。</translation>
-    </message>
-    <message>
-        <source>Continue</source>
-        <translation>继续</translation>
-    </message>
-    <message>
-        <source>Get the full version</source>
-        <translation>获取完整版</translation>
-    </message>
     <message>
         <source>%1 downloaded in %2</source>
         <translation>%1 已下载(%2)</translation>
@@ -633,10 +637,6 @@
         <translation>窗口置顶(&amp;F)</translation>
     </message>
     <message>
-        <source>&amp;Adjust Window Size</source>
-        <translation>调整窗口大小(&amp;A)</translation>
-    </message>
-    <message>
         <source>&amp;Stop After This Video</source>
         <translation>该视频后停止播放(&amp;S)</translation>
     </message>
@@ -671,6 +671,14 @@
     <message>
         <source>Hide videos that may contain inappropriate content</source>
         <translation>隐藏可能含有不恰当内容的视频</translation>
+    </message>
+    <message>
+        <source>Toggle &amp;Menu Bar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -796,6 +804,10 @@
         <source>Update</source>
         <translation>更新</translation>
     </message>
+    <message>
+        <source>You can still access the menu bar by pressing the ALT key</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MediaView</name>
@@ -810,22 +822,6 @@
     <message>
         <source>The link will be valid only for a limited time.</source>
         <translation>此链接仅能保持短时间的有效性。</translation>
-    </message>
-    <message>
-        <source>This is just the demo version of %1.</source>
-        <translation>这仅是 %1 的演示版。</translation>
-    </message>
-    <message>
-        <source>It allows you to test the application and see if it works for you.</source>
-        <translation>本版本允许您测试，以确认本应用是否适合您。</translation>
-    </message>
-    <message>
-        <source>Get the full version</source>
-        <translation>获取完整版</translation>
-    </message>
-    <message>
-        <source>Continue</source>
-        <translation>继续</translation>
     </message>
     <message>
         <source>Downloading %1</source>
@@ -857,6 +853,10 @@
     <message>
         <source>Subscribe to %1</source>
         <translation>订阅 %1</translation>
+    </message>
+    <message>
+        <source>Switched to %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
@@ -902,11 +902,14 @@
     </message>
 </context>
 <context>
-    <name>PlaylistItemDelegate</name>
+    <name>PickMessage</name>
     <message>
-        <source>%1 views</source>
-        <translation>%1 人次观看</translation>
+        <source>Pick a video</source>
+        <translation type="unfinished"/>
     </message>
+</context>
+<context>
+    <name>PlaylistItemDelegate</name>
     <message>
         <source>%1 of %2 (%3) — %4</source>
         <translation>%1 之 %2 (%3) — %4</translation>
@@ -946,10 +949,6 @@
 </context>
 <context>
     <name>PlaylistModel</name>
-    <message>
-        <source>Searching...</source>
-        <translation>搜索中……</translation>
-    </message>
     <message>
         <source>Show %1 More</source>
         <translation>再多显示 %1</translation>
@@ -1071,25 +1070,16 @@
         <translation>欢迎使用&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;！</translation>
     </message>
     <message>
-        <source>Enter</source>
-        <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole phrase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation>输入</translation>
+        <source>to start watching videos.</source>
+        <translation>开始观看视频。</translation>
     </message>
     <message>
         <source>a keyword</source>
         <translation>关键字</translation>
     </message>
     <message>
-        <source>a channel</source>
-        <translation>频道名称</translation>
-    </message>
-    <message>
-        <source>to start watching videos.</source>
-        <translation>开始观看视频。</translation>
-    </message>
-    <message>
-        <source>Watch</source>
-        <translation>观看</translation>
+        <source>Enter</source>
+        <translation>输入</translation>
     </message>
     <message>
         <source>Recent keywords</source>
@@ -1109,6 +1099,10 @@
     <message>
         <source>&amp;Back</source>
         <translation>后退(_B)</translation>
+    </message>
+    <message>
+        <source>&amp;Forward</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Forward to %1</source>
@@ -1161,13 +1155,6 @@
     <message>
         <source>Downloading %1...</source>
         <translation>正在下载 %1...</translation>
-    </message>
-</context>
-<context>
-    <name>Video</name>
-    <message>
-        <source>Cannot get video stream for %1</source>
-        <translation>无法获得视频流。可能原因：%1</translation>
     </message>
 </context>
 <context>
@@ -1363,6 +1350,13 @@
     <message>
         <source>Worldwide</source>
         <translation>全球</translation>
+    </message>
+</context>
+<context>
+    <name>YTVideo</name>
+    <message>
+        <source>Cannot get video stream for %1</source>
+        <translation>无法获得视频流。可能原因：%1</translation>
     </message>
 </context>
 </TS>

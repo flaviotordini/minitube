@@ -26,6 +26,14 @@
         <translation>Tradu %1 în limba proprie folosind %2</translation>
     </message>
     <message>
+        <source>Powered by %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Open-source software</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Icon designed by %1.</source>
         <translation>Iconița a fost concepută de %1.</translation>
     </message>
@@ -156,6 +164,10 @@
         <translation>Arata actualizeazările</translation>
     </message>
     <message>
+        <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
+        <translation>Nu esti abonat la nimic. Ca sa te abonezi la canale, foloseste simbolul stea.</translation>
+    </message>
+    <message>
         <source>All Videos</source>
         <translation>Toate videoclipurile</translation>
     </message>
@@ -175,17 +187,6 @@
         <source>There are no updated subscriptions at this time.</source>
         <translation>Nici unul din canalele la care esti abonat nu are actualizari momentan.</translation>
     </message>
-    <message>
-        <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation>Nu esti abonat la nimic. Ca sa te abonezi la canale, foloseste simbolul stea.</translation>
-    </message>
-</context>
-<context>
-    <name>ClearButton</name>
-    <message>
-        <source>Clear</source>
-        <translation>Șterge</translation>
-    </message>
 </context>
 <context>
     <name>DataUtils</name>
@@ -202,11 +203,30 @@
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
-        <source>%n weeks(s) ago</source>
+        <source>%n month(s) ago</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
+    <message>
+        <source>K</source>
+        <comment>K as in Kilo, i.e. thousands</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>M</source>
+        <comment>M stands for Millions</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>B</source>
+        <comment>B stands for Billions</comment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 views</source>
+        <translation>%1 vizionări</translation>
+    </message>
     <message numerus="yes">
-        <source>%n month(s) ago</source>
+        <source>%n week(s) ago</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
 </context>
@@ -251,22 +271,6 @@
 </context>
 <context>
     <name>DownloadManager</name>
-    <message>
-        <source>This is just the demo version of %1.</source>
-        <translation>Aceasta este doar o versiune demo a %1.</translation>
-    </message>
-    <message>
-        <source>It can only download videos shorter than %1 minutes so you can test the download functionality.</source>
-        <translation>Poate să descarce doar videoclipurile mai mici de %1 minute astfel încât să puteți testa funcționalitatea de descărcare.</translation>
-    </message>
-    <message>
-        <source>Continue</source>
-        <translation>Continuă</translation>
-    </message>
-    <message>
-        <source>Get the full version</source>
-        <translation>ObțineIa versiunea integrală</translation>
-    </message>
     <message>
         <source>%1 downloaded in %2</source>
         <translation>%1 descărcat în %2</translation>
@@ -633,10 +637,6 @@
         <translation>&amp;Detașează</translation>
     </message>
     <message>
-        <source>&amp;Adjust Window Size</source>
-        <translation>&amp;Ajustați dimensiunea ferestrei</translation>
-    </message>
-    <message>
         <source>&amp;Stop After This Video</source>
         <translation>&amp;Oprește După Acest Videoclip</translation>
     </message>
@@ -671,6 +671,14 @@
     <message>
         <source>Hide videos that may contain inappropriate content</source>
         <translation>Ascundeți videoclipuri care pot conține conținut neadecvat</translation>
+    </message>
+    <message>
+        <source>Toggle &amp;Menu Bar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -796,6 +804,10 @@
         <source>Update</source>
         <translation>Actualizează</translation>
     </message>
+    <message>
+        <source>You can still access the menu bar by pressing the ALT key</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MediaView</name>
@@ -810,22 +822,6 @@
     <message>
         <source>The link will be valid only for a limited time.</source>
         <translation>Adresa va fi validă doar pentru o perioadă limitată de timp.</translation>
-    </message>
-    <message>
-        <source>This is just the demo version of %1.</source>
-        <translation>Aceasta este doar o versiune demo a %1.</translation>
-    </message>
-    <message>
-        <source>It allows you to test the application and see if it works for you.</source>
-        <translation>Vă permite să testați aplicația și să vedeți dacă funcționează.</translation>
-    </message>
-    <message>
-        <source>Get the full version</source>
-        <translation>Obține versiunea integrală</translation>
-    </message>
-    <message>
-        <source>Continue</source>
-        <translation>Continuă</translation>
     </message>
     <message>
         <source>Downloading %1</source>
@@ -857,6 +853,10 @@
     <message>
         <source>Subscribe to %1</source>
         <translation>Aboneaza-te de la %1</translation>
+    </message>
+    <message>
+        <source>Switched to %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
@@ -902,11 +902,14 @@
     </message>
 </context>
 <context>
-    <name>PlaylistItemDelegate</name>
+    <name>PickMessage</name>
     <message>
-        <source>%1 views</source>
-        <translation>%1 vizionări</translation>
+        <source>Pick a video</source>
+        <translation type="unfinished"/>
     </message>
+</context>
+<context>
+    <name>PlaylistItemDelegate</name>
     <message>
         <source>%1 of %2 (%3) — %4</source>
         <translation>%1 din %2 (%3) — %4</translation>
@@ -946,10 +949,6 @@
 </context>
 <context>
     <name>PlaylistModel</name>
-    <message>
-        <source>Searching...</source>
-        <translation>Căutare...</translation>
-    </message>
     <message>
         <source>Show %1 More</source>
         <translation>Afișează încă %1</translation>
@@ -1071,25 +1070,16 @@
         <translation>Bine ați venit la &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
     </message>
     <message>
-        <source>Enter</source>
-        <extracomment>&quot;Enter&quot;, as in &quot;type&quot;. The whole phrase says: &quot;Enter a keyword to start watching videos&quot;</extracomment>
-        <translation>Introduceți</translation>
+        <source>to start watching videos.</source>
+        <translation>pentru a începe să vizionați videoclipuri.</translation>
     </message>
     <message>
         <source>a keyword</source>
         <translation>un cuvânt cheie</translation>
     </message>
     <message>
-        <source>a channel</source>
-        <translation>un canal</translation>
-    </message>
-    <message>
-        <source>to start watching videos.</source>
-        <translation>pentru a începe să vizionați videoclipuri.</translation>
-    </message>
-    <message>
-        <source>Watch</source>
-        <translation>Urmărește</translation>
+        <source>Enter</source>
+        <translation>Introduceți</translation>
     </message>
     <message>
         <source>Recent keywords</source>
@@ -1109,6 +1099,10 @@
     <message>
         <source>&amp;Back</source>
         <translation>Î&amp;napoi</translation>
+    </message>
+    <message>
+        <source>&amp;Forward</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Forward to %1</source>
@@ -1161,13 +1155,6 @@
     <message>
         <source>Downloading %1...</source>
         <translation>Se descarcă %1</translation>
-    </message>
-</context>
-<context>
-    <name>Video</name>
-    <message>
-        <source>Cannot get video stream for %1</source>
-        <translation>Nu poate fi accesat fluxul video pentru %1</translation>
     </message>
 </context>
 <context>
@@ -1363,6 +1350,13 @@
     <message>
         <source>Worldwide</source>
         <translation>Global</translation>
+    </message>
+</context>
+<context>
+    <name>YTVideo</name>
+    <message>
+        <source>Cannot get video stream for %1</source>
+        <translation>Nu poate fi accesat fluxul video pentru %1</translation>
     </message>
 </context>
 </TS>
