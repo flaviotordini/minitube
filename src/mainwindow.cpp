@@ -1074,8 +1074,6 @@ void MainWindow::showView(View *view, bool transition) {
     showActionsInStatusBar(viewActions, true);
     */
 
-    messageLabel->hide();
-
     history.push(view);
     emit viewChanged();
 }
