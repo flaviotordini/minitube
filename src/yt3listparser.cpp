@@ -2,6 +2,16 @@
 #include "datautils.h"
 #include "video.h"
 
+#include <QRegularExpression>
+
+namespace {
+
+QString decodeEntities(const QString &s) {
+    return QTextDocumentFragment::fromHtml(s).toPlainText();
+}
+
+} // namespace
+
 YT3ListParser::YT3ListParser(const QByteArray &bytes) {
     QJsonDocument doc = QJsonDocument::fromJson(bytes);
     QJsonObject obj = doc.object();
@@ -42,7 +52,10 @@ void YT3ListParser::parseItem(const QJsonObject &item) {
 
     video->setChannelId(snippet[QLatin1String("channelId")].toString());
 
-    video->setTitle(snippet[QLatin1String("title")].toString());
+    QString title = snippet[QLatin1String("title")].toString();
+    static const QChar ampersand('&');
+    if (title.contains(ampersand)) title = decodeEntities(title);
+    video->setTitle(title);
     video->setDescription(snippet[QLatin1String("description")].toString());
 
     QJsonObject thumbnails = snippet[QLatin1String("thumbnails")].toObject();
