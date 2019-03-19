@@ -27,11 +27,11 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation type="unfinished"/>
+        <translation>Coa tecnoloxía de %1</translation>
     </message>
     <message>
         <source>Open-source software</source>
-        <translation type="unfinished"/>
+        <translation>Software de fontes abertas</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -115,7 +115,7 @@
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Dispón dun novo vídeo</numerusform><numerusform>Dispón de  %n novos vídeos</numerusform></translation>
     </message>
 </context>
 <context>
@@ -196,30 +196,30 @@
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Hai %n hora</numerusform><numerusform>Hai %n horas</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Hai %n dia</numerusform><numerusform>Hai %n dias</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Hai %n mes</numerusform><numerusform>Hai %n meses</numerusform></translation>
     </message>
     <message>
         <source>K</source>
         <comment>K as in Kilo, i.e. thousands</comment>
-        <translation type="unfinished"/>
+        <translation>K</translation>
     </message>
     <message>
         <source>M</source>
         <comment>M stands for Millions</comment>
-        <translation type="unfinished"/>
+        <translation>M</translation>
     </message>
     <message>
         <source>B</source>
         <comment>B stands for Billions</comment>
-        <translation type="unfinished"/>
+        <translation>B</translation>
     </message>
     <message>
         <source>%1 views</source>
@@ -227,7 +227,7 @@
     </message>
     <message numerus="yes">
         <source>%n week(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Hai %n semana</numerusform><numerusform>Hai %n semanas</numerusform></translation>
     </message>
 </context>
 <context>
@@ -281,7 +281,7 @@
     </message>
     <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n descarga</numerusform><numerusform>%n descargas</numerusform></translation>
     </message>
 </context>
 <context>
@@ -598,7 +598,7 @@
     </message>
     <message>
         <source>Show details about video downloads</source>
-        <translation>Mostrar os detalles sobre as descargas de vídeo</translation>
+        <translation>Amosar os detalles sobre as descargas de vídeo</translation>
     </message>
     <message>
         <source>&amp;Download</source>
@@ -674,11 +674,11 @@
     </message>
     <message>
         <source>Toggle &amp;Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>Alternar a barra do &amp;menú</translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Menú</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -806,7 +806,7 @@
     </message>
     <message>
         <source>You can still access the menu bar by pressing the ALT key</source>
-        <translation type="unfinished"/>
+        <translation>Aínda pode acceder á barra de menús premendo a tecla ALT</translation>
     </message>
 </context>
 <context>
@@ -835,7 +835,7 @@
     <message>
         <source>part</source>
         <comment>This is for video parts, as in 'Cool video - part 1'</comment>
-        <translation>peza</translation>
+        <translation>parte</translation>
     </message>
     <message>
         <source>episode</source>
@@ -844,7 +844,7 @@
     </message>
     <message>
         <source>Sent from %1</source>
-        <translation>Enviado desde %1</translation>
+        <translation>Enviado dende %1</translation>
     </message>
     <message>
         <source>Unsubscribe from %1</source>
@@ -856,7 +856,7 @@
     </message>
     <message>
         <source>Switched to %1</source>
-        <translation type="unfinished"/>
+        <translation>Cambiado a %1</translation>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
@@ -879,15 +879,15 @@
     </message>
     <message>
         <source>Would you like to download it now?</source>
-        <translation>Queres descargala agora?</translation>
+        <translation>Quere descargala agora?</translation>
     </message>
     <message>
         <source>Skip This Version</source>
-        <translation>Saltar esta versión</translation>
+        <translation>Omitir esta versión</translation>
     </message>
     <message>
         <source>Remind Me Later</source>
-        <translation>Acórdamo máis adiante</translation>
+        <translation>Lembremo máis adiante</translation>
     </message>
     <message>
         <source>Install Update</source>
@@ -905,7 +905,7 @@
     <name>PickMessage</name>
     <message>
         <source>Pick a video</source>
-        <translation type="unfinished"/>
+        <translation>Deleccione un vídeo</translation>
     </message>
 </context>
 <context>
@@ -936,7 +936,7 @@
     </message>
     <message>
         <source>Show in %1</source>
-        <translation>Mostrar en %1</translation>
+        <translation>Amosar en %1</translation>
     </message>
     <message>
         <source>Open parent folder</source>
@@ -951,7 +951,7 @@
     <name>PlaylistModel</name>
     <message>
         <source>Show %1 More</source>
-        <translation>Mostrar %1 máis</translation>
+        <translation>Amosar %1 máis</translation>
     </message>
     <message>
         <source>No videos</source>
@@ -1102,7 +1102,7 @@
     </message>
     <message>
         <source>&amp;Forward</source>
-        <translation type="unfinished"/>
+        <translation>A&amp;diante</translation>
     </message>
     <message>
         <source>Forward to %1</source>
