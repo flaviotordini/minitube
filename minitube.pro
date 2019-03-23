@@ -195,6 +195,7 @@ RCC_DIR = build/rcc/
 # Tell Qt Linguist that we use UTF-8 strings in our sources
 CODECFORTR = UTF-8
 CODECFORSRC = UTF-8
+
 include(locale/locale.pri)
 
 # deploy
@@ -204,15 +205,20 @@ unix:!mac {
     QT += dbus
     HEADERS += src/gnomeglobalshortcutbackend.h
     SOURCES += src/gnomeglobalshortcutbackend.cpp
+
     isEmpty(PREFIX):PREFIX = /usr
+
     BINDIR = $$PREFIX/bin
     INSTALLS += target
     target.path = $$BINDIR
+
     DATADIR = $$PREFIX/share
     PKGDATADIR = $$DATADIR/minitube
     DEFINES += DATADIR=\\\"$$DATADIR\\\" \
         PKGDATADIR=\\\"$$PKGDATADIR\\\"
+
     INSTALLS += translations \
+        sounds \
         desktop \
         appdata \
         iconsvg \
@@ -226,6 +232,8 @@ unix:!mac {
         icon512
     translations.path = $$PKGDATADIR
     translations.files += $$DESTDIR/locale
+    sounds.path = $$PKGDATADIR
+    sounds.files += sounds/
     desktop.path = $$DATADIR/applications
     desktop.files += minitube.desktop
     appdata.path = $$DATADIR/appdata
@@ -249,4 +257,5 @@ unix:!mac {
     icon512.path = $$DATADIR/icons/hicolor/512x512/apps
     icon512.files += data/512x512/minitube.png
 }
+
 mac|win32|contains(DEFINES, APP_UBUNTU):include(local/local.pri)
