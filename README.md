@@ -21,7 +21,7 @@ Clone from Github:
 
     git clone --recursive https://github.com/flaviotordini/minitube.git
 
-You need at least Qt 5.6. The following Qt modules are needed: core, gui, widgets, network, sql (using the Sqlite plugin), declarative, dbus, x11extras.
+You need Qt >= 5.6 and MPV >= 0.29.0. The following Qt modules are needed: core, gui, widgets, network, sql (using the Sqlite plugin), declarative, dbus, x11extras.
 
 To be able to build on a Debian (or derivative) system:
 
