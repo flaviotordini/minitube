@@ -1808,13 +1808,11 @@ void MainWindow::checkForUpdate() {
                 QSettings settings;
                 QString checkedVersion = settings.value("checkedVersion").toString();
                 if (checkedVersion == version) return;
-#ifdef APP_EXTRA
-#ifndef APP_MAC
+#ifdef APP_SIMPLEUPDATE
+                simpleUpdateDialog(version);
+#elif defined(APP_EXTRA) && !defined(APP_MAC)
                 UpdateDialog *dialog = new UpdateDialog(version, this);
                 dialog->show();
-#endif
-#else
-                simpleUpdateDialog(version);
 #endif
             });
     updateChecker->checkForUpdate();
