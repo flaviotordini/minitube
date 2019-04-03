@@ -990,7 +990,7 @@ void MainWindow::readSettings() {
     if (!geometrySettings.isEmpty()) {
         restoreGeometry(geometrySettings);
     } else {
-        const QRect desktopSize = qApp->desktop()->availableGeometry();
+        const QRect desktopSize = QGuiApplication::primaryScreen()->availableGeometry();
         int w = desktopSize.width() * .9;
         int h = qMin(w / 2, desktopSize.height());
         setGeometry(
