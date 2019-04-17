@@ -110,7 +110,7 @@ private slots:
     void resumePlayback();
     void onAuthorPushed(QModelIndex);
     void searchAgain();
-    void resumeWithNewStreamUrl(const QUrl &streamUrl);
+    void resumeWithNewStreamUrl(const QString &streamUrl, const QString &audioUrl);
 
 private:
     MediaView(QWidget *parent = nullptr);

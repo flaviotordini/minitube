@@ -763,9 +763,16 @@ void MediaView::fullscreen() {
     videoAreaWidget->showFullScreen();
 }
 
-void MediaView::resumeWithNewStreamUrl(const QUrl &streamUrl) {
+void MediaView::resumeWithNewStreamUrl(const QString &streamUrl, const QString &audioUrl) {
     pauseTime = media->position();
-    media->play(streamUrl.toString());
+
+    if (audioUrl.isEmpty()) {
+        qDebug() << "Playing" << streamUrl;
+        media->play(streamUrl);
+    } else {
+        qDebug() << "Playing" << streamUrl << audioUrl;
+        media->playSeparateAudioAndVideo(streamUrl, audioUrl);
+    }
 
     Video *video = static_cast<Video *>(sender());
     if (!video) {
