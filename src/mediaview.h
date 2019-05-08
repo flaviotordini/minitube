@@ -56,6 +56,7 @@ public:
     PlaylistModel *getPlaylistModel() { return playlistModel; }
     const QString &getCurrentVideoId();
     void updateSubscriptionAction(Video *video, bool subscribed);
+    void updateSubscriptionActionForChannel(const QString & channelId);
     VideoArea *getVideoArea() { return videoAreaWidget; }
     void reloadCurrentVideo();
 
@@ -132,6 +133,8 @@ private:
     QTimer *errorTimer;
     Video *skippedVideo;
     QString currentVideoId;
+
+    QString currentChannelId;
 
 #ifdef APP_ACTIVATION
     QTimer *demoTimer;

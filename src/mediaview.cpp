@@ -204,6 +204,13 @@ void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory, bool
 
     // qDebug() << "Adding VideoSource" << videoSource->getName() << videoSource;
 
+    YTSearch * ytSearch = qobject_cast<YTSearch *>(videoSource);
+    if (nullptr != ytSearch) {
+        if (!ytSearch->getSearchParams()->channelId().isEmpty()) {
+            updateSubscriptionActionForChannel(ytSearch->getSearchParams()->channelId());
+        }
+    }
+
     if (addToHistory) {
         int currentIndex = getHistoryIndex();
         if (currentIndex >= 0 && currentIndex < history.size() - 1) {
@@ -900,7 +907,45 @@ void MediaView::onAuthorPushed(QModelIndex index) {
     search(searchParams);
 }
 
+void MediaView::updateSubscriptionActionForChannel(const QString & channelId) {
+    currentChannelId = channelId;
+
+    bool subscribed = YTChannel::isSubscribed(channelId);
+
+    QAction *subscribeAction = MainWindow::instance()->getAction("subscribeChannel");
+
+    QString subscribeTip;
+    QString subscribeText;
+
+    QString channelTitle = tr("channel");
+    YTChannel *channel = YTChannel::forId(channelId);
+    if (nullptr != channel && !channel->getDisplayName().isEmpty()) {
+        channelTitle = channel->getDisplayName();
+    }
+
+    if (subscribed) {
+        subscribeText = tr("Unsubscribe from %1").arg(channelTitle);
+        subscribeTip = subscribeText;
+        subscribeAction->setEnabled(true);
+    } else {
+        subscribeText = tr("Subscribe to %1").arg(channelTitle);
+        subscribeTip = subscribeText;
+        subscribeAction->setEnabled(true);
+    }
+    subscribeAction->setText(subscribeText);
+    subscribeAction->setStatusTip(subscribeTip);
+
+    if (subscribed) {
+        subscribeAction->setIcon(IconUtils::icon("bookmark-remove"));
+    } else {
+        subscribeAction->setIcon(IconUtils::icon("bookmark-new"));
+    }
+
+    MainWindow::instance()->setupAction(subscribeAction);
+}
+
 void MediaView::updateSubscriptionAction(Video *video, bool subscribed) {
+    currentChannelId = "";
     QAction *subscribeAction = MainWindow::instance()->getAction("subscribeChannel");
 
     QString subscribeTip;
@@ -966,20 +1011,38 @@ void MediaView::reloadCurrentVideo() {
 }
 
 void MediaView::toggleSubscription() {
+    QString userId;
+    QString channelTitle;
     Video *video = playlistModel->activeVideo();
-    if (!video) return;
-    QString userId = video->getChannelId();
-    if (userId.isEmpty()) return;
+    if (currentChannelId.isEmpty()) {
+        if (!video) return;
+        userId = video->getChannelId();
+        if (userId.isEmpty()) return;
+    } else {
+        userId = currentChannelId;
+        YTChannel * channel = YTChannel::forId(currentChannelId);
+        if (nullptr != channel && !channel->getDisplayName().isEmpty()) {
+            channelTitle = channel->getDisplayName();
+        } else {
+            channelTitle = tr("channel");
+        }
+    }
+
     bool subscribed = YTChannel::isSubscribed(userId);
     if (subscribed) {
         YTChannel::unsubscribe(userId);
         MainWindow::instance()->showMessage(
-                tr("Unsubscribed from %1").arg(video->getChannelTitle()));
+                tr("Unsubscribed from %1").arg(channelTitle));
     } else {
         YTChannel::subscribe(userId);
-        MainWindow::instance()->showMessage(tr("Subscribed to %1").arg(video->getChannelTitle()));
+        MainWindow::instance()->showMessage(tr("Subscribed to %1").arg(channelTitle));
     }
-    updateSubscriptionAction(video, !subscribed);
+
+    if (currentChannelId.isEmpty()) {
+        updateSubscriptionAction(video, !subscribed);
+    } else {
+        updateSubscriptionActionForChannel(currentChannelId);
+    }
 }
 
 void MediaView::adjustWindowSize() {
