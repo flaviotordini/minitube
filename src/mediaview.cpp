@@ -914,15 +914,15 @@ void MediaView::updateSubscriptionAction(bool subscribed) {
     QString subscribeTip;
     QString subscribeText;
 
-    if (channelId.isEmpty()) {
+    if (currentSubscriptionChannelId.isEmpty()) {
         subscribeText = subscribeAction->property("originalText").toString();
         subscribeAction->setEnabled(false);
     } else if (subscribed) {
-        subscribeText = tr("Unsubscribe from %1").arg(channelTitle);
+        subscribeText = tr("Unsubscribe from %1").arg(currentSubscriptionChannelTitle);
         subscribeTip = subscribeText;
         subscribeAction->setEnabled(true);
     } else {
-        subscribeText = tr("Subscribe to %1").arg(channelTitle);
+        subscribeText = tr("Subscribe to %1").arg(currentSubscriptionChannelTitle);
         subscribeTip = subscribeText;
         subscribeAction->setEnabled(true);
     }
@@ -939,8 +939,6 @@ void MediaView::updateSubscriptionAction(bool subscribed) {
 }
 
 void MediaView::updateSubscriptionActionForChannel(const QString & channelId) {
-    currentChannelId = channelId;
-
     QString channelTitle = tr("channel");
     YTChannel *channel = YTChannel::forId(channelId);
     if (nullptr != channel && !channel->getDisplayName().isEmpty()) {
