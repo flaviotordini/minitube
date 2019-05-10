@@ -82,7 +82,6 @@ void YTVideo::gotVideoInfo(const QByteArray &bytes) {
     }
 
     QString videoToken = videoTokeRE.cap(1);
-    qDebug() << "got token" << videoToken;
     while (videoToken.contains('%'))
         videoToken = QByteArray::fromPercentEncoding(videoToken.toLatin1());
     qDebug() << "videoToken" << videoToken;
@@ -122,7 +121,7 @@ void YTVideo::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
         QString url;
         QString sig;
         for (const QStringRef &urlParam : urlParams) {
-            // qWarning() << "urlParam" << urlParam;
+            qDebug() << "urlParam" << urlParam;
             if (urlParam.startsWith(QLatin1String("itag="))) {
                 int separator = urlParam.indexOf('=');
                 format = urlParam.mid(separator + 1).toInt();
@@ -138,6 +137,7 @@ void YTVideo::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
                     sig = QByteArray::fromPercentEncoding(urlParam.mid(separator + 1).toUtf8());
                     sig = decryptSignature(sig);
                     if (sig.isEmpty()) sig = JsFunctions::instance()->decryptSignature(sig);
+                    if (sig.isEmpty()) qWarning() << "Empty signature";
                 } else {
                     loadWebPage();
                     return;
@@ -285,13 +285,13 @@ void YTVideo::parseJsPlayer(const QByteArray &bytes) {
             continue;
         } else {
             sigFuncName = funcNameRe.cap(1);
-            // qDebug() << "Captures" << funcNameRe.captureCount() << funcNameRe.capturedTexts();
+            qDebug() << "Captures" << funcNameRe.captureCount() << funcNameRe.capturedTexts();
             if (sigFuncName.isEmpty()) {
                 qDebug() << "Empty capture for" << funcNameRe;
                 continue;
             }
             captureFunction(sigFuncName, jsPlayer);
-            // qWarning() << sigFunctions << sigObjects;
+            qDebug() << sigFunctions << sigObjects;
             break;
         }
     }
