@@ -45,7 +45,8 @@ clean_sources() {
           .gitmodules \
           .clang-format \
           .travis.yml \
-          .git/
+          .git/ \
+          create_assets.sh
 }
 
 rename_sources() {
@@ -86,7 +87,6 @@ package_name="minitube"
 source_dir="/tmp"
 version=$(date "+%Y-%m-%d")
 signer=""
-signature=0
 output_dir=$(get_absolute_path "$0")
 
 
@@ -96,7 +96,6 @@ if [ ${#@} -gt 0 ]; then
       h) print_help
           ;;
       s) signer=$OPTARG
-         signature=1
           ;;
       v) version=$OPTARG
           ;;
@@ -115,7 +114,7 @@ clean_sources
 rename_sources
 compress_sources
 move_sources
-if [ $signature -eq 1 ]; then
+if [ -n "${signer}" ]; then
   sign_sources
 fi
 cleanup_source_dir
