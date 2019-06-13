@@ -55,7 +55,8 @@ public:
     int getHistoryIndex();
     PlaylistModel *getPlaylistModel() { return playlistModel; }
     const QString &getCurrentVideoId();
-    void updateSubscriptionAction(Video *video, bool subscribed);
+    void updateSubscriptionActionForVideo(Video *video, bool subscribed);
+    void updateSubscriptionActionForChannel(const QString & channelId);
     VideoArea *getVideoArea() { return videoAreaWidget; }
     void reloadCurrentVideo();
 
@@ -96,6 +97,7 @@ public slots:
     void goForward();
     void toggleSubscription();
     void adjustWindowSize();
+    void updateSubscriptionAction(bool subscribed);
 
 private slots:
     void onItemActivated(const QModelIndex &index);
@@ -132,6 +134,9 @@ private:
     QTimer *errorTimer;
     Video *skippedVideo;
     QString currentVideoId;
+
+    QString currentSubscriptionChannelId;
+    QString currentSubscriptionChannelTitle;
 
 #ifdef APP_ACTIVATION
     QTimer *demoTimer;

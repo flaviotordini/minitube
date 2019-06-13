@@ -204,6 +204,13 @@ void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory, bool
 
     // qDebug() << "Adding VideoSource" << videoSource->getName() << videoSource;
 
+    YTSearch * ytSearch = qobject_cast<YTSearch *>(videoSource);
+    if (nullptr != ytSearch) {
+        if (!ytSearch->getSearchParams()->channelId().isEmpty()) {
+            updateSubscriptionActionForChannel(ytSearch->getSearchParams()->channelId());
+        }
+    }
+
     if (addToHistory) {
         int currentIndex = getHistoryIndex();
         if (currentIndex >= 0 && currentIndex < history.size() - 1) {
@@ -361,7 +368,7 @@ void MediaView::stop() {
     playlistView->selectionModel()->clearSelection();
 
     MainWindow::instance()->getAction("refineSearch")->setChecked(false);
-    updateSubscriptionAction(nullptr, false);
+    updateSubscriptionActionForVideo(nullptr, false);
 #ifdef APP_ACTIVATION
     demoTimer->stop();
 #endif
@@ -438,7 +445,7 @@ void MediaView::activeVideoChanged(Video *video, Video *previousVideo) {
     a->setEnabled(enableDownload);
     a->setVisible(enableDownload);
 
-    updateSubscriptionAction(video, YTChannel::isSubscribed(video->getChannelId()));
+    updateSubscriptionActionForVideo(video, YTChannel::isSubscribed(video->getChannelId()));
 
     for (QAction *action : currentVideoActions)
         action->setEnabled(true);
@@ -900,20 +907,22 @@ void MediaView::onAuthorPushed(QModelIndex index) {
     search(searchParams);
 }
 
-void MediaView::updateSubscriptionAction(Video *video, bool subscribed) {
+
+void MediaView::updateSubscriptionAction(bool subscribed) {
     QAction *subscribeAction = MainWindow::instance()->getAction("subscribeChannel");
 
     QString subscribeTip;
     QString subscribeText;
-    if (!video) {
+
+    if (currentSubscriptionChannelId.isEmpty()) {
         subscribeText = subscribeAction->property("originalText").toString();
         subscribeAction->setEnabled(false);
     } else if (subscribed) {
-        subscribeText = tr("Unsubscribe from %1").arg(video->getChannelTitle());
+        subscribeText = tr("Unsubscribe from %1").arg(currentSubscriptionChannelTitle);
         subscribeTip = subscribeText;
         subscribeAction->setEnabled(true);
     } else {
-        subscribeText = tr("Subscribe to %1").arg(video->getChannelTitle());
+        subscribeText = tr("Subscribe to %1").arg(currentSubscriptionChannelTitle);
         subscribeTip = subscribeText;
         subscribeAction->setEnabled(true);
     }
@@ -927,6 +936,32 @@ void MediaView::updateSubscriptionAction(Video *video, bool subscribed) {
     }
 
     MainWindow::instance()->setupAction(subscribeAction);
+}
+
+void MediaView::updateSubscriptionActionForChannel(const QString & channelId) {
+    QString channelTitle = tr("channel");
+    YTChannel *channel = YTChannel::forId(channelId);
+    if (nullptr != channel && !channel->getDisplayName().isEmpty()) {
+        channelTitle = channel->getDisplayName();
+    }
+
+    bool subscribed = YTChannel::isSubscribed(channelId);
+
+    currentSubscriptionChannelId = channelId;
+    currentSubscriptionChannelTitle = channelTitle;
+    updateSubscriptionAction(subscribed);
+}
+
+void MediaView::updateSubscriptionActionForVideo(Video *video, bool subscribed) {
+    if (!video) {
+        currentSubscriptionChannelId = "";
+        currentSubscriptionChannelTitle = "";
+        updateSubscriptionAction(false);
+    } else {
+        currentSubscriptionChannelId = video->getChannelId();
+        currentSubscriptionChannelTitle = video->getChannelTitle();
+        updateSubscriptionAction(subscribed);
+    }
 }
 
 void MediaView::reloadCurrentVideo() {
@@ -966,20 +1001,22 @@ void MediaView::reloadCurrentVideo() {
 }
 
 void MediaView::toggleSubscription() {
-    Video *video = playlistModel->activeVideo();
-    if (!video) return;
-    QString userId = video->getChannelId();
-    if (userId.isEmpty()) return;
-    bool subscribed = YTChannel::isSubscribed(userId);
-    if (subscribed) {
-        YTChannel::unsubscribe(userId);
-        MainWindow::instance()->showMessage(
-                tr("Unsubscribed from %1").arg(video->getChannelTitle()));
-    } else {
-        YTChannel::subscribe(userId);
-        MainWindow::instance()->showMessage(tr("Subscribed to %1").arg(video->getChannelTitle()));
+    //Video *video = playlistModel->activeVideo();
+    if (currentSubscriptionChannelId.isEmpty()) {
+        return;
     }
-    updateSubscriptionAction(video, !subscribed);
+
+    bool subscribed = YTChannel::isSubscribed(currentSubscriptionChannelId);
+    if (subscribed) {
+        YTChannel::unsubscribe(currentSubscriptionChannelId);
+        MainWindow::instance()->showMessage(
+                tr("Unsubscribed from %1").arg(currentSubscriptionChannelTitle));
+    } else {
+        YTChannel::subscribe(currentSubscriptionChannelId);
+        MainWindow::instance()->showMessage(tr("Subscribed to %1").arg(currentSubscriptionChannelTitle));
+    }
+
+    updateSubscriptionAction(!subscribed);
 }
 
 void MediaView::adjustWindowSize() {

@@ -565,7 +565,7 @@ void MainWindow::createActions() {
     action->setEnabled(false);
     connect(action, SIGNAL(triggered()), mediaView, SLOT(toggleSubscription()));
     actionMap.insert("subscribeChannel", action);
-    mediaView->updateSubscriptionAction(0, false);
+    mediaView->updateSubscriptionActionForVideo(0, false);
 
     QString shareTip = tr("Share the current video using %1");
 
