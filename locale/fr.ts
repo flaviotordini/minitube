@@ -674,7 +674,7 @@
     </message>
     <message>
         <source>Toggle &amp;Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>Bascule la barre de &amp;Menu</translation>
     </message>
     <message>
         <source>Menu</source>

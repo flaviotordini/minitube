@@ -678,7 +678,7 @@
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Menú</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>

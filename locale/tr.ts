@@ -27,11 +27,11 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation type="unfinished"/>
+        <translation>% 1 tarafından desteklenmektedir</translation>
     </message>
     <message>
         <source>Open-source software</source>
-        <translation type="unfinished"/>
+        <translation>Açık kaynaklı yazılım</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -115,7 +115,7 @@
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n yeni videonuz var</numerusform><numerusform>%n yeni videonuz var</numerusform></translation>
     </message>
 </context>
 <context>
@@ -196,30 +196,30 @@
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>&amp;n saat önce</numerusform><numerusform>&amp;n saat önce</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>&amp;n gün önce</numerusform><numerusform>&amp;n gün önce</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>&amp;n ay önce</numerusform><numerusform>&amp;n ay önce</numerusform></translation>
     </message>
     <message>
         <source>K</source>
         <comment>K as in Kilo, i.e. thousands</comment>
-        <translation type="unfinished"/>
+        <translation>K</translation>
     </message>
     <message>
         <source>M</source>
         <comment>M stands for Millions</comment>
-        <translation type="unfinished"/>
+        <translation>M</translation>
     </message>
     <message>
         <source>B</source>
         <comment>B stands for Billions</comment>
-        <translation type="unfinished"/>
+        <translation>B</translation>
     </message>
     <message>
         <source>%1 views</source>
@@ -227,7 +227,7 @@
     </message>
     <message numerus="yes">
         <source>%n week(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>&amp;n hafta önce</numerusform><numerusform>&amp;n hafta önce</numerusform></translation>
     </message>
 </context>
 <context>
@@ -281,7 +281,7 @@
     </message>
     <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>&amp;n İndirme</numerusform><numerusform>&amp;n İndirme</numerusform></translation>
     </message>
 </context>
 <context>
@@ -426,11 +426,11 @@
     <name>MainWindow</name>
     <message>
         <source>&amp;Window</source>
-        <translation>Pencere</translation>
+        <translation>&amp;Pencere</translation>
     </message>
     <message>
         <source>&amp;Minimize</source>
-        <translation>Küçült</translation>
+        <translation>&amp;Küçült</translation>
     </message>
     <message>
         <source>&amp;Stop</source>
@@ -674,11 +674,11 @@
     </message>
     <message>
         <source>Toggle &amp;Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Menü Çubuğunu Aç/Kapat</translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Menü</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -806,7 +806,7 @@
     </message>
     <message>
         <source>You can still access the menu bar by pressing the ALT key</source>
-        <translation type="unfinished"/>
+        <translation>ALT tuşuna basarak hala menü çubuğuna erişebilirsiniz</translation>
     </message>
 </context>
 <context>
@@ -856,7 +856,7 @@
     </message>
     <message>
         <source>Switched to %1</source>
-        <translation type="unfinished"/>
+        <translation>% 1 olarak değiştirildi</translation>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
@@ -905,7 +905,7 @@
     <name>PickMessage</name>
     <message>
         <source>Pick a video</source>
-        <translation type="unfinished"/>
+        <translation>Bir video seç</translation>
     </message>
 </context>
 <context>
@@ -1102,7 +1102,7 @@
     </message>
     <message>
         <source>&amp;Forward</source>
-        <translation type="unfinished"/>
+        <translation>&amp;İleri</translation>
     </message>
     <message>
         <source>Forward to %1</source>
