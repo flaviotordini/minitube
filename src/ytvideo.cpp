@@ -120,8 +120,13 @@ void YTVideo::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
         int format = -1;
         QString url;
         QString sig;
+        QStringRef sp;
         for (const QStringRef &urlParam : urlParams) {
             qDebug() << "urlParam" << urlParam;
+            if (sp.isNull() && urlParam.startsWith(QLatin1String("sp"))) {
+                int separator = urlParam.indexOf('=');
+                sp = urlParam.mid(separator + 1);
+            }
             if (urlParam.startsWith(QLatin1String("itag="))) {
                 int separator = urlParam.indexOf('=');
                 format = urlParam.mid(separator + 1).toInt();
@@ -146,7 +151,12 @@ void YTVideo::parseFmtUrlMap(const QString &fmtUrlMap, bool fromWebPage) {
         }
         if (format == -1 || url.isNull()) continue;
 
-        if (!sig.isEmpty()) url += QLatin1String("&signature=") + sig;
+        if (!sig.isEmpty()) {
+            if (sp.isEmpty())
+                url += QLatin1String("&signature=") + sig;
+            else
+                url += '&' + sp + '=' + sig;
+        }
 
         if (!url.contains(QLatin1String("ratebypass"))) url += QLatin1String("&ratebypass=yes");
 
