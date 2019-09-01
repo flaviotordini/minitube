@@ -123,12 +123,6 @@ void PlaylistModel::setActiveRow(int row, bool notify) {
         Video *previousVideo = m_activeVideo;
         m_activeVideo = videoAt(row);
 
-        int oldactiverow = m_activeRow;
-
-        if (rowExists(oldactiverow))
-            emit dataChanged(createIndex(oldactiverow, 0),
-                             createIndex(oldactiverow, columnCount() - 1));
-
         emit dataChanged(createIndex(m_activeRow, 0), createIndex(m_activeRow, columnCount() - 1));
         if (notify) emit activeVideoChanged(m_activeVideo, previousVideo);
 
