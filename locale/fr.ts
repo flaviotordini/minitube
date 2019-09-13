@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation type="unfinished"/>
+        <translation>Alimenté par %1</translation>
     </message>
     <message>
         <source>Open-source software</source>
@@ -856,7 +856,7 @@
     </message>
     <message>
         <source>Switched to %1</source>
-        <translation type="unfinished"/>
+        <translation>Basculé vers %1</translation>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
@@ -905,7 +905,7 @@
     <name>PickMessage</name>
     <message>
         <source>Pick a video</source>
-        <translation type="unfinished"/>
+        <translation>Choisir une vidéo</translation>
     </message>
 </context>
 <context>
@@ -1102,7 +1102,7 @@
     </message>
     <message>
         <source>&amp;Forward</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Continuer</translation>
     </message>
     <message>
         <source>Forward to %1</source>

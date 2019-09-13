@@ -27,11 +27,11 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation type="unfinished"/>
+        <translation>При помощи %1</translation>
     </message>
     <message>
         <source>Open-source software</source>
-        <translation type="unfinished"/>
+        <translation>ПО с открытым исходным кодом</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -116,7 +116,7 @@
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>У вас %n новых видео()</numerusform><numerusform>У вас %n новых видео()</numerusform><numerusform>У вас %n новых видео()</numerusform><numerusform>У вас %n новых видео()</numerusform></translation>
     </message>
 </context>
 <context>
@@ -197,11 +197,11 @@
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n час назад ()</numerusform><numerusform>%n часов назад ()</numerusform><numerusform>%n часов назад ()</numerusform><numerusform>%n час(-а, -ов) назад</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n день назад</numerusform><numerusform>%n дней (-ня) назад</numerusform><numerusform>%n дней (-ня) назад</numerusform><numerusform>%n дней (-ня) назад</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
@@ -210,17 +210,17 @@
     <message>
         <source>K</source>
         <comment>K as in Kilo, i.e. thousands</comment>
-        <translation type="unfinished"/>
+        <translation>Тыс</translation>
     </message>
     <message>
         <source>M</source>
         <comment>M stands for Millions</comment>
-        <translation type="unfinished"/>
+        <translation>Млн</translation>
     </message>
     <message>
         <source>B</source>
         <comment>B stands for Billions</comment>
-        <translation type="unfinished"/>
+        <translation>Млрд</translation>
     </message>
     <message>
         <source>%1 views</source>
@@ -675,11 +675,11 @@
     </message>
     <message>
         <source>Toggle &amp;Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>Скрыть &amp;Меню</translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Меню</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -807,7 +807,7 @@
     </message>
     <message>
         <source>You can still access the menu bar by pressing the ALT key</source>
-        <translation type="unfinished"/>
+        <translation>Открыть меню можно нажатием ALT</translation>
     </message>
 </context>
 <context>
@@ -906,7 +906,7 @@
     <name>PickMessage</name>
     <message>
         <source>Pick a video</source>
-        <translation type="unfinished"/>
+        <translation>Посмотреть видео</translation>
     </message>
 </context>
 <context>
