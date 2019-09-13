@@ -19,7 +19,7 @@ signals:
 
 private slots:
     void gotVideoInfo(const QByteArray &bytes);
-    void errorVideoInfo(const QString &message);
+    void emitError(const QString &message);
     void scrapeWebPage(const QByteArray &bytes);
     void parseJsPlayer(const QByteArray &bytes);
 
@@ -46,6 +46,7 @@ private:
     QString dashManifestUrl;
     QString jsPlayer;
     QMap<int, QString> urlMap;
+    bool webPageLoaded = false;
 };
 
 #endif // YTVIDEO_H
