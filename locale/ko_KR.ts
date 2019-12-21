@@ -69,7 +69,7 @@
     <name>ActivationView</name>
     <message>
         <source>Please license %1</source>
-        <translation>%1을(를) 구입 하세요</translation>
+        <translation>%1을(를) 구입하세요</translation>
     </message>
     <message>
         <source>This demo has expired.</source>
@@ -145,11 +145,11 @@
     </message>
     <message>
         <source>Last Watched</source>
-        <translation>마지막 시청</translation>
+        <translation>최근 본 동영상</translation>
     </message>
     <message>
         <source>Most Watched</source>
-        <translation>가장 많이 시청</translation>
+        <translation>가장 많이 본 동영상</translation>
     </message>
     <message>
         <source>Sort by</source>
@@ -161,11 +161,11 @@
     </message>
     <message>
         <source>Show Updated</source>
-        <translation>업데이트 표시</translation>
+        <translation>업데이트</translation>
     </message>
     <message>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation>구독 항목이 없습니다. 채널을 구독 하려면 별 아이콘을 사용 하세요.</translation>
+        <translation>구독 항목이 없습니다. 채널을 구독하려면 별 아이콘을 사용하세요.</translation>
     </message>
     <message>
         <source>All Videos</source>
@@ -185,26 +185,26 @@
     </message>
     <message>
         <source>There are no updated subscriptions at this time.</source>
-        <translation>현재 업데이트된 구독이 없습니다.</translation>
+        <translation>구독 목록이 최신입니다.</translation>
     </message>
 </context>
 <context>
     <name>DataUtils</name>
     <message>
         <source>Just now</source>
-        <translation>지금</translation>
+        <translation>방금 전</translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n시간 전</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%s일 전</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n달 전</numerusform></translation>
     </message>
     <message>
         <source>K</source>
@@ -223,7 +223,7 @@
     </message>
     <message>
         <source>%1 views</source>
-        <translation>%1 조회수</translation>
+        <translation>조회수 %1</translation>
     </message>
     <message numerus="yes">
         <source>%n week(s) ago</source>
@@ -273,7 +273,7 @@
     <name>DownloadManager</name>
     <message>
         <source>%1 downloaded in %2</source>
-        <translation>%1 downloaded in %2</translation>
+        <translation>%2 중 %1 다운로드 완료</translation>
     </message>
     <message>
         <source>Download finished</source>
@@ -1018,7 +1018,7 @@
     </message>
     <message>
         <source>Long</source>
-        <translation>김</translation>
+        <translation>오래 전</translation>
     </message>
     <message>
         <source>Less than 4 minutes</source>
@@ -1079,7 +1079,7 @@
     </message>
     <message>
         <source>Enter</source>
-        <translation>언터</translation>
+        <translation>이동</translation>
     </message>
     <message>
         <source>Recent keywords</source>
@@ -1106,11 +1106,11 @@
     </message>
     <message>
         <source>Forward to %1</source>
-        <translation>%1(으)로 이동</translation>
+        <translation>앞으로 (%1)</translation>
     </message>
     <message>
         <source>Back to %1</source>
-        <translation>%1(으)로 이동</translation>
+        <translation>뒤로 (%1)</translation>
     </message>
 </context>
 <context>
@@ -1121,7 +1121,7 @@
     </message>
     <message>
         <source>Did you mean: %1</source>
-        <translation>원했던 단어: %1</translation>
+        <translation>이것을 검색하셨나요: %1</translation>
     </message>
 </context>
 <context>
@@ -1161,7 +1161,7 @@
     <name>YTRegions</name>
     <message>
         <source>Algeria</source>
-        <translation>알제리아</translation>
+        <translation>알제리</translation>
     </message>
     <message>
         <source>Argentina</source>
@@ -1337,7 +1337,7 @@
     </message>
     <message>
         <source>United Arab Emirates</source>
-        <translation>아랍에메레이트</translation>
+        <translation>아랍 에미리트</translation>
     </message>
     <message>
         <source>United Kingdom</source>

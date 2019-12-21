@@ -209,17 +209,17 @@
     <message>
         <source>K</source>
         <comment>K as in Kilo, i.e. thousands</comment>
-        <translation type="unfinished"/>
+        <translation>K</translation>
     </message>
     <message>
         <source>M</source>
         <comment>M stands for Millions</comment>
-        <translation type="unfinished"/>
+        <translation>M</translation>
     </message>
     <message>
         <source>B</source>
         <comment>B stands for Billions</comment>
-        <translation type="unfinished"/>
+        <translation>B</translation>
     </message>
     <message>
         <source>%1 views</source>

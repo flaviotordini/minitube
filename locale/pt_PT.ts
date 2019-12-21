@@ -27,11 +27,11 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation type="unfinished"/>
+        <translation>Animado por %1</translation>
     </message>
     <message>
         <source>Open-source software</source>
-        <translation type="unfinished"/>
+        <translation>Programa Livre</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -115,7 +115,7 @@
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Você tem %n novos vídeos</numerusform><numerusform>Você tem %n novos vídeos</numerusform></translation>
     </message>
 </context>
 <context>
@@ -196,30 +196,30 @@
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>há %n horas</numerusform><numerusform>há %n horas</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>há %n dias</numerusform><numerusform>há %n dias</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>há %n mês</numerusform><numerusform>há %n meses</numerusform></translation>
     </message>
     <message>
         <source>K</source>
         <comment>K as in Kilo, i.e. thousands</comment>
-        <translation type="unfinished"/>
+        <translation>K</translation>
     </message>
     <message>
         <source>M</source>
         <comment>M stands for Millions</comment>
-        <translation type="unfinished"/>
+        <translation>M</translation>
     </message>
     <message>
         <source>B</source>
         <comment>B stands for Billions</comment>
-        <translation type="unfinished"/>
+        <translation>B</translation>
     </message>
     <message>
         <source>%1 views</source>
@@ -227,7 +227,7 @@
     </message>
     <message numerus="yes">
         <source>%n week(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>há %n semanas</numerusform><numerusform>há %n semanas</numerusform></translation>
     </message>
 </context>
 <context>
@@ -281,7 +281,7 @@
     </message>
     <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n Transferência</numerusform><numerusform>%n Transferências</numerusform></translation>
     </message>
 </context>
 <context>

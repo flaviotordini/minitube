@@ -178,7 +178,7 @@
     </message>
     <message>
         <source>Mark as Watched</source>
-        <translation>Отметить как Просмотренное.</translation>
+        <translation>Отметить как просмотренное</translation>
     </message>
     <message>
         <source>Unsubscribe</source>
@@ -201,11 +201,11 @@
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation><numerusform>%n день назад</numerusform><numerusform>%n дней (-ня) назад</numerusform><numerusform>%n дней (-ня) назад</numerusform><numerusform>%n дней (-ня) назад</numerusform></translation>
+        <translation><numerusform>%n день назад</numerusform><numerusform>%n дней (-ня) назад</numerusform><numerusform>%n дней (-ня) назад</numerusform><numerusform>%n день (суток) назад</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n месяц назад ()</numerusform><numerusform>%n месяца назад ()</numerusform><numerusform>%n месяцев назад ()</numerusform><numerusform>%n месяц(-ев) назад</numerusform></translation>
     </message>
     <message>
         <source>K</source>
@@ -228,7 +228,7 @@
     </message>
     <message numerus="yes">
         <source>%n week(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n неделю назад ()</numerusform><numerusform>%n недель назад ()</numerusform><numerusform>%n недель назад ()</numerusform><numerusform>%n неделя назад ()</numerusform></translation>
     </message>
 </context>
 <context>
@@ -1103,7 +1103,7 @@
     </message>
     <message>
         <source>&amp;Forward</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Вверх</translation>
     </message>
     <message>
         <source>Forward to %1</source>
