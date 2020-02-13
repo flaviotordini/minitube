@@ -110,7 +110,7 @@ void ChannelAggregator::parseWebPage(const QByteArray &bytes) {
     if (re.indexIn(bytes) != -1) {
         QString videoId = re.cap(1);
         QString latestVideoId = currentChannel->latestVideoId();
-        // qDebug() << "Comparing" << videoId << latestVideoId;
+        qDebug() << "Comparing" << videoId << latestVideoId;
         hasNewVideos = videoId != latestVideoId;
     }
     if (hasNewVideos) {

@@ -366,7 +366,7 @@ void YTVideo::parseJsPlayer(const QByteArray &bytes) {
             break;
         }
     }
-    if (sigFuncName.isEmpty()) qDebug() << "Empty signature function name";
+    if (sigFuncName.isEmpty()) qDebug() << "Empty signature function name" << jsPlayer;
 
     // parseFmtUrlMap(fmtUrlMap, true);
     getVideoInfo();
