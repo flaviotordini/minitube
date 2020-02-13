@@ -27,11 +27,11 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation type="unfinished"/>
+        <translation>Angetrieben von %1</translation>
     </message>
     <message>
         <source>Open-source software</source>
-        <translation type="unfinished"/>
+        <translation>Open-Source-Software</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -54,7 +54,7 @@
     <name>ActivationDialog</name>
     <message>
         <source>Enter your License Details</source>
-        <translation>Geben Sie Ihre Lizenzierungsinformationen ein</translation>
+        <translation>Geben Sie Ihre Lizensierungsinformationen ein</translation>
     </message>
     <message>
         <source>&amp;Email:</source>
@@ -115,7 +115,7 @@
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Sie haben %n neues Video</numerusform><numerusform>Sie haben %n neue Videos</numerusform></translation>
     </message>
 </context>
 <context>
@@ -196,30 +196,30 @@
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>vor %n Stunde</numerusform><numerusform>Vor %n Stunden</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>vor %n Tag</numerusform><numerusform>vor %n Tagen</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>vor %n Monat</numerusform><numerusform>vor %n Monaten</numerusform></translation>
     </message>
     <message>
         <source>K</source>
         <comment>K as in Kilo, i.e. thousands</comment>
-        <translation type="unfinished"/>
+        <translation>Tsd</translation>
     </message>
     <message>
         <source>M</source>
         <comment>M stands for Millions</comment>
-        <translation type="unfinished"/>
+        <translation>Mio</translation>
     </message>
     <message>
         <source>B</source>
         <comment>B stands for Billions</comment>
-        <translation type="unfinished"/>
+        <translation>Mrd</translation>
     </message>
     <message>
         <source>%1 views</source>
@@ -227,7 +227,7 @@
     </message>
     <message numerus="yes">
         <source>%n week(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>vor %n Woche</numerusform><numerusform>vor %n Wochen</numerusform></translation>
     </message>
 </context>
 <context>
@@ -281,7 +281,7 @@
     </message>
     <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n Download</numerusform><numerusform>%n Downloads</numerusform></translation>
     </message>
 </context>
 <context>
@@ -674,11 +674,11 @@
     </message>
     <message>
         <source>Toggle &amp;Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Menüleiste umschalten</translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Menü</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -806,7 +806,7 @@
     </message>
     <message>
         <source>You can still access the menu bar by pressing the ALT key</source>
-        <translation type="unfinished"/>
+        <translation>Sie können die Menüleiste weiterhin durch Drücken der ALT-Taste erreichen</translation>
     </message>
 </context>
 <context>
@@ -856,7 +856,7 @@
     </message>
     <message>
         <source>Switched to %1</source>
-        <translation type="unfinished"/>
+        <translation>Umgeschaltet zu %1</translation>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
@@ -905,7 +905,7 @@
     <name>PickMessage</name>
     <message>
         <source>Pick a video</source>
-        <translation type="unfinished"/>
+        <translation>Wählen Sie ein Video aus</translation>
     </message>
 </context>
 <context>
@@ -1102,7 +1102,7 @@
     </message>
     <message>
         <source>&amp;Forward</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Weiter</translation>
     </message>
     <message>
         <source>Forward to %1</source>
