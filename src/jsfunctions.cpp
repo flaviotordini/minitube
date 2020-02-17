@@ -50,8 +50,8 @@ JsFunctions::JsFunctions(const QString &url, QObject *parent)
 }
 
 void JsFunctions::parseJs(const QString &js) {
+    qDebug() << "Js Parsing" << js;
     if (js.isEmpty()) return;
-    // qDebug() << "Parsing" << js;
     if (engine) delete engine;
     engine = new QJSEngine(this);
     engine->evaluate(js);
@@ -71,6 +71,7 @@ QString JsFunctions::jsPath() {
 }
 
 void JsFunctions::loadJs() {
+    qDebug() << "Js Loading" << url;
     QUrl url(this->url);
     QUrlQuery q;
     q.addQueryItem("v", Constants::VERSION);
