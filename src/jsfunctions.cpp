@@ -42,9 +42,11 @@ JsFunctions::JsFunctions(const QString &url, QObject *parent)
                                                  QDateTime::currentDateTime().toTime_t() - 1800;
         if (stale) loadJs();
     } else {
+        /*
         QFile resFile(QLatin1String(":/") + jsFilename());
         resFile.open(QIODevice::ReadOnly | QIODevice::Text);
         parseJs(QString::fromUtf8(resFile.readAll()));
+        */
         loadJs();
     }
 }
