@@ -34,6 +34,7 @@ $END_LICENSE */
 #include "videoarea.h"
 #ifdef APP_ACTIVATION
 #include "activation.h"
+#include "activationview.h"
 #endif
 #ifdef APP_EXTRA
 #include "extra.h"
@@ -132,7 +133,16 @@ void MediaView::initialize() {
 #ifdef APP_ACTIVATION
     demoTimer = new QTimer(this);
     demoTimer->setSingleShot(true);
-    connect(demoTimer, &QTimer::timeout, mainWindow, &MainWindow::showActivationView,
+    connect(
+            demoTimer, &QTimer::timeout, this,
+            [this] {
+                if (media->state() != Media::PlayingState) return;
+                media->pause();
+                connect(
+                        ActivationView::instance(), &ActivationView::done, media,
+                        [this] { media->play(); }, Qt::UniqueConnection);
+                MainWindow::instance()->showActivationView();
+            },
             Qt::QueuedConnection);
 #endif
 
@@ -497,8 +507,8 @@ void MediaView::gotStreamUrl(const QString &streamUrl, const QString &audioUrl) 
     }
 
 #ifdef APP_ACTIVATION
-    if (!Activation::instance().isActivated() && !demoTimer->isActive()) {
-        int ms = (60000 * 5) + (qrand() % (60000 * 5));
+    if (!demoTimer->isActive() && !Activation::instance().isActivated()) {
+        int ms = (60000 * 2) + (qrand() % (60000 * 2));
         demoTimer->start(ms);
     }
 #endif
