@@ -144,6 +144,7 @@ private:
 
     QVector<VideoSource *> history;
     QVector<QAction *> currentVideoActions;
+    QVector<QAction *> playingVideoActions;
 
     qint64 currentVideoSize;
 

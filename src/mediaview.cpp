@@ -163,6 +163,19 @@ void MediaView::initialize() {
     for (auto *name : videoActionNames) {
         currentVideoActions.append(mainWindow->getAction(name));
     }
+
+    for (int i = 0; i < 10; ++i) {
+        QAction *action = new QAction(QString());
+        action->setShortcut(Qt::Key_0 + i);
+        connect(action, &QAction::triggered, this, [this, i] {
+            qint64 duration = media->duration();
+            // dur : pos = 100 : i*10
+            qint64 position = (duration * (i * 10)) / 100;
+            media->seek(position);
+        });
+        addAction(action);
+        playingVideoActions << action;
+    }
 }
 
 void MediaView::setMedia(Media *media) {
@@ -328,6 +341,10 @@ void MediaView::mediaStateChanged(Media::State state) {
     } else if (state == Media::ErrorState) {
         handleError(media->errorString());
     }
+
+    bool enablePlayingVideoActions = state == Media::PlayingState || state == Media::PausedState;
+    for (QAction *action : qAsConst(playingVideoActions))
+        action->setEnabled(enablePlayingVideoActions);
 
     if (state == Media::PlayingState) {
         bool res = Idle::preventDisplaySleep(QString("%1 is playing").arg(Constants::NAME));
