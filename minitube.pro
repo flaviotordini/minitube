@@ -12,8 +12,14 @@ DEFINES += APP_UNIX_NAME="$$APP_UNIX_NAME"
 
 DEFINES += APP_SNAPSHOT
 
-message(Building $${APP_NAME} $${VERSION})
-message(Qt $$[QT_VERSION] in $$[QT_INSTALL_PREFIX])
+CONFIG -= debug_and_release
+CONFIG(debug, debug|release): {
+    message(Building for debug)
+}
+CONFIG(release, debug|release): {
+    message(Building for release)
+    DEFINES *= QT_NO_DEBUG_OUTPUT
+}
 
 DEFINES *= QT_NO_DEBUG_OUTPUT
 DEFINES *= QT_USE_QSTRINGBUILDER
