@@ -82,3 +82,17 @@ SearchView *[recentItem="true"], SearchView *[recentHeader="true"] {
 SearchView *[recentItem="true"]:focus {
     outline: 1px solid palette(highlight);
 }
+
+MessageBar {
+    background: #f9f7c8;
+    border-radius: 5px;
+}
+
+MessageBar QLabel {
+    color: rgba(0,0,0,192);
+}
+
+MessageBar QToolButton {
+    background: transparent;
+    border: 0;
+}

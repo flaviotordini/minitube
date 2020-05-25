@@ -21,6 +21,7 @@ AppsWidget::AppsWidget(QWidget *parent) : QWidget(parent) {
     const QString ext = "deb";
 #endif
 
+    setupApp("Sofa", "sofa." + ext);
     setupApp("Finetune", "finetune." + ext);
     setupApp("Musictube", "musictube." + ext);
     setupApp("Musique", "musique." + ext);

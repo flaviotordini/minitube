@@ -42,6 +42,7 @@ $END_LICENSE */
 #include "clickablelabel.h"
 #include "iconutils.h"
 #include "mainwindow.h"
+#include "messagebar.h"
 #include "painterutils.h"
 
 namespace {
@@ -60,10 +61,27 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     vLayout->setMargin(padding);
     vLayout->setSpacing(0);
 
-    // hidden message widget
-    message = new QLabel(this);
-    message->hide();
-    vLayout->addWidget(message);
+#if defined APP_MAC && !defined APP_MAC_STORE
+    MessageBar *messageBar = new MessageBar();
+    messageBar->hide();
+    vLayout->addWidget(messageBar, 0, Qt::AlignCenter);
+    vLayout->addSpacing(padding);
+
+    QSettings settings;
+    const QString key = "sofa";
+
+    if (!settings.contains(key) && Activation::instance().isActivated()) {
+        QString msg = tr("Need a remote control for %1? Try %2!").arg(Constants::NAME).arg("Sofa");
+        msg = "<a href='https://" + QLatin1String(Constants::ORG_DOMAIN) + '/' + key +
+              "' style = 'text-decoration:none;color:palette(windowText)' > " + msg + "</a>";
+        messageBar->setMessage(msg);
+        connect(messageBar, &MessageBar::closed, this, [key] {
+            QSettings settings;
+            settings.setValue(key, true);
+        });
+        messageBar->show();
+    }
+#endif
 
     vLayout->addStretch();
 

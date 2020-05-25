@@ -36,6 +36,7 @@ include(lib/media/media.pri)
 include(src/qtsingleapplication/qtsingleapplication.pri)
 
 HEADERS += src/video.h \
+    src/messagebar.h \
     src/spacer.h \
     src/constants.h \
     src/playlistitemdelegate.h \
@@ -111,6 +112,7 @@ HEADERS += src/video.h \
     src/videoarea.h \
     src/searchlineedit.h
 SOURCES += src/main.cpp \
+    src/messagebar.cpp \
     src/spacer.cpp \
     src/video.cpp \
     src/videomimedata.cpp \

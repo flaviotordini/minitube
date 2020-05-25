@@ -66,7 +66,6 @@ private:
     QBoxLayout *recentKeywordsLayout;
     QLabel *recentChannelsLabel;
     QBoxLayout *recentChannelsLayout;
-    QLabel *message;
 
     QStringList recentKeywords;
     QStringList recentChannels;
