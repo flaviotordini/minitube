@@ -167,6 +167,7 @@ void MediaView::initialize() {
     for (int i = 0; i < 10; ++i) {
         QAction *action = new QAction(QString());
         action->setShortcut(Qt::Key_0 + i);
+        action->setAutoRepeat(false);
         connect(action, &QAction::triggered, this, [this, i] {
             qint64 duration = media->duration();
             // dur : pos = 100 : i*10
