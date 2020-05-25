@@ -31,7 +31,8 @@ Temporary::Temporary() { }
 QString Temporary::filename() {
     static const QString tempDir = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
 
-    QString tempFile = tempDir + "/" + Constants::UNIX_NAME + "-" + QString::number(qrand());
+    QString tempFile = tempDir + "/" + Constants::UNIX_NAME + "-" +
+                       QString::number(QRandomGenerator::global()->generate());
 
 #ifdef APP_LINUX
     if (userName.isNull()) {

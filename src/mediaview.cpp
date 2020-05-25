@@ -525,7 +525,7 @@ void MediaView::gotStreamUrl(const QString &streamUrl, const QString &audioUrl) 
 
 #ifdef APP_ACTIVATION
     if (!demoTimer->isActive() && !Activation::instance().isActivated()) {
-        int ms = (60000 * 2) + (qrand() % (60000 * 2));
+        int ms = (60000 * 2) + (QRandomGenerator::global()->generate() % (60000 * 2));
         demoTimer->start(ms);
     }
 #endif

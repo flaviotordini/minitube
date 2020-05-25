@@ -66,9 +66,6 @@ int main(int argc, char **argv) {
     qSetMessagePattern("[%{function}] %{message}");
 #endif
 
-    // Seed random number generator
-    qsrand(QDateTime::currentDateTime().toTime_t());
-
 #ifdef MEDIA_MPV
     QSurfaceFormat format = QSurfaceFormat::defaultFormat();
 #ifdef APP_MAC
