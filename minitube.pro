@@ -265,3 +265,8 @@ unix:!mac {
 }
 
 mac|win32|contains(DEFINES, APP_UBUNTU):include(local/local.pri)
+
+message(CONFIG: $$CONFIG)
+message(DEFINES: $$DEFINES)
+message(QMAKE_CXXFLAGS: $$QMAKE_CXXFLAGS)
+message(QMAKE_LFLAGS: $$QMAKE_LFLAGS)
