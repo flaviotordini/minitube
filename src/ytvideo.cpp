@@ -66,7 +66,7 @@ void YTVideo::getVideoInfo() {
                            .arg(videoId, elTypes.at(elIndex)));
     }
 
-    QObject *reply = HttpUtils::yt().get(url);
+    QObject *reply = HttpUtils::stealthAndNotCached().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(gotVideoInfo(QByteArray)));
     connect(reply, SIGNAL(error(QString)), SLOT(emitError(QString)));
 
@@ -332,7 +332,7 @@ void YTVideo::scrapeWebPage(const QByteArray &bytes) {
                     jsPlayerIdRe.indexIn(jsPlayerUrl);
                     QString jsPlayerId = jsPlayerRe.cap(1);
                     */
-        QObject *reply = HttpUtils::yt().get(jsPlayerUrl);
+        QObject *reply = HttpUtils::stealthAndNotCached().get(jsPlayerUrl);
         connect(reply, SIGNAL(data(QByteArray)), SLOT(parseJsPlayer(QByteArray)));
         connect(reply, SIGNAL(error(QString)), SLOT(emitError(QString)));
     }

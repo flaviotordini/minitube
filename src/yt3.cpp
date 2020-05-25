@@ -78,7 +78,7 @@ void YT3::testApiKey() {
     q.addQueryItem("chart", "mostPopular");
     q.addQueryItem("maxResults", "1");
     url.setQuery(q);
-    QObject *reply = HttpUtils::yt().get(url);
+    QObject *reply = HttpUtils::stealthAndNotCached().get(url);
     connect(reply, SIGNAL(finished(HttpReply)), SLOT(testResponse(HttpReply)));
 }
 

@@ -40,6 +40,16 @@ Http &HttpUtils::yt() {
     return *h;
 }
 
+Http &HttpUtils::stealthAndNotCached() {
+    static Http *h = [] {
+        Http *http = new Http;
+        http->addRequestHeader("User-Agent", stealthUserAgent());
+
+        return http;
+    }();
+    return *h;
+}
+
 void HttpUtils::clearCaches() {
     LocalCache::instance("yt")->clear();
     LocalCache::instance("http")->clear();
