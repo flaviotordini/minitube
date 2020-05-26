@@ -679,7 +679,7 @@ void MainWindow::createActions() {
         // add actions to the MainWindow so that they work
         // when the menu is hidden
         addAction(action);
-        MainWindow::instance()->setupAction(action);
+        setupAction(action);
     }
 }
 
