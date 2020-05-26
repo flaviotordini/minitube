@@ -335,6 +335,8 @@ void YTVideo::scrapeWebPage(const QByteArray &bytes) {
         QObject *reply = HttpUtils::stealthAndNotCached().get(jsPlayerUrl);
         connect(reply, SIGNAL(data(QByteArray)), SLOT(parseJsPlayer(QByteArray)));
         connect(reply, SIGNAL(error(QString)), SLOT(emitError(QString)));
+    } else {
+        qDebug() << "Cannot find jsPlayer";
     }
 }
 
