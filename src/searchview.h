@@ -31,6 +31,7 @@ class YTSuggester;
 class ChannelSuggest;
 class Suggestion;
 class ClickableLabel;
+class MessageBar;
 
 class SearchView : public View {
     Q_OBJECT
@@ -58,9 +59,11 @@ private slots:
     void onChannelSuggestions(const QVector<Suggestion *> &suggestions);
 
 private:
+    void maybeShowMessage();
     YTSuggester *youtubeSuggest;
     ChannelSuggest *channelSuggest;
 
+    MessageBar *messageBar;
     SearchWidget *queryEdit;
     QLabel *recentKeywordsLabel;
     QBoxLayout *recentKeywordsLayout;

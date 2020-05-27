@@ -61,27 +61,11 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     vLayout->setMargin(padding);
     vLayout->setSpacing(0);
 
-#if defined APP_MAC && !defined APP_MAC_STORE
-    MessageBar *messageBar = new MessageBar();
+    messageBar = new MessageBar();
     messageBar->hide();
     vLayout->addWidget(messageBar, 0, Qt::AlignCenter);
     vLayout->addSpacing(padding);
-
-    QSettings settings;
-    const QString key = "sofa";
-
-    if (!settings.contains(key) && Activation::instance().isActivated()) {
-        QString msg = tr("Need a remote control for %1? Try %2!").arg(Constants::NAME).arg("Sofa");
-        msg = "<a href='https://" + QLatin1String(Constants::ORG_DOMAIN) + '/' + key +
-              "' style = 'text-decoration:none;color:palette(windowText)' > " + msg + "</a>";
-        messageBar->setMessage(msg);
-        connect(messageBar, &MessageBar::closed, this, [key] {
-            QSettings settings;
-            settings.setValue(key, true);
-        });
-        messageBar->show();
-    }
-#endif
+    maybeShowMessage();
 
     vLayout->addStretch();
 
@@ -446,4 +430,54 @@ void SearchView::suggestionAccepted(Suggestion *suggestion) {
 
 void SearchView::onChannelSuggestions(const QVector<Suggestion *> &suggestions) {
     lastChannelSuggestions = suggestions;
+}
+
+void SearchView::maybeShowMessage() {
+    QSettings settings;
+    QString key;
+
+    bool showMessages = true;
+#ifdef APP_ACTIVATION
+    showMessages = Activation::instance().isActivated();
+#endif
+
+#if defined APP_MAC && !defined APP_MAC_STORE
+    if (showMessages && !settings.contains(key = "sofa")) {
+        QString msg = tr("Need a remote control for %1? Try %2!").arg(Constants::NAME).arg("Sofa");
+        msg = "<a href='https://" + QLatin1String(Constants::ORG_DOMAIN) + '/' + key +
+              "' style = 'text-decoration:none;color:palette(windowText)' > " + msg + "</a>";
+        messageBar->setMessage(msg);
+        connect(messageBar, &MessageBar::closed, this, [key] {
+            QSettings settings;
+            settings.setValue(key, true);
+        });
+        messageBar->show();
+        showMessages = false;
+    }
+#endif
+
+    if (showMessages) {
+        key = "donate" + QLatin1String(Constants::VERSION);
+        if (!settings.contains(key)) {
+            bool oneYearUsage = true;
+#ifdef APP_ACTIVATION
+            oneYearUsage = (QDateTime::currentSecsSinceEpoch() -
+                            Activation::instance().getLicenseTimestamp()) > 86400 * 365;
+#endif
+            if (oneYearUsage) {
+                QString msg =
+                        tr("I keep improving %1 to make it the best I can. Support this work!")
+                                .arg(Constants::NAME);
+                msg = "<a href='https://" + QLatin1String(Constants::ORG_DOMAIN) + "/donate" +
+                      "' style = 'text-decoration:none;color:palette(windowText)' > " + msg +
+                      "</a>";
+                messageBar->setMessage(msg);
+                connect(messageBar, &MessageBar::closed, this, [key] {
+                    QSettings settings;
+                    settings.setValue(key, true);
+                });
+                messageBar->show();
+            }
+        }
+    }
 }
