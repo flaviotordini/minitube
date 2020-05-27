@@ -312,7 +312,7 @@ void YTVideo::scrapeWebPage(const QByteArray &bytes) {
     }
 
     if (fmtUrlMap.isEmpty() && urlMap.isEmpty()) {
-        qWarning() << "Cannot get fmtUrlMap from video page. Trying next el";
+        qDebug() << "Cannot get fmtUrlMap from video page. Trying next el";
         // elIndex++;
         // getVideoInfo();
         // return;
