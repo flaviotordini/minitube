@@ -1093,7 +1093,7 @@ void MainWindow::visitSite() {
 }
 
 void MainWindow::donate() {
-    QUrl url(QString(Constants::WEBSITE) + "#donate");
+    QUrl url("https://" + QLatin1String(Constants::ORG_DOMAIN) + "/donate");
     showMessage(QString(tr("Opening %1").arg(url.toString())));
     QDesktopServices::openUrl(url);
 }
