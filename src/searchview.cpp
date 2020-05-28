@@ -267,7 +267,6 @@ void SearchView::updateRecentKeywords() {
         ClickableLabel *item;
         if (recentKeywordsLayout->count() - 1 >= counter) {
             item = qobject_cast<ClickableLabel *>(recentKeywordsLayout->itemAt(counter)->widget());
-
         } else {
             item = new ClickableLabel();
 #ifdef APP_MAC
@@ -287,6 +286,17 @@ void SearchView::updateRecentKeywords() {
                     }
                 }
             });
+            item->setContextMenuPolicy(Qt::ActionsContextMenu);
+            auto removeAction = new QAction(tr("Remove"));
+            item->addAction(removeAction);
+            connect(removeAction, &QAction::triggered, item, [item] {
+                QSettings settings;
+                QStringList keywords = settings.value(recentKeywordsKey).toStringList();
+                QString keyword = item->property("keyword").toString();
+                keywords.removeOne(keyword);
+                settings.setValue(recentKeywordsKey, keywords);
+                item->deleteLater();
+            });
             recentKeywordsLayout->addWidget(item);
         }
 
@@ -295,6 +305,7 @@ void SearchView::updateRecentKeywords() {
             item->setStatusTip(link);
         else
             item->setStatusTip(QString());
+        item->setProperty("keyword", keyword);
 
         disconnect(item, &ClickableLabel::clicked, nullptr, nullptr);
         connect(item, &ClickableLabel::clicked, this, [this, link]() { watchKeywords(link); });
@@ -334,6 +345,7 @@ void SearchView::updateRecentChannels() {
         }
 
         ClickableLabel *item = new ClickableLabel(display);
+        item->setProperty("keyword", keyword);
 #ifdef APP_MAC
         item->setPalette(p);
 #endif
@@ -343,6 +355,17 @@ void SearchView::updateRecentChannels() {
         connect(item, &ClickableLabel::clicked, [this, link]() { watchChannel(link); });
         connect(item, &ClickableLabel::hovered, item, [item](bool value) {
             item->setForegroundRole(value ? QPalette::Highlight : QPalette::WindowText);
+        });
+        item->setContextMenuPolicy(Qt::ActionsContextMenu);
+        auto removeAction = new QAction(tr("Remove"));
+        item->addAction(removeAction);
+        connect(removeAction, &QAction::triggered, item, [item] {
+            QSettings settings;
+            QStringList keywords = settings.value(recentChannelsKey).toStringList();
+            QString keyword = item->property("keyword").toString();
+            keywords.removeOne(keyword);
+            settings.setValue(recentChannelsKey, keywords);
+            item->deleteLater();
         });
         recentChannelsLayout->addWidget(item);
     }

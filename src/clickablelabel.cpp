@@ -10,6 +10,7 @@ ClickableLabel::ClickableLabel(const QString &text, QWidget *parent) : QLabel(te
 
 void ClickableLabel::mouseReleaseEvent(QMouseEvent *e) {
     if (e->button() == Qt::LeftButton && rect().contains(e->pos())) emit clicked();
+    QLabel::mouseReleaseEvent(e);
 }
 
 void ClickableLabel::leaveEvent(QEvent *e) {
