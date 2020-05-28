@@ -1121,7 +1121,6 @@ void MainWindow::quit() {
     ChannelAggregator::instance()->stop();
     ChannelAggregator::instance()->cleanup();
     Database::shutdown();
-    HttpUtils::clearCaches();
     qApp->quit();
 }
 
