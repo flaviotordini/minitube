@@ -52,7 +52,7 @@ JsFunctions::JsFunctions(const QString &url, QObject *parent)
 }
 
 void JsFunctions::parseJs(const QString &js) {
-    qDebug() << "Js Parsing" << js;
+    // qDebug() << "Js Parsing" << js;
     if (js.isEmpty()) return;
     if (engine) delete engine;
     engine = new QJSEngine(this);
