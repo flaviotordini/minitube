@@ -27,6 +27,7 @@ private:
     void getVideoInfo();
     void parseFmtUrlMap(const QString &fmtUrlMap);
     void loadWebPage();
+    void loadEmbedPage();
     void captureFunction(const QString &name, const QString &js);
     void captureObject(const QString &name, const QString &js);
     QString decryptSignature(const QString &s);

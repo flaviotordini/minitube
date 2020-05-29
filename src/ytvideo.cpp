@@ -153,6 +153,7 @@ void YTVideo::gotVideoInfo(const QByteArray &bytes) {
 */
 
     if (urlMap.isEmpty()) {
+        qDebug() << "empty urlMap, trying next el";
         elIndex++;
         getVideoInfo();
         return;
@@ -268,13 +269,42 @@ void YTVideo::loadWebPage() {
     q.addQueryItem("bpctr", "9999999999");
     url.setQuery(q);
 
-    // QUrl url("https://www.youtube.com/embed/" + videoId);
-
     qDebug() << "Loading webpage" << url;
     QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(scrapeWebPage(QByteArray)));
     connect(reply, SIGNAL(error(QString)), SLOT(emitError(QString)));
     // see you in scrapWebPage(QByteArray)
+}
+
+void YTVideo::loadEmbedPage() {
+    QUrl url("https://www.youtube.com/embed/" + videoId);
+    auto reply = HttpUtils::yt().get(url);
+    connect(reply, &HttpReply::finished, this, [this](const HttpReply &reply) {
+        if (!reply.isSuccessful()) {
+            getVideoInfo();
+            return;
+        }
+        static const QRegExp embedRE("\"sts\"\\s*:\\s*(\\d+)");
+        QString sts;
+        if (embedRE.indexIn(reply.body()) == -1) {
+            // qDebug() << "Cannot get sts" << reply.body();
+        } else {
+            sts = embedRE.cap(1);
+            qDebug() << "sts" << sts;
+        }
+        QUrlQuery q;
+        q.addQueryItem("video_id", videoId);
+        q.addQueryItem("eurl", "https://youtube.googleapis.com/v/" + videoId);
+        q.addQueryItem("sts", sts);
+        QUrl url = QUrl("https://www.youtube.com/get_video_info");
+        url.setQuery(q);
+        HttpReply *r = HttpUtils::stealthAndNotCached().get(url);
+        connect(r, &HttpReply::data, this, [this](const QByteArray &bytes) {
+            QByteArray decodedBytes = QByteArray::fromPercentEncoding(bytes);
+            gotVideoInfo(decodedBytes);
+        });
+        connect(r, &HttpReply::error, this, &YTVideo::emitError);
+    });
 }
 
 void YTVideo::emitError(const QString &message) {
@@ -289,11 +319,12 @@ void YTVideo::scrapeWebPage(const QByteArray &bytes) {
     // qDebug() << "scrapeWebPage" << html;
 
     static const QRegExp ageGateRE(JsFunctions::instance()->ageGateRE());
-    if (ageGateRE.indexIn(html) != -1) {
+    if (ageGateRE.indexIn(html) != -1 || html.contains("desktopLegacyAgeGateReason")) {
         qDebug() << "Found ageGate";
         ageGate = true;
-        elIndex = 4;
-        getVideoInfo();
+        // elIndex = 4;
+        // getVideoInfo();
+        loadEmbedPage();
         return;
     }
 
