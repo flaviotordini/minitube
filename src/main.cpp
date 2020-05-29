@@ -80,6 +80,8 @@ int main(int argc, char **argv) {
     mac::MacMain();
 #endif
 
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
     QtSingleApplication app(argc, argv);
     QString message;
     if (app.arguments().size() > 1) {
