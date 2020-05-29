@@ -74,15 +74,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This demo has expired.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The full version allows you to watch videos without interruptions.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Without a license, the application will expire in %1 days.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -880,6 +872,18 @@
         <source>Subscribed to %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Rewind %1 seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fast forward %1 seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>channel</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MessageWidget</name>
@@ -1105,6 +1109,18 @@
     </message>
     <message>
         <source>Get the full version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Need a remote control for %1? Try %2!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I keep improving %1 to make it the best I can. Support this work!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
