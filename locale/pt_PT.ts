@@ -674,11 +674,11 @@
     </message>
     <message>
         <source>Toggle &amp;Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>Bascula a Barra de &amp;Menu</translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Menu</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -806,7 +806,7 @@
     </message>
     <message>
         <source>You can still access the menu bar by pressing the ALT key</source>
-        <translation type="unfinished"/>
+        <translation>Podes sempre obter a barra de menu com a tecla ALT</translation>
     </message>
 </context>
 <context>
@@ -856,7 +856,7 @@
     </message>
     <message>
         <source>Switched to %1</source>
-        <translation type="unfinished"/>
+        <translation>Enviado para %1</translation>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
@@ -905,7 +905,7 @@
     <name>PickMessage</name>
     <message>
         <source>Pick a video</source>
-        <translation type="unfinished"/>
+        <translation>Escolhe um vídeo</translation>
     </message>
 </context>
 <context>
@@ -1102,7 +1102,7 @@
     </message>
     <message>
         <source>&amp;Forward</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Avançar</translation>
     </message>
     <message>
         <source>Forward to %1</source>

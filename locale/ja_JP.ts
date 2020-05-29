@@ -27,11 +27,11 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 によって作られました</translation>
     </message>
     <message>
         <source>Open-source software</source>
-        <translation type="unfinished"/>
+        <translation>オープンソース・ソフトウェア</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -115,7 +115,7 @@
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 個の新しい動画があります</numerusform></translation>
     </message>
 </context>
 <context>
@@ -196,30 +196,30 @@
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 時間前</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 日前</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n か月前</numerusform></translation>
     </message>
     <message>
         <source>K</source>
         <comment>K as in Kilo, i.e. thousands</comment>
-        <translation type="unfinished"/>
+        <translation>キロ</translation>
     </message>
     <message>
         <source>M</source>
         <comment>M stands for Millions</comment>
-        <translation type="unfinished"/>
+        <translation>メガ</translation>
     </message>
     <message>
         <source>B</source>
         <comment>B stands for Billions</comment>
-        <translation type="unfinished"/>
+        <translation>バイト</translation>
     </message>
     <message>
         <source>%1 views</source>
@@ -227,7 +227,7 @@
     </message>
     <message numerus="yes">
         <source>%n week(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 週間前</numerusform></translation>
     </message>
 </context>
 <context>
@@ -281,7 +281,7 @@
     </message>
     <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 個のダウンロード</numerusform></translation>
     </message>
 </context>
 <context>
@@ -426,11 +426,11 @@
     <name>MainWindow</name>
     <message>
         <source>&amp;Window</source>
-        <translation type="unfinished"/>
+        <translation>ウィンドウ(&amp;W)</translation>
     </message>
     <message>
         <source>&amp;Minimize</source>
-        <translation type="unfinished"/>
+        <translation>最小化(&amp;M)</translation>
     </message>
     <message>
         <source>&amp;Stop</source>
@@ -666,19 +666,19 @@
     </message>
     <message>
         <source>Restricted Mode</source>
-        <translation type="unfinished"/>
+        <translation>制限付きモード</translation>
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
-        <translation type="unfinished"/>
+        <translation>不適切なコンテンツを含む可能性のある動画を非表示にする</translation>
     </message>
     <message>
         <source>Toggle &amp;Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>メニューバーを切り替え(&amp;M)</translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>メニュー</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -806,7 +806,7 @@
     </message>
     <message>
         <source>You can still access the menu bar by pressing the ALT key</source>
-        <translation type="unfinished"/>
+        <translation>ALTキーを押すことでメニューバーにアクセスできます</translation>
     </message>
 </context>
 <context>
@@ -856,7 +856,7 @@
     </message>
     <message>
         <source>Switched to %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 に切り替えました</translation>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
@@ -905,7 +905,7 @@
     <name>PickMessage</name>
     <message>
         <source>Pick a video</source>
-        <translation type="unfinished"/>
+        <translation>動画を拾う</translation>
     </message>
 </context>
 <context>
@@ -1102,7 +1102,7 @@
     </message>
     <message>
         <source>&amp;Forward</source>
-        <translation type="unfinished"/>
+        <translation>進む(&amp;F)</translation>
     </message>
     <message>
         <source>Forward to %1</source>
@@ -1154,7 +1154,7 @@
     </message>
     <message>
         <source>Downloading %1...</source>
-        <translation type="unfinished"/>
+        <translation>%1 をダウンロードしています...</translation>
     </message>
 </context>
 <context>
