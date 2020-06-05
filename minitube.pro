@@ -1,7 +1,7 @@
 CONFIG += c++14 exceptions_off rtti_off optimize_full
 
 TEMPLATE = app
-VERSION = 3.4
+VERSION = 3.4.1
 DEFINES += APP_VERSION="$$VERSION"
 
 APP_NAME = Minitube
