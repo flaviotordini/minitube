@@ -416,7 +416,11 @@ bool PlaylistModel::dropMimeData(const QMimeData *data,
 
         // and then add them again at the new position
         beginInsertRows(QModelIndex(), beginRow, beginRow);
-        videos.insert(beginRow, video);
+        if (beginRow >= videos.size()) {
+            videos.push_back(video);
+        } else {
+            videos.insert(beginRow, video);
+        }
         endInsertRows();
     }
 
