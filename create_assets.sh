@@ -56,7 +56,7 @@ rename_sources() {
 
 compress_sources() {
   cd "${source_dir}"
-  tar cvfz "${package_name}-${version}.tar.bz2" \
+  tar -cjvf "${package_name}-${version}.tar.bz2" \
     "${package_name}-${version}"
 }
 
