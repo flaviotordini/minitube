@@ -245,7 +245,7 @@ void YTVideo::parseFmtUrlMap(const QString &fmtUrlMap) {
 
     qDebug() << "available formats" << urlMap.keys();
     const QVector<VideoDefinition> &definitions = VideoDefinition::getDefinitions();
-    int previousIndex = std::max(definitions.indexOf(definition) - 1, 0);
+    int previousIndex = std::max(definitions.indexOf(definition), 0);
     for (; previousIndex >= 0; previousIndex--) {
         const VideoDefinition &previousDefinition = definitions.at(previousIndex);
         qDebug() << "Testing format" << previousDefinition.getCode();
