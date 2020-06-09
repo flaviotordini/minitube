@@ -150,7 +150,7 @@ QString ChannelView::noSubscriptionsMessage() {
 }
 
 void ChannelView::appear() {
-    updateQuery();
+    updateQuery(true);
     MainWindow::instance()->showActionsInStatusBar(statusActions, true);
     setFocus();
     ChannelAggregator::instance()->start();
