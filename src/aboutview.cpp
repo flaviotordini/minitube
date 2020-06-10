@@ -150,8 +150,8 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
     buttonLayout->setAlignment(Qt::AlignLeft);
     closeButton = new QPushButton(tr("&Close"), this);
     closeButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-
     closeButton->setDefault(true);
+    closeButton->setShortcut(Qt::Key_Escape);
     closeButton->setFocus();
     connect(closeButton, SIGNAL(clicked()), MainWindow::instance(), SLOT(goBack()));
     buttonLayout->addWidget(closeButton);
