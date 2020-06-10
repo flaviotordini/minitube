@@ -138,6 +138,8 @@ int main(int argc, char **argv) {
 
     QNetworkProxyFactory::setUseSystemConfiguration(true);
 
+    IconUtils::setSizes({16, 24, 32, 88});
+
     showWindow(app, pkgDataDir);
 
     return app.exec();

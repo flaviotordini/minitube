@@ -25,6 +25,8 @@ $END_LICENSE */
 
 class IconUtils {
 public:
+    static void setSizes(const QVector<int> &value);
+
     static QIcon fromTheme(const QString &name);
     static QIcon fromResources(const char *name);
 

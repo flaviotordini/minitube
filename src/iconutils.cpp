@@ -33,7 +33,14 @@ void addIconFile(QIcon &icon,
         icon.addFile(filename, QSize(size, size), mode, state);
     }
 }
+
+QVector<int> sizes;
+
 } // namespace
+
+void IconUtils::setSizes(const QVector<int> &value) {
+    sizes = value;
+}
 
 QIcon IconUtils::fromTheme(const QString &name) {
     static const QLatin1String symbolic("-symbolic");
@@ -62,7 +69,7 @@ QIcon IconUtils::fromResources(const char *name) {
     QIcon icon;
 
     // WARN keep these sizes updated with what we really use
-    for (int size : {16, 24, 32, 88}) {
+    for (int size : qAsConst(sizes)) {
         const QString pathAndName =
                 path + QString::number(size) + QLatin1Char('/') + QLatin1String(name);
         QString iconFilename = pathAndName + normal + ext;
