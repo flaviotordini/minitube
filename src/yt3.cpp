@@ -18,8 +18,8 @@
 #define STRINGIFY(x) STR(x)
 
 YT3 &YT3::instance() {
-    static YT3 *i = new YT3();
-    return *i;
+    static YT3 i;
+    return i;
 }
 
 const QString &YT3::baseUrl() {
