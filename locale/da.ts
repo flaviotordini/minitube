@@ -72,16 +72,8 @@
         <translation>Venligst licensér %1</translation>
     </message>
     <message>
-        <source>This demo has expired.</source>
-        <translation>Denne prøveversion er udløbet.</translation>
-    </message>
-    <message>
         <source>The full version allows you to watch videos without interruptions.</source>
         <translation>Den fulde version giver dig mulighed for, at se videoer uden afbrydelser.</translation>
-    </message>
-    <message>
-        <source>Without a license, the application will expire in %1 days.</source>
-        <translation>Dette program vil udløbe om %1 dage uden en licens.</translation>
     </message>
     <message>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
@@ -867,6 +859,18 @@ Kopiér &amp;URL&apos;en til videostrømmen</translation>
         <source>Subscribed to %1</source>
         <translation>Abonnerer nu på %1</translation>
     </message>
+    <message>
+        <source>Rewind %1 seconds</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Fast forward %1 seconds</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>channel</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MessageWidget</name>
@@ -1093,6 +1097,18 @@ Kopiér &amp;URL&apos;en til videostrømmen</translation>
     <message>
         <source>Get the full version</source>
         <translation>Hent den fulde version</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Need a remote control for %1? Try %2!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I keep improving %1 to make it the best I can. Support this work!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

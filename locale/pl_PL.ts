@@ -72,16 +72,8 @@
         <translation>Proszę kup licencję %1</translation>
     </message>
     <message>
-        <source>This demo has expired.</source>
-        <translation>To demo wygasło.</translation>
-    </message>
-    <message>
         <source>The full version allows you to watch videos without interruptions.</source>
         <translation>Pełna wersja pozwala na oglądanie filmów bez przeszkód.</translation>
-    </message>
-    <message>
-        <source>Without a license, the application will expire in %1 days.</source>
-        <translation>Bez licencji, program wygaśnie za %1 dni.</translation>
     </message>
     <message>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
@@ -866,6 +858,18 @@
         <source>Subscribed to %1</source>
         <translation>Zaczęto subskrypcję %1</translation>
     </message>
+    <message>
+        <source>Rewind %1 seconds</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Fast forward %1 seconds</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>channel</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MessageWidget</name>
@@ -1092,6 +1096,18 @@
     <message>
         <source>Get the full version</source>
         <translation>Pobierz pełną wersję</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Need a remote control for %1? Try %2!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I keep improving %1 to make it the best I can. Support this work!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

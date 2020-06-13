@@ -72,16 +72,8 @@
         <translation>%1のライセンスを取得してください</translation>
     </message>
     <message>
-        <source>This demo has expired.</source>
-        <translation>試用版の期限が切れました。</translation>
-    </message>
-    <message>
         <source>The full version allows you to watch videos without interruptions.</source>
         <translation>製品版では、快適に動画を視聴することができます。</translation>
-    </message>
-    <message>
-        <source>Without a license, the application will expire in %1 days.</source>
-        <translation>現在は、ライセンスがないため、このアプリケーションは%1日に期限切れとなります。</translation>
     </message>
     <message>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
@@ -866,6 +858,18 @@
         <source>Subscribed to %1</source>
         <translation>%1を購読しました</translation>
     </message>
+    <message>
+        <source>Rewind %1 seconds</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Fast forward %1 seconds</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>channel</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MessageWidget</name>
@@ -1092,6 +1096,18 @@
     <message>
         <source>Get the full version</source>
         <translation>製品版を入手する</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Need a remote control for %1? Try %2!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I keep improving %1 to make it the best I can. Support this work!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

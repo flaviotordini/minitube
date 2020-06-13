@@ -72,16 +72,8 @@
         <translation>請取得 %1 授權</translation>
     </message>
     <message>
-        <source>This demo has expired.</source>
-        <translation>這個展示版已過期。</translation>
-    </message>
-    <message>
         <source>The full version allows you to watch videos without interruptions.</source>
         <translation>完整的版本允許您不被中斷地觀看影片。</translation>
-    </message>
-    <message>
-        <source>Without a license, the application will expire in %1 days.</source>
-        <translation>沒有取得授權，本程式將於 %1 天過期。</translation>
     </message>
     <message>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
@@ -866,6 +858,18 @@
         <source>Subscribed to %1</source>
         <translation>已訂閱 %1</translation>
     </message>
+    <message>
+        <source>Rewind %1 seconds</source>
+        <translation>倒帶 %1 秒</translation>
+    </message>
+    <message>
+        <source>Fast forward %1 seconds</source>
+        <translation>快轉 %1 秒</translation>
+    </message>
+    <message>
+        <source>channel</source>
+        <translation>頻道</translation>
+    </message>
 </context>
 <context>
     <name>MessageWidget</name>
@@ -1092,6 +1096,18 @@
     <message>
         <source>Get the full version</source>
         <translation>取得完整版</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>移除</translation>
+    </message>
+    <message>
+        <source>Need a remote control for %1? Try %2!</source>
+        <translation>需要遙控 %1？試試看 %2！</translation>
+    </message>
+    <message>
+        <source>I keep improving %1 to make it the best I can. Support this work!</source>
+        <translation>我會不斷改善 %1，讓它變得更好。請支持我的努力！</translation>
     </message>
 </context>
 <context>

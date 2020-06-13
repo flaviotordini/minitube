@@ -72,16 +72,8 @@
         <translation>%1을(를) 구입하세요</translation>
     </message>
     <message>
-        <source>This demo has expired.</source>
-        <translation>데모버전이 만료되었습니다!</translation>
-    </message>
-    <message>
         <source>The full version allows you to watch videos without interruptions.</source>
         <translation>구입 버전은 방해받지 않고 비디오를 감상 할수 있습니다.</translation>
-    </message>
-    <message>
-        <source>Without a license, the application will expire in %1 days.</source>
-        <translation>라이센스를 구입하지 않으면, %1일후 만료 됩니다.</translation>
     </message>
     <message>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
@@ -866,6 +858,18 @@
         <source>Subscribed to %1</source>
         <translation>%1 구독됨</translation>
     </message>
+    <message>
+        <source>Rewind %1 seconds</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Fast forward %1 seconds</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>channel</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MessageWidget</name>
@@ -1092,6 +1096,18 @@
     <message>
         <source>Get the full version</source>
         <translation>풀 버전 구입</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Need a remote control for %1? Try %2!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>I keep improving %1 to make it the best I can. Support this work!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

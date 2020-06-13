@@ -72,16 +72,8 @@
         <translation>Lütfen lisans %1</translation>
     </message>
     <message>
-        <source>This demo has expired.</source>
-        <translation>Deneme süresi bitti.</translation>
-    </message>
-    <message>
         <source>The full version allows you to watch videos without interruptions.</source>
         <translation>Tam sürüm, videoları duraklamadan izlemenizi sağlar.</translation>
-    </message>
-    <message>
-        <source>Without a license, the application will expire in %1 days.</source>
-        <translation>Lisans olmazsa, uygulama süresi %1 gün içinde dolacaktır.</translation>
     </message>
     <message>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
@@ -866,6 +858,18 @@
         <source>Subscribed to %1</source>
         <translation>%1 Abone Ol</translation>
     </message>
+    <message>
+        <source>Rewind %1 seconds</source>
+        <translation>%1 saniye geri sar</translation>
+    </message>
+    <message>
+        <source>Fast forward %1 seconds</source>
+        <translation>%1 saniye hızlı ileri sar</translation>
+    </message>
+    <message>
+        <source>channel</source>
+        <translation>kanal</translation>
+    </message>
 </context>
 <context>
     <name>MessageWidget</name>
@@ -1092,6 +1096,18 @@
     <message>
         <source>Get the full version</source>
         <translation>Tam sürüme geç</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Kaldır</translation>
+    </message>
+    <message>
+        <source>Need a remote control for %1? Try %2!</source>
+        <translation>%1 için uzaktan kumanda mı lazım? %2&apos;yi dene!</translation>
+    </message>
+    <message>
+        <source>I keep improving %1 to make it the best I can. Support this work!</source>
+        <translation>%1 iyileştirmek için sürekli devam ediyorum. Bu çalışmayı destekleyin!</translation>
     </message>
 </context>
 <context>
