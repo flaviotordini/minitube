@@ -36,6 +36,11 @@ $END_LICENSE */
 #include "iconutils.h"
 #include "mainwindow.h"
 
+#ifdef UPDATER
+#include "updater.h"
+#include "waitingspinnerwidget.h"
+#endif
+
 AboutView::AboutView(QWidget *parent) : View(parent) {
     const int padding = 30;
     const char *buildYear = __DATE__ + 7;
@@ -67,6 +72,7 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
     QBoxLayout *layout = new QVBoxLayout();
     layout->setAlignment(Qt::AlignCenter);
     layout->setSpacing(padding);
+    layout->setMargin(padding / 2);
     aboutlayout->addLayout(layout);
 
     QColor lightTextColor = palette().text().color();
@@ -146,8 +152,42 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
     infoLabel->setWordWrap(true);
     layout->addWidget(infoLabel);
 
+#ifdef UPDATER
+    int capHeight = fontMetrics().capHeight();
+
+    QBoxLayout *updateLayout = new QHBoxLayout();
+    updateLayout->setMargin(0);
+    updateLayout->setSpacing(capHeight);
+    updateLayout->setAlignment(Qt::AlignLeft);
+
+    auto spinner = new WaitingSpinnerWidget(this, false, false);
+    spinner->setColor(palette().foreground().color());
+    spinner->setLineLength(capHeight / 2);
+    spinner->setNumberOfLines(spinner->lineLength() * 2);
+    spinner->setInnerRadius(spinner->lineLength());
+    auto spinnerStartStop = [spinner](auto status) {
+        if (status == Updater::Status::DownloadingUpdate)
+            spinner->start();
+        else
+            spinner->stop();
+    };
+    connect(&Updater::instance(), &Updater::statusChanged, this, spinnerStartStop);
+    updateLayout->addWidget(spinner);
+    spinnerStartStop(Updater::instance().getStatus());
+
+    updateLayout->addWidget(Updater::instance().getLabel());
+
+    layout->addLayout(updateLayout);
+#endif
+
     QLayout *buttonLayout = new QHBoxLayout();
+    buttonLayout->setMargin(0);
     buttonLayout->setAlignment(Qt::AlignLeft);
+
+#ifdef UPDATER
+    buttonLayout->addWidget(Updater::instance().getButton());
+#endif
+
     closeButton = new QPushButton(tr("&Close"), this);
     closeButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
     closeButton->setDefault(true);
@@ -163,4 +203,7 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
 
 void AboutView::appear() {
     closeButton->setFocus();
+#ifdef UPDATER
+    Updater::instance().checkWithoutUI();
+#endif
 }

@@ -11,6 +11,7 @@ public:
     void setMessage(const QString &message);
 
 signals:
+    void linkActivated(const QString &link);
     void closed();
 
 protected:

@@ -23,6 +23,8 @@ $END_LICENSE */
 
 #include "constants.h"
 #include "iconutils.h"
+#include "updateutils.h"
+
 #include "mainwindow.h"
 #include "searchparams.h"
 #include <qtsingleapplication.h>
@@ -139,6 +141,8 @@ int main(int argc, char **argv) {
     QNetworkProxyFactory::setUseSystemConfiguration(true);
 
     IconUtils::setSizes({16, 24, 32, 88});
+
+    UpdateUtils::init();
 
     showWindow(app, pkgDataDir);
 

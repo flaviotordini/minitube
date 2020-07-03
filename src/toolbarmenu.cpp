@@ -4,6 +4,10 @@
 #include "videodefinition.h"
 #include "yt3.h"
 
+#ifdef UPDATER
+#include "updater.h"
+#endif
+
 ToolbarMenu::ToolbarMenu(QWidget *parent) : QMenu(parent) {
     MainWindow *w = MainWindow::instance();
     addAction(w->getAction("stopafterthis"));
@@ -63,6 +67,11 @@ ToolbarMenu::ToolbarMenu(QWidget *parent) : QMenu(parent) {
     addAction(w->getAction("toggleMenu"));
     addSeparator();
     addMenu(w->getMenu("help"));
+#endif
+
+#ifdef UPDATER
+    addSeparator();
+    addAction(Updater::instance().getAction());
 #endif
 }
 

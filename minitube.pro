@@ -1,7 +1,7 @@
-CONFIG += c++14 exceptions_off rtti_off optimize_full
+CONFIG += c++17 exceptions_off rtti_off optimize_full object_parallel_to_source
 
 TEMPLATE = app
-VERSION = 3.4.2
+VERSION = 3.4.3
 DEFINES += APP_VERSION="$$VERSION"
 
 APP_NAME = Minitube
@@ -44,6 +44,7 @@ HEADERS += src/video.h \
     src/spacer.h \
     src/constants.h \
     src/playlistitemdelegate.h \
+    src/updateutils.h \
     src/videomimedata.h \
     src/updatechecker.h \
     src/searchparams.h \
@@ -76,6 +77,7 @@ HEADERS += src/video.h \
     src/view.h \
     src/playlistmodel.h \
     src/videosource.h \
+    src/waitingspinnerwidget.h \
     src/ytsearch.h \
     src/ytstandardfeed.h \
     src/standardfeedsview.h \
@@ -118,6 +120,7 @@ HEADERS += src/video.h \
 SOURCES += src/main.cpp \
     src/messagebar.cpp \
     src/spacer.cpp \
+    src/updateutils.cpp \
     src/video.cpp \
     src/videomimedata.cpp \
     src/updatechecker.cpp \
@@ -151,6 +154,7 @@ SOURCES += src/main.cpp \
     src/playlistitemdelegate.cpp \
     src/playlistmodel.cpp \
     src/videosource.cpp \
+    src/waitingspinnerwidget.cpp \
     src/ytsearch.cpp \
     src/ytstandardfeed.cpp \
     src/standardfeedsview.cpp \
@@ -265,6 +269,11 @@ unix:!mac {
 }
 
 mac|win32|contains(DEFINES, APP_UBUNTU):include(local/local.pri)
+
+!contains(DEFINES, APP_MAC_STORE) {
+    # DEFINES += UPDATER_NO_SPARKLE
+    include(lib/updater/updater.pri)
+}
 
 message(CONFIG: $$CONFIG)
 message(DEFINES: $$DEFINES)

@@ -10,3 +10,7 @@
 	path = lib/http
 	url = https://github.com/flaviotordini/http
 	branch = master
+[submodule "lib/updater"]
+	path = lib/updater
+	url = https://github.com/flaviotordini/updater
+	branch = master

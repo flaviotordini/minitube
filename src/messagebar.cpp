@@ -9,6 +9,7 @@ MessageBar::MessageBar(QWidget *parent) : QWidget(parent) {
 
     msgLabel = new QLabel();
     msgLabel->setOpenExternalLinks(true);
+    connect(msgLabel, &QLabel::linkActivated, this, &MessageBar::linkActivated);
     layout->addWidget(msgLabel);
 
     QToolButton *closeToolButton = new QToolButton();

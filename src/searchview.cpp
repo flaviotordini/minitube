@@ -45,6 +45,10 @@ $END_LICENSE */
 #include "messagebar.h"
 #include "painterutils.h"
 
+#ifdef UPDATER
+#include "updater.h"
+#endif
+
 namespace {
 const QString recentKeywordsKey = "recentKeywords";
 const QString recentChannelsKey = "recentChannels";
@@ -468,8 +472,9 @@ void SearchView::maybeShowMessage() {
     if (showMessages && !settings.contains(key = "sofa")) {
         QString msg = tr("Need a remote control for %1? Try %2!").arg(Constants::NAME).arg("Sofa");
         msg = "<a href='https://" + QLatin1String(Constants::ORG_DOMAIN) + '/' + key +
-              "' style = 'text-decoration:none;color:palette(windowText)' > " + msg + "</a>";
+              "' style = 'text-decoration:none;color:palette(windowText)'>" + msg + "</a>";
         messageBar->setMessage(msg);
+        disconnect(messageBar);
         connect(messageBar, &MessageBar::closed, this, [key] {
             QSettings settings;
             settings.setValue(key, true);
@@ -492,9 +497,9 @@ void SearchView::maybeShowMessage() {
                         tr("I keep improving %1 to make it the best I can. Support this work!")
                                 .arg(Constants::NAME);
                 msg = "<a href='https://" + QLatin1String(Constants::ORG_DOMAIN) + "/donate" +
-                      "' style = 'text-decoration:none;color:palette(windowText)' > " + msg +
-                      "</a>";
+                      "' style = 'text-decoration:none;color:palette(windowText)'>" + msg + "</a>";
                 messageBar->setMessage(msg);
+                disconnect(messageBar);
                 connect(messageBar, &MessageBar::closed, this, [key] {
                     QSettings settings;
                     settings.setValue(key, true);
@@ -503,4 +508,19 @@ void SearchView::maybeShowMessage() {
             }
         }
     }
+
+#ifdef UPDATER
+    connect(&Updater::instance(), &Updater::statusChanged, this, [this](auto status) {
+        if (status == Updater::Status::UpdateDownloaded) {
+            QString msg = tr("An update is ready to be installed. Quit and install update.");
+            msg = "<a href='http://quit' style = "
+                  "'text-decoration:none;color:palette(windowText)'>" +
+                  msg + "</a>";
+            messageBar->setMessage(msg);
+            disconnect(messageBar);
+            connect(messageBar, &MessageBar::linkActivated, this, [] { qApp->quit(); });
+            messageBar->show();
+        }
+    });
+#endif
 }

@@ -86,6 +86,8 @@ $END_LICENSE */
 #include "mediampv.h"
 #endif
 
+#include "updater.h"
+
 namespace {
 MainWindow *mainWindowInstance;
 }
@@ -216,7 +218,7 @@ void MainWindow::lazyInit() {
 
     ChannelAggregator::instance()->start();
 
-    checkForUpdate();
+    Updater::instance().checkWithoutUI();
 
     initialized = true;
 }
@@ -769,6 +771,9 @@ void MainWindow::createMenus() {
 #endif
     helpMenu->addAction(getAction("reportIssue"));
     helpMenu->addAction(aboutAct);
+#ifdef UPDATER
+    helpMenu->addAction(Updater::instance().getAction());
+#endif
 
 #ifdef APP_MAC_STORE
     helpMenu->addSeparator();
@@ -1787,53 +1792,6 @@ void MainWindow::dropEvent(QDropEvent *e) {
         searchParams->setKeywords(videoId);
         showMedia(searchParams);
     }
-}
-
-void MainWindow::checkForUpdate() {
-    static const QString updateCheckKey = "updateCheck";
-
-    // check every 24h
-    QSettings settings;
-    uint unixTime = QDateTime::currentDateTime().toTime_t();
-    int lastCheck = settings.value(updateCheckKey).toInt();
-    int secondsSinceLastCheck = unixTime - lastCheck;
-    // qDebug() << "secondsSinceLastCheck" << unixTime << lastCheck << secondsSinceLastCheck;
-    if (secondsSinceLastCheck < 86400) return;
-
-    // check it out
-    UpdateChecker *updateChecker = new UpdateChecker();
-    connect(updateChecker, &UpdateChecker::newVersion, this,
-            [this, updateChecker](const QString &version) {
-                updateChecker->deleteLater();
-                QSettings settings;
-                QString checkedVersion = settings.value("checkedVersion").toString();
-                if (checkedVersion == version) return;
-#ifdef APP_SIMPLEUPDATE
-                simpleUpdateDialog(version);
-#elif defined(APP_EXTRA) && !defined(APP_MAC)
-                UpdateDialog *dialog = new UpdateDialog(version, this);
-                dialog->show();
-#endif
-            });
-    updateChecker->checkForUpdate();
-    settings.setValue(updateCheckKey, unixTime);
-}
-
-void MainWindow::simpleUpdateDialog(const QString &version) {
-    QMessageBox msgBox(this);
-    msgBox.setIconPixmap(IconUtils::pixmap(":/images/64x64/app.png", devicePixelRatioF()));
-    msgBox.setText(tr("%1 version %2 is now available.").arg(Constants::NAME, version));
-    msgBox.setModal(true);
-    msgBox.setWindowModality(Qt::WindowModal);
-    msgBox.addButton(QMessageBox::Close);
-    QPushButton *laterButton = msgBox.addButton(tr("Remind me later"), QMessageBox::RejectRole);
-    QPushButton *updateButton = msgBox.addButton(tr("Update"), QMessageBox::AcceptRole);
-    msgBox.exec();
-    if (msgBox.clickedButton() != laterButton) {
-        QSettings settings;
-        settings.setValue("checkedVersion", version);
-    }
-    if (msgBox.clickedButton() == updateButton) visitSite();
 }
 
 bool MainWindow::needStatusBar() {

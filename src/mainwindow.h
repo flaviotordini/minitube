@@ -111,7 +111,6 @@ protected:
 
 private slots:
     void lazyInit();
-    void checkForUpdate();
     void donate();
     void reportIssue();
     void about();
@@ -159,7 +158,6 @@ private:
     void showView(View *view, bool transition = false);
     static QString formatTime(qint64 duration);
     bool confirmQuit();
-    void simpleUpdateDialog(const QString &version);
     bool needStatusBar();
     void adjustMessageLabelPosition();
 
