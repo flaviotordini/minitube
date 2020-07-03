@@ -8,7 +8,6 @@ MessageBar::MessageBar(QWidget *parent) : QWidget(parent) {
     layout->setSpacing(16);
 
     msgLabel = new QLabel();
-    msgLabel->setOpenExternalLinks(true);
     connect(msgLabel, &QLabel::linkActivated, this, &MessageBar::linkActivated);
     layout->addWidget(msgLabel);
 
@@ -23,6 +22,10 @@ MessageBar::MessageBar(QWidget *parent) : QWidget(parent) {
 
 void MessageBar::setMessage(const QString &message) {
     msgLabel->setText(message);
+}
+
+void MessageBar::setOpenExternalLinks(bool value) {
+    msgLabel->setOpenExternalLinks(value);
 }
 
 void MessageBar::paintEvent(QPaintEvent *e) {

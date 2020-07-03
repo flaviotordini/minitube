@@ -474,6 +474,7 @@ void SearchView::maybeShowMessage() {
         msg = "<a href='https://" + QLatin1String(Constants::ORG_DOMAIN) + '/' + key +
               "' style = 'text-decoration:none;color:palette(windowText)'>" + msg + "</a>";
         messageBar->setMessage(msg);
+        messageBar->setOpenExternalLinks(true);
         disconnect(messageBar);
         connect(messageBar, &MessageBar::closed, this, [key] {
             QSettings settings;
@@ -499,6 +500,7 @@ void SearchView::maybeShowMessage() {
                 msg = "<a href='https://" + QLatin1String(Constants::ORG_DOMAIN) + "/donate" +
                       "' style = 'text-decoration:none;color:palette(windowText)'>" + msg + "</a>";
                 messageBar->setMessage(msg);
+                messageBar->setOpenExternalLinks(true);
                 disconnect(messageBar);
                 connect(messageBar, &MessageBar::closed, this, [key] {
                     QSettings settings;
@@ -517,6 +519,7 @@ void SearchView::maybeShowMessage() {
                   "'text-decoration:none;color:palette(windowText)'>" +
                   msg + "</a>";
             messageBar->setMessage(msg);
+            messageBar->setOpenExternalLinks(false);
             disconnect(messageBar);
             connect(messageBar, &MessageBar::linkActivated, this, [] { qApp->quit(); });
             messageBar->show();

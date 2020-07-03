@@ -9,6 +9,7 @@ class MessageBar : public QWidget {
 public:
     MessageBar(QWidget *parent = 0);
     void setMessage(const QString &message);
+    void setOpenExternalLinks(bool value);
 
 signals:
     void linkActivated(const QString &link);
