@@ -12,6 +12,7 @@
 #include "sparkleupdater.h"
 #else
 #include "defaultupdater.h"
+#include "simplexmlparser.h"
 #endif
 #endif
 
@@ -43,6 +44,7 @@ void init() {
 #endif
     url.setQuery(q);
     updater->setManifestUrl(url);
+    updater->setParser(new updater::SimpleXmlParser());
 
     QString ext = Constants::UNIX_NAME;
 #ifdef APP_MAC
