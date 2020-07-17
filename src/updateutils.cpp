@@ -12,6 +12,7 @@
 #include "sparkleupdater.h"
 #else
 #include "defaultupdater.h"
+#include "runinstaller.h"
 #include "simplexmlparser.h"
 #endif
 #endif
@@ -41,6 +42,12 @@ void init() {
     QUrl downloadUrl("https://" + QLatin1String(Constants::ORG_DOMAIN) + "/files/" +
                      Constants::UNIX_NAME + "/" + Constants::UNIX_NAME + ext);
     updater->setDownloadUrl(downloadUrl);
+
+    auto installer = new updater::RunInstaller;
+#ifndef APP_WIN
+    installer->setArguments({"/S"});
+#endif
+    updater->setInstaller(installer);
 
     Updater::setInstance(updater);
 #endif
