@@ -42,7 +42,8 @@ void AppsWidget::paintEvent(QPaintEvent *e) {
     style()->drawPrimitive(QStyle::PE_Widget, &o, &p, this);
 }
 
-AppWidget::AppWidget(const QString &name, const QString &code, QWidget *parent) : QWidget(parent), icon(0), name(name), downloadButton(0) {
+AppWidget::AppWidget(const QString &name, const QString &code, QWidget *parent)
+    : QWidget(parent), name(name), downloadButton(nullptr) {
     const QString unixName = code.left(code.lastIndexOf('.'));
     const QString baseUrl = QLatin1String("https://") + Constants::ORG_DOMAIN;
     const QString filesUrl = baseUrl + QLatin1String("/files/");
@@ -56,7 +57,11 @@ AppWidget::AppWidget(const QString &name, const QString &code, QWidget *parent) 
     icon = new QLabel();
     icon->setMinimumHeight(128);
     layout->addWidget(icon);
-    const QString iconUrl = filesUrl + QLatin1String("products/") + unixName + QLatin1String(".png");
+    QString pixelRatioString;
+    if (devicePixelRatioF() > 1.0)
+        pixelRatioString = '@' + QString::number(devicePixelRatio()) + 'x';
+    const QString iconUrl = filesUrl + QLatin1String("products/") + unixName + pixelRatioString +
+                            QLatin1String(".png");
     QObject *reply = Http::instance().get(iconUrl);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(iconDownloaded(QByteArray)));
 
