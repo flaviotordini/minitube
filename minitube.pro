@@ -123,7 +123,6 @@ SOURCES += src/main.cpp \
     src/updateutils.cpp \
     src/video.cpp \
     src/videomimedata.cpp \
-    src/updatechecker.cpp \
     src/searchparams.cpp \
     src/minisplitter.cpp \
     src/loadingwidget.cpp \
