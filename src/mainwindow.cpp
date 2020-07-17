@@ -48,7 +48,6 @@ $END_LICENSE */
 #endif
 #include "downloadmanager.h"
 #include "temporary.h"
-#include "updatechecker.h"
 #include "ytsuggester.h"
 #if defined(APP_MAC_SEARCHFIELD) && !defined(APP_MAC_QMACTOOLBAR)
 #include "searchlineedit_mac.h"
@@ -86,7 +85,9 @@ $END_LICENSE */
 #include "mediampv.h"
 #endif
 
+#ifdef UPDATER
 #include "updater.h"
+#endif
 
 namespace {
 MainWindow *mainWindowInstance;
@@ -218,7 +219,9 @@ void MainWindow::lazyInit() {
 
     ChannelAggregator::instance()->start();
 
+#ifdef UPDATER
     Updater::instance().checkWithoutUI();
+#endif
 
     initialized = true;
 }
