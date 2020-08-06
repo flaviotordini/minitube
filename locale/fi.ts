@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 voimistama</translation>
     </message>
     <message>
         <source>Open-source software</source>
@@ -201,17 +201,17 @@
     <message>
         <source>K</source>
         <comment>K as in Kilo, i.e. thousands</comment>
-        <translation type="unfinished"/>
+        <translation>K</translation>
     </message>
     <message>
         <source>M</source>
         <comment>M stands for Millions</comment>
-        <translation type="unfinished"/>
+        <translation>M</translation>
     </message>
     <message>
         <source>B</source>
         <comment>B stands for Billions</comment>
-        <translation type="unfinished"/>
+        <translation>B</translation>
     </message>
     <message>
         <source>%1 views</source>
@@ -848,7 +848,7 @@
     </message>
     <message>
         <source>Switched to %1</source>
-        <translation type="unfinished"/>
+        <translation>Vaihdettiin tähän %1</translation>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
@@ -860,15 +860,15 @@
     </message>
     <message>
         <source>Rewind %1 seconds</source>
-        <translation type="unfinished"/>
+        <translation>Kelaa taaksepäin %1 sekuntia</translation>
     </message>
     <message>
         <source>Fast forward %1 seconds</source>
-        <translation type="unfinished"/>
+        <translation>Pikakelaa eteenpäin %1 sekuntia</translation>
     </message>
     <message>
         <source>channel</source>
-        <translation type="unfinished"/>
+        <translation>kanava</translation>
     </message>
 </context>
 <context>
@@ -1099,15 +1099,15 @@
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Poista</translation>
     </message>
     <message>
         <source>Need a remote control for %1? Try %2!</source>
-        <translation type="unfinished"/>
+        <translation>Tarvitsetko kaukosäätimen %1 :lle? Kokeile %2!</translation>
     </message>
     <message>
         <source>I keep improving %1 to make it the best I can. Support this work!</source>
-        <translation type="unfinished"/>
+        <translation>Jatkan %1 :n parantamista tehdäkseni siitä niin hyvän kuin kykenen. Tue tätä työtä!</translation>
     </message>
 </context>
 <context>

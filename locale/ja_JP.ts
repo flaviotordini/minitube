@@ -1099,7 +1099,7 @@
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>削除</translation>
     </message>
     <message>
         <source>Need a remote control for %1? Try %2!</source>

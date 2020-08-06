@@ -27,11 +27,11 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 :n voimistama</translation>
     </message>
     <message>
         <source>Open-source software</source>
-        <translation type="unfinished"/>
+        <translation>Avoimen lähdekoodin ohjelma</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>

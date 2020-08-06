@@ -27,11 +27,11 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation type="unfinished"/>
+        <translation>Τροφοδοτούμενο από %1</translation>
     </message>
     <message>
         <source>Open-source software</source>
-        <translation type="unfinished"/>
+        <translation>Λογισμικό ανοιχτού κώδικα</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -54,7 +54,7 @@
     <name>ActivationDialog</name>
     <message>
         <source>Enter your License Details</source>
-        <translation>Εισάγετε τις λεπτομέρειες της άδειας χρήσης</translation>
+        <translation>Εισαγάγετε τις λεπτομέρειες της άδειας χρήσης</translation>
     </message>
     <message>
         <source>&amp;Email:</source>
@@ -107,7 +107,7 @@
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Έχετε %n νέο βίντεο</numerusform><numerusform>Έχετε %n νέα βίντεο</numerusform></translation>
     </message>
 </context>
 <context>
@@ -188,30 +188,30 @@
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>πριν %n ώρα</numerusform><numerusform>πριν %n ώρες</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>πριν %n ημέρα</numerusform><numerusform>πριν %n ημέρες</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>πριν %n μήνα</numerusform><numerusform>πριν %n μήνες</numerusform></translation>
     </message>
     <message>
         <source>K</source>
         <comment>K as in Kilo, i.e. thousands</comment>
-        <translation type="unfinished"/>
+        <translation>Χ</translation>
     </message>
     <message>
         <source>M</source>
         <comment>M stands for Millions</comment>
-        <translation type="unfinished"/>
+        <translation>Ε</translation>
     </message>
     <message>
         <source>B</source>
         <comment>B stands for Billions</comment>
-        <translation type="unfinished"/>
+        <translation>Δ</translation>
     </message>
     <message>
         <source>%1 views</source>
@@ -219,7 +219,7 @@
     </message>
     <message numerus="yes">
         <source>%n week(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>πριν %n εβδομάδα</numerusform><numerusform>πριν %n εβδομάδες</numerusform></translation>
     </message>
 </context>
 <context>
@@ -273,7 +273,7 @@
     </message>
     <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n Λήψη</numerusform><numerusform>%n Λήψεις</numerusform></translation>
     </message>
 </context>
 <context>
@@ -658,19 +658,19 @@
     </message>
     <message>
         <source>Restricted Mode</source>
-        <translation type="unfinished"/>
+        <translation>Περιορισμένη λειτουργία</translation>
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
-        <translation type="unfinished"/>
+        <translation>Απόκρυψη των βίντεο που μπορεί να περιέχουν ακατάλληλο περιεχόμενο</translation>
     </message>
     <message>
         <source>Toggle &amp;Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>Ε&amp;ναλλαγή γραμμής μενού</translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Μενού</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -798,7 +798,7 @@
     </message>
     <message>
         <source>You can still access the menu bar by pressing the ALT key</source>
-        <translation type="unfinished"/>
+        <translation>Μπορείτε να εμφανίσετε τη γραμμή μενού με το πλήκτρο ALT</translation>
     </message>
 </context>
 <context>
@@ -868,7 +868,7 @@
     </message>
     <message>
         <source>channel</source>
-        <translation type="unfinished"/>
+        <translation>κανάλι</translation>
     </message>
 </context>
 <context>
@@ -1099,11 +1099,11 @@
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Αφαίρεση</translation>
     </message>
     <message>
         <source>Need a remote control for %1? Try %2!</source>
-        <translation type="unfinished"/>
+        <translation>Χρειάζεστε ένα τηλεχειριστήριο για το %1; Δοκιμάστε το %2!</translation>
     </message>
     <message>
         <source>I keep improving %1 to make it the best I can. Support this work!</source>

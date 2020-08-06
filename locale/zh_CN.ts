@@ -27,11 +27,11 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation type="unfinished"/>
+        <translation>由 %1 强力驱动</translation>
     </message>
     <message>
         <source>Open-source software</source>
-        <translation type="unfinished"/>
+        <translation>开源软件</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -107,7 +107,7 @@
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>你有 %n 个新视频</numerusform></translation>
     </message>
 </context>
 <context>
@@ -188,30 +188,30 @@
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 小时前</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 天前</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 月前</numerusform></translation>
     </message>
     <message>
         <source>K</source>
         <comment>K as in Kilo, i.e. thousands</comment>
-        <translation type="unfinished"/>
+        <translation>K</translation>
     </message>
     <message>
         <source>M</source>
         <comment>M stands for Millions</comment>
-        <translation type="unfinished"/>
+        <translation>M</translation>
     </message>
     <message>
         <source>B</source>
         <comment>B stands for Billions</comment>
-        <translation type="unfinished"/>
+        <translation>B</translation>
     </message>
     <message>
         <source>%1 views</source>
@@ -219,7 +219,7 @@
     </message>
     <message numerus="yes">
         <source>%n week(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 周前</numerusform></translation>
     </message>
 </context>
 <context>
@@ -273,7 +273,7 @@
     </message>
     <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n 个下载</numerusform></translation>
     </message>
 </context>
 <context>
@@ -666,11 +666,11 @@
     </message>
     <message>
         <source>Toggle &amp;Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>切换菜单栏（&amp;M）</translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>菜单</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -798,7 +798,7 @@
     </message>
     <message>
         <source>You can still access the menu bar by pressing the ALT key</source>
-        <translation type="unfinished"/>
+        <translation>按住 ALT 键以访问菜单栏</translation>
     </message>
 </context>
 <context>
@@ -848,7 +848,7 @@
     </message>
     <message>
         <source>Switched to %1</source>
-        <translation type="unfinished"/>
+        <translation>切换到 %1</translation>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
@@ -860,15 +860,15 @@
     </message>
     <message>
         <source>Rewind %1 seconds</source>
-        <translation type="unfinished"/>
+        <translation>回退 %1 秒</translation>
     </message>
     <message>
         <source>Fast forward %1 seconds</source>
-        <translation type="unfinished"/>
+        <translation>快进 %1 秒</translation>
     </message>
     <message>
         <source>channel</source>
-        <translation type="unfinished"/>
+        <translation>频道</translation>
     </message>
 </context>
 <context>
@@ -909,7 +909,7 @@
     <name>PickMessage</name>
     <message>
         <source>Pick a video</source>
-        <translation type="unfinished"/>
+        <translation>选择一个视频</translation>
     </message>
 </context>
 <context>
@@ -1099,15 +1099,15 @@
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>移除</translation>
     </message>
     <message>
         <source>Need a remote control for %1? Try %2!</source>
-        <translation type="unfinished"/>
+        <translation>想要远程控制 %1？试试 %2！</translation>
     </message>
     <message>
         <source>I keep improving %1 to make it the best I can. Support this work!</source>
-        <translation type="unfinished"/>
+        <translation>我一直在尽力改进 %1。请支持这个作品！</translation>
     </message>
 </context>
 <context>
@@ -1118,7 +1118,7 @@
     </message>
     <message>
         <source>&amp;Forward</source>
-        <translation type="unfinished"/>
+        <translation>前进（&amp;F）</translation>
     </message>
     <message>
         <source>Forward to %1</source>
