@@ -33,7 +33,7 @@ Http &HttpUtils::yt() {
         http->addRequestHeader("User-Agent", stealthUserAgent());
 
         CachedHttp *cachedHttp = new CachedHttp(*http, "yt");
-        cachedHttp->setMaxSeconds(3600);
+        cachedHttp->setMaxSeconds(86400);
 
         return cachedHttp;
     }();
