@@ -3,7 +3,6 @@
 #include "constants.h"
 #include "http.h"
 #include "localcache.h"
-#include "throttledhttp.h"
 
 Http &HttpUtils::notCached() {
     static Http *h = [] {
