@@ -279,7 +279,7 @@ void YTVideo::loadWebPage() {
 void YTVideo::loadEmbedPage() {
     QUrl url("https://www.youtube.com/embed/" + videoId);
     auto reply = HttpUtils::yt().get(url);
-    connect(reply, &HttpReply::finished, this, [this](const HttpReply &reply) {
+    connect(reply, &HttpReply::finished, this, [this](auto &reply) {
         if (!reply.isSuccessful()) {
             getVideoInfo();
             return;
