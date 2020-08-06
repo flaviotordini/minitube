@@ -10,6 +10,9 @@ DEFINES += APP_NAME="$$APP_NAME"
 APP_UNIX_NAME = minitube
 DEFINES += APP_UNIX_NAME="$$APP_UNIX_NAME"
 
+message(Building $${APP_NAME} $${VERSION})
+message(Qt $$[QT_VERSION] in $$[QT_INSTALL_PREFIX])
+
 DEFINES += APP_SNAPSHOT
 
 CONFIG -= debug_and_release
