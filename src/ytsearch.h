@@ -36,6 +36,7 @@ public:
     void abort();
     QString getName();
     const QList<QAction *> &getActions();
+    int maxResults() { return 50; }
     SearchParams *getSearchParams() const { return searchParams; }
     static QString videoIdFromUrl(const QString &url);
     static QTime videoTimestampFromUrl(const QString &url);

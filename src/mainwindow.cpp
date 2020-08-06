@@ -78,6 +78,9 @@ $END_LICENSE */
 #include "yt3.h"
 #include "ytregions.h"
 
+#include "invidious.h"
+#include "videoapi.h"
+
 #ifdef MEDIA_QTAV
 #include "mediaqtav.h"
 #endif
@@ -159,6 +162,10 @@ MainWindow::MainWindow()
 #else
     showHome();
 #endif
+
+    if (VideoAPI::impl() == VideoAPI::IV) {
+        Invidious::instance().initServers();
+    }
 
     QTimer::singleShot(100, this, &MainWindow::lazyInit);
 }
@@ -658,6 +665,7 @@ void MainWindow::createActions() {
     action->setStatusTip(tr("Hide videos that may contain inappropriate content"));
     action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_K));
     action->setCheckable(true);
+    action->setVisible(VideoAPI::impl() == VideoAPI::YT3);
     actionMap.insert("safeSearch", action);
 
     action = new QAction(tr("Toggle &Menu Bar"), this);

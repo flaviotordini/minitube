@@ -53,6 +53,11 @@ $END_LICENSE */
 #include "idle.h"
 #include "videodefinition.h"
 
+#include "ivchannelsource.h"
+#include "ivsearch.h"
+#include "ivsinglevideosource.h"
+#include "videoapi.h"
+
 MediaView *MediaView::instance() {
     static MediaView *i = new MediaView();
     return i;
@@ -218,8 +223,18 @@ void MediaView::setMedia(Media *media) {
 
 SearchParams *MediaView::getSearchParams() {
     VideoSource *videoSource = playlistModel->getVideoSource();
-    if (videoSource && videoSource->metaObject()->className() == QLatin1String("YTSearch")) {
-        YTSearch *search = qobject_cast<YTSearch *>(videoSource);
+    if (!videoSource) return nullptr;
+    auto clazz = videoSource->metaObject()->className();
+    if (clazz == QLatin1String("YTSearch")) {
+        auto search = qobject_cast<YTSearch *>(videoSource);
+        return search->getSearchParams();
+    }
+    if (clazz == QLatin1String("IVSearch")) {
+        auto search = qobject_cast<IVSearch *>(videoSource);
+        return search->getSearchParams();
+    }
+    if (clazz == QLatin1String("IVChannelSource")) {
+        auto search = qobject_cast<IVChannelSource *>(videoSource);
         return search->getSearchParams();
     }
     return nullptr;
@@ -231,19 +246,39 @@ void MediaView::search(SearchParams *searchParams) {
             searchParams->keywords().startsWith("https://")) {
             QString videoId = YTSearch::videoIdFromUrl(searchParams->keywords());
             if (!videoId.isEmpty()) {
-                YTSingleVideoSource *singleVideoSource = new YTSingleVideoSource(this);
-                singleVideoSource->setVideoId(videoId);
+                VideoSource *singleVideoSource = nullptr;
+                if (VideoAPI::impl() == VideoAPI::YT3) {
+                    auto source = new YTSingleVideoSource(this);
+                    source->setVideoId(videoId);
+                    singleVideoSource = source;
+                } else if (VideoAPI::impl() == VideoAPI::IV) {
+                    auto source = new IVSingleVideoSource(this);
+                    source->setVideoId(videoId);
+                    singleVideoSource = source;
+                }
                 setVideoSource(singleVideoSource);
+
                 QTime tstamp = YTSearch::videoTimestampFromUrl(searchParams->keywords());
                 pauseTime = QTime(0, 0).msecsTo(tstamp);
                 return;
             }
         }
     }
-    YTSearch *ytSearch = new YTSearch(searchParams);
-    ytSearch->setAsyncDetails(true);
-    connect(ytSearch, SIGNAL(gotDetails()), playlistModel, SLOT(emitDataChanged()));
-    setVideoSource(ytSearch);
+
+    VideoSource *search = nullptr;
+    if (VideoAPI::impl() == VideoAPI::YT3) {
+        YTSearch *ytSearch = new YTSearch(searchParams);
+        ytSearch->setAsyncDetails(true);
+        connect(ytSearch, SIGNAL(gotDetails()), playlistModel, SLOT(emitDataChanged()));
+        search = ytSearch;
+    } else if (VideoAPI::impl() == VideoAPI::IV) {
+        if (searchParams->channelId().isEmpty()) {
+            search = new IVSearch(searchParams);
+        } else {
+            search = new IVChannelSource(searchParams);
+        }
+    }
+    setVideoSource(search);
 }
 
 void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory, bool back) {
@@ -252,13 +287,6 @@ void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory, bool
     errorTimer->stop();
 
     // qDebug() << "Adding VideoSource" << videoSource->getName() << videoSource;
-
-    YTSearch * ytSearch = qobject_cast<YTSearch *>(videoSource);
-    if (nullptr != ytSearch) {
-        if (!ytSearch->getSearchParams()->channelId().isEmpty()) {
-            updateSubscriptionActionForChannel(ytSearch->getSearchParams()->channelId());
-        }
-    }
 
     if (addToHistory) {
         int currentIndex = getHistoryIndex();
@@ -288,13 +316,17 @@ void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory, bool
         }
     }
 
+    SearchParams *searchParams = getSearchParams();
+
     sidebar->showPlaylist();
-    sidebar->getRefineSearchWidget()->setSearchParams(getSearchParams());
+    sidebar->getRefineSearchWidget()->setSearchParams(searchParams);
     sidebar->hideSuggestions();
     sidebar->getHeader()->updateInfo();
 
-    SearchParams *searchParams = getSearchParams();
     bool isChannel = searchParams && !searchParams->channelId().isEmpty();
+    if (isChannel) {
+        updateSubscriptionActionForChannel(searchParams->channelId());
+    }
     playlistView->setClickableAuthors(!isChannel);
 }
 
@@ -901,10 +933,18 @@ void MediaView::findVideoParts() {
 void MediaView::relatedVideos() {
     Video *video = playlistModel->activeVideo();
     if (!video) return;
-    YTSingleVideoSource *singleVideoSource = new YTSingleVideoSource();
-    singleVideoSource->setVideo(video->clone());
-    singleVideoSource->setAsyncDetails(true);
-    setVideoSource(singleVideoSource);
+
+    if (VideoAPI::impl() == VideoAPI::YT3) {
+        YTSingleVideoSource *singleVideoSource = new YTSingleVideoSource();
+        singleVideoSource->setVideo(video->clone());
+        singleVideoSource->setAsyncDetails(true);
+        setVideoSource(singleVideoSource);
+    } else if (VideoAPI::impl() == VideoAPI::IV) {
+        auto source = new IVSingleVideoSource(this);
+        source->setVideo(video->clone());
+        setVideoSource(source);
+    }
+
     MainWindow::instance()->getAction("relatedVideos")->setEnabled(false);
 }
 

@@ -26,6 +26,9 @@ $END_LICENSE */
 #include "ytregions.h"
 #include "ytstandardfeed.h"
 
+#include "ivvideolist.h"
+#include "videoapi.h"
+
 StandardFeedsView::StandardFeedsView(QWidget *parent) : View(parent), layout(0) {
     setBackgroundRole(QPalette::Base);
     setAutoFillBackground(true);
@@ -39,16 +42,27 @@ StandardFeedsView::StandardFeedsView(QWidget *parent) : View(parent), layout(0) 
 
 void StandardFeedsView::load() {
     setUpdatesEnabled(false);
-    YTCategories *youTubeCategories = new YTCategories(this);
-    connect(youTubeCategories, SIGNAL(categoriesLoaded(const QVector<YTCategory> &)),
-            SLOT(layoutCategories(const QVector<YTCategory> &)));
-    youTubeCategories->loadCategories();
-
     resetLayout();
 
-    addVideoSourceWidget(buildStandardFeed("most_popular", tr("Most Popular")));
-
     YTRegion region = YTRegions::currentRegion();
+
+    if (VideoAPI::impl() == VideoAPI::YT3) {
+        YTCategories *youTubeCategories = new YTCategories(this);
+        connect(youTubeCategories, SIGNAL(categoriesLoaded(const QVector<YTCategory> &)),
+                SLOT(layoutCategories(const QVector<YTCategory> &)));
+        youTubeCategories->loadCategories();
+        addVideoSourceWidget(buildStandardFeed("most_popular", tr("Most Popular")));
+    } else if (VideoAPI::impl() == VideoAPI::IV) {
+        QString regionParam = "region=" + region.id;
+        addVideoSourceWidget(new IVVideoList("popular?" + regionParam, tr("Most Popular")));
+        addVideoSourceWidget(new IVVideoList("trending?" + regionParam, tr("Trending")));
+        addVideoSourceWidget(new IVVideoList("trending?type=music&" + regionParam, tr("Music")));
+        addVideoSourceWidget(new IVVideoList("trending?type=news&" + regionParam, tr("News")));
+        addVideoSourceWidget(new IVVideoList("trending?type=movies&" + regionParam, tr("Movies")));
+        addVideoSourceWidget(new IVVideoList("trending?type=gaming&" + regionParam, tr("Gaming")));
+        setUpdatesEnabled(true);
+    }
+
     QAction *regionAction = MainWindow::instance()->getRegionAction();
     regionAction->setText(region.name);
     regionAction->setIcon(YTRegions::iconForRegionId(region.id));
@@ -74,7 +88,7 @@ void StandardFeedsView::addVideoSourceWidget(VideoSource *videoSource) {
     connect(w, SIGNAL(unavailable(VideoSourceWidget *)),
             SLOT(removeVideoSourceWidget(VideoSourceWidget *)));
     int i = layout->count();
-    const int cols = 5;
+    const int cols = VideoAPI::impl() == VideoAPI::YT3 ? 5 : 3;
     layout->addWidget(w, i / cols, i % cols);
 }
 

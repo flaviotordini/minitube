@@ -38,6 +38,7 @@ DEFINES += MEDIA_MPV
 include(lib/media/media.pri)
 
 include(src/qtsingleapplication/qtsingleapplication.pri)
+include(src/invidious/invidious.pri)
 
 HEADERS += src/video.h \
     src/messagebar.h \
@@ -45,8 +46,8 @@ HEADERS += src/video.h \
     src/constants.h \
     src/playlistitemdelegate.h \
     src/updateutils.h \
+    src/videoapi.h \
     src/videomimedata.h \
-    src/updatechecker.h \
     src/searchparams.h \
     src/minisplitter.h \
     src/loadingwidget.h \

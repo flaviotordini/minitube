@@ -39,6 +39,7 @@ public:
         static const QList<QAction *> noActions;
         return noActions;
     }
+    virtual int maxResults() { return 0; }
 
 public slots:
     void setParam(const QString &name, const QVariant &value);

@@ -108,7 +108,6 @@ signals:
 
 private:
     void handleFirstVideo(Video *video);
-    void searchMore(int max);
 
     VideoSource *videoSource;
     bool searching;

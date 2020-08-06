@@ -45,6 +45,7 @@ void VideoSourceWidget::activate() {
 void VideoSourceWidget::previewVideo(const QVector<Video *> &videos) {
     videoSource->disconnect();
     if (videos.isEmpty()) {
+        qDebug() << "Unavailable video source" << videoSource->getName();
         emit unavailable(this);
         return;
     }
@@ -52,7 +53,7 @@ void VideoSourceWidget::previewVideo(const QVector<Video *> &videos) {
     lastPixelRatio = window()->devicePixelRatio();
     bool needLargeThumb = lastPixelRatio > 1.0 || window()->width() > 1000;
     QString url =  needLargeThumb ? video->getLargeThumbnailUrl() : video->getMediumThumbnailUrl();
-    if (url.isEmpty()) url = video->getMediumThumbnailUrl();
+    if (url.isEmpty()) url = video->getThumbnailUrl();
     video->deleteLater();
     QObject *reply = HttpUtils::yt().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(setPixmapData(QByteArray)));

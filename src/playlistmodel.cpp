@@ -24,10 +24,12 @@ $END_LICENSE */
 #include "video.h"
 #include "videomimedata.h"
 #include "videosource.h"
+
+#include "ivchannelsource.h"
+#include "ivsearch.h"
 #include "ytsearch.h"
 
 namespace {
-const int maxItems = 50;
 const QString recentKeywordsKey = "recentKeywords";
 const QString recentChannelsKey = "recentChannels";
 } // namespace
@@ -186,27 +188,25 @@ void PlaylistModel::setVideoSource(VideoSource *videoSource) {
             },
             Qt::UniqueConnection);
 
+    canSearchMore = true;
     searchMore();
 }
 
-void PlaylistModel::searchMore(int max) {
-    if (videoSource == nullptr || searching) return;
+void PlaylistModel::searchMore() {
+    if (!canSearchMore || videoSource == nullptr || searching) return;
     searching = true;
     firstSearch = startIndex == 1;
-    this->max = max;
+    max = videoSource->maxResults();
+    if (max == 0) max = 20;
     errorMessage.clear();
     videoSource->loadVideos(max, startIndex);
     startIndex += max;
 }
 
-void PlaylistModel::searchMore() {
-    searchMore(maxItems);
-}
-
 void PlaylistModel::searchNeeded() {
     const int desiredRowsAhead = 10;
     int remainingRows = videos.size() - m_activeRow;
-    if (remainingRows < desiredRowsAhead) searchMore(maxItems);
+    if (remainingRows < desiredRowsAhead) searchMore();
 }
 
 void PlaylistModel::abortSearch() {
@@ -229,7 +229,7 @@ void PlaylistModel::searchFinished(int total) {
     canSearchMore = videoSource->hasMoreVideos();
 
     // update the message item
-    emit dataChanged(createIndex(maxItems, 0), createIndex(maxItems, columnCount() - 1));
+    emit dataChanged(createIndex(videos.size(), 0), createIndex(videos.size(), columnCount() - 1));
 
     if (firstSearch && !videos.isEmpty()) handleFirstVideo(videos.at(0));
 }
@@ -237,7 +237,7 @@ void PlaylistModel::searchFinished(int total) {
 void PlaylistModel::searchError(const QString &message) {
     errorMessage = message;
     // update the message item
-    emit dataChanged(createIndex(maxItems, 0), createIndex(maxItems, columnCount() - 1));
+    emit dataChanged(createIndex(videos.size(), 0), createIndex(videos.size(), columnCount() - 1));
 }
 
 void PlaylistModel::addVideos(const QVector<Video *> &newVideos) {
@@ -261,11 +261,22 @@ void PlaylistModel::handleFirstVideo(Video *video) {
         if (!settings.value("manualplay", false).toBool()) setActiveRow(0);
     }
 
-    if (videoSource->metaObject()->className() == QLatin1String("YTSearch")) {
+    auto clazz = videoSource->metaObject()->className();
+    if (clazz == QLatin1String("YTSearch") || clazz == QLatin1String("IVSearch") ||
+        clazz == QLatin1String("IVChannelSource")) {
         static const int maxRecentElements = 10;
 
-        YTSearch *search = qobject_cast<YTSearch *>(videoSource);
-        SearchParams *searchParams = search->getSearchParams();
+        SearchParams *searchParams;
+        if (clazz == QLatin1String("YTSearch")) {
+            auto search = qobject_cast<YTSearch *>(videoSource);
+            searchParams = search->getSearchParams();
+        } else if (clazz == QLatin1String("IVSearch")) {
+            auto search = qobject_cast<IVSearch *>(videoSource);
+            searchParams = search->getSearchParams();
+        } else if (clazz == QLatin1String("IVChannelSource")) {
+            auto search = qobject_cast<IVChannelSource *>(videoSource);
+            searchParams = search->getSearchParams();
+        }
 
         // save keyword
         QString query = searchParams->keywords();

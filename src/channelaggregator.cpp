@@ -30,9 +30,12 @@ $END_LICENSE */
 #include "http.h"
 #include "httputils.h"
 
+#include "videoapi.h"
+#include "ivchannelsource.h"
+
 ChannelAggregator::ChannelAggregator(QObject *parent)
     : QObject(parent), unwatchedCount(-1), running(false), stopped(false), currentChannel(0) {
-    checkInterval = 1800;
+    checkInterval = 3600;
 
     timer = new QTimer(this);
     timer->setInterval(60000 * 5);
@@ -47,7 +50,7 @@ ChannelAggregator *ChannelAggregator::instance() {
 void ChannelAggregator::start() {
     stopped = false;
     updateUnwatchedCount();
-    QTimer::singleShot(0, this, SLOT(run()));
+    QTimer::singleShot(10000, this, SLOT(run()));
     if (!timer->isActive()) timer->start();
 }
 
@@ -112,6 +115,8 @@ void ChannelAggregator::parseWebPage(const QByteArray &bytes) {
         QString latestVideoId = currentChannel->latestVideoId();
         qDebug() << "Comparing" << videoId << latestVideoId;
         hasNewVideos = videoId != latestVideoId;
+    } else {
+        qDebug() << "Cannot capture latest video id";
     }
     if (hasNewVideos) {
         if (currentChannel) {
@@ -137,9 +142,18 @@ void ChannelAggregator::reallyProcessChannel(YTChannel *channel) {
     params->setSortBy(SearchParams::SortByNewest);
     params->setTransient(true);
     params->setPublishedAfter(channel->getChecked());
-    YTSearch *videoSource = new YTSearch(params);
-    connect(videoSource, SIGNAL(gotVideos(QVector<Video *>)), SLOT(videosLoaded(QVector<Video *>)));
-    videoSource->loadVideos(50, 1);
+
+    if (VideoAPI::impl() == VideoAPI::YT3) {
+        YTSearch *videoSource = new YTSearch(params);
+        connect(videoSource, SIGNAL(gotVideos(QVector<Video *>)),
+                SLOT(videosLoaded(QVector<Video *>)));
+        videoSource->loadVideos(50, 1);
+    } else if (VideoAPI::impl() == VideoAPI::IV) {
+        auto *videoSource = new IVChannelSource(params);
+        connect(videoSource, SIGNAL(gotVideos(QVector<Video *>)),
+                SLOT(videosLoaded(QVector<Video *>)));
+        videoSource->loadVideos(50, 1);
+    }
 
     channel->updateChecked();
 }

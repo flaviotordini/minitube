@@ -34,6 +34,9 @@ $END_LICENSE */
 #endif
 #include "channellistview.h"
 
+#include "videoapi.h"
+#include "ivchannelsource.h"
+
 namespace {
 const QString sortByKey = "subscriptionsSortBy";
 const QString showUpdatedKey = "subscriptionsShowUpdated";
@@ -168,9 +171,15 @@ void ChannelView::itemActivated(const QModelIndex &index) {
         params->setChannelId(channel->getChannelId());
         params->setSortBy(SearchParams::SortByNewest);
         params->setTransient(true);
-        YTSearch *videoSource = new YTSearch(params);
-        videoSource->setAsyncDetails(true);
-        emit activated(videoSource);
+        VideoSource *vs = nullptr;
+        if (VideoAPI::impl() == VideoAPI::YT3) {
+            YTSearch *videoSource = new YTSearch(params);
+            videoSource->setAsyncDetails(true);
+            vs = videoSource;
+        } else if (VideoAPI::impl() == VideoAPI::IV) {
+            vs = new IVChannelSource(params);
+        }
+        emit activated(vs);
         channel->updateWatched();
     } else if (itemType == ChannelModel::ItemAggregate) {
         AggregateVideoSource *videoSource = new AggregateVideoSource();
