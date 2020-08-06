@@ -44,7 +44,7 @@ void init() {
     updater->setDownloadUrl(downloadUrl);
 
     auto installer = new updater::RunInstaller;
-#ifndef APP_WIN
+#ifdef APP_WIN
     installer->setArguments({"/S"});
 #endif
     updater->setInstaller(installer);
