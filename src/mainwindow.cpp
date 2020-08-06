@@ -165,6 +165,8 @@ MainWindow::MainWindow()
 
     if (VideoAPI::impl() == VideoAPI::IV) {
         Invidious::instance().initServers();
+    } else if (VideoAPI::impl() == VideoAPI::YT3) {
+        YT3::instance().initApiKeys();
     }
 
     QTimer::singleShot(100, this, &MainWindow::lazyInit);

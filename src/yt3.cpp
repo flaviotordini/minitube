@@ -28,7 +28,6 @@ const QString &YT3::baseUrl() {
 }
 
 YT3::YT3() {
-    initApiKeys();
 }
 
 void YT3::initApiKeys() {
