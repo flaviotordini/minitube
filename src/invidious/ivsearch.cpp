@@ -80,9 +80,18 @@ void IVSearch::loadVideos(int max, int startIndex) {
     url.setQuery(q);
 
     // qWarning() << "YT3 search" << url.toString();
-    QObject *reply = Invidious::cachedHttp().get(url);
+    auto reply = Invidious::cachedHttp().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResults(QByteArray)));
-    connect(reply, SIGNAL(error(QString)), SLOT(requestError(QString)));
+    connect(reply, &HttpReply::error, this,
+            [this, max, startIndex, retryCount = 0](auto message) mutable {
+                if (retryCount < 3) {
+                    qDebug() << "Retrying...";
+                    Invidious::instance().initServers();
+                    loadVideos(max, startIndex);
+                    retryCount++;
+                }
+                emit error(message);
+            });
 }
 
 void IVSearch::parseResults(const QByteArray &data) {
@@ -117,12 +126,6 @@ QString IVSearch::getName() {
     if (!name.isEmpty()) return name;
     if (!searchParams->keywords().isEmpty()) return searchParams->keywords();
     return QString();
-}
-
-void IVSearch::requestError(const QString &message) {
-    Invidious::instance().initServers();
-    QString msg = message;
-    emit error(msg);
 }
 
 const QList<QAction *> &IVSearch::getActions() {

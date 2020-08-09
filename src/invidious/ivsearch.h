@@ -21,7 +21,6 @@ public:
 
 private slots:
     void parseResults(const QByteArray &data);
-    void requestError(const QString &message);
 
 private:
     SearchParams *searchParams;
