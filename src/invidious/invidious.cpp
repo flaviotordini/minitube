@@ -36,11 +36,14 @@ Http &Invidious::cachedHttp() {
 Invidious::Invidious(QObject *parent) : QObject(parent) {}
 
 void Invidious::initServers() {
-    servers.clear();
+    if (!servers.isEmpty()) shuffleServers();
+
     QUrl url("https://instances.invidio.us/instances.json?sort_by=type,health,users");
     auto reply = HttpUtils::yt().get(url);
     connect(reply, &HttpReply::finished, this, [this](auto &reply) {
         if (reply.isSuccessful()) {
+            servers.clear();
+
             QSettings settings;
             QStringList keywords = settings.value("recentKeywords").toStringList();
             QString testKeyword = keywords.isEmpty() ? "test" : keywords.first();
@@ -48,13 +51,14 @@ void Invidious::initServers() {
             bool haveEnoughServers = false;
             QJsonDocument doc = QJsonDocument::fromJson(reply.body());
             for (const auto &v : doc.array()) {
+                if (haveEnoughServers) break;
+
                 auto serverArray = v.toArray();
                 QString host = serverArray.first().toString();
                 QJsonObject serverObj = serverArray.at(1).toObject();
                 if (serverObj["type"] == "https") {
                     QString url = "https://" + host;
 
-                    if (haveEnoughServers) break;
                     QUrl testUrl(url + "/api/v1/search?q=" + testKeyword);
                     auto reply = http().get(testUrl);
                     connect(reply, &HttpReply::finished, this,
@@ -65,8 +69,7 @@ void Invidious::initServers() {
                                         servers << url;
                                         if (servers.size() > 4) {
                                             haveEnoughServers = true;
-                                            std::shuffle(servers.begin(), servers.end(),
-                                                         *QRandomGenerator::global());
+                                            shuffleServers();
                                             qDebug() << servers;
                                             emit serversInitialized();
                                         }
@@ -77,6 +80,10 @@ void Invidious::initServers() {
             }
         }
     });
+}
+
+void Invidious::shuffleServers() {
+    std::shuffle(servers.begin(), servers.end(), *QRandomGenerator::global());
 }
 
 QString Invidious::baseUrl() {

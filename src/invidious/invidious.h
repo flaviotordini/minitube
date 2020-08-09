@@ -15,6 +15,7 @@ public:
 
     explicit Invidious(QObject *parent = nullptr);
     void initServers();
+    void shuffleServers();
     QString baseUrl();
     QUrl method(const QString &name);
 
