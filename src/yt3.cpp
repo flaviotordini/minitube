@@ -60,7 +60,7 @@ void YT3::initApiKeys() {
 
     if (keys.isEmpty()) {
         qWarning() << "No available API keys";
-#ifdef APP_LINUX
+#ifdef APP_LINUX_NO
         QMetaObject::invokeMethod(MainWindow::instance(), "missingKeyWarning",
                                   Qt::QueuedConnection);
 #endif
