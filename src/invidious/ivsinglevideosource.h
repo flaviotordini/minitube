@@ -3,15 +3,14 @@
 
 #include <QtCore>
 
-#include "videosource.h"
+#include "ivvideosource.h"
 
-class IVSingleVideoSource : public VideoSource {
+class IVSingleVideoSource : public IVVideoSource {
     Q_OBJECT
 public:
     IVSingleVideoSource(QObject *parent = 0);
 
-    void loadVideos(int max, int startIndex);
-    void abort();
+    void reallyLoadVideos(int max, int startIndex);
     QString getName();
 
     void setVideoId(const QString &value) { videoId = value; }
@@ -19,12 +18,10 @@ public:
 
 private slots:
     void parseResults(QByteArray data);
-    void requestError(const QString &message);
 
 private:
     Video *video;
     QString videoId;
-    bool aborted;
     int startIndex;
     int max;
     QString name;

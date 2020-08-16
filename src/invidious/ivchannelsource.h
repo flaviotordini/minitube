@@ -1,19 +1,18 @@
 #ifndef IVCHANNELSOURCE_H
 #define IVCHANNELSOURCE_H
 
-#include "videosource.h"
+#include "ivvideosource.h"
 #include <QtNetwork>
 
 class SearchParams;
 
-class IVChannelSource : public VideoSource {
+class IVChannelSource : public IVVideoSource {
     Q_OBJECT
 
 public:
     IVChannelSource(SearchParams *searchParams, QObject *parent = nullptr);
 
-    void loadVideos(int max, int startIndex);
-    void abort();
+    void reallyLoadVideos(int max, int startIndex);
     QString getName();
     const QList<QAction *> &getActions();
     int maxResults();
@@ -22,7 +21,6 @@ public:
 
 private:
     SearchParams *searchParams;
-    bool aborted;
     QString name;
 };
 

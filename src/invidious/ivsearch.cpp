@@ -13,13 +13,11 @@ int invidiousFixedMax = 20;
 }
 
 IVSearch::IVSearch(SearchParams *searchParams, QObject *parent)
-    : VideoSource(parent), searchParams(searchParams) {
+    : IVVideoSource(parent), searchParams(searchParams) {
     searchParams->setParent(this);
 }
 
-void IVSearch::loadVideos(int max, int startIndex) {
-    aborted = false;
-
+void IVSearch::reallyLoadVideos(int max, int startIndex) {
     QUrl url = Invidious::instance().method("search");
 
     QUrlQuery q(url);
@@ -82,16 +80,7 @@ void IVSearch::loadVideos(int max, int startIndex) {
     // qWarning() << "YT3 search" << url.toString();
     auto reply = Invidious::cachedHttp().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResults(QByteArray)));
-    connect(reply, &HttpReply::error, this,
-            [this, max, startIndex, retryCount = 0](auto message) mutable {
-                if (retryCount < 3) {
-                    qDebug() << "Retrying...";
-                    Invidious::instance().initServers();
-                    loadVideos(max, startIndex);
-                    retryCount++;
-                }
-                emit error(message);
-            });
+    connect(reply, &HttpReply::error, this, &IVSearch::handleError);
 }
 
 void IVSearch::parseResults(const QByteArray &data) {
@@ -99,6 +88,11 @@ void IVSearch::parseResults(const QByteArray &data) {
 
     QJsonDocument doc = QJsonDocument::fromJson(data);
     const QJsonArray items = doc.array();
+    if (items.isEmpty()) {
+        handleError("No videos");
+        return;
+    }
+
     IVListParser parser(items);
     const QVector<Video *> &videos = parser.getVideos();
 
@@ -116,10 +110,6 @@ void IVSearch::parseResults(const QByteArray &data) {
 
     emit gotVideos(videos);
     emit finished(videos.size());
-}
-
-void IVSearch::abort() {
-    aborted = true;
 }
 
 QString IVSearch::getName() {

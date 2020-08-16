@@ -7,7 +7,8 @@ HEADERS += $$PWD/invidious.h \
     $$PWD/ivlistparser.h \
     $$PWD/ivsearch.h \
     $$PWD/ivsinglevideosource.h \
-    $$PWD/ivvideolist.h
+    $$PWD/ivvideolist.h \
+    $$PWD/ivvideosource.h
 
 SOURCES += $$PWD/invidious.cpp \
     $$PWD/ivchannel.cpp \
@@ -15,5 +16,6 @@ SOURCES += $$PWD/invidious.cpp \
     $$PWD/ivlistparser.cpp \
     $$PWD/ivsearch.cpp \
     $$PWD/ivsinglevideosource.cpp \
-    $$PWD/ivvideolist.cpp
+    $$PWD/ivvideolist.cpp \
+    $$PWD/ivvideosource.cpp
 

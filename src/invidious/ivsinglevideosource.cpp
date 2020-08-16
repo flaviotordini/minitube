@@ -8,9 +8,9 @@
 #include "ivlistparser.h"
 
 IVSingleVideoSource::IVSingleVideoSource(QObject *parent)
-    : VideoSource(parent), video(nullptr), startIndex(0), max(0) {}
+    : IVVideoSource(parent), video(nullptr), startIndex(0), max(0) {}
 
-void IVSingleVideoSource::loadVideos(int max, int startIndex) {
+void IVSingleVideoSource::reallyLoadVideos(int max, int startIndex) {
     aborted = false;
     this->startIndex = startIndex;
     this->max = max;
@@ -39,9 +39,9 @@ void IVSingleVideoSource::loadVideos(int max, int startIndex) {
         url.setPath(url.path() + "/" + videoId);
     }
 
-    QObject *reply = Invidious::cachedHttp().get(url);
+    auto reply = Invidious::cachedHttp().get(url);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResults(QByteArray)));
-    connect(reply, SIGNAL(error(QString)), SLOT(requestError(QString)));
+    connect(reply, &HttpReply::error, this, &IVSingleVideoSource::handleError);
 }
 
 void IVSingleVideoSource::parseResults(QByteArray data) {
@@ -49,6 +49,7 @@ void IVSingleVideoSource::parseResults(QByteArray data) {
 
     QJsonDocument doc = QJsonDocument::fromJson(data);
     const QJsonArray items = doc.object()["recommendedVideos"].toArray();
+
     IVListParser parser(items);
     const QVector<Video *> &videos = parser.getVideos();
 
@@ -61,10 +62,6 @@ void IVSingleVideoSource::parseResults(QByteArray data) {
         emit finished(videos.size());
 }
 
-void IVSingleVideoSource::abort() {
-    aborted = true;
-}
-
 QString IVSingleVideoSource::getName() {
     return name;
 }
@@ -72,8 +69,4 @@ QString IVSingleVideoSource::getName() {
 void IVSingleVideoSource::setVideo(Video *video) {
     this->video = video;
     videoId = video->getId();
-}
-
-void IVSingleVideoSource::requestError(const QString &message) {
-    emit error(message);
 }

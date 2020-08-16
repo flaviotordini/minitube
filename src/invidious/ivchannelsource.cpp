@@ -13,13 +13,11 @@ int invidiousFixedMax = 20;
 }
 
 IVChannelSource::IVChannelSource(SearchParams *searchParams, QObject *parent)
-    : VideoSource(parent), searchParams(searchParams) {
+    : IVVideoSource(parent), searchParams(searchParams) {
     searchParams->setParent(this);
 }
 
-void IVChannelSource::loadVideos(int max, int startIndex) {
-    aborted = false;
-
+void IVChannelSource::reallyLoadVideos(int max, int startIndex) {
     QUrl url = Invidious::instance().method("channels/videos/");
     url.setPath(url.path() + searchParams->channelId());
 
@@ -43,6 +41,11 @@ void IVChannelSource::loadVideos(int max, int startIndex) {
     connect(reply, &HttpReply::data, this, [this](auto data) {
         QJsonDocument doc = QJsonDocument::fromJson(data);
         const QJsonArray items = doc.array();
+        if (items.isEmpty()) {
+            handleError("No videos");
+            return;
+        }
+
         IVListParser parser(items);
         const QVector<Video *> &videos = parser.getVideos();
 
@@ -61,14 +64,7 @@ void IVChannelSource::loadVideos(int max, int startIndex) {
         emit gotVideos(videos);
         emit finished(videos.size());
     });
-    connect(reply, &HttpReply::error, this, [this](auto message) {
-        Invidious::instance().initServers();
-        emit error(message);
-    });
-}
-
-void IVChannelSource::abort() {
-    aborted = true;
+    connect(reply, &HttpReply::error, this, &IVChannelSource::handleError);
 }
 
 QString IVChannelSource::getName() {

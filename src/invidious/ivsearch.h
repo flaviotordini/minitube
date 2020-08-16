@@ -1,19 +1,18 @@
 #ifndef IVSEARCH_H
 #define IVSEARCH_H
 
-#include "videosource.h"
+#include "ivvideosource.h"
 #include <QtNetwork>
 
 class SearchParams;
 class Video;
 
-class IVSearch : public VideoSource {
+class IVSearch : public IVVideoSource {
     Q_OBJECT
 
 public:
     IVSearch(SearchParams *params, QObject *parent = 0);
-    void loadVideos(int max, int startIndex);
-    void abort();
+    void reallyLoadVideos(int max, int startIndex);
     QString getName();
     const QList<QAction *> &getActions();
     int maxResults();
@@ -24,7 +23,6 @@ private slots:
 
 private:
     SearchParams *searchParams;
-    bool aborted;
     QString name;
 };
 
