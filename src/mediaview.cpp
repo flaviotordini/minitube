@@ -58,6 +58,10 @@ $END_LICENSE */
 #include "ivsinglevideosource.h"
 #include "videoapi.h"
 
+#include "ytjschannelsource.h"
+#include "ytjssearch.h"
+#include "ytjssinglevideosource.h"
+
 MediaView *MediaView::instance() {
     static MediaView *i = new MediaView();
     return i;
@@ -237,6 +241,14 @@ SearchParams *MediaView::getSearchParams() {
         auto search = qobject_cast<IVChannelSource *>(videoSource);
         return search->getSearchParams();
     }
+    if (clazz == QLatin1String("YTJSSearch")) {
+        auto search = qobject_cast<YTJSSearch *>(videoSource);
+        return search->getSearchParams();
+    }
+    if (clazz == QLatin1String("YTJSChannelSource")) {
+        auto search = qobject_cast<YTJSChannelSource *>(videoSource);
+        return search->getSearchParams();
+    }
     return nullptr;
 }
 
@@ -253,6 +265,10 @@ void MediaView::search(SearchParams *searchParams) {
                     singleVideoSource = source;
                 } else if (VideoAPI::impl() == VideoAPI::IV) {
                     auto source = new IVSingleVideoSource(this);
+                    source->setVideoId(videoId);
+                    singleVideoSource = source;
+                } else if (VideoAPI::impl() == VideoAPI::JS) {
+                    auto source = new YTJSSingleVideoSource(this);
                     source->setVideoId(videoId);
                     singleVideoSource = source;
                 }
@@ -276,6 +292,12 @@ void MediaView::search(SearchParams *searchParams) {
             search = new IVSearch(searchParams);
         } else {
             search = new IVChannelSource(searchParams);
+        }
+    } else if (VideoAPI::impl() == VideoAPI::JS) {
+        if (searchParams->channelId().isEmpty()) {
+            search = new YTJSSearch(searchParams);
+        } else {
+            search = new YTJSChannelSource(searchParams);
         }
     }
     setVideoSource(search);
@@ -941,6 +963,10 @@ void MediaView::relatedVideos() {
         setVideoSource(singleVideoSource);
     } else if (VideoAPI::impl() == VideoAPI::IV) {
         auto source = new IVSingleVideoSource(this);
+        source->setVideo(video->clone());
+        setVideoSource(source);
+    } else if (VideoAPI::impl() == VideoAPI::JS) {
+        auto source = new YTJSSingleVideoSource(this);
         source->setVideo(video->clone());
         setVideoSource(source);
     }

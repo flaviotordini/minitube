@@ -52,7 +52,7 @@ void StandardFeedsView::load() {
                 SLOT(layoutCategories(const QVector<YTCategory> &)));
         youTubeCategories->loadCategories();
         addVideoSourceWidget(buildStandardFeed("most_popular", tr("Most Popular")));
-    } else if (VideoAPI::impl() == VideoAPI::IV) {
+    } else {
         QString regionParam = "region=" + region.id;
         addVideoSourceWidget(new IVVideoList("popular?" + regionParam, tr("Most Popular")));
         addVideoSourceWidget(new IVVideoList("trending?" + regionParam, tr("Trending")));

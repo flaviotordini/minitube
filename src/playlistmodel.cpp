@@ -29,6 +29,9 @@ $END_LICENSE */
 #include "ivsearch.h"
 #include "ytsearch.h"
 
+#include "ytjschannelsource.h"
+#include "ytjssearch.h"
+
 namespace {
 const QString recentKeywordsKey = "recentKeywords";
 const QString recentChannelsKey = "recentChannels";
@@ -77,11 +80,8 @@ QVariant PlaylistModel::data(const QModelIndex &index, int role) const {
         case Qt::TextAlignmentRole:
             return QVariant(int(Qt::AlignHCenter | Qt::AlignVCenter));
         case Qt::ForegroundRole:
-            if (!errorMessage.isEmpty())
-                return palette.color(QPalette::ToolTipText);
-            else
-                return palette.color(QPalette::Dark);
-        case Qt::BackgroundColorRole:
+            return palette.color(QPalette::Dark);
+        case Qt::BackgroundRole:
             if (!errorMessage.isEmpty())
                 return palette.color(QPalette::ToolTipBase);
             else
@@ -275,6 +275,12 @@ void PlaylistModel::handleFirstVideo(Video *video) {
             searchParams = search->getSearchParams();
         } else if (clazz == QLatin1String("IVChannelSource")) {
             auto search = qobject_cast<IVChannelSource *>(videoSource);
+            searchParams = search->getSearchParams();
+        } else if (clazz == QLatin1String("YTJSSearch")) {
+            auto search = qobject_cast<YTJSSearch *>(videoSource);
+            searchParams = search->getSearchParams();
+        } else if (clazz == QLatin1String("YTJSChannelSource")) {
+            auto search = qobject_cast<YTJSChannelSource *>(videoSource);
             searchParams = search->getSearchParams();
         }
 

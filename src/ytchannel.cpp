@@ -28,8 +28,9 @@ $END_LICENSE */
 
 #include "iconutils.h"
 
-#include "videoapi.h"
 #include "ivchannel.h"
+#include "videoapi.h"
+#include "ytjschannel.h"
 
 YTChannel::YTChannel(const QString &channelId, QObject *parent)
     : QObject(parent), id(0), channelId(channelId), loadingThumbnail(false), notifyCount(0),
@@ -97,6 +98,18 @@ void YTChannel::maybeLoadfromAPI() {
         auto ivChannel = new IVChannel(channelId);
         connect(ivChannel, &IVChannel::error, this, &YTChannel::requestError);
         connect(ivChannel, &IVChannel::loaded, this, [this, ivChannel] {
+            displayName = ivChannel->getDisplayName();
+            description = ivChannel->getDescription();
+            thumbnailUrl = ivChannel->getThumbnailUrl();
+            ivChannel->deleteLater();
+            emit infoLoaded();
+            storeInfo();
+            loading = false;
+        });
+    } else if (VideoAPI::impl() == VideoAPI::JS) {
+        auto ivChannel = new YTJSChannel(channelId);
+        connect(ivChannel, &YTJSChannel::error, this, &YTChannel::requestError);
+        connect(ivChannel, &YTJSChannel::loaded, this, [this, ivChannel] {
             displayName = ivChannel->getDisplayName();
             description = ivChannel->getDescription();
             thumbnailUrl = ivChannel->getThumbnailUrl();

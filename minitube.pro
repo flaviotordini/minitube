@@ -42,6 +42,7 @@ include(lib/media/media.pri)
 
 include(src/qtsingleapplication/qtsingleapplication.pri)
 include(src/invidious/invidious.pri)
+include(src/ytjs/ytjs.pri)
 
 INCLUDEPATH += $$PWD/src
 

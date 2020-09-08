@@ -25,11 +25,13 @@ $END_LICENSE */
 #include "jsfunctions.h"
 #include "playlistitemdelegate.h"
 #include "videodefinition.h"
+
+#include "ytjsvideo.h"
 #include "ytvideo.h"
 
 Video::Video()
     : duration(0), viewCount(-1), license(LicenseYouTube), definitionCode(0),
-      loadingThumbnail(false), ytVideo(nullptr) {}
+      loadingThumbnail(false), ytVideo(nullptr), ytjsVideo(nullptr) {}
 
 Video::~Video() {
     qDebug() << "Deleting" << id;
@@ -114,14 +116,38 @@ void Video::setThumbnail(const QByteArray &bytes) {
 
 void Video::streamUrlLoaded(const QString &streamUrl, const QString &audioUrl) {
     qDebug() << "Streams loaded";
-    definitionCode = ytVideo->getDefinitionCode();
     this->streamUrl = streamUrl;
     emit gotStreamUrl(streamUrl, audioUrl);
-    ytVideo->deleteLater();
-    ytVideo = nullptr;
+    if (ytVideo) {
+        definitionCode = ytVideo->getDefinitionCode();
+        ytVideo->deleteLater();
+        ytVideo = nullptr;
+    }
+    if (ytjsVideo) {
+        definitionCode = ytjsVideo->getDefinitionCode();
+        ytjsVideo->deleteLater();
+        ytjsVideo = nullptr;
+    }
+}
+
+void Video::loadStreamUrlJS() {
+    if (ytjsVideo) {
+        qDebug() << "Already loading" << id;
+        return;
+    }
+    ytjsVideo = new YTJSVideo(id, this);
+    connect(ytjsVideo, &YTJSVideo::gotStreamUrl, this, &Video::streamUrlLoaded);
+    connect(ytjsVideo, &YTJSVideo::errorStreamUrl, this, [this](const QString &msg) {
+        emit errorStreamUrl(msg);
+        ytjsVideo->deleteLater();
+        ytjsVideo = nullptr;
+    });
+    ytjsVideo->loadStreamUrl();
 }
 
 void Video::loadStreamUrl() {
+    loadStreamUrlJS();
+    return;
     if (ytVideo) {
         qDebug() << "Already loading" << id;
         return;

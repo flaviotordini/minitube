@@ -35,9 +35,9 @@ public:
 
     enum Duration { DurationAny = 0, DurationShort, DurationMedium, DurationLong };
 
-    enum Quality { QualityAny = 0, QualityHD };
+    enum Quality { QualityAny = 0, QualityHD, Quality4K, QualityHDR };
 
-    enum Time { TimeAny = 0, TimeToday, TimeWeek, TimeMonth };
+    enum Time { TimeAny = 0, TimeToday, TimeWeek, TimeMonth, TimeYear };
 
     enum SafeSearch { None = 0, Moderate, Strict };
 

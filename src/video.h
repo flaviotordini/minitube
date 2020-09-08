@@ -25,6 +25,7 @@ $END_LICENSE */
 #include <QtGui>
 
 class YTVideo;
+class YTJSVideo;
 
 class Video : public QObject {
     Q_OBJECT
@@ -101,6 +102,8 @@ private slots:
     void streamUrlLoaded(const QString &streamUrl, const QString &audioUrl);
 
 private:
+    void loadStreamUrlJS();
+
     QString title;
     QString description;
     QString channelTitle;
@@ -125,6 +128,7 @@ private:
     bool loadingThumbnail;
 
     YTVideo *ytVideo;
+    YTJSVideo *ytjsVideo;
 };
 
 // This is required in order to use QPointer<Video> as a QVariant

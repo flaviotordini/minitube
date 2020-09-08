@@ -34,8 +34,9 @@ $END_LICENSE */
 #endif
 #include "channellistview.h"
 
-#include "videoapi.h"
 #include "ivchannelsource.h"
+#include "videoapi.h"
+#include "ytjschannelsource.h"
 
 namespace {
 const QString sortByKey = "subscriptionsSortBy";
@@ -178,6 +179,8 @@ void ChannelView::itemActivated(const QModelIndex &index) {
             vs = videoSource;
         } else if (VideoAPI::impl() == VideoAPI::IV) {
             vs = new IVChannelSource(params);
+        } else if (VideoAPI::impl() == VideoAPI::JS) {
+            vs = new YTJSChannelSource(params);
         }
         emit activated(vs);
         channel->updateWatched();

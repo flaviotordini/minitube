@@ -30,8 +30,9 @@ $END_LICENSE */
 #include "http.h"
 #include "httputils.h"
 
-#include "videoapi.h"
 #include "ivchannelsource.h"
+#include "videoapi.h"
+#include "ytjschannelsource.h"
 
 ChannelAggregator::ChannelAggregator(QObject *parent)
     : QObject(parent), unwatchedCount(-1), running(false), stopped(false), currentChannel(0) {
@@ -150,6 +151,11 @@ void ChannelAggregator::reallyProcessChannel(YTChannel *channel) {
         videoSource->loadVideos(50, 1);
     } else if (VideoAPI::impl() == VideoAPI::IV) {
         auto *videoSource = new IVChannelSource(params);
+        connect(videoSource, SIGNAL(gotVideos(QVector<Video *>)),
+                SLOT(videosLoaded(QVector<Video *>)));
+        videoSource->loadVideos(50, 1);
+    } else if (VideoAPI::impl() == VideoAPI::JS) {
+        auto *videoSource = new YTJSChannelSource(params);
         connect(videoSource, SIGNAL(gotVideos(QVector<Video *>)),
                 SLOT(videosLoaded(QVector<Video *>)));
         videoSource->loadVideos(50, 1);

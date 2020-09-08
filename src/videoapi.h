@@ -5,8 +5,8 @@
 
 class VideoAPI {
 public:
-    enum Impl { YT3, IV };
-    static Impl impl() { return IV; }
+    enum Impl { YT3, IV, JS };
+    static Impl impl() { return JS; }
 
 private:
     VideoAPI() {}
