@@ -263,7 +263,8 @@ void PlaylistModel::handleFirstVideo(Video *video) {
 
     auto clazz = videoSource->metaObject()->className();
     if (clazz == QLatin1String("YTSearch") || clazz == QLatin1String("IVSearch") ||
-        clazz == QLatin1String("IVChannelSource")) {
+        clazz == QLatin1String("IVChannelSource") || clazz == QLatin1String("YTJSSearch") ||
+        clazz == QLatin1String("YTJSChannelSource")) {
         static const int maxRecentElements = 10;
 
         SearchParams *searchParams;
