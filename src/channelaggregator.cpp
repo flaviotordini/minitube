@@ -101,7 +101,15 @@ void ChannelAggregator::processNextChannel() {
 
 void ChannelAggregator::checkWebPage(YTChannel *channel) {
     currentChannel = channel;
-    QString url = "https://www.youtube.com/channel/" + channel->getChannelId() + "/videos";
+
+    QString channelId = channel->getChannelId();
+    QString url;
+    if (channelId.startsWith("UC") && !channelId.contains(' ')) {
+        url = "https://www.youtube.com/channel/" + channelId + "/videos";
+    } else {
+        url = "https://www.youtube.com/user/" + channelId + "/videos";
+    }
+
     QObject *reply = HttpUtils::yt().get(url);
 
     connect(reply, SIGNAL(data(QByteArray)), SLOT(parseWebPage(QByteArray)));
