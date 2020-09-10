@@ -163,6 +163,12 @@ void YTJSSearch::loadVideos(int max, int startIndex) {
 
         auto obj = doc.object();
 
+        /*
+        QFile jsonFile("/Users/flavio/test.json");
+        jsonFile.open(QFile::WriteOnly);
+        jsonFile.write(doc.toJson());
+        */
+
         nextpageRef = obj["nextpageRef"].toString();
 
         const auto items = obj["items"].toArray();
