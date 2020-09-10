@@ -77,7 +77,8 @@ QString DataUtils::formatDateTime(const QDateTime &dt) {
         int n = seconds / (60 * 60 * 24 * 30);
         s = QCoreApplication::translate("DataUtils", "%n month(s) ago", Q_NULLPTR, n);
     } else {
-        s = dt.date().toString(Qt::DefaultLocaleShortDate);
+        int n = seconds / (60 * 60 * 24 * 30 * 12);
+        s = QCoreApplication::translate("DataUtils", "%n year(s) ago", Q_NULLPTR, n);
     }
     return s;
 }
