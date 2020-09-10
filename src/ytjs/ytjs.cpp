@@ -80,11 +80,13 @@ void YTJS::initialize() {
     connect(cachedHttp().get(ytJs), &HttpReply::finished, this, [this](auto &reply) {
         if (!reply.isSuccessful()) {
             emit initFailed("Cannot load JS");
+            qDebug() << "Cannot load JS";
             return;
         }
         evaluate(reply.body());
         ready = true;
         initializing = false;
+        qDebug() << "Initialized";
         emit initialized();
     });
 }
