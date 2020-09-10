@@ -57,7 +57,7 @@ uint DataUtils::parseIsoPeriod(const QString &isoPeriod) {
 }
 
 QString DataUtils::formatDateTime(const QDateTime &dt) {
-    const qint64 seconds = dt.secsTo(QDateTime::currentDateTime());
+    const qint64 seconds = dt.secsTo(QDateTime::currentDateTimeUtc());
     QString s;
     int f = 60;
     if (seconds < f) {
