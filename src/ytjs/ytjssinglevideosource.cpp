@@ -41,10 +41,6 @@ void YTJSSingleVideoSource::loadVideos(int max, int startIndex) {
 
         auto obj = doc.object();
 
-        QFile jsonFile("/Users/flavio/test.json");
-        jsonFile.open(QFile::WriteOnly);
-        jsonFile.write(doc.toJson());
-
         const auto items = obj["related_videos"].toArray();
         QVector<Video *> videos;
         videos.reserve(items.size());
