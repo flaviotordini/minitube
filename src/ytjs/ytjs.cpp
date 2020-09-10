@@ -77,7 +77,7 @@ void YTJS::initialize() {
 
     connect(cachedHttp().get(ytJs), &HttpReply::finished, this, [this](auto &reply) {
         if (!reply.isSuccessful()) {
-            emit initFailed("Cannot load " + ytJs);
+            emit initFailed("Cannot load JS");
             return;
         }
         evaluate(reply.body());
