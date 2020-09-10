@@ -222,6 +222,10 @@
         <source>%n week(s) ago</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
+    <message numerus="yes">
+        <source>%n year(s) ago</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+    </message>
 </context>
 <context>
     <name>DownloadItem</name>
@@ -786,18 +790,6 @@
         <translation>Shkarkimet jan kompletuar</translation>
     </message>
     <message>
-        <source>%1 version %2 is now available.</source>
-        <translation>%1 versioni %2 eshte i gatshem</translation>
-    </message>
-    <message>
-        <source>Remind me later</source>
-        <translation>Me rikujto me von</translation>
-    </message>
-    <message>
-        <source>Update</source>
-        <translation>Arrnim</translation>
-    </message>
-    <message>
         <source>You can still access the menu bar by pressing the ALT key</source>
         <translation type="unfinished"/>
     </message>
@@ -1042,16 +1034,24 @@
         <translation>Kualiteti</translation>
     </message>
     <message>
-        <source>High Definition</source>
-        <translation>Definicion i lartë</translation>
-    </message>
-    <message>
-        <source>720p or higher</source>
-        <translation>720p ose më i lartë</translation>
-    </message>
-    <message>
         <source>Done</source>
         <translation>Kry</translation>
+    </message>
+    <message>
+        <source>This year</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HD</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>4K</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HDR</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1110,6 +1110,10 @@
         <source>I keep improving %1 to make it the best I can. Support this work!</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>An update is ready to be installed. Quit and install update.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>SidebarHeader</name>
@@ -1162,6 +1166,26 @@
         <source>Most Popular</source>
         <translation>Me i përhapuri</translation>
     </message>
+    <message>
+        <source>Trending</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Music</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>News</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Movies</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Gaming</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>UpdateDialog</name>
@@ -1172,6 +1196,64 @@
     <message>
         <source>Downloading %1...</source>
         <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>Updater</name>
+    <message>
+        <source>Check for Updates...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Version %1 is available...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Downloading version %1...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restart to Update</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Version %1 download failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check for Updates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Download Update</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Downloading update...</source>
+        <translation>Duke shkarkuar përditësimet</translation>
+    </message>
+    <message>
+        <source>Retry Update Download</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You have the latest version.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Version %1 is available.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>An update has been downloaded and is ready to be installed.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>YTJSVideo</name>
+    <message>
+        <source>Cannot get video stream for %1</source>
+        <translation>Nuk mund te merr rrjedhen e videos per %1</translation>
     </message>
 </context>
 <context>
@@ -1374,6 +1456,44 @@
     <message>
         <source>Cannot get video stream for %1</source>
         <translation>Nuk mund te merr rrjedhen e videos per %1</translation>
+    </message>
+</context>
+<context>
+    <name>updater::DefaultUpdater</name>
+    <message>
+        <source>There are currently no updates available.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>updater::Dialog</name>
+    <message>
+        <source>You already have the latest version</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Downloading %1 %2...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>A new version of %1 is available!</source>
+        <translation>Një version i %1 është i gatshëm</translation>
+    </message>
+    <message>
+        <source>%1 %2 is now available. You have %3.</source>
+        <translation>%1 %2 është i gatshëm . Ju keni %3.</translation>
+    </message>
+    <message>
+        <source>Would you like to download it now?</source>
+        <translation>Dëshiron që ta shkarkoni tani?</translation>
+    </message>
+    <message>
+        <source>Remind Me Later</source>
+        <translation>Ma rikujtoni më vonë</translation>
+    </message>
+    <message>
+        <source>Download Update</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

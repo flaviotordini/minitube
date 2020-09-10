@@ -221,6 +221,10 @@
         <source>%n week(s) ago</source>
         <translation><numerusform>há %n semanas</numerusform><numerusform>há %n semanas</numerusform></translation>
     </message>
+    <message numerus="yes">
+        <source>%n year(s) ago</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+    </message>
 </context>
 <context>
     <name>DownloadItem</name>
@@ -785,18 +789,6 @@
         <translation>Transferência completa</translation>
     </message>
     <message>
-        <source>%1 version %2 is now available.</source>
-        <translation>%1 versão %2 está agora disponível.</translation>
-    </message>
-    <message>
-        <source>Remind me later</source>
-        <translation>Relembrar-me mais tarde</translation>
-    </message>
-    <message>
-        <source>Update</source>
-        <translation>Actualizar</translation>
-    </message>
-    <message>
         <source>You can still access the menu bar by pressing the ALT key</source>
         <translation>Podes sempre obter a barra de menu com a tecla ALT</translation>
     </message>
@@ -1041,16 +1033,24 @@
         <translation>Qualidade</translation>
     </message>
     <message>
-        <source>High Definition</source>
-        <translation>Alta-Definição</translation>
-    </message>
-    <message>
-        <source>720p or higher</source>
-        <translation>720p ou mais alto</translation>
-    </message>
-    <message>
         <source>Done</source>
         <translation>Feito</translation>
+    </message>
+    <message>
+        <source>This year</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HD</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>4K</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HDR</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1109,6 +1109,10 @@
         <source>I keep improving %1 to make it the best I can. Support this work!</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>An update is ready to be installed. Quit and install update.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>SidebarHeader</name>
@@ -1161,6 +1165,26 @@
         <source>Most Popular</source>
         <translation>Mais Popular</translation>
     </message>
+    <message>
+        <source>Trending</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Music</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>News</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Movies</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Gaming</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>UpdateDialog</name>
@@ -1171,6 +1195,64 @@
     <message>
         <source>Downloading %1...</source>
         <translation>A transferir %1...</translation>
+    </message>
+</context>
+<context>
+    <name>Updater</name>
+    <message>
+        <source>Check for Updates...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Version %1 is available...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Downloading version %1...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restart to Update</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Version %1 download failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Check for Updates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Download Update</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Downloading update...</source>
+        <translation>A transferir actualização...</translation>
+    </message>
+    <message>
+        <source>Retry Update Download</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You have the latest version.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Version %1 is available.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>An update has been downloaded and is ready to be installed.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>YTJSVideo</name>
+    <message>
+        <source>Cannot get video stream for %1</source>
+        <translation>Não é possível obter a stream do video para %1</translation>
     </message>
 </context>
 <context>
@@ -1373,6 +1455,44 @@
     <message>
         <source>Cannot get video stream for %1</source>
         <translation>Não é possível obter a stream do video para %1</translation>
+    </message>
+</context>
+<context>
+    <name>updater::DefaultUpdater</name>
+    <message>
+        <source>There are currently no updates available.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>updater::Dialog</name>
+    <message>
+        <source>You already have the latest version</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Downloading %1 %2...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>A new version of %1 is available!</source>
+        <translation>Uma nova versão do %1 está disponível!</translation>
+    </message>
+    <message>
+        <source>%1 %2 is now available. You have %3.</source>
+        <translation>%1 %2 está agora disponível. Você tem %3.</translation>
+    </message>
+    <message>
+        <source>Would you like to download it now?</source>
+        <translation>Gostaria de descarregar agora?</translation>
+    </message>
+    <message>
+        <source>Remind Me Later</source>
+        <translation>Relembrar-me Mais Tarde</translation>
+    </message>
+    <message>
+        <source>Download Update</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
