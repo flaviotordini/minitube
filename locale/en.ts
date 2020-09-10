@@ -4,9 +4,8 @@
 <context>
     <name>ChannelAggregator</name>
     <message numerus="yes">
-        <location filename="../src/channelaggregator.cpp" line="185"/>
         <source>You have %n new video(s)</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>You have a new video</numerusform>
             <numerusform>You have %n new videos</numerusform>
         </translation>
@@ -15,52 +14,46 @@
 <context>
     <name>DataUtils</name>
     <message numerus="yes">
-        <location filename="../src/datautils.cpp" line="90"/>
-        <source>%n minute(s) ago</source>
-        <translation type="unfinished">
-            <numerusform>A minute ago</numerusform>
-            <numerusform>%n minutes ago</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../src/datautils.cpp" line="92"/>
         <source>%n hour(s) ago</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>An hour ago</numerusform>
             <numerusform>%n hours ago</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/datautils.cpp" line="94"/>
         <source>%n day(s) ago</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>Yesterday</numerusform>
             <numerusform>%n days ago</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/datautils.cpp" line="96"/>
-        <source>%n weeks(s) ago</source>
-        <translation type="unfinished">
+        <source>%n month(s) ago</source>
+        <translation>
+            <numerusform>A month ago</numerusform>
+            <numerusform>%n months ago</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%n week(s) ago</source>
+        <translation>
             <numerusform>A week ago</numerusform>
             <numerusform>%n weeks ago</numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/datautils.cpp" line="98"/>
-        <source>%n month(s) ago</source>
-        <translation type="unfinished">
-            <numerusform>A month ago</numerusform>
-            <numerusform>%n months ago</numerusform>
+        <source>%n year(s) ago</source>
+        <translation>
+            <numerusform>1 year ago</numerusform>
+            <numerusform>%n years ago</numerusform>
         </translation>
     </message>
 </context>
 <context>
     <name>DownloadManager</name>
     <message numerus="yes">
-        <location filename="../src/downloadmanager.cpp" line="165"/>
         <source>%n Download(s)</source>
-        <translation type="unfinished">
+        <translation>
             <numerusform>1 Download</numerusform>
             <numerusform>%n Downloads</numerusform>
         </translation>
