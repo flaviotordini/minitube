@@ -20,21 +20,26 @@ QString parseChannelId(const QString &channelUrl) {
     return QString();
 }
 
-quint64 parsePublishedText(const QString &s) {
-    int pos = s.indexOf(' ');
-    if (pos <= 0) return 0;
-    auto num = s.leftRef(pos);
-    auto now = QDateTime::currentSecsSinceEpoch();
-    if (s.contains("day")) {
-        return now - num.toInt() * 86400;
-    } else if (s.contains("week")) {
-        return now - num.toInt() * 86400 * 7;
-    } else if (s.contains("month")) {
-        return now - num.toInt() * 86400 * 30;
-    } else if (s.contains("year")) {
-        return now - num.toInt() * 86400 * 365;
+QDateTime parsePublishedText(const QString &s) {
+    int num = 0;
+    const auto parts = s.splitRef(' ');
+    for (const auto &part : parts) {
+        num = part.toInt();
+        if (num > 0) break;
     }
-    return 0;
+    if (num == 0) return QDateTime();
+
+    auto now = QDateTime::currentDateTimeUtc();
+    if (s.contains("day")) {
+        return now.addDays(-num);
+    } else if (s.contains("week")) {
+        return now.addDays(-num * 7);
+    } else if (s.contains("month")) {
+        return now.addMonths(-num);
+    } else if (s.contains("year")) {
+        return now.addDays(-num * 365);
+    }
+    return QDateTime();
 }
 
 } // namespace
@@ -123,8 +128,8 @@ void YTJSChannelSource::loadVideos(int max, int startIndex) {
             int duration = i["lengthSeconds"].toInt();
             video->setDuration(duration);
 
-            int published = parsePublishedText(i["publishedText"].toString());
-            if (published) video->setPublished(QDateTime::fromSecsSinceEpoch(published));
+            auto published = parsePublishedText(i["publishedText"].toString());
+            if (published.isValid()) video->setPublished(published);
 
             QString channelName = i["author"].toString();
             if (channelName != name) {

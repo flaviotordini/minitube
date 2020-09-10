@@ -31,6 +31,28 @@ QString parseChannelId(const QString &channelUrl) {
     return QString();
 }
 
+QDateTime parsePublishedText(const QString &s) {
+    int num = 0;
+    const auto parts = s.splitRef(' ');
+    for (const auto &part : parts) {
+        num = part.toInt();
+        if (num > 0) break;
+    }
+    if (num == 0) return QDateTime();
+
+    auto now = QDateTime::currentDateTimeUtc();
+    if (s.contains("day")) {
+        return now.addDays(-num);
+    } else if (s.contains("week")) {
+        return now.addDays(-num * 7);
+    } else if (s.contains("month")) {
+        return now.addMonths(-num);
+    } else if (s.contains("year")) {
+        return now.addDays(-num * 365);
+    }
+    return QDateTime();
+}
+
 } // namespace
 
 YTJSSearch::YTJSSearch(SearchParams *searchParams, QObject *parent)
@@ -170,6 +192,9 @@ void YTJSSearch::loadVideos(int max, int startIndex) {
 
             int duration = parseDuration(i["duration"].toString());
             video->setDuration(duration);
+
+            auto published = parsePublishedText(i["uploaded_at"].toString());
+            if (published.isValid()) video->setPublished(published);
 
             auto authorObj = i["author"];
             QString channelName = authorObj["name"].toString();
