@@ -138,16 +138,14 @@ void Video::loadStreamUrlJS() {
     ytjsVideo = new YTJSVideo(id, this);
     connect(ytjsVideo, &YTJSVideo::gotStreamUrl, this, &Video::streamUrlLoaded);
     connect(ytjsVideo, &YTJSVideo::errorStreamUrl, this, [this](const QString &msg) {
-        emit errorStreamUrl(msg);
         ytjsVideo->deleteLater();
         ytjsVideo = nullptr;
+        loadStreamUrlYT();
     });
     ytjsVideo->loadStreamUrl();
 }
 
-void Video::loadStreamUrl() {
-    loadStreamUrlJS();
-    return;
+void Video::loadStreamUrlYT() {
     if (ytVideo) {
         qDebug() << "Already loading" << id;
         return;
@@ -160,6 +158,10 @@ void Video::loadStreamUrl() {
         ytVideo = nullptr;
     });
     ytVideo->loadStreamUrl();
+}
+
+void Video::loadStreamUrl() {
+    loadStreamUrlJS();
 }
 
 void Video::abortLoadStreamUrl() {

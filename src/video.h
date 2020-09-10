@@ -103,6 +103,7 @@ private slots:
 
 private:
     void loadStreamUrlJS();
+    void loadStreamUrlYT();
 
     QString title;
     QString description;
