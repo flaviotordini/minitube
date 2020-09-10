@@ -8,15 +8,15 @@ YTJSVideo::YTJSVideo(const QString &videoId, QObject *parent)
     : QObject(parent), videoId(videoId), definitionCode(0) {}
 
 void YTJSVideo::loadStreamUrl() {
-    if (loadingStreamUrl) return;
-    loadingStreamUrl = true;
-
     auto &ytjs = YTJS::instance();
     if (!ytjs.isInitialized()) {
         QTimer::singleShot(500, this, [this] { loadStreamUrl(); });
         return;
     }
     auto &engine = ytjs.getEngine();
+
+    if (loadingStreamUrl) return;
+    loadingStreamUrl = true;
 
     auto function = engine.evaluate("videoInfo");
     if (!function.isCallable()) {
