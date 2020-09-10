@@ -41,6 +41,11 @@ void YTJSVideo::loadStreamUrl() {
             // qDebug() << itag << url;
             urlMap.insert(itag, url);
         }
+        if (urlMap.isEmpty()) {
+            loadingStreamUrl = false;
+            emit errorStreamUrl("No formats");
+            return;
+        }
 
         qDebug() << "available formats" << urlMap.keys();
         const VideoDefinition &definition = YT3::instance().maxVideoDefinition();
