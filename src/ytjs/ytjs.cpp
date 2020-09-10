@@ -31,6 +31,8 @@ Http &YTJS::cachedHttp() {
     static Http *h = [] {
         CachedHttp *cachedHttp = new CachedHttp(http(), "ytjs");
         cachedHttp->setMaxSeconds(3600 * 6);
+        // Avoid expiring the cached js
+        cachedHttp->setMaxSize(0);
         cachedHttp->setIgnoreHostname(true);
 
         cachedHttp->getValidators().insert("application/javascript", [](const auto &reply) -> bool {
