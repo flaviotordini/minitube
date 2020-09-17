@@ -1,20 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component>
+<component type="desktop-application">
   <name>Minitube</name>
   <id>org.tordini.flavio.minitube</id>
   <metadata_license>CC0-1.0</metadata_license>
-  <project_license>GPL-3.0+</project_license>
+  <project_license>GPL-3.0-or-later</project_license>
   <summary>YouTube app</summary>
   <description>
     <p>
-      Minitube is a YouTube desktop application. It is written in C++ using the Qt framework.
+      Watch YouTube videos in a new way: you type a keyword, Minitube gives you an endless video stream. Minitube is not about cloning the YouTube website, it aims to create a new TV-like experience.
     </p>
+    <ol>
+     <li><em>Light on your computer</em>. By consuming less CPU and less memory than a web browser, Minitube preserves battery life and keeps your laptop cool.</li>
+     <li><em>Great for kids!</em> Very easy to use and with filters for inappropriate content.</li>
+     <li><em>Channel subscriptions</em> Subscribe to YouTube channels and be notified of new videos. No need to login with a YouTube account: more privacy! </li>
+     <li><em>Stop fiddling</em> Just search for something. Minitube automatically plays videos one after another. Sit back and enjoy.</li>
+    </ol>
   </description>
   <url type="homepage">http://flavio.tordini.org/minitube</url>
   <screenshots>
-    <screenshot type="default"><image>http://flavio.tordini.org/files/minitube/minitube-04.jpg</image></screenshot>
-    <screenshot><image>http://flavio.tordini.org/files/minitube/minitube-03.jpg</image></screenshot>
-    <screenshot><image>http://flavio.tordini.org/files/minitube/minitube-02.jpg</image></screenshot>
-    <screenshot><image>http://flavio.tordini.org/files/minitube/minitube-01.jpg</image></screenshot>
+    <screenshot type="default">
+      <image>http://flavio.tordini.org/files/minitube/minitube-04.jpg</image>
+    </screenshot>
+    <screenshot>
+      <image>http://flavio.tordini.org/files/minitube/minitube-03.jpg</image>
+    </screenshot>
+    <screenshot>
+      <image>http://flavio.tordini.org/files/minitube/minitube-02.jpg</image>
+    </screenshot>
+    <screenshot>
+      <image>http://flavio.tordini.org/files/minitube/minitube-01.jpg</image>
+    </screenshot>
   </screenshots>
+  <developer_name>Flavio Tordini</developer_name>
+  <url type="bugtracker">https://github.com/flaviotordini/minitube/issues</url>
+  <url type="donation">https://flavio.tordini.org/donate</url>
+  <url type="translate">https://www.transifex.com/flaviotordini/minitube/</url>
+  <releases>
+    <release version="3.6.1" date="2020-09-10"/>
+  </releases>
+  <content_rating type="oars-1.1">
+    <content_attribute id="violence-cartoon">intense</content_attribute>
+    <content_attribute id="violence-fantasy">intense</content_attribute>
+    <content_attribute id="violence-realistic">intense</content_attribute>
+    <content_attribute id="violence-bloodshed">intense</content_attribute>
+    <content_attribute id="violence-sexual">intense</content_attribute>
+    <content_attribute id="violence-desecration">moderate</content_attribute>
+    <content_attribute id="violence-slavery">moderate</content_attribute>
+    <content_attribute id="violence-worship">intense</content_attribute>
+    <content_attribute id="drugs-alcohol">moderate</content_attribute>
+    <content_attribute id="drugs-narcotics">moderate</content_attribute>
+    <content_attribute id="drugs-tobacco">moderate</content_attribute>
+    <content_attribute id="sex-nudity">mild</content_attribute>
+    <content_attribute id="sex-themes">intense</content_attribute>
+    <content_attribute id="sex-homosexuality">intense</content_attribute>
+    <content_attribute id="sex-prostitution">intense</content_attribute>
+    <content_attribute id="sex-adultery">intense</content_attribute>
+    <content_attribute id="sex-appearance">intense</content_attribute>
+    <content_attribute id="language-profanity">intense</content_attribute>
+    <content_attribute id="language-humor">intense</content_attribute>
+    <content_attribute id="language-discrimination">intense</content_attribute>
+  </content_rating>
 </component>
