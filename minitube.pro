@@ -252,8 +252,8 @@ unix:!mac {
     sounds.files += sounds/
     desktop.path = $$DATADIR/applications
     desktop.files += minitube.desktop
-    appdata.path = $$DATADIR/appdata
-    appdata.files += minitube.appdata.xml
+    appdata.path = $$DATADIR/metainfo
+    appdata.files += org.tordini.flavio.minitube.metainfo.xml
     iconsvg.path = $$DATADIR/icons/hicolor/scalable/apps
     iconsvg.files += data/minitube.svg
     icon16.path = $$DATADIR/icons/hicolor/16x16/apps
