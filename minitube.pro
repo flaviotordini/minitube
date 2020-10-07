@@ -281,6 +281,7 @@ mac|win32|contains(DEFINES, APP_UBUNTU):include(local/local.pri)
     include(lib/updater/updater.pri)
 }
 
+message(QT: $$QT)
 message(CONFIG: $$CONFIG)
 message(DEFINES: $$DEFINES)
 message(QMAKE_CXXFLAGS: $$QMAKE_CXXFLAGS)
