@@ -6,6 +6,10 @@
 
 ToolbarMenu::ToolbarMenu(QWidget *parent) : QMenu(parent) {
     MainWindow *w = MainWindow::instance();
+#ifdef APP_ACTIVATION
+    QAction *buyAction = w->getAction("buy");
+    if (buyAction) addAction(buyAction);
+#endif
     addAction(w->getAction("stopafterthis"));
     addSeparator();
 #ifdef APP_SNAPSHOT
