@@ -119,6 +119,10 @@ if [ -n "${signer}" ]; then
 fi
 cleanup_source_dir
 
+cd "${output_dir}"
+gh release create $version -t "" && \
+gh release upload $version "${output_dir}/${package_name}-${version}.tar.bz2" --clobber || exit 1
+
 exit 0
 
 # vim:set ts=2 sw=2 et:
