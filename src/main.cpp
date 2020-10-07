@@ -64,7 +64,7 @@ void showWindow(QtSingleApplication &app, const QString &pkgDataDir) {
 }
 
 int main(int argc, char **argv) {
-#ifndef Q_NO_DEBUG_OUTPUT
+#ifndef QT_NO_DEBUG_OUTPUT
     qSetMessagePattern("[%{function}] %{message}");
 #endif
 
