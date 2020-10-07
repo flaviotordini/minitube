@@ -125,8 +125,10 @@ QString Invidious::baseUrl() {
             host = fallbackServers.first();
         else
             host = preferredServers.first();
-    } else
+    } else if (!servers.isEmpty())
         host = servers.first();
+    else
+        return QString();
 
     QString url = host + QLatin1String("/api/v1/");
     return url;
