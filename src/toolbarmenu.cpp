@@ -11,6 +11,7 @@ ToolbarMenu::ToolbarMenu(QWidget *parent) : QMenu(parent) {
     if (buyAction) addAction(buyAction);
 #endif
     addAction(w->getAction("stopafterthis"));
+    addAction(w->getAction("subscribeChannel"));
     addSeparator();
 #ifdef APP_SNAPSHOT
     addAction(w->getAction("snapshot"));
