@@ -87,10 +87,14 @@ void ChannelModel::setQuery(const QString &query, const QSqlDatabase &db) {
     channels.reserve(q.size());
     while (q.next()) {
         YTChannel *channel = YTChannel::forId(q.value(0).toString());
-        connect(channel, SIGNAL(thumbnailLoaded()), SLOT(updateSender()), Qt::UniqueConnection);
-        connect(channel, SIGNAL(notifyCountChanged()), SLOT(updateSender()), Qt::UniqueConnection);
-        connect(channel, SIGNAL(destroyed(QObject *)), SLOT(removeChannel(QObject *)), Qt::UniqueConnection);
-        channels << channel;
+        if (channel) {
+            connect(channel, SIGNAL(thumbnailLoaded()), SLOT(updateSender()), Qt::UniqueConnection);
+            connect(channel, SIGNAL(notifyCountChanged()), SLOT(updateSender()),
+                    Qt::UniqueConnection);
+            connect(channel, SIGNAL(destroyed(QObject *)), SLOT(removeChannel(QObject *)),
+                    Qt::UniqueConnection);
+            channels << channel;
+        }
     }
     channels.squeeze();
     endResetModel();

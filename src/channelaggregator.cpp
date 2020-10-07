@@ -207,8 +207,10 @@ void ChannelAggregator::videosLoaded(const QVector<Video *> &videos) {
 
     if (!videos.isEmpty()) {
         YTChannel *channel = YTChannel::forId(videos.at(0)->getChannelId());
-        channel->updateNotifyCount();
-        emit channelChanged(channel);
+        if (channel) {
+            channel->updateNotifyCount();
+            emit channelChanged(channel);
+        }
         updateUnwatchedCount();
         for (Video *video : videos)
             video->deleteLater();
@@ -324,7 +326,7 @@ void ChannelAggregator::videoWatched(Video *video) {
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
     if (query.numRowsAffected() > 0) {
         YTChannel *channel = YTChannel::forId(video->getChannelId());
-        channel->updateNotifyCount();
+        if (channel) channel->updateNotifyCount();
     }
 }
 
