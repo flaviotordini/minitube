@@ -8,18 +8,6 @@
 
 namespace {
 
-int parseDuration(const QString &s) {
-    static const QTime zeroTime(0, 0);
-    QTime time = QTime::fromString(s, QStringLiteral("hh:mm:ss"));
-    return zeroTime.secsTo(time);
-}
-
-QString parseChannelId(const QString &channelUrl) {
-    int pos = channelUrl.lastIndexOf('/');
-    if (pos >= 0) return channelUrl.mid(pos + 1);
-    return QString();
-}
-
 QDateTime parsePublishedText(const QString &s) {
     int num = 0;
     const auto parts = s.splitRef(' ');
