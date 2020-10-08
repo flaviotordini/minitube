@@ -130,7 +130,6 @@ bool Database::exists() {
             QString homeLocation = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
             QString qt4DataLocation = homeLocation + "/.local/share/data/" + Constants::ORG_NAME + "/" + Constants::NAME;
             QString oldDbLocation = qt4DataLocation + "/" + dbName;
-            qDebug() << "asd" << oldDbLocation;
             fileExists = QFile::exists(oldDbLocation);
         }
 #endif
