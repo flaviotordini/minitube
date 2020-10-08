@@ -135,6 +135,8 @@ QString Invidious::baseUrl() {
 }
 
 QUrl Invidious::method(const QString &name) {
+    QString base = baseUrl();
+    if (base.isEmpty()) return QUrl();
     QUrl url(baseUrl() + name);
     return url;
 }

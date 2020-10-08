@@ -19,6 +19,10 @@ IVSearch::IVSearch(SearchParams *searchParams, QObject *parent)
 
 void IVSearch::reallyLoadVideos(int max, int startIndex) {
     QUrl url = Invidious::instance().method("search");
+    if (url.isEmpty()) {
+        QTimer::singleShot(500, this, [this] { handleError("No baseUrl"); });
+        return;
+    }
 
     QUrlQuery q(url);
 

@@ -19,6 +19,10 @@ IVChannelSource::IVChannelSource(SearchParams *searchParams, QObject *parent)
 
 void IVChannelSource::reallyLoadVideos(int max, int startIndex) {
     QUrl url = Invidious::instance().method("channels/videos/");
+    if (url.isEmpty()) {
+        QTimer::singleShot(500, this, [this] { handleError("No baseUrl"); });
+        return;
+    }
     url.setPath(url.path() + searchParams->channelId());
 
     QUrlQuery q(url);

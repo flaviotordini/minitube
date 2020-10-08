@@ -32,10 +32,18 @@ void IVSingleVideoSource::reallyLoadVideos(int max, int startIndex) {
         }
 
         url = Invidious::instance().method("videos/");
+        if (url.isEmpty()) {
+            QTimer::singleShot(500, this, [this] { handleError("No baseUrl"); });
+            return;
+        }
         url.setPath(url.path() + videoId);
 
     } else {
         url = Invidious::instance().method("videos");
+        if (url.isEmpty()) {
+            QTimer::singleShot(500, this, [this] { handleError("No baseUrl"); });
+            return;
+        }
         url.setPath(url.path() + "/" + videoId);
     }
 

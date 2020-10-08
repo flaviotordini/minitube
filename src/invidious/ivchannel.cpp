@@ -6,6 +6,11 @@
 
 IVChannel::IVChannel(const QString &id, QObject *parent) : QObject(parent) {
     QUrl url = Invidious::instance().method("channels/");
+    if (url.isEmpty()) {
+        emit error("No baseUrl");
+        return;
+    }
+
     url.setPath(url.path() + id);
 
     auto *reply = Invidious::cachedHttp().get(url);

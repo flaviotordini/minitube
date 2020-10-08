@@ -12,7 +12,12 @@ IVVideoList::IVVideoList(const QString &req, const QString &name, QObject *paren
 void IVVideoList::reallyLoadVideos(int max, int startIndex) {
     aborted = false;
 
-    QUrl url(Invidious::instance().baseUrl() + req);
+    QString baseUrl = Invidious::instance().baseUrl();
+    if (baseUrl.isEmpty()) {
+        QTimer::singleShot(500, this, [this] { handleError("No baseUrl"); });
+        return;
+    }
+    QUrl url(baseUrl + req);
 
     auto *reply = Invidious::cachedHttp().get(url);
     connect(reply, &HttpReply::data, this, [this](auto data) {
