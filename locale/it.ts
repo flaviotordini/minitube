@@ -852,15 +852,15 @@
     </message>
     <message>
         <source>Rewind %1 seconds</source>
-        <translation type="unfinished"/>
+        <translation>Indietro %1 secondi</translation>
     </message>
     <message>
         <source>Fast forward %1 seconds</source>
-        <translation type="unfinished"/>
+        <translation>Avanti veloce %1 secondi</translation>
     </message>
     <message>
         <source>channel</source>
-        <translation type="unfinished"/>
+        <translation>canale</translation>
     </message>
 </context>
 <context>
@@ -1038,19 +1038,19 @@
     </message>
     <message>
         <source>This year</source>
-        <translation type="unfinished"/>
+        <translation>Quest&apos;anno</translation>
     </message>
     <message>
         <source>HD</source>
-        <translation type="unfinished"/>
+        <translation>HD</translation>
     </message>
     <message>
         <source>4K</source>
-        <translation type="unfinished"/>
+        <translation>4K</translation>
     </message>
     <message>
         <source>HDR</source>
-        <translation type="unfinished"/>
+        <translation>HDR</translation>
     </message>
 </context>
 <context>
@@ -1099,19 +1099,19 @@
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Rimuovi</translation>
     </message>
     <message>
         <source>Need a remote control for %1? Try %2!</source>
-        <translation type="unfinished"/>
+        <translation>Hai bisogno di un telecomando per %1? Prova %2!</translation>
     </message>
     <message>
         <source>I keep improving %1 to make it the best I can. Support this work!</source>
-        <translation type="unfinished"/>
+        <translation>Continuo a migliorare %1 per renderlo migliore. Sostieni questo lavoro!</translation>
     </message>
     <message>
         <source>An update is ready to be installed. Quit and install update.</source>
-        <translation type="unfinished"/>
+        <translation>Un aggiornamento è pronto per essere installato. Esci e installa l&apos;aggiornamento.</translation>
     </message>
 </context>
 <context>
@@ -1167,23 +1167,23 @@
     </message>
     <message>
         <source>Trending</source>
-        <translation type="unfinished"/>
+        <translation>Di tendenza</translation>
     </message>
     <message>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>Musica</translation>
     </message>
     <message>
         <source>News</source>
-        <translation type="unfinished"/>
+        <translation>Notizie</translation>
     </message>
     <message>
         <source>Movies</source>
-        <translation type="unfinished"/>
+        <translation>Film</translation>
     </message>
     <message>
         <source>Gaming</source>
-        <translation type="unfinished"/>
+        <translation>Gaming</translation>
     </message>
 </context>
 <context>
@@ -1201,31 +1201,31 @@
     <name>Updater</name>
     <message>
         <source>Check for Updates...</source>
-        <translation type="unfinished"/>
+        <translation>Controllo aggiornamenti...</translation>
     </message>
     <message>
         <source>Version %1 is available...</source>
-        <translation type="unfinished"/>
+        <translation>La versione %1 è disponibile ...</translation>
     </message>
     <message>
         <source>Downloading version %1...</source>
-        <translation type="unfinished"/>
+        <translation>Download versione %1 ...</translation>
     </message>
     <message>
         <source>Restart to Update</source>
-        <translation type="unfinished"/>
+        <translation>Riavvia per aggiornare</translation>
     </message>
     <message>
         <source>Version %1 download failed</source>
-        <translation type="unfinished"/>
+        <translation>Download della versione %1 non riuscito</translation>
     </message>
     <message>
         <source>Check for Updates</source>
-        <translation type="unfinished"/>
+        <translation>Controlla aggiornamenti</translation>
     </message>
     <message>
         <source>Download Update</source>
-        <translation type="unfinished"/>
+        <translation>Scarica aggiornamento</translation>
     </message>
     <message>
         <source>Downloading update...</source>
@@ -1233,19 +1233,19 @@
     </message>
     <message>
         <source>Retry Update Download</source>
-        <translation type="unfinished"/>
+        <translation>Riprova a scaricare l&apos;aggiornamento</translation>
     </message>
     <message>
         <source>You have the latest version.</source>
-        <translation type="unfinished"/>
+        <translation>Hai l&apos;ultima versione.</translation>
     </message>
     <message>
         <source>Version %1 is available.</source>
-        <translation type="unfinished"/>
+        <translation>La versione %1 è disponibile.</translation>
     </message>
     <message>
         <source>An update has been downloaded and is ready to be installed.</source>
-        <translation type="unfinished"/>
+        <translation>È stato scaricato un aggiornamento ed è pronto per essere installato.</translation>
     </message>
 </context>
 <context>
@@ -1461,18 +1461,18 @@
     <name>updater::DefaultUpdater</name>
     <message>
         <source>There are currently no updates available.</source>
-        <translation type="unfinished"/>
+        <translation>Al momento non ci sono aggiornamenti disponibili.</translation>
     </message>
 </context>
 <context>
     <name>updater::Dialog</name>
     <message>
         <source>You already have the latest version</source>
-        <translation type="unfinished"/>
+        <translation>Hai già l&apos;ultima versione</translation>
     </message>
     <message>
         <source>Downloading %1 %2...</source>
-        <translation type="unfinished"/>
+        <translation>Download di %1 %2...</translation>
     </message>
     <message>
         <source>A new version of %1 is available!</source>
@@ -1492,7 +1492,7 @@
     </message>
     <message>
         <source>Download Update</source>
-        <translation type="unfinished"/>
+        <translation>Scarica aggiornamento</translation>
     </message>
 </context>
 </TS>

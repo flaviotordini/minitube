@@ -223,7 +223,7 @@
     </message>
     <message numerus="yes">
         <source>%n year(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n yıl önce</numerusform><numerusform>%n yıl önce</numerusform></translation>
     </message>
 </context>
 <context>
@@ -1038,19 +1038,19 @@
     </message>
     <message>
         <source>This year</source>
-        <translation type="unfinished"/>
+        <translation>Bu yıl</translation>
     </message>
     <message>
         <source>HD</source>
-        <translation type="unfinished"/>
+        <translation>HD</translation>
     </message>
     <message>
         <source>4K</source>
-        <translation type="unfinished"/>
+        <translation>4K</translation>
     </message>
     <message>
         <source>HDR</source>
-        <translation type="unfinished"/>
+        <translation>HDR</translation>
     </message>
 </context>
 <context>
@@ -1111,7 +1111,7 @@
     </message>
     <message>
         <source>An update is ready to be installed. Quit and install update.</source>
-        <translation type="unfinished"/>
+        <translation>Bir güncelleme kurulmaya hazır. Güncellemek için çıkın ve kurun.</translation>
     </message>
 </context>
 <context>
@@ -1167,23 +1167,23 @@
     </message>
     <message>
         <source>Trending</source>
-        <translation type="unfinished"/>
+        <translation>Trend</translation>
     </message>
     <message>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>Müzik</translation>
     </message>
     <message>
         <source>News</source>
-        <translation type="unfinished"/>
+        <translation>Yeniler</translation>
     </message>
     <message>
         <source>Movies</source>
-        <translation type="unfinished"/>
+        <translation>Filmler</translation>
     </message>
     <message>
         <source>Gaming</source>
-        <translation type="unfinished"/>
+        <translation>Oyun</translation>
     </message>
 </context>
 <context>
@@ -1201,31 +1201,31 @@
     <name>Updater</name>
     <message>
         <source>Check for Updates...</source>
-        <translation type="unfinished"/>
+        <translation>Güncellemeleri denetle...</translation>
     </message>
     <message>
         <source>Version %1 is available...</source>
-        <translation type="unfinished"/>
+        <translation>%1 sürümü mevcut...</translation>
     </message>
     <message>
         <source>Downloading version %1...</source>
-        <translation type="unfinished"/>
+        <translation>%1 sürümü indiriliyor...</translation>
     </message>
     <message>
         <source>Restart to Update</source>
-        <translation type="unfinished"/>
+        <translation>Güncellemek için Yeniden Başlat</translation>
     </message>
     <message>
         <source>Version %1 download failed</source>
-        <translation type="unfinished"/>
+        <translation>%1 sürümü indirilemedi</translation>
     </message>
     <message>
         <source>Check for Updates</source>
-        <translation type="unfinished"/>
+        <translation>Güncellemeleri denetle</translation>
     </message>
     <message>
         <source>Download Update</source>
-        <translation type="unfinished"/>
+        <translation>Güncellemeyi İndir</translation>
     </message>
     <message>
         <source>Downloading update...</source>
@@ -1233,19 +1233,19 @@
     </message>
     <message>
         <source>Retry Update Download</source>
-        <translation type="unfinished"/>
+        <translation>Güncellemeyi İndirmeyi Yeniden Dene</translation>
     </message>
     <message>
         <source>You have the latest version.</source>
-        <translation type="unfinished"/>
+        <translation>En son sürüme sahipsiniz.</translation>
     </message>
     <message>
         <source>Version %1 is available.</source>
-        <translation type="unfinished"/>
+        <translation>%1 sürümü mevcut.</translation>
     </message>
     <message>
         <source>An update has been downloaded and is ready to be installed.</source>
-        <translation type="unfinished"/>
+        <translation>Bir güncelleme indirildi ve kurulmaya hazır.</translation>
     </message>
 </context>
 <context>
@@ -1461,18 +1461,18 @@
     <name>updater::DefaultUpdater</name>
     <message>
         <source>There are currently no updates available.</source>
-        <translation type="unfinished"/>
+        <translation>Şu anda mevcut güncelleme yok.</translation>
     </message>
 </context>
 <context>
     <name>updater::Dialog</name>
     <message>
         <source>You already have the latest version</source>
-        <translation type="unfinished"/>
+        <translation>Zaten en son sürüme sahipsiniz</translation>
     </message>
     <message>
         <source>Downloading %1 %2...</source>
-        <translation type="unfinished"/>
+        <translation>İndiriliyor %1 %2...</translation>
     </message>
     <message>
         <source>A new version of %1 is available!</source>
@@ -1492,7 +1492,7 @@
     </message>
     <message>
         <source>Download Update</source>
-        <translation type="unfinished"/>
+        <translation>Güncellemeyi İndir</translation>
     </message>
 </context>
 </TS>
