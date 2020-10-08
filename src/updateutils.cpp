@@ -47,6 +47,12 @@ void init() {
 #ifdef APP_WIN
     installer->setArguments({"/S"});
 #endif
+#ifdef APP_LINUX
+    installer->setCommand({"dpkg"});
+    installer->setArguments({"-i", "%filename%"});
+    installer->setRunAsAdmin(true);
+    installer->setAutoRestart(true);
+#endif
     updater->setInstaller(installer);
 
     Updater::setInstance(updater);
