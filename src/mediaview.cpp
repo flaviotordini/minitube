@@ -414,6 +414,7 @@ void MediaView::mediaStateChanged(Media::State state) {
     if (pauseTime > 0 && (state == Media::PlayingState || state == Media::BufferingState)) {
         qDebug() << "Seeking to" << pauseTime;
         media->seek(pauseTime);
+        media->play();
         pauseTime = 0;
     }
     if (state == Media::PlayingState) {
@@ -444,9 +445,12 @@ void MediaView::pause() {
     default:
         if (pauseTimer.hasExpired(60000)) {
             pauseTimer.invalidate();
-            connect(playlistModel->activeVideo(), &Video::gotStreamUrl, this,
-                    &MediaView::resumeWithNewStreamUrl);
-            playlistModel->activeVideo()->loadStreamUrl();
+            auto activeVideo = playlistModel->activeVideo();
+            if (activeVideo) {
+                connect(activeVideo, &Video::gotStreamUrl, this,
+                        &MediaView::resumeWithNewStreamUrl);
+                activeVideo->loadStreamUrl();
+            }
         } else
             media->play();
         break;
