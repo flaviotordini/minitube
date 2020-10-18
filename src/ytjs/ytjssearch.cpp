@@ -157,7 +157,20 @@ void YTJSSearch::loadVideos(int max, int startIndex) {
     }
 
     auto handler = new ResultHandler;
-    connect(handler, &ResultHandler::error, this, &VideoSource::error);
+    connect(handler, &ResultHandler::error, this,
+            [&ytjs, this, max, startIndex, retries = 0](auto &msg) mutable {
+                qDebug() << "Clearing cookies";
+                auto nam = ytjs.getEngine().networkAccessManager();
+                nam->setCookieJar(new QNetworkCookieJar());
+                if (retries < 5) {
+                    qDebug() << "Retrying...";
+                    QTimer::singleShot(0, this,
+                                       [this, max, startIndex] { loadVideos(max, startIndex); });
+                    retries++;
+                } else {
+                    emit error(msg);
+                }
+            });
     connect(handler, &ResultHandler::data, this, [this](const QJsonDocument &doc) {
         if (aborted) return;
 
