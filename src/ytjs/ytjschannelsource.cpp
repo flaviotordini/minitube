@@ -74,8 +74,6 @@ void YTJSChannelSource::loadVideos(int max, int startIndex) {
     connect(handler, &ResultHandler::data, this, [this](const QJsonDocument &doc) {
         auto obj = doc.object();
 
-        qDebug() << doc.toJson();
-
         continuation = obj["continuation"].toString();
 
         const auto items = obj["items"].toArray();
