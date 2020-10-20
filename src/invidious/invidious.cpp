@@ -56,19 +56,33 @@ Http &Invidious::cachedHttp() {
 }
 
 Invidious::Invidious(QObject *parent) : QObject(parent) {
-#ifdef APP_EXTRA
-    preferredServers << Extra::extraFunctions()->stringArray("ivPreferred()");
-    shuffle(preferredServers);
-#endif
-    fallbackServers = JsFunctions::instance()->stringArray("ivFallback()");
-    shuffle(fallbackServers);
+
 }
 
 void Invidious::initServers() {
     if (!servers.isEmpty()) shuffleServers();
 
     QString instanceApi = JsFunctions::instance()->string("ivInstances()");
-    if (instanceApi.isEmpty()) return;
+    if (instanceApi.isEmpty()) {
+        qDebug() << "No instances API url";
+        return;
+    }
+
+    if (initializing) {
+        qDebug() << "Already initializing";
+        return;
+    }
+    initializing = true;
+
+#ifdef APP_EXTRA
+    preferredServers << Extra::extraFunctions()->stringArray("ivPreferred()");
+    shuffle(preferredServers);
+#endif
+    auto newFallbackServers = JsFunctions::instance()->stringArray("ivFallback()");
+    if (!newFallbackServers.isEmpty()) {
+        fallbackServers = newFallbackServers;
+        shuffle(fallbackServers);
+    }
 
     auto reply = http().get(instanceApi);
     connect(reply, &HttpReply::finished, this, [this](auto &reply) {
@@ -79,9 +93,10 @@ void Invidious::initServers() {
             QStringList keywords = settings.value("recentKeywords").toStringList();
             QString testKeyword = keywords.isEmpty() ? "test" : keywords.first();
 
+            const int maxServers = 5;
             QJsonDocument doc = QJsonDocument::fromJson(reply.body());
             for (const auto &v : doc.array()) {
-                if (servers.size() > 3) break;
+                if (servers.size() > maxServers * 2) break;
 
                 auto serverArray = v.toArray();
                 QString host = serverArray.first().toString();
@@ -95,13 +110,14 @@ void Invidious::initServers() {
                         if (reply.isSuccessful()) {
                             QJsonDocument doc = QJsonDocument::fromJson(reply.body());
                             if (!doc.array().isEmpty()) {
-                                if (servers.size() < 3) {
+                                if (servers.size() < maxServers) {
                                     servers << url;
-                                    if (servers.size() == 3) {
+                                    if (servers.size() == maxServers) {
                                         shuffleServers();
                                         for (const auto &s : qAsConst(preferredServers))
                                             servers.prepend(s);
                                         qDebug() << servers;
+                                        initializing = false;
                                         emit serversInitialized();
                                     }
                                 }
@@ -121,14 +137,12 @@ void Invidious::shuffleServers() {
 QString Invidious::baseUrl() {
     QString host;
     if (servers.isEmpty()) {
-        if (preferredServers.isEmpty())
-            host = fallbackServers.first();
-        else
+        if (preferredServers.isEmpty()) {
+            if (!fallbackServers.isEmpty()) host = fallbackServers.first();
+        } else
             host = preferredServers.first();
-    } else if (!servers.isEmpty())
+    } else
         host = servers.first();
-    else
-        return QString();
 
     QString url = host + QLatin1String("/api/v1/");
     return url;

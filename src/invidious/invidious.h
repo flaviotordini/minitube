@@ -24,6 +24,7 @@ signals:
 
 private:
     QStringList servers;
+    bool initializing = false;
 };
 
 #endif // INVIDIOUS_H

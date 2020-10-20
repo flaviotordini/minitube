@@ -23,6 +23,8 @@ void IVVideoSource::handleError(QString message) {
         reallyLoadVideos(max, startIndex);
         retryCount++;
     } else {
+        retryCount = 0;
+        Invidious::instance().initServers();
         qWarning() << message;
         emit error("Error loading videos");
     }
