@@ -1038,19 +1038,19 @@
     </message>
     <message>
         <source>This year</source>
-        <translation type="unfinished"/>
+        <translation>Este Ano</translation>
     </message>
     <message>
         <source>HD</source>
-        <translation type="unfinished"/>
+        <translation>HD</translation>
     </message>
     <message>
         <source>4K</source>
-        <translation type="unfinished"/>
+        <translation>4K</translation>
     </message>
     <message>
         <source>HDR</source>
-        <translation type="unfinished"/>
+        <translation>HDR</translation>
     </message>
 </context>
 <context>
@@ -1171,19 +1171,19 @@
     </message>
     <message>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>Música</translation>
     </message>
     <message>
         <source>News</source>
-        <translation type="unfinished"/>
+        <translation>Novidades</translation>
     </message>
     <message>
         <source>Movies</source>
-        <translation type="unfinished"/>
+        <translation>Filmes</translation>
     </message>
     <message>
         <source>Gaming</source>
-        <translation type="unfinished"/>
+        <translation>Jogos</translation>
     </message>
 </context>
 <context>
@@ -1201,15 +1201,15 @@
     <name>Updater</name>
     <message>
         <source>Check for Updates...</source>
-        <translation type="unfinished"/>
+        <translation>Verificar se há atualizações...</translation>
     </message>
     <message>
         <source>Version %1 is available...</source>
-        <translation type="unfinished"/>
+        <translation>A Versão %1 está disponível...</translation>
     </message>
     <message>
         <source>Downloading version %1...</source>
-        <translation type="unfinished"/>
+        <translation>Baixando a versão %1...</translation>
     </message>
     <message>
         <source>Restart to Update</source>
@@ -1225,7 +1225,7 @@
     </message>
     <message>
         <source>Download Update</source>
-        <translation type="unfinished"/>
+        <translation>Baixar Atualização</translation>
     </message>
     <message>
         <source>Downloading update...</source>
@@ -1241,7 +1241,7 @@
     </message>
     <message>
         <source>Version %1 is available.</source>
-        <translation type="unfinished"/>
+        <translation>A Versão %1 já está disponível.</translation>
     </message>
     <message>
         <source>An update has been downloaded and is ready to be installed.</source>
@@ -1472,7 +1472,7 @@
     </message>
     <message>
         <source>Downloading %1 %2...</source>
-        <translation type="unfinished"/>
+        <translation>Baixando %1 %2...</translation>
     </message>
     <message>
         <source>A new version of %1 is available!</source>
@@ -1492,7 +1492,7 @@
     </message>
     <message>
         <source>Download Update</source>
-        <translation type="unfinished"/>
+        <translation>Baixar Atualização</translation>
     </message>
 </context>
 </TS>

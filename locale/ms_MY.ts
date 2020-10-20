@@ -223,7 +223,7 @@
     </message>
     <message numerus="yes">
         <source>%n year(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>%n tahun yang lalu</numerusform></translation>
     </message>
 </context>
 <context>
@@ -852,15 +852,15 @@
     </message>
     <message>
         <source>Rewind %1 seconds</source>
-        <translation type="unfinished"/>
+        <translation>Mandir %1 saat</translation>
     </message>
     <message>
         <source>Fast forward %1 seconds</source>
-        <translation type="unfinished"/>
+        <translation>Maju %1 saat</translation>
     </message>
     <message>
         <source>channel</source>
-        <translation type="unfinished"/>
+        <translation>saluran</translation>
     </message>
 </context>
 <context>
@@ -1038,19 +1038,19 @@
     </message>
     <message>
         <source>This year</source>
-        <translation type="unfinished"/>
+        <translation>Tahun ini</translation>
     </message>
     <message>
         <source>HD</source>
-        <translation type="unfinished"/>
+        <translation>HD</translation>
     </message>
     <message>
         <source>4K</source>
-        <translation type="unfinished"/>
+        <translation>4K</translation>
     </message>
     <message>
         <source>HDR</source>
-        <translation type="unfinished"/>
+        <translation>HDR</translation>
     </message>
 </context>
 <context>
@@ -1099,19 +1099,19 @@
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Buang</translation>
     </message>
     <message>
         <source>Need a remote control for %1? Try %2!</source>
-        <translation type="unfinished"/>
+        <translation>Perlukan satu kawalan jauh untuk %1? Cubalah %2!</translation>
     </message>
     <message>
         <source>I keep improving %1 to make it the best I can. Support this work!</source>
-        <translation type="unfinished"/>
+        <translation>Saya masih kekal menambah baik %1 dengan sedaya upaya saya. Mohon sokong hasil kerja ini!</translation>
     </message>
     <message>
         <source>An update is ready to be installed. Quit and install update.</source>
-        <translation type="unfinished"/>
+        <translation>Satu kemas kini sedia dipasang. Keluar dan pasang kemas kini.</translation>
     </message>
 </context>
 <context>
@@ -1167,23 +1167,23 @@
     </message>
     <message>
         <source>Trending</source>
-        <translation type="unfinished"/>
+        <translation>Sohor Kini</translation>
     </message>
     <message>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>Muzik</translation>
     </message>
     <message>
         <source>News</source>
-        <translation type="unfinished"/>
+        <translation>Berita</translation>
     </message>
     <message>
         <source>Movies</source>
-        <translation type="unfinished"/>
+        <translation>Cereka</translation>
     </message>
     <message>
         <source>Gaming</source>
-        <translation type="unfinished"/>
+        <translation>Permainan</translation>
     </message>
 </context>
 <context>
@@ -1201,31 +1201,31 @@
     <name>Updater</name>
     <message>
         <source>Check for Updates...</source>
-        <translation type="unfinished"/>
+        <translation>Periksa Kemas Kini...</translation>
     </message>
     <message>
         <source>Version %1 is available...</source>
-        <translation type="unfinished"/>
+        <translation>Versi %1 sudah tersedia...</translation>
     </message>
     <message>
         <source>Downloading version %1...</source>
-        <translation type="unfinished"/>
+        <translation>Memuat turun versi %1...</translation>
     </message>
     <message>
         <source>Restart to Update</source>
-        <translation type="unfinished"/>
+        <translation>Mula Semula untuk Kemas Kini</translation>
     </message>
     <message>
         <source>Version %1 download failed</source>
-        <translation type="unfinished"/>
+        <translation>Gagal memuat turun versi %1</translation>
     </message>
     <message>
         <source>Check for Updates</source>
-        <translation type="unfinished"/>
+        <translation>Periksa Kemas Kini</translation>
     </message>
     <message>
         <source>Download Update</source>
-        <translation type="unfinished"/>
+        <translation>Muat Turun Kemas Kini</translation>
     </message>
     <message>
         <source>Downloading update...</source>
@@ -1233,19 +1233,19 @@
     </message>
     <message>
         <source>Retry Update Download</source>
-        <translation type="unfinished"/>
+        <translation>Cuba Lagi Muat Turun Kemas Kini</translation>
     </message>
     <message>
         <source>You have the latest version.</source>
-        <translation type="unfinished"/>
+        <translation>Anda sudah memiliki versi terkini.</translation>
     </message>
     <message>
         <source>Version %1 is available.</source>
-        <translation type="unfinished"/>
+        <translation>Versi %1 sudah tersedia.</translation>
     </message>
     <message>
         <source>An update has been downloaded and is ready to be installed.</source>
-        <translation type="unfinished"/>
+        <translation>Satu kemas kini telah dimuat turun dan sedia dipasang.</translation>
     </message>
 </context>
 <context>
@@ -1461,18 +1461,18 @@
     <name>updater::DefaultUpdater</name>
     <message>
         <source>There are currently no updates available.</source>
-        <translation type="unfinished"/>
+        <translation>Tiada kemas kini buat masa ini.</translation>
     </message>
 </context>
 <context>
     <name>updater::Dialog</name>
     <message>
         <source>You already have the latest version</source>
-        <translation type="unfinished"/>
+        <translation>Anda sudah memiliki versi terkini</translation>
     </message>
     <message>
         <source>Downloading %1 %2...</source>
-        <translation type="unfinished"/>
+        <translation>Memuat turun %1 %2...</translation>
     </message>
     <message>
         <source>A new version of %1 is available!</source>
@@ -1492,7 +1492,7 @@
     </message>
     <message>
         <source>Download Update</source>
-        <translation type="unfinished"/>
+        <translation>Muat Turun Kemas Kini</translation>
     </message>
 </context>
 </TS>
