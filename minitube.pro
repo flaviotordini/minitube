@@ -1,7 +1,7 @@
 CONFIG += c++17 exceptions_off rtti_off optimize_full object_parallel_to_source
 
 TEMPLATE = app
-VERSION = 3.6.4
+VERSION = 3.6.5
 DEFINES += APP_VERSION="$$VERSION"
 
 APP_NAME = Minitube
