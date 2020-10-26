@@ -46,6 +46,7 @@ void init() {
     auto installer = new updater::RunInstaller;
 #ifdef APP_WIN
     installer->setArguments({"/S"});
+    installer->setRelaunchArguments({"/relaunch"});
 #endif
 #ifdef APP_LINUX
     installer->setCommand({"dpkg"});
