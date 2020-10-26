@@ -25,12 +25,7 @@ $END_LICENSE */
 #include "videomimedata.h"
 #include "videosource.h"
 
-#include "ivchannelsource.h"
-#include "ivsearch.h"
-#include "ytsearch.h"
-
-#include "ytjschannelsource.h"
-#include "ytjssearch.h"
+#include "searchvideosource.h"
 
 namespace {
 const QString recentKeywordsKey = "recentKeywords";
@@ -262,30 +257,12 @@ void PlaylistModel::handleFirstVideo(Video *video) {
     }
 
     auto clazz = videoSource->metaObject()->className();
-    if (clazz == QLatin1String("YTSearch") || clazz == QLatin1String("IVSearch") ||
-        clazz == QLatin1String("IVChannelSource") || clazz == QLatin1String("YTJSSearch") ||
-        clazz == QLatin1String("YTJSChannelSource")) {
-        static const int maxRecentElements = 10;
-
-        SearchParams *searchParams;
-        if (clazz == QLatin1String("YTSearch")) {
-            auto search = qobject_cast<YTSearch *>(videoSource);
-            searchParams = search->getSearchParams();
-        } else if (clazz == QLatin1String("IVSearch")) {
-            auto search = qobject_cast<IVSearch *>(videoSource);
-            searchParams = search->getSearchParams();
-        } else if (clazz == QLatin1String("IVChannelSource")) {
-            auto search = qobject_cast<IVChannelSource *>(videoSource);
-            searchParams = search->getSearchParams();
-        } else if (clazz == QLatin1String("YTJSSearch")) {
-            auto search = qobject_cast<YTJSSearch *>(videoSource);
-            searchParams = search->getSearchParams();
-        } else if (clazz == QLatin1String("YTJSChannelSource")) {
-            auto search = qobject_cast<YTJSChannelSource *>(videoSource);
-            searchParams = search->getSearchParams();
-        }
+    if (clazz == QLatin1String("SearchVideoSource")) {
+        auto search = qobject_cast<SearchVideoSource *>(videoSource);
+        SearchParams *searchParams = search->getSearchParams();
 
         // save keyword
+        static const int maxRecentElements = 10;
         QString query = searchParams->keywords();
         if (!query.isEmpty() && !searchParams->isTransient()) {
             if (query.startsWith("http://")) {
