@@ -79,8 +79,8 @@ $END_LICENSE */
 #include "ytregions.h"
 
 #include "invidious.h"
+#include "js.h"
 #include "videoapi.h"
-#include "ytjs.h"
 
 #ifdef MEDIA_QTAV
 #include "mediaqtav.h"
@@ -169,7 +169,7 @@ MainWindow::MainWindow()
     } else if (VideoAPI::impl() == VideoAPI::YT3) {
         YT3::instance().initApiKeys();
     } else if (VideoAPI::impl() == VideoAPI::JS) {
-        YTJS::instance();
+        JS::instance().initialize(QUrl(QLatin1String(Constants::WEBSITE) + "-ws/bundle.js"));
         Invidious::instance().initServers();
     }
 

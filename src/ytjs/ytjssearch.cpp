@@ -3,8 +3,9 @@
 #include "mainwindow.h"
 #include "searchparams.h"
 #include "video.h"
-#include "ytjs.h"
 #include "ytsearch.h"
+
+#include "js.h"
 
 namespace {
 
@@ -59,21 +60,10 @@ YTJSSearch::YTJSSearch(SearchParams *searchParams, QObject *parent)
     : VideoSource(parent), searchParams(searchParams) {}
 
 void YTJSSearch::loadVideos(int max, int startIndex) {
-    auto &ytjs = YTJS::instance();
-    if (!ytjs.isInitialized()) {
-        QTimer::singleShot(500, this, [this, max, startIndex] { loadVideos(max, startIndex); });
-        return;
-    }
-    auto &engine = ytjs.getEngine();
-
     aborted = false;
 
-    auto function = engine.evaluate("search");
-    if (!function.isCallable()) {
-        qWarning() << function.toString() << " is not callable";
-        emit error(function.toString());
-        return;
-    }
+    auto &js = JS::instance();
+    auto &engine = js.getEngine();
 
     QString q;
     if (!searchParams->keywords().isEmpty()) {
@@ -156,11 +146,60 @@ void YTJSSearch::loadVideos(int max, int startIndex) {
         break;
     }
 
-    auto handler = new ResultHandler;
-    connect(handler, &ResultHandler::error, this,
-            [&ytjs, this, max, startIndex, retries = 0](auto &msg) mutable {
+    js.callFunction(new JSResult(this), "search", {q, options, filterMap})
+            .onJson([this](auto &doc) {
+                if (aborted) return;
+
+                auto obj = doc.object();
+
+                nextpageRef = obj["nextpageRef"].toString();
+
+                const auto items = obj["items"].toArray();
+                QVector<Video *> videos;
+                videos.reserve(items.size());
+
+                for (const auto &i : items) {
+                    QString type = i["type"].toString();
+                    if (type != "video") continue;
+
+                    Video *video = new Video();
+
+                    QString id = YTSearch::videoIdFromUrl(i["link"].toString());
+                    video->setId(id);
+
+                    QString title = i["title"].toString();
+                    video->setTitle(title);
+
+                    QString desc = i["description"].toString();
+                    video->setDescription(desc);
+
+                    QString thumb = i["thumbnail"].toString();
+                    video->setThumbnailUrl(thumb);
+
+                    int views = i["views"].toInt();
+                    video->setViewCount(views);
+
+                    int duration = parseDuration(i["duration"].toString());
+                    video->setDuration(duration);
+
+                    auto published = parsePublishedText(i["uploaded_at"].toString());
+                    if (published.isValid()) video->setPublished(published);
+
+                    auto authorObj = i["author"];
+                    QString channelName = authorObj["name"].toString();
+                    video->setChannelTitle(channelName);
+                    QString channelId = parseChannelId(authorObj["ref"].toString());
+                    video->setChannelId(channelId);
+
+                    videos << video;
+                }
+
+                emit gotVideos(videos);
+                emit finished(videos.size());
+            })
+            .onError([this, &js, max, startIndex, retries = 0](auto &msg) mutable {
                 qDebug() << "Clearing cookies";
-                auto nam = ytjs.getEngine().networkAccessManager();
+                auto nam = js.getEngine().networkAccessManager();
                 nam->setCookieJar(new QNetworkCookieJar());
                 if (retries < 5) {
                     qDebug() << "Retrying...";
@@ -171,59 +210,6 @@ void YTJSSearch::loadVideos(int max, int startIndex) {
                     emit error(msg);
                 }
             });
-    connect(handler, &ResultHandler::data, this, [this](const QJsonDocument &doc) {
-        if (aborted) return;
-
-        auto obj = doc.object();
-
-        nextpageRef = obj["nextpageRef"].toString();
-
-        const auto items = obj["items"].toArray();
-        QVector<Video *> videos;
-        videos.reserve(items.size());
-
-        for (const auto &i : items) {
-            QString type = i["type"].toString();
-            if (type != "video") continue;
-
-            Video *video = new Video();
-
-            QString id = YTSearch::videoIdFromUrl(i["link"].toString());
-            video->setId(id);
-
-            QString title = i["title"].toString();
-            video->setTitle(title);
-
-            QString desc = i["description"].toString();
-            video->setDescription(desc);
-
-            QString thumb = i["thumbnail"].toString();
-            video->setThumbnailUrl(thumb);
-
-            int views = i["views"].toInt();
-            video->setViewCount(views);
-
-            int duration = parseDuration(i["duration"].toString());
-            video->setDuration(duration);
-
-            auto published = parsePublishedText(i["uploaded_at"].toString());
-            if (published.isValid()) video->setPublished(published);
-
-            auto authorObj = i["author"];
-            QString channelName = authorObj["name"].toString();
-            video->setChannelTitle(channelName);
-            QString channelId = parseChannelId(authorObj["ref"].toString());
-            video->setChannelId(channelId);
-
-            videos << video;
-        }
-
-        emit gotVideos(videos);
-        emit finished(videos.size());
-    });
-    QJSValue h = engine.newQObject(handler);
-    auto value = function.call({h, q, options, filterMap});
-    if (ytjs.checkError(value)) emit error(value.toString());
 }
 
 QString YTJSSearch::getName() {

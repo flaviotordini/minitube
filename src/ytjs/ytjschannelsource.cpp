@@ -3,10 +3,23 @@
 #include "mainwindow.h"
 #include "searchparams.h"
 #include "video.h"
-#include "ytjs.h"
 #include "ytsearch.h"
 
+#include "js.h"
+
 namespace {
+
+int parseDuration(const QString &s) {
+    static const QTime zeroTime(0, 0);
+    QTime time = QTime::fromString(s, QStringLiteral("hh:mm:ss"));
+    return zeroTime.secsTo(time);
+}
+
+QString parseChannelId(const QString &channelUrl) {
+    int pos = channelUrl.lastIndexOf('/');
+    if (pos >= 0) return channelUrl.mid(pos + 1);
+    return QString();
+}
 
 QDateTime parsePublishedText(const QString &s) {
     int num = 0;
@@ -36,21 +49,7 @@ YTJSChannelSource::YTJSChannelSource(SearchParams *searchParams, QObject *parent
     : VideoSource(parent), searchParams(searchParams) {}
 
 void YTJSChannelSource::loadVideos(int max, int startIndex) {
-    auto &ytjs = YTJS::instance();
-    if (!ytjs.isInitialized()) {
-        QTimer::singleShot(500, this, [this, max, startIndex] { loadVideos(max, startIndex); });
-        return;
-    }
-    auto &engine = ytjs.getEngine();
-
     aborted = false;
-
-    auto function = engine.evaluate("channelVideos");
-    if (!function.isCallable()) {
-        qWarning() << function.toString() << " is not callable";
-        emit error(function.toString());
-        return;
-    }
 
     QString channelId = searchParams->channelId();
 
@@ -69,72 +68,72 @@ void YTJSChannelSource::loadVideos(int max, int startIndex) {
 
     if (startIndex <= 1) continuation.clear();
 
-    auto handler = new ResultHandler;
-    connect(handler, &ResultHandler::error, this, &VideoSource::error);
-    connect(handler, &ResultHandler::data, this, [this](const QJsonDocument &doc) {
-        auto obj = doc.object();
+    JS::instance()
+            .callFunction(new JSResult(this), "channelVideos", {channelId, sortBy, continuation})
+            .onJson([this](auto &doc) {
+                auto obj = doc.object();
 
-        continuation = obj["continuation"].toString();
+                qDebug() << doc.toJson();
 
-        const auto items = obj["items"].toArray();
-        QVector<Video *> videos;
-        videos.reserve(items.size());
+                continuation = obj["continuation"].toString();
 
-        for (const auto &i : items) {
-            QString type = i["type"].toString();
-            if (type != "video") continue;
+                const auto items = obj["items"].toArray();
+                QVector<Video *> videos;
+                videos.reserve(items.size());
 
-            Video *video = new Video();
+                for (const auto &i : items) {
+                    QString type = i["type"].toString();
+                    if (type != "video") continue;
 
-            QString id = i["videoId"].toString();
-            video->setId(id);
+                    Video *video = new Video();
 
-            QString title = i["title"].toString();
-            video->setTitle(title);
+                    QString id = i["videoId"].toString();
+                    video->setId(id);
 
-            QString desc = i["description"].toString();
-            if (desc.isEmpty()) desc = i["desc"].toString();
-            video->setDescription(desc);
+                    QString title = i["title"].toString();
+                    video->setTitle(title);
 
-            const auto thumbs = i["videoThumbnails"].toArray();
-            for (const auto &thumbObj : thumbs) {
-                QString url = thumbObj["url"].toString();
-                int width = thumbObj["width"].toInt();
-                if (width >= 336)
-                    video->setLargeThumbnailUrl(url);
-                else if (width >= 246)
-                    video->setMediumThumbnailUrl(url);
-                else if (width >= 168)
-                    video->setThumbnailUrl(url);
-            }
+                    QString desc = i["description"].toString();
+                    if (desc.isEmpty()) desc = i["desc"].toString();
+                    video->setDescription(desc);
 
-            int views = i["viewCount"].toInt();
-            video->setViewCount(views);
+                    const auto thumbs = i["videoThumbnails"].toArray();
+                    for (const auto &thumbObj : thumbs) {
+                        QString url = thumbObj["url"].toString();
+                        int width = thumbObj["width"].toInt();
+                        if (width >= 336)
+                            video->setLargeThumbnailUrl(url);
+                        else if (width >= 246)
+                            video->setMediumThumbnailUrl(url);
+                        else if (width >= 168)
+                            video->setThumbnailUrl(url);
+                    }
 
-            int duration = i["lengthSeconds"].toInt();
-            video->setDuration(duration);
+                    int views = i["viewCount"].toInt();
+                    video->setViewCount(views);
 
-            auto published = parsePublishedText(i["publishedText"].toString());
-            if (published.isValid()) video->setPublished(published);
+                    int duration = i["lengthSeconds"].toInt();
+                    video->setDuration(duration);
 
-            QString channelName = i["author"].toString();
-            if (channelName != name) {
-                this->name = channelName;
-                emit nameChanged(name);
-            }
-            video->setChannelTitle(channelName);
-            QString channelId = i["authorId"].toString();
-            video->setChannelId(channelId);
+                    auto published = parsePublishedText(i["publishedText"].toString());
+                    if (published.isValid()) video->setPublished(published);
 
-            videos << video;
-        }
+                    QString channelName = i["author"].toString();
+                    if (channelName != name) {
+                        this->name = channelName;
+                        emit nameChanged(name);
+                    }
+                    video->setChannelTitle(channelName);
+                    QString channelId = i["authorId"].toString();
+                    video->setChannelId(channelId);
 
-        emit gotVideos(videos);
-        emit finished(videos.size());
-    });
-    QJSValue h = engine.newQObject(handler);
-    auto value = function.call({h, channelId, sortBy, continuation});
-    ytjs.checkError(value);
+                    videos << video;
+                }
+
+                emit gotVideos(videos);
+                emit finished(videos.size());
+            })
+            .onError([this](auto &msg) { emit error(msg); });
 }
 
 QString YTJSChannelSource::getName() {

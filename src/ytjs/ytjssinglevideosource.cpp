@@ -1,27 +1,13 @@
 #include "ytjssinglevideosource.h"
 
+#include "js.h"
 #include "video.h"
-#include "ytjs.h"
 
 YTJSSingleVideoSource::YTJSSingleVideoSource(QObject *parent)
     : VideoSource(parent), video(nullptr) {}
 
 void YTJSSingleVideoSource::loadVideos(int max, int startIndex) {
     aborted = false;
-
-    auto &ytjs = YTJS::instance();
-    if (!ytjs.isInitialized()) {
-        QTimer::singleShot(500, this, [this, max, startIndex] { loadVideos(max, startIndex); });
-        return;
-    }
-    auto &engine = ytjs.getEngine();
-
-    auto function = engine.evaluate("videoInfo");
-    if (!function.isCallable()) {
-        qWarning() << function.toString() << " is not callable";
-        emit error(function.toString());
-        return;
-    }
 
     if (startIndex == 1) {
         if (video) {
@@ -34,54 +20,52 @@ void YTJSSingleVideoSource::loadVideos(int max, int startIndex) {
         }
     }
 
-    auto handler = new ResultHandler;
-    connect(handler, &ResultHandler::error, this, &VideoSource::error);
-    connect(handler, &ResultHandler::data, this, [this](const QJsonDocument &doc) {
-        if (aborted) return;
+    JS::instance()
+            .callFunction(new JSResult(this), "videoInfo", {videoId})
+            .onJson([this](auto &doc) {
+                if (aborted) return;
 
-        auto obj = doc.object();
+                auto obj = doc.object();
 
-        const auto items = obj["related_videos"].toArray();
-        QVector<Video *> videos;
-        videos.reserve(items.size());
+                const auto items = obj["related_videos"].toArray();
+                QVector<Video *> videos;
+                videos.reserve(items.size());
 
-        for (const auto &i : items) {
-            Video *video = new Video();
+                for (const auto &i : items) {
+                    Video *video = new Video();
 
-            QString id = i["id"].toString();
-            video->setId(id);
+                    QString id = i["id"].toString();
+                    video->setId(id);
 
-            QString title = i["title"].toString();
-            video->setTitle(title);
+                    QString title = i["title"].toString();
+                    video->setTitle(title);
 
-            QString desc = i["description"].toString();
-            if (desc.isEmpty()) desc = i["desc"].toString();
-            video->setDescription(desc);
+                    QString desc = i["description"].toString();
+                    if (desc.isEmpty()) desc = i["desc"].toString();
+                    video->setDescription(desc);
 
-            QString thumb = i["video_thumbnail"].toString();
-            video->setThumbnailUrl(thumb);
+                    QString thumb = i["video_thumbnail"].toString();
+                    video->setThumbnailUrl(thumb);
 
-            int views = i["view_count"].toInt();
-            video->setViewCount(views);
+                    int views = i["view_count"].toInt();
+                    video->setViewCount(views);
 
-            int duration = i["length_seconds"].toInt();
-            video->setViewCount(duration);
+                    int duration = i["length_seconds"].toInt();
+                    video->setViewCount(duration);
 
-            QString channelId = i["ucid"].toString();
-            video->setChannelId(channelId);
+                    QString channelId = i["ucid"].toString();
+                    video->setChannelId(channelId);
 
-            QString channelName = i["author"].toString();
-            video->setChannelTitle(channelName);
+                    QString channelName = i["author"].toString();
+                    video->setChannelTitle(channelName);
 
-            videos << video;
-        }
+                    videos << video;
+                }
 
-        emit gotVideos(videos);
-        emit finished(videos.size());
-    });
-    QJSValue h = engine.newQObject(handler);
-    auto value = function.call({h, videoId});
-    ytjs.checkError(value);
+                emit gotVideos(videos);
+                emit finished(videos.size());
+            })
+            .onError([this](auto &msg) { emit error(msg); });
 }
 
 void YTJSSingleVideoSource::setVideo(Video *video) {
