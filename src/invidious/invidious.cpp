@@ -73,31 +73,30 @@ void Invidious::initServers() {
         return;
     }
     initializing = true;
+    servers.clear();
 
+    preferredServers = JsFunctions::instance()->stringArray("ivPreferred()");
 #ifdef APP_EXTRA
     preferredServers << Extra::extraFunctions()->stringArray("ivPreferred()");
-    shuffle(preferredServers);
 #endif
+    shuffle(preferredServers);
+    servers << preferredServers;
+
     auto newFallbackServers = JsFunctions::instance()->stringArray("ivFallback()");
     if (!newFallbackServers.isEmpty()) {
         fallbackServers = newFallbackServers;
         shuffle(fallbackServers);
     }
 
-    auto reply = http().get(instanceApi);
+    auto reply = cachedHttp().get(instanceApi);
     connect(reply, &HttpReply::finished, this, [this](auto &reply) {
         if (reply.isSuccessful()) {
-            servers.clear();
-
             QSettings settings;
             QStringList keywords = settings.value("recentKeywords").toStringList();
             QString testKeyword = keywords.isEmpty() ? "test" : keywords.first();
 
-            const int maxServers = 5;
             QJsonDocument doc = QJsonDocument::fromJson(reply.body());
             for (const auto &v : doc.array()) {
-                if (servers.size() > maxServers * 2) break;
-
                 auto serverArray = v.toArray();
                 QString host = serverArray.first().toString();
                 QJsonObject serverObj = serverArray.at(1).toObject();
@@ -109,18 +108,12 @@ void Invidious::initServers() {
                     connect(reply, &HttpReply::finished, this, [this, url](auto &reply) {
                         if (reply.isSuccessful()) {
                             QJsonDocument doc = QJsonDocument::fromJson(reply.body());
-                            if (!doc.array().isEmpty()) {
-                                if (servers.size() < maxServers) {
-                                    servers << url;
-                                    if (servers.size() == maxServers) {
-                                        shuffleServers();
-                                        for (const auto &s : qAsConst(preferredServers))
-                                            servers.prepend(s);
-                                        qDebug() << servers;
-                                        initializing = false;
-                                        emit serversInitialized();
-                                    }
-                                }
+                            if (doc.array().isEmpty()) {
+                                qDebug() << "Empty results" << url;
+                            } else {
+                                qDebug() << "Adding" << url;
+                                servers << url;
+                                initializing = false;
                             }
                         }
                     });

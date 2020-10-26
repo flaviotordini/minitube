@@ -19,9 +19,6 @@ public:
     QString baseUrl();
     QUrl method(const QString &name);
 
-signals:
-    void serversInitialized();
-
 private:
     QStringList servers;
     bool initializing = false;
