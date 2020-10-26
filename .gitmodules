@@ -14,3 +14,7 @@
 	path = lib/updater
 	url = https://github.com/flaviotordini/updater
 	branch = master
+[submodule "lib/js"]
+	path = lib/js
+	url = https://github.com/flaviotordini/js
+	branch = master
