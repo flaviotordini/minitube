@@ -199,11 +199,10 @@ void YTJSSearch::loadVideos(int max, int startIndex) {
             })
             .onError([this, &js, max, startIndex](auto &msg) {
                 static int retries = 0;
-                qDebug() << "Clearing cookies";
-                auto nam = js.getEngine().networkAccessManager();
-                nam->setCookieJar(new QNetworkCookieJar());
                 if (retries < 3) {
                     qDebug() << "Retrying...";
+                    auto nam = js.getEngine().networkAccessManager();
+                    nam->setCookieJar(new QNetworkCookieJar());
                     QTimer::singleShot(0, this,
                                        [this, max, startIndex] { loadVideos(max, startIndex); });
                     retries++;
