@@ -22,7 +22,7 @@ public:
     int maxResults();
 
 private:
-    void doSearch(int max, int startIndex);
+    void connectSource(int max, int startIndex);
 
     SearchParams *searchParams;
     VideoSource *source = nullptr;

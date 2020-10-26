@@ -38,8 +38,9 @@ void SearchVideoSource::loadVideos(int max, int startIndex) {
                 source = new YTJSChannelSource(searchParams);
             }
         }
+        connectSource(max, startIndex);
     }
-    doSearch(max, startIndex);
+    source->loadVideos(max, startIndex);
 }
 
 bool SearchVideoSource::hasMoreVideos() {
@@ -62,7 +63,8 @@ int SearchVideoSource::maxResults() {
     return VideoSource::maxResults();
 }
 
-void SearchVideoSource::doSearch(int max, int startIndex) {
+void SearchVideoSource::connectSource(int max, int startIndex) {
+    connect(source, &VideoSource::finished, this, &VideoSource::finished);
     connect(source, &VideoSource::gotVideos, this, [this](auto &videos) {
         if (aborted) return;
         emit gotVideos(videos);
@@ -72,13 +74,16 @@ void SearchVideoSource::doSearch(int max, int startIndex) {
         if (aborted) return;
         if (QLatin1String(source->metaObject()->className()).startsWith(QLatin1String("YTJS"))) {
             qDebug() << "Falling back to IV";
+            source->deleteLater();
             if (searchParams->channelId().isEmpty()) {
                 source = new IVSearch(searchParams);
             } else {
                 source = new IVChannelSource(searchParams);
             }
+            connectSource(max, startIndex);
+            source->loadVideos(max, startIndex);
+        } else {
+            emit error(msg);
         }
-        doSearch(max, startIndex);
     });
-    source->loadVideos(max, startIndex);
 }
