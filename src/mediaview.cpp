@@ -53,14 +53,12 @@ $END_LICENSE */
 #include "idle.h"
 #include "videodefinition.h"
 
-#include "ivchannelsource.h"
-#include "ivsearch.h"
 #include "ivsinglevideosource.h"
 #include "videoapi.h"
 
-#include "ytjschannelsource.h"
-#include "ytjssearch.h"
 #include "ytjssinglevideosource.h"
+
+#include "searchvideosource.h"
 
 MediaView *MediaView::instance() {
     static MediaView *i = new MediaView();
@@ -229,25 +227,9 @@ SearchParams *MediaView::getSearchParams() {
     VideoSource *videoSource = playlistModel->getVideoSource();
     if (!videoSource) return nullptr;
     auto clazz = videoSource->metaObject()->className();
-    if (clazz == QLatin1String("YTSearch")) {
-        auto search = qobject_cast<YTSearch *>(videoSource);
-        return search->getSearchParams();
-    }
-    if (clazz == QLatin1String("IVSearch")) {
-        auto search = qobject_cast<IVSearch *>(videoSource);
-        return search->getSearchParams();
-    }
-    if (clazz == QLatin1String("IVChannelSource")) {
-        auto search = qobject_cast<IVChannelSource *>(videoSource);
-        return search->getSearchParams();
-    }
-    if (clazz == QLatin1String("YTJSSearch")) {
-        auto search = qobject_cast<YTJSSearch *>(videoSource);
-        return search->getSearchParams();
-    }
-    if (clazz == QLatin1String("YTJSChannelSource")) {
-        auto search = qobject_cast<YTJSChannelSource *>(videoSource);
-        return search->getSearchParams();
+    if (clazz == QLatin1String("SearchVideoSource")) {
+        auto search = qobject_cast<SearchVideoSource *>(videoSource);
+        if (search) return search->getSearchParams();
     }
     return nullptr;
 }
@@ -281,25 +263,7 @@ void MediaView::search(SearchParams *searchParams) {
         }
     }
 
-    VideoSource *search = nullptr;
-    if (VideoAPI::impl() == VideoAPI::YT3) {
-        YTSearch *ytSearch = new YTSearch(searchParams);
-        ytSearch->setAsyncDetails(true);
-        connect(ytSearch, SIGNAL(gotDetails()), playlistModel, SLOT(emitDataChanged()));
-        search = ytSearch;
-    } else if (VideoAPI::impl() == VideoAPI::IV) {
-        if (searchParams->channelId().isEmpty()) {
-            search = new IVSearch(searchParams);
-        } else {
-            search = new IVChannelSource(searchParams);
-        }
-    } else if (VideoAPI::impl() == VideoAPI::JS) {
-        if (searchParams->channelId().isEmpty()) {
-            search = new YTJSSearch(searchParams);
-        } else {
-            search = new YTJSChannelSource(searchParams);
-        }
-    }
+    VideoSource *search = new SearchVideoSource(searchParams);
     setVideoSource(search);
 }
 

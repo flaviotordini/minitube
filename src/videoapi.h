@@ -3,6 +3,9 @@
 
 #include <QtCore>
 
+#include "searchparams.h"
+#include "videosource.h"
+
 class VideoAPI {
 public:
     enum Impl { YT3, IV, JS };
