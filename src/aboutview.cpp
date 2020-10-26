@@ -161,7 +161,7 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
     updateLayout->setAlignment(Qt::AlignLeft);
 
     auto spinner = new WaitingSpinnerWidget(this, false, false);
-    spinner->setColor(palette().foreground().color());
+    spinner->setColor(palette().windowText().color());
     spinner->setLineLength(capHeight / 2);
     spinner->setNumberOfLines(spinner->lineLength() * 2);
     spinner->setInnerRadius(spinner->lineLength());
