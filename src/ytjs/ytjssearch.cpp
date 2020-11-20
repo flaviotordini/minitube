@@ -78,7 +78,15 @@ void YTJSSearch::loadVideos(int max, int startIndex) {
 
     QJSValue options = engine.newObject();
 
-    if (startIndex > 1 && !nextpageRef.isEmpty()) options.setProperty("nextpageRef", nextpageRef);
+    if (startIndex > 1) {
+        if (!nextpageRef.isEmpty())
+            options.setProperty("nextpageRef", nextpageRef);
+        else {
+            // non-first page was requested but we have no continuation token
+            emit error("No pagination token");
+            return;
+        }
+    }
     options.setProperty("limit", max);
 
     switch (searchParams->safeSearch()) {
@@ -153,6 +161,8 @@ void YTJSSearch::loadVideos(int max, int startIndex) {
                 auto obj = doc.object();
 
                 nextpageRef = obj["nextpageRef"].toString();
+                qDebug() << "nextpageRef" << nextpageRef;
+                qDebug() << doc.toJson();
 
                 const auto items = obj["items"].toArray();
                 QVector<Video *> videos;
