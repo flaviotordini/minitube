@@ -41,7 +41,7 @@ Http &Invidious::cachedHttp() {
         throttledHttp->setMilliseconds(500);
 
         CachedHttp *cachedHttp = new CachedHttp(*throttledHttp, "iv");
-        cachedHttp->setMaxSeconds(86400);
+        cachedHttp->setMaxSeconds(3600);
         cachedHttp->setIgnoreHostname(true);
 
         cachedHttp->getValidators().insert("application/json", [](const auto &reply) -> bool {
@@ -102,7 +102,6 @@ void Invidious::initServers() {
                 QJsonObject serverObj = serverArray.at(1).toObject();
                 if (serverObj["type"] == "https") {
                     QString url = "https://" + host;
-
                     QUrl testUrl(url + "/api/v1/search?q=" + testKeyword);
                     auto reply = http().get(testUrl);
                     connect(reply, &HttpReply::finished, this, [this, url](auto &reply) {
