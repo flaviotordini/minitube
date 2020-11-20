@@ -161,8 +161,6 @@ void YTJSSearch::loadVideos(int max, int startIndex) {
                 auto obj = doc.object();
 
                 nextpageRef = obj["nextpageRef"].toString();
-                qDebug() << "nextpageRef" << nextpageRef;
-                qDebug() << doc.toJson();
 
                 const auto items = obj["items"].toArray();
                 QVector<Video *> videos;
