@@ -169,6 +169,8 @@ MainWindow::MainWindow()
     } else if (VideoAPI::impl() == VideoAPI::YT3) {
         YT3::instance().initApiKeys();
     } else if (VideoAPI::impl() == VideoAPI::JS) {
+        JS::instance().getNamFactory().setRequestHeaders(
+                {{"User-Agent", HttpUtils::stealthUserAgent()}});
         JS::instance().initialize(QUrl(QLatin1String(Constants::WEBSITE) + "-ws/bundle.js"));
         Invidious::instance().initServers();
     }
