@@ -84,8 +84,12 @@ void Video::setWebpage(const QString &value) {
 void Video::loadThumbnail() {
     if (thumbnailUrl.isEmpty() || loadingThumbnail) return;
     loadingThumbnail = true;
-    QObject *reply = HttpUtils::yt().get(thumbnailUrl);
+    auto reply = HttpUtils::yt().get(thumbnailUrl);
     connect(reply, SIGNAL(data(QByteArray)), SLOT(setThumbnail(QByteArray)));
+    connect(reply, &HttpReply::error, this, [this](auto &msg) {
+        qWarning() << msg;
+        loadingThumbnail = false;
+    });
 }
 
 void Video::setDuration(int value) {
