@@ -171,7 +171,7 @@ MainWindow::MainWindow()
     } else if (VideoAPI::impl() == VideoAPI::JS) {
         JS::instance().getNamFactory().setRequestHeaders(
                 {{"User-Agent", HttpUtils::stealthUserAgent()}});
-        JS::instance().initialize(QUrl(QLatin1String(Constants::WEBSITE) + "-ws/bundle.js"));
+        JS::instance().initialize(QUrl(QLatin1String(Constants::WEBSITE) + "-ws/bundle2.js"));
         Invidious::instance().initServers();
     }
 
