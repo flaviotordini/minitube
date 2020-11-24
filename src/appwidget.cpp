@@ -107,6 +107,7 @@ void AppWidget::mouseReleaseEvent(QMouseEvent *e) {
 void AppWidget::iconDownloaded(const QByteArray &bytes) {
     QPixmap pixmap;
     pixmap.loadFromData(bytes, "PNG");
+    pixmap.setDevicePixelRatio(devicePixelRatioF());
     icon->setPixmap(pixmap);
 }
 
