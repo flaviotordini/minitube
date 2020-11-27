@@ -68,8 +68,9 @@ void YTJSChannelSource::loadVideos(int max, int startIndex) {
 
     if (startIndex <= 1) continuation.clear();
 
-    JS::instance()
-            .callFunction(new JSResult(this), "channelVideos", {channelId, sortBy, continuation})
+    auto &js = JS::instance();
+
+    js.callFunction(new JSResult(this), "channelVideos", {channelId, sortBy, continuation})
             .onJson([this](auto &doc) {
                 auto obj = doc.object();
 
@@ -133,7 +134,20 @@ void YTJSChannelSource::loadVideos(int max, int startIndex) {
                 emit gotVideos(videos);
                 emit finished(videos.size());
             })
-            .onError([this](auto &msg) { emit error(msg); });
+            .onError([this, &js, max, startIndex](auto &msg) {
+                static int retries = 0;
+                if (retries < 3) {
+                    qDebug() << "Retrying...";
+                    auto nam = js.getEngine().networkAccessManager();
+                    nam->clearAccessCache();
+                    nam->setCookieJar(new QNetworkCookieJar());
+                    QTimer::singleShot(0, this,
+                                       [this, max, startIndex] { loadVideos(max, startIndex); });
+                    retries++;
+                } else {
+                    emit error(msg);
+                }
+            });
 }
 
 QString YTJSChannelSource::getName() {
