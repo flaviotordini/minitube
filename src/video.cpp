@@ -142,6 +142,7 @@ void Video::loadStreamUrlJS() {
     ytjsVideo = new YTJSVideo(id, this);
     connect(ytjsVideo, &YTJSVideo::gotStreamUrl, this, &Video::streamUrlLoaded);
     connect(ytjsVideo, &YTJSVideo::errorStreamUrl, this, [this](const QString &msg) {
+        qDebug() << msg;
         ytjsVideo->deleteLater();
         ytjsVideo = nullptr;
         loadStreamUrlYT();
@@ -157,6 +158,7 @@ void Video::loadStreamUrlYT() {
     ytVideo = new YTVideo(id, this);
     connect(ytVideo, &YTVideo::gotStreamUrl, this, &Video::streamUrlLoaded);
     connect(ytVideo, &YTVideo::errorStreamUrl, this, [this](const QString &msg) {
+        qDebug() << msg;
         emit errorStreamUrl(msg);
         ytVideo->deleteLater();
         ytVideo = nullptr;
