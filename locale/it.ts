@@ -223,7 +223,7 @@
     </message>
     <message numerus="yes">
         <source>%n year(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Un anno fa</numerusform><numerusform>%n anni fa</numerusform></translation>
     </message>
 </context>
 <context>
