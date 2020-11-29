@@ -407,11 +407,7 @@ void SearchView::watchChannel(const QString &channelId) {
     }
 
     QString id = channelId;
-
-    // Fix old settings
-    const QLatin1String uc("UC");
-    if (!id.startsWith(uc)) id = uc + id;
-
+    qDebug() << "Channel" << id;
     SearchParams *searchParams = new SearchParams();
     searchParams->setChannelId(id);
     searchParams->setSortBy(SearchParams::SortByNewest);
