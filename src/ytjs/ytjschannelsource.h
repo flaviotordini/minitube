@@ -12,6 +12,7 @@ class YTJSChannelSource : public VideoSource {
 public:
     YTJSChannelSource(SearchParams *searchParams, QObject *parent = 0);
     void loadVideos(int max, int startIndex);
+    bool hasMoreVideos() { return !continuation.isEmpty(); }
     void abort() { aborted = true; }
     QString getName();
     const QList<QAction *> &getActions();
