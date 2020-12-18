@@ -1,4 +1,4 @@
-CONFIG += c++17 exceptions_off rtti_off optimize_full object_parallel_to_source
+CONFIG += c++17 exceptions_off rtti_off object_parallel_to_source
 
 TEMPLATE = app
 VERSION = 3.6.7
@@ -22,6 +22,7 @@ CONFIG(debug, debug|release): {
 CONFIG(release, debug|release): {
     message(Building for release)
     DEFINES *= QT_NO_DEBUG_OUTPUT
+    CONFIG += optimize_full
 }
 
 DEFINES *= QT_USE_QSTRINGBUILDER QT_STRICT_ITERATORS QT_DEPRECATED_WARNINGS
