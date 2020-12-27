@@ -437,7 +437,7 @@ void MediaView::stop() {
     demoTimer->stop();
 #endif
 
-    for (QAction *action : currentVideoActions)
+    for (QAction *action : qAsConst(currentVideoActions))
         action->setEnabled(false);
 
     QAction *a = MainWindow::instance()->getAction("download");
