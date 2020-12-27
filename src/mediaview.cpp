@@ -188,25 +188,14 @@ void MediaView::initialize() {
     QAction *leftAction = new QAction(tr("Rewind %1 seconds").arg(10));
     leftAction->setShortcut(Qt::Key_Left);
     leftAction->setAutoRepeat(false);
-    connect(leftAction, &QAction::triggered, this, [this] {
-        qint64 position = media->position();
-        position -= 10000;
-        if (position < 0) position = 0;
-        media->seek(position);
-    });
+    connect(leftAction, &QAction::triggered, this, [this] { media->relativeSeek(-10000); });
     addAction(leftAction);
     playingVideoActions << leftAction;
 
     QAction *rightAction = new QAction(tr("Fast forward %1 seconds").arg(10));
     rightAction->setShortcut(Qt::Key_Right);
     rightAction->setAutoRepeat(false);
-    connect(rightAction, &QAction::triggered, this, [this] {
-        qint64 position = media->position();
-        position += 10000;
-        qint64 duration = media->duration();
-        if (position > duration) position = duration;
-        media->seek(position);
-    });
+    connect(rightAction, &QAction::triggered, this, [this] { media->relativeSeek(10000); });
     addAction(rightAction);
     playingVideoActions << rightAction;
 }
@@ -387,7 +376,7 @@ void MediaView::mediaStateChanged(Media::State state) {
         handleError(media->errorString());
     }
 
-    bool enablePlayingVideoActions = state == Media::PlayingState || state == Media::PausedState;
+    bool enablePlayingVideoActions = state != Media::StoppedState;
     for (QAction *action : qAsConst(playingVideoActions))
         action->setEnabled(enablePlayingVideoActions);
 
