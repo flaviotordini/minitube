@@ -620,14 +620,7 @@ void MediaView::skipBackward() {
 }
 
 void MediaView::onAboutToFinish() {
-    qint64 currentTime = media->position();
-    qint64 totalTime = media->duration();
-    // qDebug() << __PRETTY_FUNCTION__ << currentTime << totalTime;
-    if (totalTime < 1 || currentTime + 10000 < totalTime) {
-        // QTimer::singleShot(500, this, SLOT(playbackResume()));
-        media->seek(currentTime);
-        media->play();
-    }
+
 }
 
 void MediaView::onPlaybackFinished() {
