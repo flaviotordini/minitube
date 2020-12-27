@@ -31,7 +31,9 @@ QDateTime parsePublishedText(const QString &s) {
     if (num == 0) return QDateTime();
 
     auto now = QDateTime::currentDateTimeUtc();
-    if (s.contains("day")) {
+    if (s.contains("hour")) {
+        return now.addSecs(-num * 3600);
+    } else if (s.contains("day")) {
         return now.addDays(-num);
     } else if (s.contains("week")) {
         return now.addDays(-num * 7);
