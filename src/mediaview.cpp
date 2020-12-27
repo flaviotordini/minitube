@@ -710,7 +710,7 @@ void MediaView::moveUpSelected() {
     if (!playlistView->selectionModel()->hasSelection()) return;
 
     QModelIndexList indexes = playlistView->selectionModel()->selectedIndexes();
-    qStableSort(indexes.begin(), indexes.end());
+    std::stable_sort(indexes.begin(), indexes.end());
     playlistModel->move(indexes, true);
 
     // set current index after row moves to something more intuitive
@@ -723,7 +723,8 @@ void MediaView::moveDownSelected() {
     if (!playlistView->selectionModel()->hasSelection()) return;
 
     QModelIndexList indexes = playlistView->selectionModel()->selectedIndexes();
-    qStableSort(indexes.begin(), indexes.end(), qGreater<QModelIndex>());
+    std::stable_sort(indexes.begin(), indexes.end(),
+                     [](const QModelIndex &a, const QModelIndex &b) { return b < a; });
     playlistModel->move(indexes, false);
 
     // set current index after row moves to something more intuitive
