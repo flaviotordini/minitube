@@ -26,6 +26,7 @@ void YTJSSingleVideoSource::loadVideos(int max, int startIndex) {
                 if (aborted) return;
 
                 auto obj = doc.object();
+                // qDebug() << doc.toJson();
 
                 const auto items = obj["related_videos"].toArray();
                 QVector<Video *> videos;
@@ -62,8 +63,12 @@ void YTJSSingleVideoSource::loadVideos(int max, int startIndex) {
                     videos << video;
                 }
 
-                emit gotVideos(videos);
-                emit finished(videos.size());
+                if (videos.isEmpty()) {
+                    emit error("No results");
+                } else {
+                    emit gotVideos(videos);
+                    emit finished(videos.size());
+                }
             })
             .onError([this](auto &msg) { emit error(msg); });
 }

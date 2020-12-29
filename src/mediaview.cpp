@@ -45,7 +45,6 @@ $END_LICENSE */
 #include "videosource.h"
 #include "ytchannel.h"
 #include "ytsearch.h"
-#include "ytsinglevideosource.h"
 #ifdef APP_SNAPSHOT
 #include "snapshotsettings.h"
 #endif
@@ -53,12 +52,9 @@ $END_LICENSE */
 #include "idle.h"
 #include "videodefinition.h"
 
-#include "ivsinglevideosource.h"
-#include "videoapi.h"
-
-#include "ytjssinglevideosource.h"
-
 #include "searchvideosource.h"
+#include "singlevideosource.h"
+#include "videoapi.h"
 
 MediaView *MediaView::instance() {
     static MediaView *i = new MediaView();
@@ -229,20 +225,11 @@ void MediaView::search(SearchParams *searchParams) {
             searchParams->keywords().startsWith("https://")) {
             QString videoId = YTSearch::videoIdFromUrl(searchParams->keywords());
             if (!videoId.isEmpty()) {
+                auto source = new SingleVideoSource(this);
+                source->setVideoId(videoId);
+                setVideoSource(source);
+
                 VideoSource *singleVideoSource = nullptr;
-                if (VideoAPI::impl() == VideoAPI::YT3) {
-                    auto source = new YTSingleVideoSource(this);
-                    source->setVideoId(videoId);
-                    singleVideoSource = source;
-                } else if (VideoAPI::impl() == VideoAPI::IV) {
-                    auto source = new IVSingleVideoSource(this);
-                    source->setVideoId(videoId);
-                    singleVideoSource = source;
-                } else if (VideoAPI::impl() == VideoAPI::JS) {
-                    auto source = new YTJSSingleVideoSource(this);
-                    source->setVideoId(videoId);
-                    singleVideoSource = source;
-                }
                 setVideoSource(singleVideoSource);
 
                 QTime tstamp = YTSearch::videoTimestampFromUrl(searchParams->keywords());
@@ -907,20 +894,9 @@ void MediaView::relatedVideos() {
     Video *video = playlistModel->activeVideo();
     if (!video) return;
 
-    if (VideoAPI::impl() == VideoAPI::YT3) {
-        YTSingleVideoSource *singleVideoSource = new YTSingleVideoSource();
-        singleVideoSource->setVideo(video->clone());
-        singleVideoSource->setAsyncDetails(true);
-        setVideoSource(singleVideoSource);
-    } else if (VideoAPI::impl() == VideoAPI::IV) {
-        auto source = new IVSingleVideoSource(this);
-        source->setVideo(video->clone());
-        setVideoSource(source);
-    } else if (VideoAPI::impl() == VideoAPI::JS) {
-        auto source = new YTJSSingleVideoSource(this);
-        source->setVideo(video->clone());
-        setVideoSource(source);
-    }
+    auto source = new SingleVideoSource(this);
+    source->setVideo(video->clone());
+    setVideoSource(source);
 
     MainWindow::instance()->getAction("relatedVideos")->setEnabled(false);
 }
