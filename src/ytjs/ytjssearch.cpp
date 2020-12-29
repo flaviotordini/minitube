@@ -204,8 +204,12 @@ void YTJSSearch::loadVideos(int max, int startIndex) {
                     videos << video;
                 }
 
-                emit gotVideos(videos);
-                emit finished(videos.size());
+                if (videos.isEmpty()) {
+                    emit error("No results");
+                } else {
+                    emit gotVideos(videos);
+                    emit finished(videos.size());
+                }
             })
             .onError([this, &js, max, startIndex](auto &msg) {
                 static int retries = 0;
