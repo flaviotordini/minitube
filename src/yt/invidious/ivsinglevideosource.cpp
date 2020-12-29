@@ -68,6 +68,11 @@ void IVSingleVideoSource::parseResults(QByteArray data) {
         emit finished(videos.size() + 1);
     else
         emit finished(videos.size());
+
+    // fake more videos by loading videos related to the last one
+    video->deleteLater();
+    video = nullptr;
+    if (!videos.isEmpty()) videoId = videos.last()->getId();
 }
 
 QString IVSingleVideoSource::getName() {

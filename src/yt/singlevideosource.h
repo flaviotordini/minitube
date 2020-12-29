@@ -12,11 +12,8 @@ class SingleVideoSource : public VideoSource {
 public:
     SingleVideoSource(QObject *parent = nullptr);
 
-    void setVideo(Video *value) {
-        video = value;
-        videoId = video->getId();
-    }
-    void setVideoId(const QString &value) { videoId = value; }
+    void setVideo(Video *value);
+    void setVideoId(const QString &value);
 
     void loadVideos(int max, int startIndex);
     bool hasMoreVideos();

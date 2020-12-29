@@ -9,8 +9,23 @@
 
 SingleVideoSource::SingleVideoSource(QObject *parent) : VideoSource(parent) {}
 
-void SingleVideoSource::loadVideos(int max, int startIndex) {
+void SingleVideoSource::setVideo(Video *value) {
     emittedVideoIds.clear();
+    video = value;
+    // some wrapped source could delete the video
+    connect(video, &QObject::destroyed, this, [this] {
+        video = nullptr;
+        videoId.clear();
+    });
+    videoId = video->getId();
+}
+
+void SingleVideoSource::setVideoId(const QString &value) {
+    emittedVideoIds.clear();
+    videoId = value;
+}
+
+void SingleVideoSource::loadVideos(int max, int startIndex) {
     if (!source) {
         aborted = false;
         if (VideoAPI::impl() == VideoAPI::YT3) {
