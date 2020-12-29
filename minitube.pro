@@ -43,8 +43,6 @@ DEFINES += MEDIA_MPV
 include(lib/media/media.pri)
 
 include(src/qtsingleapplication/qtsingleapplication.pri)
-include(src/invidious/invidious.pri)
-include(src/ytjs/ytjs.pri)
 include(src/yt/yt.pri)
 
 INCLUDEPATH += $$PWD/src

@@ -1,6 +1,9 @@
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
+include($$PWD/invidious/invidious.pri)
+include($$PWD/ytjs/ytjs.pri)
+
 HEADERS += \
     $$PWD/searchvideosource.h \
     $$PWD/singlevideosource.h
