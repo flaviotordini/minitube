@@ -71,7 +71,6 @@ void YTJSSingleVideoSource::loadVideos(int max, int startIndex) {
                 }
 
                 // fake more videos by loading videos related to the last one
-                video->deleteLater();
                 video = nullptr;
                 if (!videos.isEmpty()) videoId = videos.last()->getId();
             })
