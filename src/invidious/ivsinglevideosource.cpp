@@ -59,7 +59,7 @@ void IVSingleVideoSource::parseResults(QByteArray data) {
     const QJsonArray items = doc.object()["recommendedVideos"].toArray();
 
     IVListParser parser(items);
-    const QVector<Video *> &videos = parser.getVideos();
+    auto videos = parser.getVideos();
 
     emit gotVideos(videos);
     if (startIndex == 1)
