@@ -35,6 +35,7 @@ class SearchParams;
 class VideoSource;
 class Suggestion;
 class ToolbarMenu;
+class TimeSlider;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -43,7 +44,7 @@ public:
     static MainWindow *instance();
     MainWindow();
 
-    QSlider *getSeekSlider() { return seekSlider; }
+    TimeSlider *getSeekSlider() { return seekSlider; }
     QSlider *getVolumeSlider() { return volumeSlider; }
 
     QLabel *getCurrentTimeLabel() { return currentTimeLabel; }
@@ -156,7 +157,6 @@ private:
     void createToolBar();
     void createStatusBar();
     void showView(View *view, bool transition = false);
-    static QString formatTime(qint64 duration);
     bool confirmQuit();
     bool needStatusBar();
     void adjustMessageLabelPosition();
@@ -216,7 +216,7 @@ private:
     SearchLineEdit *toolbarSearch;
     QToolBar *statusToolBar;
     QAction *regionAction;
-    QSlider *seekSlider;
+    TimeSlider *seekSlider;
     QSlider *volumeSlider;
     QLabel *currentTimeLabel;
 

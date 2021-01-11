@@ -72,6 +72,8 @@ $END_LICENSE */
 #include "httputils.h"
 #include "jsfunctions.h"
 #include "seekslider.h"
+#include "timeslider.h"
+#include "helper.h"
 #include "sidebarwidget.h"
 #include "toolbarmenu.h"
 #include "videoarea.h"
@@ -310,8 +312,10 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
     }
 
     if (t == QEvent::ToolTip) {
-        // kill tooltips
-        return true;
+        // kill tooltips but not for time slider
+        if (!obj->isWidgetType() ||  qobject_cast<QWidget *>(obj) != seekSlider) {
+            return true;
+        }
     }
 
     if (t == QEvent::Show && obj == toolbarMenu) {
@@ -804,10 +808,9 @@ void MainWindow::createToolBar() {
     // Create widgets
     currentTimeLabel = new QLabel("00:00", this);
 
-    seekSlider = new SeekSlider(this);
+    seekSlider = new TimeSlider(this);
     seekSlider->setEnabled(false);
     seekSlider->setTracking(false);
-    seekSlider->setMaximum(1000);
     volumeSlider = new SeekSlider(this);
     volumeSlider->setValue(volumeSlider->maximum());
 
@@ -1592,6 +1595,8 @@ void MainWindow::initMedia() {
     connect(media, &Media::stateChanged, this, &MainWindow::stateChanged);
     connect(media, &Media::positionChanged, this, &MainWindow::tick);
 
+    seekSlider->setMedia(media);
+
     connect(seekSlider, &QSlider::sliderMoved, this, [this](int value) {
         // value : maxValue = posit ion : duration
         qint64 ms = (value * media->duration()) / seekSlider->maximum();
@@ -1635,27 +1640,15 @@ void MainWindow::tick(qint64 time) {
         seekSlider->setValue(value);
     }
 
-    const QString s = formatTime(time);
+    const QString s = Helper::formatTime(time);
     if (s != currentTimeLabel->text()) {
         currentTimeLabel->setText(s);
         emit currentTimeChanged(s);
 
         // remaining time
         const qint64 remainingTime = media->remainingTime();
-        currentTimeLabel->setStatusTip(tr("Remaining time: %1").arg(formatTime(remainingTime)));
+        currentTimeLabel->setStatusTip(tr("Remaining time: %1").arg(Helper::formatTime(remainingTime)));
     }
-}
-
-QString MainWindow::formatTime(qint64 duration) {
-    duration /= 1000;
-    QString res;
-    int seconds = (int)(duration % 60);
-    duration /= 60;
-    int minutes = (int)(duration % 60);
-    duration /= 60;
-    int hours = (int)(duration % 24);
-    if (hours == 0) return res.sprintf("%02d:%02d", minutes, seconds);
-    return res.sprintf("%02d:%02d:%02d", hours, minutes, seconds);
 }
 
 void MainWindow::volumeUp() {
