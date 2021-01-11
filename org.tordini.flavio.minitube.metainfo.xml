@@ -36,7 +36,7 @@
   <url type="donation">https://flavio.tordini.org/donate</url>
   <url type="translate">https://www.transifex.com/flaviotordini/minitube/</url>
   <releases>
-    <release version="3.6.1" date="2020-09-10"/>
+    <release version="3.7" date="2020-12-30"/>
   </releases>
   <content_rating type="oars-1.1">
     <content_attribute id="violence-cartoon">intense</content_attribute>
