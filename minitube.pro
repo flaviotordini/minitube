@@ -48,10 +48,12 @@ include(src/yt/yt.pri)
 INCLUDEPATH += $$PWD/src
 
 HEADERS += src/video.h \
+    src/helper.h \
     src/messagebar.h \
     src/spacer.h \
     src/constants.h \
     src/playlistitemdelegate.h \
+    src/timeslider.h \
     src/updateutils.h \
     src/videoapi.h \
     src/videomimedata.h \
@@ -126,8 +128,10 @@ HEADERS += src/video.h \
     src/videoarea.h \
     src/searchlineedit.h
 SOURCES += src/main.cpp \
+    src/helper.cpp \
     src/messagebar.cpp \
     src/spacer.cpp \
+    src/timeslider.cpp \
     src/updateutils.cpp \
     src/video.cpp \
     src/videomimedata.cpp \
