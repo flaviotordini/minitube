@@ -295,6 +295,7 @@ void PlaylistItemDelegate::drawTime(QPainter *painter,
 
     painter->save();
     painter->setPen(Qt::white);
+    painter->setFont(smallerFont);
     painter->drawText(textBox, Qt::AlignCenter, time);
     painter->restore();
 }
