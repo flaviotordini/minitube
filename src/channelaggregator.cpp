@@ -81,9 +81,6 @@ void ChannelAggregator::run() {
     updatedChannels.clear();
     updatedChannels.squeeze();
 
-    if (!Database::instance().getConnection().transaction())
-        qWarning() << "Transaction failed" << __PRETTY_FUNCTION__;
-
     processNextChannel();
 }
 
@@ -174,9 +171,6 @@ void ChannelAggregator::reallyProcessChannel(YTChannel *channel) {
 
 void ChannelAggregator::finish() {
     currentChannel = 0;
-
-    QSqlDatabase db = Database::instance().getConnection();
-    if (!db.commit()) qWarning() << "Commit failed" << __PRETTY_FUNCTION__;
 
 #ifdef Q_OS_MAC
     if (newVideoCount > 0 && unwatchedCount > 0 && mac::canNotify()) {
