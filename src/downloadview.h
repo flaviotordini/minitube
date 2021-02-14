@@ -37,10 +37,7 @@ public:
     DownloadView(QWidget *parent);
     void appear();
     void disappear();
-    const QString &getTitle() {
-        static const QString s = tr("Downloads");
-        return s;
-    }
+    QString getTitle() { return tr("Downloads"); }
 
 public slots:
     void itemEntered(const QModelIndex &index);

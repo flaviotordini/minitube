@@ -32,10 +32,7 @@ class AboutView : public View {
 public:
     AboutView(QWidget *parent);
     void appear();
-    const QString &getTitle() {
-        static const QString s = tr("About");
-        return s;
-    }
+    QString getTitle() { return tr("About"); }
 
 private:
     QPushButton *closeButton;

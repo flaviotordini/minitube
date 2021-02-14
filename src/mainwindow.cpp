@@ -1066,16 +1066,20 @@ void MainWindow::showView(View *view, bool transition) {
     // call hide method on the current view
     View *oldView = qobject_cast<View *>(views->currentWidget());
     if (oldView) {
+        oldView->willDisappear();
         oldView->disappear();
         oldView->setEnabled(false);
         oldView->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
     } else
         qDebug() << "Cannot cast old view";
 
+    view->willAppear();
     view->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     view->setEnabled(true);
     views->setCurrentWidget(view);
     view->appear();
+    view->didAppear();
+    if (oldView) oldView->didDisappear();
 
     QString title = view->getTitle();
     if (title.isEmpty())
