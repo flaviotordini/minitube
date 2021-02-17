@@ -36,7 +36,6 @@ class HomeView : public View {
 public:
     HomeView(QWidget *parent = 0);
     void disappear();
-    QString getDescription() { return tr("Make yourself comfortable"); }
     void showWidget(QWidget *widget);
     QWidget *currentWidget() { return stackedWidget->currentWidget(); }
     SearchView *getSearchView() { return searchView; }

@@ -194,7 +194,8 @@ void MainWindow::lazyInit() {
             searchParams->setKeywords(query);
             showMedia(searchParams);
         }
-    }
+    } else
+        showMessage(tr("Make yourself comfortable"));
 
     // Global shortcuts
     GlobalShortcuts &shortcuts = GlobalShortcuts::instance();
