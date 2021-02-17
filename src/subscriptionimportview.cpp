@@ -37,7 +37,7 @@ SubscriptionImportView::SubscriptionImportView(QWidget *parent) : View(parent) {
     auto url = JS::instance().getEngine().evaluate("googleTakeoutUrl()").toString();
     if (url.isEmpty()) url = "https://takeout.google.com/takeout/custom/youtube";
     QString msg =
-            "In order to import your YouTube subscriptions follow these steps:<ul>"
+            "Follow these steps to import your YouTube subscriptions:<ul>"
             "<li style='line-height:1.5'>Visit <a href='%1'>%2</a>"
             "<li style='line-height:1.5'>Click <i>All YouTube data included</i>, deselect all "
             "and select only subscriptions"
