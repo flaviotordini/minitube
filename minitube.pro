@@ -52,6 +52,7 @@ HEADERS += src/video.h \
     src/spacer.h \
     src/constants.h \
     src/playlistitemdelegate.h \
+    src/subscriptionimportview.h \
     src/updateutils.h \
     src/videoapi.h \
     src/videomimedata.h \
@@ -128,6 +129,7 @@ HEADERS += src/video.h \
 SOURCES += src/main.cpp \
     src/messagebar.cpp \
     src/spacer.cpp \
+    src/subscriptionimportview.cpp \
     src/updateutils.cpp \
     src/video.cpp \
     src/videomimedata.cpp \

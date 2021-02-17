@@ -74,6 +74,8 @@ ChannelView::ChannelView(QWidget *parent) : View(parent), showUpdated(false), so
 void ChannelView::setupActions() {
     QSettings settings;
 
+    statusActions << MainWindow::instance()->getAction("importSubscriptions");
+
     sortBy = static_cast<SortBy>(settings.value(sortByKey, SortByName).toInt());
 
     QMenu *sortMenu = new QMenu(this);

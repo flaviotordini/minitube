@@ -174,6 +174,7 @@ private:
     View *aboutView;
     View *downloadView;
     View *regionsView;
+    View *subscriptionImportView = nullptr;
 
     // actions
     QAction *backAct;

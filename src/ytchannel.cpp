@@ -229,8 +229,8 @@ void YTChannel::storeInfo() {
     loadThumbnail();
 }
 
-void YTChannel::subscribe(const QString &channelId) {
-    if (channelId.isEmpty()) return;
+bool YTChannel::subscribe(const QString &channelId) {
+    if (channelId.isEmpty()) return false;
 
     uint now = QDateTime::currentDateTime().toTime_t();
 
@@ -244,6 +244,7 @@ void YTChannel::subscribe(const QString &channelId) {
     query.bindValue(2, now);
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
+    return success;
 
     // This will call maybeLoadFromApi
     YTChannel::forId(channelId);

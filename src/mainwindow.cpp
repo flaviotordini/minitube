@@ -93,6 +93,8 @@ $END_LICENSE */
 #include "updater.h"
 #endif
 
+#include "subscriptionimportview.h"
+
 namespace {
 MainWindow *mainWindowInstance;
 }
@@ -685,6 +687,17 @@ void MainWindow::createActions() {
     IconUtils::setIcon(action, "open-menu");
     connect(action, SIGNAL(triggered()), SLOT(toggleToolbarMenu()));
     actionMap.insert("toolbarMenu", action);
+
+    action = new QAction(tr("Import Subscriptions..."), this);
+    action->setMenuRole(QAction::ApplicationSpecificRole);
+    connect(action, &QAction::triggered, this, [this] {
+        if (!subscriptionImportView) {
+            subscriptionImportView = new SubscriptionImportView(this);
+            views->addWidget(subscriptionImportView);
+        }
+        showView(subscriptionImportView);
+    });
+    actionMap.insert("importSubscriptions", action);
 
 #ifdef APP_MAC_STORE
     action = new QAction(tr("&Love %1? Rate it!").arg(Constants::NAME), this);

@@ -30,7 +30,7 @@ class YTChannel : public QObject {
 
 public:
     static YTChannel* forId(const QString &channelId);
-    static void subscribe(const QString &channelId);
+    static bool subscribe(const QString &channelId);
     static void unsubscribe(const QString &channelId);
     static bool isSubscribed(const QString &channelId);
 

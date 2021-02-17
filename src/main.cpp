@@ -140,7 +140,7 @@ int main(int argc, char **argv) {
 
     QNetworkProxyFactory::setUseSystemConfiguration(true);
 
-    IconUtils::setSizes({16, 24, 32, 88});
+    IconUtils::setSizes({16, 24, 32, 88, 128});
 
     UpdateUtils::init();
 
