@@ -223,7 +223,7 @@
     </message>
     <message numerus="yes">
         <source>%n year(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n ano atrás</numerusform><numerusform>%n anos atrás</numerusform></translation>
     </message>
 </context>
 <context>
@@ -1111,7 +1111,7 @@
     </message>
     <message>
         <source>An update is ready to be installed. Quit and install update.</source>
-        <translation type="unfinished"/>
+        <translation>Uma atualização está pronta para ser instalada. Sair e instalar a atualização.</translation>
     </message>
 </context>
 <context>
@@ -1167,7 +1167,7 @@
     </message>
     <message>
         <source>Trending</source>
-        <translation type="unfinished"/>
+        <translation>Popular</translation>
     </message>
     <message>
         <source>Music</source>
@@ -1213,15 +1213,15 @@
     </message>
     <message>
         <source>Restart to Update</source>
-        <translation type="unfinished"/>
+        <translation>Reiniciar para atualizar</translation>
     </message>
     <message>
         <source>Version %1 download failed</source>
-        <translation type="unfinished"/>
+        <translation>O download da versão %1 falhou</translation>
     </message>
     <message>
         <source>Check for Updates</source>
-        <translation type="unfinished"/>
+        <translation>Verificar se há atualizações</translation>
     </message>
     <message>
         <source>Download Update</source>
@@ -1233,11 +1233,11 @@
     </message>
     <message>
         <source>Retry Update Download</source>
-        <translation type="unfinished"/>
+        <translation>Tentar baixar novamente a atualização</translation>
     </message>
     <message>
         <source>You have the latest version.</source>
-        <translation type="unfinished"/>
+        <translation>Você possui a última versão.</translation>
     </message>
     <message>
         <source>Version %1 is available.</source>
@@ -1245,7 +1245,7 @@
     </message>
     <message>
         <source>An update has been downloaded and is ready to be installed.</source>
-        <translation type="unfinished"/>
+        <translation>Uma atualização foi baixada e está pronta para ser instalada.</translation>
     </message>
 </context>
 <context>
@@ -1461,14 +1461,14 @@
     <name>updater::DefaultUpdater</name>
     <message>
         <source>There are currently no updates available.</source>
-        <translation type="unfinished"/>
+        <translation>Não há atualizações disponíveis no momento.</translation>
     </message>
 </context>
 <context>
     <name>updater::Dialog</name>
     <message>
         <source>You already have the latest version</source>
-        <translation type="unfinished"/>
+        <translation>Você já possui a última versão</translation>
     </message>
     <message>
         <source>Downloading %1 %2...</source>

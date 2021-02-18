@@ -3,7 +3,7 @@
     <name>AboutView</name>
     <message>
         <source>There&apos;s life outside the browser!</source>
-        <translation>Van élet a böngészőn kívül.</translation>
+        <translation>Van élet a böngészőn kívül!</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>A %1 szabad szoftver, de a fejlesztése értékes időt emészt fel.</translation>
+        <translation>A %1 egy ingyenes szoftver, de a fejlesztése értékes időt emészt fel.</translation>
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
@@ -85,7 +85,7 @@
     </message>
     <message>
         <source>Enter License</source>
-        <translation>Liszensz begépelése</translation>
+        <translation>Liszensz megadása</translation>
     </message>
     <message>
         <source>Buy License</source>
@@ -107,7 +107,7 @@
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n új videód van</numerusform><numerusform>%n új videód van</numerusform></translation>
     </message>
 </context>
 <context>

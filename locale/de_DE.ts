@@ -852,7 +852,7 @@
     </message>
     <message>
         <source>Rewind %1 seconds</source>
-        <translation type="unfinished"/>
+        <translation>%1 Sekunden zurück</translation>
     </message>
     <message>
         <source>Fast forward %1 seconds</source>
@@ -860,7 +860,7 @@
     </message>
     <message>
         <source>channel</source>
-        <translation type="unfinished"/>
+        <translation>Kanal</translation>
     </message>
 </context>
 <context>
@@ -1038,7 +1038,7 @@
     </message>
     <message>
         <source>This year</source>
-        <translation type="unfinished"/>
+        <translation>Dieses Jahr</translation>
     </message>
     <message>
         <source>HD</source>
@@ -1099,11 +1099,11 @@
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Entfernen</translation>
     </message>
     <message>
         <source>Need a remote control for %1? Try %2!</source>
-        <translation type="unfinished"/>
+        <translation>Benötigen Sie eine Fernbedinung für %1? Versuchen Sie %2!</translation>
     </message>
     <message>
         <source>I keep improving %1 to make it the best I can. Support this work!</source>
@@ -1171,19 +1171,19 @@
     </message>
     <message>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>Musik</translation>
     </message>
     <message>
         <source>News</source>
-        <translation type="unfinished"/>
+        <translation>Nachrichten</translation>
     </message>
     <message>
         <source>Movies</source>
-        <translation type="unfinished"/>
+        <translation>Filme</translation>
     </message>
     <message>
         <source>Gaming</source>
-        <translation type="unfinished"/>
+        <translation>Spiele</translation>
     </message>
 </context>
 <context>
@@ -1201,7 +1201,7 @@
     <name>Updater</name>
     <message>
         <source>Check for Updates...</source>
-        <translation type="unfinished"/>
+        <translation>Auf Updates überprüfen...</translation>
     </message>
     <message>
         <source>Version %1 is available...</source>
@@ -1461,7 +1461,7 @@
     <name>updater::DefaultUpdater</name>
     <message>
         <source>There are currently no updates available.</source>
-        <translation type="unfinished"/>
+        <translation>Momentan stehen keine Updates zur Verfügung.</translation>
     </message>
 </context>
 <context>
