@@ -45,8 +45,17 @@ void YTJSSingleVideoSource::loadVideos(int max, int startIndex) {
                     if (desc.isEmpty()) desc = i["desc"].toString();
                     video->setDescription(desc);
 
-                    QString thumb = i["video_thumbnail"].toString();
-                    video->setThumbnailUrl(thumb);
+                    const auto thumbs = i["thumbnails"].toArray();
+                    for (const auto &thumb : thumbs) {
+                        QString url = thumb["url"].toString();
+                        int width = thumb["width"].toInt();
+                        if (width >= 336)
+                            video->setLargeThumbnailUrl(url);
+                        else if (width >= 246)
+                            video->setMediumThumbnailUrl(url);
+                        else if (width >= 168)
+                            video->setThumbnailUrl(url);
+                    }
 
                     int views = i["view_count"].toInt();
                     video->setViewCount(views);
