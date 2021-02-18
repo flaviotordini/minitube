@@ -174,6 +174,7 @@ MainWindow::MainWindow()
         JS::instance().getNamFactory().setRequestHeaders(
                 {{"User-Agent", HttpUtils::stealthUserAgent()}});
         JS::instance().initialize(QUrl(QLatin1String(Constants::WEBSITE) + "-ws/bundle2.js"));
+        /// JS::instance().initialize(QUrl("http://localhost:8000/bundle-test.js"));
         Invidious::instance().initServers();
     }
 
