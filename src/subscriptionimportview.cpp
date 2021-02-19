@@ -1,7 +1,6 @@
 #include "subscriptionimportview.h"
 #include "fontutils.h"
 #include "iconutils.h"
-#include "js.h"
 #include "ytchannel.h"
 
 #include "homeview.h"
@@ -34,8 +33,7 @@ SubscriptionImportView::SubscriptionImportView(QWidget *parent) : View(parent) {
     icon->setPixmap(IconUtils::icon("import").pixmap(128, 128));
     layout->addWidget(icon, 0, Qt::AlignHCenter);
 
-    auto url = JS::instance().getEngine().evaluate("googleTakeoutUrl()").toString();
-    if (url.isEmpty()) url = "https://takeout.google.com/takeout/custom/youtube";
+    QString url = "https://takeout.google.com/takeout/custom/youtube";
     QString msg =
             "Follow these steps to import your YouTube subscriptions:<ul>"
             "<li style='line-height:1.5'>Visit <a href='%1'>%2</a>"
@@ -46,8 +44,6 @@ SubscriptionImportView::SubscriptionImportView(QWidget *parent) : View(parent) {
     auto tip = new QLabel(msg);
     tip->setOpenExternalLinks(true);
     tip->setFont(FontUtils::medium());
-    // tip->setMinimumWidth(fontMetrics().xHeight() * 40);
-    // tip->setWordWrap(true);
     layout->addWidget(tip);
 
     auto button = new QPushButton("Open subscriptions.json");
@@ -80,8 +76,4 @@ SubscriptionImportView::SubscriptionImportView(QWidget *parent) : View(parent) {
         }
     });
     layout->addWidget(button, 0, Qt::AlignHCenter);
-
-    auto dragTip = new QLabel("or drag it here");
-    dragTip->setEnabled(false);
-    layout->addWidget(dragTip, 0, Qt::AlignHCenter);
 }
