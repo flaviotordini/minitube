@@ -1111,7 +1111,7 @@
     </message>
     <message>
         <source>An update is ready to be installed. Quit and install update.</source>
-        <translation type="unfinished"/>
+        <translation>Ein Update ist für die Installation bereit. Schließe das Spiel und installiere das Update.</translation>
     </message>
 </context>
 <context>
