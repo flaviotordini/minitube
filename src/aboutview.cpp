@@ -198,7 +198,9 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
 
     layout->addLayout(buttonLayout);
 
+#ifndef APP_WIN_STORE
     verticalLayout->addWidget(new AppsWidget());
+#endif
 }
 
 void AboutView::appear() {
