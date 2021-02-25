@@ -28,11 +28,7 @@ void YTJSSingleVideoSource::loadVideos(int max, int startIndex) {
                 auto obj = doc.object();
                 // qDebug() << doc.toJson();
 
-                const auto items = obj["related_videos"].toArray();
-                QVector<Video *> videos;
-                videos.reserve(items.size());
-
-                for (const auto &i : items) {
+                auto parseVideoObject = [](QJsonObject i) {
                     Video *video = new Video();
 
                     QString id = i["id"].toString();
@@ -69,7 +65,21 @@ void YTJSSingleVideoSource::loadVideos(int max, int startIndex) {
                     QString channelName = i["author"].toString();
                     video->setChannelTitle(channelName);
 
-                    videos << video;
+                    return video;
+                };
+
+                QVector<Video *> videos;
+
+                if (!video) {
+                    // parse video details
+                    videos << parseVideoObject(obj["videoDetails"].toObject());
+                }
+
+                const auto items = obj["related_videos"].toArray();
+                videos.reserve(items.size());
+
+                for (const auto &i : items) {
+                    videos << parseVideoObject(i.toObject());
                 }
 
                 if (videos.isEmpty()) {
