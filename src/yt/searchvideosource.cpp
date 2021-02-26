@@ -64,6 +64,7 @@ int SearchVideoSource::maxResults() {
 }
 
 void SearchVideoSource::connectSource(int max, int startIndex) {
+    connect(source, &VideoSource::nameChanged, this, &VideoSource::nameChanged);
     connect(source, &VideoSource::finished, this, &VideoSource::finished);
     connect(source, &VideoSource::gotVideos, this, [this](auto &videos) {
         if (aborted) return;
