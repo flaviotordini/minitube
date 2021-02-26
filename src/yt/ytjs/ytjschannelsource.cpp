@@ -121,7 +121,7 @@ void YTJSChannelSource::loadVideos(int max, int startIndex) {
 
                     QString channelName = i["author"].toString();
                     if (channelName != name) {
-                        this->name = channelName;
+                        name = channelName;
                         emit nameChanged(name);
                     }
                     video->setChannelTitle(channelName);
