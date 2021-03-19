@@ -57,7 +57,7 @@ void YTJSSingleVideoSource::loadVideos(int max, int startIndex) {
                     video->setViewCount(views);
 
                     int duration = i["length_seconds"].toInt();
-                    video->setViewCount(duration);
+                    video->setDuration(duration);
 
                     QString channelId = i["ucid"].toString();
                     video->setChannelId(channelId);
