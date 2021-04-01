@@ -171,12 +171,15 @@ MainWindow::MainWindow()
     } else if (VideoAPI::impl() == VideoAPI::YT3) {
         YT3::instance().initApiKeys();
     } else if (VideoAPI::impl() == VideoAPI::JS) {
-        JS::instance().getNamFactory().setRequestHeaders(
-                {{"User-Agent", HttpUtils::stealthUserAgent()}});
         JS::instance().initialize(QUrl(QLatin1String(Constants::WEBSITE) + "-ws/bundle2.js"));
-        /// JS::instance().initialize(QUrl("http://localhost:8000/bundle-test.js"));
+        // JS::instance().initialize(QUrl("http://localhost:8000/bundle-test.js"));
         Invidious::instance().initServers();
     }
+
+    connect(JsFunctions::instance(), &JsFunctions::ready, this, [] {
+        auto ua = JsFunctions::instance()->string("userAgent()").toUtf8();
+        JS::instance().getNamFactory().setRequestHeaders({{"User-Agent", ua}});
+    });
 
     QTimer::singleShot(100, this, &MainWindow::lazyInit);
 }
@@ -225,8 +228,6 @@ void MainWindow::lazyInit() {
     fullscreenTimer->setInterval(3000);
     fullscreenTimer->setSingleShot(true);
     connect(fullscreenTimer, SIGNAL(timeout()), SLOT(hideFullscreenUI()));
-
-    JsFunctions::instance();
 
     // Hack to give focus to searchlineedit
     View *view = qobject_cast<View *>(views->currentWidget());
