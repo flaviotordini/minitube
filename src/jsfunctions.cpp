@@ -57,7 +57,10 @@ void JsFunctions::parseJs(const QString &js) {
     if (engine) delete engine;
     engine = new QJSEngine(this);
     engine->evaluate(js);
-    emit ready();
+    QTimer::singleShot(0, this, [this] {
+        qDebug() << "Emitting ready";
+        emit ready();
+    });
 }
 
 QString JsFunctions::jsFilename() {
