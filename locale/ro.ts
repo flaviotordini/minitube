@@ -27,11 +27,11 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation type="unfinished"/>
+        <translation>Alimentat de %1</translation>
     </message>
     <message>
         <source>Open-source software</source>
-        <translation type="unfinished"/>
+        <translation>Software Sursă-Deschisă</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -107,7 +107,7 @@
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Aveți un videoclip nou</numerusform><numerusform>Aveți %n videoclipuri noi</numerusform><numerusform>Aveți %n de videoclipuri noi</numerusform></translation>
     </message>
 </context>
 <context>
