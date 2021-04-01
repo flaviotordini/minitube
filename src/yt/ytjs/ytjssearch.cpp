@@ -108,7 +108,7 @@ void YTJSSearch::loadVideos(int max, int startIndex) {
         jsMapSet.callWithInstance(filterMap, {name, value});
     };
 
-    addFilter("Type", "Video");
+    // addFilter("Type", "Video");
 
     switch (searchParams->sortBy()) {
     case SearchParams::SortByNewest:
