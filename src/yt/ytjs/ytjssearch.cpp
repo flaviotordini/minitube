@@ -127,6 +127,8 @@ void YTJSSearch::loadVideos(int max, int startIndex) {
         addFilter("Duration", "Short");
         break;
     case SearchParams::DurationMedium:
+        addFilter("Duration", "Medium");
+        break;
     case SearchParams::DurationLong:
         addFilter("Duration", "Long");
         break;
