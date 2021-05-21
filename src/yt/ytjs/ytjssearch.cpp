@@ -144,6 +144,9 @@ void YTJSSearch::loadVideos(int max, int startIndex) {
     case SearchParams::TimeMonth:
         addFilter("Upload date", "This month");
         break;
+    case SearchParams::TimeYear:
+        addFilter("Upload date", "This year");
+        break;
     }
 
     switch (searchParams->quality()) {
