@@ -488,7 +488,7 @@ void SearchView::maybeShowMessage() {
 #ifdef APP_ACTIVATION
             oneYearUsage = (QDateTime::currentSecsSinceEpoch() -
                             Activation::instance().getLicenseTimestamp()) > 86400 * 365;
-#elif APP_MAC_STORE
+#elif defined APP_MAC_STORE
             oneYearUsage = false;
 #endif
             if (oneYearUsage) {
