@@ -145,7 +145,8 @@ void Video::loadStreamUrlJS() {
         qDebug() << msg;
         ytjsVideo->deleteLater();
         ytjsVideo = nullptr;
-        loadStreamUrlYT();
+        // loadStreamUrlYT();
+        emit errorStreamUrl(msg);        
     });
     ytjsVideo->loadStreamUrl();
 }
