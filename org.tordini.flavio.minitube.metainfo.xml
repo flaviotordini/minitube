@@ -2,6 +2,7 @@
 <component type="desktop-application">
   <name>Minitube</name>
   <id>org.tordini.flavio.minitube</id>
+  <launchable type="desktop-id">minitube.desktop</launchable>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
   <summary>YouTube app</summary>
