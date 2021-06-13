@@ -381,6 +381,7 @@ void MediaView::pause() {
         break;
     default:
         if (pauseTimer.hasExpired(60000)) {
+        if (pauseTimer.isValid() && pauseTimer.hasExpired(60000)) {
             pauseTimer.invalidate();
             auto activeVideo = playlistModel->activeVideo();
             if (activeVideo) {
