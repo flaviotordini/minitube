@@ -138,9 +138,6 @@ void YTJSChannelSource::loadVideos(int max, int startIndex) {
                 static int retries = 0;
                 if (retries < 3) {
                     qDebug() << "Retrying...";
-                    auto nam = js.getEngine().networkAccessManager();
-                    nam->clearAccessCache();
-                    nam->setCookieJar(new QNetworkCookieJar());
                     QTimer::singleShot(0, this,
                                        [this, max, startIndex] { loadVideos(max, startIndex); });
                     retries++;
