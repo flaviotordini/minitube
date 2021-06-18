@@ -134,7 +134,7 @@ void YTJSChannelSource::loadVideos(int max, int startIndex) {
                 emit gotVideos(videos);
                 emit finished(videos.size());
             })
-            .onError([this, &js, max, startIndex](auto &msg) {
+            .onError([this, max, startIndex](auto &msg) {
                 static int retries = 0;
                 if (retries < 3) {
                     qDebug() << "Retrying...";
