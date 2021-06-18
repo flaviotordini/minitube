@@ -38,6 +38,7 @@ QT += widgets network sql qml
 include(lib/http/http.pri)
 include(lib/idle/idle.pri)
 include(lib/js/js.pri)
+include(lib/promises/promises.pri)
 
 DEFINES += MEDIA_MPV
 include(lib/media/media.pri)

@@ -18,3 +18,7 @@
 	path = lib/js
 	url = https://github.com/flaviotordini/js
 	branch = master
+[submodule "lib/promises"]
+	path = lib/promises
+	url = https://github.com/flaviotordini/promises
+	branch = master
