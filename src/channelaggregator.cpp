@@ -132,7 +132,7 @@ void ChannelAggregator::parseWebPage(const QByteArray &bytes) {
     } else {
         currentChannel->updateChecked();
         currentChannel = 0;
-        processNextChannel();
+        QTimer::singleShot(5000, this, &ChannelAggregator::processNextChannel);
     }
 }
 
