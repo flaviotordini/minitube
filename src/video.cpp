@@ -171,10 +171,19 @@ void Video::loadStreamUrl() {
     loadStreamUrlJS();
 }
 
+bool Video::isLoadingStreamUrl() const {
+    return ytVideo != nullptr || ytjsVideo != nullptr;
+}
+
 void Video::abortLoadStreamUrl() {
     if (ytVideo) {
         ytVideo->disconnect(this);
         ytVideo->deleteLater();
         ytVideo = nullptr;
+    }
+    if (ytjsVideo) {
+        ytjsVideo->disconnect(this);
+        ytjsVideo->deleteLater();
+        ytjsVideo = nullptr;
     }
 }

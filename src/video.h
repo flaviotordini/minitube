@@ -81,7 +81,7 @@ public:
 
     void loadStreamUrl();
     const QString &getStreamUrl() { return streamUrl; }
-    bool isLoadingStreamUrl() const { return ytVideo != nullptr; }
+    bool isLoadingStreamUrl() const;
     void abortLoadStreamUrl();
 
     const QString &getId() const { return id; }
