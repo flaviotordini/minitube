@@ -649,7 +649,7 @@ void MainWindow::createActions() {
     action->setEnabled(false);
     actionMap.insert("refineSearch", action);
 
-    action = new QAction(YTRegions::worldwideRegion().name, this);
+    action = new QAction(YTRegions::defaultRegion().name, this);
     actionMap.insert("worldwideRegion", action);
 
     action = new QAction(YTRegions::localRegion().name, this);

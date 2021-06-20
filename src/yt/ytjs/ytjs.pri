@@ -6,6 +6,7 @@ HEADERS += \
     $$PWD/ytjschannelsource.h \
     $$PWD/ytjssearch.h \
     $$PWD/ytjssinglevideosource.h \
+    $$PWD/ytjstrending.h \
     $$PWD/ytjsvideo.h
 
 SOURCES += \
@@ -13,4 +14,5 @@ SOURCES += \
     $$PWD/ytjschannelsource.cpp \
     $$PWD/ytjssearch.cpp \
     $$PWD/ytjssinglevideosource.cpp \
+    $$PWD/ytjstrending.cpp \
     $$PWD/ytjsvideo.cpp

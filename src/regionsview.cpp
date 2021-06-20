@@ -32,7 +32,7 @@ RegionsView::RegionsView(QWidget *parent) : View(parent) {
     layout->setSpacing(0);
     l->addLayout(layout);
 
-    addRegion(YTRegions::worldwideRegion());
+    addRegion(YTRegions::defaultRegion());
     foreach (YTRegion region, YTRegions::list())
         addRegion(region);
 

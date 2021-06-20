@@ -95,8 +95,8 @@ const YTRegion &YTRegions::localRegion() {
     return region;
 }
 
-const YTRegion &YTRegions::worldwideRegion() {
-    static const YTRegion region = {"", tr("Worldwide")};
+const YTRegion &YTRegions::defaultRegion() {
+    static const YTRegion region = {"US", tr("United States")};
     return region;
 }
 
@@ -115,11 +115,11 @@ const YTRegion &YTRegions::currentRegion() {
 }
 
 const YTRegion &YTRegions::regionById(const QString &id) {
-    if (id.isEmpty()) return worldwideRegion();
+    if (id.isEmpty()) return defaultRegion();
     for (const YTRegion &r : list()) {
         if (r.id == id) return r;
     }
-    return worldwideRegion();
+    return defaultRegion();
 }
 
 QIcon YTRegions::iconForRegionId(const QString &regionId) {

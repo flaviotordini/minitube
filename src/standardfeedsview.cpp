@@ -29,6 +29,8 @@ $END_LICENSE */
 #include "ivvideolist.h"
 #include "videoapi.h"
 
+#include "ytjstrending.h"
+
 StandardFeedsView::StandardFeedsView(QWidget *parent) : View(parent), layout(0) {
     setBackgroundRole(QPalette::Base);
     setAutoFillBackground(true);
@@ -46,12 +48,26 @@ void StandardFeedsView::load() {
 
     YTRegion region = YTRegions::currentRegion();
 
+    // TODO consolidate in YT
     if (VideoAPI::impl() == VideoAPI::YT3) {
         YTCategories *youTubeCategories = new YTCategories(this);
         connect(youTubeCategories, SIGNAL(categoriesLoaded(const QVector<YTCategory> &)),
                 SLOT(layoutCategories(const QVector<YTCategory> &)));
         youTubeCategories->loadCategories();
         addVideoSourceWidget(buildStandardFeed("most_popular", tr("Most Popular")));
+    } else if (VideoAPI::impl() == VideoAPI::JS) {
+        const QMap<QString, QString> pages = {{"default", tr("Trending")},
+                                              {"music", tr("Music")},
+                                              {"movies", tr("Movies")},
+                                              {"gaming", tr("Gaming")}};
+        auto i = pages.constBegin();
+        while (i != pages.constEnd()) {
+            addVideoSourceWidget(
+                    new YTJSTrending(i.value(), {{"page", i.key()}, {"geoLocation", region.id}}));
+            ++i;
+        }
+
+        setUpdatesEnabled(true);
     } else {
         QString regionParam = "region=" + region.id;
         addVideoSourceWidget(new IVVideoList("popular?" + regionParam, tr("Most Popular")));
@@ -88,7 +104,7 @@ void StandardFeedsView::addVideoSourceWidget(VideoSource *videoSource) {
     connect(w, SIGNAL(unavailable(VideoSourceWidget *)),
             SLOT(removeVideoSourceWidget(VideoSourceWidget *)));
     int i = layout->count();
-    const int cols = VideoAPI::impl() == VideoAPI::YT3 ? 5 : 3;
+    const int cols = VideoAPI::impl() == VideoAPI::YT3 ? 5 : 2;
     layout->addWidget(w, i / cols, i % cols);
 }
 
@@ -107,7 +123,7 @@ void StandardFeedsView::removeVideoSourceWidget(VideoSourceWidget *videoSourceWi
     }
 
     const int itemCount = items.size();
-    const int cols = 4; // itemCount / 3;
+    const int cols = 2; // itemCount / 3;
     for (int i = itemCount - 1; i >= 0; i--) {
         QLayoutItem *item = items.at(i);
         int index = itemCount - 1 - i;
@@ -155,7 +171,7 @@ void StandardFeedsView::disappear() {
 }
 
 void StandardFeedsView::selectWorldwideRegion() {
-    YTRegions::setRegion(YTRegions::worldwideRegion().id);
+    YTRegions::setRegion(YTRegions::defaultRegion().id);
     load();
 }
 
