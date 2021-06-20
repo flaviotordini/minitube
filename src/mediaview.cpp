@@ -254,6 +254,7 @@ void MediaView::setVideoSource(VideoSource *videoSource, bool addToHistory, bool
                 VideoSource *vs = history.takeLast();
                 if (!vs->parent()) {
                     qDebug() << "Deleting VideoSource" << vs->getName() << vs;
+                    vs->abort();
                     vs->deleteLater();
                 }
             }
@@ -406,6 +407,7 @@ void MediaView::stop() {
         VideoSource *videoSource = history.takeFirst();
         // Don't delete videoSource in the Browse view
         if (!videoSource->parent()) {
+            videoSource->abort();
             videoSource->deleteLater();
         }
     }
