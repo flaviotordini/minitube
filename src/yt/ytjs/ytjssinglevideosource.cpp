@@ -26,7 +26,6 @@ void YTJSSingleVideoSource::loadVideos(int max, int startIndex) {
                 if (aborted) return;
 
                 auto obj = doc.object();
-                // qDebug() << doc.toJson();
 
                 auto parseVideoObject = [](QJsonObject i) {
                     Video *video = new Video();
@@ -42,15 +41,9 @@ void YTJSSingleVideoSource::loadVideos(int max, int startIndex) {
                     video->setDescription(desc);
 
                     const auto thumbs = i["thumbnails"].toArray();
-                    for (const auto &thumb : thumbs) {
-                        QString url = thumb["url"].toString();
-                        int width = thumb["width"].toInt();
-                        if (width >= 336)
-                            video->setLargeThumbnailUrl(url);
-                        else if (width >= 246)
-                            video->setMediumThumbnailUrl(url);
-                        else if (width >= 168)
-                            video->setThumbnailUrl(url);
+                    for (const auto &t : thumbs) {
+                        video->addThumb(t["width"].toInt(), t["height"].toInt(),
+                                        t["url"].toString());
                     }
 
                     int views = i["view_count"].toInt();

@@ -59,10 +59,7 @@ void YT3ListParser::parseItem(const QJsonObject &item) {
     video->setDescription(snippet[QLatin1String("description")].toString());
 
     QJsonObject thumbnails = snippet[QLatin1String("thumbnails")].toObject();
-    QLatin1String url("url");
-    video->setThumbnailUrl(thumbnails[QLatin1String("medium")].toObject()[url].toString());
-    video->setMediumThumbnailUrl(thumbnails[QLatin1String("high")].toObject()[url].toString());
-    video->setLargeThumbnailUrl(thumbnails[QLatin1String("standard")].toObject()[url].toString());
+    // TODO
 
     video->setChannelTitle(snippet[QLatin1String("channelTitle")].toString());
 

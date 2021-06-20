@@ -99,15 +99,9 @@ void YTJSChannelSource::loadVideos(int max, int startIndex) {
                     video->setDescription(desc);
 
                     const auto thumbs = i["videoThumbnails"].toArray();
-                    for (const auto &thumbObj : thumbs) {
-                        QString url = thumbObj["url"].toString();
-                        int width = thumbObj["width"].toInt();
-                        if (width >= 336)
-                            video->setLargeThumbnailUrl(url);
-                        else if (width >= 246)
-                            video->setMediumThumbnailUrl(url);
-                        else if (width >= 168)
-                            video->setThumbnailUrl(url);
+                    for (const auto &t : thumbs) {
+                        video->addThumb(t["width"].toInt(), t["height"].toInt(),
+                                        t["url"].toString());
                     }
 
                     int views = i["viewCount"].toInt();

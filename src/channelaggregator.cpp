@@ -273,7 +273,18 @@ void ChannelAggregator::addVideo(Video *video) {
     query.bindValue(7, video->getChannelId());
     query.bindValue(8, video->getDescription());
     query.bindValue(9, video->getWebpage());
-    query.bindValue(10, video->getThumbnailUrl());
+
+    QJsonDocument thumbsDoc;
+    auto thumbsArray = thumbsDoc.array();
+    for (const auto &t : video->getThumbs()) {
+        thumbsArray.append(QJsonObject{
+                {"url", t.getUrl()},
+                {"width", t.getWidth()},
+                {"height", t.getHeight()},
+        });
+    }
+    thumbsDoc.setArray(thumbsArray);
+    query.bindValue(10, thumbsDoc.toJson(QJsonDocument::Compact));
     query.bindValue(11, video->getViewCount());
     query.bindValue(12, video->getDuration());
     success = query.exec();

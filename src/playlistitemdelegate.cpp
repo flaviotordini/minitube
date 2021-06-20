@@ -25,6 +25,7 @@ $END_LICENSE */
 #include "iconutils.h"
 #include "playlistmodel.h"
 #include "playlistview.h"
+#include "variantpromise.h"
 #include "video.h"
 #include "videodefinition.h"
 
@@ -128,17 +129,31 @@ void PlaylistItemDelegate::paintBody(QPainter *painter,
     const bool isActive = index.data(ActiveTrackRole).toBool();
 
     // get the video metadata
-    const Video *video = index.data(VideoRole).value<VideoPointer>().data();
+    Video *video = index.data(VideoRole).value<VideoPointer>().data();
 
     // draw the "current track" highlight underneath the text
     if (isActive && !isSelected) paintActiveOverlay(painter, option, line);
 
     // thumb
-    const QPixmap &thumb = video->getThumbnail();
+    qreal pixelRatio = painter->device()->devicePixelRatioF();
+    QByteArray thumbKey = ("t" + QString::number(pixelRatio)).toUtf8();
+    const QPixmap &thumb = video->property(thumbKey).value<QPixmap>();
     if (!thumb.isNull()) {
         painter->drawPixmap(0, 0, thumb);
         if (video->getDuration() > 0) drawTime(painter, video->getFormattedDuration(), line);
-    }
+    } else
+        video->loadThumb({thumbWidth, thumbHeight}, pixelRatio)
+                .then([pixelRatio, thumbKey, video](auto variant) {
+                    QPixmap pixmap;
+                    pixmap.loadFromData(variant.toByteArray());
+                    pixmap.setDevicePixelRatio(pixelRatio);
+                    const int thumbWidth = PlaylistItemDelegate::thumbWidth * pixelRatio;
+                    if (pixmap.width() > thumbWidth)
+                        pixmap = pixmap.scaledToWidth(thumbWidth, Qt::SmoothTransformation);
+                    video->setProperty(thumbKey, pixmap);
+                    video->changed();
+                })
+                .onFailed([](auto msg) { qDebug() << msg; });
 
     const bool thumbsOnly = line.width() <= thumbWidth + 60;
     const bool isHovered = index.data(HoveredItemRole).toBool();

@@ -24,8 +24,11 @@ $END_LICENSE */
 #include <QtCore>
 #include <QtGui>
 
+#include "ytthumb.h"
+
 class YTVideo;
 class YTJSVideo;
+class VariantPromise;
 
 class Video : public QObject {
     Q_OBJECT
@@ -53,18 +56,6 @@ public:
     const QString &getWebpage();
     void setWebpage(const QString &value);
 
-    void loadThumbnail();
-    const QPixmap &getThumbnail() const { return thumbnail; }
-
-    const QString &getThumbnailUrl() const { return thumbnailUrl; }
-    void setThumbnailUrl(const QString &value) { thumbnailUrl = value; }
-
-    const QString &getMediumThumbnailUrl() const { return mediumThumbnailUrl; }
-    void setMediumThumbnailUrl(const QString &value) { mediumThumbnailUrl = value; }
-
-    const QString &getLargeThumbnailUrl() const { return largeThumbnailUrl; }
-    void setLargeThumbnailUrl(const QString &value) { largeThumbnailUrl = value; }
-
     int getDuration() const { return duration; }
     void setDuration(int value);
     const QString &getFormattedDuration() const { return formattedDuration; }
@@ -90,15 +81,16 @@ public:
     License getLicense() const { return license; }
     void setLicense(License value) { license = value; }
 
+    const auto &getThumbs() const { return thumbs; }
+    void addThumb(int width, int height, QString url);
+    VariantPromise &loadThumb(QSize size, qreal pixelRatio);
+
 signals:
-    void gotThumbnail();
-    void gotMediumThumbnail(const QByteArray &bytes);
-    void gotLargeThumbnail(const QByteArray &bytes);
     void gotStreamUrl(const QString &videoUrl, const QString &audioUrl);
     void errorStreamUrl(const QString &message);
+    void changed();
 
 private slots:
-    void setThumbnail(const QByteArray &bytes);
     void streamUrlLoaded(const QString &streamUrl, const QString &audioUrl);
 
 private:
@@ -111,10 +103,6 @@ private:
     QString channelId;
     QString webpage;
     QString streamUrl;
-    QPixmap thumbnail;
-    QString thumbnailUrl;
-    QString mediumThumbnailUrl;
-    QString largeThumbnailUrl;
     int duration;
     QString formattedDuration;
 
@@ -126,10 +114,11 @@ private:
     QString id;
     int definitionCode;
 
-    bool loadingThumbnail;
-
     YTVideo *ytVideo;
     YTJSVideo *ytjsVideo;
+
+    QVector<YTThumb> thumbs;
+    bool thumbsNeedSorting = false;
 };
 
 // This is required in order to use QPointer<Video> as a QVariant

@@ -19,12 +19,13 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 #include "videosourcewidget.h"
-#include "videosource.h"
-#include "video.h"
 #include "fontutils.h"
-#include "iconutils.h"
 #include "http.h"
 #include "httputils.h"
+#include "iconutils.h"
+#include "variantpromise.h"
+#include "video.h"
+#include "videosource.h"
 
 VideoSourceWidget::VideoSourceWidget(VideoSource *videoSource, QWidget *parent)
     : GridWidget(parent),
@@ -32,9 +33,7 @@ VideoSourceWidget::VideoSourceWidget(VideoSource *videoSource, QWidget *parent)
       lastPixelRatio(0) {
     videoSource->setParent(this);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-
     loadPreview();
-
     connect(this, SIGNAL(activated()), SLOT(activate()));
 }
 
@@ -50,13 +49,15 @@ void VideoSourceWidget::previewVideo(const QVector<Video *> &videos) {
         return;
     }
     Video *video = videos.at(0);
-    lastPixelRatio = window()->devicePixelRatio();
-    bool needLargeThumb = lastPixelRatio > 1.0 || window()->width() > 1000;
-    QString url =  needLargeThumb ? video->getLargeThumbnailUrl() : video->getMediumThumbnailUrl();
-    if (url.isEmpty()) url = video->getThumbnailUrl();
-    video->deleteLater();
-    QObject *reply = HttpUtils::yt().get(url);
-    connect(reply, SIGNAL(data(QByteArray)), SLOT(setPixmapData(QByteArray)));
+    lastPixelRatio = devicePixelRatio();
+
+    video->loadThumb(size(), lastPixelRatio)
+            .then([this](auto variant) { setPixmapData(variant.toByteArray()); })
+            .onFailed([](auto msg) { qDebug() << msg; })
+            .finally([videos] {
+                for (auto v : videos)
+                    v->deleteLater();
+            });
 }
 
 void VideoSourceWidget::setPixmapData(const QByteArray &bytes) {
@@ -75,7 +76,7 @@ QPixmap VideoSourceWidget::playPixmap() {
     const int s = height() / 2;
     const int padding = s / 8;
 
-    qreal ratio = window()->devicePixelRatio();
+    qreal ratio = devicePixelRatio();
     QPixmap playIcon = QPixmap(s * ratio, s * ratio);
     playIcon.setDevicePixelRatio(ratio);
     playIcon.fill(Qt::transparent);
@@ -101,8 +102,9 @@ QPixmap VideoSourceWidget::playPixmap() {
 
 void VideoSourceWidget::paintEvent(QPaintEvent *event) {
     GridWidget::paintEvent(event);
+    // if (devicePixelRatio() != lastPixelRatio) loadPreview();
+
     if (pixmap.isNull()) return;
-    if (window()->devicePixelRatio() != lastPixelRatio) loadPreview();
 
     QPainter p(this);
 
@@ -149,7 +151,7 @@ void VideoSourceWidget::paintEvent(QPaintEvent *event) {
     QString name = videoSource->getName();
     bool tooBig = false;
     p.save();
-    p.setFont(FontUtils::medium());
+    p.setFont(FontUtils::big());
     QRect textBox = p.boundingRect(nameBox, Qt::AlignCenter | Qt::TextWordWrap, name);
     if (textBox.height() > nameBox.height()) {
         p.setFont(font());

@@ -188,8 +188,11 @@ void YTJSSearch::loadVideos(int max, int startIndex) {
                     QString desc = i["description"].toString();
                     video->setDescription(desc);
 
-                    QString thumb = i["thumbnail"].toString();
-                    video->setThumbnailUrl(thumb);
+                    const auto thumbs = i["thumbnails"].toArray();
+                    for (const auto &t : thumbs) {
+                        video->addThumb(t["width"].toInt(), t["height"].toInt(),
+                                        t["url"].toString());
+                    }
 
                     int views = i["views"].toInt();
                     video->setViewCount(views);

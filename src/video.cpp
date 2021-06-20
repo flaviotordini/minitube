@@ -29,9 +29,11 @@ $END_LICENSE */
 #include "ytjsvideo.h"
 #include "ytvideo.h"
 
+#include "variantpromise.h"
+
 Video::Video()
-    : duration(0), viewCount(-1), license(LicenseYouTube), definitionCode(0),
-      loadingThumbnail(false), ytVideo(nullptr), ytjsVideo(nullptr) {}
+    : duration(0), viewCount(-1), license(LicenseYouTube), definitionCode(0), ytVideo(nullptr),
+      ytjsVideo(nullptr) {}
 
 Video::~Video() {
     qDebug() << "Deleting" << id;
@@ -45,9 +47,8 @@ Video *Video::clone() {
     clone->channelId = channelId;
     clone->webpage = webpage;
     clone->streamUrl = streamUrl;
-    clone->thumbnail = thumbnail;
-    clone->thumbnailUrl = thumbnailUrl;
-    clone->mediumThumbnailUrl = mediumThumbnailUrl;
+    clone->thumbs = thumbs;
+    clone->thumbsNeedSorting = thumbsNeedSorting;
     clone->duration = duration;
     clone->formattedDuration = formattedDuration;
     clone->published = published;
@@ -81,17 +82,6 @@ void Video::setWebpage(const QString &value) {
     }
 }
 
-void Video::loadThumbnail() {
-    if (thumbnailUrl.isEmpty() || loadingThumbnail) return;
-    loadingThumbnail = true;
-    auto reply = HttpUtils::yt().get(thumbnailUrl);
-    connect(reply, SIGNAL(data(QByteArray)), SLOT(setThumbnail(QByteArray)));
-    connect(reply, &HttpReply::error, this, [this](auto &msg) {
-        qWarning() << msg;
-        loadingThumbnail = false;
-    });
-}
-
 void Video::setDuration(int value) {
     duration = value;
     formattedDuration = DataUtils::formatDuration(duration);
@@ -105,17 +95,6 @@ void Video::setViewCount(int value) {
 void Video::setPublished(const QDateTime &value) {
     published = value;
     formattedPublished = DataUtils::formatDateTime(published);
-}
-
-void Video::setThumbnail(const QByteArray &bytes) {
-    qreal ratio = qApp->devicePixelRatio();
-    thumbnail.loadFromData(bytes);
-    thumbnail.setDevicePixelRatio(ratio);
-    const int thumbWidth = PlaylistItemDelegate::thumbWidth * ratio;
-    if (thumbnail.width() > thumbWidth)
-        thumbnail = thumbnail.scaledToWidth(thumbWidth, Qt::SmoothTransformation);
-    emit gotThumbnail();
-    loadingThumbnail = false;
 }
 
 void Video::streamUrlLoaded(const QString &streamUrl, const QString &audioUrl) {
@@ -186,4 +165,70 @@ void Video::abortLoadStreamUrl() {
         ytjsVideo->deleteLater();
         ytjsVideo = nullptr;
     }
+}
+
+void Video::addThumb(int width, int height, QString url) {
+    thumbs << YTThumb(width, height, url);
+    thumbsNeedSorting = true;
+}
+
+VariantPromise &Video::loadThumb(QSize size, qreal pixelRatio) {
+    if (thumbsNeedSorting) {
+        std::sort(thumbs.begin(), thumbs.end(),
+                  [](auto a, auto b) { return a.getWidth() < b.getWidth(); });
+        thumbsNeedSorting = false;
+    }
+
+    auto promise = new VariantPromise(this);
+    if (thumbs.isEmpty()) {
+        QTimer::singleShot(0, promise, [promise] { promise->reject("Empty thumbs"); });
+        return *promise;
+    }
+
+    auto reallyLoad = [this, promise, size, pixelRatio](auto &&self,
+                                                        YTThumb *previous = nullptr) -> void {
+        YTThumb *selected = nullptr;
+
+        static bool fallback = false;
+        if (fallback) {
+            qDebug() << "Doing fallback loop";
+            bool skip = previous != nullptr;
+            for (int i = thumbs.size() - 1; i >= 0; --i) {
+                auto &thumb = thumbs.at(i);
+                if (!skip) {
+                    selected = (YTThumb *)&thumb;
+                    qDebug() << "selected" << selected->getUrl();
+                    break;
+                }
+                if (&thumb == previous) skip = false;
+            }
+        } else {
+            bool skip = previous != nullptr;
+            for (auto &thumb : qAsConst(thumbs)) {
+                if (!skip && thumb.getWidth() * pixelRatio >= size.width() &&
+                    thumb.getHeight() * pixelRatio >= size.height()) {
+                    selected = (YTThumb *)&thumb;
+                    qDebug() << "selected" << selected->getUrl();
+                    break;
+                }
+                if (&thumb == previous) skip = false;
+            }
+        }
+        if (!selected && !fallback) {
+            qDebug() << "Falling back";
+            fallback = true;
+            self(self);
+            return;
+        }
+        if (selected) {
+            qDebug() << "Loading" << selected->getUrl();
+            selected->load(promise)
+                    .then([promise](auto variant) { promise->resolve(variant); })
+                    .onFailed([self, selected] { self(self, selected); });
+        } else
+            promise->reject("No thumb");
+    };
+    reallyLoad(reallyLoad);
+
+    return *promise;
 }

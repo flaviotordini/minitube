@@ -63,7 +63,18 @@ void AggregateVideoSource::loadVideos(int max, int startIndex) {
         video->setChannelId(query.value(4).toString());
         video->setDescription(query.value(5).toString());
         video->setWebpage(query.value(6).toString());
-        video->setThumbnailUrl(query.value(7).toString());
+
+        QString thumbString = query.value(7).toString();
+        if (thumbString.startsWith('[')) {
+            const auto thumbs = QJsonDocument::fromJson(thumbString.toUtf8()).array();
+            for (const auto &t : thumbs) {
+                video->addThumb(t["width"].toInt(), t["height"].toInt(), t["url"].toString());
+            }
+        } else {
+            // assume it's a URL
+            video->addThumb(0, 0, thumbString);
+        }
+
         video->setViewCount(query.value(8).toInt());
         video->setDuration(query.value(9).toInt());
         videos << video;

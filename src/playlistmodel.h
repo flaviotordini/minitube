@@ -89,7 +89,6 @@ public slots:
     void addVideos(const QVector<Video *> &newVideos);
     void searchFinished(int total);
     void searchError(const QString &message);
-    void updateVideoSender();
     void emitDataChanged();
 
     void setHoveredRow(int row);

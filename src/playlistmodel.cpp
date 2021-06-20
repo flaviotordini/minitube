@@ -20,6 +20,7 @@ $END_LICENSE */
 
 #include "playlistmodel.h"
 #include "mediaview.h"
+#include "playlistitemdelegate.h"
 #include "searchparams.h"
 #include "video.h"
 #include "videomimedata.h"
@@ -242,8 +243,10 @@ void PlaylistModel::addVideos(const QVector<Video *> &newVideos) {
     videos.append(newVideos);
     endInsertRows();
     for (Video *video : newVideos) {
-        connect(video, SIGNAL(gotThumbnail()), SLOT(updateVideoSender()), Qt::UniqueConnection);
-        video->loadThumbnail();
+        connect(video, &Video::changed, this, [video, this] {
+            int row = rowForVideo(video);
+            emit dataChanged(createIndex(row, 0), createIndex(row, columnCount() - 1));
+        });
     }
 }
 
@@ -295,16 +298,6 @@ void PlaylistModel::handleFirstVideo(Video *video) {
             settings.setValue(recentChannelsKey, channels);
         }
     }
-}
-
-void PlaylistModel::updateVideoSender() {
-    Video *video = static_cast<Video *>(sender());
-    if (!video) {
-        qDebug() << "Cannot get sender";
-        return;
-    }
-    int row = rowForVideo(video);
-    emit dataChanged(createIndex(row, 0), createIndex(row, columnCount() - 1));
 }
 
 void PlaylistModel::emitDataChanged() {
