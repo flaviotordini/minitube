@@ -52,5 +52,6 @@
         <file>images/app@2x.png</file>
         <file>images/64x64/app.png</file>
         <file>images/64x64/app@2x.png</file>
+        <file>flags/us.png</file>
     </qresource>
 </RCC>
