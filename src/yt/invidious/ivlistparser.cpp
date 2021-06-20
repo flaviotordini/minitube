@@ -42,16 +42,9 @@ void IVListParser::parseItem(const QJsonObject &item) {
     video->setTitle(title);
     video->setDescription(item[QLatin1String("descriptionHtml")].toString());
 
-    const auto thumbnails = item[QLatin1String("videoThumbnails")].toArray();
-    for (const auto &thumbnail : thumbnails) {
-        auto q = thumbnail["quality"];
-        if (q == QLatin1String("medium")) {
-            video->setThumbnailUrl(thumbnail["url"].toString());
-        } else if (q == QLatin1String("high")) {
-            video->setMediumThumbnailUrl(thumbnail["url"].toString());
-        } else if (q == QLatin1String("sddefault")) {
-            video->setLargeThumbnailUrl(thumbnail["url"].toString());
-        }
+    const auto thumbs = item[QLatin1String("videoThumbnails")].toArray();
+    for (const auto &t : thumbs) {
+        video->addThumb(t["width"].toInt(), t["height"].toInt(), t["url"].toString());
     }
 
     video->setChannelTitle(item[QLatin1String("author")].toString());
