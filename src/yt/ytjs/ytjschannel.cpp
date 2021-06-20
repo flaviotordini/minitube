@@ -18,10 +18,10 @@ void YTJSChannel::load(const QString &channelId) {
                 const auto thumbs = obj["authorThumbnails"].toArray();
                 int maxFoundWidth = 0;
                 for (const auto &thumbObj : thumbs) {
-                    QString url = thumbObj["url"].toString();
                     int width = thumbObj["width"].toInt();
                     if (width > maxFoundWidth) {
                         maxFoundWidth = width;
+                        QString url = thumbObj["url"].toString();
                         thumbnailUrl = url;
                     }
                 }
