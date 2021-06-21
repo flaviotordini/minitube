@@ -7,6 +7,7 @@
 
 class YTThumb {
 public:
+    YTThumb() {} // needed by QVector
     YTThumb(int width, int height, const QString &url);
     int getWidth() const { return width; }
     int getHeight() const { return height; }
