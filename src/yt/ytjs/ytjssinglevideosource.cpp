@@ -3,6 +3,34 @@
 #include "js.h"
 #include "video.h"
 
+namespace {
+
+QDateTime parsePublishedText(const QString &s) {
+    int num = 0;
+    const auto parts = s.splitRef(' ');
+    for (const auto &part : parts) {
+        num = part.toInt();
+        if (num > 0) break;
+    }
+    if (num == 0) return QDateTime();
+
+    auto now = QDateTime::currentDateTimeUtc();
+    if (s.contains("hour")) {
+        return now.addSecs(-num * 3600);
+    } else if (s.contains("day")) {
+        return now.addDays(-num);
+    } else if (s.contains("week")) {
+        return now.addDays(-num * 7);
+    } else if (s.contains("month")) {
+        return now.addMonths(-num);
+    } else if (s.contains("year")) {
+        return now.addDays(-num * 365);
+    }
+    return QDateTime();
+}
+
+} // namespace
+
 YTJSSingleVideoSource::YTJSSingleVideoSource(QObject *parent)
     : VideoSource(parent), video(nullptr) {}
 
@@ -31,6 +59,7 @@ void YTJSSingleVideoSource::loadVideos(int max, int startIndex) {
                     Video *video = new Video();
 
                     QString id = i["id"].toString();
+                    if (id.isEmpty()) id = i["videoId"].toString();
                     video->setId(id);
 
                     QString title = i["title"].toString();
@@ -38,6 +67,8 @@ void YTJSSingleVideoSource::loadVideos(int max, int startIndex) {
 
                     QString desc = i["description"].toString();
                     if (desc.isEmpty()) desc = i["desc"].toString();
+                    if (desc.isEmpty()) desc = i["shortDescription"].toString();
+
                     video->setDescription(desc);
 
                     const auto thumbs = i["thumbnails"].toArray();
@@ -46,17 +77,26 @@ void YTJSSingleVideoSource::loadVideos(int max, int startIndex) {
                                         t["url"].toString());
                     }
 
-                    int views = i["view_count"].toInt();
+                    qDebug() << i["view_count"] << i["viewCount"];
+                    int views = i["view_count"].toString().toInt();
+                    if (views == 0) views = i["viewCount"].toString().toInt();
                     video->setViewCount(views);
 
                     int duration = i["length_seconds"].toInt();
                     video->setDuration(duration);
 
-                    QString channelId = i["ucid"].toString();
-                    video->setChannelId(channelId);
+                    auto author = i["author"];
+                    if (author.isObject()) {
+                        auto authorObject = author.toObject();
+                        video->setChannelId(authorObject["id"].toString());
+                        video->setChannelTitle(authorObject["name"].toString());
+                    } else if (author.isString()) {
+                        video->setChannelId(i["ucid"].toString());
+                        video->setChannelTitle(author.toString());
+                    }
 
-                    QString channelName = i["author"].toString();
-                    video->setChannelTitle(channelName);
+                    auto published = parsePublishedText(i["published"].toString());
+                    if (published.isValid()) video->setPublished(published);
 
                     return video;
                 };
@@ -64,8 +104,12 @@ void YTJSSingleVideoSource::loadVideos(int max, int startIndex) {
                 QVector<Video *> videos;
 
                 if (!video) {
-                    // parse video details
-                    videos << parseVideoObject(obj["videoDetails"].toObject());
+                    // first video
+                    auto video = parseVideoObject(obj["videoDetails"].toObject());
+                    videos << video;
+                    name = video->getTitle();
+                    qDebug() << "Emitting name changed" << name;
+                    emit nameChanged(name);
                 }
 
                 const auto items = obj["related_videos"].toArray();
