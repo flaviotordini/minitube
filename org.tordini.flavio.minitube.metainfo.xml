@@ -37,6 +37,10 @@
   <url type="donation">https://flavio.tordini.org/donate</url>
   <url type="translate">https://www.transifex.com/flaviotordini/minitube/</url>
   <releases>
+    <release version="3.9" date="2021-06-22"/>
+    <release version="3.8.2" date="2021-04-02"/>
+    <release version="3.8.1" date="2021-02-26"/>
+    <release version="3.8" date="2021-02-19"/>
     <release version="3.7" date="2020-12-30"/>
   </releases>
   <content_rating type="oars-1.1">
