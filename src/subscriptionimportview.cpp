@@ -46,26 +46,40 @@ SubscriptionImportView::SubscriptionImportView(QWidget *parent) : View(parent) {
     tip->setFont(FontUtils::medium());
     layout->addWidget(tip);
 
-    auto button = new QPushButton("Open subscriptions.json");
+    auto button = new QPushButton("Open subscriptions.csv");
     button->setDefault(true);
     connect(this, &View::didAppear, button, [button] { button->setFocus(); });
     button->setFocus();
     button->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     connect(button, &QPushButton::clicked, this, [this] {
         auto dir = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
-        QString fileName = QFileDialog::getOpenFileName(this, tr("Open subscriptions.json"), dir,
-                                                        tr("JSON Files (*.json)"));
+        QString fileName = QFileDialog::getOpenFileName(this, tr("Open subscriptions.csv"), dir,
+                                                        tr("YouTube data (*.csv *.json)"));
         if (!fileName.isEmpty()) {
             auto w = MainWindow::instance();
             QString msg;
             QFile file(fileName);
             if (file.open(QFile::ReadOnly)) {
                 int count = 0;
-                const auto array = QJsonDocument::fromJson(file.readAll()).array();
-                for (const auto &i : array) {
-                    auto id = i["snippet"]["resourceId"]["channelId"].toString();
-                    qDebug() << "Subscribing to" << id;
-                    if (YTChannel::subscribe(id)) count++;
+                if (QFileInfo(fileName).suffix().toLower() == "csv") {
+                    int lineNumber = 1;
+                    while (!file.atEnd()) {
+                        QByteArray line = file.readLine();
+                        if (lineNumber > 1) {
+                            auto fields = line.split(',');
+                            auto id = fields.first();
+                            qDebug() << "Subscribing to" << id;
+                            if (YTChannel::subscribe(id)) count++;
+                        }
+                        lineNumber++;
+                    }
+                } else {
+                    const auto array = QJsonDocument::fromJson(file.readAll()).array();
+                    for (const auto &i : array) {
+                        auto id = i["snippet"]["resourceId"]["channelId"].toString();
+                        qDebug() << "Subscribing to" << id;
+                        if (YTChannel::subscribe(id)) count++;
+                    }
                 }
                 msg = tr("Subscribed to %n channel(s)", "", count);
                 w->showHome();
