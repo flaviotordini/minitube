@@ -27,11 +27,11 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation type="unfinished"/>
+        <translation>Styrket af 1%</translation>
     </message>
     <message>
         <source>Open-source software</source>
-        <translation type="unfinished"/>
+        <translation>Åben-Kildekode software</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>

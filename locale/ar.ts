@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation type="unfinished"/>
+        <translation>بدعم من %1</translation>
     </message>
     <message>
         <source>Open-source software</source>
@@ -107,7 +107,7 @@
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>You have %n new video(s)</numerusform><numerusform>You have %n new video(s)</numerusform><numerusform>You have %n new video(s)</numerusform><numerusform>You have %n new video(s)</numerusform><numerusform>You have %n new video(s)</numerusform><numerusform>لديك %n فيديو جديد</numerusform></translation>
     </message>
 </context>
 <context>
@@ -192,11 +192,11 @@
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n يوم مضى</numerusform><numerusform>%n يوم مضى</numerusform><numerusform>%n يوم مضى</numerusform><numerusform>%n يوم مضى</numerusform><numerusform>%n يوم مضى</numerusform><numerusform>%n يوم مضى</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n شهر مضى</numerusform><numerusform>%n شهر مضى</numerusform><numerusform>%n شهر مضى</numerusform><numerusform>%n شهر مضى</numerusform><numerusform>%n شهر مضى</numerusform><numerusform>%n شهر مضى</numerusform></translation>
     </message>
     <message>
         <source>K</source>
@@ -219,11 +219,11 @@
     </message>
     <message numerus="yes">
         <source>%n week(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n اسبوع مضى</numerusform><numerusform>%n اسبوع مضى</numerusform><numerusform>%n اسبوع مضى</numerusform><numerusform>%n اسبوع مضى</numerusform><numerusform>%n اسبوع مضى</numerusform><numerusform>%n اسبوع مضى</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n year(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n سنة مضت</numerusform><numerusform>%n سنة مضت</numerusform><numerusform>%n سنة مضت</numerusform><numerusform>%n سنة مضت</numerusform><numerusform>%n سنة مضت</numerusform><numerusform>%n سنة مضت</numerusform></translation>
     </message>
 </context>
 <context>
@@ -277,7 +277,7 @@
     </message>
     <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n تحميل</numerusform><numerusform>%n تحميل</numerusform><numerusform>%n تحميل</numerusform><numerusform>%n تحميل</numerusform><numerusform>%n تحميل</numerusform><numerusform>%n تحميل</numerusform></translation>
     </message>
 </context>
 <context>
@@ -674,7 +674,7 @@
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>قائمة</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -1038,7 +1038,7 @@
     </message>
     <message>
         <source>This year</source>
-        <translation type="unfinished"/>
+        <translation>هذه السنة</translation>
     </message>
     <message>
         <source>HD</source>
@@ -1171,19 +1171,19 @@
     </message>
     <message>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>موسيقى</translation>
     </message>
     <message>
         <source>News</source>
-        <translation type="unfinished"/>
+        <translation>الأخبار</translation>
     </message>
     <message>
         <source>Movies</source>
-        <translation type="unfinished"/>
+        <translation>الأفلام</translation>
     </message>
     <message>
         <source>Gaming</source>
-        <translation type="unfinished"/>
+        <translation>الألعاب</translation>
     </message>
 </context>
 <context>
@@ -1225,7 +1225,7 @@
     </message>
     <message>
         <source>Download Update</source>
-        <translation type="unfinished"/>
+        <translation>تحميل التحديث</translation>
     </message>
     <message>
         <source>Downloading update...</source>
@@ -1241,7 +1241,7 @@
     </message>
     <message>
         <source>Version %1 is available.</source>
-        <translation type="unfinished"/>
+        <translation>الإصدار %1 متوفر.</translation>
     </message>
     <message>
         <source>An update has been downloaded and is ready to be installed.</source>
@@ -1492,7 +1492,7 @@
     </message>
     <message>
         <source>Download Update</source>
-        <translation type="unfinished"/>
+        <translation>تحميل التحديث</translation>
     </message>
 </context>
 </TS>

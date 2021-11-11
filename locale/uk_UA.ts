@@ -19,7 +19,7 @@
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>Будь ласка, &lt;a href=&apos;%1&apos;&gt;внесіть пожертву,&lt;/a&gt; аби підтримати подальший розвиток %2.</translation>
+        <translation>Будь ласка, &lt;a href=&apos;%1&apos;&gt;внесіть пожертву&lt;/a&gt;, щоб підтримати подальший розвиток %2.</translation>
     </message>
     <message>
         <source>Translate %1 to your native language using %2</source>
@@ -27,11 +27,11 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation type="unfinished"/>
+        <translation>За допомогою %1</translation>
     </message>
     <message>
         <source>Open-source software</source>
-        <translation type="unfinished"/>
+        <translation>ПЗ із відкритим джерельним кодом</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -74,11 +74,11 @@
     </message>
     <message>
         <source>The full version allows you to watch videos without interruptions.</source>
-        <translation>Повна версія дозволяє дивитися видиво без перерв.</translation>
+        <translation>Повна версія дозволяє дивитися відео без перерв.</translation>
     </message>
     <message>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
-        <translation>При купівлі повної версії, Ви, також, надаєте підтримку важкій роботі, яка була задіяна під час створення %1.</translation>
+        <translation>Купуючи повну версію Ви також підтримуєте важку працю внесену в створення %1.</translation>
     </message>
     <message>
         <source>Use Demo</source>
@@ -97,7 +97,7 @@
     <name>AppWidget</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished"/>
+        <translation>Завантажити</translation>
     </message>
 </context>
 <context>
@@ -108,18 +108,18 @@
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>У Вас %n нове відео</numerusform><numerusform>У Вас %n нових відео</numerusform><numerusform>У Вас %n нових відео</numerusform><numerusform>У Вас %n нових відео</numerusform></translation>
     </message>
 </context>
 <context>
     <name>ChannelItemDelegate</name>
     <message>
         <source>All Videos</source>
-        <translation>Усі видива</translation>
+        <translation>Усі відео</translation>
     </message>
     <message>
         <source>Unwatched Videos</source>
-        <translation>Не переглянуті видива</translation>
+        <translation>Не переглянуті відео</translation>
     </message>
 </context>
 <context>
@@ -142,11 +142,11 @@
     </message>
     <message>
         <source>Most Watched</source>
-        <translation>Найбільш переглядаюче</translation>
+        <translation>Найбільш переглядувані</translation>
     </message>
     <message>
         <source>Sort by</source>
-        <translation>Сортувати за</translation>
+        <translation>Ґатункувати за</translation>
     </message>
     <message>
         <source>Mark all as watched</source>
@@ -158,15 +158,15 @@
     </message>
     <message>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation>У Вас немає підписок. Використовуйте символ зірочки, аби підписуватися на канали.</translation>
+        <translation>У Вас нема підписок. Використовуйте символ зірочки, щоб підписуватися на канали.</translation>
     </message>
     <message>
         <source>All Videos</source>
-        <translation>Усі видива</translation>
+        <translation>Усі відео</translation>
     </message>
     <message>
         <source>Unwatched Videos</source>
-        <translation>Не переглянуті видива</translation>
+        <translation>Не переглянуті відео</translation>
     </message>
     <message>
         <source>Mark as Watched</source>
@@ -178,41 +178,41 @@
     </message>
     <message>
         <source>There are no updated subscriptions at this time.</source>
-        <translation>Наразі оновлень підписок немає.</translation>
+        <translation>Наразі оновлень підписок нема.</translation>
     </message>
 </context>
 <context>
     <name>DataUtils</name>
     <message>
         <source>Just now</source>
-        <translation>Тільки що</translation>
+        <translation>Тільки-но</translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n год. тому</numerusform><numerusform>%n год. тому</numerusform><numerusform>%n год. тому</numerusform><numerusform>%n год. тому</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n день тому</numerusform><numerusform>%n дні тому</numerusform><numerusform>%n днів тому</numerusform><numerusform>%n днів тому</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n місяць тому</numerusform><numerusform>%n місяці тому</numerusform><numerusform>%n місяців тому</numerusform><numerusform>%n місяців тому</numerusform></translation>
     </message>
     <message>
         <source>K</source>
         <comment>K as in Kilo, i.e. thousands</comment>
-        <translation type="unfinished"/>
+        <translation>Тис</translation>
     </message>
     <message>
         <source>M</source>
         <comment>M stands for Millions</comment>
-        <translation type="unfinished"/>
+        <translation>Млн</translation>
     </message>
     <message>
         <source>B</source>
         <comment>B stands for Billions</comment>
-        <translation type="unfinished"/>
+        <translation>Млрд</translation>
     </message>
     <message>
         <source>%1 views</source>
@@ -220,11 +220,11 @@
     </message>
     <message numerus="yes">
         <source>%n week(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n тиждень тому</numerusform><numerusform>%n тижні тому</numerusform><numerusform>%n тижнів тому</numerusform><numerusform>%n тижнів тому</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n year(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n рік тому</numerusform><numerusform>%n роки тому</numerusform><numerusform>%n років тому</numerusform><numerusform>%n років тому</numerusform></translation>
     </message>
 </context>
 <context>
@@ -278,7 +278,7 @@
     </message>
     <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n Завантаження</numerusform><numerusform>%n Завантаження</numerusform><numerusform>%n Завантажень</numerusform><numerusform>%n Завантажень</numerusform></translation>
     </message>
 </context>
 <context>
@@ -315,7 +315,7 @@
     <name>Extra</name>
     <message>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation>Виконуваний файл було пошкоджено, може бути, вірус.</translation>
+        <translation>Виконуваний файл було пошкоджено, можливо вірусом.</translation>
     </message>
     <message>
         <source>%1 will not run. Try installing again.</source>
@@ -354,11 +354,11 @@
     </message>
     <message>
         <source>Next track</source>
-        <translation>Наступний трек</translation>
+        <translation>Наступна доріжка</translation>
     </message>
     <message>
         <source>Previous track</source>
-        <translation>Попередній трек</translation>
+        <translation>Попередня доріжка</translation>
     </message>
     <message>
         <source>Increase volume</source>
@@ -389,7 +389,7 @@
     </message>
     <message>
         <source>Find videos and channels by keyword</source>
-        <translation>Знайти видива та канали за ключовими словами</translation>
+        <translation>Знайти відео та канали за ключовими словами</translation>
     </message>
     <message>
         <source>Browse</source>
@@ -397,7 +397,7 @@
     </message>
     <message>
         <source>Browse videos by category</source>
-        <translation>Оглянути видива за катеґоріями</translation>
+        <translation>Оглянути відео за катеґоріями</translation>
     </message>
     <message>
         <source>Subscriptions</source>
@@ -443,7 +443,7 @@
     </message>
     <message>
         <source>Go back to the previous track</source>
-        <translation>Повернутися до попереднього треку</translation>
+        <translation>Повернутися до попередньої доріжки</translation>
     </message>
     <message>
         <source>S&amp;kip</source>
@@ -451,7 +451,7 @@
     </message>
     <message>
         <source>Skip to the next video</source>
-        <translation>Перейти до наступного видива</translation>
+        <translation>Перейти до наступного відео</translation>
     </message>
     <message>
         <source>&amp;Play</source>
@@ -475,7 +475,7 @@
     </message>
     <message>
         <source>Hide the playlist and the toolbar</source>
-        <translation>Сховати перелік та панель інструментів</translation>
+        <translation>Сховати перелік та панель знарядь</translation>
     </message>
     <message>
         <source>Open the &amp;YouTube Page</source>
@@ -483,7 +483,7 @@
     </message>
     <message>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation>Відкрити сторінку YouTube та призупинити відтворення видива</translation>
+        <translation>Відкрити сторінку YouTube та призупинити відтворення відео</translation>
     </message>
     <message>
         <source>Copy the YouTube &amp;Link</source>
@@ -491,23 +491,23 @@
     </message>
     <message>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation>Скопіювати YouTube посилання поточного видива до буферу</translation>
+        <translation>Скопіювати YouTube-посилання поточного відео до буферу</translation>
     </message>
     <message>
         <source>Copy the Video Stream &amp;URL</source>
-        <translation>Копіювати посилання на ви&amp;диво потік</translation>
+        <translation>Копіювати посилання на ві&amp;деопотік</translation>
     </message>
     <message>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation>Скопіювати посилання поточного видива до буферу</translation>
+        <translation>Скопіювати посилання поточного відео до буферу</translation>
     </message>
     <message>
         <source>Find Video &amp;Parts</source>
-        <translation>Знайти &amp;фраґменти видива</translation>
+        <translation>Знайти &amp;фрагменти відео</translation>
     </message>
     <message>
         <source>Find other video parts hopefully in the right order</source>
-        <translation>Знайти інші частини видива, сподіваюся, у правильному порядку</translation>
+        <translation>Знайти инші частини відео, сподіваюсь, у правильному порядку</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
@@ -515,7 +515,7 @@
     </message>
     <message>
         <source>Remove the selected videos from the playlist</source>
-        <translation>Вилучити обрані видива з переліку</translation>
+        <translation>Вилучити вибрані відео з грайлиста</translation>
     </message>
     <message>
         <source>Move &amp;Up</source>
@@ -523,7 +523,7 @@
     </message>
     <message>
         <source>Move up the selected videos in the playlist</source>
-        <translation>Перемістити обране видиво догори у переліку</translation>
+        <translation>Перемістити вибране відео догори у грайлисті</translation>
     </message>
     <message>
         <source>Move &amp;Down</source>
@@ -531,7 +531,7 @@
     </message>
     <message>
         <source>Move down the selected videos in the playlist</source>
-        <translation>Перемістити обране видиво донизу в переліку</translation>
+        <translation>Перемістити вибране відео донизу в грайлисті</translation>
     </message>
     <message>
         <source>&amp;Clear Recent Searches</source>
@@ -539,7 +539,7 @@
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation>Очистити історію пошуку (зміни незворотні).</translation>
+        <translation>Очистити дієпис пошуку (зміни незворотні).</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
@@ -551,7 +551,7 @@
     </message>
     <message>
         <source>&amp;Website</source>
-        <translation>&amp;Веб-сайт</translation>
+        <translation>&amp;Вебсайт</translation>
     </message>
     <message>
         <source>%1 on the Web</source>
@@ -587,7 +587,7 @@
     </message>
     <message>
         <source>Manually start playing videos</source>
-        <translation>Почати відтворення видива самотужки</translation>
+        <translation>Почати відтворення відео самотужки</translation>
     </message>
     <message>
         <source>&amp;Downloads</source>
@@ -595,7 +595,7 @@
     </message>
     <message>
         <source>Show details about video downloads</source>
-        <translation>Показати деталі про видива, що завантажуються</translation>
+        <translation>Показати деталі про завантажувані відео</translation>
     </message>
     <message>
         <source>&amp;Download</source>
@@ -603,7 +603,7 @@
     </message>
     <message>
         <source>Download the current video</source>
-        <translation>Завантажити це видиво</translation>
+        <translation>Завантажити це відео</translation>
     </message>
     <message>
         <source>Take &amp;Snapshot</source>
@@ -615,7 +615,7 @@
     </message>
     <message>
         <source>Share the current video using %1</source>
-        <translation>Поділитися поточним видивом за допомогою %1</translation>
+        <translation>Поділитися поточним відео за допомогою %1</translation>
     </message>
     <message>
         <source>&amp;Email</source>
@@ -635,7 +635,7 @@
     </message>
     <message>
         <source>&amp;Stop After This Video</source>
-        <translation>Зу&amp;пинити після цього видиво</translation>
+        <translation>Зу&amp;пинити після цього відео</translation>
     </message>
     <message>
         <source>&amp;Report an Issue...</source>
@@ -651,11 +651,11 @@
     </message>
     <message>
         <source>&amp;Related Videos</source>
-        <translation>Схо&amp;жі видива</translation>
+        <translation>Схо&amp;жі відео</translation>
     </message>
     <message>
         <source>Watch videos related to the current one</source>
-        <translation>Дивитися видива, пов’язані з поточним</translation>
+        <translation>Дивитися відео, пов’язані з поточним</translation>
     </message>
     <message>
         <source>Open in &amp;Browser...</source>
@@ -663,19 +663,19 @@
     </message>
     <message>
         <source>Restricted Mode</source>
-        <translation type="unfinished"/>
+        <translation>Безпечний режим</translation>
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
-        <translation type="unfinished"/>
+        <translation>Сховати відео, які можуть містити невідповідний вміст</translation>
     </message>
     <message>
         <source>Toggle &amp;Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>Приховати &amp;Меню</translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Меню</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
@@ -695,11 +695,11 @@
     </message>
     <message>
         <source>&amp;Playlist</source>
-        <translation>&amp;Перелік відтворення</translation>
+        <translation>&amp;Грайлист</translation>
     </message>
     <message>
         <source>&amp;Video</source>
-        <translation>&amp;Видиво</translation>
+        <translation>&amp;Відео</translation>
     </message>
     <message>
         <source>&amp;Share</source>
@@ -715,7 +715,7 @@
     </message>
     <message>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation>Натисніть %1, аби приглушити гучність, та %2, щоб її відновити</translation>
+        <translation>Натисніть %1, аби приглушити гучність, і %2, щоб її відновити</translation>
     </message>
     <message>
         <source>Choose your content location</source>
@@ -731,7 +731,7 @@
     </message>
     <message>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation>Якщо закрити %1 негайно, усі завантаження буде скасовано.</translation>
+        <translation>Якщо закрити %1 негайно, всі завантаження буде скасовано.</translation>
     </message>
     <message>
         <source>Close and cancel download</source>
@@ -779,7 +779,7 @@
     </message>
     <message>
         <source>Maximum video definition set to %1</source>
-        <translation>Режим чіткості видива %1</translation>
+        <translation>Режим чіткости відео %1</translation>
     </message>
     <message>
         <source>Your privacy is now safe</source>
@@ -791,22 +791,22 @@
     </message>
     <message>
         <source>You can still access the menu bar by pressing the ALT key</source>
-        <translation type="unfinished"/>
+        <translation>Відкрити меню можна натисканням ALT</translation>
     </message>
 </context>
 <context>
     <name>MediaView</name>
     <message>
         <source>You can now paste the YouTube link into another application</source>
-        <translation>Тепер Ви можете використовувати YouTube посилання на видиво у зовнішній проґрамі</translation>
+        <translation>Тепер Ви можете використовувати YouTube-посилання на відео у зовнішній проґрамі</translation>
     </message>
     <message>
         <source>You can now paste the video stream URL into another application</source>
-        <translation>Тепер Ви можете використовувати посилання на видиво у зовнішній проґрамі</translation>
+        <translation>Тепер Ви можете використовувати посилання на відео у зовнішній проґрамі</translation>
     </message>
     <message>
         <source>The link will be valid only for a limited time.</source>
-        <translation>Посилання буде дійсне лише протягом обмеженого часу.</translation>
+        <translation>Посилання буде дійсне лише впродовж обмеженого часу.</translation>
     </message>
     <message>
         <source>Downloading %1</source>
@@ -841,7 +841,7 @@
     </message>
     <message>
         <source>Switched to %1</source>
-        <translation type="unfinished"/>
+        <translation>Перемикнутися на %1</translation>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
@@ -861,7 +861,7 @@
     </message>
     <message>
         <source>channel</source>
-        <translation type="unfinished"/>
+        <translation>канал</translation>
     </message>
 </context>
 <context>
@@ -902,7 +902,7 @@
     <name>PickMessage</name>
     <message>
         <source>Pick a video</source>
-        <translation type="unfinished"/>
+        <translation>Оберіть відео</translation>
     </message>
 </context>
 <context>
@@ -937,11 +937,11 @@
     </message>
     <message>
         <source>Open parent folder</source>
-        <translation>Перейти до теки з видивами</translation>
+        <translation>Перейти до теки з відео</translation>
     </message>
     <message>
         <source>Restart downloading</source>
-        <translation>Завантажити заново</translation>
+        <translation>Перезапустити завантаження</translation>
     </message>
 </context>
 <context>
@@ -956,14 +956,14 @@
     </message>
     <message>
         <source>No more videos</source>
-        <translation>Більше немає</translation>
+        <translation>Більше нема</translation>
     </message>
 </context>
 <context>
     <name>RefineSearchWidget</name>
     <message>
         <source>Sort by</source>
-        <translation>Сортувати за</translation>
+        <translation>Ґатункувати за</translation>
     </message>
     <message>
         <source>Relevance</source>
@@ -1039,19 +1039,19 @@
     </message>
     <message>
         <source>This year</source>
-        <translation type="unfinished"/>
+        <translation>Цього року</translation>
     </message>
     <message>
         <source>HD</source>
-        <translation type="unfinished"/>
+        <translation>HD</translation>
     </message>
     <message>
         <source>4K</source>
-        <translation type="unfinished"/>
+        <translation>4K</translation>
     </message>
     <message>
         <source>HDR</source>
-        <translation type="unfinished"/>
+        <translation>HDR</translation>
     </message>
 </context>
 <context>
@@ -1100,19 +1100,19 @@
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Вилучити</translation>
     </message>
     <message>
         <source>Need a remote control for %1? Try %2!</source>
-        <translation type="unfinished"/>
+        <translation>Потрібен пульт дистанційного керування для %1? Спробуйте %2!</translation>
     </message>
     <message>
         <source>I keep improving %1 to make it the best I can. Support this work!</source>
-        <translation type="unfinished"/>
+        <translation>Я постійно вдосконалюю %1, щоб зробити це якнайкраще. Підтримайте цю роботу!</translation>
     </message>
     <message>
         <source>An update is ready to be installed. Quit and install update.</source>
-        <translation type="unfinished"/>
+        <translation>Оновлення готове до встановлення. Закрийте та встановіть оновлення.</translation>
     </message>
 </context>
 <context>
@@ -1123,7 +1123,7 @@
     </message>
     <message>
         <source>&amp;Forward</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Уперед</translation>
     </message>
     <message>
         <source>Forward to %1</source>
@@ -1168,23 +1168,23 @@
     </message>
     <message>
         <source>Trending</source>
-        <translation type="unfinished"/>
+        <translation>Тенденція</translation>
     </message>
     <message>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>Музика</translation>
     </message>
     <message>
         <source>News</source>
-        <translation type="unfinished"/>
+        <translation>Новини</translation>
     </message>
     <message>
         <source>Movies</source>
-        <translation type="unfinished"/>
+        <translation>Фільми</translation>
     </message>
     <message>
         <source>Gaming</source>
-        <translation type="unfinished"/>
+        <translation>Ігри</translation>
     </message>
 </context>
 <context>
@@ -1195,38 +1195,38 @@
     </message>
     <message>
         <source>Downloading %1...</source>
-        <translation type="unfinished"/>
+        <translation>Завантаження %1...</translation>
     </message>
 </context>
 <context>
     <name>Updater</name>
     <message>
         <source>Check for Updates...</source>
-        <translation type="unfinished"/>
+        <translation>Перевірити наявність оновлень...</translation>
     </message>
     <message>
         <source>Version %1 is available...</source>
-        <translation type="unfinished"/>
+        <translation>Доступна версія %1 ...</translation>
     </message>
     <message>
         <source>Downloading version %1...</source>
-        <translation type="unfinished"/>
+        <translation>Завантаження версії %1...</translation>
     </message>
     <message>
         <source>Restart to Update</source>
-        <translation type="unfinished"/>
+        <translation>Перезапустити оновлення</translation>
     </message>
     <message>
         <source>Version %1 download failed</source>
-        <translation type="unfinished"/>
+        <translation>Не вдалося завантажити версію %1</translation>
     </message>
     <message>
         <source>Check for Updates</source>
-        <translation type="unfinished"/>
+        <translation>Перевірити наявність оновлень</translation>
     </message>
     <message>
         <source>Download Update</source>
-        <translation type="unfinished"/>
+        <translation>Завантажити оновлення</translation>
     </message>
     <message>
         <source>Downloading update...</source>
@@ -1234,37 +1234,37 @@
     </message>
     <message>
         <source>Retry Update Download</source>
-        <translation type="unfinished"/>
+        <translation>Повторити спробу завантаження оновлення</translation>
     </message>
     <message>
         <source>You have the latest version.</source>
-        <translation type="unfinished"/>
+        <translation>У вас остання версія.</translation>
     </message>
     <message>
         <source>Version %1 is available.</source>
-        <translation type="unfinished"/>
+        <translation>Доступна версія %1.</translation>
     </message>
     <message>
         <source>An update has been downloaded and is ready to be installed.</source>
-        <translation type="unfinished"/>
+        <translation>Оновлення завантажено та готове до встановлення.</translation>
     </message>
 </context>
 <context>
     <name>YTJSVideo</name>
     <message>
         <source>Cannot get video stream for %1</source>
-        <translation>Не вдалося отримати видивопотік для %1</translation>
+        <translation>Не вдалось отримати відеопотік для %1</translation>
     </message>
 </context>
 <context>
     <name>YTRegions</name>
     <message>
         <source>Algeria</source>
-        <translation>Алжир</translation>
+        <translation>Алжір</translation>
     </message>
     <message>
         <source>Argentina</source>
-        <translation>Аргентина</translation>
+        <translation>Арґентина</translation>
     </message>
     <message>
         <source>Australia</source>
@@ -1392,7 +1392,7 @@
     </message>
     <message>
         <source>Russia</source>
-        <translation>Російська Федерація</translation>
+        <translation>Московія</translation>
     </message>
     <message>
         <source>Saudi Arabia</source>
@@ -1412,7 +1412,7 @@
     </message>
     <message>
         <source>Spain</source>
-        <translation>Іспанія</translation>
+        <translation>Еспанія</translation>
     </message>
     <message>
         <source>Sweden</source>
@@ -1440,7 +1440,7 @@
     </message>
     <message>
         <source>United Kingdom</source>
-        <translation>Великобританія</translation>
+        <translation>Велика Британія</translation>
     </message>
     <message>
         <source>Yemen</source>
@@ -1455,25 +1455,25 @@
     <name>YTVideo</name>
     <message>
         <source>Cannot get video stream for %1</source>
-        <translation>Не вдалося отримати видивопотік для %1</translation>
+        <translation>Не вдалось отримати відеопотік для %1</translation>
     </message>
 </context>
 <context>
     <name>updater::DefaultUpdater</name>
     <message>
         <source>There are currently no updates available.</source>
-        <translation type="unfinished"/>
+        <translation>Наразі оновлень нема.</translation>
     </message>
 </context>
 <context>
     <name>updater::Dialog</name>
     <message>
         <source>You already have the latest version</source>
-        <translation type="unfinished"/>
+        <translation>У вас вже є остання версія</translation>
     </message>
     <message>
         <source>Downloading %1 %2...</source>
-        <translation type="unfinished"/>
+        <translation>Завантаження %1 %2...</translation>
     </message>
     <message>
         <source>A new version of %1 is available!</source>
@@ -1493,7 +1493,7 @@
     </message>
     <message>
         <source>Download Update</source>
-        <translation type="unfinished"/>
+        <translation>Завантажити оновлення</translation>
     </message>
 </context>
 </TS>

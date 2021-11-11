@@ -671,7 +671,7 @@
     </message>
     <message>
         <source>Toggle &amp;Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>Приховати &amp;Menu Bar</translation>
     </message>
     <message>
         <source>Menu</source>
@@ -791,7 +791,7 @@
     </message>
     <message>
         <source>You can still access the menu bar by pressing the ALT key</source>
-        <translation type="unfinished"/>
+        <translation>Відкрити меню можна натисканням ALT</translation>
     </message>
 </context>
 <context>

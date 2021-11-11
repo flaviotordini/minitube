@@ -27,11 +27,11 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation type="unfinished"/>
+        <translation>Ditenagai oleh %1</translation>
     </message>
     <message>
         <source>Open-source software</source>
-        <translation type="unfinished"/>
+        <translation>Peranti lunak sumber terbuka</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>

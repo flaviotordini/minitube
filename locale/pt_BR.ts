@@ -223,7 +223,7 @@
     </message>
     <message numerus="yes">
         <source>%n year(s) ago</source>
-        <translation><numerusform>%n ano atrás</numerusform><numerusform>%n anos atrás</numerusform></translation>
+        <translation><numerusform>%n ano atrás</numerusform><numerusform>%n ano(s) atrás</numerusform></translation>
     </message>
 </context>
 <context>
@@ -1213,7 +1213,7 @@
     </message>
     <message>
         <source>Restart to Update</source>
-        <translation>Reiniciar para atualizar</translation>
+        <translation>Reiniciar para Atualizar</translation>
     </message>
     <message>
         <source>Version %1 download failed</source>
@@ -1221,7 +1221,7 @@
     </message>
     <message>
         <source>Check for Updates</source>
-        <translation>Verificar se há atualizações</translation>
+        <translation>Verificar se há Atualizações</translation>
     </message>
     <message>
         <source>Download Update</source>
