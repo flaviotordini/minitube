@@ -23,6 +23,7 @@ $END_LICENSE */
 
 #include <QtWidgets>
 
+#include "emptypromise.h"
 #include "gridwidget.h"
 
 class Video;
@@ -35,9 +36,11 @@ class VideoSourceWidget : public GridWidget {
 public:
     VideoSourceWidget(VideoSource *videoSource, QWidget *parent = 0);
     VideoSource *getVideoSource() { return videoSource; }
+    EmptyPromise *loadPreview();
 
 signals:
     void activated(VideoSource *videoSource);
+    void previewLoaded();
     void unavailable(VideoSourceWidget *videoSourceWidget);
 
 protected:
@@ -49,8 +52,6 @@ private slots:
     void setPixmapData(const QByteArray &bytes);
 
 private:
-    void loadPreview();
-
     QPixmap playPixmap();
     VideoSource *videoSource;
     QPixmap pixmap;

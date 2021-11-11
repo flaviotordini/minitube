@@ -56,9 +56,12 @@ private slots:
 private:
     void resetLayout();
     void addVideoSourceWidget(VideoSource *videoSource);
+    void loadNextPreview(VideoSourceWidget *previous = nullptr);
+
     YTStandardFeed *
     buildStandardFeed(const QString &feedId, const QString &label, QString time = QString());
     QGridLayout *layout;
+    QVector<VideoSourceWidget *> sourceWidgets;
 };
 
 #endif // CATEGORIESVIEW_H

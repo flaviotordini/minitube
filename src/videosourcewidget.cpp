@@ -33,7 +33,6 @@ VideoSourceWidget::VideoSourceWidget(VideoSource *videoSource, QWidget *parent)
       lastPixelRatio(0) {
     videoSource->setParent(this);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    loadPreview();
     connect(this, SIGNAL(activated()), SLOT(activate()));
 }
 
@@ -54,9 +53,10 @@ void VideoSourceWidget::previewVideo(const QVector<Video *> &videos) {
     video->loadThumb(size(), lastPixelRatio)
             .then([this](auto variant) { setPixmapData(variant.toByteArray()); })
             .onFailed([](auto msg) { qDebug() << msg; })
-            .finally([videos] {
+            .finally([this, videos] {
                 for (auto v : videos)
                     v->deleteLater();
+                emit previewLoaded();
             });
 }
 
@@ -66,10 +66,18 @@ void VideoSourceWidget::setPixmapData(const QByteArray &bytes) {
     update();
 }
 
-void VideoSourceWidget::loadPreview() {
-    connect(videoSource, SIGNAL(gotVideos(QVector<Video*>)),
-            SLOT(previewVideo(QVector<Video*>)), Qt::UniqueConnection);
+EmptyPromise *VideoSourceWidget::loadPreview() {
+    auto promise = new EmptyPromise(this);
+    connect(this, &VideoSourceWidget::previewLoaded, promise, &EmptyPromise::resolve);
+    connect(this, &VideoSourceWidget::unavailable, promise, [promise] {
+        promise->reject(staticMetaObject.className() + QLatin1String(" unavailable"));
+    });
+
+    connect(videoSource, SIGNAL(gotVideos(QVector<Video *>)), SLOT(previewVideo(QVector<Video *>)),
+            Qt::UniqueConnection);
     videoSource->loadVideos(1, 1);
+
+    return promise;
 }
 
 QPixmap VideoSourceWidget::playPixmap() {

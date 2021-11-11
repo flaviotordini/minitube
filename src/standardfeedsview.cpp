@@ -82,6 +82,19 @@ void StandardFeedsView::load() {
     QAction *regionAction = MainWindow::instance()->getRegionAction();
     regionAction->setText(region.name);
     regionAction->setIcon(YTRegions::iconForRegionId(region.id));
+
+    loadNextPreview();
+}
+
+void StandardFeedsView::loadNextPreview(VideoSourceWidget *previous) {
+    int index = 0;
+    if (previous) {
+        index = sourceWidgets.indexOf(previous);
+        index++;
+        if (index == sourceWidgets.length() || index < 0) return;
+    }
+    auto w = sourceWidgets.at(index);
+    w->loadPreview()->finally([this, w] { loadNextPreview(w); });
 }
 
 void StandardFeedsView::layoutCategories(const QVector<YTCategory> &categories) {
@@ -106,6 +119,9 @@ void StandardFeedsView::addVideoSourceWidget(VideoSource *videoSource) {
     int i = layout->count();
     const int cols = VideoAPI::impl() == VideoAPI::YT3 ? 5 : 2;
     layout->addWidget(w, i / cols, i % cols);
+
+    connect(w, &QObject::destroyed, this, [this, w] { sourceWidgets.removeOne(w); });
+    sourceWidgets << w;
 }
 
 void StandardFeedsView::removeVideoSourceWidget(VideoSourceWidget *videoSourceWidget) {
