@@ -171,7 +171,7 @@ MainWindow::MainWindow()
     } else if (VideoAPI::impl() == VideoAPI::YT3) {
         YT3::instance().initApiKeys();
     } else if (VideoAPI::impl() == VideoAPI::JS) {
-        JS::instance().initialize(QUrl(QLatin1String(Constants::WEBSITE) + "-ws/bundle2.js"));
+        JS::instance().initialize(QUrl(QLatin1String(Constants::WEBSITE) + "-ws/bundle3.js"));
         // JS::instance().initialize(QUrl("http://localhost:8000/bundle-test.js"));
         Invidious::instance().initServers();
     }
