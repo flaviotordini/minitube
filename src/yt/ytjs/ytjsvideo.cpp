@@ -35,7 +35,7 @@ void YTJSVideo::loadStreamUrl() {
                 qDebug() << "available formats" << urlMap.keys();
                 const VideoDefinition &definition = YT3::instance().maxVideoDefinition();
                 const QVector<VideoDefinition> &definitions = VideoDefinition::getDefinitions();
-                int previousIndex = std::max(definitions.indexOf(definition), 0);
+                int previousIndex = qMax(definitions.indexOf(definition), 0);
                 for (; previousIndex >= 0; previousIndex--) {
                     const VideoDefinition &previousDefinition = definitions.at(previousIndex);
                     qDebug() << "Testing format" << previousDefinition.getCode();
