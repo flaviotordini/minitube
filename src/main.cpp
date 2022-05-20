@@ -21,13 +21,18 @@ $END_LICENSE */
 #include <QtNetwork>
 #include <QtWidgets>
 
+#ifdef APP_MAC_STORE
+typedef QApplication SingleApplication;
+#else
+#include <singleapplication.h>
+#endif
+
 #include "constants.h"
 #include "iconutils.h"
 #include "updateutils.h"
 
 #include "mainwindow.h"
 #include "searchparams.h"
-#include <qtsingleapplication.h>
 #ifdef APP_EXTRA
 #include "extra.h"
 #endif
@@ -35,7 +40,7 @@ $END_LICENSE */
 #include "mac_startup.h"
 #endif
 
-void showWindow(QtSingleApplication &app, const QString &pkgDataDir) {
+void showWindow(SingleApplication &app, const QString &pkgDataDir) {
     MainWindow *mainWin = new MainWindow();
 
 #ifndef APP_MAC
@@ -56,9 +61,8 @@ void showWindow(QtSingleApplication &app, const QString &pkgDataDir) {
     mainWin->setWindowIcon(appIcon);
 #endif
 
-    mainWin->connect(&app, SIGNAL(messageReceived(const QString &)), mainWin,
+    mainWin->connect(&app, SIGNAL(receivedMessage(const QString &)), mainWin,
                      SLOT(messageReceived(const QString &)));
-    app.setActivationWindow(mainWin, true);
 
     mainWin->show();
 }
@@ -84,7 +88,7 @@ int main(int argc, char **argv) {
 
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    QtSingleApplication app(argc, argv);
+    SingleApplication app(argc, argv);
     QString message;
     if (app.arguments().size() > 1) {
         message = app.arguments().at(1);
@@ -93,7 +97,7 @@ int main(int argc, char **argv) {
             return 0;
         }
     }
-    if (app.sendMessage(message)) return 0;
+    if (app.sendMessage(message.toUtf8())) return 0;
 
     app.setApplicationName(Constants::NAME);
     app.setOrganizationName(Constants::ORG_NAME);

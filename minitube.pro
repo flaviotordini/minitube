@@ -43,7 +43,9 @@ include(lib/promises/promises.pri)
 DEFINES += MEDIA_MPV
 include(lib/media/media.pri)
 
-include(src/qtsingleapplication/qtsingleapplication.pri)
+DEFINES += QAPPLICATION_CLASS=QApplication
+include(lib/singleapplication/singleapplication.pri)
+
 include(src/yt/yt.pri)
 
 INCLUDEPATH += $$PWD/src

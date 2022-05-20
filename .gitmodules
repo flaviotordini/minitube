@@ -22,3 +22,7 @@
 	path = lib/promises
 	url = https://github.com/flaviotordini/promises
 	branch = master
+[submodule "lib/singleapplication"]
+	path = lib/singleapplication
+	url = https://github.com/itay-grudev/SingleApplication
+	branch = master
