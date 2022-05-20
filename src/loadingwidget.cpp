@@ -86,7 +86,7 @@ void LoadingWidget::setVideo(Video *video) {
         videoDesc = videoDesc.left(videoDesc.length() - 4);
         videoDesc.append("…");
     }
-    static const QRegExp linkRE("(https?://\\S+)");
+    static const QRegularExpression linkRE("(https?://\\S+)");
     videoDesc.replace(linkRE, QStringLiteral("<a style='color:white' href=\"\\1\">\\1</a>"));
     descriptionLabel->setText(videoDesc);
     bool hiddenDesc = height() < 400;

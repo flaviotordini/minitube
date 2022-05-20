@@ -71,14 +71,15 @@ void Video::setWebpage(const QString &value) {
 
     // Get Video ID
     if (id.isEmpty()) {
-        QRegExp re(JsFunctions::instance()->videoIdRE());
-        if (re.indexIn(webpage) == -1) {
+        QRegularExpression re(JsFunctions::instance()->videoIdRE());
+        QRegularExpressionMatch match = re.match(webpage);
+        if (!match.hasMatch()) {
             qWarning() << QString("Cannot get video id for %1").arg(webpage);
             // emit errorStreamUrl(QString("Cannot get video id for %1").arg(m_webpage.toString()));
             // loadingStreamUrl = false;
             return;
         }
-        id = re.cap(1);
+        id = match.captured(0);
     }
 }
 
