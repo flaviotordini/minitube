@@ -46,7 +46,7 @@ private:
     QLabel *titleLabel;
     QLabel *descriptionLabel;
     QProgressBar *progressBar;
-    QTime startTime;
+    QElapsedTimer startTime;
 };
 
 #endif // LOADINGWIDGET_H

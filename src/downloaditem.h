@@ -88,10 +88,10 @@ private:
     int initialBufferSize();
 
     qint64 m_bytesReceived;
-    QTime m_downloadTime;
+    QElapsedTimer m_downloadTime;
     bool m_startedSaving;
     bool m_finishedDownloading;
-    QTime m_lastProgressTime;
+    QElapsedTimer m_lastProgressTime;
     int percent;
     double m_totalTime;
 
