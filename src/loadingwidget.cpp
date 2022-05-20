@@ -120,7 +120,7 @@ void LoadingWidget::adjustFontSize() {
     int textHeightInPixels = fm.height();
     int spacing = textHeightInPixels / 2;
     layout()->setSpacing(spacing);
-    layout()->setMargin(spacing);
+    layout()->setContentsMargins(spacing, spacing, spacing, spacing);
     titleLabel->setFont(f);
 
     QFont descFont = descriptionLabel->font();

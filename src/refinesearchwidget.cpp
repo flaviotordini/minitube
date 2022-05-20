@@ -41,7 +41,7 @@ void RefineSearchWidget::setup() {
 
     QBoxLayout *layout = new QVBoxLayout(this);
     layout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
-    layout->setMargin(spacing);
+    layout->setContentsMargins(spacing, spacing, spacing, spacing);
     layout->setSpacing(spacing);
 
     QString paramName = "sortBy";
@@ -134,7 +134,7 @@ void RefineSearchWidget::setupLabel(const QString &text,
                                     const QString &paramName) {
     QBoxLayout *hLayout = new QHBoxLayout();
     hLayout->setSpacing(8);
-    hLayout->setMargin(0);
+    hLayout->setContentsMargins(0, 0, 0, 0);
     hLayout->setAlignment(Qt::AlignVCenter);
 
     QLabel *icon = new QLabel(this);

@@ -38,7 +38,7 @@ public:
         setAutoFillBackground(true);
 
         QBoxLayout *l = new QHBoxLayout(this);
-        l->setMargin(32);
+        l->setContentsMargins(32, 32, 32, 32);
         l->setSpacing(32);
         l->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
 
@@ -58,7 +58,7 @@ VideoArea::VideoArea(QWidget *parent)
     setAttribute(Qt::WA_OpaquePaintEvent);
 
     QBoxLayout *layout = new QVBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
 
     stackedLayout = new QStackedLayout();

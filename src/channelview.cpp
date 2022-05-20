@@ -45,7 +45,7 @@ const QString showUpdatedKey = "subscriptionsShowUpdated";
 
 ChannelView::ChannelView(QWidget *parent) : View(parent), showUpdated(false), sortBy(SortByName) {
     QBoxLayout *layout = new QVBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
 
     listView = new ChannelListView();

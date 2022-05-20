@@ -35,7 +35,7 @@ $END_LICENSE */
 HomeView::HomeView(QWidget *parent)
     : View(parent), searchView(nullptr), standardFeedsView(nullptr), channelsView(nullptr) {
     QBoxLayout *layout = new QVBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
 
     setupBar();

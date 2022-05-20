@@ -50,13 +50,13 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
     setAutoFillBackground(true);
 
     QBoxLayout *verticalLayout = new QVBoxLayout(this);
-    verticalLayout->setMargin(0);
+    verticalLayout->setContentsMargins(0, 0, 0, 0);
     verticalLayout->setSpacing(0);
 
     QBoxLayout *aboutlayout = new QHBoxLayout();
     verticalLayout->addLayout(aboutlayout, 1);
     aboutlayout->setAlignment(Qt::AlignCenter);
-    aboutlayout->setMargin(padding);
+    aboutlayout->setContentsMargins(padding, padding, padding, padding);
     aboutlayout->setSpacing(padding);
 
     ClickableLabel *logo = new ClickableLabel();
@@ -72,7 +72,7 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
     QBoxLayout *layout = new QVBoxLayout();
     layout->setAlignment(Qt::AlignCenter);
     layout->setSpacing(padding);
-    layout->setMargin(padding / 2);
+    layout->setContentsMargins(padding / 2, padding / 2, padding / 2, padding / 2);
     aboutlayout->addLayout(layout);
 
     QColor lightTextColor = palette().text().color();
@@ -156,7 +156,7 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
     int capHeight = fontMetrics().capHeight();
 
     QBoxLayout *updateLayout = new QHBoxLayout();
-    updateLayout->setMargin(0);
+    updateLayout->setContentsMargins(0, 0, 0, 0);
     updateLayout->setSpacing(capHeight);
     updateLayout->setAlignment(Qt::AlignLeft);
 
@@ -181,7 +181,7 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
 #endif
 
     QLayout *buttonLayout = new QHBoxLayout();
-    buttonLayout->setMargin(0);
+    buttonLayout->setContentsMargins(0, 0, 0, 0);
     buttonLayout->setAlignment(Qt::AlignLeft);
 
 #ifdef UPDATER

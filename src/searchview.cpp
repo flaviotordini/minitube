@@ -62,7 +62,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     const int padding = 30;
 
     QBoxLayout *vLayout = new QVBoxLayout(this);
-    vLayout->setMargin(padding);
+    vLayout->setContentsMargins(padding, padding, padding, padding);
     vLayout->setSpacing(0);
 
     messageBar = new MessageBar();
@@ -166,11 +166,11 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     layout->addSpacing(padding);
 
     QHBoxLayout *recentLayout = new QHBoxLayout();
-    recentLayout->setMargin(0);
+    recentLayout->setContentsMargins(0, 0, 0, 0);
     recentLayout->setSpacing(10);
 
     recentKeywordsLayout = new QVBoxLayout();
-    recentKeywordsLayout->setMargin(0);
+    recentKeywordsLayout->setContentsMargins(0, 0, 0, 0);
     recentKeywordsLayout->setSpacing(0);
     recentKeywordsLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     recentKeywordsLabel = new QLabel(tr("Recent keywords"));
@@ -181,7 +181,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     recentLayout->addLayout(recentKeywordsLayout);
 
     recentChannelsLayout = new QVBoxLayout();
-    recentChannelsLayout->setMargin(0);
+    recentChannelsLayout->setContentsMargins(0, 0, 0, 0);
     recentChannelsLayout->setSpacing(0);
     recentChannelsLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
     recentChannelsLabel = new QLabel(tr("Recent channels"));

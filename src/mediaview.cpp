@@ -75,7 +75,7 @@ void MediaView::initialize() {
     MainWindow *mainWindow = MainWindow::instance();
 
     QBoxLayout *layout = new QVBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
 
     splitter = new MiniSplitter();
     layout->addWidget(splitter);

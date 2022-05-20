@@ -32,7 +32,7 @@ SidebarWidget::SidebarWidget(QWidget *parent) : QWidget(parent), playlistWidth(0
 
     QBoxLayout *layout = new QVBoxLayout(this);
     layout->setSpacing(0);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
 
     setBackgroundRole(QPalette::Base);
     setAutoFillBackground(true);

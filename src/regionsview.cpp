@@ -24,11 +24,11 @@ $END_LICENSE */
 
 RegionsView::RegionsView(QWidget *parent) : View(parent) {
     QBoxLayout *l = new QVBoxLayout(this);
-    l->setMargin(30);
+    l->setContentsMargins(30, 30, 30, 30);
     l->setSpacing(30);
 
     layout = new QGridLayout();
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
     l->addLayout(layout);
 

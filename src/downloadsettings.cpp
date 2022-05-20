@@ -25,7 +25,7 @@ $END_LICENSE */
 DownloadSettings::DownloadSettings(QWidget *parent) : QWidget(parent) {
 
     QBoxLayout *layout = new QHBoxLayout(this);
-    layout->setMargin(10);
+    layout->setContentsMargins(10, 10, 10, 10);
 
     message = new QLabel(this);
     message->setOpenExternalLinks(true);

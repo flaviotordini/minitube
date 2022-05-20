@@ -157,7 +157,7 @@ void StandardFeedsView::resetLayout() {
     }
 
     layout = new QGridLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
 }
 
