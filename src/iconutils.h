@@ -59,9 +59,6 @@ public:
 private:
     IconUtils() {}
     static QImage grayscaled(const QImage &image);
-    static QImage tinted(const QImage &image,
-                         const QColor &color,
-                         QPainter::CompositionMode mode = QPainter::CompositionMode_Screen);
 };
 
 #endif // ICONUTILS_H

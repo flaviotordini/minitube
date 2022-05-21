@@ -160,17 +160,6 @@ QImage IconUtils::grayscaled(const QImage &image) {
     return img;
 }
 
-QImage IconUtils::tinted(const QImage &image, const QColor &color, QPainter::CompositionMode mode) {
-    QImage img(image.size(), QImage::Format_ARGB32_Premultiplied);
-    QPainter painter(&img);
-    painter.drawImage(0, 0, grayscaled(image));
-    painter.setCompositionMode(mode);
-    painter.fillRect(img.rect(), color);
-    painter.end();
-    img.setAlphaChannel(image.alphaChannel());
-    return img;
-}
-
 void IconUtils::tint(QPixmap &pixmap, const QColor &color, QPainter::CompositionMode mode) {
     QPainter painter(&pixmap);
     painter.setCompositionMode(mode);
