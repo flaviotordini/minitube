@@ -41,12 +41,13 @@ uint DataUtils::parseIsoPeriod(const QString &isoPeriod) {
         if (c.isDigit()) {
             if (digitStart == -1) digitStart = i;
         } else if (digitStart != -1) {
+            auto periodView = QStringView(isoPeriod).mid(digitStart, i - digitStart);
             if (c == 'H') {
-                hours = QStringRef(&isoPeriod, digitStart, i - digitStart).toUInt();
+                hours = periodView.toInt();
             } else if (c == 'M') {
-                minutes = QStringRef(&isoPeriod, digitStart, i - digitStart).toUInt();
+                minutes = periodView.toInt();
             } else if (c == 'S') {
-                seconds = QStringRef(&isoPeriod, digitStart, i - digitStart).toUInt();
+                seconds = periodView.toInt();
             }
             digitStart = -1;
         }

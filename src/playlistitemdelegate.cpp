@@ -171,7 +171,11 @@ void PlaylistItemDelegate::paintBody(QPainter *painter,
             painter->setPen(QPen(option.palette.text(), 0));
 
         // title
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        QStringView title(video->getTitle());
+#else
         QStringRef title(&video->getTitle());
+#endif
         QString elidedTitle = video->getTitle();
         static const int titleFlags = Qt::AlignTop | Qt::TextWordWrap;
         QRect textBox = line.adjusted(padding + thumbWidth, padding, -padding, 0);
@@ -255,7 +259,11 @@ void PlaylistItemDelegate::paintBody(QPainter *painter,
         if (isHovered) {
             painter->setFont(smallerFont);
             painter->setPen(Qt::white);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+            QStringView title(video->getTitle());
+#else
             QStringRef title(&video->getTitle());
+#endif
             QString elidedTitle = video->getTitle();
             static const int titleFlags = Qt::AlignTop | Qt::TextWordWrap;
             QRect textBox(padding, padding, thumbWidth - padding * 2, thumbHeight - padding * 2);
