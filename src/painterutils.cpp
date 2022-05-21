@@ -43,7 +43,7 @@ void PainterUtils::paintBadge(QPainter *painter,
     painter->save();
 
     QRect textBox = painter->boundingRect(QRect(), Qt::AlignCenter, text);
-    int w = textBox.width() + painter->fontMetrics().width('m');
+    int w = textBox.width() + painter->fontMetrics().maxWidth();
     int x = 0;
     if (center) x -= w / 2;
     QRect rect(x, 0, w, textBox.height());

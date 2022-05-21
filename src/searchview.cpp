@@ -139,7 +139,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
     SearchLineEdit *sle = new SearchLineEdit(this);
     sle->setFont(FontUtils::medium());
     int tipWidth = sle->fontMetrics().size(Qt::TextSingleLine, tip).width();
-    sle->setMinimumWidth(tipWidth + sle->fontMetrics().width('m') * 6);
+    sle->setMinimumWidth(tipWidth + sle->fontMetrics().maxWidth() * 6);
     sle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
     queryEdit = sle;
 #endif
