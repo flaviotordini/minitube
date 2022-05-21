@@ -400,8 +400,8 @@ void MediaView::pause() {
     }
 }
 
-QRegExp MediaView::wordRE(const QString &s) {
-    return QRegExp("\\W" + s + "\\W?", Qt::CaseInsensitive);
+QRegularExpression MediaView::wordRE(const QString &s) {
+    return QRegularExpression("\\W" + s + "\\W?", QRegularExpression::CaseInsensitiveOption);
 }
 
 void MediaView::stop() {
@@ -854,8 +854,8 @@ void MediaView::findVideoParts() {
     const QLatin1String counterNumber("([1-9]|1[0-5])");
 
     // query.remove(QRegExp(counterSeparators + optionalSpace + counterNumber));
-    query.remove(QRegExp(counterNumber + optionalSpace + counterSeparators + optionalSpace +
-                         counterNumber));
+    query.remove(QRegularExpression(counterNumber + optionalSpace + counterSeparators +
+                                    optionalSpace + counterNumber));
     query.remove(wordRE("pr?t\\.?" + optionalSpace + counterNumber));
     query.remove(wordRE("ep\\.?" + optionalSpace + counterNumber));
     query.remove(wordRE("part" + optionalSpace + counterNumber));
@@ -864,16 +864,17 @@ void MediaView::findVideoParts() {
                         optionalSpace + counterNumber));
     query.remove(wordRE(tr("episode", "This is for video parts, as in 'Cool series - episode 1'") +
                         optionalSpace + counterNumber));
-    query.remove(QRegExp("[\\(\\)\\[\\]]"));
+    query.remove(QRegularExpression("[\\(\\)\\[\\]]"));
 
 #define NUMBERS "one|two|three|four|five|six|seven|eight|nine|ten"
 
-    QRegExp englishNumberRE = QRegExp(QLatin1String(".*(") + NUMBERS + ").*", Qt::CaseInsensitive);
+    QRegularExpression englishNumberRE = QRegularExpression(
+            QLatin1String(".*(") + NUMBERS + ").*", QRegularExpression::CaseInsensitiveOption);
     // bool numberAsWords = englishNumberRE.exactMatch(query);
     query.remove(englishNumberRE);
 
-    QRegExp localizedNumberRE =
-            QRegExp(QLatin1String(".*(") + tr(NUMBERS) + ").*", Qt::CaseInsensitive);
+    QRegularExpression localizedNumberRE = QRegularExpression(
+            QLatin1String(".*(") + tr(NUMBERS) + ").*", QRegularExpression::CaseInsensitiveOption);
     // if (!numberAsWords) numberAsWords = localizedNumberRE.exactMatch(query);
     query.remove(localizedNumberRE);
 

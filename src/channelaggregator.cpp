@@ -115,9 +115,10 @@ void ChannelAggregator::checkWebPage(YTChannel *channel) {
 
 void ChannelAggregator::parseWebPage(const QByteArray &bytes) {
     bool hasNewVideos = true;
-    QRegExp re = QRegExp("[\\?&]v=([0-9A-Za-z_-]+)");
-    if (re.indexIn(bytes) != -1) {
-        QString videoId = re.cap(1);
+    static QRegularExpression re("[\\?&]v=([0-9A-Za-z_-]+)");
+    auto match = re.match(bytes);
+    if (match.hasMatch()) {
+        QString videoId = match.captured(1);
         QString latestVideoId = currentChannel->latestVideoId();
         qDebug() << "Comparing" << videoId << latestVideoId;
         hasNewVideos = videoId != latestVideoId;

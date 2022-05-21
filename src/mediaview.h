@@ -118,7 +118,7 @@ private:
     MediaView(QWidget *parent = nullptr);
     SearchParams *getSearchParams();
 
-    static QRegExp wordRE(const QString &s);
+    static QRegularExpression wordRE(const QString &s);
 
     QSplitter *splitter;
     SidebarWidget *sidebar;

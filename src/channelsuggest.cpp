@@ -45,19 +45,18 @@ void ChannelSuggest::handleNetworkData(QByteArray data) {
     suggestions.reserve(maxSuggestions);
 
     QString html = QString::fromUtf8(data);
-    QRegExp re("/(?:user|channel)/[a-zA-Z0-9]+[^>]+data-ytid=[\"']([^\"']+)[\"'][^>]+>([a-zA-Z0-9 ]+)</a>");
-
-    int pos = 0;
-    while ((pos = re.indexIn(html, pos)) != -1) {
-        QString choice = re.cap(2);
+    static QRegularExpression re(
+            "/(?:user|channel)/[a-zA-Z0-9]+[^>]+data-ytid=[\"']([^\"']+)[\"'][^>]+>([a-zA-Z0-9 "
+            "]+)</a>");
+    for (const auto &match : re.globalMatch(html)) {
+        QString choice = match.captured(2);
         if (!choices.contains(choice, Qt::CaseInsensitive)) {
-            qDebug() << re.capturedTexts();
-            QString channelId = re.cap(1);
+            qDebug() << match.capturedTexts();
+            QString channelId = match.captured(1);
             suggestions << new Suggestion(choice, "channel", channelId);
             choices << choice;
             if (choices.size() == maxSuggestions) break;
         }
-        pos += re.matchedLength();
     }
 
     emit ready(suggestions);

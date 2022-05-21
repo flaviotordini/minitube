@@ -186,11 +186,12 @@ void YTSearch::requestError(const QString &message) {
 }
 
 QString YTSearch::videoIdFromUrl(const QString &url) {
-    static const QVector<QRegExp> res = {QRegExp("^.*[\\?&]v=([^&#]+).*$"),
-                                         QRegExp("^.*://.*/([^&#\\?]+).*$"),
-                                         QRegExp("^.*/shorts/([^&#\\?/]+)$")};
+    static const QVector<QRegularExpression> res = {QRegularExpression("^.*[\\?&]v=([^&#]+).*$"),
+                                                    QRegularExpression("^.*://.*/([^&#\\?]+).*$"),
+                                                    QRegularExpression("^.*/shorts/([^&#\\?/]+)$")};
     for (const auto &re : res) {
-        if (re.exactMatch(url)) return re.cap(1);
+        auto match = re.match(url);
+        if (match.hasMatch()) return match.captured(1);
     }
     return QString();
 }
@@ -201,13 +202,13 @@ QTime YTSearch::videoTimestampFromUrl(const QString &url) {
     // TODO: should we make this accept h/m/s in any order?
     //       timestamps returned by youtube always seem to be
     //       ordered.
-    QRegExp re = QRegExp(".*t=([0-9]*h)?([0-9]*m)?([0-9]*s)?.*");
-
-    if (!re.exactMatch(url)) {
+    static QRegularExpression re(".*t=([0-9]*h)?([0-9]*m)?([0-9]*s)?.*");
+    auto match = re.match(url);
+    if (!match.hasMatch()) {
         return res;
     }
 
-    const auto captured = re.capturedTexts();
+    const auto captured = match.capturedTexts();
     for (const QString &str : captured) {
         if (str.length() <= 1) continue;
 
