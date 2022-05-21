@@ -7,7 +7,7 @@ namespace {
 
 QDateTime parsePublishedText(const QString &s) {
     int num = 0;
-    const auto parts = s.splitRef(' ');
+    const auto parts = s.split(' ');
     for (const auto &part : parts) {
         num = part.toInt();
         if (num > 0) break;

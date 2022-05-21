@@ -10,7 +10,7 @@
 namespace {
 
 int parseDuration(const QString &s) {
-    const auto parts = s.splitRef(':');
+    const auto parts = s.split(':');
     int secs = 0;
     int p = 0;
     for (auto i = parts.crbegin(); i != parts.crend(); ++i) {
@@ -34,7 +34,7 @@ QString parseChannelId(const QString &channelUrl) {
 
 QDateTime parsePublishedText(const QString &s) {
     int num = 0;
-    const auto parts = s.splitRef(' ');
+    const auto parts = s.split(' ');
     for (const auto &part : parts) {
         num = part.toInt();
         if (num > 0) break;
