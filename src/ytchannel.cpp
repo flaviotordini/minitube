@@ -78,7 +78,7 @@ void YTChannel::maybeLoadfromAPI() {
     if (loading) return;
     if (channelId.isEmpty()) return;
 
-    uint now = QDateTime::currentDateTime().toTime_t();
+    uint now = QDateTime::currentDateTime().currentSecsSinceEpoch();
     static const int refreshInterval = 60 * 60 * 24 * 10;
     if (loaded > now - refreshInterval) return;
 
@@ -221,7 +221,7 @@ void YTChannel::storeInfo() {
     query.bindValue(1, displayName);
     query.bindValue(2, description);
     query.bindValue(3, thumbnailUrl);
-    query.bindValue(4, QDateTime::currentDateTime().toTime_t());
+    query.bindValue(4, QDateTime::currentSecsSinceEpoch());
     query.bindValue(5, channelId);
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
@@ -232,7 +232,7 @@ void YTChannel::storeInfo() {
 bool YTChannel::subscribe(const QString &channelId) {
     if (channelId.isEmpty()) return false;
 
-    uint now = QDateTime::currentDateTime().toTime_t();
+    uint now = QDateTime::currentSecsSinceEpoch();
 
     QSqlDatabase db = Database::instance().getConnection();
     QSqlQuery query(db);
@@ -285,7 +285,7 @@ bool YTChannel::isSubscribed(const QString &channelId) {
 void YTChannel::updateChecked() {
     if (channelId.isEmpty()) return;
 
-    uint now = QDateTime::currentDateTime().toTime_t();
+    uint now = QDateTime::currentSecsSinceEpoch();
     checked = now;
 
     QSqlDatabase db = Database::instance().getConnection();
@@ -300,7 +300,7 @@ void YTChannel::updateChecked() {
 void YTChannel::updateWatched() {
     if (channelId.isEmpty()) return;
 
-    uint now = QDateTime::currentDateTime().toTime_t();
+    uint now = QDateTime::currentSecsSinceEpoch();
     watched = now;
     notifyCount = 0;
     emit notifyCountChanged();

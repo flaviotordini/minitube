@@ -66,7 +66,7 @@ YTChannel *ChannelAggregator::getChannelToCheck() {
     QSqlQuery query(db);
     query.prepare("select user_id from subscriptions where checked<? "
                   "order by checked limit 1");
-    query.bindValue(0, QDateTime::currentDateTimeUtc().toTime_t() - checkInterval);
+    query.bindValue(0, QDateTime::currentSecsSinceEpoch() - checkInterval);
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();
     if (query.next()) return YTChannel::forId(query.value(0).toString());
@@ -251,8 +251,8 @@ void ChannelAggregator::addVideo(Video *video) {
 
     if (!updatedChannels.contains(channel)) updatedChannels << channel;
 
-    uint now = QDateTime::currentDateTimeUtc().toTime_t();
-    uint published = video->getPublished().toTime_t();
+    uint now = QDateTime::currentSecsSinceEpoch();
+    uint published = video->getPublished().toSecsSinceEpoch();
     if (published > now) {
         qDebug() << "fixing publish time";
         published = now;
@@ -301,7 +301,7 @@ void ChannelAggregator::addVideo(Video *video) {
 }
 
 void ChannelAggregator::markAllAsWatched() {
-    uint now = QDateTime::currentDateTimeUtc().toTime_t();
+    uint now = QDateTime::currentSecsSinceEpoch();
 
     QSqlDatabase db = Database::instance().getConnection();
     QSqlQuery query(db);
@@ -325,7 +325,7 @@ void ChannelAggregator::videoWatched(Video *video) {
     QSqlDatabase db = Database::instance().getConnection();
     QSqlQuery query(db);
     query.prepare("update subscriptions_videos set watched=? where video_id=?");
-    query.bindValue(0, QDateTime::currentDateTimeUtc().toTime_t());
+    query.bindValue(0, QDateTime::currentSecsSinceEpoch());
     query.bindValue(1, video->getId());
     bool success = query.exec();
     if (!success) qWarning() << query.lastQuery() << query.lastError().text();

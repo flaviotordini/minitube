@@ -114,9 +114,8 @@ void YTSearch::loadVideos(int max, int startIndex) {
     }
 
     if (searchParams->publishedAfter()) {
-        q.addQueryItem(
-                "publishedAfter",
-                RFC3339toString(QDateTime::fromTime_t(searchParams->publishedAfter()).toUTC()));
+        q.addQueryItem("publishedAfter", RFC3339toString(QDateTime::fromSecsSinceEpoch(
+                                                 searchParams->publishedAfter(), Qt::UTC)));
     }
 
     switch (searchParams->quality()) {

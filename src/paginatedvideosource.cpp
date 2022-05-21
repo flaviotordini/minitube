@@ -62,7 +62,7 @@ bool PaginatedVideoSource::maybeReloadToken(int max, int startIndex) {
 }
 
 bool PaginatedVideoSource::setPageToken(const QString &value) {
-    tokenTimestamp = QDateTime::currentDateTime().toTime_t();
+    tokenTimestamp = QDateTime::currentSecsSinceEpoch();
     nextPageToken = value;
 
     if (reloadingToken) {
@@ -76,7 +76,7 @@ bool PaginatedVideoSource::setPageToken(const QString &value) {
 }
 
 bool PaginatedVideoSource::isPageTokenExpired() {
-    uint now = QDateTime::currentDateTime().toTime_t();
+    uint now = QDateTime::currentSecsSinceEpoch();
     return now - tokenTimestamp > 1800;
 }
 

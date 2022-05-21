@@ -57,7 +57,7 @@ void AggregateVideoSource::loadVideos(int max, int startIndex) {
     while (query.next()) {
         Video *video = new Video();
         video->setId(query.value(0).toString());
-        video->setPublished(QDateTime::fromTime_t(query.value(1).toUInt()));
+        video->setPublished(QDateTime::fromSecsSinceEpoch(query.value(1).toUInt()));
         video->setTitle(query.value(2).toString());
         video->setChannelTitle(query.value(3).toString());
         video->setChannelId(query.value(4).toString());
@@ -67,7 +67,8 @@ void AggregateVideoSource::loadVideos(int max, int startIndex) {
         QString thumbString = query.value(7).toString();
         if (thumbString.startsWith('[')) {
             const auto thumbs = QJsonDocument::fromJson(thumbString.toUtf8()).array();
-            for (const auto &t : thumbs) {
+            for (const auto &v : thumbs) {
+                auto t = v.toObject();
                 video->addThumb(t["width"].toInt(), t["height"].toInt(), t["url"].toString());
             }
         } else {

@@ -38,8 +38,8 @@ JsFunctions::JsFunctions(const QString &url, QObject *parent)
         else
             qWarning() << "Cannot open" << file.errorString() << file.fileName();
         QFileInfo info(file);
-        bool stale = info.size() == 0 || info.lastModified().toTime_t() <
-                                                 QDateTime::currentDateTime().toTime_t() - 1800;
+        bool stale = info.size() == 0 || info.lastModified().toSecsSinceEpoch() <
+                                                 QDateTime::currentSecsSinceEpoch() - 1800;
         if (stale) loadJs();
     } else {
         /*
