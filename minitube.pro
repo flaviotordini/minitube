@@ -124,7 +124,6 @@ HEADERS += src/video.h \
     src/httputils.h \
     src/appwidget.h \
     src/clickablelabel.h \
-    src/ytvideo.h \
     src/toolbarmenu.h \
     src/sharetoolbar.h \
     src/videoarea.h \
@@ -200,7 +199,6 @@ SOURCES += src/main.cpp \
     src/httputils.cpp \
     src/appwidget.cpp \
     src/clickablelabel.cpp \
-    src/ytvideo.cpp \
     src/toolbarmenu.cpp \
     src/sharetoolbar.cpp \
     src/videoarea.cpp \

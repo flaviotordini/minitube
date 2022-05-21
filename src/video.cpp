@@ -27,13 +27,11 @@ $END_LICENSE */
 #include "videodefinition.h"
 
 #include "ytjsvideo.h"
-#include "ytvideo.h"
 
 #include "variantpromise.h"
 
 Video::Video()
-    : duration(0), viewCount(-1), license(LicenseYouTube), definitionCode(0), ytVideo(nullptr),
-      ytjsVideo(nullptr) {}
+    : duration(0), viewCount(-1), license(LicenseYouTube), definitionCode(0), ytjsVideo(nullptr) {}
 
 Video::~Video() {
     qDebug() << "Deleting" << id;
@@ -102,11 +100,6 @@ void Video::streamUrlLoaded(const QString &streamUrl, const QString &audioUrl) {
     qDebug() << "Streams loaded";
     this->streamUrl = streamUrl;
     emit gotStreamUrl(streamUrl, audioUrl);
-    if (ytVideo) {
-        definitionCode = ytVideo->getDefinitionCode();
-        ytVideo->deleteLater();
-        ytVideo = nullptr;
-    }
     if (ytjsVideo) {
         definitionCode = ytjsVideo->getDefinitionCode();
         ytjsVideo->deleteLater();
@@ -131,36 +124,15 @@ void Video::loadStreamUrlJS() {
     ytjsVideo->loadStreamUrl();
 }
 
-void Video::loadStreamUrlYT() {
-    if (ytVideo) {
-        qDebug() << "Already loading" << id;
-        return;
-    }
-    ytVideo = new YTVideo(id, this);
-    connect(ytVideo, &YTVideo::gotStreamUrl, this, &Video::streamUrlLoaded);
-    connect(ytVideo, &YTVideo::errorStreamUrl, this, [this](const QString &msg) {
-        qDebug() << msg;
-        emit errorStreamUrl(msg);
-        ytVideo->deleteLater();
-        ytVideo = nullptr;
-    });
-    ytVideo->loadStreamUrl();
-}
-
 void Video::loadStreamUrl() {
     loadStreamUrlJS();
 }
 
 bool Video::isLoadingStreamUrl() const {
-    return ytVideo != nullptr || ytjsVideo != nullptr;
+    return ytjsVideo != nullptr;
 }
 
 void Video::abortLoadStreamUrl() {
-    if (ytVideo) {
-        ytVideo->disconnect(this);
-        ytVideo->deleteLater();
-        ytVideo = nullptr;
-    }
     if (ytjsVideo) {
         ytjsVideo->disconnect(this);
         ytjsVideo->deleteLater();

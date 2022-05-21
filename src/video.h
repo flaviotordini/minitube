@@ -26,7 +26,6 @@ $END_LICENSE */
 
 #include "ytthumb.h"
 
-class YTVideo;
 class YTJSVideo;
 class VariantPromise;
 
@@ -95,7 +94,6 @@ private slots:
 
 private:
     void loadStreamUrlJS();
-    void loadStreamUrlYT();
 
     QString title;
     QString description;
@@ -114,7 +112,6 @@ private:
     QString id;
     int definitionCode;
 
-    YTVideo *ytVideo;
     YTJSVideo *ytjsVideo;
 
     QVector<YTThumb> thumbs;
