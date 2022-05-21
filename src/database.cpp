@@ -27,7 +27,7 @@ static const QString dbName = QLatin1String(Constants::UNIX_NAME) + ".db";
 static Database *databaseInstance = 0;
 
 Database::Database() {
-    QString dataLocation = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+    QString dataLocation = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
 
     if (!QDir().mkpath(dataLocation)) {
         qCritical() << "Failed to create directory " << dataLocation;
@@ -117,7 +117,7 @@ void Database::createDatabase() {
 
 // static
 QString Database::getDbLocation() {
-    return QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/" + dbName;
+    return QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/" + dbName;
 }
 
 // static

@@ -68,7 +68,7 @@ QString JsFunctions::jsFilename() {
 }
 
 QString JsFunctions::jsDir() {
-    return QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+    return QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
 }
 
 QString JsFunctions::jsPath() {
