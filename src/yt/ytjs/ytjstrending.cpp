@@ -7,7 +7,7 @@ namespace {
 
 QDateTime parsePublishedText(const QString &s) {
     int num = 0;
-    const auto parts = s.splitRef(' ');
+    const auto parts = s.split(' ');
     for (const auto &part : parts) {
         num = part.toInt();
         if (num > 0) break;
@@ -48,7 +48,9 @@ void YTJSTrending::loadVideos(int max, int startIndex) {
                 QVector<Video *> videos;
                 videos.reserve(items.size());
 
-                for (const auto &i : items) {
+                for (const auto &v : items) {
+                    auto i = v.toObject();
+
                     QString type = i["type"].toString();
                     if (type != "video") continue;
 
@@ -65,7 +67,8 @@ void YTJSTrending::loadVideos(int max, int startIndex) {
                     video->setDescription(desc);
 
                     const auto thumbs = i["videoThumbnails"].toArray();
-                    for (const auto &t : thumbs) {
+                    for (const auto &v : thumbs) {
+                        auto t = v.toObject();
                         video->addThumb(t["width"].toInt(), t["height"].toInt(),
                                         t["url"].toString());
                     }

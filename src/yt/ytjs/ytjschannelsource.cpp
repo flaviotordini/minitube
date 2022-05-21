@@ -82,7 +82,9 @@ void YTJSChannelSource::loadVideos(int max, int startIndex) {
                 QVector<Video *> videos;
                 videos.reserve(items.size());
 
-                for (const auto &i : items) {
+                for (const auto &v : items) {
+                    auto i = v.toObject();
+
                     QString type = i["type"].toString();
                     if (type != "video") continue;
 
@@ -99,7 +101,8 @@ void YTJSChannelSource::loadVideos(int max, int startIndex) {
                     video->setDescription(desc);
 
                     const auto thumbs = i["videoThumbnails"].toArray();
-                    for (const auto &t : thumbs) {
+                    for (const auto &v : thumbs) {
+                        auto t = v.toObject();
                         video->addThumb(t["width"].toInt(), t["height"].toInt(),
                                         t["url"].toString());
                     }

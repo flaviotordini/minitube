@@ -43,7 +43,8 @@ void IVListParser::parseItem(const QJsonObject &item) {
     video->setDescription(item[QLatin1String("descriptionHtml")].toString());
 
     const auto thumbs = item[QLatin1String("videoThumbnails")].toArray();
-    for (const auto &t : thumbs) {
+    for (const auto &v : thumbs) {
+        auto t = v.toObject();
         video->addThumb(t["width"].toInt(), t["height"].toInt(), t["url"].toString());
     }
 

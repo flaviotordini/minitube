@@ -75,8 +75,12 @@ SubscriptionImportView::SubscriptionImportView(QWidget *parent) : View(parent) {
                     }
                 } else {
                     const auto array = QJsonDocument::fromJson(file.readAll()).array();
-                    for (const auto &i : array) {
-                        auto id = i["snippet"]["resourceId"]["channelId"].toString();
+                    for (const auto &v : array) {
+                        auto i = v.toObject();
+                        auto id = i["snippet"]
+                                          .toObject()["resourceId"]
+                                          .toObject()["channelId"]
+                                          .toString();
                         qDebug() << "Subscribing to" << id;
                         if (YTChannel::subscribe(id)) count++;
                     }

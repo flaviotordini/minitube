@@ -22,7 +22,8 @@ IVChannel::IVChannel(const QString &id, QObject *parent) : QObject(parent) {
         description = obj["descriptionHtml"].toString();
 
         const auto thumbnails = obj["authorThumbnails"].toArray();
-        for (const auto &thumbnail : thumbnails) {
+        for (const auto &v : thumbnails) {
+            auto thumbnail = v.toObject();
             if (thumbnail["width"].toInt() >= 300) {
                 thumbnailUrl = thumbnail["url"].toString();
                 break;

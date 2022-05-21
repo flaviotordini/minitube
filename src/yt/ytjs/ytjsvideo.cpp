@@ -18,7 +18,8 @@ void YTJSVideo::loadStreamUrl() {
 
                 QMap<int, QString> urlMap;
                 const auto formats = obj["formats"].toArray();
-                for (const auto &format : formats) {
+                for (const auto &v : formats) {
+                    auto format = v.toObject();
                     bool isDashMpd = format["isDashMPD"].toBool();
                     if (isDashMpd) continue;
                     int itag = format["itag"].toInt();

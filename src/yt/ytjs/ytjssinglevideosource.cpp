@@ -72,7 +72,8 @@ void YTJSSingleVideoSource::loadVideos(int max, int startIndex) {
                     video->setDescription(desc);
 
                     const auto thumbs = i["thumbnails"].toArray();
-                    for (const auto &t : thumbs) {
+                    for (const auto &v : thumbs) {
+                        auto t = v.toObject();
                         video->addThumb(t["width"].toInt(), t["height"].toInt(),
                                         t["url"].toString());
                     }
