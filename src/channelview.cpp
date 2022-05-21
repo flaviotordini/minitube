@@ -125,13 +125,13 @@ void ChannelView::setupActions() {
     sortButton->setMenu(sortMenu);
     QWidgetAction *widgetAction = new QWidgetAction(this);
     widgetAction->setDefaultWidget(sortButton);
-    widgetAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_O));
+    widgetAction->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_O));
     statusActions << widgetAction;
 
     markAsWatchedAction = new QAction(tr("Mark all as watched"), this);
     IconUtils::setIcon(markAsWatchedAction, "mark-watched");
     markAsWatchedAction->setEnabled(false);
-    markAsWatchedAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_W));
+    markAsWatchedAction->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_W));
     connect(markAsWatchedAction, SIGNAL(triggered()), SLOT(markAllAsWatched()));
     statusActions << markAsWatchedAction;
 
@@ -140,7 +140,7 @@ void ChannelView::setupActions() {
     IconUtils::setIcon(showUpdatedAction, "show-updated");
     showUpdatedAction->setCheckable(true);
     showUpdatedAction->setChecked(showUpdated);
-    showUpdatedAction->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_U));
+    showUpdatedAction->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_U));
     connect(showUpdatedAction, SIGNAL(toggled(bool)), SLOT(toggleShowUpdated(bool)));
     statusActions << showUpdatedAction;
 
