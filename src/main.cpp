@@ -60,9 +60,13 @@ void showWindow(SingleApplication &app, const QString &pkgDataDir) {
     if (appIcon.isNull()) appIcon.addFile(":/images/app.png");
     mainWin->setWindowIcon(appIcon);
 #endif
-
-    mainWin->connect(&app, SIGNAL(receivedMessage(const QString &)), mainWin,
-                     SLOT(messageReceived(const QString &)));
+#ifndef APP_MAC_STORE
+    mainWin->connect(&app, &SingleApplication::receivedMessage, mainWin,
+                     [mainWin](auto instanceId, auto message) {
+                         Q_UNUSED(instanceId);
+                         mainWin->messageReceived(message);
+                     });
+#endif
 
     mainWin->show();
 }
