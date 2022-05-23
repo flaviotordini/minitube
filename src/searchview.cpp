@@ -519,7 +519,6 @@ void SearchView::maybeShowMessage() {
             messageBar->setOpenExternalLinks(false);
             disconnect(messageBar);
             connect(messageBar, &MessageBar::linkActivated, this, [] {
-                Updater::instance().setRelaunchAfterInstall(true);
                 qApp->quit();
             });
             messageBar->show();
