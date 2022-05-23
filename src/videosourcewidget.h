@@ -25,8 +25,8 @@ $END_LICENSE */
 
 #include "emptypromise.h"
 #include "gridwidget.h"
+#include "video.h"
 
-class Video;
 class VideoSource;
 
 class VideoSourceWidget : public GridWidget {

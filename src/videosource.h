@@ -24,7 +24,7 @@ $END_LICENSE */
 #include <QAction>
 #include <QtCore>
 
-class Video;
+#include "video.h"
 
 class VideoSource : public QObject {
     Q_OBJECT

@@ -22,8 +22,8 @@ $END_LICENSE */
 
 #include <QtGui>
 
-class Suggester;
-class Suggestion;
+#include "suggester.h"
+
 class SearchWidget;
 
 QT_FORWARD_DECLARE_CLASS(QListWidget)

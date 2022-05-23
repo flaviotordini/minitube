@@ -23,13 +23,13 @@ $END_LICENSE */
 
 #include <QtWidgets>
 
+#include "suggester.h"
 #include "view.h"
 
 class SearchWidget;
 class SearchParams;
 class YTSuggester;
 class ChannelSuggest;
-class Suggestion;
 class ClickableLabel;
 class MessageBar;
 

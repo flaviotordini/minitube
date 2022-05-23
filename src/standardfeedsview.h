@@ -23,12 +23,12 @@ $END_LICENSE */
 
 #include <QtWidgets>
 
+#include "videosourcewidget.h"
 #include "view.h"
+#include "ytcategories.h"
 
 class VideoSource;
-struct YTCategory;
 class YTStandardFeed;
-class VideoSourceWidget;
 
 class StandardFeedsView : public View {
     Q_OBJECT

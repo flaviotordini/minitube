@@ -25,10 +25,9 @@ $END_LICENSE */
 #include <QtWidgets>
 
 #include "media.h"
-
+#include "video.h"
 #include "view.h"
 
-class Video;
 class PlaylistModel;
 class SearchParams;
 class LoadingWidget;

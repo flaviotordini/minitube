@@ -24,8 +24,8 @@ $END_LICENSE */
 #include <QtCore>
 #include <QtNetwork>
 
-class YTChannel;
-class Video;
+#include "video.h"
+#include "ytchannel.h"
 
 class ChannelAggregator : public QObject {
 

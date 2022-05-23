@@ -23,7 +23,8 @@ $END_LICENSE */
 
 #include <QtWidgets>
 
-class Video;
+#include "video.h"
+
 class VideoSource;
 
 enum DataRoles {
