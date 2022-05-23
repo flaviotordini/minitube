@@ -114,7 +114,8 @@ void AppWidget::iconDownloaded(const QByteArray &bytes) {
 void AppWidget::downloadApp() {
 #ifdef APP_EXTRA
     if (!icon) return;
-    UpdateDialog *dialog = new UpdateDialog(icon->pixmap(), name, QString(), url, this);
+    UpdateDialog *dialog =
+            new UpdateDialog(icon->pixmap(Qt::ReturnByValue), name, QString(), url, this);
     dialog->downloadUpdate();
     dialog->show();
 #endif
