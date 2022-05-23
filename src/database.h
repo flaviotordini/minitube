@@ -49,8 +49,7 @@ private:
 
     QMutex lock;
     QString dbLocation;
-    QHash<QThread*, QSqlDatabase> connections;
-
+    QHash<uintptr_t, QSqlDatabase> connections;
 };
 
 #endif // DATABASE_H

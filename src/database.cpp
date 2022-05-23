@@ -33,7 +33,7 @@ Database::Database() {
         qCritical() << "Failed to create directory " << dataLocation;
     }
     dbLocation = dataLocation + "/" + dbName;
-    qDebug() << "dbLocation" << dbLocation;
+    qDebug() << "Creating database instance" << dbLocation;
 
     QMutexLocker locker(&lock);
 
@@ -50,12 +50,11 @@ Database::Database() {
 }
 
 Database::~Database() {
+    qDebug() << "Destroying database instance" << this;
     closeConnections();
 }
 
 void Database::createDatabase() {
-    qDebug() << __PRETTY_FUNCTION__;
-
 #ifdef APP_LINUX
     // Qt5 changed its "data" path. Try to move the old db to the new path
     QString homeLocation = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
@@ -70,7 +69,7 @@ void Database::createDatabase() {
     }
 #endif
 
-    qWarning() << "Creating the database";
+    qDebug() << "Creating the database";
 
     const QSqlDatabase db = getConnection();
 
@@ -152,18 +151,18 @@ QSqlDatabase Database::getConnection() {
         return QSqlDatabase();
     }
 
-    const QString threadName = currentThread->objectName();
-    // qDebug() << "threadName" << threadName << currentThread;
-    if (connections.contains(currentThread)) {
-        return connections.value(currentThread);
+    const uintptr_t threadId = (std::uintptr_t)(currentThread);
+    if (connections.contains(threadId)) {
+        return connections.value(threadId);
     } else {
-        // qDebug() << "Creating db connection for" << threadName;
-        QSqlDatabase connection = QSqlDatabase::addDatabase("QSQLITE", threadName);
+        qDebug() << "Creating db connection for" << threadId;
+        QSqlDatabase connection = QSqlDatabase::addDatabase("QSQLITE", QString::number(threadId));
         connection.setDatabaseName(dbLocation);
         if(!connection.open()) {
-            qWarning() << QString("Cannot connect to database %1 in thread %2").arg(dbLocation, threadName);
+            qWarning() << QString("Cannot connect to database %1 in thread %2")
+                                  .arg(dbLocation, threadId);
         }
-        connections.insert(currentThread, connection);
+        connections.insert(threadId, connection);
         return connection;
     }
 }
@@ -173,7 +172,7 @@ QVariant Database::getAttribute(const QString &name) {
     query.bindValue(0, name);
 
     bool success = query.exec();
-    if (!success) qDebug() << query.lastQuery() << query.boundValues().values() << query.lastError().text();
+    if (!success) qDebug() << query.lastQuery() << query.boundValues() << query.lastError().text();
     if (query.next())
         return query.value(0);
     return QVariant();
@@ -240,8 +239,9 @@ void Database::drop() {
 }
 
 void Database::closeConnections() {
-    foreach(QSqlDatabase connection, connections) {
-        // qDebug() << "Closing connection" << connection;
+    qDebug() << "Closing all connections";
+    for (QSqlDatabase connection : qAsConst(connections)) {
+        qDebug() << "Closing connection" << connection;
         connection.close();
     }
     connections.clear();
@@ -249,13 +249,15 @@ void Database::closeConnections() {
 
 void Database::closeConnection() {
     QThread *currentThread = QThread::currentThread();
-    if (!connections.contains(currentThread)) return;
-    QSqlDatabase connection = connections.take(currentThread);
-    // qDebug() << "Closing connection" << connection;
+    const uintptr_t threadId = (std::uintptr_t)(currentThread);
+    if (!connections.contains(threadId)) return;
+    QSqlDatabase connection = connections.take(threadId);
+    qDebug() << "Closing connection" << connection;
     connection.close();
 }
 
 void Database::shutdown() {
+    qDebug() << "Shutting down";
     if (!databaseInstance) return;
     QSqlQuery("vacuum", databaseInstance->getConnection());
     databaseInstance->closeConnections();
