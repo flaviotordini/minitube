@@ -46,9 +46,11 @@ void ChannelSuggest::handleNetworkData(QByteArray data) {
 
     QString html = QString::fromUtf8(data);
     static QRegularExpression re(
-            "/(?:user|channel)/[a-zA-Z0-9]+[^>]+data-ytid=[\"']([^\"']+)[\"'][^>]+>([a-zA-Z0-9 "
-            "]+)</a>");
-    for (const auto &match : re.globalMatch(html)) {
+            "/(?:user|channel)/[\\w]+[^>]+data-ytid=[\"']([^\"']+)[\"'][^>]+>([\\w ]+)</a>",
+            QRegularExpression::UseUnicodePropertiesOption);
+    auto i = re.globalMatch(html);
+    while (i.hasNext()) {
+        auto match = i.next();
         QString choice = match.captured(2);
         if (!choices.contains(choice, Qt::CaseInsensitive)) {
             qDebug() << match.capturedTexts();

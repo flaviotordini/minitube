@@ -115,7 +115,8 @@ void ChannelAggregator::checkWebPage(YTChannel *channel) {
 
 void ChannelAggregator::parseWebPage(const QByteArray &bytes) {
     bool hasNewVideos = true;
-    static QRegularExpression re("[\\?&]v=([0-9A-Za-z_-]+)");
+    static QRegularExpression re("[\\?&]v=([\\w_-]+)",
+                                 QRegularExpression::UseUnicodePropertiesOption);
     auto match = re.match(bytes);
     if (match.hasMatch()) {
         QString videoId = match.captured(1);
