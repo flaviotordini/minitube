@@ -23,6 +23,12 @@ $END_LICENSE */
 
 #include <QtWidgets>
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+typedef QEnterEvent CompatibleEnterEvent;
+#else
+typedef QEvent CompatibleEnterEvent;
+#endif
+
 class GridWidget : public QWidget {
     Q_OBJECT
 
@@ -36,7 +42,7 @@ protected:
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
-    void enterEvent(QEvent *event);
+    void enterEvent(CompatibleEnterEvent *event);
     void leaveEvent(QEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
 

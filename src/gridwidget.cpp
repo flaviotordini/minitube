@@ -50,7 +50,7 @@ void GridWidget::leaveEvent(QEvent *event) {
     update();
 }
 
-void GridWidget::enterEvent(QEvent *event) {
+void GridWidget::enterEvent(CompatibleEnterEvent *event) {
     QWidget::enterEvent(event);
     hovered = true;
     update();
