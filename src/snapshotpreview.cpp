@@ -39,7 +39,7 @@ SnapshotPreview::SnapshotPreview(QWidget *parent) : QWidget(parent), mediaObject
     setFocusPolicy(Qt::NoFocus);
 
     timeLine = new QTimeLine(300, this);
-    timeLine->setCurveShape(QTimeLine::LinearCurve);
+    timeLine->setEasingCurve(QEasingCurve::Linear);
     timeLine->setFrameRange(0, 20);
     connect(timeLine, SIGNAL(frameChanged(int)), SLOT(update()));
 
