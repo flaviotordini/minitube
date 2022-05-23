@@ -1674,8 +1674,8 @@ QString MainWindow::formatTime(qint64 duration) {
     int minutes = (int)(duration % 60);
     duration /= 60;
     int hours = (int)(duration % 24);
-    if (hours == 0) return res.sprintf("%02d:%02d", minutes, seconds);
-    return res.sprintf("%02d:%02d:%02d", hours, minutes, seconds);
+    if (hours == 0) return res.asprintf("%02d:%02d", minutes, seconds);
+    return res.asprintf("%02d:%02d:%02d", hours, minutes, seconds);
 }
 
 void MainWindow::volumeUp() {

@@ -32,7 +32,7 @@ QString DataUtils::systemRegioneCode() {
 }
 
 uint DataUtils::parseIsoPeriod(const QString &isoPeriod) {
-    uint days = 0, hours = 0, minutes = 0, seconds = 0;
+    int days = 0, hours = 0, minutes = 0, seconds = 0;
 
     const int len = isoPeriod.length();
     int digitStart = -1;
@@ -92,8 +92,8 @@ QString DataUtils::formatDuration(uint secs) {
     uint minutes = d % 60;
     d /= 60;
     uint hours = d % 24;
-    if (hours == 0) return res.sprintf("%d:%02d", minutes, seconds);
-    return res.sprintf("%d:%02d:%02d", hours, minutes, seconds);
+    if (hours == 0) return res.asprintf("%d:%02d", minutes, seconds);
+    return res.asprintf("%d:%02d:%02d", hours, minutes, seconds);
 }
 
 QString DataUtils::formatCount(int c) {
