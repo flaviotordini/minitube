@@ -18,7 +18,7 @@ You need Qt >= 5.12 and MPV >= 0.29.0. The following Qt modules are needed: core
 
 To be able to build on a Debian (or derivative) system:
 
-    sudo apt install build-essential qt5-default qttools5-dev-tools qt5-qmake qtdeclarative5-dev libqt5sql5-sqlite libqt5x11extras5-dev qt5-image-formats-plugins libmpv-dev
+    sudo apt install build-essential qttools5-dev-tools qt5-qmake qtdeclarative5-dev libqt5sql5-sqlite libqt5x11extras5-dev qt5-image-formats-plugins libmpv-dev
 
 Compiling:
 
