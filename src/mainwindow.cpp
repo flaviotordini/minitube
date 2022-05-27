@@ -55,8 +55,13 @@ $END_LICENSE */
 #include "searchlineedit.h"
 #endif
 #ifdef APP_MAC_QMACTOOLBAR
-#include "mactoolbar.h"
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#include "mactoolbarutils.h"
+#else
+#include "mactoolbar_qt5.h"
 #endif
+#endif
+
 #include <iostream>
 #ifdef APP_EXTRA
 #include "compositefader.h"
@@ -848,7 +853,11 @@ void MainWindow::createToolBar() {
     toolbarSearch->hide();
     volumeSlider->hide();
     seekSlider->hide();
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    mac::createToolbar(this);
+#else
     MacToolbar::instance().createToolbar(this);
+#endif
     return;
 #endif
 
