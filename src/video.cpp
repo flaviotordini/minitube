@@ -158,11 +158,10 @@ VariantPromise &Video::loadThumb(QSize size, qreal pixelRatio) {
         return *promise;
     }
 
-    auto reallyLoad = [this, promise, size, pixelRatio](auto &&self,
-                                                        YTThumb *previous = nullptr) -> void {
+    auto reallyLoad = [this, promise, size, pixelRatio](auto &&self, YTThumb *previous = nullptr,
+                                                        bool fallback = false) -> void {
         YTThumb *selected = nullptr;
 
-        static bool fallback = false;
         if (fallback) {
             qDebug() << "Doing fallback loop";
             bool skip = previous != nullptr;
@@ -189,8 +188,7 @@ VariantPromise &Video::loadThumb(QSize size, qreal pixelRatio) {
         }
         if (!selected && !fallback) {
             qDebug() << "Falling back";
-            fallback = true;
-            self(self);
+            self(self, nullptr, true);
             return;
         }
         if (selected) {
