@@ -140,7 +140,7 @@ void PlaylistItemDelegate::paintBody(QPainter *painter,
     QPixmap thumb = video->property(thumbKey).value<QPixmap>();
     if (thumb.isNull()) {
         thumb = IconUtils::iconPixmap("content-loading", 32, listView->palette().window().color(),
-                                      listView->devicePixelRatio());
+                                      pixelRatio);
         video->setProperty(thumbKey, thumb);
 
         video->loadThumb({thumbWidth, thumbHeight}, pixelRatio)
@@ -153,9 +153,8 @@ void PlaylistItemDelegate::paintBody(QPainter *painter,
                         pixmap = pixmap.scaledToWidth(thumbWidth, Qt::SmoothTransformation);
                     if (pixmap.isNull()) {
                         qDebug() << "Thumb is null";
-                        pixmap = IconUtils::iconPixmap("close", 32,
-                                                       listView->palette().window().color(),
-                                                       listView->devicePixelRatio());
+                        pixmap = IconUtils::iconPixmap(
+                                "close", 32, listView->palette().window().color(), pixelRatio);
                     }
                     video->setProperty(thumbKey, pixmap);
                     video->changed();
