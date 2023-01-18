@@ -137,23 +137,40 @@ void PlaylistItemDelegate::paintBody(QPainter *painter,
     // thumb
     qreal pixelRatio = painter->device()->devicePixelRatioF();
     QByteArray thumbKey = ("t" + QString::number(pixelRatio)).toUtf8();
-    const QPixmap &thumb = video->property(thumbKey).value<QPixmap>();
-    if (!thumb.isNull()) {
-        painter->drawPixmap(0, 0, thumb);
-        if (video->getDuration() > 0) drawTime(painter, video->getFormattedDuration(), line);
-    } else
+    QPixmap thumb = video->property(thumbKey).value<QPixmap>();
+    if (thumb.isNull()) {
+        thumb = IconUtils::iconPixmap("content-loading", 32, listView->palette().window().color(),
+                                      listView->devicePixelRatio());
+        video->setProperty(thumbKey, thumb);
+
         video->loadThumb({thumbWidth, thumbHeight}, pixelRatio)
-                .then([pixelRatio, thumbKey, video](auto variant) {
+                .then([pixelRatio, thumbKey, video, this](auto variant) {
                     QPixmap pixmap;
                     pixmap.loadFromData(variant.toByteArray());
                     pixmap.setDevicePixelRatio(pixelRatio);
                     const int thumbWidth = PlaylistItemDelegate::thumbWidth * pixelRatio;
                     if (pixmap.width() > thumbWidth)
                         pixmap = pixmap.scaledToWidth(thumbWidth, Qt::SmoothTransformation);
+                    if (pixmap.isNull()) {
+                        qDebug() << "Thumb is null";
+                        pixmap = IconUtils::iconPixmap("close", 32,
+                                                       listView->palette().window().color(),
+                                                       listView->devicePixelRatio());
+                    }
                     video->setProperty(thumbKey, pixmap);
                     video->changed();
                 })
                 .onFailed([](auto msg) { qDebug() << msg; });
+    }
+
+    QRect thumbRect(thumb.rect());
+    QRect targetRect(0, 0, thumbWidth, thumbHeight);
+    thumbRect.moveCenter(targetRect.center());
+    if (thumb.width() < thumbWidth) painter->setOpacity(.5);
+    painter->drawPixmap(thumbRect.topLeft(), thumb);
+    if (thumb.width() < thumbWidth) painter->setOpacity(1);
+
+    if (video->getDuration() > 0) drawTime(painter, video->getFormattedDuration(), line);
 
     const bool thumbsOnly = line.width() <= thumbWidth + 60;
     const bool isHovered = index.data(HoveredItemRole).toBool();
