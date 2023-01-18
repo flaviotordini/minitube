@@ -139,8 +139,8 @@ void PlaylistItemDelegate::paintBody(QPainter *painter,
     QByteArray thumbKey = ("t" + QString::number(pixelRatio)).toUtf8();
     QPixmap thumb = video->property(thumbKey).value<QPixmap>();
     if (thumb.isNull()) {
-        thumb = IconUtils::iconPixmap("content-loading", 32, listView->palette().window().color(),
-                                      pixelRatio);
+        thumb = IconUtils::iconPixmap("content-loading", 32,
+                                      listView->palette().placeholderText().color(), pixelRatio);
         video->setProperty(thumbKey, thumb);
 
         video->loadThumb({thumbWidth, thumbHeight}, pixelRatio)
@@ -154,7 +154,8 @@ void PlaylistItemDelegate::paintBody(QPainter *painter,
                     if (pixmap.isNull()) {
                         qDebug() << "Thumb is null";
                         pixmap = IconUtils::iconPixmap(
-                                "close", 32, listView->palette().window().color(), pixelRatio);
+                                "close", 32, listView->palette().placeholderText().color(),
+                                pixelRatio);
                     }
                     video->setProperty(thumbKey, pixmap);
                     video->changed();
@@ -165,9 +166,7 @@ void PlaylistItemDelegate::paintBody(QPainter *painter,
     QRect thumbRect(thumb.rect());
     QRect targetRect(0, 0, thumbWidth, thumbHeight);
     thumbRect.moveCenter(targetRect.center());
-    if (thumb.width() < thumbWidth) painter->setOpacity(.5);
     painter->drawPixmap(thumbRect.topLeft(), thumb);
-    if (thumb.width() < thumbWidth) painter->setOpacity(1);
 
     if (video->getDuration() > 0) drawTime(painter, video->getFormattedDuration(), line);
 
