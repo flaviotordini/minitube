@@ -23,6 +23,12 @@ $END_LICENSE */
 
 #include <QtWidgets>
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+typedef QEnterEvent CompatibleEnterEvent;
+#else
+typedef QEvent CompatibleEnterEvent;
+#endif
+
 class RefineSearchButton;
 class RefineSearchWidget;
 class SidebarHeader;
@@ -50,7 +56,7 @@ signals:
 
 protected:
     void resizeEvent(QResizeEvent *);
-    void enterEvent(QEvent *);
+    void enterEvent(CompatibleEnterEvent *);
     void leaveEvent(QEvent *);
     void mouseMoveEvent(QMouseEvent *event);
     bool eventFilter(QObject *, QEvent *);

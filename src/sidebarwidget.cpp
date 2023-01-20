@@ -128,7 +128,7 @@ void SidebarWidget::resizeEvent(QResizeEvent *event) {
                              height() - refineSearchButton->minimumHeight());
 }
 
-void SidebarWidget::enterEvent(QEvent *) {
+void SidebarWidget::enterEvent(CompatibleEnterEvent *) {
     if (stackedWidget->currentWidget() != refineSearchWidget) showRefineSearchButton();
 }
 
