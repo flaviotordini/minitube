@@ -83,6 +83,12 @@ SearchView *[recentItem="true"]:focus {
     outline: 1px solid palette(highlight);
 }
 
+SearchView SearchLineEdit {
+    padding: .5em;
+    border: 1px solid palette(midlight);
+    border-radius: 3px;
+}
+
 MessageBar {
     background: #f9f7c8;
     border-radius: 5px;
