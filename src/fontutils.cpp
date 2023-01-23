@@ -52,12 +52,12 @@ const QFont &FontUtils::smallBold() {
 }
 
 const QFont &FontUtils::medium() {
-    static const QFont font = createFont(false, 1.15);
+    static const QFont font = createFont(false, 1.25);
     return font;
 }
 
 const QFont &FontUtils::mediumBold() {
-    static const QFont font = createFont(true, 1.15);
+    static const QFont font = createFont(true, 1.25);
     return font;
 }
 
