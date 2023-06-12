@@ -39,7 +39,9 @@ void YTJSTrending::loadVideos(int max, int startIndex) {
 
     auto &js = JS::instance();
 
-    QJSValue options = js.getEngine().toScriptValue(params);
+    QVariantMap loadParams = params;
+    loadParams.insert("startIndex", startIndex);
+    QJSValue options = js.getEngine().toScriptValue(loadParams);
 
     js.callFunction(new JSResult(this), "trending", {options})
             .onJson([this](auto &doc) {
