@@ -61,7 +61,7 @@ void YTJSChannelSource::loadVideos(int max, int startIndex) {
         sortBy = "newest";
         break;
     case SearchParams::SortByViewCount:
-        sortBy = "oldest";
+        sortBy = "popular";
         break;
     case SearchParams::SortByRating:
         sortBy = "popular";
