@@ -321,11 +321,6 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
         fullscreenTimer->start();
     }
 
-    if (t == QEvent::ToolTip) {
-        // kill tooltips
-        return true;
-    }
-
     if (t == QEvent::Show && obj == toolbarMenu) {
 #ifdef APP_MAC
         int x = width() - toolbarMenu->sizeHint().width();
