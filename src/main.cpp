@@ -32,7 +32,6 @@ typedef QApplication SingleApplication;
 #include "updateutils.h"
 
 #include "mainwindow.h"
-#include "searchparams.h"
 #ifdef APP_EXTRA
 #include "extra.h"
 #endif
