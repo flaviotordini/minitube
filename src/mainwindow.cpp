@@ -242,10 +242,12 @@ void MainWindow::lazyInit() {
         if (!desc.isEmpty()) showMessage(desc);
     }
 
+#ifdef QT_NO_DEBUG_OUTPUT
     ChannelAggregator::instance()->start();
 
 #ifdef UPDATER
     Updater::instance().checkWithoutUI();
+#endif
 #endif
 
     initialized = true;
