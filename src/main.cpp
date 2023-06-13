@@ -90,8 +90,6 @@ int main(int argc, char **argv) {
     mac::MacMain();
 #endif
 
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-
     SingleApplication app(argc, argv);
     QString message;
     if (app.arguments().size() > 1) {
@@ -109,7 +107,6 @@ int main(int argc, char **argv) {
     app.setApplicationVersion(Constants::VERSION);
     app.setAttribute(Qt::AA_DontShowIconsInMenus);
     app.setWheelScrollLines(1);
-    app.setAttribute(Qt::AA_UseHighDpiPixmaps);
 
 #ifdef APP_EXTRA
     Extra::appSetup(&app);
