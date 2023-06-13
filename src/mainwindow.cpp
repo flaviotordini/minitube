@@ -176,15 +176,12 @@ MainWindow::MainWindow()
     } else if (VideoAPI::impl() == VideoAPI::YT3) {
         YT3::instance().initApiKeys();
     } else if (VideoAPI::impl() == VideoAPI::JS) {
+        JS::instance().getNamFactory().setRequestHeaders(
+            {{"User-Agent", HttpUtils::stealthUserAgent()}});
         JS::instance().initialize(QUrl(QLatin1String(Constants::WEBSITE) + "-ws/bundle3.js"));
         // JS::instance().initialize(QUrl("http://localhost:8000/bundle-test.js"));
-        Invidious::instance().initServers();
+        // Invidious::instance().initServers();
     }
-
-    connect(JsFunctions::instance(), &JsFunctions::ready, this, [] {
-        auto ua = JsFunctions::instance()->string("userAgent()").toUtf8();
-        JS::instance().getNamFactory().setRequestHeaders({{"User-Agent", ua}});
-    });
 
     QTimer::singleShot(100, this, &MainWindow::lazyInit);
 }
