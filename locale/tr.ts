@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="tr">
 <context>
     <name>AboutView</name>
     <message>
@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation>% 1 tarafından desteklenmektedir</translation>
+        <translation>% 1 tarafından desteklenir</translation>
     </message>
     <message>
         <source>Open-source software</source>

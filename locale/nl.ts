@@ -1,9 +1,9 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="nl" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="nl">
 <context>
     <name>AboutView</name>
     <message>
         <source>There&apos;s life outside the browser!</source>
-        <translation>Er is leven buiten de browser!</translation>
+        <translation>Er bestaat een leven buiten de webbrowser!</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 is gratis software, maar de ontwikkeling ervan vergt kostbare tijd.</translation>
+        <translation>%1 is vrije software, maar de ontwikkeling ervan vergt kostbare tijd.</translation>
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
@@ -27,15 +27,15 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation type="unfinished"/>
+        <translation>Aangedreven door %1</translation>
     </message>
     <message>
         <source>Open-source software</source>
-        <translation type="unfinished"/>
+        <translation>Opensourcesoftware</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
-        <translation>Pictogram ontworpen door %1.</translation>
+        <translation>Pictogramontwerp: %1.</translation>
     </message>
     <message>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
@@ -54,7 +54,7 @@
     <name>ActivationDialog</name>
     <message>
         <source>Enter your License Details</source>
-        <translation>Vul uw licentie-details in</translation>
+        <translation>Voer je licentiegegevens in</translation>
     </message>
     <message>
         <source>&amp;Email:</source>
@@ -69,27 +69,27 @@
     <name>ActivationView</name>
     <message>
         <source>Please license %1</source>
-        <translation>Alstublieft, Licenceer  %1</translation>
+        <translation>Schaf een licentie aan voor %1</translation>
     </message>
     <message>
         <source>The full version allows you to watch videos without interruptions.</source>
-        <translation>De volledige versie stelt u in staat om video&apos;s te bekijken zonder onderbrekingen.</translation>
+        <translation>Met de volledige versie kun je video&apos;s bekijken zonder onderbrekingen.</translation>
     </message>
     <message>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
-        <translation>Door dit produkt te kopen beloon je mij voor het harde werk dat ik geïnvesteerd heb in het maken van %1.</translation>
+        <translation>Door de volledige versie aan te schaffen, ondersteun je het vele werk dat ik geïnvesteerd heb in het maken van %1.</translation>
     </message>
     <message>
         <source>Use Demo</source>
-        <translation>Gebruik de demo</translation>
+        <translation>Proefversie gebruiken</translation>
     </message>
     <message>
         <source>Enter License</source>
-        <translation>Vul licentie in</translation>
+        <translation>Voer de licentiecode in</translation>
     </message>
     <message>
         <source>Buy License</source>
-        <translation>Koop licentie</translation>
+        <translation>Licentie aanschaffen</translation>
     </message>
 </context>
 <context>
@@ -103,11 +103,11 @@
     <name>ChannelAggregator</name>
     <message>
         <source>By %1</source>
-        <translation>D.m.v. %1</translation>
+        <translation>Van %1</translation>
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Er is %n nieuwe video</numerusform><numerusform>Er zijn %n nieuwe video&apos;s</numerusform></translation>
     </message>
 </context>
 <context>
@@ -145,19 +145,19 @@
     </message>
     <message>
         <source>Sort by</source>
-        <translation>Sorteer op</translation>
+        <translation>Sorteren op</translation>
     </message>
     <message>
         <source>Mark all as watched</source>
-        <translation>Markeer alles als bekeken</translation>
+        <translation>Alles markeren als bekeken</translation>
     </message>
     <message>
         <source>Show Updated</source>
-        <translation>Toon bijgewerkte</translation>
+        <translation>Bijgewerkte video&apos;s tonen</translation>
     </message>
     <message>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation>U heeft geen abonnementen. Gebruik het ster-symbool om te abonneren op kanalen.</translation>
+        <translation>Je hebt nog geen abonnementen. Klik op het sterpictogram om te abonneren op kanalen.</translation>
     </message>
     <message>
         <source>All Videos</source>
@@ -173,11 +173,11 @@
     </message>
     <message>
         <source>Unsubscribe</source>
-        <translation>Abonnement opzeggen</translation>
+        <translation>Deabonneren</translation>
     </message>
     <message>
         <source>There are no updated subscriptions at this time.</source>
-        <translation>Er zijn op dit moment geen bijgewerkte abonnementen.</translation>
+        <translation>Er zijn momenteel geen bijgewerkte abonnementen.</translation>
     </message>
 </context>
 <context>
@@ -188,42 +188,42 @@
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n uur geleden</numerusform><numerusform>%n uur geleden</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n dag geleden</numerusform><numerusform>%n dagen geleden</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n maand geleden</numerusform><numerusform>%n maanden geleden</numerusform></translation>
     </message>
     <message>
         <source>K</source>
         <comment>K as in Kilo, i.e. thousands</comment>
-        <translation type="unfinished"/>
+        <translation>K</translation>
     </message>
     <message>
         <source>M</source>
         <comment>M stands for Millions</comment>
-        <translation type="unfinished"/>
+        <translation>mln</translation>
     </message>
     <message>
         <source>B</source>
         <comment>B stands for Billions</comment>
-        <translation type="unfinished"/>
+        <translation>mld</translation>
     </message>
     <message>
         <source>%1 views</source>
-        <translation>%1 bekeken</translation>
+        <translation>%1 weergaven</translation>
     </message>
     <message numerus="yes">
         <source>%n week(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n week geleden</numerusform><numerusform>%n weken geleden</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n year(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n jaar geleden</numerusform><numerusform>%n jaar geleden</numerusform></translation>
     </message>
 </context>
 <context>
@@ -269,38 +269,38 @@
     <name>DownloadManager</name>
     <message>
         <source>%1 downloaded in %2</source>
-        <translation>%1 gedownload in %2</translation>
+        <translation>%1 is gedownload naar %2</translation>
     </message>
     <message>
         <source>Download finished</source>
-        <translation>Download greed</translation>
+        <translation>Het downloaden is voltooid</translation>
     </message>
     <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n download</numerusform><numerusform>%n downloads</numerusform></translation>
     </message>
 </context>
 <context>
     <name>DownloadSettings</name>
     <message>
         <source>Change location...</source>
-        <translation>Verander locatie...</translation>
+        <translation>Locatie aanpassen…</translation>
     </message>
     <message>
         <source>Choose the download location</source>
-        <translation>Kies de downloadlocatie</translation>
+        <translation>Kies een downloadlocatie</translation>
     </message>
     <message>
         <source>Download location changed.</source>
-        <translation>Downloadlocatie aangepast.</translation>
+        <translation>De downloadlocatie is aangepast.</translation>
     </message>
     <message>
         <source>Current downloads will still go in the previous location.</source>
-        <translation>Huidige downloads zullen in de vorige locatie worden geplaatst.</translation>
+        <translation>Huidige downloads zullen op de vorige locatie worden geplaatst.</translation>
     </message>
     <message>
         <source>Downloading to: %1</source>
-        <translation>Downloaden naar:%1</translation>
+        <translation>Bezig met downloaden naar %1</translation>
     </message>
 </context>
 <context>
@@ -314,15 +314,15 @@
     <name>Extra</name>
     <message>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation>Het uitvoerbare bestand is aangepast, misschien door een virus.</translation>
+        <translation>Het uitvoerbare bestand is aangepast, mogelijk door een virus.</translation>
     </message>
     <message>
         <source>%1 will not run. Try installing again.</source>
-        <translation>%1 kan niet starten. Probeer opnieuw te installeren.</translation>
+        <translation>%1 kan niet worden gestart - installeer %1 opnieuw.</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation>Stoppen</translation>
+        <translation>Afsluiten</translation>
     </message>
     <message>
         <source>Reinstall</source>
@@ -333,23 +333,23 @@
     <name>GlobalShortcuts</name>
     <message>
         <source>Play</source>
-        <translation>Speel af</translation>
+        <translation>Afspelen</translation>
     </message>
     <message>
         <source>Pause</source>
-        <translation>Pauzeer</translation>
+        <translation>Pauzeren</translation>
     </message>
     <message>
         <source>Play/Pause</source>
-        <translation>Speel af/Pauzeer</translation>
+        <translation>Afspelen/Pauzeren</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation>Stop</translation>
+        <translation>Stoppen</translation>
     </message>
     <message>
         <source>Stop playing after current track</source>
-        <translation>Stop afspelen na huidig nummer</translation>
+        <translation>Stoppen met afspelen na huidig nummer</translation>
     </message>
     <message>
         <source>Next track</source>
@@ -361,42 +361,42 @@
     </message>
     <message>
         <source>Increase volume</source>
-        <translation>Verhoog volume</translation>
+        <translation>Volume verhogen</translation>
     </message>
     <message>
         <source>Decrease volume</source>
-        <translation>Verlaag volume</translation>
+        <translation>Volume verlagen</translation>
     </message>
     <message>
         <source>Mute</source>
-        <translation>Demp</translation>
+        <translation>Dempen</translation>
     </message>
     <message>
         <source>Seek forward</source>
-        <translation>Spoel naar voren</translation>
+        <translation>Vooruitspoelen</translation>
     </message>
     <message>
         <source>Seek backward</source>
-        <translation>Spoel naar achteren</translation>
+        <translation>Terugspoelen</translation>
     </message>
 </context>
 <context>
     <name>HomeView</name>
     <message>
         <source>Search</source>
-        <translation>Zoek</translation>
+        <translation>Zoeken</translation>
     </message>
     <message>
         <source>Find videos and channels by keyword</source>
-        <translation>Vind video&apos;s en kanalen d.m.v. sleutelwoord</translation>
+        <translation>Zoek video&apos;s en kanalen op basis van een of meerdere trefwoorden</translation>
     </message>
     <message>
         <source>Browse</source>
-        <translation>Blader</translation>
+        <translation>Verkennen</translation>
     </message>
     <message>
         <source>Browse videos by category</source>
-        <translation>Blader video&apos;s d.m.v. categorie</translation>
+        <translation>Vind video&apos;s op basis van categorieën</translation>
     </message>
     <message>
         <source>Subscriptions</source>
@@ -404,18 +404,18 @@
     </message>
     <message>
         <source>Channel subscriptions</source>
-        <translation>Kanaal-abonnementen</translation>
+        <translation>Kanaalabonnementen</translation>
     </message>
     <message>
         <source>Make yourself comfortable</source>
-        <translation>Maak het u zelf gemakkelijk</translation>
+        <translation>Maak het jezelf gemakkelijk</translation>
     </message>
 </context>
 <context>
     <name>LoadingWidget</name>
     <message>
         <source>Error</source>
-        <translation>Fout</translation>
+        <translation>Foutmelding</translation>
     </message>
 </context>
 <context>
@@ -426,19 +426,19 @@
     </message>
     <message>
         <source>&amp;Minimize</source>
-        <translation>&amp;Minimaliseer</translation>
+        <translation>&amp;Minimaliseren</translation>
     </message>
     <message>
         <source>&amp;Stop</source>
-        <translation>&amp;Stop</translation>
+        <translation>&amp;Stoppen</translation>
     </message>
     <message>
         <source>Stop playback and go back to the search view</source>
-        <translation>Stop het afspelen en keer terug naar het zoekvenster</translation>
+        <translation>Stoppen met afspelen en terugkeren naar het zoekvenster</translation>
     </message>
     <message>
         <source>P&amp;revious</source>
-        <translation>V&amp;orige</translation>
+        <translation>Vo&amp;rige</translation>
     </message>
     <message>
         <source>Go back to the previous track</source>
@@ -446,7 +446,7 @@
     </message>
     <message>
         <source>S&amp;kip</source>
-        <translation>&amp;Sla over</translation>
+        <translation>O&amp;verslaan</translation>
     </message>
     <message>
         <source>Skip to the next video</source>
@@ -454,19 +454,19 @@
     </message>
     <message>
         <source>&amp;Play</source>
-        <translation>&amp;Speel af</translation>
+        <translation>Afs&amp;pelen</translation>
     </message>
     <message>
         <source>Resume playback</source>
-        <translation>Hervat afspelen</translation>
+        <translation>Hervat het afspelen</translation>
     </message>
     <message>
         <source>&amp;Full Screen</source>
-        <translation>&amp;Volledig scherm</translation>
+        <translation>Beeld&amp;vullende modus</translation>
     </message>
     <message>
         <source>Go full screen</source>
-        <translation>Schakel over naar Volledig scherm</translation>
+        <translation>Schakel over naar volledig scherm</translation>
     </message>
     <message>
         <source>&amp;Compact Mode</source>
@@ -474,11 +474,11 @@
     </message>
     <message>
         <source>Hide the playlist and the toolbar</source>
-        <translation>Verberg de afspeellijst en de werkbalk</translation>
+        <translation>Verberg de afspeellijst en werkbalk</translation>
     </message>
     <message>
         <source>Open the &amp;YouTube Page</source>
-        <translation>Open de &amp;Youtube-pagina</translation>
+        <translation>Bekijken op &amp;YouTube</translation>
     </message>
     <message>
         <source>Go to the YouTube video page and pause playback</source>
@@ -486,7 +486,7 @@
     </message>
     <message>
         <source>Copy the YouTube &amp;Link</source>
-        <translation>Kopieer de YouTube-&amp;link</translation>
+        <translation>YouTube-&amp;link kopiëren</translation>
     </message>
     <message>
         <source>Copy the current video YouTube link to the clipboard</source>
@@ -494,15 +494,15 @@
     </message>
     <message>
         <source>Copy the Video Stream &amp;URL</source>
-        <translation>Kopieer de videostream-&amp;URL</translation>
+        <translation>Videostream-&amp;url kopiëren</translation>
     </message>
     <message>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation>Kopieer de huidige videostream-URL naar het klembord</translation>
+        <translation>Kopieer de huidige videostream-url naar het klembord</translation>
     </message>
     <message>
         <source>Find Video &amp;Parts</source>
-        <translation>Vind video&amp;fragmenten</translation>
+        <translation>Video&amp;fragmenten zoeken</translation>
     </message>
     <message>
         <source>Find other video parts hopefully in the right order</source>
@@ -510,39 +510,39 @@
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation>&amp;Verwijder</translation>
+        <translation>Ve&amp;rwijderen</translation>
     </message>
     <message>
         <source>Remove the selected videos from the playlist</source>
-        <translation>Verwijder de geselecteerde video&apos;s uit de afspeellijst</translation>
+        <translation>Verwijder de geselecteerde video&apos;s van de afspeellijst</translation>
     </message>
     <message>
         <source>Move &amp;Up</source>
-        <translation>Verplaats &amp;omhoog</translation>
+        <translation>&amp;Omhoog verplaatsen</translation>
     </message>
     <message>
         <source>Move up the selected videos in the playlist</source>
-        <translation>Verplaats de geselecteerde video&apos;s in de afspeellijst naar boven</translation>
+        <translation>Zet de geselecteerde video&apos;s hoger op de afspeellijst</translation>
     </message>
     <message>
         <source>Move &amp;Down</source>
-        <translation>Verplaats &amp;omlaag</translation>
+        <translation>&amp;Omlaag verplaatsen</translation>
     </message>
     <message>
         <source>Move down the selected videos in the playlist</source>
-        <translation>Verplaats de geselecteerde video&apos;s in de afspeelijst naar beneden</translation>
+        <translation>Zet de geselecteerde video&apos;s lager op de afspeelijst</translation>
     </message>
     <message>
         <source>&amp;Clear Recent Searches</source>
-        <translation>&amp;Wis recente zoekopdrachten</translation>
+        <translation>Re&amp;cente zoekopdrachten wissen</translation>
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation>Wis de zoek geschiedenis. Dit kan niet ongedaan worden gemaakt.</translation>
+        <translation>Wis de zoekgeschiedenis. Dit kan niet ongedaan worden gemaakt.</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>&amp;Sluit af</translation>
+        <translation>&amp;Afsluiten</translation>
     </message>
     <message>
         <source>Bye</source>
@@ -558,11 +558,11 @@
     </message>
     <message>
         <source>Make a &amp;Donation</source>
-        <translation>Geef een &amp;donatie</translation>
+        <translation>&amp;Doneren</translation>
     </message>
     <message>
         <source>Please support the continued development of %1</source>
-        <translation>Ondersteun alstublieft de ontwikkeling van %1</translation>
+        <translation>Ondersteun de ontwikkeling van %1</translation>
     </message>
     <message>
         <source>&amp;About</source>
@@ -574,19 +574,19 @@
     </message>
     <message>
         <source>Search</source>
-        <translation>Zoek</translation>
+        <translation>Zoeken</translation>
     </message>
     <message>
         <source>Mute volume</source>
-        <translation>Demp volume</translation>
+        <translation>Volume dempen</translation>
     </message>
     <message>
         <source>&amp;Manually Start Playing</source>
-        <translation>&amp;Speel handmatig af</translation>
+        <translation>Auto&amp;matisch afspelen uitschakelen</translation>
     </message>
     <message>
         <source>Manually start playing videos</source>
-        <translation>Speel handmatig video&apos;s af</translation>
+        <translation>Speel video&apos;s handmatig af</translation>
     </message>
     <message>
         <source>&amp;Downloads</source>
@@ -594,11 +594,11 @@
     </message>
     <message>
         <source>Show details about video downloads</source>
-        <translation>Geef details weer van videodownloads</translation>
+        <translation>Toon informatie over videodownloads</translation>
     </message>
     <message>
         <source>&amp;Download</source>
-        <translation>&amp;Download</translation>
+        <translation>&amp;Downloaden</translation>
     </message>
     <message>
         <source>Download the current video</source>
@@ -606,15 +606,15 @@
     </message>
     <message>
         <source>Take &amp;Snapshot</source>
-        <translation>Screenshot &amp;nemen</translation>
+        <translation>&amp;Schermfoto maken</translation>
     </message>
     <message>
         <source>&amp;Subscribe to Channel</source>
-        <translation>&amp;Abonneer op kanaal</translation>
+        <translation>&amp;Abonneren op kanaal</translation>
     </message>
     <message>
         <source>Share the current video using %1</source>
-        <translation>Deel de huidige video door middel van %1</translation>
+        <translation>Deel de huidige video via %1</translation>
     </message>
     <message>
         <source>&amp;Email</source>
@@ -626,31 +626,31 @@
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation>&amp;Sluit</translation>
+        <translation>&amp;Sluiten</translation>
     </message>
     <message>
         <source>&amp;Float on Top</source>
-        <translation>&amp;Zweef erboven</translation>
+        <translation>Altijd bo&amp;venop</translation>
     </message>
     <message>
         <source>&amp;Stop After This Video</source>
-        <translation>&amp;Stop na deze video</translation>
+        <translation>&amp;Stoppen na deze video</translation>
     </message>
     <message>
         <source>&amp;Report an Issue...</source>
-        <translation>&amp;Rapporteer een Probleem...</translation>
+        <translation>P&amp;robleem melden…</translation>
     </message>
     <message>
         <source>&amp;Refine Search...</source>
-        <translation>&amp;Verfijn Zoekopdracht...</translation>
+        <translation>Zoekopd&amp;racht verfijnen…</translation>
     </message>
     <message>
         <source>More...</source>
-        <translation>Meer...</translation>
+        <translation>Meer…</translation>
     </message>
     <message>
         <source>&amp;Related Videos</source>
-        <translation>&amp;Gerelateerde video&apos;s</translation>
+        <translation>Ge&amp;relateerde video&apos;s</translation>
     </message>
     <message>
         <source>Watch videos related to the current one</source>
@@ -658,19 +658,19 @@
     </message>
     <message>
         <source>Open in &amp;Browser...</source>
-        <translation>Open in &amp;browser...</translation>
+        <translation>Afspelen in web&amp;browser…</translation>
     </message>
     <message>
         <source>Restricted Mode</source>
-        <translation type="unfinished"/>
+        <translation>Beperkte modus</translation>
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
-        <translation type="unfinished"/>
+        <translation>Verberg video&apos;s die mogelijk ongewenste inhoud bevatten</translation>
     </message>
     <message>
         <source>Toggle &amp;Menu Bar</source>
-        <translation>&amp;Menubalk weergeven/verbergen</translation>
+        <translation>&amp;Menubalk tonen/verbergen</translation>
     </message>
     <message>
         <source>Menu</source>
@@ -678,23 +678,23 @@
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
-        <translation>Vindt u %1 te &amp;gek? Waardeer het!</translation>
+        <translation>Gebruik je %1 graag? Laat dan een beoordeling achter!</translation>
     </message>
     <message>
         <source>Buy %1...</source>
-        <translation>Koop %1...</translation>
+        <translation>%1 aanschaffen…</translation>
     </message>
     <message>
         <source>&amp;Application</source>
-        <translation>&amp;Programma</translation>
+        <translation>Progr&amp;amma</translation>
     </message>
     <message>
         <source>&amp;Playback</source>
-        <translation>&amp;Afspeelopties</translation>
+        <translation>Afs&amp;peelopties</translation>
     </message>
     <message>
         <source>&amp;Playlist</source>
-        <translation>&amp;Afspeellijst</translation>
+        <translation>Afs&amp;peellijst</translation>
     </message>
     <message>
         <source>&amp;Video</source>
@@ -702,63 +702,63 @@
     </message>
     <message>
         <source>&amp;Share</source>
-        <translation>&amp;Deel</translation>
+        <translation>&amp;Delen</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;Weergave</translation>
+        <translation>&amp;Beeld</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Help</translation>
+        <translation>&amp;Hulp</translation>
     </message>
     <message>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation>Druk op %1 om het volume te verhogen, op %2 om het te verlagen</translation>
+        <translation>Druk op %1 om het volume te verhogen of %2 om het te verlagen</translation>
     </message>
     <message>
         <source>Choose your content location</source>
-        <translation>Kies uw inhoudslocatie</translation>
+        <translation>Kies je inhoudslocatie</translation>
     </message>
     <message>
         <source>Opening %1</source>
-        <translation>Bezig met openen van %1</translation>
+        <translation>Bezig met openen van %1…</translation>
     </message>
     <message>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation>Wilt u %1 afsluiten terwijl er een download bezig is?</translation>
+        <translation>Weet je zeker dat je %1 wilt afsluiten terwijl er een actieve download is?</translation>
     </message>
     <message>
         <source>If you close %1 now, this download will be cancelled.</source>
-        <translation>Als u nu %1 afsluit, zal de download worden beëindigd.</translation>
+        <translation>Als je %1 nu afsluit, zal de download worden afgebroken.</translation>
     </message>
     <message>
         <source>Close and cancel download</source>
-        <translation>Sluit en annuleer het downloaden</translation>
+        <translation>Sluiten en downloaden afbreken</translation>
     </message>
     <message>
         <source>Wait for download to finish</source>
-        <translation>Wacht tot het downloaden is voltooid</translation>
+        <translation>Wachten tot downloaden is voltooid</translation>
     </message>
     <message>
         <source>Error: %1</source>
-        <translation>Fout: %1</translation>
+        <translation>Foutmelding: %1</translation>
     </message>
     <message>
         <source>&amp;Pause</source>
-        <translation>&amp;Pauzeer</translation>
+        <translation>&amp;Pauzeren</translation>
     </message>
     <message>
         <source>Pause playback</source>
-        <translation>Pauzeer afspelen</translation>
+        <translation>Pauzeer het afspelen</translation>
     </message>
     <message>
         <source>&amp;Loading...</source>
-        <translation type="unfinished"/>
+        <translation>Bezig met &amp;laden…</translation>
     </message>
     <message>
         <source>Leave &amp;Full Screen</source>
-        <translation>Verlaat &amp;volledig scherm</translation>
+        <translation>Bee&amp;ldvullende modus verlaten</translation>
     </message>
     <message>
         <source>Remaining time: %1</source>
@@ -766,50 +766,50 @@
     </message>
     <message>
         <source>Volume at %1%</source>
-        <translation>Volume op %1%</translation>
+        <translation>Volumeniveau: %1%</translation>
     </message>
     <message>
         <source>Volume is muted</source>
-        <translation>Volume is gedempt</translation>
+        <translation>Het volume is gedempt</translation>
     </message>
     <message>
         <source>Volume is unmuted</source>
-        <translation>Volume is niet gedempt</translation>
+        <translation>Het volume is niet meer gedempt</translation>
     </message>
     <message>
         <source>Maximum video definition set to %1</source>
-        <translation>Maximale videokwaliteit staat op %1</translation>
+        <translation>De maximale videokwaliteit is ingesteld %1</translation>
     </message>
     <message>
         <source>Your privacy is now safe</source>
-        <translation>Uw privacy is nu gewaarborgd</translation>
+        <translation>Je privacy is nu gewaarborgd</translation>
     </message>
     <message>
         <source>Downloads complete</source>
-        <translation>Downloads afgerond</translation>
+        <translation>Het downloaden is voltooid</translation>
     </message>
     <message>
         <source>You can still access the menu bar by pressing the ALT key</source>
-        <translation>U kunt de menubalk nog steeds benaderen door op ALT te drukken</translation>
+        <translation>Je kunt de menubalk aanroepen door op de Alt-toets te drukken</translation>
     </message>
 </context>
 <context>
     <name>MediaView</name>
     <message>
         <source>You can now paste the YouTube link into another application</source>
-        <translation>U kunt nu uw YouTube-link kopieren naar een ander programma</translation>
+        <translation>Je kunt de YouTube-link nu kopiëren naar een ander programma</translation>
     </message>
     <message>
         <source>You can now paste the video stream URL into another application</source>
-        <translation>U kunt nu uw videostream-URL kopieren naar een ander programma</translation>
+        <translation>Je kunt de videostream-url nu kopiëren naar een ander programma</translation>
     </message>
     <message>
         <source>The link will be valid only for a limited time.</source>
-        <translation>De link zal maar een beperkte tijd geldig zijn.</translation>
+        <translation>De link is slechts beperkt geldig.</translation>
     </message>
     <message>
         <source>Downloading %1</source>
-        <translation>Bezig met downloaden van %1</translation>
+        <translation>Bezig met downloaden van %1…</translation>
     </message>
     <message>
         <source>of</source>
@@ -832,62 +832,62 @@
     </message>
     <message>
         <source>Unsubscribe from %1</source>
-        <translation>Zeg abonnement op van %1</translation>
+        <translation>Deabonneren op %1</translation>
     </message>
     <message>
         <source>Subscribe to %1</source>
-        <translation>Abonneer op %1</translation>
+        <translation>Abonneren op %1</translation>
     </message>
     <message>
         <source>Switched to %1</source>
-        <translation type="unfinished"/>
+        <translation>Je bent overgeschakeld naar %1</translation>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
-        <translation type="unfinished"/>
+        <translation>Je bent gedeabonneerd op %1</translation>
     </message>
     <message>
         <source>Subscribed to %1</source>
-        <translation type="unfinished"/>
+        <translation>Je bent nu geabonneerd op %1</translation>
     </message>
     <message>
         <source>Rewind %1 seconds</source>
-        <translation type="unfinished"/>
+        <translation>%1 seconden terugspoelen</translation>
     </message>
     <message>
         <source>Fast forward %1 seconds</source>
-        <translation type="unfinished"/>
+        <translation>%1 seconden vooruitspoelen</translation>
     </message>
     <message>
         <source>channel</source>
-        <translation type="unfinished"/>
+        <translation>kanaal</translation>
     </message>
 </context>
 <context>
     <name>MessageWidget</name>
     <message>
         <source>A new version of %1 is available!</source>
-        <translation>Een nieuwe versie van %1 is beschikbaar!</translation>
+        <translation>Er is een nieuwe versie van %1 beschikbaar!</translation>
     </message>
     <message>
         <source>%1 %2 is now available. You have %3.</source>
-        <translation>%1 %2 is nu beschikbaar. U heeft %3.</translation>
+        <translation>Versie %1 %2 is nu beschikbaar. Je beschikt momenteel over versie %3.</translation>
     </message>
     <message>
         <source>Would you like to download it now?</source>
-        <translation>Wilt u deze nu downloaden?</translation>
+        <translation>Wil je de nieuwe versie nu downloaden?</translation>
     </message>
     <message>
         <source>Skip This Version</source>
-        <translation>Sla deze versie over</translation>
+        <translation>Versie overslaan</translation>
     </message>
     <message>
         <source>Remind Me Later</source>
-        <translation>Herinner me later</translation>
+        <translation>Later herinneren</translation>
     </message>
     <message>
         <source>Install Update</source>
-        <translation>Installeer update</translation>
+        <translation>Update installeren</translation>
     </message>
 </context>
 <context>
@@ -901,7 +901,7 @@
     <name>PickMessage</name>
     <message>
         <source>Pick a video</source>
-        <translation type="unfinished"/>
+        <translation>Klik op een video</translation>
     </message>
 </context>
 <context>
@@ -912,7 +912,7 @@
     </message>
     <message>
         <source>Preparing</source>
-        <translation>Aan het voorbereiden</translation>
+        <translation>Bezig met voorbereiden…</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -924,23 +924,23 @@
     </message>
     <message>
         <source>Stopped</source>
-        <translation>Gestopt</translation>
+        <translation>Afgebroken</translation>
     </message>
     <message>
         <source>Stop downloading</source>
-        <translation>Stop het downloaden</translation>
+        <translation>Downloaden afbreken</translation>
     </message>
     <message>
         <source>Show in %1</source>
-        <translation>Toon in %1</translation>
+        <translation>Tonen in %1</translation>
     </message>
     <message>
         <source>Open parent folder</source>
-        <translation>Open oudermap</translation>
+        <translation>Bovenliggende map openen</translation>
     </message>
     <message>
         <source>Restart downloading</source>
-        <translation>Herstart het downloaden</translation>
+        <translation>Downloaden herstarten</translation>
     </message>
 </context>
 <context>
@@ -951,18 +951,18 @@
     </message>
     <message>
         <source>No videos</source>
-        <translation>Geen video&apos;s</translation>
+        <translation>Er zijn geen video&apos;s</translation>
     </message>
     <message>
         <source>No more videos</source>
-        <translation>Geen video&apos;s meer</translation>
+        <translation>Er zijn geen video&apos;s meer</translation>
     </message>
 </context>
 <context>
     <name>RefineSearchWidget</name>
     <message>
         <source>Sort by</source>
-        <translation>Sorteer op</translation>
+        <translation>Sorteren op</translation>
     </message>
     <message>
         <source>Relevance</source>
@@ -974,7 +974,7 @@
     </message>
     <message>
         <source>View Count</source>
-        <translation>Weergaven</translation>
+        <translation>Aantal weergaven</translation>
     </message>
     <message>
         <source>Rating</source>
@@ -982,7 +982,7 @@
     </message>
     <message>
         <source>Anytime</source>
-        <translation>Elke Periode</translation>
+        <translation>Elke periode</translation>
     </message>
     <message>
         <source>Today</source>
@@ -990,11 +990,11 @@
     </message>
     <message>
         <source>7 Days</source>
-        <translation>7 Dagen</translation>
+        <translation>7 dagen</translation>
     </message>
     <message>
         <source>30 Days</source>
-        <translation>30 Dagen</translation>
+        <translation>30 dagen</translation>
     </message>
     <message>
         <source>Duration</source>
@@ -1038,19 +1038,19 @@
     </message>
     <message>
         <source>This year</source>
-        <translation type="unfinished"/>
+        <translation>Dit jaar</translation>
     </message>
     <message>
         <source>HD</source>
-        <translation type="unfinished"/>
+        <translation>HD</translation>
     </message>
     <message>
         <source>4K</source>
-        <translation type="unfinished"/>
+        <translation>4K</translation>
     </message>
     <message>
         <source>HDR</source>
-        <translation type="unfinished"/>
+        <translation>HDR</translation>
     </message>
 </context>
 <context>
@@ -1064,30 +1064,30 @@
     <name>SearchLineEdit</name>
     <message>
         <source>Search</source>
-        <translation>Zoek</translation>
+        <translation>Zoeken</translation>
     </message>
 </context>
 <context>
     <name>SearchView</name>
     <message>
         <source>Welcome to &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</source>
-        <translation>Welkom bij &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;,</translation>
+        <translation>Welkom bij &lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</translation>
     </message>
     <message>
         <source>to start watching videos.</source>
-        <translation>om te beginnen met het bekijken van video&apos;s.</translation>
+        <translation>zoekopdracht in</translation>
     </message>
     <message>
         <source>a keyword</source>
-        <translation>een zoekwoord</translation>
+        <translation>een</translation>
     </message>
     <message>
         <source>Enter</source>
-        <translation>Typ</translation>
+        <translation>Voer</translation>
     </message>
     <message>
         <source>Recent keywords</source>
-        <translation>Recente zoekwoorden</translation>
+        <translation>Recente zoekopdrachten</translation>
     </message>
     <message>
         <source>Recent channels</source>
@@ -1095,23 +1095,23 @@
     </message>
     <message>
         <source>Get the full version</source>
-        <translation>Verkrijg de volledige versie</translation>
+        <translation>Volledige versie aanschaffen</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Verwijderen</translation>
     </message>
     <message>
         <source>Need a remote control for %1? Try %2!</source>
-        <translation type="unfinished"/>
+        <translation>Heb je een afstandsbediening nodig voor %1? Probeer dan eens %2!</translation>
     </message>
     <message>
         <source>I keep improving %1 to make it the best I can. Support this work!</source>
-        <translation type="unfinished"/>
+        <translation>Ik doe mijn best om %1 zo geweldig mogelijk te maken. Ondersteun mijn werk!</translation>
     </message>
     <message>
         <source>An update is ready to be installed. Quit and install update.</source>
-        <translation type="unfinished"/>
+        <translation>Er staat een update voor je klaar. Sluit af om de update te installeren.</translation>
     </message>
 </context>
 <context>
@@ -1122,137 +1122,137 @@
     </message>
     <message>
         <source>&amp;Forward</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Vooruit</translation>
     </message>
     <message>
         <source>Forward to %1</source>
-        <translation>Spoel vooruit naar %1</translation>
+        <translation>Vooruitspoelen naar %1</translation>
     </message>
     <message>
         <source>Back to %1</source>
-        <translation>Spoel terug naar %1</translation>
+        <translation>Terugspoelen naar %1</translation>
     </message>
 </context>
 <context>
     <name>SidebarWidget</name>
     <message>
         <source>Refine Search</source>
-        <translation>Verfijn Zoekopdracht</translation>
+        <translation>Zoekopdracht verfijnen</translation>
     </message>
     <message>
         <source>Did you mean: %1</source>
-        <translation>Bedoelde je: %1</translation>
+        <translation>Bedoelde je ‘%1’?</translation>
     </message>
 </context>
 <context>
     <name>SnapshotSettings</name>
     <message>
         <source>Change location...</source>
-        <translation>Verander locatie...</translation>
+        <translation>Locatie aanpassen…</translation>
     </message>
     <message>
         <source>Snapshot saved to %1</source>
-        <translation>Screenshot opgeslagen in %1</translation>
+        <translation>De schermfoto is opgeslagen in %1</translation>
     </message>
     <message>
         <source>Snapshots location changed.</source>
-        <translation>Screenshots-locatie veranderd.</translation>
+        <translation>De schermfotolocatie is aangepast.</translation>
     </message>
 </context>
 <context>
     <name>StandardFeedsView</name>
     <message>
         <source>Most Popular</source>
-        <translation>Meest populair</translation>
+        <translation>Populairst</translation>
     </message>
     <message>
         <source>Trending</source>
-        <translation type="unfinished"/>
+        <translation>Populair</translation>
     </message>
     <message>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>Muziek</translation>
     </message>
     <message>
         <source>News</source>
-        <translation type="unfinished"/>
+        <translation>Nieuws</translation>
     </message>
     <message>
         <source>Movies</source>
-        <translation type="unfinished"/>
+        <translation>Films</translation>
     </message>
     <message>
         <source>Gaming</source>
-        <translation type="unfinished"/>
+        <translation>Gaming</translation>
     </message>
 </context>
 <context>
     <name>UpdateDialog</name>
     <message>
         <source>Downloading update...</source>
-        <translation>Bezig met downloaden van update...</translation>
+        <translation>Bezig met downloaden van update…</translation>
     </message>
     <message>
         <source>Downloading %1...</source>
-        <translation>Downloaden van %1...</translation>
+        <translation>Bezig met downloaden van %1…</translation>
     </message>
 </context>
 <context>
     <name>Updater</name>
     <message>
         <source>Check for Updates...</source>
-        <translation type="unfinished"/>
+        <translation>Bezig met controleren op updates…</translation>
     </message>
     <message>
         <source>Version %1 is available...</source>
-        <translation type="unfinished"/>
+        <translation>Versie %1 is beschikbaar…</translation>
     </message>
     <message>
         <source>Downloading version %1...</source>
-        <translation type="unfinished"/>
+        <translation>Bezig met downloaden van versie %1…</translation>
     </message>
     <message>
         <source>Restart to Update</source>
-        <translation type="unfinished"/>
+        <translation>Herstart om de update te installeren</translation>
     </message>
     <message>
         <source>Version %1 download failed</source>
-        <translation type="unfinished"/>
+        <translation>Het downloaden van versie %1 is mislukt</translation>
     </message>
     <message>
         <source>Check for Updates</source>
-        <translation type="unfinished"/>
+        <translation>Controleren op updates</translation>
     </message>
     <message>
         <source>Download Update</source>
-        <translation type="unfinished"/>
+        <translation>Update downloaden</translation>
     </message>
     <message>
         <source>Downloading update...</source>
-        <translation>Bezig met downloaden van update...</translation>
+        <translation>Bezig met downloaden van update…</translation>
     </message>
     <message>
         <source>Retry Update Download</source>
-        <translation type="unfinished"/>
+        <translation>Opnieuw proberen</translation>
     </message>
     <message>
         <source>You have the latest version.</source>
-        <translation type="unfinished"/>
+        <translation>Je beschikt over de nieuwste versie.</translation>
     </message>
     <message>
         <source>Version %1 is available.</source>
-        <translation type="unfinished"/>
+        <translation>Versie %1 is beschikbaar.</translation>
     </message>
     <message>
         <source>An update has been downloaded and is ready to be installed.</source>
-        <translation type="unfinished"/>
+        <translation>Er staat een update klaar om te worden geïnstalleerd.</translation>
     </message>
 </context>
 <context>
     <name>YTJSVideo</name>
     <message>
         <source>Cannot get video stream for %1</source>
-        <translation>Kan de videostream niet verkrijgen voor %1</translation>
+        <translation>De videostream van %1 kan niet worden opgehaald</translation>
     </message>
 </context>
 <context>
@@ -1315,7 +1315,7 @@
     </message>
     <message>
         <source>Hong Kong</source>
-        <translation>Hong Kong</translation>
+        <translation>Hongkong</translation>
     </message>
     <message>
         <source>Hungary</source>
@@ -1435,7 +1435,7 @@
     </message>
     <message>
         <source>United Arab Emirates</source>
-        <translation>Verenigde Emiraten</translation>
+        <translation>Verenigde Arabische Emiraten</translation>
     </message>
     <message>
         <source>United Kingdom</source>
@@ -1454,45 +1454,45 @@
     <name>YTVideo</name>
     <message>
         <source>Cannot get video stream for %1</source>
-        <translation>Kan de videostream niet verkrijgen voor %1</translation>
+        <translation>De videostream van %1 kan niet worden opgehaald</translation>
     </message>
 </context>
 <context>
     <name>updater::DefaultUpdater</name>
     <message>
         <source>There are currently no updates available.</source>
-        <translation type="unfinished"/>
+        <translation>Er zijn geen updates beschikbaar.</translation>
     </message>
 </context>
 <context>
     <name>updater::Dialog</name>
     <message>
         <source>You already have the latest version</source>
-        <translation type="unfinished"/>
+        <translation>Je beschikt over de nieuwste versie</translation>
     </message>
     <message>
         <source>Downloading %1 %2...</source>
-        <translation type="unfinished"/>
+        <translation>Bezig met downloaden van %1 %2…</translation>
     </message>
     <message>
         <source>A new version of %1 is available!</source>
-        <translation>Een nieuwe versie van %1 is beschikbaar!</translation>
+        <translation>Er is een nieuwe versie van %1 beschikbaar!</translation>
     </message>
     <message>
         <source>%1 %2 is now available. You have %3.</source>
-        <translation>%1 %2 is nu beschikbaar. U heeft %3.</translation>
+        <translation>Versie %1 %2 is nu beschikbaar. Je beschikt momenteel over versie %3.</translation>
     </message>
     <message>
         <source>Would you like to download it now?</source>
-        <translation>Wilt u deze nu downloaden?</translation>
+        <translation>Wil je de update nu downloaden?</translation>
     </message>
     <message>
         <source>Remind Me Later</source>
-        <translation>Herinner me later</translation>
+        <translation>Later herinneren</translation>
     </message>
     <message>
         <source>Download Update</source>
-        <translation type="unfinished"/>
+        <translation>Update downloaden</translation>
     </message>
 </context>
 </TS>

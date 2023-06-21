@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="sv_SE" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="sv_SE">
 <context>
     <name>AboutView</name>
     <message>
@@ -27,11 +27,11 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation type="unfinished"/>
+        <translation>Drivs av %1</translation>
     </message>
     <message>
         <source>Open-source software</source>
-        <translation type="unfinished"/>
+        <translation>Mjukvara med öppen källkod</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -96,7 +96,7 @@
     <name>AppWidget</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished"/>
+        <translation>Ladda ner</translation>
     </message>
 </context>
 <context>
@@ -107,7 +107,7 @@
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Du har %n nytt videoklipp</numerusform><numerusform>Du har %n nya videoklipp</numerusform></translation>
     </message>
 </context>
 <context>
@@ -188,7 +188,7 @@
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n timme sedan</numerusform><numerusform>%n timmar sedan</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>

@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="nn" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="nn">
 <context>
     <name>AboutView</name>
     <message>
@@ -27,11 +27,11 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation type="unfinished"/>
+        <translation>Oppretta av %1</translation>
     </message>
     <message>
         <source>Open-source software</source>
-        <translation type="unfinished"/>
+        <translation>Åpen kildekode programvare</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -73,7 +73,7 @@
     </message>
     <message>
         <source>The full version allows you to watch videos without interruptions.</source>
-        <translation type="unfinished"/>
+        <translation>Fullversjonen lar deg se videoer uten avbrudd.</translation>
     </message>
     <message>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
@@ -96,7 +96,7 @@
     <name>AppWidget</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished"/>
+        <translation>Nedlasting</translation>
     </message>
 </context>
 <context>
@@ -107,7 +107,7 @@
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>Du har %n nye video(er)</numerusform><numerusform>Du har %n nye video(er)</numerusform></translation>
     </message>
 </context>
 <context>
@@ -169,11 +169,11 @@
     </message>
     <message>
         <source>Mark as Watched</source>
-        <translation type="unfinished"/>
+        <translation>Merk som sett</translation>
     </message>
     <message>
         <source>Unsubscribe</source>
-        <translation type="unfinished"/>
+        <translation>Avslutte abonnementet</translation>
     </message>
     <message>
         <source>There are no updated subscriptions at this time.</source>
@@ -184,34 +184,34 @@
     <name>DataUtils</name>
     <message>
         <source>Just now</source>
-        <translation type="unfinished"/>
+        <translation>Akkurat nå</translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n time(r) siden</numerusform><numerusform>%n time(r) siden</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n dag(er) siden</numerusform><numerusform>%n dag(er) siden</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n måned(er) siden</numerusform><numerusform>%n måned(er) siden</numerusform></translation>
     </message>
     <message>
         <source>K</source>
         <comment>K as in Kilo, i.e. thousands</comment>
-        <translation type="unfinished"/>
+        <translation>K</translation>
     </message>
     <message>
         <source>M</source>
         <comment>M stands for Millions</comment>
-        <translation type="unfinished"/>
+        <translation>M</translation>
     </message>
     <message>
         <source>B</source>
         <comment>B stands for Billions</comment>
-        <translation type="unfinished"/>
+        <translation>B</translation>
     </message>
     <message>
         <source>%1 views</source>
@@ -219,11 +219,11 @@
     </message>
     <message numerus="yes">
         <source>%n week(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n uke(er) siden</numerusform><numerusform>%n uke(er) siden</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n year(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n år siden</numerusform><numerusform>%n år siden</numerusform></translation>
     </message>
 </context>
 <context>
@@ -277,7 +277,7 @@
     </message>
     <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n nedlasting(er)</numerusform><numerusform>%n nedlasting(er)</numerusform></translation>
     </message>
 </context>
 <context>
@@ -314,19 +314,19 @@
     <name>Extra</name>
     <message>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation type="unfinished"/>
+        <translation>Den kjørbare filen har blitt temperert, kanskje av et virus.</translation>
     </message>
     <message>
         <source>%1 will not run. Try installing again.</source>
-        <translation type="unfinished"/>
+        <translation>%1 vil ikke kjøre. Prøv å installere på nytt.</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Slutte</translation>
     </message>
     <message>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>Installer på nytt</translation>
     </message>
 </context>
 <context>
@@ -606,7 +606,7 @@
     </message>
     <message>
         <source>Take &amp;Snapshot</source>
-        <translation type="unfinished"/>
+        <translation>Ta et &amp;øyeblikksbilde</translation>
     </message>
     <message>
         <source>&amp;Subscribe to Channel</source>
@@ -662,23 +662,23 @@
     </message>
     <message>
         <source>Restricted Mode</source>
-        <translation type="unfinished"/>
+        <translation>Begrenset modus</translation>
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
-        <translation type="unfinished"/>
+        <translation>Skjul videoer som kan inneholde upassende innhold</translation>
     </message>
     <message>
         <source>Toggle &amp;Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>Slå på &amp;menylinje</translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>Meny</translation>
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Elsker du %1? Rangere det!</translation>
     </message>
     <message>
         <source>Buy %1...</source>
@@ -754,7 +754,7 @@
     </message>
     <message>
         <source>&amp;Loading...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Laster inn...</translation>
     </message>
     <message>
         <source>Leave &amp;Full Screen</source>
@@ -790,7 +790,7 @@
     </message>
     <message>
         <source>You can still access the menu bar by pressing the ALT key</source>
-        <translation type="unfinished"/>
+        <translation>Du kan fortsatt få tilgang til menylinjen ved å trykke på ALT-tasten</translation>
     </message>
 </context>
 <context>
@@ -840,19 +840,19 @@
     </message>
     <message>
         <source>Switched to %1</source>
-        <translation type="unfinished"/>
+        <translation>Byttet til %1</translation>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
-        <translation type="unfinished"/>
+        <translation>Avsluttet abonnementet på %1</translation>
     </message>
     <message>
         <source>Subscribed to %1</source>
-        <translation type="unfinished"/>
+        <translation>Abonnerte på %1</translation>
     </message>
     <message>
         <source>Rewind %1 seconds</source>
-        <translation type="unfinished"/>
+        <translation>Spol %1 sekunder tilbake</translation>
     </message>
     <message>
         <source>Fast forward %1 seconds</source>
