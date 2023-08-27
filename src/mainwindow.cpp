@@ -350,11 +350,13 @@ void MainWindow::createSystray() {
      
      QMenu *contextMenu = new QMenu();
      
-     QAction *skipTrackAction = new QAction(tr("&Skip track"), this);
+     QAction *previousTrackAction = new QAction(tr("&Previous track"), this);
+     QAction *nextTrackAction = new QAction(tr("&Next track"), this);
      QAction *showHideAction = new QAction(tr("&Hide Application"), this);
      QAction *exitAction = new QAction(tr("E&xit"), this);
 
-     contextMenu->addAction(skipTrackAction);
+     contextMenu->addAction(previousTrackAction);
+     contextMenu->addAction(nextTrackAction);
      contextMenu->addSeparator();
      contextMenu->addAction(showHideAction);
      contextMenu->addSeparator();
@@ -362,28 +364,20 @@ void MainWindow::createSystray() {
      
      trayIcon->setContextMenu(contextMenu);
 
-     connect(skipTrackAction, &QAction::triggered, this, [=](){
+     connect(previousTrackAction, &QAction::triggered, this, [=](){
+         mediaView->skipBackward();
+     });
+
+     connect(nextTrackAction, &QAction::triggered, this, [=](){
          mediaView->skip();
      });
      
-     connect(trayIcon, &QSystemTrayIcon::activated, this, [=](QSystemTrayIcon::ActivationReason reason) {
-         if (this->isVisible()) {
-            this->hide();
-            showHideAction->setText(tr("&Show Application"));
-         }else {
-            this->show();
-            showHideAction->setText(tr("&Hide Application"));
-         }
+     connect(trayIcon, &QSystemTrayIcon::activated, this, [=]() {
+         toggleVisibilitySystray(showHideAction);
      });
 
      connect(showHideAction, &QAction::triggered, this, [=](){
-         if (this->isVisible()) {
-            this->hide();
-            showHideAction->setText(tr("&Show Application"));
-         }else {
-            this->show();
-            showHideAction->setText(tr("&Hide Application"));
-         }
+         toggleVisibilitySystray(showHideAction);
      });
      
      connect(exitAction, &QAction::triggered, this, [&](){
@@ -391,6 +385,16 @@ void MainWindow::createSystray() {
      });
      
      trayIcon->show();
+}
+
+void MainWindow::toggleVisibilitySystray(QAction *trayaction) {
+    if (this->isVisible()) {
+        this->hide();
+        trayaction->setText(tr("&Show Application"));
+    }else {
+        this->show();
+        trayaction->setText(tr("&Hide Application"));
+    }
 }
 
 void MainWindow::setToolTip(QString text) {
@@ -408,6 +412,7 @@ void MainWindow::createActions() {
     connect(stopAct, SIGNAL(triggered()), SLOT(stop()));
 
     skipBackwardAct = new QAction(tr("P&revious"), this);
+    //IconUtils::setIcon(skipBackwardAct, "media-skip-backward");
     skipBackwardAct->setStatusTip(tr("Go back to the previous track"));
     skipBackwardAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Left));
     skipBackwardAct->setEnabled(false);

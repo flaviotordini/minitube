@@ -153,6 +153,7 @@ private slots:
 private:
     void initMedia();
     void createSystray();
+    void toggleVisibilitySystray(QAction *trayaction);
     void createActions();
     void createMenus();
     void createToolBar();
