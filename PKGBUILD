@@ -18,7 +18,6 @@ sha512sums=("a57f3f1688dd9c1bfedd4d6be29643762725e9dce5485dfc6f852ad3ad8fb63771e
 b2sums=("1e2d4ba765cacf924da7d9a177c93606b8b1742dd8ec4ddedd54feabdd6d91b165fabb38e1bba3ee122ee75d974e13c437f1c48d53daa229a67ece2b3d32999b")
 
 build() {
-	pwd
   cd ${_pkgname}-$pkgver
   qmake
 }
