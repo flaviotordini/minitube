@@ -22,6 +22,9 @@ $END_LICENSE */
 #define MAINWINDOW_H
 
 #include <QtWidgets>
+#include <QtDBus/QDBusConnection>
+#include <QtDBus/QDBusInterface>
+#include <QtDBus/QDBusMessage>
 
 #include "media.h"
 

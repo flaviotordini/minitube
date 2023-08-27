@@ -37,6 +37,7 @@ $END_LICENSE */
 #include "videodefinition.h"
 #include "videosource.h"
 #include "ytsearch.h"
+#include "mpriscontrol.h"
 #ifdef APP_LINUX
 #include "gnomeglobalshortcutbackend.h"
 #endif
@@ -132,6 +133,15 @@ MainWindow::MainWindow()
     messageTimer->setInterval(5000);
     messageTimer->setSingleShot(true);
     connect(messageTimer, SIGNAL(timeout()), SLOT(hideMessage()));
+    
+#ifdef APP_LINUX
+    /*MPRISControl *mpriscontrol = new MPRISControl(this);
+    QDBusConnection::sessionBus().registerService("org.mpris.MediaPlayer2.minitube");
+    QDBusConnection::sessionBus().registerObject("/org/mpris/MediaPlayer2", mpriscontrol, QDBusConnection::ExportAllSlots);
+    qWarning() << QDBusConnection::sessionBus().lastError().message();
+    
+    QDBusMessage::createSignal("/org/mpris/MediaPlayer2", "org.freedesktop.DBus.Properties", "PropertiesChanged"); */
+#endif
 
     // views
     homeView = new HomeView(this);
