@@ -57,3 +57,5 @@ Included:
 * Systray
 * Systray context menu with functionality (previous track, next track, hide/show and exit the application)
 * Made icons for skip backward button
+* Add skip backward button to the toolbar
+* Small improvement of the toolbar
