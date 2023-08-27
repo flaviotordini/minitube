@@ -9,6 +9,10 @@ Minitube is a YouTube desktop application. It is written in C++ using the Qt fra
 Translations are done at https://www.transifex.com/flaviotordini/minitube/
 Just register and apply for a language team. Please don't request translation merges on GitHub.
 
+## Installing on Archlinux using AUR
+
+    yay -S minitube-systray
+
 ## Build instructions
 Clone from Github:
 
