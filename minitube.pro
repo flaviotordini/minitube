@@ -61,6 +61,7 @@ HEADERS += src/video.h \
     src/videomimedata.h \
     src/searchparams.h \
     src/minisplitter.h \
+    src/mpriscontrol.h \
     src/loadingwidget.h \
     src/autocomplete.h \
     src/videodefinition.h \
@@ -137,6 +138,7 @@ SOURCES += src/main.cpp \
     src/videomimedata.cpp \
     src/searchparams.cpp \
     src/minisplitter.cpp \
+    src/mpriscontrol.cpp \
     src/loadingwidget.cpp \
     src/autocomplete.cpp \
     src/videodefinition.cpp \
