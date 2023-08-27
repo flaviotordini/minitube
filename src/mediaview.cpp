@@ -332,6 +332,7 @@ void MediaView::appear() {
     Video *currentVideo = playlistModel->activeVideo();
     if (currentVideo) {
         MainWindow::instance()->setWindowTitle(currentVideo->getTitle() + " - " + Constants::NAME);
+        MainWindow::instance()->setToolTip(tr("Playing: %1").arg(currentVideo->getTitle()));
     }
 
     playlistView->setFocus();
@@ -473,6 +474,7 @@ void MediaView::activeVideoChanged(Video *video, Video *previousVideo) {
     // video title in titlebar
     MainWindow::instance()->setWindowTitle(video->getTitle() + QLatin1String(" - ") +
                                            QLatin1String(Constants::NAME));
+    MainWindow::instance()->setToolTip(tr("Playing: %1").arg(video->getTitle()));
 
     // ensure active item is visible
     int row = playlistModel->rowForVideo(video);

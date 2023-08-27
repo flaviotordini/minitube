@@ -141,6 +141,9 @@ MainWindow::MainWindow()
     mediaView = MediaView::instance();
     mediaView->setEnabled(false);
     views->addWidget(mediaView);
+    
+    // systray
+    createSystray();
 
     // build ui
     createActions();
@@ -339,6 +342,59 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
 
     // standard event processing
     return QMainWindow::eventFilter(obj, e);
+}
+
+void MainWindow::createSystray() {
+     trayIcon = new QSystemTrayIcon(QIcon(":/images/app.png"));
+     trayIcon->setToolTip("Minitube");
+     
+     QMenu *contextMenu = new QMenu();
+     
+     QAction *skipTrackAction = new QAction(tr("&Skip track"), this);
+     QAction *showHideAction = new QAction(tr("&Hide Application"), this);
+     QAction *exitAction = new QAction(tr("E&xit"), this);
+
+     contextMenu->addAction(skipTrackAction);
+     contextMenu->addSeparator();
+     contextMenu->addAction(showHideAction);
+     contextMenu->addSeparator();
+     contextMenu->addAction(exitAction);
+     
+     trayIcon->setContextMenu(contextMenu);
+
+     connect(skipTrackAction, &QAction::triggered, this, [=](){
+         mediaView->skip();
+     });
+     
+     connect(trayIcon, &QSystemTrayIcon::activated, this, [=](QSystemTrayIcon::ActivationReason reason) {
+         if (this->isVisible()) {
+            this->hide();
+            showHideAction->setText(tr("&Show Application"));
+         }else {
+            this->show();
+            showHideAction->setText(tr("&Hide Application"));
+         }
+     });
+
+     connect(showHideAction, &QAction::triggered, this, [=](){
+         if (this->isVisible()) {
+            this->hide();
+            showHideAction->setText(tr("&Show Application"));
+         }else {
+            this->show();
+            showHideAction->setText(tr("&Hide Application"));
+         }
+     });
+     
+     connect(exitAction, &QAction::triggered, this, [&](){
+         quit();
+     });
+     
+     trayIcon->show();
+}
+
+void MainWindow::setToolTip(QString text) {
+    trayIcon->setToolTip(text);
 }
 
 void MainWindow::createActions() {
@@ -1246,6 +1302,8 @@ void MainWindow::stateChanged(Media::State newState) {
     switch (newState) {
     case Media::ErrorState:
         showMessage(tr("Error: %1").arg(media->errorString()));
+        
+        trayIcon->setToolTip(tr("Error: %1").arg(media->errorString()));
         break;
 
     case Media::PlayingState:
@@ -1262,6 +1320,8 @@ void MainWindow::stateChanged(Media::State newState) {
         pauseAct->setText(tr("&Play"));
         pauseAct->setStatusTip(tr("Resume playback") + " (" +
                                pauseAct->shortcut().toString(QKeySequence::NativeText) + ")");
+
+        trayIcon->setToolTip("Stopped");
         break;
 
     case Media::PausedState:
@@ -1270,6 +1330,8 @@ void MainWindow::stateChanged(Media::State newState) {
         pauseAct->setText(tr("&Play"));
         pauseAct->setStatusTip(tr("Resume playback") + " (" +
                                pauseAct->shortcut().toString(QKeySequence::NativeText) + ")");
+
+        trayIcon->setToolTip("Paused");
         break;
 
     case Media::BufferingState:
@@ -1277,6 +1339,8 @@ void MainWindow::stateChanged(Media::State newState) {
         pauseAct->setIcon(IconUtils::icon("content-loading"));
         pauseAct->setText(tr("&Loading..."));
         pauseAct->setStatusTip(QString());
+
+        trayIcon->setToolTip("Loading...");
         break;
 
     case Media::LoadingState:

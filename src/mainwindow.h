@@ -93,6 +93,7 @@ public slots:
     void missingKeyWarning();
     void visitSite();
     void setDefinitionMode(const QString &definitionName);
+    void setToolTip(QString text);
 
 signals:
     void currentTimeChanged(const QString &s);
@@ -151,6 +152,7 @@ private slots:
 
 private:
     void initMedia();
+    void createSystray();
     void createActions();
     void createMenus();
     void createToolBar();
@@ -163,6 +165,9 @@ private:
 
     QHash<QByteArray, QAction *> actionMap;
     QHash<QByteArray, QMenu *> menuMap;
+
+    // systray
+    QSystemTrayIcon *trayIcon;
 
     // view mechanism
     QStackedWidget *views;
