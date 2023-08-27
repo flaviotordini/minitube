@@ -2,7 +2,7 @@
 <img src="https://flavio.tordini.org/files/products/minitube.png">
 </p>
 
-# Minitube
+# Minitube (with systray)
 Minitube is a YouTube desktop application. It is written in C++ using the Qt framework. Contributing is welcome, especially in the Linux desktop integration area.
 
 ## Translating to your language
@@ -12,7 +12,7 @@ Just register and apply for a language team. Please don't request translation me
 ## Build instructions
 Clone from Github:
 
-    git clone --recursive https://github.com/flaviotordini/minitube.git
+    git clone --recursive https://github.com/chrisgoldberg1/minitube.git
 
 You need Qt >= 5.12 and MPV >= 0.29.0. The following Qt modules are needed: core, gui, widgets, network, sql (using the Sqlite plugin), declarative, dbus, x11extras.
 
@@ -50,3 +50,10 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+## Modification
+Original code modified by Christopher Goldberg
+Included:
+* Systray
+* Systray context menu with functionality (previous track, next track, hide/show and exit the application)
+* Made icons for skip backward button
