@@ -54,7 +54,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ## Modification
 Original code modified by Christopher Goldberg
 Included:
-* Systray
+* Systray icon
 * Systray context menu with functionality (previous track, next track, hide/show and exit the application)
 * Made icons for skip backward button
 * Add skip backward button to the toolbar
