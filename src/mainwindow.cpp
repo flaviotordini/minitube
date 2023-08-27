@@ -352,6 +352,7 @@ void MainWindow::createSystray() {
      
      QAction *previousTrackAction = new QAction(tr("&Previous track"), this);
      QAction *nextTrackAction = new QAction(tr("&Next track"), this);
+     
      QAction *showHideAction = new QAction(tr("&Hide Application"), this);
      QAction *exitAction = new QAction(tr("E&xit"), this);
 
@@ -412,7 +413,7 @@ void MainWindow::createActions() {
     connect(stopAct, SIGNAL(triggered()), SLOT(stop()));
 
     skipBackwardAct = new QAction(tr("P&revious"), this);
-    //IconUtils::setIcon(skipBackwardAct, "media-skip-backward");
+    IconUtils::setIcon(skipBackwardAct, "media-skip-backward");
     skipBackwardAct->setStatusTip(tr("Go back to the previous track"));
     skipBackwardAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Left));
     skipBackwardAct->setEnabled(false);
@@ -932,6 +933,12 @@ void MainWindow::createToolBar() {
         stopToolButton->setMenu(stopMenu);
         stopToolButton->setPopupMode(QToolButton::DelayedPopup);
     }
+    
+    QAction *separatorLine = new QAction(this);
+    separatorLine->setSeparator(true);
+    
+    mainToolBar->addAction(separatorLine);
+    mainToolBar->addAction(skipBackwardAct);
     mainToolBar->addAction(pauseAct);
     mainToolBar->addAction(skipAct);
     mainToolBar->addAction(getAction("relatedVideos"));
