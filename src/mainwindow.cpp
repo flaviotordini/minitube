@@ -135,12 +135,7 @@ MainWindow::MainWindow()
     connect(messageTimer, SIGNAL(timeout()), SLOT(hideMessage()));
     
 #ifdef APP_LINUX
-    /*MPRISControl *mpriscontrol = new MPRISControl(this);
-    QDBusConnection::sessionBus().registerService("org.mpris.MediaPlayer2.minitube");
-    QDBusConnection::sessionBus().registerObject("/org/mpris/MediaPlayer2", mpriscontrol, QDBusConnection::ExportAllSlots);
-    qWarning() << QDBusConnection::sessionBus().lastError().message();
-    
-    QDBusMessage::createSignal("/org/mpris/MediaPlayer2", "org.freedesktop.DBus.Properties", "PropertiesChanged"); */
+    new MPRISControl(this);
 #endif
 
     // views

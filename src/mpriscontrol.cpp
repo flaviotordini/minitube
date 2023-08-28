@@ -18,21 +18,35 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 
 $END_LICENSE */
 
+// dbus-send --session --type=method_call --dest=org.mpris.MediaPlayer2.minitube /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.minitube.Previous
+// qdbus org.mpris.MediaPlayer2.minitube
+
 #include "mpriscontrol.h"
+#include "mediaview.h"
 
-MPRISControl::MPRISControl(QObject *parent)
-	: QDBusAbstractAdaptor(parent) { 
+MPRISControl::MPRISControl(QObject *parent) {
 
+	QDBusConnection::sessionBus().registerService("org.mpris.MediaPlayer2.minitube");
+	QDBusConnection::sessionBus().registerObject("/org/mpris/MediaPlayer2", this, QDBusConnection::ExportAllSlots);
+	qWarning() << QDBusConnection::sessionBus().lastError().message();
+	
+	QMap<QString, QVariantMap> properties;
+	
+}
+
+MPRISControl::~MPRISControl() {
+	QDBusConnection::sessionBus().unregisterObject("/org/mpris/MediaPlayer2");
+	QDBusConnection::sessionBus().unregisterService("org.mpris.MediaPlayer2.minitube");
 }
 
 void MPRISControl::PlayPause() {
-	
+	MediaView::instance()->pause();
 }
 
 void MPRISControl::Next() {
-	
+	MediaView::instance()->skip();
 }
 
 void MPRISControl::Previous() {
-	
+	MediaView::instance()->skipBackward();
 }

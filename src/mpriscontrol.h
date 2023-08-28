@@ -24,17 +24,20 @@ $END_LICENSE */
 
 #include <QtDBus>
 
-class MPRISControl : public QDBusAbstractAdaptor {
+class MPRISControl : public QObject {
 	Q_OBJECT
-	Q_CLASSINFO("D-Bus Interface", "org.mpris.MediaPlayer2.minitube")
 
 public:
 	MPRISControl(QObject *parent);
+	~MPRISControl();
 
 public slots:
 	void PlayPause();
 	void Next();
 	void Previous();
+
+//private:
+
 };
 
 #endif // MPRISCONTROL_H
