@@ -56,10 +56,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## Modification
-Original code modified by Christopher Goldberg
+Modification Copyright (C) Christopher Goldberg
 Included:
 * Systray icon
-* Systray context menu with functionality (previous track, next track, hide/show and exit the application)
+* Systray context menu with functionality (play/pause, previous track, next track, hide/show and exit the application)
 * Made icons for skip backward button
 * Add skip backward button to the toolbar
 * Small improvement of the toolbar
+* Simple MPRIS D-Bus implementation to control application using dbus-send (play, pause, previous, next)
