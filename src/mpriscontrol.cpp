@@ -18,8 +18,22 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 
 $END_LICENSE */
 
-// dbus-send --session --type=method_call --dest=org.mpris.MediaPlayer2.minitube /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.minitube.Previous
-// qdbus org.mpris.MediaPlayer2.minitube
+/*
+It is a DBUS interface and so you can eg. Control Minitube from the command line.
+However, it's not what I intended. My plan was to create your Freedesktop
+compatible D-Bus interface. Unfortunately, this requires a much more complex
+logic and you have to register several interfaces. The scope of this
+implementation exceeds my available time. Apart from that, I've implemented
+the systray context menu control, which comes to the same thing.
+
+Example:
+dbus-send --session \
+	--type=method_call \
+	--dest=org.mpris.MediaPlayer2.minitube \
+	/org/mpris/MediaPlayer2 \
+	org.mpris.MediaPlayer2.minitube.Previous
+
+*/
 
 #include "mpriscontrol.h"
 #include "mediaview.h"
