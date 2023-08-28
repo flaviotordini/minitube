@@ -55,8 +55,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-## Modification
-Modification Copyright (C) Christopher Goldberg
+## Modifications
+Copyright (C) Christopher Goldberg
 
 * Systray icon
 * Systray context menu with functionality (play/pause, previous track, next track, hide/show and exit the application)
