@@ -57,7 +57,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## Modification
 Modification Copyright (C) Christopher Goldberg
-Included:
+
 * Systray icon
 * Systray context menu with functionality (play/pause, previous track, next track, hide/show and exit the application)
 * Made icons for skip backward button
