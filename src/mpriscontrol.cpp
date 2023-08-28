@@ -19,7 +19,7 @@ along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
 $END_LICENSE */
 
 /*
-It is a DBUS interface and so you can eg. Control Minitube from the command line.
+It is a D-Bus interface and so you can eg. Control Minitube from the command line.
 However, it's not what I intended. My plan was to create your Freedesktop
 compatible D-Bus interface. Unfortunately, this requires a much more complex
 logic and you have to register several interfaces. The scope of this
@@ -42,7 +42,7 @@ MPRISControl::MPRISControl(QObject *parent) {
 
 	QDBusConnection::sessionBus().registerService("org.mpris.MediaPlayer2.minitube");
 	QDBusConnection::sessionBus().registerObject("/org/mpris/MediaPlayer2", this, QDBusConnection::ExportAllSlots);
-	qWarning() << QDBusConnection::sessionBus().lastError().message();
+	//qWarning() << QDBusConnection::sessionBus().lastError().message();
 	
 	QMap<QString, QVariantMap> properties;
 	
