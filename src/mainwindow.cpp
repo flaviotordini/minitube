@@ -403,7 +403,7 @@ void MainWindow::toggleVisibilitySystray(QAction *trayaction) {
         this->hide();
         trayaction->setText(tr("&Show Application"));
     }else {
-        this->show();
+        this->showNormal();
         trayaction->setText(tr("&Hide Application"));
     }
 }
