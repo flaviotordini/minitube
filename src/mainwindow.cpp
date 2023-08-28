@@ -355,51 +355,66 @@ void MainWindow::createSystray() {
      
      QMenu *contextMenu = new QMenu();
      
-     QAction *previousTrackAction = new QAction(tr("&Previous track"), this);
-     QAction *nextTrackAction = new QAction(tr("&Next track"), this);
+     systrayPlay = new QAction(tr("&Play"), this);
+     systrayPlay->setEnabled(false);
+     actionMap.insert("systrayplaypause", systrayPlay);
      
-     QAction *showHideAction = new QAction(tr("&Hide Application"), this);
-     QAction *exitAction = new QAction(tr("E&xit"), this);
+     systrayPrevious = new QAction(tr("P&revious track"), this);
+     systrayPrevious->setEnabled(false);
+     actionMap.insert("systrayprevious", systrayPrevious);
+     
+     systrayNext = new QAction(tr("&Next track"), this);
+     systrayNext->setEnabled(false);
+     actionMap.insert("systraynext", systrayNext);
+     
+     systrayHide = new QAction(tr("&Hide Application"), this);
+     systrayExit = new QAction(tr("E&xit"), this);
 
-     contextMenu->addAction(previousTrackAction);
-     contextMenu->addAction(nextTrackAction);
+     contextMenu->addAction(systrayPlay);
      contextMenu->addSeparator();
-     contextMenu->addAction(showHideAction);
+     contextMenu->addAction(systrayPrevious);
+     contextMenu->addAction(systrayNext);
      contextMenu->addSeparator();
-     contextMenu->addAction(exitAction);
+     contextMenu->addAction(systrayHide);
+     contextMenu->addSeparator();
+     contextMenu->addAction(systrayExit);
      
      trayIcon->setContextMenu(contextMenu);
+     
+     connect(trayIcon, &QSystemTrayIcon::activated, this, [=]() {
+         toggleVisibilitySystray();
+     });
 
-     connect(previousTrackAction, &QAction::triggered, this, [=](){
+     connect(systrayPlay, &QAction::triggered, this, [=](){
+         mediaView->pause();
+     });
+
+     connect(systrayPrevious, &QAction::triggered, this, [=](){
          mediaView->skipBackward();
      });
 
-     connect(nextTrackAction, &QAction::triggered, this, [=](){
+     connect(systrayNext, &QAction::triggered, this, [=](){
          mediaView->skip();
      });
-     
-     connect(trayIcon, &QSystemTrayIcon::activated, this, [=]() {
-         toggleVisibilitySystray(showHideAction);
-     });
 
-     connect(showHideAction, &QAction::triggered, this, [=](){
-         toggleVisibilitySystray(showHideAction);
+     connect(systrayHide, &QAction::triggered, this, [=](){
+         toggleVisibilitySystray();
      });
      
-     connect(exitAction, &QAction::triggered, this, [&](){
+     connect(systrayExit, &QAction::triggered, this, [&](){
          quit();
      });
      
      trayIcon->show();
 }
 
-void MainWindow::toggleVisibilitySystray(QAction *trayaction) {
+void MainWindow::toggleVisibilitySystray() {
     if (this->isVisible()) {
         this->hide();
-        trayaction->setText(tr("&Show Application"));
+        systrayHide->setText(tr("&Show Application"));
     }else {
         this->showNormal();
-        trayaction->setText(tr("&Hide Application"));
+        systrayHide->setText(tr("&Hide Application"));
     }
 }
 
@@ -1324,6 +1339,8 @@ void MainWindow::stateChanged(Media::State newState) {
         break;
 
     case Media::PlayingState:
+        systrayPlay->setEnabled(true);
+        systrayPlay->setText(tr("&Pause"));
         pauseAct->setEnabled(true);
         pauseAct->setIcon(IconUtils::icon("media-playback-pause"));
         pauseAct->setText(tr("&Pause"));
@@ -1332,6 +1349,8 @@ void MainWindow::stateChanged(Media::State newState) {
         break;
 
     case Media::StoppedState:
+        systrayPlay->setEnabled(false);
+        systrayPlay->setText(tr("&Play"));
         pauseAct->setEnabled(false);
         pauseAct->setIcon(IconUtils::icon("media-playback-start"));
         pauseAct->setText(tr("&Play"));
@@ -1342,6 +1361,8 @@ void MainWindow::stateChanged(Media::State newState) {
         break;
 
     case Media::PausedState:
+        systrayPlay->setEnabled(true);
+        systrayPlay->setText(tr("&Play"));
         pauseAct->setEnabled(true);
         pauseAct->setIcon(IconUtils::icon("media-playback-start"));
         pauseAct->setText(tr("&Play"));
@@ -1352,6 +1373,8 @@ void MainWindow::stateChanged(Media::State newState) {
         break;
 
     case Media::BufferingState:
+        systrayPlay->setEnabled(false);
+        systrayPlay->setText(tr("&Loading..."));
         pauseAct->setEnabled(false);
         pauseAct->setIcon(IconUtils::icon("content-loading"));
         pauseAct->setText(tr("&Loading..."));
@@ -1361,6 +1384,7 @@ void MainWindow::stateChanged(Media::State newState) {
         break;
 
     case Media::LoadingState:
+        systrayPlay->setEnabled(false);
         pauseAct->setEnabled(false);
         currentTimeLabel->clear();
         break;
@@ -1950,6 +1974,7 @@ void MainWindow::restore() {
 }
 
 void MainWindow::messageReceived(const QString &message) {
+	qWarning() << "Received message" << message;
     if (message == QLatin1String("--toggle-playing")) {
         if (pauseAct->isEnabled()) pauseAct->trigger();
     } else if (message == QLatin1String("--next")) {

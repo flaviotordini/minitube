@@ -156,7 +156,7 @@ private slots:
 private:
     void initMedia();
     void createSystray();
-    void toggleVisibilitySystray(QAction *trayaction);
+    void toggleVisibilitySystray();
     void createActions();
     void createMenus();
     void createToolBar();
@@ -184,6 +184,13 @@ private:
     View *downloadView;
     View *regionsView;
     View *subscriptionImportView = nullptr;
+    
+    // systray actoins
+    QAction *systrayPlay;
+    QAction *systrayPrevious;
+    QAction *systrayNext;
+    QAction *systrayHide;
+    QAction *systrayExit;
 
     // actions
     QAction *backAct;

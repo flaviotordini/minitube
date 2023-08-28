@@ -161,7 +161,8 @@ void MediaView::initialize() {
 #endif
             "webpage",  "pagelink", "videolink",     "openInBrowser", "findVideoParts",
             "skip",     "previous", "stopafterthis", "relatedVideos", "refineSearch",
-            "twitter",  "facebook", "email"};
+            "twitter",  "facebook", "email",
+            "systrayplaypause", "systrayprevious", "systraynext"};
     currentVideoActions.reserve(videoActionNames.size());
     for (auto *name : videoActionNames) {
         currentVideoActions.append(mainWindow->getAction(name));
