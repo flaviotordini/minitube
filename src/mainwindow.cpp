@@ -1368,8 +1368,6 @@ void MainWindow::stateChanged(Media::State newState) {
         pauseAct->setText(tr("&Play"));
         pauseAct->setStatusTip(tr("Resume playback") + " (" +
                                pauseAct->shortcut().toString(QKeySequence::NativeText) + ")");
-
-        trayIcon->setToolTip("Paused");
         break;
 
     case Media::BufferingState:

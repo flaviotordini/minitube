@@ -377,26 +377,32 @@ void MediaView::mediaStateChanged(Media::State state) {
 }
 
 void MediaView::pause() {
+	 Video *activeVideo = playlistModel->activeVideo();
+
     switch (media->state()) {
     case Media::PlayingState:
         qDebug() << "Pausing";
         media->pause();
         pauseTimer.start();
+        MainWindow::instance()->setToolTip(tr("Paused: %1").arg(activeVideo->getTitle()));
         break;
     default:
         if (pauseTimer.isValid() && pauseTimer.hasExpired(60000)) {
             qDebug() << "Pause timer expired";
             pauseTimer.invalidate();
-            auto activeVideo = playlistModel->activeVideo();
+
             if (activeVideo) {
                 connect(activeVideo, &Video::gotStreamUrl, this,
                         &MediaView::resumeWithNewStreamUrl);
                 activeVideo->loadStreamUrl();
             } else
                 qDebug() << "No active video";
+
         } else {
             qDebug() << "Playing" << media->file();
             media->play();
+
+            MainWindow::instance()->setToolTip(tr("Playing: %1").arg(activeVideo->getTitle()));
         }
         break;
     }
@@ -436,6 +442,8 @@ void MediaView::stop() {
     QAction *a = MainWindow::instance()->getAction("download");
     a->setEnabled(false);
     a->setVisible(false);
+
+    MainWindow::instance()->setToolTip("Minitube");
 
     media->stop();
     media->clearQueue();
