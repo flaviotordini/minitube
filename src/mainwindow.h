@@ -25,6 +25,7 @@ $END_LICENSE */
 
 #include "media.h"
 
+class ZoomableUI;
 class View;
 class HomeView;
 class MediaView;
@@ -236,6 +237,7 @@ private:
     QToolButton *toolbarMenuButton;
 
     Media *media;
+    ZoomableUI *zoomableUI;
 };
 
 #endif

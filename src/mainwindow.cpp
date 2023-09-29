@@ -103,6 +103,8 @@ $END_LICENSE */
 
 #include "subscriptionimportview.h"
 
+#include "zoomableui.h"
+
 namespace {
 MainWindow *mainWindowInstance;
 }
@@ -120,6 +122,8 @@ MainWindow::MainWindow()
     // views mechanism
     views = new QStackedWidget();
     setCentralWidget(views);
+
+    zoomableUI = new ZoomableUI(*this);
 
 #ifdef APP_EXTRA
     Extra::windowSetup(this);
@@ -792,6 +796,7 @@ void MainWindow::createMenus() {
     viewMenu->addAction(getAction("ontop"));
     viewMenu->addAction(compactViewAct);
     viewMenu->addSeparator();
+    viewMenu->addActions(zoomableUI->getActions());
     viewMenu->addAction(fullscreenAct);
 #ifndef APP_MAC
     viewMenu->addSeparator();
