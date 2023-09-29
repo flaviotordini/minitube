@@ -88,7 +88,7 @@ AppWidget::AppWidget(const QString &name, const QString &code, QWidget *parent)
     setCursor(Qt::PointingHandCursor);
 }
 
-void AppWidget::enterEvent(QEvent *e) {
+void AppWidget::enterEvent(CompatibleEnterEvent *e) {
     Q_UNUSED(e);
     if (downloadButton) downloadButton->show();
 }
