@@ -22,6 +22,9 @@ $END_LICENSE */
 #define MAINWINDOW_H
 
 #include <QtWidgets>
+#include <QtDBus/QDBusConnection>
+#include <QtDBus/QDBusInterface>
+#include <QtDBus/QDBusMessage>
 
 #include "media.h"
 
@@ -93,6 +96,7 @@ public slots:
     void missingKeyWarning();
     void visitSite();
     void setDefinitionMode(const QString &definitionName);
+    void setToolTip(QString text);
 
 signals:
     void currentTimeChanged(const QString &s);
@@ -151,6 +155,8 @@ private slots:
 
 private:
     void initMedia();
+    void createSystray();
+    void toggleVisibilitySystray();
     void createActions();
     void createMenus();
     void createToolBar();
@@ -164,6 +170,9 @@ private:
     QHash<QByteArray, QAction *> actionMap;
     QHash<QByteArray, QMenu *> menuMap;
 
+    // systray
+    QSystemTrayIcon *trayIcon;
+
     // view mechanism
     QStackedWidget *views;
     QStack<View *> history;
@@ -175,6 +184,13 @@ private:
     View *downloadView;
     View *regionsView;
     View *subscriptionImportView = nullptr;
+    
+    // systray actoins
+    QAction *systrayPlay;
+    QAction *systrayPrevious;
+    QAction *systrayNext;
+    QAction *systrayHide;
+    QAction *systrayExit;
 
     // actions
     QAction *backAct;

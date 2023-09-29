@@ -37,6 +37,7 @@ $END_LICENSE */
 #include "videodefinition.h"
 #include "videosource.h"
 #include "ytsearch.h"
+#include "mpriscontrol.h"
 #ifdef APP_LINUX
 #include "gnomeglobalshortcutbackend.h"
 #endif
@@ -132,6 +133,10 @@ MainWindow::MainWindow()
     messageTimer->setInterval(5000);
     messageTimer->setSingleShot(true);
     connect(messageTimer, SIGNAL(timeout()), SLOT(hideMessage()));
+    
+#ifdef APP_LINUX
+    new MPRISControl(this);
+#endif
 
     // views
     homeView = new HomeView(this);
@@ -141,6 +146,9 @@ MainWindow::MainWindow()
     mediaView = MediaView::instance();
     mediaView->setEnabled(false);
     views->addWidget(mediaView);
+    
+    // systray
+    createSystray();
 
     // build ui
     createActions();
@@ -341,6 +349,79 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
     return QMainWindow::eventFilter(obj, e);
 }
 
+void MainWindow::createSystray() {
+     trayIcon = new QSystemTrayIcon(QIcon(":/images/app.png"));
+     trayIcon->setToolTip("Minitube");
+     
+     QMenu *contextMenu = new QMenu();
+     
+     systrayPlay = new QAction(tr("&Play"), this);
+     systrayPlay->setEnabled(false);
+     actionMap.insert("systrayplaypause", systrayPlay);
+     
+     systrayPrevious = new QAction(tr("P&revious track"), this);
+     systrayPrevious->setEnabled(false);
+     actionMap.insert("systrayprevious", systrayPrevious);
+     
+     systrayNext = new QAction(tr("&Next track"), this);
+     systrayNext->setEnabled(false);
+     actionMap.insert("systraynext", systrayNext);
+     
+     systrayHide = new QAction(tr("&Hide Application"), this);
+     systrayExit = new QAction(tr("E&xit"), this);
+
+     contextMenu->addAction(systrayPlay);
+     contextMenu->addSeparator();
+     contextMenu->addAction(systrayPrevious);
+     contextMenu->addAction(systrayNext);
+     contextMenu->addSeparator();
+     contextMenu->addAction(systrayHide);
+     contextMenu->addSeparator();
+     contextMenu->addAction(systrayExit);
+     
+     trayIcon->setContextMenu(contextMenu);
+     
+     connect(trayIcon, &QSystemTrayIcon::activated, this, [=]() {
+         toggleVisibilitySystray();
+     });
+
+     connect(systrayPlay, &QAction::triggered, this, [=](){
+         mediaView->pause();
+     });
+
+     connect(systrayPrevious, &QAction::triggered, this, [=](){
+         mediaView->skipBackward();
+     });
+
+     connect(systrayNext, &QAction::triggered, this, [=](){
+         mediaView->skip();
+     });
+
+     connect(systrayHide, &QAction::triggered, this, [=](){
+         toggleVisibilitySystray();
+     });
+     
+     connect(systrayExit, &QAction::triggered, this, [&](){
+         quit();
+     });
+     
+     trayIcon->show();
+}
+
+void MainWindow::toggleVisibilitySystray() {
+    if (this->isVisible()) {
+        this->hide();
+        systrayHide->setText(tr("&Show Application"));
+    }else {
+        this->showNormal();
+        systrayHide->setText(tr("&Hide Application"));
+    }
+}
+
+void MainWindow::setToolTip(QString text) {
+    trayIcon->setToolTip(text);
+}
+
 void MainWindow::createActions() {
     stopAct = new QAction(tr("&Stop"), this);
     IconUtils::setIcon(stopAct, "media-playback-stop");
@@ -352,6 +433,7 @@ void MainWindow::createActions() {
     connect(stopAct, SIGNAL(triggered()), SLOT(stop()));
 
     skipBackwardAct = new QAction(tr("P&revious"), this);
+    IconUtils::setIcon(skipBackwardAct, "media-skip-backward");
     skipBackwardAct->setStatusTip(tr("Go back to the previous track"));
     skipBackwardAct->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Left));
     skipBackwardAct->setEnabled(false);
@@ -871,6 +953,12 @@ void MainWindow::createToolBar() {
         stopToolButton->setMenu(stopMenu);
         stopToolButton->setPopupMode(QToolButton::DelayedPopup);
     }
+    
+    QAction *separatorLine = new QAction(this);
+    separatorLine->setSeparator(true);
+    
+    mainToolBar->addAction(separatorLine);
+    mainToolBar->addAction(skipBackwardAct);
     mainToolBar->addAction(pauseAct);
     mainToolBar->addAction(skipAct);
     mainToolBar->addAction(getAction("relatedVideos"));
@@ -1246,9 +1334,13 @@ void MainWindow::stateChanged(Media::State newState) {
     switch (newState) {
     case Media::ErrorState:
         showMessage(tr("Error: %1").arg(media->errorString()));
+        
+        trayIcon->setToolTip(tr("Error: %1").arg(media->errorString()));
         break;
 
     case Media::PlayingState:
+        systrayPlay->setEnabled(true);
+        systrayPlay->setText(tr("&Pause"));
         pauseAct->setEnabled(true);
         pauseAct->setIcon(IconUtils::icon("media-playback-pause"));
         pauseAct->setText(tr("&Pause"));
@@ -1257,14 +1349,20 @@ void MainWindow::stateChanged(Media::State newState) {
         break;
 
     case Media::StoppedState:
+        systrayPlay->setEnabled(false);
+        systrayPlay->setText(tr("&Play"));
         pauseAct->setEnabled(false);
         pauseAct->setIcon(IconUtils::icon("media-playback-start"));
         pauseAct->setText(tr("&Play"));
         pauseAct->setStatusTip(tr("Resume playback") + " (" +
                                pauseAct->shortcut().toString(QKeySequence::NativeText) + ")");
+
+        trayIcon->setToolTip("Stopped");
         break;
 
     case Media::PausedState:
+        systrayPlay->setEnabled(true);
+        systrayPlay->setText(tr("&Play"));
         pauseAct->setEnabled(true);
         pauseAct->setIcon(IconUtils::icon("media-playback-start"));
         pauseAct->setText(tr("&Play"));
@@ -1273,13 +1371,18 @@ void MainWindow::stateChanged(Media::State newState) {
         break;
 
     case Media::BufferingState:
+        systrayPlay->setEnabled(false);
+        systrayPlay->setText(tr("&Loading..."));
         pauseAct->setEnabled(false);
         pauseAct->setIcon(IconUtils::icon("content-loading"));
         pauseAct->setText(tr("&Loading..."));
         pauseAct->setStatusTip(QString());
+
+        trayIcon->setToolTip("Loading...");
         break;
 
     case Media::LoadingState:
+        systrayPlay->setEnabled(false);
         pauseAct->setEnabled(false);
         currentTimeLabel->clear();
         break;
@@ -1869,6 +1972,7 @@ void MainWindow::restore() {
 }
 
 void MainWindow::messageReceived(const QString &message) {
+	qWarning() << "Received message" << message;
     if (message == QLatin1String("--toggle-playing")) {
         if (pauseAct->isEnabled()) pauseAct->trigger();
     } else if (message == QLatin1String("--next")) {

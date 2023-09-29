@@ -161,7 +161,8 @@ void MediaView::initialize() {
 #endif
             "webpage",  "pagelink", "videolink",     "openInBrowser", "findVideoParts",
             "skip",     "previous", "stopafterthis", "relatedVideos", "refineSearch",
-            "twitter",  "facebook", "email"};
+            "twitter",  "facebook", "email",
+            "systrayplaypause", "systrayprevious", "systraynext"};
     currentVideoActions.reserve(videoActionNames.size());
     for (auto *name : videoActionNames) {
         currentVideoActions.append(mainWindow->getAction(name));
@@ -332,6 +333,7 @@ void MediaView::appear() {
     Video *currentVideo = playlistModel->activeVideo();
     if (currentVideo) {
         MainWindow::instance()->setWindowTitle(currentVideo->getTitle() + " - " + Constants::NAME);
+        MainWindow::instance()->setToolTip(tr("Playing: %1").arg(currentVideo->getTitle()));
     }
 
     playlistView->setFocus();
@@ -375,26 +377,32 @@ void MediaView::mediaStateChanged(Media::State state) {
 }
 
 void MediaView::pause() {
+	 Video *activeVideo = playlistModel->activeVideo();
+
     switch (media->state()) {
     case Media::PlayingState:
         qDebug() << "Pausing";
         media->pause();
         pauseTimer.start();
+        MainWindow::instance()->setToolTip(tr("Paused: %1").arg(activeVideo->getTitle()));
         break;
     default:
         if (pauseTimer.isValid() && pauseTimer.hasExpired(60000)) {
             qDebug() << "Pause timer expired";
             pauseTimer.invalidate();
-            auto activeVideo = playlistModel->activeVideo();
+
             if (activeVideo) {
                 connect(activeVideo, &Video::gotStreamUrl, this,
                         &MediaView::resumeWithNewStreamUrl);
                 activeVideo->loadStreamUrl();
             } else
                 qDebug() << "No active video";
+
         } else {
             qDebug() << "Playing" << media->file();
             media->play();
+
+            MainWindow::instance()->setToolTip(tr("Playing: %1").arg(activeVideo->getTitle()));
         }
         break;
     }
@@ -435,6 +443,8 @@ void MediaView::stop() {
     a->setEnabled(false);
     a->setVisible(false);
 
+    MainWindow::instance()->setToolTip("Minitube");
+
     media->stop();
     media->clearQueue();
     currentVideoId.clear();
@@ -473,6 +483,7 @@ void MediaView::activeVideoChanged(Video *video, Video *previousVideo) {
     // video title in titlebar
     MainWindow::instance()->setWindowTitle(video->getTitle() + QLatin1String(" - ") +
                                            QLatin1String(Constants::NAME));
+    MainWindow::instance()->setToolTip(tr("Playing: %1").arg(video->getTitle()));
 
     // ensure active item is visible
     int row = playlistModel->rowForVideo(video);
