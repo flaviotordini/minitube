@@ -49,20 +49,20 @@ void HomeView::setupBar() {
     bar = new SegmentedControl();
 
     QAction *action = new QAction(tr("Search"), this);
-    action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_1));
+    action->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_1));
     action->setStatusTip(tr("Find videos and channels by keyword"));
     connect(action, SIGNAL(triggered()), SLOT(showSearch()));
     bar->addAction(action);
     bar->setCheckedAction(action);
 
     action = new QAction(tr("Browse"), this);
-    action->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_2));
+    action->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_2));
     action->setStatusTip(tr("Browse videos by category"));
     connect(action, SIGNAL(triggered()), SLOT(showStandardFeeds()));
     bar->addAction(action);
 
     subscriptionsAction = new QAction(tr("Subscriptions"), this);
-    subscriptionsAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_3));
+    subscriptionsAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_3));
     subscriptionsAction->setStatusTip(tr("Channel subscriptions"));
     connect(subscriptionsAction, SIGNAL(triggered()), SLOT(showChannels()));
     bar->addAction(subscriptionsAction);

@@ -64,7 +64,7 @@ void SidebarWidget::setup() {
     refineSearchButton = new RefineSearchButton(this);
     refineSearchButton->setStatusTip(
             tr("Refine Search") + " (" +
-            QKeySequence(Qt::CTRL + Qt::Key_R).toString(QKeySequence::NativeText) + ")");
+            QKeySequence(Qt::CTRL | Qt::Key_R).toString(QKeySequence::NativeText) + ")");
     refineSearchButton->hide();
     connect(refineSearchButton, SIGNAL(clicked()), SLOT(showRefineSearchWidget()));
 

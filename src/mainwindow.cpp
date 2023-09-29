@@ -353,7 +353,7 @@ void MainWindow::createActions() {
 
     skipBackwardAct = new QAction(tr("P&revious"), this);
     skipBackwardAct->setStatusTip(tr("Go back to the previous track"));
-    skipBackwardAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Left));
+    skipBackwardAct->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Left));
     skipBackwardAct->setEnabled(false);
     actionMap.insert("previous", skipBackwardAct);
     connect(skipBackwardAct, SIGNAL(triggered()), mediaView, SLOT(skipBackward()));
@@ -361,7 +361,7 @@ void MainWindow::createActions() {
     skipAct = new QAction(tr("S&kip"), this);
     IconUtils::setIcon(skipAct, "media-skip-forward");
     skipAct->setStatusTip(tr("Skip to the next video"));
-    skipAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_Right)
+    skipAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL | Qt::Key_Right)
                                                 << QKeySequence(Qt::Key_MediaNext));
     skipAct->setEnabled(false);
     actionMap.insert("skip", skipAct);
@@ -446,7 +446,7 @@ void MainWindow::createActions() {
 
     moveDownAct = new QAction(tr("Move &Down"), this);
     moveDownAct->setStatusTip(tr("Move down the selected videos in the playlist"));
-    moveDownAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Down));
+    moveDownAct->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Down));
     moveDownAct->setEnabled(false);
     actionMap.insert("moveDown", moveDownAct);
     connect(moveDownAct, SIGNAL(triggered()), mediaView, SLOT(moveDownSelected()));
@@ -1780,11 +1780,11 @@ void MainWindow::toggleDownloads(bool show) {
     if (show) {
         stopAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::Key_MediaStop));
         getAction("downloads")
-                ->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_J)
+                ->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL | Qt::Key_J)
                                                      << QKeySequence(Qt::Key_Escape));
     } else {
         getAction("downloads")
-                ->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL + Qt::Key_J));
+                ->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL | Qt::Key_J));
         stopAct->setShortcuts(QList<QKeySequence>()
                               << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
     }
