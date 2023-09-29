@@ -467,11 +467,12 @@ void SearchView::maybeShowMessage() {
 #if defined APP_MAC && !defined APP_MAC_STORE
     if (showMessages && !settings.contains(key = "sofa")) {
         QString msg = tr("Need a remote control for %1? Try %2!").arg(Constants::NAME).arg("Sofa");
-        msg = "<a href='https://" + QLatin1String(Constants::ORG_DOMAIN) + '/' + key +
-              "' style='text-decoration:none;color:palette(windowText)'>" + msg + "</a>";
         messageBar->setMessage(msg);
-        messageBar->setOpenExternalLinks(true);
         disconnect(messageBar);
+        connect(messageBar, &MessageBar::clicked, this, [key] {
+            QString url = "https://" + QLatin1String(Constants::ORG_DOMAIN) + '/' + key;
+            QDesktopServices::openUrl(url);
+        });
         connect(messageBar, &MessageBar::closed, this, [key] {
             QSettings settings;
             settings.setValue(key, true);
@@ -495,11 +496,12 @@ void SearchView::maybeShowMessage() {
                 QString msg =
                         tr("I keep improving %1 to make it the best I can. Support this work!")
                                 .arg(Constants::NAME);
-                msg = "<a href='https://" + QLatin1String(Constants::ORG_DOMAIN) + "/donate" +
-                      "' style='text-decoration:none;color:palette(windowText)'>" + msg + "</a>";
                 messageBar->setMessage(msg);
-                messageBar->setOpenExternalLinks(true);
                 disconnect(messageBar);
+                connect(messageBar, &MessageBar::clicked, this, [] {
+                    QString url = "https://" + QLatin1String(Constants::ORG_DOMAIN) + "/donate";
+                    QDesktopServices::openUrl(url);
+                });
                 connect(messageBar, &MessageBar::closed, this, [key] {
                     QSettings settings;
                     settings.setValue(key, true);
@@ -513,14 +515,9 @@ void SearchView::maybeShowMessage() {
     connect(&Updater::instance(), &Updater::statusChanged, this, [this](auto status) {
         if (status == Updater::Status::UpdateDownloaded) {
             QString msg = tr("An update is ready to be installed. Quit and install update.");
-            msg = "<a href='http://quit' style='text-decoration:none;color:palette(windowText)'>" +
-                  msg + "</a>";
             messageBar->setMessage(msg);
-            messageBar->setOpenExternalLinks(false);
             disconnect(messageBar);
-            connect(messageBar, &MessageBar::linkActivated, this, [] {
-                qApp->quit();
-            });
+            connect(messageBar, &MessageBar::clicked, this, [] { qApp->quit(); });
             messageBar->show();
         }
     });

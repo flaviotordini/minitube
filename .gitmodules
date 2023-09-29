@@ -26,3 +26,9 @@
 	path = lib/singleapplication
 	url = https://github.com/itay-grudev/SingleApplication
 	branch = master
+[submodule "lib/qt-reusable-widgets"]
+	path = lib/qt-reusable-widgets
+	url = https://github.com/flaviotordini/qt-reusable-widgets
+[submodule "lib/yt"]
+	path = lib/yt
+	url = https://github.com/flaviotordini/yt

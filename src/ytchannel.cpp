@@ -22,13 +22,18 @@ $END_LICENSE */
 #include "database.h"
 #include "http.h"
 #include "httputils.h"
-#include <QtSql>
-
-#include "yt3.h"
-
 #include "iconutils.h"
 
+#include <QtSql>
+
+#ifdef YT_YT3
+#include "yt3.h"
+#endif
+
+#ifdef YT_IV
 #include "ivchannel.h"
+#endif
+
 #include "videoapi.h"
 #include "ytjschannel.h"
 
@@ -84,41 +89,43 @@ void YTChannel::maybeLoadfromAPI() {
 
     loading = true;
 
-    if (VideoAPI::impl() == VideoAPI::YT3) {
-        QUrl url = YT3::instance().method("channels");
-        QUrlQuery q(url);
-        q.addQueryItem("id", channelId);
-        q.addQueryItem("part", "snippet");
-        url.setQuery(q);
+#ifdef YT_YT3
+    QUrl url = YT3::instance().method("channels");
+    QUrlQuery q(url);
+    q.addQueryItem("id", channelId);
+    q.addQueryItem("part", "snippet");
+    url.setQuery(q);
 
-        QObject *reply = HttpUtils::yt().get(url);
-        connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResponse(QByteArray)));
-        connect(reply, SIGNAL(error(QString)), SLOT(requestError(QString)));
-    } else if (VideoAPI::impl() == VideoAPI::IV) {
-        auto ivChannel = new IVChannel(channelId);
-        connect(ivChannel, &IVChannel::error, this, &YTChannel::requestError);
-        connect(ivChannel, &IVChannel::loaded, this, [this, ivChannel] {
-            displayName = ivChannel->getDisplayName();
-            description = ivChannel->getDescription();
-            thumbnailUrl = ivChannel->getThumbnailUrl();
-            ivChannel->deleteLater();
-            emit infoLoaded();
-            storeInfo();
-            loading = false;
-        });
-    } else if (VideoAPI::impl() == VideoAPI::JS) {
-        auto ivChannel = new YTJSChannel(channelId);
-        connect(ivChannel, &YTJSChannel::error, this, &YTChannel::requestError);
-        connect(ivChannel, &YTJSChannel::loaded, this, [this, ivChannel] {
-            displayName = ivChannel->getDisplayName();
-            description = ivChannel->getDescription();
-            thumbnailUrl = ivChannel->getThumbnailUrl();
-            ivChannel->deleteLater();
-            emit infoLoaded();
-            storeInfo();
-            loading = false;
-        });
-    }
+    QObject *reply = HttpUtils::yt().get(url);
+    connect(reply, SIGNAL(data(QByteArray)), SLOT(parseResponse(QByteArray)));
+    connect(reply, SIGNAL(error(QString)), SLOT(requestError(QString)));
+#endif
+
+#ifdef YT_IV
+    auto ivChannel = new IVChannel(channelId);
+    connect(ivChannel, &IVChannel::error, this, &YTChannel::requestError);
+    connect(ivChannel, &IVChannel::loaded, this, [this, ivChannel] {
+        displayName = ivChannel->getDisplayName();
+        description = ivChannel->getDescription();
+        thumbnailUrl = ivChannel->getThumbnailUrl();
+        ivChannel->deleteLater();
+        emit infoLoaded();
+        storeInfo();
+        loading = false;
+    });
+#endif
+
+    auto ivChannel = new YTJSChannel(channelId);
+    connect(ivChannel, &YTJSChannel::error, this, &YTChannel::requestError);
+    connect(ivChannel, &YTJSChannel::loaded, this, [this, ivChannel] {
+        displayName = ivChannel->getDisplayName();
+        description = ivChannel->getDescription();
+        thumbnailUrl = ivChannel->getThumbnailUrl();
+        ivChannel->deleteLater();
+        emit infoLoaded();
+        storeInfo();
+        loading = false;
+    });
 }
 
 void YTChannel::parseResponse(const QByteArray &bytes) {

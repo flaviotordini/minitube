@@ -11,7 +11,6 @@ class SubscriptionImportView : public View {
 public:
     static QAction *buildAction(QWidget *parent);
     explicit SubscriptionImportView(QWidget *parent = nullptr);
-
 };
 
 #endif // SUBSCRIPTIONIMPORTVIEW_H

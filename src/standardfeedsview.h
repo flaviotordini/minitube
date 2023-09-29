@@ -25,7 +25,6 @@ $END_LICENSE */
 
 #include "videosourcewidget.h"
 #include "view.h"
-#include "ytcategories.h"
 
 class VideoSource;
 class YTStandardFeed;
@@ -48,7 +47,6 @@ protected:
     void paintEvent(QPaintEvent *event);
 
 private slots:
-    void layoutCategories(const QVector<YTCategory> &categories);
     void selectWorldwideRegion();
     void selectLocalRegion();
     void removeVideoSourceWidget(VideoSourceWidget *videoSourceWidget);
@@ -58,8 +56,6 @@ private:
     void addVideoSourceWidget(VideoSource *videoSource);
     void loadNextPreview(VideoSourceWidget *previous = nullptr);
 
-    YTStandardFeed *
-    buildStandardFeed(const QString &feedId, const QString &label, QString time = QString());
     QGridLayout *layout;
     QVector<VideoSourceWidget *> sourceWidgets;
 };

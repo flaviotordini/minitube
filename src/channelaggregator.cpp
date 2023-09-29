@@ -23,15 +23,17 @@ $END_LICENSE */
 #include "searchparams.h"
 #include "video.h"
 #include "ytchannel.h"
-#include "ytsearch.h"
 #ifdef APP_MAC
 #include "macutils.h"
 #endif
 #include "http.h"
 #include "httputils.h"
 
+#ifdef YT_IV
 #include "ivchannelsource.h"
+#endif
 #include "videoapi.h"
+
 #include "ytjschannelsource.h"
 
 ChannelAggregator::ChannelAggregator(QObject *parent)
@@ -151,22 +153,20 @@ void ChannelAggregator::reallyProcessChannel(YTChannel *channel) {
     params->setTransient(true);
     params->setPublishedAfter(channel->getChecked());
 
-    if (VideoAPI::impl() == VideoAPI::YT3) {
-        YTSearch *videoSource = new YTSearch(params);
-        connect(videoSource, SIGNAL(gotVideos(QVector<Video *>)),
-                SLOT(videosLoaded(QVector<Video *>)));
-        videoSource->loadVideos(50, 1);
-    } else if (VideoAPI::impl() == VideoAPI::IV) {
-        auto *videoSource = new IVChannelSource(params);
-        connect(videoSource, SIGNAL(gotVideos(QVector<Video *>)),
-                SLOT(videosLoaded(QVector<Video *>)));
-        videoSource->loadVideos(50, 1);
-    } else if (VideoAPI::impl() == VideoAPI::JS) {
-        auto *videoSource = new YTJSChannelSource(params);
-        connect(videoSource, SIGNAL(gotVideos(QVector<Video *>)),
-                SLOT(videosLoaded(QVector<Video *>)));
-        videoSource->loadVideos(50, 1);
-    }
+#ifdef YT_YT3
+    YTSearch *videoSource = new YTSearch(params);
+    connect(videoSource, SIGNAL(gotVideos(QVector<Video *>)), SLOT(videosLoaded(QVector<Video *>)));
+    videoSource->loadVideos(50, 1);
+#endif
+#ifdef YT_IV
+    auto *videoSource = new IVChannelSource(params);
+    connect(videoSource, SIGNAL(gotVideos(QVector<Video *>)), SLOT(videosLoaded(QVector<Video *>)));
+    videoSource->loadVideos(50, 1);
+#endif
+
+    auto *videoSource = new YTJSChannelSource(params);
+    connect(videoSource, SIGNAL(gotVideos(QVector<Video *>)), SLOT(videosLoaded(QVector<Video *>)));
+    videoSource->loadVideos(50, 1);
 
     channel->updateChecked();
 }

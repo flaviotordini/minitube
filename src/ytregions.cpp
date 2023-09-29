@@ -123,6 +123,7 @@ const YTRegion &YTRegions::regionById(const QString &id) {
 }
 
 QIcon YTRegions::iconForRegionId(const QString &regionId) {
-    if (regionId.isEmpty()) return IconUtils::icon("worldwide");
+    if (regionId.isEmpty())
+        return IconUtils::icon("worldwide", QApplication::palette().color(QPalette::Window));
     return QIcon(":flags/" + regionId.toLower() + ".png");
 }

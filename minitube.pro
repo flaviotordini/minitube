@@ -1,7 +1,7 @@
 CONFIG += c++17 exceptions_off rtti_off object_parallel_to_source
 
 TEMPLATE = app
-VERSION = 3.9.3
+VERSION = 4.0
 DEFINES += APP_VERSION="$$VERSION"
 
 APP_NAME = Minitube
@@ -35,10 +35,12 @@ TARGET = $${APP_UNIX_NAME}
 
 QT += widgets network sql qml
 
+include(lib/qt-reusable-widgets/qt-reusable-widgets.pri)
 include(lib/http/http.pri)
 include(lib/idle/idle.pri)
 include(lib/js/js.pri)
 include(lib/promises/promises.pri)
+include(lib/yt/yt.pri)
 
 DEFINES += MEDIA_MPV
 include(lib/media/media.pri)
@@ -46,25 +48,16 @@ include(lib/media/media.pri)
 DEFINES += QAPPLICATION_CLASS=QApplication
 include(lib/singleapplication/singleapplication.pri)
 
-include(src/yt/yt.pri)
-
 INCLUDEPATH += $$PWD/src
 
-HEADERS += src/video.h \
-    src/messagebar.h \
-    src/spacer.h \
+HEADERS += \
     src/constants.h \
     src/playlistitemdelegate.h \
     src/subscriptionimportview.h \
     src/updateutils.h \
-    src/videoapi.h \
     src/videomimedata.h \
-    src/searchparams.h \
-    src/minisplitter.h \
     src/loadingwidget.h \
     src/autocomplete.h \
-    src/videodefinition.h \
-    src/fontutils.h \
     src/globalshortcuts.h \
     src/globalshortcutbackend.h \
     src/downloadmanager.h \
@@ -76,7 +69,6 @@ HEADERS += src/video.h \
     src/suggester.h \
     src/channelsuggest.h \
     src/temporary.h \
-    src/segmentedcontrol.h \
     src/playlistview.h \
     src/refinesearchwidget.h \
     src/refinesearchbutton.h \
@@ -86,21 +78,14 @@ HEADERS += src/video.h \
     src/mainwindow.h \
     src/mediaview.h \
     src/searchview.h \
-    src/view.h \
     src/playlistmodel.h \
-    src/videosource.h \
     src/waitingspinnerwidget.h \
-    src/ytsearch.h \
-    src/ytstandardfeed.h \
     src/standardfeedsview.h \
     src/ytregions.h \
-    src/ytcategories.h \
     src/ytsuggester.h \
     src/videosourcewidget.h \
     src/regionsview.h \
-    src/ytsinglevideosource.h \
     src/sidebarheader.h \
-    src/iconutils.h \
     src/diskcache.h \
     src/gridwidget.h \
     src/painterutils.h \
@@ -111,37 +96,26 @@ HEADERS += src/video.h \
     src/channelview.h \
     src/channelitemdelegate.h \
     src/jsfunctions.h \
-    src/seekslider.h \
     src/snapshotsettings.h \
     src/snapshotpreview.h \
     src/datautils.h \
-    src/yt3listparser.h \
-    src/ytchannel.h \
-    src/yt3.h \
-    src/paginatedvideosource.h \
     src/searchwidget.h \
     src/channellistview.h \
+    src/ytchannel.h \
     src/httputils.h \
     src/appwidget.h \
-    src/clickablelabel.h \
     src/toolbarmenu.h \
     src/sharetoolbar.h \
     src/videoarea.h \
-    src/searchlineedit.h
+    src/searchlineedit.h \
+    src/view.h
 SOURCES += src/main.cpp \
-    src/messagebar.cpp \
-    src/spacer.cpp \
     src/subscriptionimportview.cpp \
     src/updateutils.cpp \
-    src/video.cpp \
     src/videomimedata.cpp \
-    src/searchparams.cpp \
-    src/minisplitter.cpp \
     src/loadingwidget.cpp \
     src/autocomplete.cpp \
-    src/videodefinition.cpp \
     src/constants.cpp \
-    src/fontutils.cpp \
     src/globalshortcuts.cpp \
     src/globalshortcutbackend.cpp \
     src/downloadmanager.cpp \
@@ -152,7 +126,6 @@ SOURCES += src/main.cpp \
     src/downloadsettings.cpp \
     src/channelsuggest.cpp \
     src/temporary.cpp \
-    src/segmentedcontrol.cpp \
     src/playlistview.cpp \
     src/refinesearchwidget.cpp \
     src/refinesearchbutton.cpp \
@@ -164,19 +137,13 @@ SOURCES += src/main.cpp \
     src/searchview.cpp \
     src/playlistitemdelegate.cpp \
     src/playlistmodel.cpp \
-    src/videosource.cpp \
     src/waitingspinnerwidget.cpp \
-    src/ytsearch.cpp \
-    src/ytstandardfeed.cpp \
     src/standardfeedsview.cpp \
     src/ytregions.cpp \
-    src/ytcategories.cpp \
     src/ytsuggester.cpp \
     src/videosourcewidget.cpp \
     src/regionsview.cpp \
-    src/ytsinglevideosource.cpp \
     src/sidebarheader.cpp \
-    src/iconutils.cpp \
     src/diskcache.cpp \
     src/gridwidget.cpp \
     src/painterutils.cpp \
@@ -187,18 +154,13 @@ SOURCES += src/main.cpp \
     src/channelview.cpp \
     src/channelitemdelegate.cpp \
     src/jsfunctions.cpp \
-    src/seekslider.cpp \
     src/snapshotsettings.cpp \
     src/snapshotpreview.cpp \
     src/datautils.cpp \
-    src/yt3listparser.cpp \
-    src/ytchannel.cpp \
-    src/yt3.cpp \
-    src/paginatedvideosource.cpp \
     src/channellistview.cpp \
+    src/ytchannel.cpp \
     src/httputils.cpp \
     src/appwidget.cpp \
-    src/clickablelabel.cpp \
     src/toolbarmenu.cpp \
     src/sharetoolbar.cpp \
     src/videoarea.cpp \

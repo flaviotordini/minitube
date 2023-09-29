@@ -22,11 +22,14 @@ $END_LICENSE */
 #include "mainwindow.h"
 #include "painterutils.h"
 #include "videosourcewidget.h"
-#include "ytcategories.h"
 #include "ytregions.h"
+#ifdef YT_YT3
+#include "ytcategories.h"
 #include "ytstandardfeed.h"
-
+#endif
+#ifdef YT_IV
 #include "ivvideolist.h"
+#endif
 #include "videoapi.h"
 
 #include "ytjstrending.h"
@@ -49,35 +52,56 @@ void StandardFeedsView::load() {
     YTRegion region = YTRegions::currentRegion();
 
     // TODO consolidate in YT
-    if (VideoAPI::impl() == VideoAPI::YT3) {
-        YTCategories *youTubeCategories = new YTCategories(this);
-        connect(youTubeCategories, SIGNAL(categoriesLoaded(const QVector<YTCategory> &)),
-                SLOT(layoutCategories(const QVector<YTCategory> &)));
-        youTubeCategories->loadCategories();
-        addVideoSourceWidget(buildStandardFeed("most_popular", tr("Most Popular")));
-    } else if (VideoAPI::impl() == VideoAPI::JS) {
-        const QMap<QString, QString> pages = {{"default", tr("Trending")},
-                                              {"music", tr("Music")},
-                                              {"movies", tr("Movies")},
-                                              {"gaming", tr("Gaming")}};
-        auto i = pages.constBegin();
-        while (i != pages.constEnd()) {
-            addVideoSourceWidget(
-                    new YTJSTrending(i.value(), {{"page", i.key()}, {"geoLocation", region.id}}));
-            ++i;
-        }
+#ifdef YT_YT3
+    auto buildStandardFeed = [this](const QString &feedId, const QString &label, QString time) {
+        auto feed = new YTStandardFeed(this);
+        feed->setFeedId(feedId);
+        feed->setLabel(label);
+        if (!time.isEmpty()) feed->setTime(time);
+        feed->setRegionId(YTRegions::currentRegionId());
+        return feed;
+    };
 
-        setUpdatesEnabled(true);
-    } else {
-        QString regionParam = "region=" + region.id;
-        addVideoSourceWidget(new IVVideoList("popular?" + regionParam, tr("Most Popular")));
-        addVideoSourceWidget(new IVVideoList("trending?" + regionParam, tr("Trending")));
-        addVideoSourceWidget(new IVVideoList("trending?type=music&" + regionParam, tr("Music")));
-        addVideoSourceWidget(new IVVideoList("trending?type=news&" + regionParam, tr("News")));
-        addVideoSourceWidget(new IVVideoList("trending?type=movies&" + regionParam, tr("Movies")));
-        addVideoSourceWidget(new IVVideoList("trending?type=gaming&" + regionParam, tr("Gaming")));
-        setUpdatesEnabled(true);
+    YTCategories *youTubeCategories = new YTCategories(this);
+    connect(youTubeCategories, &YTCategories::categoriesLoaded, this, [](auto categories) {
+        QString regionId = YTRegions::currentRegionId();
+        for (const YTCategory &category : categories) {
+            // assign a parent to this VideoSource  so it won't be deleted by MediaView
+            YTStandardFeed *feed = new YTStandardFeed(this);
+            feed->setCategory(category.term);
+            feed->setLabel(category.label);
+            feed->setRegionId(regionId);
+            feed->setFeedId("most_popular");
+            addVideoSourceWidget(feed);
+        }
+        if (categories.size() > 1) setUpdatesEnabled(true);
+    });
+    youTubeCategories->loadCategories();
+    addVideoSourceWidget(buildStandardFeed("most_popular", tr("Most Popular")));
+#endif
+
+    const QMap<QString, QString> pages = {{"default", tr("Trending")},
+                                          {"music", tr("Music")},
+                                          {"movies", tr("Movies")},
+                                          {"gaming", tr("Gaming")}};
+    auto i = pages.constBegin();
+    while (i != pages.constEnd()) {
+        addVideoSourceWidget(
+                new YTJSTrending(i.value(), {{"page", i.key()}, {"geoLocation", region.id}}));
+        ++i;
     }
+
+#ifdef YT_IV
+    QString regionParam = "region=" + region.id;
+    addVideoSourceWidget(new IVVideoList("popular?" + regionParam, tr("Most Popular")));
+    addVideoSourceWidget(new IVVideoList("trending?" + regionParam, tr("Trending")));
+    addVideoSourceWidget(new IVVideoList("trending?type=music&" + regionParam, tr("Music")));
+    addVideoSourceWidget(new IVVideoList("trending?type=news&" + regionParam, tr("News")));
+    addVideoSourceWidget(new IVVideoList("trending?type=movies&" + regionParam, tr("Movies")));
+    addVideoSourceWidget(new IVVideoList("trending?type=gaming&" + regionParam, tr("Gaming")));
+#endif
+
+    setUpdatesEnabled(true);
 
     QAction *regionAction = MainWindow::instance()->getRegionAction();
     regionAction->setText(region.name);
@@ -95,20 +119,6 @@ void StandardFeedsView::loadNextPreview(VideoSourceWidget *previous) {
     }
     auto w = sourceWidgets.at(index);
     w->loadPreview()->finally([this, w] { loadNextPreview(w); });
-}
-
-void StandardFeedsView::layoutCategories(const QVector<YTCategory> &categories) {
-    QString regionId = YTRegions::currentRegionId();
-    for (const YTCategory &category : categories) {
-        // assign a parent to this VideoSource  so it won't be deleted by MediaView
-        YTStandardFeed *feed = new YTStandardFeed(this);
-        feed->setCategory(category.term);
-        feed->setLabel(category.label);
-        feed->setRegionId(regionId);
-        feed->setFeedId("most_popular");
-        addVideoSourceWidget(feed);
-    }
-    if (categories.size() > 1) setUpdatesEnabled(true);
 }
 
 void StandardFeedsView::addVideoSourceWidget(VideoSource *videoSource) {
@@ -159,16 +169,6 @@ void StandardFeedsView::resetLayout() {
     layout = new QGridLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
-}
-
-YTStandardFeed *
-StandardFeedsView::buildStandardFeed(const QString &feedId, const QString &label, QString time) {
-    YTStandardFeed *feed = new YTStandardFeed(this);
-    feed->setFeedId(feedId);
-    feed->setLabel(label);
-    if (!time.isEmpty()) feed->setTime(time);
-    feed->setRegionId(YTRegions::currentRegionId());
-    return feed;
 }
 
 void StandardFeedsView::appear() {

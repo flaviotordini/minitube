@@ -1,35 +1,14 @@
-/* $BEGIN_LICENSE
-
-This file is part of Minitube.
-Copyright 2009, Flavio Tordini <flavio.tordini@gmail.com>
-
-Minitube is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-Minitube is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with Minitube.  If not, see <http://www.gnu.org/licenses/>.
-
-$END_LICENSE */
-
 #ifndef YTCHANNEL_H
 #define YTCHANNEL_H
 
-#include <QtWidgets>
 #include <QtNetwork>
+#include <QtWidgets>
 
 class YTChannel : public QObject {
-
     Q_OBJECT
 
 public:
-    static YTChannel* forId(const QString &channelId);
+    static YTChannel *forId(const QString &channelId);
     static bool subscribe(const QString &channelId);
     static void unsubscribe(const QString &channelId);
     static bool isSubscribed(const QString &channelId);
@@ -55,13 +34,13 @@ public:
     QString getCountryCode() const { return countryCode; }
 
     void loadThumbnail();
-    const QString & getThumbnailDir();
+    const QString &getThumbnailDir();
     QString getThumbnailLocation();
-    const QPixmap & getThumbnail() { return thumbnail; }
+    const QPixmap &getThumbnail() { return thumbnail; }
 
     QString latestVideoId();
 
-    static const QHash<QString, YTChannel*> &getCachedChannels() { return cache; }
+    static const QHash<QString, YTChannel *> &getCachedChannels() { return cache; }
 
 public slots:
     void updateWatched();
@@ -83,7 +62,7 @@ private:
     void maybeLoadfromAPI();
     void storeInfo();
 
-    static QHash<QString, YTChannel*> cache;
+    static QHash<QString, YTChannel *> cache;
 
     int id;
     QString channelId;

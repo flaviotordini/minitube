@@ -28,13 +28,14 @@ $END_LICENSE */
 #include "mainwindow.h"
 #include "searchparams.h"
 #include "ytchannel.h"
-#include "ytsearch.h"
 #ifdef APP_EXTRA
 #include "extra.h"
 #endif
 #include "channellistview.h"
 
+#ifdef YT_IV
 #include "ivchannelsource.h"
+#endif
 #include "videoapi.h"
 #include "ytjschannelsource.h"
 
@@ -175,15 +176,16 @@ void ChannelView::itemActivated(const QModelIndex &index) {
         params->setSortBy(SearchParams::SortByNewest);
         params->setTransient(true);
         VideoSource *vs = nullptr;
-        if (VideoAPI::impl() == VideoAPI::YT3) {
-            YTSearch *videoSource = new YTSearch(params);
-            videoSource->setAsyncDetails(true);
-            vs = videoSource;
-        } else if (VideoAPI::impl() == VideoAPI::IV) {
-            vs = new IVChannelSource(params);
-        } else if (VideoAPI::impl() == VideoAPI::JS) {
-            vs = new YTJSChannelSource(params);
-        }
+#ifdef YT_YT3
+        YTSearch *videoSource = new YTSearch(params);
+        videoSource->setAsyncDetails(true);
+        vs = videoSource;
+#endif
+#ifdef YT_IV
+        vs = new IVChannelSource(params);
+#endif
+        vs = new YTJSChannelSource(params);
+
         emit activated(vs);
         channel->updateWatched();
     } else if (itemType == ChannelModel::ItemAggregate) {

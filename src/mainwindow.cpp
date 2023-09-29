@@ -36,7 +36,6 @@ $END_LICENSE */
 #include "spacer.h"
 #include "videodefinition.h"
 #include "videosource.h"
-#include "ytsearch.h"
 #ifdef APP_LINUX
 #include "gnomeglobalshortcutbackend.h"
 #endif
@@ -80,10 +79,14 @@ $END_LICENSE */
 #include "sidebarwidget.h"
 #include "toolbarmenu.h"
 #include "videoarea.h"
-#include "yt3.h"
 #include "ytregions.h"
 
+#ifdef YT_IV
+#include "yt3.h"
+#endif
+#ifdef YT_YT3
 #include "invidious.h"
+#endif
 #include "js.h"
 #include "videoapi.h"
 
@@ -171,17 +174,16 @@ MainWindow::MainWindow()
     showHome();
 #endif
 
-    if (VideoAPI::impl() == VideoAPI::IV) {
-        Invidious::instance().initServers();
-    } else if (VideoAPI::impl() == VideoAPI::YT3) {
-        YT3::instance().initApiKeys();
-    } else if (VideoAPI::impl() == VideoAPI::JS) {
-        JS::instance().getNamFactory().setRequestHeaders(
+#ifdef YT_IV
+    Invidious::instance().initServers();
+#endif
+#ifdef YT_YT3
+    YT3::instance().initApiKeys();
+#endif
+    JS::instance().getNamFactory().setRequestHeaders(
             {{"User-Agent", HttpUtils::stealthUserAgent()}});
-        JS::instance().initialize(QUrl(QLatin1String(Constants::WEBSITE) + "-ws/bundle3.js"));
-        // JS::instance().initialize(QUrl("http://localhost:8000/bundle-test.js"));
-        // Invidious::instance().initServers();
-    }
+    JS::instance().initialize(QUrl(QLatin1String(Constants::WEBSITE) + "-ws/bundle3.js"));
+    // JS::instance().initialize(QUrl("http://localhost:8000/bundle-test.js"));
 
     QTimer::singleShot(100, this, &MainWindow::lazyInit);
 }
@@ -518,7 +520,7 @@ void MainWindow::createActions() {
     addAction(volumeMuteAct);
 
     QToolButton *definitionButton = new QToolButton(this);
-    definitionButton->setText(YT3::instance().maxVideoDefinition().getName());
+    definitionButton->setText(VideoDefinition::maxVideoDefinition().getName());
     IconUtils::setIcon(definitionButton, "video-display");
     definitionButton->setIconSize(QSize(16, 16));
     definitionButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
@@ -529,15 +531,18 @@ void MainWindow::createActions() {
         QAction *a = new QAction(defName);
         a->setCheckable(true);
         a->setActionGroup(group);
-        a->setChecked(defName == YT3::instance().maxVideoDefinition().getName());
+        a->setChecked(defName == VideoDefinition::maxVideoDefinition().getName());
         connect(a, &QAction::triggered, this, [this, defName, definitionButton] {
             setDefinitionMode(defName);
             definitionButton->setText(defName);
         });
+        // TODO maxVideoDefinitionChanged
+        /*
         connect(&YT3::instance(), &YT3::maxVideoDefinitionChanged, this,
                 [defName, definitionButton](const QString &name) {
                     if (defName == name) definitionButton->setChecked(true);
                 });
+        */
         definitionMenu->addAction(a);
     }
     definitionButton->setMenu(definitionMenu);
@@ -929,7 +934,7 @@ void MainWindow::createToolBar() {
     mainToolBar->addWidget(searchWrapper);
 #else
     mainToolBar->addWidget(toolbarSearch);
-    mainToolBar->addWidget(new Spacer(this, toolbarSearch->height() / 2));
+    mainToolBar->addWidget(new Spacer());
 
     QAction *toolbarMenuAction = getAction("toolbarMenu");
     mainToolBar->addAction(toolbarMenuAction);
@@ -1039,7 +1044,7 @@ void MainWindow::readSettings() {
         setGeometry(
                 QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, QSize(w, h), desktopSize));
     }
-    setDefinitionMode(settings.value("definition", YT3::instance().maxVideoDefinition().getName())
+    setDefinitionMode(settings.value("definition", VideoDefinition::maxVideoDefinition().getName())
                               .toString());
     getAction("manualplay")->setChecked(settings.value("manualplay", false).toBool());
     getAction("safeSearch")->setChecked(settings.value("safeSearch", false).toBool());
@@ -1489,7 +1494,7 @@ void MainWindow::missingKeyWarning() {
         if (ok && !text.isEmpty()) {
             QSettings settings;
             settings.setValue("googleApiKey", text);
-            YT3::instance().initApiKeys();
+            // YT3::instance().initApiKeys();
         }
     } else if (msgBox.clickedButton() == devButton) {
         QDesktopServices::openUrl(QUrl(Constants::WEBSITE));
@@ -1726,7 +1731,7 @@ void MainWindow::setDefinitionMode(const QString &definitionName) {
             tr("Maximum video definition set to %1").arg(definitionAct->text()) + " (" +
             definitionAct->shortcut().toString(QKeySequence::NativeText) + ")");
     showMessage(definitionAct->statusTip());
-    YT3::instance().setMaxVideoDefinition(definitionName);
+    VideoDefinition::setMaxVideoDefinition(definitionName);
     if (views->currentWidget() == mediaView) {
         mediaView->reloadCurrentVideo();
     }
@@ -1734,7 +1739,7 @@ void MainWindow::setDefinitionMode(const QString &definitionName) {
 
 void MainWindow::toggleDefinitionMode() {
     const QVector<VideoDefinition> &definitions = VideoDefinition::getDefinitions();
-    const VideoDefinition &currentDefinition = YT3::instance().maxVideoDefinition();
+    const VideoDefinition &currentDefinition = VideoDefinition::maxVideoDefinition();
 
     int index = definitions.indexOf(currentDefinition);
     if (index != definitions.size() - 1) {
@@ -1816,7 +1821,7 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *e) {
         QList<QUrl> urls = e->mimeData()->urls();
         if (urls.isEmpty()) return;
         const QUrl &url = urls.at(0);
-        QString videoId = YTSearch::videoIdFromUrl(url.toString());
+        QString videoId = VideoAPI::videoIdFromUrl(url.toString());
         if (!videoId.isEmpty()) e->acceptProposedAction();
     }
 }
@@ -1827,7 +1832,7 @@ void MainWindow::dropEvent(QDropEvent *e) {
     QList<QUrl> urls = e->mimeData()->urls();
     if (urls.isEmpty()) return;
     const QUrl &url = urls.at(0);
-    QString videoId = YTSearch::videoIdFromUrl(url.toString());
+    QString videoId = VideoAPI::videoIdFromUrl(url.toString());
     if (!videoId.isEmpty()) {
         setWindowTitle(url.toString());
         SearchParams *searchParams = new SearchParams();

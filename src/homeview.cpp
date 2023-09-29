@@ -27,7 +27,6 @@ $END_LICENSE */
 #include "searchview.h"
 #include "segmentedcontrol.h"
 #include "standardfeedsview.h"
-#include "ytstandardfeed.h"
 #ifdef APP_MAC
 #include "macutils.h"
 #endif

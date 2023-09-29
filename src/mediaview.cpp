@@ -44,7 +44,6 @@ $END_LICENSE */
 #include "searchparams.h"
 #include "videosource.h"
 #include "ytchannel.h"
-#include "ytsearch.h"
 #ifdef APP_SNAPSHOT
 #include "snapshotsettings.h"
 #endif
@@ -223,13 +222,13 @@ void MediaView::search(SearchParams *searchParams) {
     if (!searchParams->keywords().isEmpty()) {
         if (searchParams->keywords().startsWith("http://") ||
             searchParams->keywords().startsWith("https://")) {
-            QString videoId = YTSearch::videoIdFromUrl(searchParams->keywords());
+            QString videoId = VideoAPI::videoIdFromUrl(searchParams->keywords());
             if (!videoId.isEmpty()) {
                 auto source = new SingleVideoSource(this);
                 source->setVideoId(videoId);
                 setVideoSource(source);
 
-                QTime tstamp = YTSearch::videoTimestampFromUrl(searchParams->keywords());
+                QTime tstamp = VideoAPI::videoTimestampFromUrl(searchParams->keywords());
                 pauseTime = QTime(0, 0).msecsTo(tstamp);
                 return;
             }
