@@ -40,8 +40,7 @@ void RefineSearchButton::paintEvent(QPaintEvent *) {
     painter.setBrush(backgroundColor);
     painter.drawEllipse(QPoint(width(), height()), width() - 2, height() - 2);
 
-    QPixmap pixmap =
-            IconUtils::iconPixmap("refine-search", 24, backgroundColor, devicePixelRatioF());
+    QPixmap pixmap = IconUtils::icon("edit-find", backgroundColor).pixmap(24);
     int pw = pixmap.width() / pixmap.devicePixelRatio();
     int ph = pixmap.height() / pixmap.devicePixelRatio();
     painter.drawPixmap(width() - pw - 6, height() - ph - 6, pw, ph, pixmap);
