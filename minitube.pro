@@ -95,7 +95,6 @@ HEADERS += \
     src/aggregatevideosource.h \
     src/channelview.h \
     src/channelitemdelegate.h \
-    src/jsfunctions.h \
     src/snapshotsettings.h \
     src/snapshotpreview.h \
     src/datautils.h \
@@ -152,7 +151,6 @@ SOURCES += src/main.cpp \
     src/aggregatevideosource.cpp \
     src/channelview.cpp \
     src/channelitemdelegate.cpp \
-    src/jsfunctions.cpp \
     src/snapshotsettings.cpp \
     src/snapshotpreview.cpp \
     src/datautils.cpp \
