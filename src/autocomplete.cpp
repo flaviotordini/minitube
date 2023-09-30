@@ -65,21 +65,22 @@ AutoComplete::AutoComplete(SearchWidget *buddy, QLineEdit *lineEdit)
     popup->setWindowOpacity(.9);
     popup->setProperty("suggest", true);
 
-    connect(popup, SIGNAL(itemClicked(QListWidgetItem *)), SLOT(acceptSuggestion()));
-    connect(popup, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
-            SLOT(currentItemChanged(QListWidgetItem *)));
-    connect(popup, SIGNAL(itemEntered(QListWidgetItem *)), SLOT(itemEntered(QListWidgetItem *)));
+    connect(popup, &QListWidget::itemClicked, this, &AutoComplete::acceptSuggestion);
+    connect(popup, &QListWidget::currentItemChanged, this, &AutoComplete::currentItemChanged);
+    connect(popup, &QListWidget::itemEntered, this, &AutoComplete::itemEntered);
 
     timer = new QTimer(this);
     timer->setSingleShot(true);
     timer->setInterval(500);
-    connect(timer, SIGNAL(timeout()), SLOT(suggest()));
+    connect(timer, &QTimer::timeout, this, &AutoComplete::suggest);
     connect(buddy->toWidget(), SIGNAL(textEdited(QString)), timer, SLOT(start()));
 }
 
 bool AutoComplete::eventFilter(QObject *obj, QEvent *ev) {
+    auto type = ev->type();
+
     if (obj != popup) {
-        switch (ev->type()) {
+        switch (type) {
         case QEvent::Move:
         case QEvent::Resize:
             adjustPosition();
@@ -92,19 +93,25 @@ bool AutoComplete::eventFilter(QObject *obj, QEvent *ev) {
 
     // qDebug() << ev;
 
-    if (ev->type() == QEvent::Leave) {
+    if (type == QEvent::Leave) {
         popup->setCurrentItem(0);
         popup->clearSelection();
         if (!originalText.isEmpty()) buddy->setText(originalText);
         return true;
     }
 
-    if (ev->type() == QEvent::FocusOut || ev->type() == QEvent::MouseButtonPress) {
+    else if (type == QEvent::FocusOut || type == QEvent::MouseButtonPress) {
         hideSuggestions();
         return true;
     }
 
-    if (ev->type() == QEvent::KeyPress) {
+    else if (type == QEvent::ShortcutOverride) {
+        qDebug() << "Overriding shortcut";
+        ev->accept();
+        return true;
+    }
+
+    else if (type == QEvent::KeyPress) {
         bool consumed = false;
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(ev);
         // qWarning() << keyEvent->text();
@@ -145,8 +152,7 @@ bool AutoComplete::eventFilter(QObject *obj, QEvent *ev) {
 
         default:
             // qDebug() << keyEvent->text();
-            lineEdit->event(ev);
-            consumed = true;
+            consumed = lineEdit->event(ev);
             break;
         }
 

@@ -27,12 +27,17 @@ public:
     void setText(const QString &text) { QLineEdit::setText(text); }
     QString text() { return QLineEdit::text(); }
 
+protected:
+    void focusInEvent(QFocusEvent *);
+    void changeEvent(QEvent *event);
+
 public slots:
     void returnPressed();
 
 signals:
     void search(const QString &text);
     void suggestionAccepted(Suggestion *suggestion);
+    void fontChanged();
 
 private:
     AutoComplete *autoComplete;

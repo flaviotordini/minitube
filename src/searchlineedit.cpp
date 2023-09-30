@@ -3,7 +3,6 @@
 #include "iconutils.h"
 
 SearchLineEdit::SearchLineEdit(QWidget *parent) : QLineEdit(parent) {
-    setClearButtonEnabled(true);
     setPlaceholderText(tr("Search"));
 
     QAction *searchAction = new QAction();
@@ -61,4 +60,13 @@ QLineEdit *SearchLineEdit::getLineEdit() {
 
 QWidget *SearchLineEdit::toWidget() {
     return this;
+}
+
+void SearchLineEdit::focusInEvent(QFocusEvent *) {
+    selectAll();
+}
+
+void SearchLineEdit::changeEvent(QEvent *event) {
+    if (event->type() == QEvent::FontChange) emit fontChanged();
+    QLineEdit::changeEvent(event);
 }

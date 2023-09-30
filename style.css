@@ -104,3 +104,14 @@ SearchView *[recentItem="true"]:focus {
     outline: 1px solid palette(highlight);
 }
 
+QListWidget[suggest="true"]::item {
+    border: 0;
+    padding: .25em;
+    border-radius: 3px;
+}
+
+QListWidget[suggest="true"]::item:hover, QListWidget[suggest="true"]::item:focus {
+    background: palette(highlight);
+    color: palette(highlighted-text);
+}
+
