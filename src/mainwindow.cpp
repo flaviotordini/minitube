@@ -977,6 +977,7 @@ void MainWindow::createStatusBar() {
     */
 
     statusBar()->addPermanentWidget(statusToolBar);
+    statusBar()->setSizeGripEnabled(false);
     statusBar()->hide();
 }
 
