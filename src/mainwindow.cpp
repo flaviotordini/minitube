@@ -74,7 +74,6 @@ $END_LICENSE */
 #include "channelaggregator.h"
 #include "database.h"
 #include "httputils.h"
-#include "jsfunctions.h"
 #include "seekslider.h"
 #include "sidebarwidget.h"
 #include "toolbarmenu.h"
