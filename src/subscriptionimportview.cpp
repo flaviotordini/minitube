@@ -5,6 +5,7 @@
 
 #include "homeview.h"
 #include "mainwindow.h"
+#include "views.h"
 
 QAction *SubscriptionImportView::buildAction(QWidget *parent) {
     auto a = new QAction("Import subscriptions...", parent);
@@ -16,7 +17,7 @@ QAction *SubscriptionImportView::buildAction(QWidget *parent) {
     return a;
 }
 
-SubscriptionImportView::SubscriptionImportView(QWidget *parent) : View(parent) {
+SubscriptionImportView::SubscriptionImportView(QWidget *parent) : QWidget(parent) {
     auto layout = new QVBoxLayout(this);
     layout->setSpacing(fontMetrics().xHeight() * 4);
     layout->setAlignment(Qt::AlignCenter);
@@ -26,7 +27,8 @@ SubscriptionImportView::SubscriptionImportView(QWidget *parent) : View(parent) {
     closeButton->setIconSize({32, 32});
     closeButton->setShortcut(Qt::Key_Escape);
     closeButton->setStyleSheet("border:0");
-    connect(closeButton, &QToolButton::clicked, this, [] { MainWindow::instance()->goBack(); });
+    connect(closeButton, &QToolButton::clicked, this,
+            [] { MainWindow::instance()->getViews()->goBack(); });
     layout->addWidget(closeButton, 0, Qt::AlignRight);
 
     auto icon = new QLabel();
@@ -48,7 +50,6 @@ SubscriptionImportView::SubscriptionImportView(QWidget *parent) : View(parent) {
 
     auto button = new QPushButton("Open subscriptions.csv");
     button->setDefault(true);
-    connect(this, &View::didAppear, button, [button] { button->setFocus(); });
     button->setFocus();
     button->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     connect(button, &QPushButton::clicked, this, [this] {
@@ -95,3 +96,5 @@ SubscriptionImportView::SubscriptionImportView(QWidget *parent) : View(parent) {
     });
     layout->addWidget(button, 0, Qt::AlignHCenter);
 }
+
+void SubscriptionImportView::showEvent(QShowEvent *event) {}

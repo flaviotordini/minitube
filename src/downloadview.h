@@ -23,25 +23,24 @@ $END_LICENSE */
 
 #include <QtWidgets>
 
-#include "view.h"
-
 class SegmentedControl;
 class DownloadModel;
 class DownloadListView;
 class DownloadSettings;
 
-class DownloadView : public View {
+class DownloadView : public QWidget {
     Q_OBJECT
 
 public:
     DownloadView(QWidget *parent);
-    void appear();
-    void disappear();
-    QString getTitle() { return tr("Downloads"); }
 
 public slots:
     void itemEntered(const QModelIndex &index);
     void buttonPushed(QModelIndex index);
+
+protected:
+    void showEvent(QShowEvent *event);
+    void hideEvent(QHideEvent *event);
 
 private:
     SegmentedControl *bar;

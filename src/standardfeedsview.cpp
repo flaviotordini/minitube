@@ -34,7 +34,7 @@ $END_LICENSE */
 
 #include "ytjstrending.h"
 
-StandardFeedsView::StandardFeedsView(QWidget *parent) : View(parent), layout(0) {
+StandardFeedsView::StandardFeedsView(QWidget *parent) : QWidget(parent), layout(0) {
     setBackgroundRole(QPalette::Base);
     setAutoFillBackground(true);
 
@@ -171,7 +171,7 @@ void StandardFeedsView::resetLayout() {
     layout->setSpacing(0);
 }
 
-void StandardFeedsView::appear() {
+void StandardFeedsView::showEvent(QShowEvent *event) {
     if (!layout) {
         update();
         qApp->processEvents();
@@ -181,7 +181,7 @@ void StandardFeedsView::appear() {
     MainWindow::instance()->showActionsInStatusBar({regionAction}, true);
 }
 
-void StandardFeedsView::disappear() {
+void StandardFeedsView::hideEvent(QHideEvent *event) {
     QAction *regionAction = MainWindow::instance()->getRegionAction();
     MainWindow::instance()->showActionsInStatusBar({regionAction}, false);
 }

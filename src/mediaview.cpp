@@ -55,13 +55,15 @@ $END_LICENSE */
 #include "singlevideosource.h"
 #include "videoapi.h"
 
+#include "views.h"
+
 MediaView *MediaView::instance() {
     static MediaView *i = new MediaView();
     return i;
 }
 
 MediaView::MediaView(QWidget *parent)
-    : View(parent), splitter(nullptr), stopped(false)
+    : QWidget(parent), splitter(nullptr), stopped(false)
 #ifdef APP_SNAPSHOT
       ,
       snapshotSettings(nullptr)
@@ -142,7 +144,11 @@ void MediaView::initialize() {
                 media->pause();
                 connect(
                         ActivationView::instance(), &ActivationView::done, media,
-                        [this] { media->play(); }, Qt::UniqueConnection);
+                        [this] {
+                            MainWindow::instance()->getViews()->goBack();
+                            media->play();
+                        },
+                        Qt::UniqueConnection);
                 MainWindow::instance()->showActivationView();
             },
             Qt::QueuedConnection);
@@ -325,7 +331,7 @@ int MediaView::getHistoryIndex() {
     return history.lastIndexOf(playlistModel->getVideoSource());
 }
 
-void MediaView::appear() {
+void MediaView::showEvent(QShowEvent *event) {
     MainWindow::instance()->showToolbar();
 
     Video *currentVideo = playlistModel->activeVideo();
@@ -336,7 +342,7 @@ void MediaView::appear() {
     playlistView->setFocus();
 }
 
-void MediaView::disappear() {
+void MediaView::hideEvent(QHideEvent *event) {
     MainWindow::instance()->hideToolbar();
 }
 
@@ -489,9 +495,7 @@ void MediaView::activeVideoChanged(Video *video, Video *previousVideo) {
     MainWindow::instance()->getAction("relatedVideos")->setEnabled(true);
 
     bool enableDownload = video->getLicense() == Video::LicenseCC;
-#ifdef APP_ACTIVATION
-    enableDownload = enableDownload || Activation::instance().isLegacy();
-#endif
+
 #ifdef APP_DOWNLOADS
     enableDownload = true;
 #endif

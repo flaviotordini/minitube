@@ -23,19 +23,16 @@ $END_LICENSE */
 
 #include <QtWidgets>
 
-#include "view.h"
-
 class SegmentedControl;
 class SearchView;
 class StandardFeedsView;
 class ChannelView;
 
-class HomeView : public View {
+class HomeView : public QWidget {
     Q_OBJECT
 
 public:
     HomeView(QWidget *parent = 0);
-    void disappear();
     void showWidget(QWidget *widget);
     QWidget *currentWidget() { return stackedWidget->currentWidget(); }
     SearchView *getSearchView() { return searchView; }
@@ -46,8 +43,10 @@ public slots:
     void showStandardFeeds();
     void showChannels();
 
+protected:
+    void showEvent(QShowEvent *event);
+
 private slots:
-    void appear();
     void unwatchedCountChanged(int count);
 
 private:

@@ -103,6 +103,7 @@ $END_LICENSE */
 
 #include "subscriptionimportview.h"
 
+#include "views.h"
 #include "zoomableui.h"
 
 namespace {
@@ -120,7 +121,7 @@ MainWindow::MainWindow()
     mainWindowInstance = this;
 
     // views mechanism
-    views = new QStackedWidget();
+    views = new Views();
     setCentralWidget(views);
 
     zoomableUI = new ZoomableUI(*this);
@@ -146,7 +147,6 @@ MainWindow::MainWindow()
 
     // TODO make this lazy
     mediaView = MediaView::instance();
-    mediaView->setEnabled(false);
     views->addWidget(mediaView);
 
     // build ui
@@ -236,14 +236,6 @@ void MainWindow::lazyInit() {
     fullscreenTimer->setInterval(3000);
     fullscreenTimer->setSingleShot(true);
     connect(fullscreenTimer, SIGNAL(timeout()), SLOT(hideFullscreenUI()));
-
-    // Hack to give focus to searchlineedit
-    View *view = qobject_cast<View *>(views->currentWidget());
-    if (view == homeView) {
-        QMetaObject::invokeMethod(views->currentWidget(), "appear");
-        const QString &desc = view->getDescription();
-        if (!desc.isEmpty()) showMessage(desc);
-    }
 
 #ifdef QT_NO_DEBUG_OUTPUT
     ChannelAggregator::instance()->start();
@@ -356,6 +348,8 @@ void MainWindow::createActions() {
     stopAct->setEnabled(false);
     actionMap.insert("stop", stopAct);
     connect(stopAct, SIGNAL(triggered()), SLOT(stop()));
+    connect(views, &QStackedWidget::currentChanged, this,
+            [this] { stopAct->setEnabled(views->currentWidget() == mediaView); });
 
     skipBackwardAct = new QAction(tr("P&revious"), this);
     skipBackwardAct->setStatusTip(tr("Go back to the previous track"));
@@ -405,6 +399,8 @@ void MainWindow::createActions() {
     compactViewAct->setEnabled(false);
     actionMap.insert("compactView", compactViewAct);
     connect(compactViewAct, SIGNAL(toggled(bool)), this, SLOT(compactView(bool)));
+    connect(views, &QStackedWidget::currentChanged, this,
+            [this] { compactViewAct->setEnabled(views->currentWidget() == mediaView); });
 
     webPageAct = new QAction(tr("Open the &YouTube Page"), this);
     webPageAct->setStatusTip(tr("Go to the YouTube video page and pause playback"));
@@ -480,7 +476,7 @@ void MainWindow::createActions() {
     actionMap.insert("site", siteAct);
     connect(siteAct, SIGNAL(triggered()), this, SLOT(visitSite()));
 
-#if !defined(APP_MAC) && !defined(APP_WIN)
+#ifndef APP_MAC_STORE
     donateAct = new QAction(tr("Make a &Donation"), this);
     donateAct->setStatusTip(
             tr("Please support the continued development of %1").arg(Constants::NAME));
@@ -493,6 +489,8 @@ void MainWindow::createActions() {
     aboutAct->setStatusTip(tr("Info about %1").arg(Constants::NAME));
     actionMap.insert("about", aboutAct);
     connect(aboutAct, SIGNAL(triggered()), this, SLOT(about()));
+    connect(views, &QStackedWidget::currentChanged, this,
+            [this] { aboutAct->setEnabled(views->currentWidget() == aboutView); });
 
     // Invisible actions
 
@@ -572,6 +570,8 @@ void MainWindow::createActions() {
     action->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_J));
     action->setCheckable(true);
     connect(action, SIGNAL(toggled(bool)), SLOT(toggleDownloads(bool)));
+    connect(views, &QStackedWidget::currentChanged, this,
+            [action, this] { action->setChecked(views->currentWidget() == downloadView); });
     actionMap.insert("downloads", action);
 
     action = new QAction(tr("&Download"), this);
@@ -849,6 +849,8 @@ void MainWindow::createToolBar() {
     connect(toolbarSearch, SIGNAL(suggestionAccepted(Suggestion *)),
             SLOT(suggestionAccepted(Suggestion *)));
     toolbarSearch->setStatusTip(searchFocusAct->statusTip());
+    connect(views, &QStackedWidget::currentChanged, this,
+            [this] { toolbarSearch->setEnabled(views->currentWidget() == mediaView); });
 
     // Add widgets to toolbar
 
@@ -1074,66 +1076,8 @@ void MainWindow::writeSettings() {
 #endif
 }
 
-void MainWindow::goBack() {
-    if (history.size() > 1) {
-        history.pop();
-        showView(history.pop());
-    }
-}
-
-void MainWindow::showView(View *view, bool transition) {
-    if (!history.isEmpty() && view == history.top()) {
-        qDebug() << "Attempting to show same view" << view;
-        return;
-    }
-
-#ifdef APP_MAC
-    if (transition && !history.isEmpty()) CompositeFader::go(this, this->grab());
-#endif
-
-    if (compactViewAct->isChecked()) compactViewAct->toggle();
-
-    // call hide method on the current view
-    View *oldView = qobject_cast<View *>(views->currentWidget());
-    if (oldView) {
-        oldView->willDisappear();
-        oldView->disappear();
-        oldView->setEnabled(false);
-        oldView->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-    } else
-        qDebug() << "Cannot cast old view";
-
-    view->willAppear();
-    view->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    view->setEnabled(true);
+void MainWindow::showView(QWidget *view) {
     views->setCurrentWidget(view);
-    view->appear();
-    view->didAppear();
-    if (oldView) oldView->didDisappear();
-
-    QString title = view->getTitle();
-    if (title.isEmpty())
-        title = Constants::NAME;
-    else
-        title += QLatin1String(" - ") + Constants::NAME;
-    setWindowTitle(title);
-
-    const bool isMediaView = view == mediaView;
-    stopAct->setEnabled(isMediaView);
-    compactViewAct->setEnabled(isMediaView);
-    toolbarSearch->setEnabled(isMediaView);
-    aboutAct->setEnabled(view != aboutView);
-    getAction("downloads")->setChecked(view == downloadView);
-
-    // dynamic view actions
-    /* Not currently used by any view
-    showActionsInStatusBar(viewActions, false);
-    viewActions = newView->getViewActions();
-    showActionsInStatusBar(viewActions, true);
-    */
-
-    history.push(view);
-    emit viewChanged();
 }
 
 void MainWindow::about() {
@@ -1807,7 +1751,7 @@ void MainWindow::toggleDownloads(bool show) {
     if (show)
         showView(downloadView);
     else
-        goBack();
+        views->goBack();
 }
 
 void MainWindow::suggestionAccepted(Suggestion *suggestion) {
@@ -2017,7 +1961,7 @@ void MainWindow::handleError(const QString &message) {
 
 #ifdef APP_ACTIVATION
 void MainWindow::showActivationView() {
-    View *activationView = ActivationView::instance();
+    auto activationView = ActivationView::instance();
     views->addWidget(activationView);
     if (views->currentWidget() != activationView) showView(activationView);
 }

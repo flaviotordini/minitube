@@ -26,7 +26,6 @@ $END_LICENSE */
 
 #include "media.h"
 #include "video.h"
-#include "view.h"
 
 class PlaylistModel;
 class SearchParams;
@@ -39,16 +38,12 @@ class VideoSource;
 class SnapshotSettings;
 #endif
 
-class MediaView : public View {
+class MediaView : public QWidget {
     Q_OBJECT
 
 public:
     static MediaView *instance();
     void initialize();
-
-    void appear();
-    void disappear();
-
     void setMedia(Media *media);
     const QVector<VideoSource *> &getHistory() { return history; }
     int getHistoryIndex();
@@ -97,6 +92,10 @@ public slots:
     void toggleSubscription();
     void adjustWindowSize();
     void updateSubscriptionAction(bool subscribed);
+
+protected:
+    void showEvent(QShowEvent *event);
+    void hideEvent(QHideEvent *event);
 
 private slots:
     void onItemActivated(const QModelIndex &index);

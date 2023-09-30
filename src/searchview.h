@@ -24,7 +24,6 @@ $END_LICENSE */
 #include <QtWidgets>
 
 #include "suggester.h"
-#include "view.h"
 
 class SearchWidget;
 class SearchParams;
@@ -33,7 +32,7 @@ class ChannelSuggest;
 class ClickableLabel;
 class MessageBar;
 
-class SearchView : public View {
+class SearchView : public QWidget {
     Q_OBJECT
 
 public:
@@ -42,14 +41,16 @@ public:
     void updateRecentChannels();
 
 public slots:
-    void appear();
-    void disappear();
     void watch(const QString &query);
     void watchChannel(const QString &channelId);
     void watchKeywords(const QString &query);
 
 signals:
     void search(SearchParams *);
+
+protected:
+    void showEvent(QShowEvent *event);
+    void hideEvent(QHideEvent *event);
 
 private slots:
     void watch();

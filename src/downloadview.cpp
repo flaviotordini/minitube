@@ -28,8 +28,7 @@ $END_LICENSE */
 #include "playlistitemdelegate.h"
 #include "segmentedcontrol.h"
 
-DownloadView::DownloadView(QWidget *parent) : View(parent) {
-
+DownloadView::DownloadView(QWidget *parent) : QWidget(parent) {
     QBoxLayout *layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
@@ -66,14 +65,14 @@ DownloadView::DownloadView(QWidget *parent) : View(parent) {
     layout->addWidget(downloadSettings);
 }
 
-void DownloadView::appear() {
+void DownloadView::showEvent(QShowEvent *event) {
     listView->setEnabled(true);
     listModel->sendReset();
     listView->setMouseTracking(true);
     updateTimer->start();
 }
 
-void DownloadView::disappear() {
+void DownloadView::hideEvent(QHideEvent *event) {
     listView->setEnabled(false);
     listView->setMouseTracking(false);
 }

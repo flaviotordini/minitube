@@ -26,7 +26,7 @@ $END_LICENSE */
 #include "media.h"
 
 class ZoomableUI;
-class View;
+class Views;
 class HomeView;
 class MediaView;
 class DownloadView;
@@ -51,7 +51,7 @@ public:
     void readSettings();
     void writeSettings();
     static void printHelp();
-    QStackedWidget *getViews() { return views; }
+    Views *getViews() { return views; }
     MediaView *getMediaView() { return mediaView; }
     HomeView *getHomeView() { return homeView; }
     QAction *getRegionAction() { return regionAction; }
@@ -84,8 +84,6 @@ public slots:
     void quit();
     void suggestionAccepted(Suggestion *suggestion);
     void search(const QString &query);
-    bool canGoBack() { return history.size() > 1; }
-    void goBack();
     void showMessage(const QString &message);
     void hideMessage();
     void handleError(const QString &message);
@@ -97,7 +95,6 @@ public slots:
 
 signals:
     void currentTimeChanged(const QString &s);
-    void viewChanged();
 
 protected:
     void changeEvent(QEvent *e);
@@ -156,7 +153,7 @@ private:
     void createMenus();
     void createToolBar();
     void createStatusBar();
-    void showView(View *view, bool transition = false);
+    void showView(QWidget *view);
     static QString formatTime(qint64 duration);
     bool confirmQuit();
     bool needStatusBar();
@@ -165,17 +162,15 @@ private:
     QHash<QByteArray, QAction *> actionMap;
     QHash<QByteArray, QMenu *> menuMap;
 
-    // view mechanism
-    QStackedWidget *views;
-    QStack<View *> history;
+    Views *views;
 
     // view widgets
     HomeView *homeView;
     MediaView *mediaView;
-    View *aboutView;
-    View *downloadView;
-    View *regionsView;
-    View *subscriptionImportView = nullptr;
+    QWidget *aboutView;
+    QWidget *downloadView;
+    QWidget *regionsView;
+    QWidget *subscriptionImportView = nullptr;
 
     // actions
     QAction *backAct;

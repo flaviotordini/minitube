@@ -41,7 +41,7 @@ $END_LICENSE */
 #include "waitingspinnerwidget.h"
 #endif
 
-AboutView::AboutView(QWidget *parent) : View(parent) {
+AboutView::AboutView(QWidget *parent) : QWidget(parent) {
     const int padding = 30;
     const char *buildYear = __DATE__ + 7;
 
@@ -188,7 +188,7 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
     buttonLayout->addWidget(Updater::instance().getButton());
 #endif
 
-    closeButton = new QPushButton(tr("&Close"), this);
+    auto closeButton = new QPushButton(tr("&Close"), this);
     closeButton->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
     closeButton->setDefault(true);
     closeButton->setShortcut(Qt::Key_Escape);
@@ -203,8 +203,7 @@ AboutView::AboutView(QWidget *parent) : View(parent) {
 #endif
 }
 
-void AboutView::appear() {
-    closeButton->setFocus();
+void AboutView::showEvent(QShowEvent *event) {
 #ifdef UPDATER
     Updater::instance().checkWithoutUI();
 #endif

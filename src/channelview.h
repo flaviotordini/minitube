@@ -23,13 +23,11 @@ $END_LICENSE */
 
 #include <QtWidgets>
 
-#include "view.h"
-
 class VideoSource;
 class ChannelModel;
 class ChannelListView;
 
-class ChannelView : public View {
+class ChannelView : public QWidget {
     Q_OBJECT
 
 public:
@@ -38,9 +36,9 @@ public:
 signals:
     void activated(VideoSource *videoSource);
 
-public slots:
-    void appear();
-    void disappear();
+protected:
+    void showEvent(QShowEvent *event);
+    void hideEvent(QHideEvent *event);
 
 private:
     enum SortBy {

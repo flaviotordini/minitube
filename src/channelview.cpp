@@ -44,7 +44,8 @@ const QString sortByKey = "subscriptionsSortBy";
 const QString showUpdatedKey = "subscriptionsShowUpdated";
 } // namespace
 
-ChannelView::ChannelView(QWidget *parent) : View(parent), showUpdated(false), sortBy(SortByName) {
+ChannelView::ChannelView(QWidget *parent)
+    : QWidget(parent), showUpdated(false), sortBy(SortByName) {
     QBoxLayout *layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
@@ -156,14 +157,14 @@ QString ChannelView::noSubscriptionsMessage() {
               "Use the star symbol to subscribe to channels.");
 }
 
-void ChannelView::appear() {
+void ChannelView::showEvent(QShowEvent *event) {
     updateQuery(true);
     MainWindow::instance()->showActionsInStatusBar(statusActions, true);
     setFocus();
     ChannelAggregator::instance()->start();
 }
 
-void ChannelView::disappear() {
+void ChannelView::hideEvent(QHideEvent *event) {
     MainWindow::instance()->showActionsInStatusBar(statusActions, false);
 }
 

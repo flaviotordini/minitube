@@ -24,12 +24,11 @@ $END_LICENSE */
 #include <QtWidgets>
 
 #include "videosourcewidget.h"
-#include "view.h"
 
 class VideoSource;
 class YTStandardFeed;
 
-class StandardFeedsView : public View {
+class StandardFeedsView : public QWidget {
     Q_OBJECT
 
 public:
@@ -39,11 +38,11 @@ signals:
     void activated(VideoSource *standardFeed);
 
 public slots:
-    void appear();
-    void disappear();
     void load();
 
 protected:
+    void showEvent(QShowEvent *event);
+    void hideEvent(QHideEvent *event);
     void paintEvent(QPaintEvent *event);
 
 private slots:

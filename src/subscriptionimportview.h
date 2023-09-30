@@ -3,14 +3,15 @@
 
 #include <QtWidgets>
 
-#include "view.h"
-
-class SubscriptionImportView : public View {
+class SubscriptionImportView : public QWidget {
     Q_OBJECT
 
 public:
     static QAction *buildAction(QWidget *parent);
     explicit SubscriptionImportView(QWidget *parent = nullptr);
+
+protected:
+    void showEvent(QShowEvent *event);
 };
 
 #endif // SUBSCRIPTIONIMPORTVIEW_H

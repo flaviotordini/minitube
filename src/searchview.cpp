@@ -54,7 +54,7 @@ const QString recentKeywordsKey = "recentKeywords";
 const QString recentChannelsKey = "recentChannels";
 } // namespace
 
-SearchView::SearchView(QWidget *parent) : View(parent) {
+SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     setBackgroundRole(QPalette::Base);
     setForegroundRole(QPalette::Text);
     setAutoFillBackground(true);
@@ -204,7 +204,7 @@ SearchView::SearchView(QWidget *parent) : View(parent) {
 #endif
 }
 
-void SearchView::appear() {
+void SearchView::showEvent(QShowEvent *event) {
     MainWindow *w = MainWindow::instance();
     w->showActionsInStatusBar(
             {w->getAction("manualplay"), w->getAction("safeSearch"), w->getAction("definition")},
@@ -218,7 +218,7 @@ void SearchView::appear() {
     QTimer::singleShot(0, queryEdit->toWidget(), SLOT(setFocus()));
 }
 
-void SearchView::disappear() {
+void SearchView::hideEvent(QHideEvent *event) {
     MainWindow *w = MainWindow::instance();
     w->showActionsInStatusBar(
             {w->getAction("manualplay"), w->getAction("safeSearch"), w->getAction("definition")},

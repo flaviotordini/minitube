@@ -22,7 +22,7 @@ $END_LICENSE */
 #include "mainwindow.h"
 #include "ytregions.h"
 
-RegionsView::RegionsView(QWidget *parent) : View(parent) {
+RegionsView::RegionsView(QWidget *parent) : QWidget(parent) {
     QBoxLayout *l = new QVBoxLayout(this);
     l->setContentsMargins(30, 30, 30, 30);
     l->setSpacing(30);
@@ -61,7 +61,7 @@ void RegionsView::addRegion(const YTRegion &region) {
     layout->addWidget(button, i % rows, i / rows);
 }
 
-void RegionsView::appear() {
+void RegionsView::showEvent(QShowEvent *event) {
     doneButton->setFocus();
 
     QString currentRegionId = YTRegions::currentRegionId();

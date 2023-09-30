@@ -107,8 +107,7 @@ HEADERS += \
     src/toolbarmenu.h \
     src/sharetoolbar.h \
     src/videoarea.h \
-    src/searchlineedit.h \
-    src/view.h
+    src/searchlineedit.h
 SOURCES += src/main.cpp \
     src/subscriptionimportview.cpp \
     src/updateutils.cpp \

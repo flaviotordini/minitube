@@ -32,7 +32,7 @@ $END_LICENSE */
 #endif
 
 HomeView::HomeView(QWidget *parent)
-    : View(parent), searchView(nullptr), standardFeedsView(nullptr), channelsView(nullptr) {
+    : QWidget(parent), searchView(nullptr), standardFeedsView(nullptr), channelsView(nullptr) {
     QBoxLayout *layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
@@ -78,23 +78,14 @@ void HomeView::setupBar() {
 void HomeView::showWidget(QWidget *widget) {
     QWidget *currentWidget = stackedWidget->currentWidget();
     if (currentWidget && currentWidget != widget) {
-        QMetaObject::invokeMethod(currentWidget, "disappear");
         currentWidget->setEnabled(false);
     }
     stackedWidget->setCurrentWidget(widget);
     widget->setEnabled(true);
-    QMetaObject::invokeMethod(widget, "appear", Qt::QueuedConnection);
 }
 
-void HomeView::appear() {
-    if (stackedWidget->count() == 0)
-        showSearch();
-    else
-        QMetaObject::invokeMethod(stackedWidget->currentWidget(), "appear", Qt::QueuedConnection);
-}
-
-void HomeView::disappear() {
-    QMetaObject::invokeMethod(stackedWidget->currentWidget(), "disappear");
+void HomeView::showEvent(QShowEvent *event) {
+    if (stackedWidget->count() == 0) showSearch();
 }
 
 void HomeView::showSearch() {

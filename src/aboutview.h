@@ -23,18 +23,13 @@ $END_LICENSE */
 
 #include <QtWidgets>
 
-#include "constants.h"
-#include "view.h"
-
-class AboutView : public View {
+class AboutView : public QWidget {
     Q_OBJECT
 
 public:
     AboutView(QWidget *parent);
-    void appear();
-    QString getTitle() { return tr("About"); }
 
-private:
-    QPushButton *closeButton;
+protected:
+    void showEvent(QShowEvent *event);
 };
 #endif

@@ -23,19 +23,16 @@ $END_LICENSE */
 
 #include <QtWidgets>
 
-#include "view.h"
-
 struct YTRegion;
 
-class RegionsView : public View {
-
+class RegionsView : public QWidget {
     Q_OBJECT
 
 public:
     RegionsView(QWidget *parent = 0);
-    void appear();
 
 protected:
+    void showEvent(QShowEvent *event);
     void paintEvent(QPaintEvent *e);
 
 signals:
@@ -48,7 +45,6 @@ private:
     void addRegion(const YTRegion &region);
     QGridLayout *layout;
     QPushButton *doneButton;
-
 };
 
 #endif // REGIONSVIEW_H
