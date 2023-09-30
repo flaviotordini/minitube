@@ -85,31 +85,22 @@ SidebarHeader QComboBox::drop-down {
     border-style: none;
 }
 
-SearchView *[recentItem="true"], SearchView *[recentHeader="true"] {
+SearchView *[recentItem="true"] {
     border: 0;
-    padding: 4px 0;
+    padding: .15em 0;
+}
+
+SearchView SearchLineEdit {
+    padding: .5em;
+    border-radius: 5px;
+    border: 3px solid palette(mid);
+}
+
+SearchView SearchLineEdit:focus {
+    border-color: palette(highlight);
 }
 
 SearchView *[recentItem="true"]:focus {
     outline: 1px solid palette(highlight);
 }
 
-SearchView SearchLineEdit {
-    padding: .5em;
-    border: 1px solid palette(midlight);
-    border-radius: 3px;
-}
-
-MessageBar {
-    background: #f9f7c8;
-    border-radius: 5px;
-}
-
-MessageBar QLabel {
-    color: rgba(0,0,0,192);
-}
-
-MessageBar QToolButton {
-    background: transparent;
-    border: 0;
-}
