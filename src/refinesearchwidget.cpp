@@ -45,7 +45,7 @@ void RefineSearchWidget::setup() {
     layout->setSpacing(spacing);
 
     QString paramName = "sortBy";
-    setupLabel(tr("Sort by"), layout, paramName);
+    setupLabel(tr("Sort by"), layout);
     QToolBar *sortBar = setupBar(paramName);
     QActionGroup *sortGroup = new QActionGroup(this);
     const QStringList sortOptions = QStringList() << tr("Relevance") << tr("Date")
@@ -62,7 +62,7 @@ void RefineSearchWidget::setup() {
 
     paramName = "time";
     layout->addSpacing(spacing);
-    setupLabel(tr("Date"), layout, paramName);
+    setupLabel(tr("Date"), layout);
     QToolBar *timeBar = setupBar(paramName);
     QActionGroup *timeGroup = new QActionGroup(this);
     const QStringList timeSpans = QStringList() << tr("Anytime") << tr("Today") << tr("7 Days")
@@ -79,7 +79,7 @@ void RefineSearchWidget::setup() {
 
     paramName = "duration";
     layout->addSpacing(spacing);
-    setupLabel(tr("Duration"), layout, paramName);
+    setupLabel(tr("Duration"), layout);
     QToolBar *lengthBar = setupBar(paramName);
     QActionGroup *lengthGroup = new QActionGroup(this);
     const QStringList lengthOptions = QStringList()
@@ -100,7 +100,7 @@ void RefineSearchWidget::setup() {
 
     paramName = "quality";
     layout->addSpacing(spacing);
-    setupLabel(tr("Quality"), layout, paramName);
+    setupLabel(tr("Quality"), layout);
     QToolBar *qualityBar = setupBar(paramName);
     QActionGroup *qualityGroup = new QActionGroup(this);
     const QStringList qualityOptions = QStringList()
@@ -117,6 +117,7 @@ void RefineSearchWidget::setup() {
 
     layout->addSpacing(spacing);
     doneButton = new QPushButton(tr("Done"), this);
+    doneButton->setShortcut(Qt::Key_Escape);
     doneButton->setDefault(true);
     doneButton->setAutoDefault(true);
     doneButton->setFocusPolicy(Qt::StrongFocus);
@@ -129,39 +130,9 @@ void RefineSearchWidget::setup() {
     layout->addWidget(doneButton, 0, Qt::AlignLeft);
 }
 
-void RefineSearchWidget::setupLabel(const QString &text,
-                                    QBoxLayout *layout,
-                                    const QString &paramName) {
-    QBoxLayout *hLayout = new QHBoxLayout();
-    hLayout->setSpacing(8);
-    hLayout->setContentsMargins(0, 0, 0, 0);
-    hLayout->setAlignment(Qt::AlignVCenter);
-
-    QLabel *icon = new QLabel(this);
-    icon->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    QString resource = paramName;
-    QByteArray iconName = QByteArrayLiteral("search-") + resource.toLatin1();
-    QPixmap pixmap = IconUtils::iconPixmap(iconName.constData(), 16, palette().window().color(),
-                                           devicePixelRatioF());
-
-    /*
-    QPixmap translucentPixmap(pixmap.size());
-    translucentPixmap.fill(Qt::transparent);
-    QPainter painter;
-    painter.begin(&translucentPixmap);
-    painter.setOpacity(0.5);
-    painter.drawPixmap(0, 0, pixmap);
-    painter.end();
-    */
-    icon->setPixmap(pixmap);
-    hLayout->addWidget(icon);
-
-    QLabel *label = new QLabel(text, this);
-    hLayout->addWidget(label);
-
-    icon->setMaximumHeight(label->height());
-
-    layout->addLayout(hLayout);
+void RefineSearchWidget::setupLabel(const QString &text, QBoxLayout *layout) {
+    QLabel *label = new QLabel(text);
+    layout->addWidget(label);
 }
 
 QToolBar *RefineSearchWidget::setupBar(const QString &paramName) {

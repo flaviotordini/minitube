@@ -47,7 +47,7 @@ private slots:
 
 private:
     void setup();
-    void setupLabel(const QString &text, QBoxLayout* layout, const QString &paramName);
+    void setupLabel(const QString &text, QBoxLayout *layout);
     QToolBar *setupBar(const QString &paramName);
 
     QHash<QString, QToolBar*> bars;
