@@ -339,43 +339,43 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
 }
 
 void MainWindow::createActions() {
-    stopAct = new QAction(tr("&Stop"), this);
+    stopAct = new QAction(tr("&Stop"));
     IconUtils::setIcon(stopAct, "media-playback-stop");
     stopAct->setStatusTip(tr("Stop playback and go back to the search view"));
     stopAct->setShortcuts(QList<QKeySequence>()
                           << QKeySequence(Qt::Key_Escape) << QKeySequence(Qt::Key_MediaStop));
     stopAct->setEnabled(false);
-    actionMap.insert("stop", stopAct);
-    connect(stopAct, SIGNAL(triggered()), SLOT(stop()));
+    addNamedAction("stop", stopAct);
+    connect(stopAct, &QAction::triggered, this, &MainWindow::stop);
     connect(views, &QStackedWidget::currentChanged, this,
             [this] { stopAct->setEnabled(views->currentWidget() == mediaView); });
 
-    skipBackwardAct = new QAction(tr("P&revious"), this);
+    skipBackwardAct = new QAction(tr("P&revious"));
     skipBackwardAct->setStatusTip(tr("Go back to the previous track"));
     skipBackwardAct->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Left));
     skipBackwardAct->setEnabled(false);
-    actionMap.insert("previous", skipBackwardAct);
-    connect(skipBackwardAct, SIGNAL(triggered()), mediaView, SLOT(skipBackward()));
+    addNamedAction("previous", skipBackwardAct);
+    connect(skipBackwardAct, &QAction::triggered, mediaView, &MediaView::skipBackward);
 
-    skipAct = new QAction(tr("S&kip"), this);
+    skipAct = new QAction(tr("S&kip"));
     IconUtils::setIcon(skipAct, "media-skip-forward");
     skipAct->setStatusTip(tr("Skip to the next video"));
     skipAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL | Qt::Key_Right)
                                                 << QKeySequence(Qt::Key_MediaNext));
     skipAct->setEnabled(false);
-    actionMap.insert("skip", skipAct);
-    connect(skipAct, SIGNAL(triggered()), mediaView, SLOT(skip()));
+    addNamedAction("skip", skipAct);
+    connect(skipAct, &QAction::triggered, mediaView, &MediaView::skip);
 
-    pauseAct = new QAction(tr("&Play"), this);
+    pauseAct = new QAction(tr("&Play"));
     IconUtils::setIcon(pauseAct, "media-playback-start");
     pauseAct->setStatusTip(tr("Resume playback"));
     pauseAct->setShortcuts(QList<QKeySequence>()
                            << QKeySequence(Qt::Key_Space) << QKeySequence(Qt::Key_MediaPlay));
     pauseAct->setEnabled(false);
-    actionMap.insert("pause", pauseAct);
-    connect(pauseAct, SIGNAL(triggered()), mediaView, SLOT(pause()));
+    addNamedAction("pause", pauseAct);
+    connect(pauseAct, &QAction::triggered, mediaView, &MediaView::pause);
 
-    fullscreenAct = new QAction(tr("&Full Screen"), this);
+    fullscreenAct = new QAction(tr("&Full Screen"));
     IconUtils::setIcon(fullscreenAct, "view-fullscreen");
     fullscreenAct->setStatusTip(tr("Go full screen"));
     QList<QKeySequence> fsShortcuts;
@@ -387,107 +387,107 @@ void MainWindow::createActions() {
     fullscreenAct->setShortcuts(fsShortcuts);
     fullscreenAct->setShortcutContext(Qt::ApplicationShortcut);
     fullscreenAct->setPriority(QAction::LowPriority);
-    actionMap.insert("fullscreen", fullscreenAct);
-    connect(fullscreenAct, SIGNAL(triggered()), SLOT(toggleFullscreen()));
+    addNamedAction("fullscreen", fullscreenAct);
+    connect(fullscreenAct, &QAction::triggered, this, &MainWindow::toggleFullscreen);
 
-    compactViewAct = new QAction(tr("&Compact Mode"), this);
+    compactViewAct = new QAction(tr("&Compact Mode"));
     compactViewAct->setStatusTip(tr("Hide the playlist and the toolbar"));
     compactViewAct->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_C));
     compactViewAct->setCheckable(true);
     compactViewAct->setChecked(false);
     compactViewAct->setEnabled(false);
-    actionMap.insert("compactView", compactViewAct);
-    connect(compactViewAct, SIGNAL(toggled(bool)), this, SLOT(compactView(bool)));
+    addNamedAction("compactView", compactViewAct);
+    connect(compactViewAct, &QAction::toggled, this, &MainWindow::compactView);
     connect(views, &QStackedWidget::currentChanged, this,
             [this] { compactViewAct->setEnabled(views->currentWidget() == mediaView); });
 
-    webPageAct = new QAction(tr("Open the &YouTube Page"), this);
+    webPageAct = new QAction(tr("Open the &YouTube Page"));
     webPageAct->setStatusTip(tr("Go to the YouTube video page and pause playback"));
     webPageAct->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Y));
     webPageAct->setEnabled(false);
-    actionMap.insert("webpage", webPageAct);
-    connect(webPageAct, SIGNAL(triggered()), mediaView, SLOT(openWebPage()));
+    addNamedAction("webpage", webPageAct);
+    connect(webPageAct, &QAction::triggered, mediaView, &MediaView::openWebPage);
 
-    copyPageAct = new QAction(tr("Copy the YouTube &Link"), this);
+    copyPageAct = new QAction(tr("Copy the YouTube &Link"));
     IconUtils::setIcon(copyPageAct, "link");
     copyPageAct->setStatusTip(tr("Copy the current video YouTube link to the clipboard"));
     copyPageAct->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_L));
     copyPageAct->setEnabled(false);
-    actionMap.insert("pagelink", copyPageAct);
-    connect(copyPageAct, SIGNAL(triggered()), mediaView, SLOT(copyWebPage()));
+    addNamedAction("pagelink", copyPageAct);
+    connect(copyPageAct, &QAction::triggered, mediaView, &MediaView::copyWebPage);
 
-    copyLinkAct = new QAction(tr("Copy the Video Stream &URL"), this);
+    copyLinkAct = new QAction(tr("Copy the Video Stream &URL"));
     copyLinkAct->setStatusTip(tr("Copy the current video stream URL to the clipboard"));
     copyLinkAct->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_U));
     copyLinkAct->setEnabled(false);
-    actionMap.insert("videolink", copyLinkAct);
+    addNamedAction("videolink", copyLinkAct);
     connect(copyLinkAct, SIGNAL(triggered()), mediaView, SLOT(copyVideoLink()));
 
-    findVideoPartsAct = new QAction(tr("Find Video &Parts"), this);
+    findVideoPartsAct = new QAction(tr("Find Video &Parts"));
     findVideoPartsAct->setStatusTip(tr("Find other video parts hopefully in the right order"));
     findVideoPartsAct->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_P));
     findVideoPartsAct->setEnabled(false);
-    connect(findVideoPartsAct, SIGNAL(triggered()), mediaView, SLOT(findVideoParts()));
-    actionMap.insert("findVideoParts", findVideoPartsAct);
+    connect(findVideoPartsAct, &QAction::triggered, mediaView, &MediaView::findVideoParts);
+    addNamedAction("findVideoParts", findVideoPartsAct);
 
-    removeAct = new QAction(tr("&Remove"), this);
+    removeAct = new QAction(tr("&Remove"));
     removeAct->setStatusTip(tr("Remove the selected videos from the playlist"));
     removeAct->setShortcuts(QList<QKeySequence>()
                             << QKeySequence("Del") << QKeySequence("Backspace"));
     removeAct->setEnabled(false);
-    actionMap.insert("remove", removeAct);
-    connect(removeAct, SIGNAL(triggered()), mediaView, SLOT(removeSelected()));
+    addNamedAction("remove", removeAct);
+    connect(removeAct, &QAction::triggered, mediaView, &MediaView::removeSelected);
 
-    moveUpAct = new QAction(tr("Move &Up"), this);
+    moveUpAct = new QAction(tr("Move &Up"));
     moveUpAct->setStatusTip(tr("Move up the selected videos in the playlist"));
     moveUpAct->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Up));
     moveUpAct->setEnabled(false);
-    actionMap.insert("moveUp", moveUpAct);
-    connect(moveUpAct, SIGNAL(triggered()), mediaView, SLOT(moveUpSelected()));
+    addNamedAction("moveUp", moveUpAct);
+    connect(moveUpAct, &QAction::triggered, mediaView, &MediaView::moveUpSelected);
 
-    moveDownAct = new QAction(tr("Move &Down"), this);
+    moveDownAct = new QAction(tr("Move &Down"));
     moveDownAct->setStatusTip(tr("Move down the selected videos in the playlist"));
     moveDownAct->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Down));
     moveDownAct->setEnabled(false);
-    actionMap.insert("moveDown", moveDownAct);
-    connect(moveDownAct, SIGNAL(triggered()), mediaView, SLOT(moveDownSelected()));
+    addNamedAction("moveDown", moveDownAct);
+    connect(moveDownAct, &QAction::triggered, mediaView, &MediaView::moveDownSelected);
 
-    clearAct = new QAction(tr("&Clear Recent Searches"), this);
+    clearAct = new QAction(tr("&Clear Recent Searches"));
     clearAct->setMenuRole(QAction::ApplicationSpecificRole);
     clearAct->setShortcuts(QList<QKeySequence>()
                            << QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_Delete)
                            << QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_Backspace));
     clearAct->setStatusTip(tr("Clear the search history. Cannot be undone."));
     clearAct->setEnabled(true);
-    actionMap.insert("clearRecentKeywords", clearAct);
-    connect(clearAct, SIGNAL(triggered()), SLOT(clearRecentKeywords()));
+    addNamedAction("clearRecentKeywords", clearAct);
+    connect(clearAct, &QAction::triggered, this, &MainWindow::clearRecentKeywords);
 
-    quitAct = new QAction(tr("&Quit"), this);
+    quitAct = new QAction(tr("&Quit"));
     quitAct->setMenuRole(QAction::QuitRole);
     quitAct->setShortcut(QKeySequence(QKeySequence::Quit));
     quitAct->setStatusTip(tr("Bye"));
-    actionMap.insert("quit", quitAct);
-    connect(quitAct, SIGNAL(triggered()), SLOT(quit()));
+    addNamedAction("quit", quitAct);
+    connect(quitAct, &QAction::triggered, this, &MainWindow::quit);
 
-    siteAct = new QAction(tr("&Website"), this);
+    siteAct = new QAction(tr("&Website"));
     siteAct->setShortcut(QKeySequence::HelpContents);
     siteAct->setStatusTip(tr("%1 on the Web").arg(Constants::NAME));
-    actionMap.insert("site", siteAct);
-    connect(siteAct, SIGNAL(triggered()), this, SLOT(visitSite()));
+    addNamedAction("site", siteAct);
+    connect(siteAct, &QAction::triggered, this, &MainWindow::visitSite);
 
 #ifndef APP_MAC_STORE
-    donateAct = new QAction(tr("Make a &Donation"), this);
+    donateAct = new QAction(tr("Make a &Donation"));
     donateAct->setStatusTip(
             tr("Please support the continued development of %1").arg(Constants::NAME));
-    actionMap.insert("donate", donateAct);
-    connect(donateAct, SIGNAL(triggered()), this, SLOT(donate()));
+    addNamedAction("donate", donateAct);
+    connect(donateAct, &QAction::triggered, this, &MainWindow::donate);
 #endif
 
-    aboutAct = new QAction(tr("&About"), this);
+    aboutAct = new QAction(tr("&About"));
     aboutAct->setMenuRole(QAction::AboutRole);
     aboutAct->setStatusTip(tr("Info about %1").arg(Constants::NAME));
-    actionMap.insert("about", aboutAct);
-    connect(aboutAct, SIGNAL(triggered()), this, SLOT(about()));
+    addNamedAction("about", aboutAct);
+    connect(aboutAct, &QAction::triggered, this, &MainWindow::about);
     connect(views, &QStackedWidget::currentChanged, this,
             [this] { aboutAct->setEnabled(views->currentWidget() == aboutView); });
 
@@ -496,28 +496,28 @@ void MainWindow::createActions() {
     searchFocusAct = new QAction(this);
     searchFocusAct->setShortcut(QKeySequence::Find);
     searchFocusAct->setStatusTip(tr("Search"));
-    actionMap.insert("search", searchFocusAct);
-    connect(searchFocusAct, SIGNAL(triggered()), this, SLOT(searchFocus()));
+    addNamedAction("search", searchFocusAct);
+    connect(searchFocusAct, &QAction::triggered, this, &MainWindow::searchFocus);
     addAction(searchFocusAct);
 
     volumeUpAct = new QAction(this);
     volumeUpAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL | Qt::Key_Plus));
-    actionMap.insert("volumeUp", volumeUpAct);
-    connect(volumeUpAct, SIGNAL(triggered()), this, SLOT(volumeUp()));
+    addNamedAction("volumeUp", volumeUpAct);
+    connect(volumeUpAct, &QAction::triggered, this, &MainWindow::volumeUp);
     addAction(volumeUpAct);
 
     volumeDownAct = new QAction(this);
     volumeDownAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL | Qt::Key_Minus));
-    actionMap.insert("volumeDown", volumeDownAct);
-    connect(volumeDownAct, SIGNAL(triggered()), this, SLOT(volumeDown()));
+    addNamedAction("volumeDown", volumeDownAct);
+    connect(volumeDownAct, &QAction::triggered, this, &MainWindow::volumeDown);
     addAction(volumeDownAct);
 
     volumeMuteAct = new QAction(this);
     IconUtils::setIcon(volumeMuteAct, "audio-volume-high");
     volumeMuteAct->setStatusTip(tr("Mute volume"));
     volumeMuteAct->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_M));
-    actionMap.insert("volumeMute", volumeMuteAct);
-    connect(volumeMuteAct, SIGNAL(triggered()), SLOT(toggleVolumeMute()));
+    addNamedAction("volumeMute", volumeMuteAct);
+    connect(volumeMuteAct, &QAction::triggered, this, &MainWindow::toggleVolumeMute);
     addAction(volumeMuteAct);
 
     QToolButton *definitionButton = new QToolButton(this);
@@ -550,168 +550,168 @@ void MainWindow::createActions() {
     QWidgetAction *definitionAct = new QWidgetAction(this);
     definitionAct->setDefaultWidget(definitionButton);
     definitionAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL | Qt::Key_D));
-    actionMap.insert("definition", definitionAct);
+    addNamedAction("definition", definitionAct);
     addAction(definitionAct);
 
-    QAction *action;
+    QAction *a;
 
-    action = new QAction(tr("&Manually Start Playing"), this);
-    IconUtils::setIcon(action, "media-playback-start");
-    action->setStatusTip(tr("Manually start playing videos"));
-    action->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_T));
-    action->setCheckable(true);
-    connect(action, SIGNAL(toggled(bool)), SLOT(setManualPlay(bool)));
-    actionMap.insert("manualplay", action);
+    a = new QAction(tr("&Manually Start Playing"));
+    IconUtils::setIcon(a, "media-playback-start");
+    a->setStatusTip(tr("Manually start playing videos"));
+    a->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_T));
+    a->setCheckable(true);
+    connect(a, SIGNAL(toggled(bool)), SLOT(setManualPlay(bool)));
+    addNamedAction("manualplay", a);
 
-    action = new QAction(tr("&Downloads"), this);
-    IconUtils::setIcon(action, "document-save");
-    action->setStatusTip(tr("Show details about video downloads"));
-    action->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_J));
-    action->setCheckable(true);
-    connect(action, SIGNAL(toggled(bool)), SLOT(toggleDownloads(bool)));
+    a = new QAction(tr("&Downloads"));
+    IconUtils::setIcon(a, "document-save");
+    a->setStatusTip(tr("Show details about video downloads"));
+    a->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_J));
+    a->setCheckable(true);
+    connect(a, SIGNAL(toggled(bool)), SLOT(toggleDownloads(bool)));
     connect(views, &QStackedWidget::currentChanged, this,
-            [action, this] { action->setChecked(views->currentWidget() == downloadView); });
-    actionMap.insert("downloads", action);
+            [a, this] { a->setChecked(views->currentWidget() == downloadView); });
+    addNamedAction("downloads", a);
 
-    action = new QAction(tr("&Download"), this);
-    IconUtils::setIcon(action, "document-save");
-    action->setStatusTip(tr("Download the current video"));
-    action->setShortcut(QKeySequence::Save);
-    action->setEnabled(false);
-    action->setVisible(false);
-    action->setPriority(QAction::LowPriority);
-    connect(action, SIGNAL(triggered()), mediaView, SLOT(downloadVideo()));
-    actionMap.insert("download", action);
+    a = new QAction(tr("&Download"));
+    IconUtils::setIcon(a, "document-save");
+    a->setStatusTip(tr("Download the current video"));
+    a->setShortcut(QKeySequence::Save);
+    a->setEnabled(false);
+    a->setVisible(false);
+    a->setPriority(QAction::LowPriority);
+    connect(a, SIGNAL(triggered()), mediaView, SLOT(downloadVideo()));
+    addNamedAction("download", a);
 
 #ifdef APP_SNAPSHOT
-    action = new QAction(tr("Take &Snapshot"), this);
-    action->setShortcut(QKeySequence(Qt::Key_F9));
-    action->setEnabled(false);
-    actionMap.insert("snapshot", action);
-    connect(action, SIGNAL(triggered()), mediaView, SLOT(snapshot()));
+    a = new QAction(tr("Take &Snapshot"));
+    a->setShortcut(QKeySequence(Qt::Key_F9));
+    a->setEnabled(false);
+    addNamedAction("snapshot", a);
+    connect(a, &QAction::triggered, mediaView, &MediaView::snapshot);
 #endif
 
-    action = new QAction(tr("&Subscribe to Channel"), this);
-    action->setProperty("originalText", action->text());
-    action->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_S));
-    action->setEnabled(false);
-    connect(action, SIGNAL(triggered()), mediaView, SLOT(toggleSubscription()));
-    actionMap.insert("subscribeChannel", action);
+    a = new QAction(tr("&Subscribe to Channel"));
+    a->setProperty("originalText", a->text());
+    a->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_S));
+    a->setEnabled(false);
+    connect(a, &QAction::triggered, mediaView, &MediaView::toggleSubscription);
+    addNamedAction("subscribeChannel", a);
     mediaView->updateSubscriptionActionForVideo(0, false);
 
     QString shareTip = tr("Share the current video using %1");
 
-    action = new QAction("&Twitter", this);
-    IconUtils::setIcon(action, "twitter");
-    action->setStatusTip(shareTip.arg("Twitter"));
-    action->setEnabled(false);
-    actionMap.insert("twitter", action);
-    connect(action, SIGNAL(triggered()), mediaView, SLOT(shareViaTwitter()));
+    a = new QAction("&Twitter");
+    IconUtils::setIcon(a, "twitter");
+    a->setStatusTip(shareTip.arg("Twitter"));
+    a->setEnabled(false);
+    addNamedAction("twitter", a);
+    connect(a, &QAction::triggered, mediaView, &MediaView::shareViaTwitter);
 
-    action = new QAction("&Facebook", this);
-    IconUtils::setIcon(action, "facebook");
-    action->setStatusTip(shareTip.arg("Facebook"));
-    action->setEnabled(false);
-    actionMap.insert("facebook", action);
-    connect(action, SIGNAL(triggered()), mediaView, SLOT(shareViaFacebook()));
+    a = new QAction("&Facebook");
+    IconUtils::setIcon(a, "facebook");
+    a->setStatusTip(shareTip.arg("Facebook"));
+    a->setEnabled(false);
+    addNamedAction("facebook", a);
+    connect(a, &QAction::triggered, mediaView, &MediaView::shareViaFacebook);
 
-    action = new QAction(tr("&Email"), this);
-    IconUtils::setIcon(action, "email");
-    action->setStatusTip(shareTip.arg(tr("Email")));
-    action->setEnabled(false);
-    actionMap.insert("email", action);
-    connect(action, SIGNAL(triggered()), mediaView, SLOT(shareViaEmail()));
+    a = new QAction(tr("&Email"));
+    IconUtils::setIcon(a, "email");
+    a->setStatusTip(shareTip.arg(tr("Email")));
+    a->setEnabled(false);
+    addNamedAction("email", a);
+    connect(a, &QAction::triggered, mediaView, &MediaView::shareViaEmail);
 
-    action = new QAction(tr("&Close"), this);
-    action->setShortcut(QKeySequence(QKeySequence::Close));
-    actionMap.insert("close", action);
-    connect(action, SIGNAL(triggered()), SLOT(close()));
+    a = new QAction(tr("&Close"));
+    a->setShortcut(QKeySequence(QKeySequence::Close));
+    addNamedAction("close", a);
+    connect(a, &QAction::triggered, this, &QWidget::close);
 
-    action = new QAction(Constants::NAME, this);
-    action->setShortcut(QKeySequence(Qt::CTRL | Qt::ALT | Qt::Key_1));
-    actionMap.insert("restore", action);
-    connect(action, SIGNAL(triggered()), SLOT(restore()));
+    a = new QAction(Constants::NAME);
+    a->setShortcut(QKeySequence(Qt::CTRL | Qt::ALT | Qt::Key_1));
+    addNamedAction("restore", a);
+    connect(a, &QAction::triggered, this, &MainWindow::restore);
 
-    action = new QAction(tr("&Float on Top"), this);
-    IconUtils::setIcon(action, "go-top");
-    action->setCheckable(true);
-    actionMap.insert("ontop", action);
-    connect(action, SIGNAL(toggled(bool)), SLOT(floatOnTop(bool)));
+    a = new QAction(tr("&Float on Top"));
+    IconUtils::setIcon(a, "go-top");
+    a->setCheckable(true);
+    addNamedAction("ontop", a);
+    connect(a, &QAction::toggled, this, [this](bool checked) { floatOnTop(checked); });
 
-    action = new QAction(tr("&Stop After This Video"), this);
-    IconUtils::setIcon(action, "media-playback-stop");
-    action->setShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Escape));
-    action->setCheckable(true);
-    action->setEnabled(false);
-    actionMap.insert("stopafterthis", action);
-    connect(action, SIGNAL(toggled(bool)), SLOT(showStopAfterThisInStatusBar(bool)));
+    a = new QAction(tr("&Stop After This Video"));
+    IconUtils::setIcon(a, "media-playback-stop");
+    a->setShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Escape));
+    a->setCheckable(true);
+    a->setEnabled(false);
+    addNamedAction("stopafterthis", a);
+    connect(a, &QAction::toggled, this, &MainWindow::showStopAfterThisInStatusBar);
 
-    action = new QAction(tr("&Report an Issue..."), this);
-    actionMap.insert("reportIssue", action);
-    connect(action, SIGNAL(triggered()), SLOT(reportIssue()));
+    a = new QAction(tr("&Report an Issue..."));
+    addNamedAction("reportIssue", a);
+    connect(a, &QAction::triggered, this, &MainWindow::reportIssue);
 
-    action = new QAction(tr("&Refine Search..."), this);
-    action->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_E));
-    action->setCheckable(true);
-    action->setEnabled(false);
-    actionMap.insert("refineSearch", action);
+    a = new QAction(tr("&Refine Search..."));
+    a->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_E));
+    a->setCheckable(true);
+    a->setEnabled(false);
+    addNamedAction("refineSearch", a);
 
-    action = new QAction(YTRegions::defaultRegion().name, this);
-    actionMap.insert("worldwideRegion", action);
+    a = new QAction(YTRegions::defaultRegion().name);
+    addNamedAction("worldwideRegion", a);
 
-    action = new QAction(YTRegions::localRegion().name, this);
-    actionMap.insert("localRegion", action);
+    a = new QAction(YTRegions::localRegion().name);
+    addNamedAction("localRegion", a);
 
-    action = new QAction(tr("More..."), this);
-    actionMap.insert("moreRegion", action);
+    a = new QAction(tr("More..."));
+    addNamedAction("moreRegion", a);
 
-    action = new QAction(tr("&Related Videos"), this);
-    IconUtils::setIcon(action, "view-list");
-    action->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R));
-    action->setStatusTip(tr("Watch videos related to the current one"));
-    action->setEnabled(false);
-    action->setPriority(QAction::LowPriority);
-    connect(action, SIGNAL(triggered()), mediaView, SLOT(relatedVideos()));
-    actionMap.insert("relatedVideos", action);
+    a = new QAction(tr("&Related Videos"));
+    IconUtils::setIcon(a, "view-list");
+    a->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R));
+    a->setStatusTip(tr("Watch videos related to the current one"));
+    a->setEnabled(false);
+    a->setPriority(QAction::LowPriority);
+    connect(a, &QAction::triggered, mediaView, &MediaView::relatedVideos);
+    addNamedAction("relatedVideos", a);
 
-    action = new QAction(tr("Open in &Browser..."), this);
-    action->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_B));
-    action->setEnabled(false);
-    actionMap.insert("openInBrowser", action);
-    connect(action, SIGNAL(triggered()), mediaView, SLOT(openInBrowser()));
+    a = new QAction(tr("Open in &Browser..."));
+    a->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_B));
+    a->setEnabled(false);
+    addNamedAction("openInBrowser", a);
+    connect(a, &QAction::triggered, mediaView, &MediaView::openInBrowser);
 
-    action = new QAction(tr("Restricted Mode"), this);
-    IconUtils::setIcon(action, "safesearch");
-    action->setStatusTip(tr("Hide videos that may contain inappropriate content"));
-    action->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_K));
-    action->setCheckable(true);
-    action->setVisible(VideoAPI::impl() != VideoAPI::IV);
-    actionMap.insert("safeSearch", action);
+    a = new QAction(tr("Restricted Mode"));
+    IconUtils::setIcon(a, "safesearch");
+    a->setStatusTip(tr("Hide videos that may contain inappropriate content"));
+    a->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_K));
+    a->setCheckable(true);
+    a->setVisible(VideoAPI::impl() != VideoAPI::IV);
+    addNamedAction("safeSearch", a);
 
-    action = new QAction(tr("Toggle &Menu Bar"), this);
-    connect(action, SIGNAL(triggered()), SLOT(toggleMenuVisibilityWithMessage()));
-    actionMap.insert("toggleMenu", action);
+    a = new QAction(tr("Toggle &Menu Bar"));
+    connect(a, &QAction::triggered, this, &MainWindow::toggleMenuVisibilityWithMessage);
+    addNamedAction("toggleMenu", a);
 
-    action = new QAction(tr("Menu"), this);
-    IconUtils::setIcon(action, "open-menu");
-    connect(action, SIGNAL(triggered()), SLOT(toggleToolbarMenu()));
-    actionMap.insert("toolbarMenu", action);
+    a = new QAction(tr("Menu"));
+    IconUtils::setIcon(a, "open-menu");
+    connect(a, &QAction::triggered, this, &MainWindow::toggleToolbarMenu);
+    addNamedAction("toolbarMenu", a);
 
-    action = new QAction(tr("Import Subscriptions..."), this);
-    action->setMenuRole(QAction::ApplicationSpecificRole);
-    connect(action, &QAction::triggered, this, [this] {
+    a = new QAction(tr("Import Subscriptions..."));
+    a->setMenuRole(QAction::ApplicationSpecificRole);
+    connect(a, &QAction::triggered, this, [this] {
         if (!subscriptionImportView) {
             subscriptionImportView = new SubscriptionImportView(this);
             views->addWidget(subscriptionImportView);
         }
         showView(subscriptionImportView);
     });
-    actionMap.insert("importSubscriptions", action);
+    addNamedAction("importSubscriptions", a);
 
 #ifdef APP_MAC_STORE
-    action = new QAction(tr("&Love %1? Rate it!").arg(Constants::NAME), this);
-    actionMap.insert("appStore", action);
-    connect(action, SIGNAL(triggered()), SLOT(rateOnAppStore()));
+    a = new QAction(tr("&Love %1? Rate it!").arg(Constants::NAME));
+    addNamedAction("appStore", a);
+    connect(a, SIGNAL(triggered()), SLOT(rateOnAppStore()));
 #endif
 
 #ifdef APP_ACTIVATION
@@ -719,11 +719,12 @@ void MainWindow::createActions() {
 #endif
 
     // common action properties
-    for (QAction *action : qAsConst(actionMap)) {
+    for (auto a : qAsConst(actionMap)) {
         // add actions to the MainWindow so that they work
         // when the menu is hidden
-        addAction(action);
-        setupAction(action);
+        addAction(a);
+        a->setParent(this);
+        setupAction(a);
     }
 }
 
