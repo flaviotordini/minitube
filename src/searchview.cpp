@@ -137,10 +137,17 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     setFocusProxy(slem);
 #else
     SearchLineEdit *sle = new SearchLineEdit(this);
+    sle->setPlaceholderText(tip);
     sle->setFont(FontUtils::medium());
-    int tipWidth = sle->fontMetrics().size(Qt::TextSingleLine, tip).width();
-    sle->setMinimumWidth(tipWidth + sle->fontMetrics().xHeight() * 6);
     sle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
+    auto resizeSle = [sle] {
+        int tipWidth = sle->fontMetrics().size(Qt::TextSingleLine, sle->placeholderText()).width();
+        sle->setMinimumWidth(tipWidth + sle->fontMetrics().xHeight() * 10);
+    };
+    connect(sle, &SearchLineEdit::fontChanged, this, resizeSle);
+    resizeSle();
+    setFocusProxy(sle);
+
     queryEdit = sle;
 #endif
 
@@ -151,7 +158,6 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
             SLOT(textChanged(const QString &)));
     connect(queryEdit->toWidget(), SIGNAL(suggestionAccepted(Suggestion *)),
             SLOT(suggestionAccepted(Suggestion *)));
-    queryEdit->setPlaceholderText(tip);
 
     youtubeSuggest = new YTSuggester(this);
     channelSuggest = new ChannelSuggest(this);
