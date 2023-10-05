@@ -102,6 +102,7 @@ $END_LICENSE */
 
 #include "subscriptionimportview.h"
 
+#include "actionbutton.h"
 #include "views.h"
 #include "zoomableui.h"
 
@@ -114,7 +115,7 @@ MainWindow *MainWindow::instance() {
 }
 
 MainWindow::MainWindow()
-    : aboutView(nullptr), downloadView(nullptr), regionsView(nullptr), mainToolBar(nullptr),
+    : aboutView(nullptr), downloadView(nullptr), regionsView(nullptr), toolbar(nullptr),
       fullScreenActive(false), compactModeActive(false), initialized(false), toolbarMenu(nullptr),
       media(nullptr) {
     mainWindowInstance = this;
@@ -284,7 +285,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
         obj->isWidgetType() && qobject_cast<QWidget *>(obj)->window() == this) {
         QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(e);
 
-        bool toolBarVisible = mainToolBar && mainToolBar->isVisible();
+        bool toolBarVisible = toolbar && toolbar->isVisible();
         bool sidebarVisible = mediaView->isSidebarVisible();
 
         if (!sidebarVisible && !toolBarVisible) {
@@ -303,8 +304,8 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
         if (!toolBarVisible && !sidebarVisible) {
             const int y = mouseEvent->pos().y();
             if (y >= 0 && y < 5) {
-                mainToolBar->resize(width(), mainToolBar->sizeHint().height());
-                mainToolBar->setVisible(true);
+                toolbar->resize(width(), toolbar->sizeHint().height());
+                toolbar->setVisible(true);
             }
         }
 #endif
@@ -830,10 +831,17 @@ void MainWindow::createToolBar() {
     currentTimeLabel = new QLabel("00:00", this);
 
     seekSlider = new SeekSlider(this);
+    seekSlider->setProperty("knobless", true);
     seekSlider->setEnabled(false);
     seekSlider->setTracking(false);
     seekSlider->setMaximum(1000);
+
     volumeSlider = new SeekSlider(this);
+    {
+        auto p = volumeSlider->palette();
+        p.setColor(QPalette::Highlight, p.color(QPalette::Button));
+        volumeSlider->setPalette(p);
+    }
     volumeSlider->setValue(volumeSlider->maximum());
 
 #if defined(APP_MAC_SEARCHFIELD) && !defined(APP_MAC_QMACTOOLBAR)
@@ -859,97 +867,91 @@ void MainWindow::createToolBar() {
     toolbarSearch->hide();
     volumeSlider->hide();
     seekSlider->hide();
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     mac::createToolbar(this);
-#else
-    MacToolbar::instance().createToolbar(this);
-#endif
     return;
 #endif
 
-    mainToolBar = new QToolBar(this);
-    mainToolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
-    mainToolBar->setFloatable(false);
-    mainToolBar->setMovable(false);
-#ifndef APP_LINUX
-    mainToolBar->setIconSize(QSize(32, 32));
-#endif
-    mainToolBar->addAction(stopAct);
-    QToolButton *stopToolButton =
-            qobject_cast<QToolButton *>(mainToolBar->widgetForAction(stopAct));
+    toolbar = new QToolBar(this);
+    toolbar->setToolButtonStyle(Qt::ToolButtonIconOnly);
+    toolbar->setFloatable(false);
+    toolbar->setMovable(true);
+    toolbar->setIconSize(QSize(32, 32));
+    toolbar->setAllowedAreas(Qt::TopToolBarArea | Qt::BottomToolBarArea);
+    addToolBar(Qt::BottomToolBarArea, toolbar);
+
+    auto addSmallToolbutton = [this](const char *name) {
+        auto button = new ActionButton();
+        button->setAction(getAction(name));
+        button->setIconSize(QSize(16, 16));
+        button->setFlat(true);
+        button->setFocusPolicy(Qt::NoFocus);
+        toolbar->addWidget(button);
+    };
+
+    toolbar->addAction(stopAct);
+    QToolButton *stopToolButton = qobject_cast<QToolButton *>(toolbar->widgetForAction(stopAct));
     if (stopToolButton) {
         QMenu *stopMenu = new QMenu(this);
         stopMenu->addAction(getAction("stopafterthis"));
         stopToolButton->setMenu(stopMenu);
         stopToolButton->setPopupMode(QToolButton::DelayedPopup);
     }
-    mainToolBar->addAction(pauseAct);
-    mainToolBar->addAction(skipAct);
-    mainToolBar->addAction(getAction("relatedVideos"));
+    toolbar->addAction(pauseAct);
+    toolbar->addAction(skipAct);
+    toolbar->addAction(getAction("relatedVideos"));
 
     bool addFullScreenAct = true;
 #ifdef Q_OS_MAC
     addFullScreenAct = !mac::CanGoFullScreen(winId());
 #endif
-    if (addFullScreenAct) mainToolBar->addAction(fullscreenAct);
+    if (addFullScreenAct) toolbar->addAction(fullscreenAct);
 
-    mainToolBar->addWidget(new Spacer());
+    toolbar->addWidget(new Spacer());
 
     currentTimeLabel->setFont(FontUtils::small());
     currentTimeLabel->setMinimumWidth(currentTimeLabel->fontInfo().pixelSize() * 4);
     currentTimeLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    mainToolBar->addWidget(currentTimeLabel);
+    toolbar->addWidget(currentTimeLabel);
 
 #ifdef APP_WIN
-    mainToolBar->addWidget(new Spacer(nullptr, 10));
+    toolbar->addWidget(new Spacer(nullptr, 10));
 #endif
 
     seekSlider->setOrientation(Qt::Horizontal);
-    seekSlider->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
+    QSizePolicy sp(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
+    sp.setHorizontalStretch(2);
+    seekSlider->setSizePolicy(sp);
     seekSlider->setFocusPolicy(Qt::NoFocus);
-    mainToolBar->addWidget(seekSlider);
+    seekSlider->setMaximumWidth(500);
+    toolbar->addWidget(seekSlider);
 
-    mainToolBar->addWidget(new Spacer());
+    toolbar->addWidget(new Spacer());
 
-    mainToolBar->addAction(volumeMuteAct);
-#ifndef APP_MAC_QMACTOOLBAR
-    QToolButton *volumeMuteButton =
-            qobject_cast<QToolButton *>(mainToolBar->widgetForAction(volumeMuteAct));
-    volumeMuteButton->setIconSize(QSize(16, 16));
-    auto fixVolumeMuteIconSize = [volumeMuteButton] {
-        volumeMuteButton->setIcon(volumeMuteButton->icon().pixmap(16));
-    };
-    fixVolumeMuteIconSize();
-    volumeMuteButton->connect(volumeMuteAct, &QAction::changed, volumeMuteButton,
-                              fixVolumeMuteIconSize);
-#endif
+    addSmallToolbutton("volumeMute");
 
     volumeSlider->setStatusTip(
             tr("Press %1 to raise the volume, %2 to lower it")
-                    .arg(volumeUpAct->shortcut().toString(QKeySequence::NativeText),
-                         volumeDownAct->shortcut().toString(QKeySequence::NativeText)));
+                    .arg(getAction("volumeUp")->shortcut().toString(QKeySequence::NativeText),
+                         getAction("volumeDown")->shortcut().toString(QKeySequence::NativeText)));
 
     volumeSlider->setOrientation(Qt::Horizontal);
     // this makes the volume slider smaller
     volumeSlider->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     volumeSlider->setFocusPolicy(Qt::NoFocus);
-    mainToolBar->addWidget(volumeSlider);
+    toolbar->addWidget(volumeSlider);
 
-    mainToolBar->addWidget(new Spacer());
+    toolbar->addWidget(new Spacer());
 
 #if defined(APP_MAC_SEARCHFIELD) && !defined(APP_MAC_QMACTOOLBAR)
-    mainToolBar->addWidget(searchWrapper);
+    toolbar->addWidget(searchWrapper);
 #else
-    mainToolBar->addWidget(toolbarSearch);
-    mainToolBar->addWidget(new Spacer());
+    toolbar->addWidget(toolbarSearch);
+    toolbar->addWidget(new Spacer());
 
     QAction *toolbarMenuAction = getAction("toolbarMenu");
-    mainToolBar->addAction(toolbarMenuAction);
-    toolbarMenuButton =
-            qobject_cast<QToolButton *>(mainToolBar->widgetForAction(toolbarMenuAction));
+    toolbar->addAction(toolbarMenuAction);
+    toolbarMenuButton = qobject_cast<QToolButton *>(toolbar->widgetForAction(toolbarMenuAction));
 #endif
-
-    addToolBar(mainToolBar);
 }
 
 void MainWindow::createStatusBar() {
@@ -1028,7 +1030,7 @@ void MainWindow::hideToolbar() {
 #ifdef APP_MAC
     mac::showToolBar(winId(), false);
 #else
-    mainToolBar->hide();
+    toolbar->hide();
 #endif
 }
 
@@ -1036,7 +1038,7 @@ void MainWindow::showToolbar() {
 #ifdef APP_MAC
     mac::showToolBar(winId(), true);
 #else
-    mainToolBar->show();
+    toolbar->show();
 #endif
 }
 
@@ -1281,7 +1283,7 @@ void MainWindow::toggleFullscreen() {
 #ifdef APP_MAC
     WId handle = winId();
     if (mac::CanGoFullScreen(handle)) {
-        if (mainToolBar) mainToolBar->setVisible(true);
+        if (toolbar) toolbar->setVisible(true);
         mac::ToggleFullScreen(handle);
         return;
     }
@@ -1303,7 +1305,7 @@ void MainWindow::toggleFullscreen() {
 #else
         menuVisibleBeforeFullScreen = menuBar()->isVisible();
         menuBar()->hide();
-        if (mainToolBar) mainToolBar->hide();
+        if (toolbar) toolbar->hide();
         showFullScreen();
 #endif
 
@@ -1314,7 +1316,7 @@ void MainWindow::toggleFullscreen() {
         MacSupport::exitFullScreen(this, views);
 #else
         menuBar()->setVisible(menuVisibleBeforeFullScreen);
-        if (mainToolBar) mainToolBar->setVisible(views->currentWidget() == mediaView);
+        if (toolbar) toolbar->setVisible(views->currentWidget() == mediaView);
         if (maximizedBeforeFullScreen)
             showMaximized();
         else
@@ -1343,9 +1345,9 @@ void MainWindow::updateUIForFullscreen() {
         fullscreenAct->setIcon(IconUtils::icon("view-restore"));
         setStatusBarVisibility(false);
 
-        if (mainToolBar) {
-            removeToolBar(mainToolBar);
-            mainToolBar->move(0, 0);
+        if (toolbar) {
+            removeToolBar(toolbar);
+            toolbar->move(0, 0);
         }
 
         mediaView->removeSidebar();
@@ -1358,8 +1360,8 @@ void MainWindow::updateUIForFullscreen() {
 
         if (needStatusBar()) setStatusBarVisibility(true);
 
-        if (mainToolBar) {
-            addToolBar(mainToolBar);
+        if (toolbar) {
+            addToolBar(toolbar);
         }
 
         mediaView->restoreSidebar();
@@ -1470,7 +1472,7 @@ void MainWindow::compactView(bool enable) {
 #ifdef APP_MAC_QMACTOOLBAR
         mac::showToolBar(winId(), !enable);
 #else
-        mainToolBar->setVisible(!enable);
+        toolbar->setVisible(!enable);
 #endif
         mediaView->setSidebarVisibility(!enable);
         statusBar()->hide();
@@ -1500,7 +1502,7 @@ void MainWindow::compactView(bool enable) {
 #ifdef APP_MAC_QMACTOOLBAR
         mac::showToolBar(winId(), !enable);
 #else
-        mainToolBar->setVisible(!enable);
+        toolbar->setVisible(!enable);
 #endif
         mediaView->setSidebarVisibility(!enable);
         if (needStatusBar()) setStatusBarVisibility(true);
@@ -1844,8 +1846,8 @@ void MainWindow::hideFullscreenUI() {
 
 #ifndef APP_MAC
     const int y = p.y();
-    bool shouldHideToolbar = !toolbarSearch->hasFocus() && y > mainToolBar->height();
-    if (shouldHideToolbar) mainToolBar->setVisible(false);
+    bool shouldHideToolbar = !toolbarSearch->hasFocus() && y > toolbar->height();
+    if (shouldHideToolbar) toolbar->setVisible(false);
 #endif
 }
 

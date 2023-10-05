@@ -208,7 +208,7 @@ private:
     QMenu *helpMenu;
 
     // toolbar & statusbar
-    QToolBar *mainToolBar;
+    QToolBar *toolbar;
     SearchLineEdit *toolbarSearch;
     QToolBar *statusToolBar;
     QAction *regionAction;
