@@ -502,13 +502,13 @@ void MainWindow::createActions() {
     addAction(searchFocusAct);
 
     volumeUpAct = new QAction(this);
-    volumeUpAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL | Qt::Key_Plus));
+    volumeUpAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL | Qt::Key_Up));
     addNamedAction("volumeUp", volumeUpAct);
     connect(volumeUpAct, &QAction::triggered, this, &MainWindow::volumeUp);
     addAction(volumeUpAct);
 
     volumeDownAct = new QAction(this);
-    volumeDownAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL | Qt::Key_Minus));
+    volumeDownAct->setShortcuts(QList<QKeySequence>() << QKeySequence(Qt::CTRL | Qt::Key_Down));
     addNamedAction("volumeDown", volumeDownAct);
     connect(volumeDownAct, &QAction::triggered, this, &MainWindow::volumeDown);
     addAction(volumeDownAct);
