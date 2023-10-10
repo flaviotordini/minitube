@@ -317,16 +317,11 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *e) {
     }
 
     if (t == QEvent::Show && obj == toolbarMenu) {
-#ifdef APP_MAC
         int x = width() - toolbarMenu->sizeHint().width();
         int y = views->y();
-#else
-        int x = toolbarMenuButton->x() + toolbarMenuButton->width() -
-                toolbarMenu->sizeHint().width();
-        int y = toolbarMenuButton->y() + toolbarMenuButton->height();
-#endif
-        QPoint p(x, y);
-        toolbarMenu->move(mapToGlobal(p));
+        if (toolBarArea(toolbar) == Qt::BottomToolBarArea)
+            y += views->height() - toolbarMenu->sizeHint().height();
+        toolbarMenu->move(mapToGlobal(QPoint(x, y)));
     }
 
     if (obj == this && t == QEvent::StyleChange) {
@@ -824,6 +819,8 @@ void MainWindow::createMenus() {
     helpMenu->addSeparator();
     helpMenu->addAction(getAction("appStore"));
 #endif
+
+    toolbarMenu = new ToolbarMenu(this);
 }
 
 void MainWindow::createToolBar() {
@@ -947,10 +944,7 @@ void MainWindow::createToolBar() {
 #else
     toolbar->addWidget(toolbarSearch);
     toolbar->addWidget(new Spacer());
-
-    QAction *toolbarMenuAction = getAction("toolbarMenu");
-    toolbar->addAction(toolbarMenuAction);
-    toolbarMenuButton = qobject_cast<QToolButton *>(toolbar->widgetForAction(toolbarMenuAction));
+    addSmallToolbutton("toolbarMenu");
 #endif
 }
 
@@ -1531,7 +1525,6 @@ void MainWindow::compactView(bool enable) {
 }
 
 void MainWindow::toggleToolbarMenu() {
-    if (!toolbarMenu) toolbarMenu = new ToolbarMenu(this);
     if (toolbarMenu->isVisible())
         toolbarMenu->hide();
     else
