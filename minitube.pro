@@ -25,7 +25,7 @@ CONFIG(release, debug|release): {
     CONFIG += optimize_full
 }
 
-DEFINES *= QT_USE_QSTRINGBUILDER QT_STRICT_ITERATORS QT_DEPRECATED_WARNINGS
+DEFINES *= QT_USE_QSTRINGBUILDER
 
 #!contains(DEFINES, APP_GOOGLE_API_KEY=.+) {
 #    warning("You need to specify a Google API Key, refer to the README.md file for details")
