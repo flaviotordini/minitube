@@ -86,7 +86,6 @@ HEADERS += \
     src/videosourcewidget.h \
     src/regionsview.h \
     src/sidebarheader.h \
-    src/diskcache.h \
     src/gridwidget.h \
     src/painterutils.h \
     src/database.h \
@@ -142,7 +141,6 @@ SOURCES += src/main.cpp \
     src/videosourcewidget.cpp \
     src/regionsview.cpp \
     src/sidebarheader.cpp \
-    src/diskcache.cpp \
     src/gridwidget.cpp \
     src/painterutils.cpp \
     src/database.cpp \
