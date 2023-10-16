@@ -68,7 +68,6 @@ HEADERS += \
     src/downloadsettings.h \
     src/suggester.h \
     src/channelsuggest.h \
-    src/temporary.h \
     src/playlistview.h \
     src/refinesearchwidget.h \
     src/refinesearchbutton.h \
@@ -122,7 +121,6 @@ SOURCES += src/main.cpp \
     src/downloadlistview.cpp \
     src/downloadsettings.cpp \
     src/channelsuggest.cpp \
-    src/temporary.cpp \
     src/playlistview.cpp \
     src/refinesearchwidget.cpp \
     src/refinesearchbutton.cpp \

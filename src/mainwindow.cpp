@@ -46,7 +46,6 @@ $END_LICENSE */
 #include "macutils.h"
 #endif
 #include "downloadmanager.h"
-#include "temporary.h"
 #include "ytsuggester.h"
 #if defined(APP_MAC_SEARCHFIELD) && !defined(APP_MAC_QMACTOOLBAR)
 #include "searchlineedit_mac.h"
@@ -1115,7 +1114,6 @@ void MainWindow::quit() {
         writeSettings();
     }
     // mediaView->stop();
-    Temporary::deleteAll();
     ChannelAggregator::instance()->stop();
     ChannelAggregator::instance()->cleanup();
     Database::shutdown();

@@ -30,7 +30,6 @@ $END_LICENSE */
 #include "refinesearchwidget.h"
 #include "sidebarheader.h"
 #include "sidebarwidget.h"
-#include "temporary.h"
 #include "videoarea.h"
 #ifdef APP_ACTIVATION
 #include "activation.h"
