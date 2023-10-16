@@ -48,6 +48,7 @@ void HomeView::setupBar() {
     bar = new SegmentedControl();
 
     QAction *action = new QAction(tr("Search"), this);
+    action->setIcon(IconUtils::icon("edit-find"));
     action->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_1));
     action->setStatusTip(tr("Find videos and channels by keyword"));
     connect(action, SIGNAL(triggered()), SLOT(showSearch()));
