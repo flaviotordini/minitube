@@ -171,11 +171,7 @@ MainWindow::MainWindow()
         views->widget(i)->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
     setMinimumWidth(0);
 
-#ifdef APP_ACTIVATION
-    Activation::instance().initialCheck();
-#else
     showHome();
-#endif
 
 #ifdef YT_IV
     Invidious::instance().initServers();
