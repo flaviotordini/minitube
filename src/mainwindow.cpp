@@ -190,7 +190,6 @@ MainWindow::MainWindow()
 void MainWindow::lazyInit() {
     mediaView->initialize();
     initMedia();
-    qApp->processEvents();
 
     // CLI
     if (qApp->arguments().size() > 1) {
