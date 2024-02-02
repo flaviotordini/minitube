@@ -201,7 +201,7 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
     layout->addLayout(buttonLayout);
 
 #ifndef APP_WIN_STORE
-    verticalLayout->addWidget(new AppsWidget());
+    verticalLayout->addWidget(new AppsWidget(this));
 #endif
 }
 
