@@ -17,7 +17,7 @@ Exec=minitube -platform xcb
 Terminal=false
 Type=Application
 Icon=minitube
-Categories=AudioVideo;Video;Qt;
+Categories=AudioVideo;Video;Network;Qt;
 StartupNotify=false
 Actions=TogglePlaying;Next;Previous;StopAfterThis;
 
