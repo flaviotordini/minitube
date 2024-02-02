@@ -46,11 +46,10 @@ void init() {
     auto installer = new updater::RunInstaller;
 #ifdef APP_WIN
     installer->setArguments({"/S"});
-    installer->setRelaunchArguments({"/run"});
 #endif
 #ifdef APP_LINUX
-    installer->setCommand({"dpkg"});
-    installer->setArguments({"-i", "%filename%"});
+    installer->setCommand({"apt"});
+    installer->setArguments({"install", "%filename%"});
     installer->setRunAsAdmin(true);
     installer->setAutoRestart(true);
 #endif
