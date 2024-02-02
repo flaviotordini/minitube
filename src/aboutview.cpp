@@ -35,6 +35,7 @@ $END_LICENSE */
 #include "fontutils.h"
 #include "iconutils.h"
 #include "mainwindow.h"
+#include "views.h"
 
 #ifdef UPDATER
 #include "updater.h"
@@ -193,7 +194,8 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
     closeButton->setDefault(true);
     closeButton->setShortcut(Qt::Key_Escape);
     closeButton->setFocus();
-    connect(closeButton, SIGNAL(clicked()), MainWindow::instance(), SLOT(goBack()));
+    connect(closeButton, &QAbstractButton::clicked, MainWindow::instance()->getViews(),
+            &Views::goBack);
     buttonLayout->addWidget(closeButton);
 
     layout->addLayout(buttonLayout);
