@@ -86,7 +86,6 @@ HEADERS += \
     src/regionsview.h \
     src/sidebarheader.h \
     src/gridwidget.h \
-    src/painterutils.h \
     src/database.h \
     src/channelaggregator.h \
     src/channelmodel.h \
@@ -100,7 +99,6 @@ HEADERS += \
     src/channellistview.h \
     src/ytchannel.h \
     src/httputils.h \
-    src/appwidget.h \
     src/toolbarmenu.h \
     src/sharetoolbar.h \
     src/videoarea.h \
@@ -140,7 +138,6 @@ SOURCES += src/main.cpp \
     src/regionsview.cpp \
     src/sidebarheader.cpp \
     src/gridwidget.cpp \
-    src/painterutils.cpp \
     src/database.cpp \
     src/channelaggregator.cpp \
     src/channelmodel.cpp \
@@ -153,7 +150,6 @@ SOURCES += src/main.cpp \
     src/channellistview.cpp \
     src/ytchannel.cpp \
     src/httputils.cpp \
-    src/appwidget.cpp \
     src/toolbarmenu.cpp \
     src/sharetoolbar.cpp \
     src/videoarea.cpp \

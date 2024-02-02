@@ -158,6 +158,26 @@ void ChannelItemDelegate::paintBadge(QPainter *painter,
     painter->save();
     painter->translate(topLeft, 0);
     painter->setClipping(false);
-    PainterUtils::paintBadge(painter, text, true, QColor(230, 36, 41), true);
+
+    QColor bg(230, 36, 41);
+
+    QRect textBox = painter->boundingRect(QRect(), Qt::AlignCenter, text);
+    int w = textBox.width() + painter->fontMetrics().xHeight();
+    int x = 0;
+    x -= w / 2;
+    QRect rect(x, 0, w, textBox.height() + 2);
+    if (rect.width() < rect.height() || text.length() == 1) rect.setWidth(rect.height());
+
+    painter->setPen(Qt::NoPen);
+
+    painter->setBrush(bg);
+    painter->setRenderHint(QPainter::Antialiasing);
+    qreal borderRadius = rect.height() / 2.;
+    painter->drawRoundedRect(rect, borderRadius, borderRadius);
+
+    painter->setFont(FontUtils::small());
+    painter->setPen(Qt::white);
+    painter->drawText(rect, Qt::AlignCenter, text);
+
     painter->restore();
 }
