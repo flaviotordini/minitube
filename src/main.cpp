@@ -29,7 +29,6 @@ typedef QApplication SingleApplication;
 
 #include "constants.h"
 #include "iconutils.h"
-#include "updateutils.h"
 
 #include "mainwindow.h"
 #ifdef APP_EXTRA
@@ -147,8 +146,6 @@ int main(int argc, char **argv) {
     QNetworkProxyFactory::setUseSystemConfiguration(true);
 
     IconUtils::setSizes({16, 24, 32, 88, 128});
-
-    UpdateUtils::init();
 
     showWindow(app, pkgDataDir);
 

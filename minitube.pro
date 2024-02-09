@@ -54,7 +54,6 @@ HEADERS += \
     src/constants.h \
     src/playlistitemdelegate.h \
     src/subscriptionimportview.h \
-    src/updateutils.h \
     src/videomimedata.h \
     src/loadingwidget.h \
     src/autocomplete.h \
@@ -105,7 +104,6 @@ HEADERS += \
     src/searchlineedit.h
 SOURCES += src/main.cpp \
     src/subscriptionimportview.cpp \
-    src/updateutils.cpp \
     src/videomimedata.cpp \
     src/loadingwidget.cpp \
     src/autocomplete.cpp \
