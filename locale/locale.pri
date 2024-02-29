@@ -1,7 +1,6 @@
 # This voodoo comes from the Arora project
 
 INCLUDEPATH += $$PWD
-DEPENDPATH += $$PWD
 VPATH += $$PWD
 
 # ls -1 *.ts | tr '\n' ' '
