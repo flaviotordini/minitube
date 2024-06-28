@@ -47,10 +47,6 @@
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>About</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ActivationDialog</name>
@@ -70,27 +66,19 @@
 <context>
     <name>ActivationView</name>
     <message>
-        <source>Please license %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The full version allows you to watch videos without interruptions.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use Demo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Enter License</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Buy License</source>
+        <source>Buy %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Buy</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -98,6 +86,17 @@
     <name>AppWidget</name>
     <message>
         <source>Download</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Breadcrumb</name>
+    <message>
+        <source>&amp;Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go back</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -110,7 +109,7 @@
     <message numerus="yes">
         <source>You have %n new video(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform><numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
 </context>
@@ -193,19 +192,19 @@
     <message numerus="yes">
         <source>%n hour(s) ago</source>
         <translation type="unfinished">
-            <numerusform></numerusform><numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
         <translation type="unfinished">
-            <numerusform></numerusform><numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
         <translation type="unfinished">
-            <numerusform></numerusform><numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -230,13 +229,13 @@
     <message numerus="yes">
         <source>%n week(s) ago</source>
         <translation type="unfinished">
-            <numerusform></numerusform><numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n year(s) ago</source>
         <translation type="unfinished">
-            <numerusform></numerusform><numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
 </context>
@@ -292,7 +291,7 @@
     <message numerus="yes">
         <source>%n Download(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform><numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
 </context>
@@ -323,25 +322,6 @@
     <name>DownloadView</name>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Extra</name>
-    <message>
-        <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 will not run. Try installing again.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Quit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reinstall</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -407,14 +387,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Browse</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Browse videos by category</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Subscriptions</source>
         <translation type="unfinished"></translation>
     </message>
@@ -423,7 +395,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Make yourself comfortable</source>
+        <source>Popular</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Explore popular videos by category</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -808,6 +784,22 @@
         <source>You can still access the menu bar by pressing the ALT key</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Make yourself comfortable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import Subscriptions...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The full version allows you to watch videos without interruptions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MediaView</name>
@@ -975,6 +967,25 @@
     </message>
 </context>
 <context>
+    <name>QObject</name>
+    <message>
+        <source>The executable file has been tempered with, maybe by a virus.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 will not run. Try installing again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reinstall</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>RefineSearchWidget</name>
     <message>
         <source>Sort by</source>
@@ -1102,14 +1113,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Recent keywords</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Recent channels</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Get the full version</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1203,6 +1206,27 @@
     </message>
 </context>
 <context>
+    <name>SubscriptionImportView</name>
+    <message>
+        <source>Open subscriptions.csv</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>YouTube data (*.csv *.json)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Subscribed to %n channel(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Cannot open file</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>UpdateDialog</name>
     <message>
         <source>Downloading update...</source>
@@ -1261,6 +1285,14 @@
     </message>
     <message>
         <source>An update has been downloaded and is ready to be installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Didn&apos;t check for updates.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version %1 download failed.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1462,14 +1494,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Worldwide</source>
+        <source>United States</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>YTVideo</name>
+    <name>ZoomableUI</name>
     <message>
-        <source>Cannot get video stream for %1</source>
+        <source>Zoom In</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Zoom Out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Zoom</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
