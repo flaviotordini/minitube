@@ -66,9 +66,7 @@ private:
 
     MessageBar *messageBar;
     SearchWidget *queryEdit;
-    QLabel *recentKeywordsLabel;
     QBoxLayout *recentKeywordsLayout;
-    QLabel *recentChannelsLabel;
     QBoxLayout *recentChannelsLayout;
 
     QStringList recentKeywords;

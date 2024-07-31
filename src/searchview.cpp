@@ -179,22 +179,12 @@ SearchView::SearchView(QWidget *parent) : QWidget(parent) {
     recentKeywordsLayout->setContentsMargins(0, 0, 0, 0);
     recentKeywordsLayout->setSpacing(0);
     recentKeywordsLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-    recentKeywordsLabel = new QLabel(tr("Recent keywords"));
-    recentKeywordsLabel->setProperty("recentHeader", true);
-    recentKeywordsLabel->hide();
-    recentKeywordsLabel->setEnabled(false);
-    recentKeywordsLayout->addWidget(recentKeywordsLabel);
     recentLayout->addLayout(recentKeywordsLayout);
 
     recentChannelsLayout = new QVBoxLayout();
     recentChannelsLayout->setContentsMargins(0, 0, 0, 0);
     recentChannelsLayout->setSpacing(0);
     recentChannelsLayout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-    recentChannelsLabel = new QLabel(tr("Recent channels"));
-    recentChannelsLabel->setProperty("recentHeader", true);
-    recentChannelsLabel->hide();
-    recentChannelsLabel->setEnabled(false);
-    recentChannelsLayout->addWidget(recentChannelsLabel);
     recentLayout->addLayout(recentChannelsLayout);
 
     layout->addLayout(recentLayout);
@@ -246,7 +236,7 @@ void SearchView::updateRecentKeywords() {
         delete item;
     }
 
-    recentKeywordsLabel->setVisible(!keywords.isEmpty());
+    // recentKeywordsLabel->setVisible(!keywords.isEmpty());
     MainWindow::instance()->getAction("clearRecentKeywords")->setEnabled(!keywords.isEmpty());
 
     const int maxDisplayLength = 25;
@@ -338,7 +328,7 @@ void SearchView::updateRecentChannels() {
         delete item;
     }
 
-    recentChannelsLabel->setVisible(!keywords.isEmpty());
+    // recentChannelsLabel->setVisible(!keywords.isEmpty());
 
 #ifdef APP_MAC
     QPalette p = palette();
