@@ -1937,9 +1937,18 @@ void MainWindow::handleError(const QString &message) {
 
 #ifdef APP_ACTIVATION
 void MainWindow::showActivationView() {
-    auto activationView = ActivationView::instance();
-    views->addWidget(activationView);
-    if (views->currentWidget() != activationView) showView(activationView);
+    auto view = ActivationView::instance();
+    if (views->indexOf(view) == -1) {
+        QString info =
+                tr("The full version allows you to watch videos without interruptions.") + "<p>" +
+                tr("By purchasing the full version, you will also support the hard work I put into "
+                   "creating %1.")
+                        .arg(QGuiApplication::applicationDisplayName());
+        view->setInfo(info);
+        connect(view, &ActivationView::done, this, [this] { views->goBack(); });
+        views->addWidget(view);
+    }
+    views->setCurrentWidget(view);
 }
 #endif
 
