@@ -144,10 +144,12 @@ void MediaView::initialize() {
                 connect(
                         ActivationView::instance(), &ActivationView::done, media,
                         [this] {
-                            MainWindow::instance()->getViews()->goBack();
                             media->play();
+                            int ms = (60000 * 2) +
+                                     (QRandomGenerator::global()->generate() % (60000 * 2));
+                            demoTimer->start(ms);
                         },
-                        Qt::UniqueConnection);
+                        Qt::SingleShotConnection);
                 MainWindow::instance()->showActivationView();
             },
             Qt::QueuedConnection);
