@@ -1233,8 +1233,8 @@ void MainWindow::stateChanged(Media::State newState) {
 }
 
 void MainWindow::stop() {
-    showHome();
     mediaView->stop();
+    showHome();
 }
 
 void MainWindow::resizeEvent(QResizeEvent *e) {
