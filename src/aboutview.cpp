@@ -131,10 +131,6 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent) {
             tr("Powered by %1")
                     .arg("<a href='https://" + QLatin1String(Constants::ORG_DOMAIN) +
                          "/opensource'>" + tr("Open-source software") + "</a>") +
-            "</p>";
-
-    info += "<p>" +
-            tr("Icon designed by %1.").arg("<a href='http://www.kolorguild.co.za/'>David Nel</a>") +
             "</p>"
 
 #ifndef APP_EXTRA
