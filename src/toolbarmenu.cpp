@@ -15,7 +15,6 @@ ToolbarMenu::ToolbarMenu(QWidget *parent) : QMenu(parent) {
 #ifdef APP_SNAPSHOT
     addAction(w->getAction("snapshot"));
 #endif
-    addAction(w->getAction("findVideoParts"));
     addSeparator();
     addAction(w->getAction("webpage"));
     addAction(w->getAction("videolink"));

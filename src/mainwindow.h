@@ -192,7 +192,6 @@ private:
     QAction *volumeUpAct;
     QAction *volumeDownAct;
     QAction *volumeMuteAct;
-    QAction *findVideoPartsAct;
 
     // playlist actions
     QAction *removeAct;

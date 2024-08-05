@@ -181,9 +181,9 @@ void MediaView::initialize() {
 #ifdef APP_SNAPSHOT
             "snapshot",
 #endif
-            "webpage",  "pagelink", "videolink",     "openInBrowser", "findVideoParts",
-            "skip",     "previous", "stopafterthis", "relatedVideos", "refineSearch",
-            "twitter",  "facebook", "email"};
+            "webpage",      "pagelink", "videolink",     "openInBrowser",
+            "skip",         "previous", "stopafterthis", "relatedVideos",
+            "refineSearch", "twitter",  "facebook",      "email"};
     currentVideoActions.reserve(videoActionNames.size());
     for (auto *name : videoActionNames) {
         currentVideoActions.append(mainWindow->getAction(name));
@@ -856,63 +856,6 @@ void MediaView::resumeWithNewStreamUrl(const QString &streamUrl, const QString &
         return;
     }
     video->disconnect(this);
-}
-
-void MediaView::findVideoParts() {
-    Video *video = playlistModel->activeVideo();
-    if (!video) return;
-
-    QString query = video->getTitle();
-
-    const QLatin1String optionalSpace("\\s*");
-    const QLatin1String staticCounterSeparators("[\\/\\-]");
-    const QString counterSeparators =
-            QLatin1String("( of | ") + tr("of", "Used in video parts, as in '2 of 3'") +
-            QLatin1String(" |") + staticCounterSeparators + QLatin1String(")");
-
-    // numbers from 1 to 15
-    const QLatin1String counterNumber("([1-9]|1[0-5])");
-
-    // query.remove(QRegExp(counterSeparators + optionalSpace + counterNumber));
-    query.remove(QRegularExpression(counterNumber + optionalSpace + counterSeparators +
-                                    optionalSpace + counterNumber));
-    query.remove(wordRE("pr?t\\.?" + optionalSpace + counterNumber));
-    query.remove(wordRE("ep\\.?" + optionalSpace + counterNumber));
-    query.remove(wordRE("part" + optionalSpace + counterNumber));
-    query.remove(wordRE("episode" + optionalSpace + counterNumber));
-    query.remove(wordRE(tr("part", "This is for video parts, as in 'Cool video - part 1'") +
-                        optionalSpace + counterNumber));
-    query.remove(wordRE(tr("episode", "This is for video parts, as in 'Cool series - episode 1'") +
-                        optionalSpace + counterNumber));
-    query.remove(QRegularExpression("[\\(\\)\\[\\]]"));
-
-#define NUMBERS "one|two|three|four|five|six|seven|eight|nine|ten"
-
-    QRegularExpression englishNumberRE = QRegularExpression(
-            QLatin1String(".*(") + NUMBERS + ").*", QRegularExpression::CaseInsensitiveOption);
-    // bool numberAsWords = englishNumberRE.exactMatch(query);
-    query.remove(englishNumberRE);
-
-    QRegularExpression localizedNumberRE = QRegularExpression(
-            QLatin1String(".*(") + tr(NUMBERS) + ").*", QRegularExpression::CaseInsensitiveOption);
-    // if (!numberAsWords) numberAsWords = localizedNumberRE.exactMatch(query);
-    query.remove(localizedNumberRE);
-
-    SearchParams *searchParams = new SearchParams();
-    searchParams->setTransient(true);
-    searchParams->setKeywords(query);
-    searchParams->setChannelId(video->getChannelId());
-
-    /*
-    if (!numberAsWords) {
-        qDebug() << "We don't have number as words";
-        // searchParams->setSortBy(SearchParams::SortByNewest);
-        // TODO searchParams->setReverseOrder(true);
-        // TODO searchParams->setMax(50);
-    }
-    */
-
-    search(searchParams);
 }
 
 void MediaView::relatedVideos() {

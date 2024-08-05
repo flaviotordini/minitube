@@ -421,13 +421,6 @@ void MainWindow::createActions() {
     addNamedAction("videolink", copyLinkAct);
     connect(copyLinkAct, SIGNAL(triggered()), mediaView, SLOT(copyVideoLink()));
 
-    findVideoPartsAct = new QAction(tr("Find Video &Parts"));
-    findVideoPartsAct->setStatusTip(tr("Find other video parts hopefully in the right order"));
-    findVideoPartsAct->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_P));
-    findVideoPartsAct->setEnabled(false);
-    connect(findVideoPartsAct, &QAction::triggered, mediaView, &MediaView::findVideoParts);
-    addNamedAction("findVideoParts", findVideoPartsAct);
-
     removeAct = new QAction(tr("&Remove"));
     removeAct->setStatusTip(tr("Remove the selected videos from the playlist"));
     removeAct->setShortcuts(QList<QKeySequence>()
@@ -787,7 +780,6 @@ void MainWindow::createMenus() {
     QMenu *videoMenu = menuBar()->addMenu(tr("&Video"));
     menuMap.insert("video", videoMenu);
     videoMenu->addAction(getAction("relatedVideos"));
-    videoMenu->addAction(findVideoPartsAct);
     videoMenu->addSeparator();
     videoMenu->addAction(getAction("subscribeChannel"));
 #ifdef APP_SNAPSHOT
