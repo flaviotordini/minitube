@@ -83,9 +83,15 @@ void YTChannel::maybeLoadfromAPI() {
     if (loading) return;
     if (channelId.isEmpty()) return;
 
-    uint now = QDateTime::currentDateTime().currentSecsSinceEpoch();
-    static const int refreshInterval = 60 * 60 * 24 * 10;
-    if (loaded > now - refreshInterval) return;
+    bool needMetadataUpdate = displayName.isEmpty() || thumbnailUrl.isEmpty();
+
+    if (!needMetadataUpdate) {
+        uint now = QDateTime::currentDateTime().currentSecsSinceEpoch();
+        static const int refreshInterval = 60 * 60 * 24 * 10;
+        needMetadataUpdate = loaded < now - refreshInterval;
+    }
+
+    if (!needMetadataUpdate) return;
 
     loading = true;
 
