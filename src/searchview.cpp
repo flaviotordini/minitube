@@ -231,7 +231,7 @@ void SearchView::updateRecentKeywords() {
     // cleanup
     QLayoutItem *item;
     while (recentKeywordsLayout->count() - 1 > recentKeywords.size() &&
-           (item = recentKeywordsLayout->takeAt(1)) != nullptr) {
+           (item = recentKeywordsLayout->takeAt(0)) != nullptr) {
         item->widget()->close();
         delete item;
     }
@@ -323,7 +323,7 @@ void SearchView::updateRecentChannels() {
 
     // cleanup
     QLayoutItem *item;
-    while ((item = recentChannelsLayout->takeAt(1)) != nullptr) {
+    while ((item = recentChannelsLayout->takeAt(0)) != nullptr) {
         item->widget()->close();
         delete item;
     }
