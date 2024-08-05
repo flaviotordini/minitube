@@ -66,7 +66,7 @@ public slots:
     void copyWebPage();
     void copyVideoLink();
     void openInBrowser();
-    void shareViaTwitter();
+    void shareViaX();
     void shareViaFacebook();
     void shareViaEmail();
     void removeSelected();

@@ -7,7 +7,7 @@ ShareToolbar::ShareToolbar(QWidget *parent) : QToolBar(parent) {
     setIconSize(QSize(18, 18));
     MainWindow *w = MainWindow::instance();
     addAction(w->getAction("pagelink"));
-    addAction(w->getAction("twitter"));
+    addAction(w->getAction("x"));
     addAction(w->getAction("facebook"));
     addAction(w->getAction("email"));
 }

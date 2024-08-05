@@ -183,7 +183,7 @@ void MediaView::initialize() {
 #endif
             "webpage",      "pagelink", "videolink",     "openInBrowser",
             "skip",         "previous", "stopafterthis", "relatedVideos",
-            "refineSearch", "twitter",  "facebook",      "email"};
+            "refineSearch", "x",        "facebook",      "email"};
     currentVideoActions.reserve(videoActionNames.size());
     for (auto *name : videoActionNames) {
         currentVideoActions.append(mainWindow->getAction(name));
@@ -869,10 +869,10 @@ void MediaView::relatedVideos() {
     MainWindow::instance()->getAction("relatedVideos")->setEnabled(false);
 }
 
-void MediaView::shareViaTwitter() {
+void MediaView::shareViaX() {
     Video *video = playlistModel->activeVideo();
     if (!video) return;
-    QUrl url("https://twitter.com/intent/tweet");
+    QUrl url("https://x.com/intent/tweet");
     QUrlQuery q;
     q.addQueryItem("via", "minitubeapp");
     q.addQueryItem("text", video->getTitle());

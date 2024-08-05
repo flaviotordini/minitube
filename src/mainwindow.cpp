@@ -592,12 +592,12 @@ void MainWindow::createActions() {
 
     QString shareTip = tr("Share the current video using %1");
 
-    a = new QAction("&Twitter");
-    IconUtils::setIcon(a, "twitter");
-    a->setStatusTip(shareTip.arg("Twitter"));
+    a = new QAction("&X");
+    IconUtils::setIcon(a, "x");
+    a->setStatusTip(shareTip.arg("X"));
     a->setEnabled(false);
-    addNamedAction("twitter", a);
-    connect(a, &QAction::triggered, mediaView, &MediaView::shareViaTwitter);
+    addNamedAction("x", a);
+    connect(a, &QAction::triggered, mediaView, &MediaView::shareViaX);
 
     a = new QAction("&Facebook");
     IconUtils::setIcon(a, "facebook");
@@ -796,7 +796,7 @@ void MainWindow::createMenus() {
     menuMap.insert("share", shareMenu);
     shareMenu->addAction(copyPageAct);
     shareMenu->addSeparator();
-    shareMenu->addAction(getAction("twitter"));
+    shareMenu->addAction(getAction("x"));
     shareMenu->addAction(getAction("facebook"));
     shareMenu->addSeparator();
     shareMenu->addAction(getAction("email"));
