@@ -1677,15 +1677,20 @@ void MainWindow::toggleDefinitionMode() {
 }
 
 void MainWindow::clearRecentKeywords() {
-    QSettings settings;
-    settings.remove("recentKeywords");
-    settings.remove("recentChannels");
-    if (views->currentWidget() == homeView) {
-        SearchView *searchView = homeView->getSearchView();
+    {
+        QSettings settings;
+        settings.remove("recentKeywords");
+        settings.remove("recentChannels");
+    }
+
+    HttpUtils::clearCaches();
+
+    SearchView *searchView = homeView->getSearchView();
+    if (searchView) {
         searchView->updateRecentKeywords();
         searchView->updateRecentChannels();
     }
-    HttpUtils::clearCaches();
+
     showMessage(tr("Your privacy is now safe"));
 }
 
