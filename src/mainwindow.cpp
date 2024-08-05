@@ -61,15 +61,23 @@ $END_LICENSE */
 #endif
 
 #include <iostream>
+
 #ifdef APP_EXTRA
 #include "compositefader.h"
 #include "extra.h"
 #include "updatedialog.h"
 #endif
+
 #ifdef APP_ACTIVATION
 #include "activation.h"
 #include "activationview.h"
 #endif
+
+#ifdef APP_MAC_STORE
+#include "purchasing.h"
+#include "purchasingview.h"
+#endif
+
 #include "channelaggregator.h"
 #include "database.h"
 #include "httputils.h"
@@ -699,6 +707,28 @@ void MainWindow::createActions() {
     addNamedAction("importSubscriptions", a);
 
 #ifdef APP_MAC_STORE
+    Purchasing::instance().setPremiumProductId(Constants::UNIX_NAME);
+    Purchasing::instance().connectMessages(this);
+    auto buyAction = Purchasing::instance().getPremiumAction();
+    addNamedAction("buy", buyAction);
+    connect(buyAction, &QAction::triggered, this, [this] {
+        auto view = Purchasing::instance().getWidget();
+        if (views->indexOf(view) == -1) {
+            view->setTitle(tr("Buy %1").arg(QApplication::applicationDisplayName()));
+            view->setInfo(
+                    tr("The full version allows you to watch videos without interruptions.") +
+                    "<p>" +
+                    tr("By purchasing the full version, you will also support the hard work I put "
+                       "into creating %1.")
+                            .arg(QGuiApplication::applicationDisplayName()));
+            connect(view, &PurchasingView::done, this, [this] { views->goBack(); });
+            views->addWidget(view);
+        }
+        views->setCurrentWidget(view);
+    });
+
+    addNamedAction("restorePurchases", Purchasing::instance().getRestorePurchasesAction());
+
     a = new QAction(tr("&Love %1? Rate it!").arg(Constants::NAME));
     addNamedAction("appStore", a);
     connect(a, SIGNAL(triggered()), SLOT(rateOnAppStore()));
@@ -720,12 +750,10 @@ void MainWindow::createActions() {
 
 void MainWindow::createMenus() {
     fileMenu = menuBar()->addMenu(tr("&Application"));
-#ifdef APP_ACTIVATION
     QAction *buyAction = getAction("buy");
     if (buyAction) fileMenu->addAction(buyAction);
-#ifndef APP_MAC
-    fileMenu->addSeparator();
-#endif
+#ifdef APP_MAC_STORE
+    fileMenu->addAction(getAction("restorePurchases"));
 #endif
     fileMenu->addAction(clearAct);
 #ifndef APP_MAC

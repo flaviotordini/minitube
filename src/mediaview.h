@@ -136,7 +136,7 @@ private:
     QString currentSubscriptionChannelId;
     QString currentSubscriptionChannelTitle;
 
-#ifdef APP_ACTIVATION
+#if defined APP_ACTIVATION || defined PURCHASING
     QTimer *demoTimer;
 #endif
 

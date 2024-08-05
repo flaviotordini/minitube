@@ -31,21 +31,30 @@ $END_LICENSE */
 #include "sidebarheader.h"
 #include "sidebarwidget.h"
 #include "videoarea.h"
+
 #ifdef APP_ACTIVATION
 #include "activation.h"
 #include "activationview.h"
 #endif
+
+#ifdef APP_MAC_STORE
+#include "purchasing.h"
+#endif
+
 #ifdef APP_EXTRA
 #include "extra.h"
 #endif
+
 #include "channelaggregator.h"
 #include "iconutils.h"
 #include "searchparams.h"
 #include "videosource.h"
 #include "ytchannel.h"
+
 #ifdef APP_SNAPSHOT
 #include "snapshotsettings.h"
 #endif
+
 #include "datautils.h"
 #include "idle.h"
 #include "videodefinition.h"
@@ -133,24 +142,31 @@ void MediaView::initialize() {
     errorTimer->setInterval(3000);
     connect(errorTimer, SIGNAL(timeout()), SLOT(skipVideo()));
 
-#ifdef APP_ACTIVATION
+#if defined APP_ACTIVATION || defined PURCHASING
     demoTimer = new QTimer(this);
     demoTimer->setSingleShot(true);
     connect(
             demoTimer, &QTimer::timeout, this,
             [this] {
                 if (media->state() != Media::PlayingState) return;
-                media->pause();
-                connect(
-                        ActivationView::instance(), &ActivationView::done, media,
-                        [this] {
-                            media->play();
-                            int ms = (60000 * 2) +
-                                     (QRandomGenerator::global()->generate() % (60000 * 2));
-                            demoTimer->start(ms);
-                        },
+                auto onDismissed = [this] {
+                    media->play();
+                    int ms = (60000 * 2) + (QRandomGenerator::global()->generate() % (60000 * 2));
+                    demoTimer->start(ms);
+                };
+#ifdef APP_ACTIVATION
+                if (Activation::instance().isActivated()) return;
+                connect(ActivationView::instance(), &ActivationView::done, this, onDismissed,
                         Qt::SingleShotConnection);
                 MainWindow::instance()->showActivationView();
+#elif defined PURCHASING
+                if (Purchasing::instance().isPremium()) return;
+                auto view = Purchasing::instance().getWidget();
+                connect(view, &PurchasingView::done, this, onDismissed, Qt::SingleShotConnection);
+                QMetaObject::invokeMethod(MainWindow::instance()->getAction("buy"),
+                                          &QAction::trigger, Qt::QueuedConnection);
+#endif
+                media->pause();
             },
             Qt::QueuedConnection);
 #endif
@@ -430,7 +446,7 @@ void MediaView::stop() {
 
     MainWindow::instance()->getAction("refineSearch")->setChecked(false);
     updateSubscriptionActionForVideo(nullptr, false);
-#ifdef APP_ACTIVATION
+#if defined APP_ACTIVATION || defined PURCHASING
     demoTimer->stop();
 #endif
 
@@ -555,8 +571,8 @@ void MediaView::gotStreamUrl(const QString &streamUrl, const QString &audioUrl) 
         playlistView->scrollTo(index, QAbstractItemView::EnsureVisible);
     }
 
-#ifdef APP_ACTIVATION
-    if (!demoTimer->isActive() && !Activation::instance().isActivated()) {
+#if defined APP_ACTIVATION || defined PURCHASING
+    if (!demoTimer->isActive()) {
         int ms = (60000 * 2) + (QRandomGenerator::global()->generate() % (60000 * 2));
         demoTimer->start(ms);
     }
