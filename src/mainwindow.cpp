@@ -1797,10 +1797,8 @@ bool MainWindow::needStatusBar() {
 }
 
 void MainWindow::adjustMessageLabelPosition() {
-    if (messageLabel->parent() == this)
-        messageLabel->move(0, height() - messageLabel->height());
-    else
-        messageLabel->move(mapToGlobal(QPoint(0, height() - messageLabel->height())));
+    messageLabel->move(0,
+                       (centralWidget()->y() + centralWidget()->height()) - messageLabel->height());
 }
 
 void MainWindow::floatOnTop(bool onTop, bool showAction) {
