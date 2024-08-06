@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation type="unfinished"/>
+        <translation>Dostarczone przez %1</translation>
     </message>
     <message>
         <source>Open-source software</source>
@@ -1233,7 +1233,7 @@
     </message>
     <message>
         <source>Retry Update Download</source>
-        <translation type="unfinished"/>
+        <translation>Spróbuj ponownie pobrać aktualizację</translation>
     </message>
     <message>
         <source>You have the latest version.</source>

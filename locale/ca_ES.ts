@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ca_ES" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ca_ES">
 <context>
     <name>AboutView</name>
     <message>
@@ -670,7 +670,7 @@
     </message>
     <message>
         <source>Toggle &amp;Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>Commuta la &amp;barra de menús</translation>
     </message>
     <message>
         <source>Menu</source>
@@ -790,7 +790,7 @@
     </message>
     <message>
         <source>You can still access the menu bar by pressing the ALT key</source>
-        <translation type="unfinished"/>
+        <translation>Encara podeu accedir a la barra de menús prement la tecla ALT</translation>
     </message>
 </context>
 <context>

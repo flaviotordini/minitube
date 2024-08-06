@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fi" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fi">
 <context>
     <name>AboutView</name>
     <message>
@@ -7,11 +7,11 @@
     </message>
     <message>
         <source>Version %1</source>
-        <translation>Versio: %1</translation>
+        <translation>Julkaisu: %1</translation>
     </message>
     <message>
         <source>Licensed to: %1</source>
-        <translation>Lisensoitu henkilölle: %1</translation>
+        <translation>Luvitettu taholle: %1</translation>
     </message>
     <message>
         <source>%1 is Free Software but its development takes precious time.</source>
@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation>%1 voimistama</translation>
+        <translation>Voimanlähteenä toimii %1</translation>
     </message>
     <message>
         <source>Open-source software</source>
@@ -39,7 +39,7 @@
     </message>
     <message>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
-        <translation>Julkaistu &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt; -lisenssillä</translation>
+        <translation>Julkaistu &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt; -luvituksella</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -54,7 +54,7 @@
     <name>ActivationDialog</name>
     <message>
         <source>Enter your License Details</source>
-        <translation>Syötä tähän lisenssitietosi</translation>
+        <translation>Syötä tähän lupatietosi</translation>
     </message>
     <message>
         <source>&amp;Email:</source>
@@ -69,7 +69,7 @@
     <name>ActivationView</name>
     <message>
         <source>Please license %1</source>
-        <translation>Lisensioi %1.</translation>
+        <translation>Luvita %1.</translation>
     </message>
     <message>
         <source>The full version allows you to watch videos without interruptions.</source>
@@ -77,7 +77,7 @@
     </message>
     <message>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
-        <translation>Ostamalla täyden version tuet kovaa työtäni sovelluksen %1 parissa.</translation>
+        <translation>Ostamalla täyden version tuet kovaa työtäni %1 sovelluksen parissa.</translation>
     </message>
     <message>
         <source>Use Demo</source>
@@ -85,11 +85,11 @@
     </message>
     <message>
         <source>Enter License</source>
-        <translation>Syötä lisenssi</translation>
+        <translation>Syötä luvitus</translation>
     </message>
     <message>
         <source>Buy License</source>
-        <translation>Osta lisenssi</translation>
+        <translation>Osta luvitus</translation>
     </message>
 </context>
 <context>
@@ -107,7 +107,7 @@
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
-        <translation><numerusform>Sinulle on %n uusi video</numerusform><numerusform>Sinulle on %n uutta videota</numerusform></translation>
+        <translation><numerusform>Sinulle on %n uusi video</numerusform><numerusform>Uutta: tarjolla on %n video(oita)</numerusform></translation>
     </message>
 </context>
 <context>
@@ -242,7 +242,7 @@
     </message>
     <message>
         <source>bytes/sec</source>
-        <translation>tavua/sekunnissa</translation>
+        <translation>tavua/sek</translation>
     </message>
     <message>
         <source>KB/sec</source>
@@ -254,7 +254,7 @@
     </message>
     <message>
         <source>seconds</source>
-        <translation>sekunttia</translation>
+        <translation>sekuntia</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -470,7 +470,7 @@
     </message>
     <message>
         <source>&amp;Compact Mode</source>
-        <translation>Kompakti &amp;tila</translation>
+        <translation>&amp;Tiivistetty tila</translation>
     </message>
     <message>
         <source>Hide the playlist and the toolbar</source>
@@ -634,7 +634,7 @@
     </message>
     <message>
         <source>&amp;Stop After This Video</source>
-        <translation>Py&amp;säytä toisto tämän videon jälkeen</translation>
+        <translation>&amp;Lopeta toisto tämän videon jälkeen</translation>
     </message>
     <message>
         <source>&amp;Report an Issue...</source>
@@ -694,7 +694,7 @@
     </message>
     <message>
         <source>&amp;Playlist</source>
-        <translation>S&amp;oittolista</translation>
+        <translation>&amp;Soittolista</translation>
     </message>
     <message>
         <source>&amp;Video</source>
@@ -746,7 +746,7 @@
     </message>
     <message>
         <source>&amp;Pause</source>
-        <translation>&amp;Keskeytä</translation>
+        <translation>&amp;Tauota</translation>
     </message>
     <message>
         <source>Pause playback</source>
@@ -809,7 +809,7 @@
     </message>
     <message>
         <source>Downloading %1</source>
-        <translation>Ladataan %1ta/tä</translation>
+        <translation>Ladataan %1</translation>
     </message>
     <message>
         <source>of</source>
@@ -932,7 +932,7 @@
     </message>
     <message>
         <source>Show in %1</source>
-        <translation>Avaa %1ssa/ssä</translation>
+        <translation>Avaa %1ssa</translation>
     </message>
     <message>
         <source>Open parent folder</source>
@@ -1079,7 +1079,7 @@
     </message>
     <message>
         <source>a keyword</source>
-        <translation>hakusana</translation>
+        <translation>avainsana</translation>
     </message>
     <message>
         <source>Enter</source>
@@ -1087,7 +1087,7 @@
     </message>
     <message>
         <source>Recent keywords</source>
-        <translation>Viimeisimmät hakusanat</translation>
+        <translation>Viimeisimmät avainsanat</translation>
     </message>
     <message>
         <source>Recent channels</source>
@@ -1156,7 +1156,7 @@
     </message>
     <message>
         <source>Snapshots location changed.</source>
-        <translation>Tilannevedoksien sijainti muutettu.</translation>
+        <translation>Tilannevedosten sijainti muutettu.</translation>
     </message>
 </context>
 <context>
@@ -1201,15 +1201,15 @@
     <name>Updater</name>
     <message>
         <source>Check for Updates...</source>
-        <translation>Tarkista onko päivityksiä saatavilla...</translation>
+        <translation>Tarkista päivitykset...</translation>
     </message>
     <message>
         <source>Version %1 is available...</source>
-        <translation>Versio %1 on saatavilla...</translation>
+        <translation>%1 julkaisu on saatavilla...</translation>
     </message>
     <message>
         <source>Downloading version %1...</source>
-        <translation>Ladataan versiota %1...</translation>
+        <translation>Ladataan julkaisu %1...</translation>
     </message>
     <message>
         <source>Restart to Update</source>
@@ -1217,7 +1217,7 @@
     </message>
     <message>
         <source>Version %1 download failed</source>
-        <translation>Version %1 lataaminen epäonnistui</translation>
+        <translation>Uuden julkaisun %1 lataaminen epäonnistui</translation>
     </message>
     <message>
         <source>Check for Updates</source>
@@ -1237,11 +1237,11 @@
     </message>
     <message>
         <source>You have the latest version.</source>
-        <translation>Käytössä on jo viimeisin versio.</translation>
+        <translation>Käytössä on jo viimeisin julkaisu.</translation>
     </message>
     <message>
         <source>Version %1 is available.</source>
-        <translation>Versio %1 on saatavissa.</translation>
+        <translation>%1 -julkaisu on saatavilla.</translation>
     </message>
     <message>
         <source>An update has been downloaded and is ready to be installed.</source>
@@ -1291,7 +1291,7 @@
     </message>
     <message>
         <source>Czech Republic</source>
-        <translation>Tšekin tasavalta</translation>
+        <translation>Tsekki</translation>
     </message>
     <message>
         <source>Egypt</source>
@@ -1468,7 +1468,7 @@
     <name>updater::Dialog</name>
     <message>
         <source>You already have the latest version</source>
-        <translation>Käytössä on jo viimeisin versio</translation>
+        <translation>Käytössäsi on jo viimeisin julkaisu</translation>
     </message>
     <message>
         <source>Downloading %1 %2...</source>
@@ -1476,7 +1476,7 @@
     </message>
     <message>
         <source>A new version of %1 is available!</source>
-        <translation>Uusi versio sovelluksesta %1 on saatavilla!</translation>
+        <translation>Uusi %1 julkaisu on saatavilla!</translation>
     </message>
     <message>
         <source>%1 %2 is now available. You have %3.</source>

@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ms_MY" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ms_MY">
 <context>
     <name>AboutView</name>
     <message>
@@ -129,7 +129,7 @@
     </message>
     <message>
         <source>Last Updated</source>
-        <translation>Terakhir Dikemaskini</translation>
+        <translation>Terakhir Dikemas Kini</translation>
     </message>
     <message>
         <source>Last Added</source>
@@ -141,7 +141,7 @@
     </message>
     <message>
         <source>Most Watched</source>
-        <translation>Paling Banyak Ditonton</translation>
+        <translation>Terbanyak Ditonton</translation>
     </message>
     <message>
         <source>Sort by</source>
@@ -153,7 +153,7 @@
     </message>
     <message>
         <source>Show Updated</source>
-        <translation>Papar Dikemaskini</translation>
+        <translation>Tunjuk Dikemas Kini</translation>
     </message>
     <message>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
@@ -177,7 +177,7 @@
     </message>
     <message>
         <source>There are no updated subscriptions at this time.</source>
-        <translation>Tiada langganan dikemaskini buat masa ini.</translation>
+        <translation>Tiada langganan dikemas kini buat masa ini.</translation>
     </message>
 </context>
 <context>
@@ -314,7 +314,7 @@
     <name>Extra</name>
     <message>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation>Fail bolehlaku telah diusik, mungkin berpunca dari virus.</translation>
+        <translation>Fail bolehlaku telah diusik, mungkin berpunca daripada virus.</translation>
     </message>
     <message>
         <source>%1 will not run. Try installing again.</source>
@@ -326,7 +326,7 @@
     </message>
     <message>
         <source>Reinstall</source>
-        <translation>Pasang semula</translation>
+        <translation>Pasang Semula</translation>
     </message>
 </context>
 <context>
@@ -434,7 +434,7 @@
     </message>
     <message>
         <source>Stop playback and go back to the search view</source>
-        <translation>Henti main balik dan kembali ke paparan gelintar</translation>
+        <translation>Henti main balik dan kembali ke pandangan gelintar</translation>
     </message>
     <message>
         <source>P&amp;revious</source>
@@ -606,7 +606,7 @@
     </message>
     <message>
         <source>Take &amp;Snapshot</source>
-        <translation>Ambil &amp;Cekupan Skrin</translation>
+        <translation>Ambil &amp;Tangkap Skrin</translation>
     </message>
     <message>
         <source>&amp;Subscribe to Channel</source>
@@ -630,7 +630,7 @@
     </message>
     <message>
         <source>&amp;Float on Top</source>
-        <translation>Te&amp;rapung Diatas</translation>
+        <translation>Te&amp;rapung Di Atas</translation>
     </message>
     <message>
         <source>&amp;Stop After This Video</source>
@@ -887,7 +887,7 @@
     </message>
     <message>
         <source>Install Update</source>
-        <translation>Pasang Kemaskini</translation>
+        <translation>Pasang Kemas Kini</translation>
     </message>
 </context>
 <context>
@@ -932,7 +932,7 @@
     </message>
     <message>
         <source>Show in %1</source>
-        <translation>Papar dalam %1</translation>
+        <translation>Tunjuk dalam %1</translation>
     </message>
     <message>
         <source>Open parent folder</source>
@@ -947,7 +947,7 @@
     <name>PlaylistModel</name>
     <message>
         <source>Show %1 More</source>
-        <translation>Papar %1 Lagi</translation>
+        <translation>Tunjuk %1 Lagi</translation>
     </message>
     <message>
         <source>No videos</source>
@@ -974,7 +974,7 @@
     </message>
     <message>
         <source>View Count</source>
-        <translation>Kiraan Papar</translation>
+        <translation>Lihat Kiraan</translation>
     </message>
     <message>
         <source>Rating</source>
@@ -998,7 +998,7 @@
     </message>
     <message>
         <source>Duration</source>
-        <translation>Jangkamasa</translation>
+        <translation>Jangk Masa</translation>
     </message>
     <message>
         <source>All</source>
@@ -1152,11 +1152,11 @@
     </message>
     <message>
         <source>Snapshot saved to %1</source>
-        <translation>Cekupan skrin disimpan ke dalam %1</translation>
+        <translation>Tangkap skrin disimpan ke dalam %1</translation>
     </message>
     <message>
         <source>Snapshots location changed.</source>
-        <translation>Lokasi cekupan skrin berubah.</translation>
+        <translation>Lokasi tangkap skrin berubah.</translation>
     </message>
 </context>
 <context>
@@ -1190,7 +1190,7 @@
     <name>UpdateDialog</name>
     <message>
         <source>Downloading update...</source>
-        <translation>Memuat turun kemaskini...</translation>
+        <translation>Memuat turun kemas kini...</translation>
     </message>
     <message>
         <source>Downloading %1...</source>
@@ -1229,7 +1229,7 @@
     </message>
     <message>
         <source>Downloading update...</source>
-        <translation>Memuat turun kemaskini...</translation>
+        <translation>Memuat turun kemas kini...</translation>
     </message>
     <message>
         <source>Retry Update Download</source>
@@ -1279,7 +1279,7 @@
     </message>
     <message>
         <source>Canada</source>
-        <translation>Canada</translation>
+        <translation>Kanada</translation>
     </message>
     <message>
         <source>Chile</source>

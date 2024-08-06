@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="vi" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="vi">
 <context>
     <name>AboutView</name>
     <message>
@@ -96,7 +96,7 @@
     <name>AppWidget</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished"/>
+        <translation>Tải xuống</translation>
     </message>
 </context>
 <context>
@@ -314,19 +314,19 @@
     <name>Extra</name>
     <message>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation type="unfinished"/>
+        <translation>Tập tin thực thi đã được chỉnh sửa, có thể do vi-rút.</translation>
     </message>
     <message>
         <source>%1 will not run. Try installing again.</source>
-        <translation type="unfinished"/>
+        <translation>%1 sẽ không chạy. Hãy thử cài đặt lại.</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation type="unfinished"/>
+        <translation>Từ bỏ</translation>
     </message>
     <message>
         <source>Reinstall</source>
-        <translation type="unfinished"/>
+        <translation>cài đặt lại</translation>
     </message>
 </context>
 <context>
@@ -670,7 +670,7 @@
     </message>
     <message>
         <source>Toggle &amp;Menu Bar</source>
-        <translation type="unfinished"/>
+        <translation>Chuyển đổi &amp;Thanh Menu</translation>
     </message>
     <message>
         <source>Menu</source>
@@ -754,7 +754,7 @@
     </message>
     <message>
         <source>&amp;Loading...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Đang tải...</translation>
     </message>
     <message>
         <source>Leave &amp;Full Screen</source>
@@ -790,7 +790,7 @@
     </message>
     <message>
         <source>You can still access the menu bar by pressing the ALT key</source>
-        <translation type="unfinished"/>
+        <translation>Bạn vẫn có thể truy cập thanh menu bằng cách nhấn phím ALT</translation>
     </message>
 </context>
 <context>
@@ -1194,7 +1194,7 @@
     </message>
     <message>
         <source>Downloading %1...</source>
-        <translation type="unfinished"/>
+        <translation>Đang tải xuống %1...</translation>
     </message>
 </context>
 <context>

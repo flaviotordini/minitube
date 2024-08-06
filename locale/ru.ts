@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation>При помощи %1</translation>
+        <translation>На базе %1</translation>
     </message>
     <message>
         <source>Open-source software</source>
@@ -315,7 +315,7 @@
     <name>Extra</name>
     <message>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation>Исполняемый файл был изменен, возможно вирусом.</translation>
+        <translation>Исполняемый файл был изменён (возможно, вирусом).</translation>
     </message>
     <message>
         <source>%1 will not run. Try installing again.</source>
@@ -607,7 +607,7 @@
     </message>
     <message>
         <source>Take &amp;Snapshot</source>
-        <translation>Сделать скриншот</translation>
+        <translation>Сделать &amp;снимок экрана</translation>
     </message>
     <message>
         <source>&amp;Subscribe to Channel</source>
@@ -671,7 +671,7 @@
     </message>
     <message>
         <source>Toggle &amp;Menu Bar</source>
-        <translation>Скрыть &amp;Меню</translation>
+        <translation>Скрыть &amp;меню</translation>
     </message>
     <message>
         <source>Menu</source>
@@ -679,7 +679,7 @@
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
-        <translation>&amp;Нравится %1? Оцени!</translation>
+        <translation>&amp;Нравится %1? Оцените!</translation>
     </message>
     <message>
         <source>Buy %1...</source>
@@ -841,7 +841,7 @@
     </message>
     <message>
         <source>Switched to %1</source>
-        <translation type="unfinished"/>
+        <translation>Переключены на %1</translation>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
@@ -853,11 +853,11 @@
     </message>
     <message>
         <source>Rewind %1 seconds</source>
-        <translation type="unfinished"/>
+        <translation>Назад на %1 сек.</translation>
     </message>
     <message>
         <source>Fast forward %1 seconds</source>
-        <translation type="unfinished"/>
+        <translation>Вперёд на %1 сек.</translation>
     </message>
     <message>
         <source>channel</source>
@@ -1123,7 +1123,7 @@
     </message>
     <message>
         <source>&amp;Forward</source>
-        <translation>&amp;Вверх</translation>
+        <translation>&amp;Вперёд</translation>
     </message>
     <message>
         <source>Forward to %1</source>
@@ -1153,11 +1153,11 @@
     </message>
     <message>
         <source>Snapshot saved to %1</source>
-        <translation>Скриншот сохранён в %1</translation>
+        <translation>Снимок экрана сохранён в %1</translation>
     </message>
     <message>
         <source>Snapshots location changed.</source>
-        <translation>Директория для скриншотов изменена</translation>
+        <translation>Каталог для снимков экрана изменён.</translation>
     </message>
 </context>
 <context>
@@ -1191,7 +1191,7 @@
     <name>UpdateDialog</name>
     <message>
         <source>Downloading update...</source>
-        <translation>Загрузка обновления....</translation>
+        <translation>Загрузка обновления...</translation>
     </message>
     <message>
         <source>Downloading %1...</source>
@@ -1206,11 +1206,11 @@
     </message>
     <message>
         <source>Version %1 is available...</source>
-        <translation>Доступна версия %1 </translation>
+        <translation>Доступна версия %1…</translation>
     </message>
     <message>
         <source>Downloading version %1...</source>
-        <translation>Качаю версию %1...</translation>
+        <translation>Загрузка версии %1...</translation>
     </message>
     <message>
         <source>Restart to Update</source>
@@ -1218,7 +1218,7 @@
     </message>
     <message>
         <source>Version %1 download failed</source>
-        <translation>Загрузка версии %1 сорвалась</translation>
+        <translation>Не удалось загрузить версию %1</translation>
     </message>
     <message>
         <source>Check for Updates</source>
@@ -1226,15 +1226,15 @@
     </message>
     <message>
         <source>Download Update</source>
-        <translation>Скачать обновление</translation>
+        <translation>Загрузить обновление</translation>
     </message>
     <message>
         <source>Downloading update...</source>
-        <translation>Загрузка обновления....</translation>
+        <translation>Загрузка обновления...</translation>
     </message>
     <message>
         <source>Retry Update Download</source>
-        <translation>Попытаться скачать обновление заново</translation>
+        <translation>Попытаться загрузить обновление заново</translation>
     </message>
     <message>
         <source>You have the latest version.</source>
@@ -1242,7 +1242,7 @@
     </message>
     <message>
         <source>Version %1 is available.</source>
-        <translation>Доступна версия %1 </translation>
+        <translation>Доступна версия %1.</translation>
     </message>
     <message>
         <source>An update has been downloaded and is ready to be installed.</source>
@@ -1253,7 +1253,7 @@
     <name>YTJSVideo</name>
     <message>
         <source>Cannot get video stream for %1</source>
-        <translation>Не удалось получить видео поток для %1</translation>
+        <translation>Не удалось получить видеопоток для %1</translation>
     </message>
 </context>
 <context>
@@ -1455,7 +1455,7 @@
     <name>YTVideo</name>
     <message>
         <source>Cannot get video stream for %1</source>
-        <translation>Не удалось получить видео поток для %1</translation>
+        <translation>Не удалось получить видеопоток для %1</translation>
     </message>
 </context>
 <context>
@@ -1473,7 +1473,7 @@
     </message>
     <message>
         <source>Downloading %1 %2...</source>
-        <translation>Загружается %1 %2...</translation>
+        <translation>Загрузка %1 %2...</translation>
     </message>
     <message>
         <source>A new version of %1 is available!</source>
@@ -1485,7 +1485,7 @@
     </message>
     <message>
         <source>Would you like to download it now?</source>
-        <translation>Хотите загрузить сейчас?</translation>
+        <translation>Загрузить сейчас?</translation>
     </message>
     <message>
         <source>Remind Me Later</source>
@@ -1493,7 +1493,7 @@
     </message>
     <message>
         <source>Download Update</source>
-        <translation>Скачать обновление</translation>
+        <translation>Загрузить обновление</translation>
     </message>
 </context>
 </TS>
