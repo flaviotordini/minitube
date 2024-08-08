@@ -924,10 +924,6 @@ void MainWindow::createToolBar() {
     currentTimeLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     toolbar->addWidget(currentTimeLabel);
 
-#ifdef APP_WIN
-    toolbar->addWidget(new Spacer(nullptr, 10));
-#endif
-
     seekSlider->setOrientation(Qt::Horizontal);
     QSizePolicy sp(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
     sp.setHorizontalStretch(2);
