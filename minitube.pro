@@ -45,8 +45,10 @@ include(lib/yt/yt.pri)
 DEFINES += MEDIA_MPV
 include(lib/media/media.pri)
 
-DEFINES += QAPPLICATION_CLASS=QApplication
-include(lib/singleapplication/singleapplication.pri)
+!mac {
+    DEFINES += QAPPLICATION_CLASS=QApplication
+    include(lib/singleapplication/singleapplication.pri)
+}
 
 INCLUDEPATH += $$PWD/src
 

@@ -21,9 +21,7 @@ $END_LICENSE */
 #include <QtNetwork>
 #include <QtWidgets>
 
-#ifdef APP_MAC_STORE
-typedef QApplication SingleApplication;
-#else
+#ifdef QAPPLICATION_CLASS
 #include <singleapplication.h>
 #endif
 
@@ -37,37 +35,6 @@ typedef QApplication SingleApplication;
 #ifdef Q_OS_MAC
 #include "mac_startup.h"
 #endif
-
-void showWindow(SingleApplication &app, const QString &pkgDataDir) {
-    MainWindow *mainWin = new MainWindow();
-
-#ifndef APP_MAC
-    QIcon appIcon;
-    if (!pkgDataDir.isEmpty()) {
-        appIcon = IconUtils::icon(Constants::UNIX_NAME);
-    } else {
-        QString dataDir = qApp->applicationDirPath() + "/data";
-        const int iconSizes[] = {16, 22, 32, 48, 64, 128, 256, 512};
-        for (int i = 0; i < 8; i++) {
-            QString size = QString::number(iconSizes[i]);
-            QString png = dataDir + '/' + size + 'x' + size + '/' + Constants::UNIX_NAME +
-                          QLatin1String(".png");
-            appIcon.addFile(png, QSize(iconSizes[i], iconSizes[i]));
-        }
-    }
-    if (appIcon.isNull()) appIcon.addFile(":/images/app.png");
-    mainWin->setWindowIcon(appIcon);
-#endif
-#ifndef APP_MAC_STORE
-    mainWin->connect(&app, &SingleApplication::receivedMessage, mainWin,
-                     [mainWin](auto instanceId, auto message) {
-                         Q_UNUSED(instanceId);
-                         mainWin->messageReceived(message);
-                     });
-#endif
-
-    mainWin->show();
-}
 
 int main(int argc, char **argv) {
 #ifndef QT_NO_DEBUG_OUTPUT
@@ -88,17 +55,21 @@ int main(int argc, char **argv) {
     mac::MacMain();
 #endif
 
-    SingleApplication app(argc, argv);
-    QString message;
-    if (app.arguments().size() > 1) {
-        message = app.arguments().at(1);
-        if (message == QLatin1String("--help")) {
-            MainWindow::printHelp();
-            return 0;
+#ifdef QAPPLICATION_CLASS
+    SingleApplication app(argc, argv, true);
+    if (app.isSecondary()) {
+        if (app.arguments().size() > 1) {
+            QString message = app.arguments().at(1);
+            if (message == QLatin1String("--help")) {
+                MainWindow::printHelp();
+            } else {
+                app.sendMessage(message.toUtf8());
+            }
         }
+        return 0;
     }
-#ifndef APP_MAC_STORE
-    if (app.sendMessage(message.toUtf8())) return 0;
+#else
+    QApplication app(argc, argv);
 #endif
 
     app.setApplicationName(Constants::NAME);
@@ -147,7 +118,40 @@ int main(int argc, char **argv) {
 
     IconUtils::setSizes({16, 24, 32, 88, 128});
 
-    showWindow(app, pkgDataDir);
+    auto window = new MainWindow();
+
+#ifndef APP_MAC
+    QIcon appIcon;
+    if (!pkgDataDir.isEmpty()) {
+        appIcon = IconUtils::icon(Constants::UNIX_NAME);
+    } else {
+        QString dataDir = qApp->applicationDirPath() + "/data";
+        const int iconSizes[] = {16, 22, 32, 48, 64, 128, 256, 512};
+        for (int i = 0; i < 8; i++) {
+            QString size = QString::number(iconSizes[i]);
+            QString png = dataDir + '/' + size + 'x' + size + '/' + Constants::UNIX_NAME +
+                          QLatin1String(".png");
+            appIcon.addFile(png, QSize(iconSizes[i], iconSizes[i]));
+        }
+    }
+    if (appIcon.isNull()) appIcon.addFile(":/images/app.png");
+    window->setWindowIcon(appIcon);
+#endif
+
+#ifdef QAPPLICATION_CLASS
+    window->connect(&app, &SingleApplication::instanceStarted, window, [window] {
+        window->show();
+        window->raise();
+        window->activateWindow();
+    });
+    window->connect(&app, &SingleApplication::receivedMessage, window,
+                    [window](auto instanceId, auto message) {
+                        Q_UNUSED(instanceId);
+                        window->messageReceived(message);
+                    });
+#endif
+
+    window->show();
 
     return app.exec();
 }
