@@ -446,6 +446,9 @@ void MediaView::stop() {
     errorTimer->stop();
     playlistView->selectionModel()->clearSelection();
 
+    QAction *stopAfterThisAction = MainWindow::instance()->getAction("stopafterthis");
+    if (stopAfterThisAction->isChecked()) stopAfterThisAction->setChecked(false);
+
     MainWindow::instance()->getAction("refineSearch")->setChecked(false);
     updateSubscriptionActionForVideo(nullptr, false);
 #if defined APP_ACTIVATION || defined PURCHASING
