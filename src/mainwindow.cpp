@@ -885,10 +885,9 @@ void MainWindow::createToolBar() {
     toolbar = new QToolBar(this);
     toolbar->setToolButtonStyle(Qt::ToolButtonIconOnly);
     toolbar->setFloatable(false);
-    toolbar->setMovable(true);
     toolbar->setIconSize(QSize(32, 32));
-    toolbar->setAllowedAreas(Qt::TopToolBarArea | Qt::BottomToolBarArea);
-    addToolBar(Qt::BottomToolBarArea, toolbar);
+    toolbar->setMovable(false);
+    addToolBar(toolbar);
 
     auto addSmallToolbutton = [this](const char *name) {
         auto button = new ActionButton();
