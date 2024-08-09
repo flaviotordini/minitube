@@ -913,8 +913,7 @@ void MainWindow::createToolBar() {
     toolbar->addWidget(new Spacer());
 
     currentTimeLabel->setFont(FontUtils::small());
-    currentTimeLabel->setMinimumWidth(currentTimeLabel->fontInfo().pixelSize() * 4);
-    currentTimeLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    currentTimeLabel->setContentsMargins(0, 0, 10, 0);
     toolbar->addWidget(currentTimeLabel);
 
     seekSlider->setOrientation(Qt::Horizontal);
