@@ -1,5 +1,9 @@
 QMainWindow > QToolBar QToolButton::menu-indicator { image: none; }
 
+QToolBar {
+    border: 0;
+}
+
 QToolBar QLineEdit {
     background: transparent;
     border: 1px solid transparent;
