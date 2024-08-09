@@ -349,11 +349,13 @@ int MediaView::getHistoryIndex() {
 }
 
 void MediaView::showEvent(QShowEvent *event) {
-    MainWindow::instance()->showToolbar();
+    auto window = MainWindow::instance();
+
+    if (!window->isCompact()) window->showToolbar();
 
     Video *currentVideo = playlistModel->activeVideo();
     if (currentVideo) {
-        MainWindow::instance()->setWindowTitle(currentVideo->getTitle() + " - " + Constants::NAME);
+        window->setWindowTitle(currentVideo->getTitle() + " - " + Constants::NAME);
     }
 
     playlistView->setFocus();
