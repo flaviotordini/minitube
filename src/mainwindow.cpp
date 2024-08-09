@@ -910,12 +910,6 @@ void MainWindow::createToolBar() {
     toolbar->addAction(skipAct);
     toolbar->addAction(getAction("relatedVideos"));
 
-    bool addFullScreenAct = true;
-#ifdef Q_OS_MAC
-    addFullScreenAct = !mac::CanGoFullScreen(winId());
-#endif
-    if (addFullScreenAct) toolbar->addAction(fullscreenAct);
-
     toolbar->addWidget(new Spacer());
 
     currentTimeLabel->setFont(FontUtils::small());
