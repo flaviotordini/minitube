@@ -480,7 +480,7 @@ void MainWindow::createActions() {
     addNamedAction("about", aboutAct);
     connect(aboutAct, &QAction::triggered, this, &MainWindow::about);
     connect(views, &QStackedWidget::currentChanged, this,
-            [this] { aboutAct->setEnabled(views->currentWidget() == aboutView); });
+            [this] { aboutAct->setEnabled(views->currentWidget() != aboutView); });
 
     // Invisible actions
 
