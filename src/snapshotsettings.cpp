@@ -96,18 +96,11 @@ QString SnapshotSettings::displayPath(const QString &path) {
 
 void SnapshotSettings::changeFolder() {
     const QString path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
-#ifdef APP_MAC
     QFileDialog* dialog = new QFileDialog(this);
     dialog->setFileMode(QFileDialog::Directory);
     dialog->setOptions(QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::ReadOnly);
     dialog->setDirectory(path);
     dialog->open(this, SLOT(folderChosen(const QString &)));
-#else
-    QString folder = QFileDialog::getExistingDirectory(window(), QString(),
-                                                       path,
-                                                       QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::ReadOnly);
-    folderChosen(folder);
-#endif
 }
 
 void SnapshotSettings::folderChosen(const QString &dir) {
