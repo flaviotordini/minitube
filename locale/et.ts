@@ -23,7 +23,7 @@
     </message>
     <message>
         <source>Translate %1 to your native language using %2</source>
-        <translation>Tõlgi %1 oma keelde %2&apos;i tõlkerakenduses</translation>
+        <translation>Tõlgi %1 oma keelde tõlkerakenduses %2</translation>
     </message>
     <message>
         <source>Powered by %1</source>

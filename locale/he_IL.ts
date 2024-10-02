@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="he_IL" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="he_IL">
 <context>
     <name>AboutView</name>
     <message>
@@ -11,27 +11,27 @@
     </message>
     <message>
         <source>Licensed to: %1</source>
-        <translation>הרישוי לטובת: %1</translation>
+        <translation>מורשה ל: %1</translation>
     </message>
     <message>
         <source>%1 is Free Software but its development takes precious time.</source>
-        <translation>%1 הנה תכנה חופשית אך פיתוחה לוקח המון זמן יקר.</translation>
+        <translation>%1 היא תכנה חופשית אך פיתוחה אורך זמן יקר.</translation>
     </message>
     <message>
         <source>Please &lt;a href=&apos;%1&apos;&gt;donate&lt;/a&gt; to support the continued development of %2.</source>
-        <translation>אנא &lt;a href=&apos;%1&apos;&gt;תרמו&lt;/a&gt; כדי לתמוך בהמשך הפיתוח של %2.</translation>
+        <translation>נא &lt;a href=&apos;%1&apos;&gt;לתרום&lt;/a&gt; כדי לתמוך בהמשך פיתוח %2.</translation>
     </message>
     <message>
         <source>Translate %1 to your native language using %2</source>
-        <translation>ניתן לתרגם את %1 לשפת אמך באמצעות %2</translation>
+        <translation>ניתן לתרגם את %1 לכל שפה באמצעות %2</translation>
     </message>
     <message>
         <source>Powered by %1</source>
-        <translation>מופעל על ידי %1</translation>
+        <translation>מועצם על ידי %1</translation>
     </message>
     <message>
         <source>Open-source software</source>
-        <translation>תכנה בקוד פתוח</translation>
+        <translation>תוכנת קוד פתוח</translation>
     </message>
     <message>
         <source>Icon designed by %1.</source>
@@ -39,7 +39,7 @@
     </message>
     <message>
         <source>Released under the &lt;a href=&apos;%1&apos;&gt;GNU General Public License&lt;/a&gt;</source>
-        <translation>התכנה שוחררה תחת תנאי &lt;a href=&apos;%1&apos;&gt;הרישיון הציבורי הכללי של GNU&lt;/a&gt;</translation>
+        <translation>שוחררה בתנאי &lt;a href=&apos;%1&apos;&gt;הרישיון הציבורי הכללי של GNU&lt;/a&gt;</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -47,14 +47,14 @@
     </message>
     <message>
         <source>About</source>
-        <translation>אודות</translation>
+        <translation>על אודות</translation>
     </message>
 </context>
 <context>
     <name>ActivationDialog</name>
     <message>
         <source>Enter your License Details</source>
-        <translation>נא להזין את פרטי הרישוי שלך</translation>
+        <translation>נא להזין פרטי רישוי</translation>
     </message>
     <message>
         <source>&amp;Email:</source>
@@ -69,15 +69,15 @@
     <name>ActivationView</name>
     <message>
         <source>Please license %1</source>
-        <translation>נא לרכוש את %1</translation>
+        <translation>נא לרשות %1</translation>
     </message>
     <message>
         <source>The full version allows you to watch videos without interruptions.</source>
-        <translation>הגירסה המלאה מאפשרת לך לצפות בסרטון ללא הפרעות.</translation>
+        <translation>הגירסה המלאה מאפשרת צפיה בסרטונים ללא הפרעות.</translation>
     </message>
     <message>
         <source>By purchasing the full version, you will also support the hard work I put into creating %1.</source>
-        <translation>רכישת הגרסה המלאה מהווה תמיכה בעבודה הקשה שאני משקיע ביצירת %1.</translation>
+        <translation>רכישת הגרסה המלאה תתמוך בעבודה הקשה שאני משקיע ביצירת %1.</translation>
     </message>
     <message>
         <source>Use Demo</source>
@@ -96,7 +96,7 @@
     <name>AppWidget</name>
     <message>
         <source>Download</source>
-        <translation>הורד</translation>
+        <translation>הורדה</translation>
     </message>
 </context>
 <context>
@@ -107,7 +107,7 @@
     </message>
     <message numerus="yes">
         <source>You have %n new video(s)</source>
-        <translation><numerusform>יש לך סרטון חדש</numerusform><numerusform>יש לך שני סרטונים חדשים</numerusform><numerusform>יש לך %n סרטונים חדשים</numerusform><numerusform>יש לך %n סרטונים חדשים</numerusform></translation>
+        <translation><numerusform>ישסרטון %n חדש</numerusform><numerusform>ישנם %n סרטונים חדשים</numerusform><numerusform>ישנם %n סרטונים חדשים</numerusform></translation>
     </message>
 </context>
 <context>
@@ -133,7 +133,7 @@
     </message>
     <message>
         <source>Last Added</source>
-        <translation>נוסף לאחרונה</translation>
+        <translation>נוספו לאחרונה</translation>
     </message>
     <message>
         <source>Last Watched</source>
@@ -149,15 +149,15 @@
     </message>
     <message>
         <source>Mark all as watched</source>
-        <translation>סמנו את כולם כנצפו</translation>
+        <translation>לסמן את כולם כנצפו</translation>
     </message>
     <message>
         <source>Show Updated</source>
-        <translation>הצג עדכונים</translation>
+        <translation>הצגת עדכונים</translation>
     </message>
     <message>
         <source>You have no subscriptions. Use the star symbol to subscribe to channels.</source>
-        <translation>אין לך מנויים. השתמש בסמל הכוכב על מנת להיות מנוי לערוצים.</translation>
+        <translation>לא קיימים מנויים. נא להשתמש בסמל הכוכב על מנת להרשם כמנוי לערוצים.</translation>
     </message>
     <message>
         <source>All Videos</source>
@@ -169,15 +169,15 @@
     </message>
     <message>
         <source>Mark as Watched</source>
-        <translation>סמן כנצפה</translation>
+        <translation>לסמן כנצפה</translation>
     </message>
     <message>
         <source>Unsubscribe</source>
-        <translation>בטל מינוי</translation>
+        <translation>ביטול רישום מינוי</translation>
     </message>
     <message>
         <source>There are no updated subscriptions at this time.</source>
-        <translation>אין עדכונים בערוצים שאתה מנוי עליהם כרגע.</translation>
+        <translation>אין עדכונים בערוצים הרשומים כמנוים לעת עתה.</translation>
     </message>
 </context>
 <context>
@@ -188,15 +188,15 @@
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
-        <translation><numerusform>לפני שעה</numerusform><numerusform>לפני שעתיים</numerusform><numerusform>לפני %n שעות</numerusform><numerusform>לפני %n שעות</numerusform></translation>
+        <translation><numerusform>לפני שעה</numerusform><numerusform>לפני שעתיים</numerusform><numerusform>לפני %n שעות</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation><numerusform>אתמול</numerusform><numerusform>שלשום</numerusform><numerusform>לפני %n ימים</numerusform><numerusform>לפני %n ימים</numerusform></translation>
+        <translation><numerusform>אתמול</numerusform><numerusform>שלשום</numerusform><numerusform>לפני %n ימים</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n month(s) ago</source>
-        <translation><numerusform>לפני חודש</numerusform><numerusform>לפני חודשיים</numerusform><numerusform>לפני %n חודשים</numerusform><numerusform>לפני %n חודשים</numerusform></translation>
+        <translation><numerusform>לפני חודש</numerusform><numerusform>לפני חודשיים</numerusform><numerusform>לפני %n חודשים</numerusform></translation>
     </message>
     <message>
         <source>K</source>
@@ -219,11 +219,11 @@
     </message>
     <message numerus="yes">
         <source>%n week(s) ago</source>
-        <translation><numerusform>לפני שבוע</numerusform><numerusform>לפני שבועיים</numerusform><numerusform>לפני %n שבועות</numerusform><numerusform>לפני %n שבועות</numerusform></translation>
+        <translation><numerusform>לפני שבוע</numerusform><numerusform>לפני שבועיים</numerusform><numerusform>לפני %n שבועות</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n year(s) ago</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>לפני %n שנים</numerusform><numerusform>לפני %n שנים</numerusform><numerusform>לפני %n שנים</numerusform></translation>
     </message>
 </context>
 <context>
@@ -262,41 +262,41 @@
     </message>
     <message>
         <source>%4 %5 remaining</source>
-        <translation>%4 %5 נותרו</translation>
+        <translation>נותרו %4 %5 </translation>
     </message>
 </context>
 <context>
     <name>DownloadManager</name>
     <message>
         <source>%1 downloaded in %2</source>
-        <translation>%1 התקבל במהירות של %2</translation>
+        <translation>%1 ירד במהירות של %2</translation>
     </message>
     <message>
         <source>Download finished</source>
-        <translation>ההורדה הושלמה</translation>
+        <translation>הורדה הושלמה</translation>
     </message>
     <message numerus="yes">
         <source>%n Download(s)</source>
-        <translation><numerusform>הורדה אחת</numerusform><numerusform>שתי הורדות</numerusform><numerusform>%n הורדות</numerusform><numerusform>%n הורדות</numerusform></translation>
+        <translation><numerusform>הורדה אחת</numerusform><numerusform>שתי הורדות</numerusform><numerusform>%n הורדות</numerusform></translation>
     </message>
 </context>
 <context>
     <name>DownloadSettings</name>
     <message>
         <source>Change location...</source>
-        <translation>שינוי המיקום...</translation>
+        <translation>שינוי מיקום...</translation>
     </message>
     <message>
         <source>Choose the download location</source>
-        <translation>נא לבחור את מיקום ההורדה</translation>
+        <translation>נא לבחור מיקום הורדה</translation>
     </message>
     <message>
         <source>Download location changed.</source>
-        <translation>מיקום ההורדה השתנה.</translation>
+        <translation>מיקום הורדה שונה.</translation>
     </message>
     <message>
         <source>Current downloads will still go in the previous location.</source>
-        <translation>ההורדה הנוכחית עדיין תישמר במיקום הקודם.</translation>
+        <translation>הורדה נוכחית תישמר עדיין במיקום הקודם.</translation>
     </message>
     <message>
         <source>Downloading to: %1</source>
@@ -314,11 +314,11 @@
     <name>Extra</name>
     <message>
         <source>The executable file has been tempered with, maybe by a virus.</source>
-        <translation>הקובץ שונה,אולי על ידי וירוס.</translation>
+        <translation>הקובץ הבציע שונה, אולי על ידי וירוס.</translation>
     </message>
     <message>
         <source>%1 will not run. Try installing again.</source>
-        <translation>%1 לא ניתן להפעלה,נסה להתקין מחדש.</translation>
+        <translation>%1 לא ניתן להפעלה, נא לנסות להתקין שוב.</translation>
     </message>
     <message>
         <source>Quit</source>
@@ -326,7 +326,7 @@
     </message>
     <message>
         <source>Reinstall</source>
-        <translation>התקן מחדש</translation>
+        <translation>התקנה חוזרת</translation>
     </message>
 </context>
 <context>
@@ -349,23 +349,23 @@
     </message>
     <message>
         <source>Stop playing after current track</source>
-        <translation>עצירת הנגינה לאחר הרצועה הנוכחית</translation>
+        <translation>עצירת נגינה לאחר רצוע נוכחית</translation>
     </message>
     <message>
         <source>Next track</source>
-        <translation>הרצועה הבאה</translation>
+        <translation>רצועה הבאה</translation>
     </message>
     <message>
         <source>Previous track</source>
-        <translation>הרצועה קודמת</translation>
+        <translation>רצועה קודמת</translation>
     </message>
     <message>
         <source>Increase volume</source>
-        <translation>הגברת עצמת השמע</translation>
+        <translation>הגברת עצמת שמע</translation>
     </message>
     <message>
         <source>Decrease volume</source>
-        <translation>הנמכת עצמת השמע</translation>
+        <translation>הנמכת עצמת שמע</translation>
     </message>
     <message>
         <source>Mute</source>
@@ -388,15 +388,15 @@
     </message>
     <message>
         <source>Find videos and channels by keyword</source>
-        <translation>חיפוש סרטוני וידאו וערוצים לפי מילת מפתח</translation>
+        <translation>חיפוש סרטונים וערוצים לפי מילת מפתח</translation>
     </message>
     <message>
         <source>Browse</source>
-        <translation>עיון</translation>
+        <translation>דפדוף</translation>
     </message>
     <message>
         <source>Browse videos by category</source>
-        <translation>עיון בקטעי וידאו לפי קטגוריה</translation>
+        <translation>דפדוף בקטעי סרטונים לפי סוג־אב</translation>
     </message>
     <message>
         <source>Subscriptions</source>
@@ -404,11 +404,11 @@
     </message>
     <message>
         <source>Channel subscriptions</source>
-        <translation>מנויים בערוצים</translation>
+        <translation>מנויים לערוצים</translation>
     </message>
     <message>
         <source>Make yourself comfortable</source>
-        <translation>שבו בניחותא</translation>
+        <translation>להרגיש בנוח</translation>
     </message>
 </context>
 <context>
@@ -434,7 +434,7 @@
     </message>
     <message>
         <source>Stop playback and go back to the search view</source>
-        <translation>עצירת הנגינה וחזרה אל תצוגת החיפוש</translation>
+        <translation>עצירת נגינה וחזרה מצג החיפוש</translation>
     </message>
     <message>
         <source>P&amp;revious</source>
@@ -442,7 +442,7 @@
     </message>
     <message>
         <source>Go back to the previous track</source>
-        <translation>חזרה לרצועה הקודמת</translation>
+        <translation>חזרה לרצועה קודמת</translation>
     </message>
     <message>
         <source>S&amp;kip</source>
@@ -450,7 +450,7 @@
     </message>
     <message>
         <source>Skip to the next video</source>
-        <translation>דילוג אל הסרטון הבא</translation>
+        <translation>דילוג לסרטון הבא</translation>
     </message>
     <message>
         <source>&amp;Play</source>
@@ -458,7 +458,7 @@
     </message>
     <message>
         <source>Resume playback</source>
-        <translation>המשך הנגינה</translation>
+        <translation>המשך נגינה</translation>
     </message>
     <message>
         <source>&amp;Full Screen</source>
@@ -470,7 +470,7 @@
     </message>
     <message>
         <source>&amp;Compact Mode</source>
-        <translation>מ&amp;צב חסכוני</translation>
+        <translation>מ&amp;צב צמום</translation>
     </message>
     <message>
         <source>Hide the playlist and the toolbar</source>
@@ -478,35 +478,35 @@
     </message>
     <message>
         <source>Open the &amp;YouTube Page</source>
-        <translation>פתיחת העמוד ב&amp;יוטיוב</translation>
+        <translation>פתיחת עמוד ה&amp;יוטיוב</translation>
     </message>
     <message>
         <source>Go to the YouTube video page and pause playback</source>
-        <translation>מעבר לעמוד הווידאו ב־YouTube והשהיית הנגינה.</translation>
+        <translation>מעבר לעמוד הסרטון ב־YouTube והשהיית נגינה.</translation>
     </message>
     <message>
         <source>Copy the YouTube &amp;Link</source>
-        <translation>העתקת ה&amp;קישור ליוטיוב</translation>
+        <translation>העתקת &amp;קישור היוטיוב</translation>
     </message>
     <message>
         <source>Copy the current video YouTube link to the clipboard</source>
-        <translation>העתקת הקישור אל הווידאו הנוכחי אל לוח הגזירים</translation>
+        <translation>העתקת קישור הסרטון הנוכחי ללוח הגזירים</translation>
     </message>
     <message>
         <source>Copy the Video Stream &amp;URL</source>
-        <translation>העתקת כתובת ת&amp;זרים הווידאו</translation>
+        <translation>העתקת כתובת ת&amp;זרים הסרטון</translation>
     </message>
     <message>
         <source>Copy the current video stream URL to the clipboard</source>
-        <translation>העתקת כתובת תזרים הווידאו אל לוח הגזירים</translation>
+        <translation>העתקת כתובת תזרים הסרטון ללוח הגזירים</translation>
     </message>
     <message>
         <source>Find Video &amp;Parts</source>
-        <translation>חיפוש ק&amp;טעי וידאו</translation>
+        <translation>חיפוש ק&amp;טעי סרטון</translation>
     </message>
     <message>
         <source>Find other video parts hopefully in the right order</source>
-        <translation>חיפוש חלקים אחרים בתקווה שהם בסדר הנכון</translation>
+        <translation>חיפוש קטעי סרטון אחרים בתקווה שהם בסדר הנכון</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
@@ -514,31 +514,31 @@
     </message>
     <message>
         <source>Remove the selected videos from the playlist</source>
-        <translation>הסרת הסרטונים הנבחרים מרשימת ההשמעה</translation>
+        <translation>הסרת הסרטונים שנבחרו מרשימת ההשמעה</translation>
     </message>
     <message>
         <source>Move &amp;Up</source>
-        <translation>הזזה מ&amp;מעלה</translation>
+        <translation>העברה &amp;מעלה</translation>
     </message>
     <message>
         <source>Move up the selected videos in the playlist</source>
-        <translation>הזזת הסרטונים הנבחרים במעלה רשימת ההשמעה</translation>
+        <translation>העברת הסרטונים שנבחרו מעלה ברשימת ההשמעה</translation>
     </message>
     <message>
         <source>Move &amp;Down</source>
-        <translation>הזזה מ&amp;טה</translation>
+        <translation>העברה מ&amp;טה</translation>
     </message>
     <message>
         <source>Move down the selected videos in the playlist</source>
-        <translation>הזזת הסרטונים הנבחרים במורד רשימת ההשמעה</translation>
+        <translation>העברת סרטונים שנבחרו מטה ברשימת ההשמעה</translation>
     </message>
     <message>
         <source>&amp;Clear Recent Searches</source>
-        <translation>&amp;ניקוי החיפושים האחרונים</translation>
+        <translation>&amp;ניקוי חיפושים אחרונים</translation>
     </message>
     <message>
         <source>Clear the search history. Cannot be undone.</source>
-        <translation>מחיקת היסטוריית החיפוש. לא ניתן לבטל</translation>
+        <translation>מחיקת היסטוריית החיפוש. פעולה זו לא ניתנת לביטול.</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
@@ -550,19 +550,19 @@
     </message>
     <message>
         <source>&amp;Website</source>
-        <translation>&amp;אתר האינטרנט</translation>
+        <translation>&amp;אתר מרשתת</translation>
     </message>
     <message>
         <source>%1 on the Web</source>
-        <translation>%1 באינטרנט</translation>
+        <translation>%1 במרשתת</translation>
     </message>
     <message>
         <source>Make a &amp;Donation</source>
-        <translation>&amp;תרמו</translation>
+        <translation>&amp;תרומה</translation>
     </message>
     <message>
         <source>Please support the continued development of %1</source>
-        <translation>אנא תמכו בהמשך הפיתוח של %1</translation>
+        <translation>נא לתרום כדי לתמוך בהמשך פיתוח %1.</translation>
     </message>
     <message>
         <source>&amp;About</source>
@@ -570,7 +570,7 @@
     </message>
     <message>
         <source>Info about %1</source>
-        <translation>מידע אודות %1</translation>
+        <translation>מידע על %1</translation>
     </message>
     <message>
         <source>Search</source>
@@ -578,7 +578,7 @@
     </message>
     <message>
         <source>Mute volume</source>
-        <translation>השתקת השמע</translation>
+        <translation>השתקת שמע</translation>
     </message>
     <message>
         <source>&amp;Manually Start Playing</source>
@@ -586,7 +586,7 @@
     </message>
     <message>
         <source>Manually start playing videos</source>
-        <translation>התחלה ידנית בנגינת קטעי הווידאו</translation>
+        <translation>התחלת נגינת קטי סרטונים באופן ידני</translation>
     </message>
     <message>
         <source>&amp;Downloads</source>
@@ -594,7 +594,7 @@
     </message>
     <message>
         <source>Show details about video downloads</source>
-        <translation>הצגת פרטים על אודות הורדות וידאו</translation>
+        <translation>הצגת פרטים על הורדות סרטונים</translation>
     </message>
     <message>
         <source>&amp;Download</source>
@@ -602,19 +602,19 @@
     </message>
     <message>
         <source>Download the current video</source>
-        <translation>הורדת סרטון הווידאו הנוכחי</translation>
+        <translation>הורדת סרטון נוכחי</translation>
     </message>
     <message>
         <source>Take &amp;Snapshot</source>
-        <translation>קח צילום מסך</translation>
+        <translation>לכידת תצלום־חטף</translation>
     </message>
     <message>
         <source>&amp;Subscribe to Channel</source>
-        <translation>הרשם כמנוי לערוץ</translation>
+        <translation>רישום מנוי לערוץ</translation>
     </message>
     <message>
         <source>Share the current video using %1</source>
-        <translation>שיתוף הווידאו הנוכחי באמצעות %1</translation>
+        <translation>שיתוף הסרטון הנוכחי באמצעות %1</translation>
     </message>
     <message>
         <source>&amp;Email</source>
@@ -630,19 +630,19 @@
     </message>
     <message>
         <source>&amp;Float on Top</source>
-        <translation>&amp;ציפה מלמעלה</translation>
+        <translation>&amp;ציפה מעל</translation>
     </message>
     <message>
         <source>&amp;Stop After This Video</source>
-        <translation>ל&amp;עצור לאחר וידאו זה</translation>
+        <translation>ל&amp;עצור לאחר סרטון זה</translation>
     </message>
     <message>
         <source>&amp;Report an Issue...</source>
-        <translation>&amp;דיווח על תקלה...</translation>
+        <translation>&amp;דיווח על סוגייה...</translation>
     </message>
     <message>
         <source>&amp;Refine Search...</source>
-        <translation>&amp;שיפור החיפוש...</translation>
+        <translation>&amp;חידוד חיפוש...</translation>
     </message>
     <message>
         <source>More...</source>
@@ -650,15 +650,15 @@
     </message>
     <message>
         <source>&amp;Related Videos</source>
-        <translation>סרטונים דומים</translation>
+        <translation>&amp;סרטונים דומים</translation>
     </message>
     <message>
         <source>Watch videos related to the current one</source>
-        <translation>צפה בסרטונים הדומים לסרטון זה</translation>
+        <translation>צפיה בסרטונים דומים לסרטון הנוכחי</translation>
     </message>
     <message>
         <source>Open in &amp;Browser...</source>
-        <translation>פתח בדפדפן</translation>
+        <translation>פתיחה &amp;בדפדפן...</translation>
     </message>
     <message>
         <source>Restricted Mode</source>
@@ -666,11 +666,11 @@
     </message>
     <message>
         <source>Hide videos that may contain inappropriate content</source>
-        <translation>הסתר סרטונים שעשויים להכיל תוכן לא הולם</translation>
+        <translation>הסתרת סרטונים שעשויים להכיל תוכן לא הולם</translation>
     </message>
     <message>
         <source>Toggle &amp;Menu Bar</source>
-        <translation>החלפת מ&amp;צב סרגל תפריט</translation>
+        <translation>מתוג סרגל &amp;תפריט</translation>
     </message>
     <message>
         <source>Menu</source>
@@ -678,7 +678,7 @@
     </message>
     <message>
         <source>&amp;Love %1? Rate it!</source>
-        <translation>&amp;אוהב את %1? דרג אותו!</translation>
+        <translation>&amp;אהבת את %1?  נא לדרג!</translation>
     </message>
     <message>
         <source>Buy %1...</source>
@@ -698,7 +698,7 @@
     </message>
     <message>
         <source>&amp;Video</source>
-        <translation>&amp;וידאו</translation>
+        <translation>&amp;סרטון</translation>
     </message>
     <message>
         <source>&amp;Share</source>
@@ -714,19 +714,19 @@
     </message>
     <message>
         <source>Press %1 to raise the volume, %2 to lower it</source>
-        <translation>ניתן ללחוץ על %1 כדי להגביר את עצמת השמע, %2 כדי להנמיך אותה</translation>
+        <translation>ניתן ללחוץ על %1 כדי להגביר את עצמת השמע, %2 כדי להנמיכה</translation>
     </message>
     <message>
         <source>Choose your content location</source>
-        <translation>בחר את המיקום הנוכחי שלך</translation>
+        <translation>בחירת מיקום נוכחי שלך</translation>
     </message>
     <message>
         <source>Opening %1</source>
-        <translation>%1 נפתח</translation>
+        <translation>מתבצעת פתיחת %1</translation>
     </message>
     <message>
         <source>Do you want to exit %1 with a download in progress?</source>
-        <translation>האם ברצונך לצאת מ־%1 כאשר ישנה הורדה פעילה?</translation>
+        <translation>האם לצאת מ־%1 כשקיימת הורדה פעילה?</translation>
     </message>
     <message>
         <source>If you close %1 now, this download will be cancelled.</source>
@@ -734,11 +734,11 @@
     </message>
     <message>
         <source>Close and cancel download</source>
-        <translation>סגירה וביטול ההורדה</translation>
+        <translation>סגירה וביטול הורדה</translation>
     </message>
     <message>
         <source>Wait for download to finish</source>
-        <translation>יש להמתין לסיום ההורדה</translation>
+        <translation>נא להמתין לסיום הורדה</translation>
     </message>
     <message>
         <source>Error: %1</source>
@@ -754,31 +754,31 @@
     </message>
     <message>
         <source>&amp;Loading...</source>
-        <translation>%טוען...</translation>
+        <translation>מתבצעת טעינה...</translation>
     </message>
     <message>
         <source>Leave &amp;Full Screen</source>
-        <translation>יציאה ממ&amp;סך מלא</translation>
+        <translation>עזיבת מ&amp;סך מלא</translation>
     </message>
     <message>
         <source>Remaining time: %1</source>
-        <translation>הזמן הנותר: %1</translation>
+        <translation>זמן נותר: %1</translation>
     </message>
     <message>
         <source>Volume at %1%</source>
-        <translation>עצמת השמע היא %1%</translation>
+        <translation>עצמת שמע %1%</translation>
     </message>
     <message>
         <source>Volume is muted</source>
-        <translation>השמע מושתק</translation>
+        <translation>שמע מושתק</translation>
     </message>
     <message>
         <source>Volume is unmuted</source>
-        <translation>השמע אינו מושתק</translation>
+        <translation>שמע לא מושתק</translation>
     </message>
     <message>
         <source>Maximum video definition set to %1</source>
-        <translation>איכות הנגינה המירבית מוגדרת ל־%1</translation>
+        <translation>מובחנות חוזי מירבית מוגדרת ל־%1</translation>
     </message>
     <message>
         <source>Your privacy is now safe</source>
@@ -786,22 +786,22 @@
     </message>
     <message>
         <source>Downloads complete</source>
-        <translation>ההורדות הושלמו</translation>
+        <translation>הורדות הושלמו</translation>
     </message>
     <message>
         <source>You can still access the menu bar by pressing the ALT key</source>
-        <translation>עדיין ניתן לגשת לסרגל התפריט עם לחיצה על ALT</translation>
+        <translation>ניתן עדיין  לגשת לסרגל התפריט על ידי לחיצה על מקש ה־ALT</translation>
     </message>
 </context>
 <context>
     <name>MediaView</name>
     <message>
         <source>You can now paste the YouTube link into another application</source>
-        <translation>כעת ניתן להדביק את קישור ה־YouTube שלכם ביישום אחר</translation>
+        <translation>ניתן כעת להדביק את קישור ה־YouTube  ליישום אחר</translation>
     </message>
     <message>
         <source>You can now paste the video stream URL into another application</source>
-        <translation>כעת ניתן להדביק את כתובת תזרים הווידאו ליישום אחר</translation>
+        <translation>ניתן כעת להדביק את כתובת תזרים הסרטון ליישום אחר</translation>
     </message>
     <message>
         <source>The link will be valid only for a limited time.</source>
@@ -809,7 +809,7 @@
     </message>
     <message>
         <source>Downloading %1</source>
-        <translation>%1 מתקבל</translation>
+        <translation>מתבצעת הורדת %1</translation>
     </message>
     <message>
         <source>of</source>
@@ -828,54 +828,54 @@
     </message>
     <message>
         <source>Sent from %1</source>
-        <translation>נשלח דרך %1</translation>
+        <translation>נשלח מ־ %1</translation>
     </message>
     <message>
         <source>Unsubscribe from %1</source>
-        <translation>בטל מנוי מ %1</translation>
+        <translation>ביטול רישום מנוי מ־%1</translation>
     </message>
     <message>
         <source>Subscribe to %1</source>
-        <translation>מנוי ל %1</translation>
+        <translation>רישום מנוי ל־%1</translation>
     </message>
     <message>
         <source>Switched to %1</source>
-        <translation>הוחלף אל %1</translation>
+        <translation>הוחלף ל־ %1</translation>
     </message>
     <message>
         <source>Unsubscribed from %1</source>
-        <translation>בוטלה הרשמה מ%1</translation>
+        <translation>ביטול רישום מנוי מ־%1</translation>
     </message>
     <message>
         <source>Subscribed to %1</source>
-        <translation>בוצע רישום ל%1</translation>
+        <translation>רישום מנוי ל־%1</translation>
     </message>
     <message>
         <source>Rewind %1 seconds</source>
-        <translation type="unfinished"/>
+        <translation>להחזיר אחורה %1 שניות</translation>
     </message>
     <message>
         <source>Fast forward %1 seconds</source>
-        <translation type="unfinished"/>
+        <translation>להריץ קדימה %1 שניות</translation>
     </message>
     <message>
         <source>channel</source>
-        <translation type="unfinished"/>
+        <translation>ערוץ</translation>
     </message>
 </context>
 <context>
     <name>MessageWidget</name>
     <message>
         <source>A new version of %1 is available!</source>
-        <translation>גירסה חדשה של  %1 זמינה להורדה!</translation>
+        <translation>גירסת %1 חדשה זמינה להורדה!</translation>
     </message>
     <message>
         <source>%1 %2 is now available. You have %3.</source>
-        <translation>%1 %2 זמין כעת. לך יש %3.</translation>
+        <translation>%1 %2 זמין כעת. קיים %3.</translation>
     </message>
     <message>
         <source>Would you like to download it now?</source>
-        <translation>האם ברצונך להוריד זאת כעת?</translation>
+        <translation>האם להוריד זאת כעת?</translation>
     </message>
     <message>
         <source>Skip This Version</source>
@@ -912,11 +912,11 @@
     </message>
     <message>
         <source>Preparing</source>
-        <translation>מתכונן</translation>
+        <translation>מתבצעת הכנה</translation>
     </message>
     <message>
         <source>Failed</source>
-        <translation>נכשל</translation>
+        <translation>כשל</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -928,19 +928,19 @@
     </message>
     <message>
         <source>Stop downloading</source>
-        <translation>עצור הורדות</translation>
+        <translation>עצירת הורדות</translation>
     </message>
     <message>
         <source>Show in %1</source>
-        <translation>הצג ב %1</translation>
+        <translation>הצגה ב־%1</translation>
     </message>
     <message>
         <source>Open parent folder</source>
-        <translation>פתח תיקיית מקור</translation>
+        <translation>פתיחת תיקיית אב</translation>
     </message>
     <message>
         <source>Restart downloading</source>
-        <translation>התחל הורדות מחדש</translation>
+        <translation>שתחול הורדות</translation>
     </message>
 </context>
 <context>
@@ -1038,19 +1038,19 @@
     </message>
     <message>
         <source>This year</source>
-        <translation type="unfinished"/>
+        <translation>שנה זו</translation>
     </message>
     <message>
         <source>HD</source>
-        <translation type="unfinished"/>
+        <translation>HD</translation>
     </message>
     <message>
         <source>4K</source>
-        <translation type="unfinished"/>
+        <translation>4K</translation>
     </message>
     <message>
         <source>HDR</source>
-        <translation type="unfinished"/>
+        <translation>HDR</translation>
     </message>
 </context>
 <context>
@@ -1099,133 +1099,133 @@
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>הסרה</translation>
     </message>
     <message>
         <source>Need a remote control for %1? Try %2!</source>
-        <translation type="unfinished"/>
+        <translation>נדרש שלט רחוק עבור %1? נא לנסות %2!</translation>
     </message>
     <message>
         <source>I keep improving %1 to make it the best I can. Support this work!</source>
-        <translation type="unfinished"/>
+        <translation>אני ממשיך לשפר את %1 כך שיהיה הטוב ביותר לו אני מסוגל. נא לתמוך בעבודה זו!</translation>
     </message>
     <message>
         <source>An update is ready to be installed. Quit and install update.</source>
-        <translation type="unfinished"/>
+        <translation>קיים עדכון מוכן להתקנה. נא לצאת ולהתקין עדכון.</translation>
     </message>
 </context>
 <context>
     <name>SidebarHeader</name>
     <message>
         <source>&amp;Back</source>
-        <translation>הקודם</translation>
+        <translation>&amp;אחורה</translation>
     </message>
     <message>
         <source>&amp;Forward</source>
-        <translation>ה&amp;עברה</translation>
+        <translation>&amp;קדימה</translation>
     </message>
     <message>
         <source>Forward to %1</source>
-        <translation>העבר אל %1</translation>
+        <translation>קדימה ל־%1</translation>
     </message>
     <message>
         <source>Back to %1</source>
-        <translation>חזור אל %1</translation>
+        <translation>אחורה ל־%1</translation>
     </message>
 </context>
 <context>
     <name>SidebarWidget</name>
     <message>
         <source>Refine Search</source>
-        <translation>שיפור החיפוש</translation>
+        <translation>חידוד חיפוש</translation>
     </message>
     <message>
         <source>Did you mean: %1</source>
-        <translation>האם כוונתך הייתה: %1</translation>
+        <translation>האם הכוונה ל: %1</translation>
     </message>
 </context>
 <context>
     <name>SnapshotSettings</name>
     <message>
         <source>Change location...</source>
-        <translation>שינוי המיקום...</translation>
+        <translation>שינוי מיקום...</translation>
     </message>
     <message>
         <source>Snapshot saved to %1</source>
-        <translation>צילום מסך נשמר ב %1</translation>
+        <translation>תצלום־חטף נשמר ב־%1</translation>
     </message>
     <message>
         <source>Snapshots location changed.</source>
-        <translation>מיקום צילומי מסך שונה.</translation>
+        <translation>מיקום תצלומי־חטף שונה.</translation>
     </message>
 </context>
 <context>
     <name>StandardFeedsView</name>
     <message>
         <source>Most Popular</source>
-        <translation>הכי פופולאריים</translation>
+        <translation>חביבים ביותר</translation>
     </message>
     <message>
         <source>Trending</source>
-        <translation type="unfinished"/>
+        <translation>מגמת עליה</translation>
     </message>
     <message>
         <source>Music</source>
-        <translation type="unfinished"/>
+        <translation>מוזיקה</translation>
     </message>
     <message>
         <source>News</source>
-        <translation type="unfinished"/>
+        <translation>חדשות</translation>
     </message>
     <message>
         <source>Movies</source>
-        <translation type="unfinished"/>
+        <translation>סרטים</translation>
     </message>
     <message>
         <source>Gaming</source>
-        <translation type="unfinished"/>
+        <translation>משחקים</translation>
     </message>
 </context>
 <context>
     <name>UpdateDialog</name>
     <message>
         <source>Downloading update...</source>
-        <translation>העדכון מתקבל...</translation>
+        <translation>מתבצעת הורדת עדכון...</translation>
     </message>
     <message>
         <source>Downloading %1...</source>
-        <translation>מוריד %1...</translation>
+        <translation>מתבצעת הורדת %1...</translation>
     </message>
 </context>
 <context>
     <name>Updater</name>
     <message>
         <source>Check for Updates...</source>
-        <translation type="unfinished"/>
+        <translation>בדיקת עדכונים...</translation>
     </message>
     <message>
         <source>Version %1 is available...</source>
-        <translation type="unfinished"/>
+        <translation>זמיה גרסה %1...</translation>
     </message>
     <message>
         <source>Downloading version %1...</source>
-        <translation type="unfinished"/>
+        <translation>מתבצעת הורדת גרסה %1...</translation>
     </message>
     <message>
         <source>Restart to Update</source>
-        <translation type="unfinished"/>
+        <translation>נא לשתחל כדי לעדכן</translation>
     </message>
     <message>
         <source>Version %1 download failed</source>
-        <translation type="unfinished"/>
+        <translation>הורדת גרסה %1 כשלה</translation>
     </message>
     <message>
         <source>Check for Updates</source>
-        <translation type="unfinished"/>
+        <translation>בדיקת עדכונים</translation>
     </message>
     <message>
         <source>Download Update</source>
-        <translation type="unfinished"/>
+        <translation>הורדת עדכון</translation>
     </message>
     <message>
         <source>Downloading update...</source>
@@ -1233,26 +1233,26 @@
     </message>
     <message>
         <source>Retry Update Download</source>
-        <translation type="unfinished"/>
+        <translation>נא לנסות להוריד עדכון שוב</translation>
     </message>
     <message>
         <source>You have the latest version.</source>
-        <translation type="unfinished"/>
+        <translation>מותקנת הגרסה האחרונה.</translation>
     </message>
     <message>
         <source>Version %1 is available.</source>
-        <translation type="unfinished"/>
+        <translation>זמיה גרסה %1.</translation>
     </message>
     <message>
         <source>An update has been downloaded and is ready to be installed.</source>
-        <translation type="unfinished"/>
+        <translation>עדכון ירד והוא מוכן להתקנה.</translation>
     </message>
 </context>
 <context>
     <name>YTJSVideo</name>
     <message>
         <source>Cannot get video stream for %1</source>
-        <translation>לא ניתן לקבל את תזרים הווידאו עבור %1</translation>
+        <translation>לא ניתן לקבל תזרים סרטון עבור %1</translation>
     </message>
 </context>
 <context>
@@ -1454,37 +1454,37 @@
     <name>YTVideo</name>
     <message>
         <source>Cannot get video stream for %1</source>
-        <translation>לא ניתן לקבל את תזרים הווידאו עבור %1</translation>
+        <translation>לא ניתן לקבל תזרים סרטון עבור %1</translation>
     </message>
 </context>
 <context>
     <name>updater::DefaultUpdater</name>
     <message>
         <source>There are currently no updates available.</source>
-        <translation type="unfinished"/>
+        <translation>אין עדכונים זמינים כעת.</translation>
     </message>
 </context>
 <context>
     <name>updater::Dialog</name>
     <message>
         <source>You already have the latest version</source>
-        <translation type="unfinished"/>
+        <translation>מותקנת כבר הגרסה האחרונה.</translation>
     </message>
     <message>
         <source>Downloading %1 %2...</source>
-        <translation type="unfinished"/>
+        <translation>מתבצעת הורדת %1 %2...</translation>
     </message>
     <message>
         <source>A new version of %1 is available!</source>
-        <translation>גירסה חדשה של  %1 זמינה להורדה!</translation>
+        <translation>גירסת %1 חדשה זמינה להורדה!</translation>
     </message>
     <message>
         <source>%1 %2 is now available. You have %3.</source>
-        <translation>%1 %2 זמין כעת. לך יש %3.</translation>
+        <translation>%1 %2 זמין כעת. קיים %3.</translation>
     </message>
     <message>
         <source>Would you like to download it now?</source>
-        <translation>האם ברצונך להוריד זאת כעת?</translation>
+        <translation>האם להוריד זאת כעת?</translation>
     </message>
     <message>
         <source>Remind Me Later</source>
@@ -1492,7 +1492,7 @@
     </message>
     <message>
         <source>Download Update</source>
-        <translation type="unfinished"/>
+        <translation>הורדת עדכון</translation>
     </message>
 </context>
 </TS>
