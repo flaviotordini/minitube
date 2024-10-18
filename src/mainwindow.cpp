@@ -701,7 +701,6 @@ void MainWindow::createActions() {
 
 #ifdef APP_MAC_STORE
     Purchasing::instance().setPremiumProductId(Constants::UNIX_NAME);
-    Purchasing::instance().connectMessages(this);
     auto buyAction = Purchasing::instance().getPremiumAction();
     addNamedAction("buy", buyAction);
     connect(buyAction, &QAction::triggered, this, [this] {
