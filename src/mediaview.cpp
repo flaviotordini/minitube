@@ -151,7 +151,7 @@ void MediaView::initialize() {
                 if (media->state() != Media::PlayingState) return;
                 auto onDismissed = [this] {
                     media->play();
-                    int ms = (60000 * 2) + (QRandomGenerator::global()->generate() % (60000 * 2));
+                    int ms = (60000 * 4) + (QRandomGenerator::global()->generate() % (60000 * 4));
                     demoTimer->start(ms);
                 };
 #ifdef APP_ACTIVATION
