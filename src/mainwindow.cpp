@@ -1570,12 +1570,8 @@ void MainWindow::initMedia() {
 
     connect(media, &Media::volumeChanged, this, &MainWindow::volumeChanged);
     connect(media, &Media::volumeMutedChanged, this, &MainWindow::volumeMutedChanged);
-    connect(volumeSlider, &QSlider::sliderMoved, this, [this](int value) {
+    connect(volumeSlider, &QSlider::valueChanged, this, [this](int value) {
         qreal volume = (qreal)value / volumeSlider->maximum();
-        media->setVolume(volume);
-    });
-    connect(volumeSlider, &QSlider::sliderPressed, this, [this]() {
-        qreal volume = (qreal)volumeSlider->value() / volumeSlider->maximum();
         media->setVolume(volume);
     });
 
